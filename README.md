@@ -1,3 +1,5 @@
+[ ![Download](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/scientifik/plotlykt-core/_latestVersion)
+
 # Description
 
 This project is developed to allow simple access to plotly functionality from kotlin-multiplatform.
