@@ -5,6 +5,9 @@ import kotlinx.html.stream.createHTML
 import java.awt.Desktop
 import java.io.File
 
+/**
+ * Create a html string from plot
+ */
 fun Plot2D.makeHtml(): String {
     val tracesParsed = data.toJsonString()
     val layoutParsed = layout.toJsonString()
@@ -26,7 +29,6 @@ fun Plot2D.makeHtml(): String {
             script {
                 unsafe {
                     +"""
-                        var data = [];
                         Plotly.newPlot(
                         'plot',
                         $tracesParsed,
@@ -39,6 +41,11 @@ fun Plot2D.makeHtml(): String {
     }
 }
 
+/**
+ * Create a standalone html with the plot
+ * @param file the reference to html file. If null, create a temporary file
+ * @param show if true, start the browser after file is created
+ */
 fun Plot2D.makeFile(file: File? = null, show: Boolean = true) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
     actualFile.writeText(makeHtml())
@@ -47,7 +54,9 @@ fun Plot2D.makeFile(file: File? = null, show: Boolean = true) {
     }
 }
 
-
+/**
+ * Create a html string for page
+ */
 fun PlotGrid.makeHtml(): String {
     val rows = cells.groupBy { it.rowNumber }.mapValues {
         it.value.sortedBy { plot -> plot.colOrderNumber }
@@ -79,7 +88,6 @@ fun PlotGrid.makeHtml(): String {
                     script {
                         unsafe {
                             +"""
-                                var data = [];
                                 Plotly.newPlot(
                                 '$id',
                                 $tracesParsed,
@@ -94,6 +102,11 @@ fun PlotGrid.makeHtml(): String {
     }
 }
 
+/**
+ * Create a standalone html with the page
+ * @param file the reference to html file. If null, create a temporary file
+ * @param show if true, start the browser after file is created
+ */
 fun PlotGrid.makeFile(file: File? = null, show: Boolean = true) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
     actualFile.writeText(makeHtml())

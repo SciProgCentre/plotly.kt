@@ -5,10 +5,12 @@ import hep.dataforge.meta.Specific
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonArray
+import kotlin.js.JsName
 
 /**
  * A namespace for utility functions
  */
+@JsName("PlotlyKt")
 object Plotly {
     fun plot2D(block: Plot2D.() -> Unit): Plot2D = Plot2D().apply(block)
 
