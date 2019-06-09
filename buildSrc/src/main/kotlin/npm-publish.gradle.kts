@@ -25,7 +25,7 @@ publishing {
     repositories {
         maven("https://bintray.com/mipt-npm/$bintrayRepo")
     }
-
+    
     // Process each publication we have in this project
     publications.filterIsInstance<MavenPublication>().forEach { publication ->
 

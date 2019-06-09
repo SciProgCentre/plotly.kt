@@ -60,6 +60,22 @@ class Trace(override val config: Config) : Specific {
             this.y = y
         }
 
+        fun build(x: Iterable<Number>, y: Iterable<Number>, block: Trace.() -> Unit = {}): Trace = build(block).apply {
+            this.x = x.map { it.toDouble() }
+            this.y = y.map { it.toDouble() }
+        }
+
+        fun build(points: Iterable<Pair<Double, Double>>, block: Trace.() -> Unit = {}): Trace = build(block).apply {
+            val x = ArrayList<Double>()
+            val y = ArrayList<Double>()
+            points.forEach {
+                x.add(it.first)
+                y.add(it.second)
+            }
+            this.x = x
+            this.y = y
+        }
+
         override fun wrap(config: Config): Trace = Trace(config)
     }
 }

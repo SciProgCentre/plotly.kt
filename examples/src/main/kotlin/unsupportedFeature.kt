@@ -6,10 +6,10 @@ import scientifik.plotly.models.Trace
 
 fun main() {
 
-    val x = (0..5).map { it.toDouble() }
+    val x = (0..5)
     val y = x.map { it * it }
 
-    val trace = Trace.build(x = x, y = y) {
+    val trace = Trace.build(x, y) {
         name = "sin"
         /* The hover text definition is currently not supported.
          * We are applying it directly to configuration.

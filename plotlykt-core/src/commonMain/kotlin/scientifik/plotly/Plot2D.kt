@@ -40,8 +40,8 @@ class Plot2D : MetaRepr {
         }
     }
 
-//    companion object : Specification<Plot2D> {
-//        override fun wrap(config: Config): Plot2D = Plot2D(config)
-//    }
 }
 
+fun Plot2D.trace(x: Iterable<Number>, y: Iterable<Number>, block: Trace.() -> Unit = {}) {
+    trace(x.map { it.toDouble() }.toDoubleArray(), y.map { it.toDouble() }.toDoubleArray(), block)
+}
