@@ -1,4 +1,5 @@
-[ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/scientifik/plotlykt-core/_latestVersion)
+Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/scientifik/plotlykt-core/_latestVersion)
+Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/scientifik/plotlykt-server/_latestVersion)
 
 # Description
 
@@ -26,6 +27,29 @@ There are two ways to solve it:
 1. Contribute! It is easy!
 2. You can dynamically add missing features directly into configuration
 like it done in [unsupportedFeature](./examples/src/main/kotlin/unsupportedFeature.kt) example.
+
+# Build and usage
+
+In order to use the library, one needs to use following `gradle.kts` configuration:
+
+```kotlin
+plugins {
+    kotlin("jvm")
+}
+
+repositories {
+    jcenter()
+    maven("https://dl.bintray.com/mipt-npm/dataforge")
+    maven("https://dl.bintray.com/mipt-npm/scientifik")
+    maven("https://dl.bintray.com/kotlin/ktor/")
+}
+
+dependencies {
+    implementation("scientifik:plotlykt-server:0.1.1")
+}
+```
+
+If you do not need the server, then use plotlykt-core instead and remove `ktor` repository.
 
 # Planned features
 
