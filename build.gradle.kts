@@ -8,7 +8,7 @@ allprojects {
     }
 
     group = "scientifik"
-    version = "0.1.1"
+    version = "0.1.2-dev-1"
 }
 
 subprojects {

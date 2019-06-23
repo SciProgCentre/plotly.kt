@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm")
     `maven-publish`
@@ -19,8 +21,14 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("main") {
+        create<MavenPublication>("jvm") {
             from(components["java"])
         }
+    }
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }

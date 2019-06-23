@@ -1,7 +1,6 @@
-import org.gradle.kotlin.dsl.`maven-publish`
-import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.kotlin
+import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
+import org.gradle.api.publish.maven.internal.artifact.FileBasedMavenArtifact
+import org.jfrog.gradle.plugin.artifactory.task.ArtifactoryTask
 
 plugins {
     kotlin("multiplatform")
@@ -84,4 +83,21 @@ kotlin {
         apply(plugin = "js-test")
     }
 
+}
+
+//workaround for bintray and artifactory
+project.tasks.filter { it is ArtifactoryTask || it is BintrayUploadTask }.forEach {
+    it.doFirst {
+        project.configure<PublishingExtension> {
+            publications.filterIsInstance<MavenPublication>()
+                .forEach { publication ->
+                    val moduleFile = project.buildDir.resolve("publications/${publication.name}/module.json")
+                    if (moduleFile.exists()) {
+                        publication.artifact(object : FileBasedMavenArtifact(moduleFile) {
+                            override fun getDefaultExtension() = "module"
+                        })
+                    }
+                }
+        }
+    }
 }

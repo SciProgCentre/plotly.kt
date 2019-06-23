@@ -1,5 +1,4 @@
 plugins {
-    kotlin("multiplatform")
     `npm-multiplatform`
 }
 
