@@ -3,11 +3,21 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import scientifik.plotly.models.layout.Axis
 
+
+enum class BarMode{
+    stack,
+    group,
+    overlay,
+    relative
+}
+
 class Layout(override val config: Config) : Specific {
     var title by string()
     var xaxis by spec(Axis)
     var yaxis by spec(Axis)
-
+    var barmode by enum(BarMode.group)
+    var bargap by double() // FIXME("number between or equal to 0 and 1")
+    var bargroupgap by double() // FIXME("number between or equal to 0 and 1")
     //TODO moe title to parameter block
     fun xaxis(block: Axis.() -> Unit) {
         xaxis = Axis.build(block)
