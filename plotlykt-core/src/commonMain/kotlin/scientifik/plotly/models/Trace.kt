@@ -29,7 +29,7 @@ enum class Type {
     histogram2dcontour
 }
 
-enum class Visible{
+enum class Visible {
     @JsName("true")
     True,
     @JsName("false")
@@ -50,10 +50,74 @@ enum class Symbol {
     cross
 }
 
+enum class SizeMode {
+    diameter,
+    area
+}
+
+class Line(override val config: Config) : Specific {
+    var width by int() // FIXME("number greater than or equal to 0")
+    var color by string()
+    var cauto by boolean(true)
+    var cmin by int()
+    var cmax by int()
+    var cmid by int()
+    // var colorscale TODO()
+    var autocolorscale by boolean(true)
+    var reversescale by boolean()
+    // var coloraxis TODO()
+
+    companion object : Specification<Line> {
+        override fun wrap(config: Config): Line = Line(config)
+    }
+}
+
+enum class TextPosition {
+    @JsName("top left")
+    topLeft,
+    @JsName("top center")
+    topCenter,
+    @JsName("top right")
+    topRight,
+    @JsName("middle left")
+    middleLeft,
+    @JsName("middle center")
+    middleCenter,
+    @JsName("middle right")
+    middleRight,
+    @JsName("bottom left")
+    bottomLeft,
+    @JsName("bottom center")
+    bottomCenter,
+    @JsName("bottom right")
+    bottomRight,
+}
+
+class Font(override val config: Config) : Specific {
+    var family by string()
+    var size by int()
+    var color by string()
+
+    companion object : Specification<Font> {
+        override fun wrap(config: Config): Font = Font(config)
+    }
+}
+
+
 class Marker(override val config: Config) : Specific {
     var symbol by enum(Symbol.circle)
     var size by int(6)
-    var color by string()
+    var color by numberList() // FIXME("Create special type for color)
+    var opacity by double() // FIXME("number between or equal to 0 and 1")
+    var maxdisplayed by int(0)
+    var sizeref by int(1)
+    var sizemin by int(0) // FIXME("number greater than or equal to 0")
+    var sizemode by enum(SizeMode.diameter)
+    var line by spec(Line)
+
+    fun line(block: Line.() -> Unit) {
+        line = Line.build(block)
+    }
 
     companion object : Specification<Marker> {
         override fun wrap(config: Config): Marker = Marker(config)
@@ -61,28 +125,28 @@ class Marker(override val config: Config) : Specific {
 }
 
 
-enum class Direction{
+enum class Direction {
     increasing,
     decreasing
 }
 
-enum class CurrentBin{
+enum class CurrentBin {
     include,
     exclude,
     half
 }
 
-class Cumulative(override val config: Config) : Specific{
+class Cumulative(override val config: Config) : Specific {
     var enabled by boolean(false)
     var direction by enum(Direction.increasing)
     var currentbin by enum(CurrentBin.include)
 
     companion object : Specification<Cumulative> {
-        override fun wrap(config: Config):Cumulative = Cumulative(config)
+        override fun wrap(config: Config): Cumulative = Cumulative(config)
     }
 }
 
-enum class HistNorm{
+enum class HistNorm {
     @JsName("")
     empty,
     percent,
@@ -92,7 +156,7 @@ enum class HistNorm{
     probability_density
 }
 
-enum class HisFunc{
+enum class HisFunc {
     count,
     sum,
     @JsName("avg")
@@ -102,13 +166,14 @@ enum class HisFunc{
 }
 
 
-class Bins(override val config: Config) : Specific{
+class Bins(override val config: Config) : Specific {
     //FIXME("add categorical coordinate string")
     var start by double()
     var end by double()
     var size by double()
+
     companion object : Specification<Bins> {
-        override fun wrap(config: Config):Bins = Bins(config)
+        override fun wrap(config: Config): Bins = Bins(config)
     }
 }
 
@@ -132,6 +197,12 @@ class Trace(override val config: Config) : Specific {
     var line by spec(Line)
     var marker by spec(Marker)
     var text by stringList()
+    var textposition by enum(TextPosition.middleCenter)
+    var textfont by spec(Font)
+
+    fun textfont(block: Font.() -> Unit) {
+        textfont = Font.build(block)
+    }
 
     fun marker(block: Marker.() -> Unit) {
         marker = Marker.build(block)
@@ -140,11 +211,13 @@ class Trace(override val config: Config) : Specific {
     fun cumulative(block: Cumulative.() -> Unit) {
         cumulative = Cumulative.build(block)
     }
+
     fun xbins(block: Bins.() -> Unit) {
-        xbins= Bins.build(block)
+        xbins = Bins.build(block)
     }
+
     fun ybins(block: Bins.() -> Unit) {
-        ybins= Bins.build(block)
+        ybins = Bins.build(block)
     }
 
     companion object : Specification<Trace> {
