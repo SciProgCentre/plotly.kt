@@ -13,7 +13,8 @@ enum class Mode {
 }
 
 enum class Type {
-    scatter
+    scatter,
+    histogram
 }
 
 enum class Symbol {
@@ -50,6 +51,19 @@ class Trace(override val config: Config) : Specific {
     var text by stringList()
 
     companion object : Specification<Trace> {
+
+        fun build(x: DoubleArray, block: Trace.() -> Unit = {}): Trace = build(block).apply {
+            this.x = x.asList()
+        }
+
+//        fun build(x: List<Double>, block: Trace.() -> Unit = {}): Trace = build(block).apply {
+//            this.x = x
+//        }
+//
+//        fun build(x: Iterable<Number>,  block: Trace.() -> Unit = {}): Trace = build(block).apply {
+//            this.x = x.map { it.toDouble() }
+//        }
+
         fun build(x: DoubleArray, y: DoubleArray, block: Trace.() -> Unit = {}): Trace = build(block).apply {
             this.x = x.asList()
             this.y = y.asList()
