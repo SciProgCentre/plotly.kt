@@ -26,7 +26,25 @@ enum class Type {
     violin,
     histogram,
     histogram2d,
-    histogram2dcontour
+    histogram2dcontour,
+//    // Finance
+//    ohlc,
+//    candlestick,
+//    waterfall,
+//    // 3D
+//    scatter3d,
+//    surface,
+//    mesh3d,
+//    cone,
+//    streamtube,
+//    volume,
+//    isosurface,
+//    // Maps
+//    scattergeo,
+//    choropleth,
+//    scattermapbox
+//    // Specialized
+
 }
 
 enum class Visible {
@@ -178,6 +196,17 @@ class Bins(override val config: Config) : Specific {
 }
 
 class Trace(override val config: Config) : Specific {
+    /*
+    TODO(Create  specialized classes for scatter, histogram etc )
+    trace{
+    type = Type.histogram
+    ...
+    }
+    convert to
+    histogram{
+    ...
+    }
+     */
     var x by numberList()
     var y by numberList()
 
@@ -230,6 +259,7 @@ class Trace(override val config: Config) : Specific {
             this.x = x
         }
 
+        // FIXME("This code don't compile")
 //        fun build(x: Iterable<Number>,  block: Trace.() -> Unit = {}): Trace = build(block).apply {
 //            this.x = x.map { it.toDouble() }
 //        }
