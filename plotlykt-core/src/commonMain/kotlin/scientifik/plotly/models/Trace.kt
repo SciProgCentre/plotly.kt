@@ -1,7 +1,7 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
-import scientifik.plotly.models.layout.Line
+import scientifik.plotly.models.general.Line
 import kotlin.js.JsName
 
 
@@ -55,7 +55,7 @@ enum class SizeMode {
     area
 }
 
-class Line(override val config: Config) : Specific {
+class MarkerLine(override val config: Config) : Line() {
     var width by int() // FIXME("number greater than or equal to 0")
     var color by string()
     var cauto by boolean(true)
@@ -67,8 +67,8 @@ class Line(override val config: Config) : Specific {
     var reversescale by boolean()
     // var coloraxis TODO()
 
-    companion object : Specification<Line> {
-        override fun wrap(config: Config): Line = Line(config)
+    companion object : Specification<MarkerLine> {
+        override fun wrap(config: Config): MarkerLine = MarkerLine(config)
     }
 }
 
@@ -113,10 +113,10 @@ class Marker(override val config: Config) : Specific {
     var sizeref by int(1)
     var sizemin by int(0) // FIXME("number greater than or equal to 0")
     var sizemode by enum(SizeMode.diameter)
-    var line by spec(Line)
+    var line by spec(MarkerLine)
 
-    fun line(block: Line.() -> Unit) {
-        line = Line.build(block)
+    fun line(block: MarkerLine.() -> Unit) {
+        line = MarkerLine.build(block)
     }
 
     companion object : Specification<Marker> {
@@ -194,7 +194,7 @@ class Trace(override val config: Config) : Specific {
     var histfunc by enum(HisFunc.count)
     var xbins by spec(Bins)
     var ybins by spec(Bins)
-    var line by spec(Line)
+    //    var line by spec(Line)
     var marker by spec(Marker)
     var text by stringList()
     var textposition by enum(TextPosition.middleCenter)
