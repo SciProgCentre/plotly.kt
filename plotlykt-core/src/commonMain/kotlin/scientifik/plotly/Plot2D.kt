@@ -22,6 +22,10 @@ class Plot2D : MetaRepr {
         data.addAll(trace)
     }
 
+    fun trace(x: DoubleArray, block: Trace.() -> Unit = {}) {
+        trace(Trace.build(x, block))
+    }
+
     fun trace(x: DoubleArray, y: DoubleArray, block: Trace.() -> Unit = {}) {
         trace(Trace.build(x, y, block))
     }
@@ -44,4 +48,12 @@ class Plot2D : MetaRepr {
 
 fun Plot2D.trace(x: Iterable<Number>, y: Iterable<Number>, block: Trace.() -> Unit = {}) {
     trace(x.map { it.toDouble() }.toDoubleArray(), y.map { it.toDouble() }.toDoubleArray(), block)
+}
+
+fun Plot2D.trace(x: Iterable<Number>, block: Trace.() -> Unit = {}) {
+    trace(x.map { it.toDouble() }.toDoubleArray(), block)
+}
+
+fun Plot2D.trace(block: Trace.() -> Unit){
+    trace(Trace.build(block))
 }
