@@ -50,6 +50,12 @@ dependencies {
 }
 ```
 
+When using development versions (if version contains `dev`), one should also add
+```
+    maven("https://dl.bintray.com/mipt-npm/dev")
+```
+into the repository list.
+
 If you do not need the server, then use plotlykt-core instead and remove `ktor` repository.
 
 # Planned features
