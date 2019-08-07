@@ -8,6 +8,9 @@ val ktorVersion by extra("1.2.3")
 val dataforgeVersion by extra("0.1.2")
 val htmlVersion by extra("0.6.12")
 
+val bintrayRepo by extra("scientifik")
+val githubProject by extra("plotly.kt")
+
 allprojects {
     repositories {
         mavenCentral()
