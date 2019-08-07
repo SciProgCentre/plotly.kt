@@ -1,6 +1,7 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.values.Null
 import scientifik.plotly.models.general.Line
 import kotlin.js.JsName
 
@@ -265,8 +266,9 @@ class Trace(override val config: Config) : Specific {
 //        }
 
         fun build(x: DoubleArray, y: DoubleArray, block: Trace.() -> Unit = {}): Trace = build(block).apply {
-            this.x = x.asList()
-            this.y = y.asList()
+            //quick-fix for https://github.com/mipt-npm/dataforge-core/issues/12
+            this.x = if(x.isEmpty()) Null else x.asList()
+            this.y = if(x.isEmpty()) Null else y.asList()
         }
 
         fun build(x: List<Double>, y: List<Double>, block: Trace.() -> Unit = {}): Trace = build(block).apply {

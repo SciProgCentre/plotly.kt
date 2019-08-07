@@ -5,12 +5,8 @@ import kotlin.math.PI
 import kotlin.math.sin
 
 fun main() {
-//    val x = (0..100).map { it.toDouble() / 100.0 }
-//    val y = x.map { sin(2.0 * PI * it) }
-
-    val x = emptyList<Double>()
-    val y = emptyList<Double>()
-
+    val x = (0..100).map { it.toDouble() / 100.0 }
+    val y = x.map { sin(2.0 * PI * it) }
 
     val plot = Plotly.plot2D {
         trace(x, y) {
