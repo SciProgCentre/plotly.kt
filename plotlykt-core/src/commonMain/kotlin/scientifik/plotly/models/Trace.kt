@@ -92,23 +92,14 @@ class MarkerLine(override val config: Config) : Line() {
 }
 
 enum class TextPosition {
-    @JsName("top left")
     topLeft,
-    @JsName("top center")
     topCenter,
-    @JsName("top right")
     topRight,
-    @JsName("middle left")
     middleLeft,
-    @JsName("middle center")
     middleCenter,
-    @JsName("middle right")
     middleRight,
-    @JsName("bottom left")
     bottomLeft,
-    @JsName("bottom center")
     bottomCenter,
-    @JsName("bottom right")
     bottomRight,
 }
 
@@ -166,12 +157,10 @@ class Cumulative(override val config: Config) : Specific {
 }
 
 enum class HistNorm {
-    @JsName("")
     empty,
     percent,
     probability,
     density,
-    @JsName("probability density")
     probability_density
 }
 

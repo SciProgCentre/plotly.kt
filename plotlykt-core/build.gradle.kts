@@ -28,6 +28,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-html-js:${htmlVersion}")
+                api(npm("text-encoding")) //FIX for https://github.com/Kotlin/kotlinx-io/issues/57
             }
         }
     }
