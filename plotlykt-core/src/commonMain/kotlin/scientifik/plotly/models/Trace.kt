@@ -1,6 +1,7 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.values.Null
 import scientifik.plotly.models.general.Line
 import kotlin.js.JsName
 
@@ -91,23 +92,14 @@ class MarkerLine(override val config: Config) : Line() {
 }
 
 enum class TextPosition {
-    @JsName("top left")
     topLeft,
-    @JsName("top center")
     topCenter,
-    @JsName("top right")
     topRight,
-    @JsName("middle left")
     middleLeft,
-    @JsName("middle center")
     middleCenter,
-    @JsName("middle right")
     middleRight,
-    @JsName("bottom left")
     bottomLeft,
-    @JsName("bottom center")
     bottomCenter,
-    @JsName("bottom right")
     bottomRight,
 }
 
@@ -165,12 +157,10 @@ class Cumulative(override val config: Config) : Specific {
 }
 
 enum class HistNorm {
-    @JsName("")
     empty,
     percent,
     probability,
     density,
-    @JsName("probability density")
     probability_density
 }
 
@@ -265,8 +255,9 @@ class Trace(override val config: Config) : Specific {
 //        }
 
         fun build(x: DoubleArray, y: DoubleArray, block: Trace.() -> Unit = {}): Trace = build(block).apply {
-            this.x = x.asList()
-            this.y = y.asList()
+            //quick-fix for https://github.com/mipt-npm/dataforge-core/issues/12
+            this.x = if(x.isEmpty()) Null else x.asList()
+            this.y = if(x.isEmpty()) Null else y.asList()
         }
 
         fun build(x: List<Double>, y: List<Double>, block: Trace.() -> Unit = {}): Trace = build(block).apply {

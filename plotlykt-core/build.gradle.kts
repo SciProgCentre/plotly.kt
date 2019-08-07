@@ -1,31 +1,34 @@
 plugins {
-    kotlin("multiplatform")
-    `npm-multiplatform`
+    id("scientifik.mpp")
+    id("scientifik.publish")
 }
 
+scientifik {
+    io = true
+}
+
+val dataforgeVersion: String by rootProject.extra
+val htmlVersion: String by rootProject.extra
+
 kotlin {
-    jvm()
-    js()
     sourceSets {
-        val commonMain by getting{
+        val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-html-common:${Versions.htmlVersion}")
-                api("hep.dataforge:dataforge-io:${Versions.dataforgeVersion}")
-                //api("hep.dataforge:dataforge-io-metadata:${Versions.dataforgeVersion}")
+                api("org.jetbrains.kotlinx:kotlinx-html-common:$htmlVersion")
+                api("hep.dataforge:dataforge-io:$dataforgeVersion")
             }
         }
 
-        val jvmMain by getting{
+        val jvmMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-html-jvm:${Versions.htmlVersion}")
-                //api("hep.dataforge:dataforge-io-jvm:${Versions.dataforgeVersion}")
+                api("org.jetbrains.kotlinx:kotlinx-html-jvm:$htmlVersion")
             }
         }
 
-        val jsMain by getting{
+        val jsMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-html-js:${Versions.htmlVersion}")
-                //api("hep.dataforge:dataforge-io-js:${Versions.dataforgeVersion}")
+                api("org.jetbrains.kotlinx:kotlinx-html-js:${htmlVersion}")
+                api(npm("text-encoding")) //FIX for https://github.com/Kotlin/kotlinx-io/issues/57
             }
         }
     }
