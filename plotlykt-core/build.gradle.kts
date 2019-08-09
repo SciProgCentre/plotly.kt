@@ -4,6 +4,7 @@ plugins {
 }
 
 scientifik {
+    withDokka()
     io = true
 }
 

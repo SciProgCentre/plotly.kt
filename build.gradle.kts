@@ -1,7 +1,7 @@
 plugins {
-    id("scientifik.mpp") version "0.1.4" apply false
-    id("scientifik.jvm") version "0.1.4" apply false
-    id("scientifik.publish") version "0.1.4" apply false
+    id("scientifik.mpp") version "0.1.5" apply false
+    id("scientifik.jvm") version "0.1.5" apply false
+    id("scientifik.publish") version "0.1.5" apply false
 }
 
 val ktorVersion by extra("1.2.3")
