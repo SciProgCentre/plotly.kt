@@ -11,6 +11,7 @@ plugins {
 }
 
 repositories {
+    mavenLocal()
     jcenter()
     maven("https://dl.bintray.com/mipt-npm/dataforge")
     maven("https://dl.bintray.com/mipt-npm/scientifik")
@@ -22,7 +23,7 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compile("no.tornado:tornadofx:1.7.19")
-    implementation("scientifik:plotlykt-server:0.1.2")
+    implementation("scientifik:plotlykt-server:0.1.2-dev")
 }
 
 if(JavaVersion.current().isJava11Compatible) {
@@ -32,7 +33,7 @@ if(JavaVersion.current().isJava11Compatible) {
 }
 
 application {
-    mainClassName = "scientifik.plotly.AppKt"
+    mainClassName = "scientifik.plotly.PlotlyAppKt"
 }
 
 val compileKotlin: KotlinCompile by tasks

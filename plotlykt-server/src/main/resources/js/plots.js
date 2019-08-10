@@ -39,6 +39,7 @@ function createPlotFrom(target, from){
     });
 }
 
+
 /**
  *
  * @param target element id for plot
@@ -57,7 +58,7 @@ function updatePlot(target, page, plot, ws) {
         if (event.wasClean) {
             console.log("The connection with server is closed");
         } else {
-            console.log("The connection with server is broken"); // например, "убит" процесс сервера
+            console.log("The connection with server is broken"); // Server process is dead
         }
         console.log('Code: ' + event.code + ' case: ' + event.reason);
     };
@@ -85,4 +86,11 @@ function updatePlot(target, page, plot, ws) {
             }
         }
     };
+
+    window.onbeforeunload = function() {
+        console.log("Gracefully closing socket");
+        socket.onclose = function () {}; // disable onclose handler first
+        socket.close();
+    };
 }
+

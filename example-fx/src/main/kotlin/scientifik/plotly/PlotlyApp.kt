@@ -4,6 +4,12 @@ import javafx.beans.property.SimpleBooleanProperty
 import javafx.scene.control.SelectionMode
 import tornadofx.*
 
+class PlotlyApp : App(PlotlyView::class)
+
+fun main(args: Array<String>) {
+    launch<PlotlyApp>(args)
+}
+
 class PlotlyView : View("Hello PlotlyFX") {
     private val controller: PlotlyController by inject()
     private val hide = SimpleBooleanProperty(false)
