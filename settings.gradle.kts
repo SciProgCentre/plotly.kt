@@ -20,10 +20,7 @@ pluginManagement {
 
 enableFeaturePreview("GRADLE_METADATA")
 
-//rootProject.name = "plot"
-
 include(
     ":plotlykt-core",
-    ":plotlykt-server",
-    ":examples"
+    ":plotlykt-server"
 )

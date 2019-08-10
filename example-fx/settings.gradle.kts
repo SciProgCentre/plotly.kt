@@ -7,4 +7,10 @@
  * in the user manual at https://docs.gradle.org/5.5/userguide/multi_project_builds.html
  */
 
-rootProject.name = "plotlyfx"
+rootProject.name = "plotly.fx"
+
+//includeBuild("../"){
+//    dependencySubstitution {
+//        substitute(module("scientifik:plotlykt-server")).with(project(":plotlykt-server"))
+//    }
+//}

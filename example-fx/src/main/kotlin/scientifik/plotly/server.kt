@@ -58,7 +58,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve(serverMeta
         launch {
             var time: Long = 0
             while (isActive) {
-                delay(10)
+                delay(50)
                 time += 10
                 val frequency = scale.get()
                 val dynamicY = x.map { sin(2.0 * PI * (it + time.toDouble() / 1000.0) * frequency) }
