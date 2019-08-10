@@ -1,8 +1,6 @@
 package scientifik.plotly.server
 
-import hep.dataforge.io.toJson
 import hep.dataforge.meta.*
-import hep.dataforge.names.Name
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.application.log
@@ -27,38 +25,10 @@ import io.ktor.websocket.webSocket
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.html.*
-import kotlinx.serialization.json.JsonObject
 import scientifik.plotly.*
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
-
-/**
- * An update message for both data and layout
- */
-private sealed class Update(val page: String, val plot: String) {
-    abstract fun toJson(): JsonObject
-
-    class Trace(page: String, plot: String, val trace: Int, val content: Meta) : Update(page, plot) {
-        override fun toJson(): JsonObject = buildMeta {
-            "page" to page
-            "plot" to plot
-            "contentType" to "trace"
-            "trace" to trace
-            "content" to content
-        }.toJson()
-
-    }
-
-    class Layout(page: String, plot: String, val content: Meta) : Update(page, plot) {
-        override fun toJson(): JsonObject = buildMeta {
-            "page" to page
-            "plot" to plot
-            "contentType" to "layout"
-            "content" to content
-        }.toJson()
-    }
-}
 
 /**
  * A simple Ktor serve for displaying and updating plots
@@ -67,7 +37,7 @@ private sealed class Update(val page: String, val plot: String) {
 @ExperimentalCoroutinesApi
 class PlotlyServer(
     val meta: Meta = EmptyMeta,
-    override val coroutineContext: CoroutineContext = EmptyCoroutineContext
+    override val coroutineContext: CoroutineContext = GlobalScope.newCoroutineContext(EmptyCoroutineContext)
 ) : CoroutineScope {
 
     /**
@@ -93,8 +63,8 @@ class PlotlyServer(
             //Update websocket
             webSocket("/ws") {
                 //Use server-side filtering for specific page and plot if they are present in the request
-                val pageName = call.request.queryParameters["page"]
-                val plotName = call.request.queryParameters["plot"]
+                val pageName = call.request.queryParameters["page"] ?: DEFAULT_PAGE
+                val plotName = call.request.queryParameters["plot"] ?: ""
 
                 val subscription = updateChannel.openSubscription()
                 log.debug("Opened server socket for ${call.request.queryParameters}")
@@ -106,7 +76,7 @@ class PlotlyServer(
                 }
 
                 for (update in subscription) {
-                    if ((pageName == null || update.page == pageName) && (plotName == null || update.plot == plotName)) {
+                    if (update.page == pageName && update.plot == plotName) {
                         val json = update.toJson()
                         send(Frame.Text(json.toString()))
                     }
@@ -207,72 +177,6 @@ class PlotlyServer(
         }
     }
 
-
-    /**
-     * A structure that collects changes to plot layout as well as trace configuration
-     */
-    private class PlotCollector {
-        val layoutCollector = MetaChangeCollector()
-        val traceCollectors = HashMap<Int, MetaChangeCollector>()
-
-        fun getTrace(trace: Int) = traceCollectors.getOrPut(trace, ::MetaChangeCollector)
-    }
-
-    /**
-     *
-     */
-    private inner class CollectingPageListener(val pageId: String, val interval: Long) : PageListener {
-
-        private val collectors = HashMap<String, PlotCollector>()
-
-        private var job: Job? = null
-
-        private fun getCollector(plotId: String) = collectors.getOrPut(plotId, ::PlotCollector)
-
-        override fun traceChanged(plotId: String, traceId: Int, itemName: Name, item: MetaItem<*>?) {
-            launch {
-                getCollector(plotId).getTrace(traceId).collect(itemName, item)
-            }
-        }
-
-        override fun layoutChanged(plotId: String, itemName: Name, item: MetaItem<*>?) {
-            launch {
-                getCollector(plotId).layoutCollector.collect(itemName, item)
-            }
-        }
-
-        /**
-         * Start sending updates
-         */
-        fun start() {
-            job = launch {
-                while (isActive) {
-                    delay(interval)
-                    //checking all
-                    collectors.forEach { (plotId, collector) ->
-                        val layoutChange = collector.layoutCollector.read()
-                        //send layout change if it is not empty
-                        if (!layoutChange.isEmpty()) {
-                            updateChannel.send(Update.Layout(pageId, plotId, layoutChange))
-                        }
-                        collector.traceCollectors.forEach { (traceNum, traceCollector) ->
-                            val change = traceCollector.read()
-                            //send trace change if it is not empty
-                            if (!change.isEmpty()) {
-                                updateChannel.send(Update.Trace(pageId, plotId, traceNum, change))
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        fun stop() {
-            job?.cancel()
-        }
-
-    }
-
     /**
      * Start a server
      */
@@ -289,7 +193,7 @@ class PlotlyServer(
 
     private fun getPage(pageId: String): PlotGrid {
         return pages.getOrPut(pageId) {
-            val listener = CollectingPageListener(pageId, meta["update.interval"].long ?: 100)
+            val listener = CollectingPageListener(this, updateChannel, pageId, meta["update.interval"].long ?: 100)
             listener.start()
             PlotGrid(listener).apply { title = "Plot page: $pageId" }
         }
