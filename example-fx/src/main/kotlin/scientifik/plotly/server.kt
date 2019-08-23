@@ -1,25 +1,18 @@
 package scientifik.plotly
 
-import hep.dataforge.meta.buildMeta
 import javafx.beans.value.ObservableIntegerValue
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import scientifik.plotly.models.Trace
 import scientifik.plotly.server.PlotlyServer
+import scientifik.plotly.server.pullUpdates
 import scientifik.plotly.server.serve
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-val serverMeta = buildMeta {
-    "update" to {
-        "enabled" to true
-        //"interval" to 20
-    }
-}
-
-fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve(serverMeta) {
+fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
 
     page("Static") {
         val x = (0..100).map { it.toDouble() / 100.0 }.toDoubleArray()
@@ -61,11 +54,11 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve(serverMeta
                 delay(10)
                 time += 10
                 val frequency = scale.get().toDouble()
-                val dynamicY = x.map { sin(2.0 * PI * frequency * (it + time.toDouble() / 1000.0) ) }
+                val dynamicY = x.map { sin(2.0 * PI * frequency * (it + time.toDouble() / 1000.0)) }
                 trace.y = dynamicY
             }
         }
     }
-}
+}.pullUpdates(300)
 
 

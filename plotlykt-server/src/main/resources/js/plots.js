@@ -8,12 +8,17 @@ function createPlot(target, data, layout) {
     Plotly.newPlot(target, data, layout, {showSendToCloud: true});
 }
 
-var getJSON = function(url, callback) {
-    var xhr = new XMLHttpRequest();
+/**
+ * Request and parse json from given address
+ * @param url
+ * @param callback
+ */
+function getJSON(url, callback) {
+    let xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.responseType = 'json';
-    xhr.onload = function() {
-        var status = xhr.status;
+    xhr.onload = function () {
+        let status = xhr.status;
         if (status === 200) {
             callback(null, xhr.response);
         } else {
@@ -21,33 +26,61 @@ var getJSON = function(url, callback) {
         }
     };
     xhr.send();
-};
-
+}
 
 /**
  * Create a plot taking data from given url
  * @param target {string} element id for plot
  * @param from {string} json server url
+ * @return {JSON}
  */
-function createPlotFrom(target, from){
+function createPlotFrom(target, from) {
     getJSON(from, function (err, json) {
         if (err !== null) {
             alert('Something went wrong: ' + err);
         } else {
-            Plotly.newPlot(target, json.data,json.layout,{showSendToCloud: true});
+            Plotly.newPlot(target, json.data, json.layout, {showSendToCloud: true});
         }
     });
 }
 
+/**
+ * Update a plot taking data from given url
+ * @param target {string} element id for plot
+ * @param from {string} json server url
+ * @return {JSON}
+ */
+function updatePlotFrom(target, from) {
+    getJSON(from, function (err, json) {
+        if (err !== null) {
+            alert('Something went wrong: ' + err);
+        } else {
+            Plotly.react(target, json.data, json.layout);
+        }
+    });
+}
 
 /**
- *
+ * Start pull updates with regular requests from client side
+ * @param target
+ * @param from
+ * @param millis
+ */
+function startPull(target, from, millis){
+    let action = function(){
+      updatePlotFrom(target,from)
+    };
+    window.setInterval(action, millis)
+}
+
+/**
+ * Start push updates via websocket
  * @param target element id for plot
  * @param page the name of the current page to filter events
  * @param plot the name of the plot
  * @param ws {string} a websocket address
  */
-function updatePlot(target, page, plot, ws) {
+function startPush(target, page, plot, ws) {
     let socket = new WebSocket(ws);
 
     socket.onopen = function () {
@@ -76,10 +109,10 @@ function updatePlot(target, page, plot, ws) {
             } else if (json.contentType === "trace") {
                 let content = json.content;
                 //This is done to satisfy plotly requirements of arrays-in-arrays for data
-                if(content.hasOwnProperty('x')){
+                if (content.hasOwnProperty('x')) {
                     content.x = [content.x]
                 }
-                if(content.hasOwnProperty('y')){
+                if (content.hasOwnProperty('y')) {
                     content.y = [content.y]
                 }
                 Plotly.restyle(target, content, json['trace']);
@@ -87,9 +120,10 @@ function updatePlot(target, page, plot, ws) {
         }
     };
 
-    window.onbeforeunload = function() {
+    //gracefully close socket just in case
+    window.onbeforeunload = function () {
         console.log("Gracefully closing socket");
-        socket.onclose = function () {}; // disable onclose handler first
+        socket.onclose = function () { }; // disable onclose handler first
         socket.close();
     };
 }
