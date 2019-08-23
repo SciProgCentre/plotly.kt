@@ -13,5 +13,5 @@ repositories {
 }
 
 dependencies {
-    implementation("scientifik:plotlykt-server:0.1.2")
+    implementation("scientifik:plotlykt-server:0.1.3-dev")
 }

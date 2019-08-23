@@ -5,7 +5,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import scientifik.plotly.Plotly
 import scientifik.plotly.models.Trace
-import scientifik.plotly.server.pushUpdates
+import scientifik.plotly.server.PlotlyServer
 import scientifik.plotly.server.serve
 import kotlin.math.PI
 import kotlin.math.sin
@@ -15,6 +15,10 @@ import kotlin.math.sin
 fun main() {
 
     val server = Plotly.serve{
+        // start sending updates via websocket to the front-end
+        updateMode = PlotlyServer.UpdateMode.PUSH
+        updateInterval = 50
+
         val x = (0..100).map { it.toDouble() / 100.0 }
         val y = x.map { sin(2.0 * PI * it) }
 
@@ -41,7 +45,7 @@ fun main() {
                 trace.y = dynamicY
             }
         }
-    }.pushUpdates(100) // start sending updates via websocket to the front-end
+    }
 
     println("Press Enter to close server")
     readLine()

@@ -23,7 +23,7 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compile("no.tornado:tornadofx:1.7.19")
-    implementation("scientifik:plotlykt-server:0.1.2")
+    implementation("scientifik:plotlykt-server:0.1.3-dev")
 }
 
 if(JavaVersion.current().isJava11Compatible) {

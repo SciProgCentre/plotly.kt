@@ -67,7 +67,7 @@ class PlotlyServer(
     /**
      * Start a server
      */
-    fun start(host: String = "0.0.0.0", port: Int = 7777) {
+    fun start(host: String = "localhost", port: Int = 7777) {
         server = embeddedServer(io.ktor.server.cio.CIO, port, host) {
             install(WebSockets) {
                 pingPeriod = Duration.ofSeconds(1)
