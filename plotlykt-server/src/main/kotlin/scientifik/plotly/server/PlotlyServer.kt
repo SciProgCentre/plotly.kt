@@ -279,7 +279,8 @@ fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply {
 }
 
 /**
- * Configure server to start sendi
+ * Configure client to request regular updates from server. Pull updates are more expensive than push updates since
+ * they contain the full plot data and server can't decide what to send.
  */
 @ExperimentalCoroutinesApi
 @KtorExperimentalAPI
