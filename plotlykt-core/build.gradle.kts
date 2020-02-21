@@ -3,11 +3,6 @@ plugins {
     id("scientifik.publish")
 }
 
-scientifik {
-    withDokka()
-    io = true
-}
-
 val dataforgeVersion: String by rootProject.extra
 val htmlVersion: String by rootProject.extra
 

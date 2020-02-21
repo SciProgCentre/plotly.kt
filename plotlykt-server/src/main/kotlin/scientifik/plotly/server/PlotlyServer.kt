@@ -4,14 +4,13 @@ import hep.dataforge.meta.*
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.application.log
-import io.ktor.features.origin
 import io.ktor.html.respondHtml
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.cio.websocket.Frame
+import io.ktor.http.cio.websocket.pingPeriod
 import io.ktor.http.content.resource
 import io.ktor.http.content.static
-import io.ktor.request.port
 import io.ktor.response.respond
 import io.ktor.response.respondRedirect
 import io.ktor.response.respondText
@@ -27,7 +26,6 @@ import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.html.*
 import scientifik.plotly.*
 import java.time.Duration
-import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
@@ -173,8 +171,11 @@ class PlotlyServer(
                                                     """.trimIndent()
                                                 }
                                             } else {
+                                                val dataHost = host//call.request.host()
+                                                val dataPort = port// call.request.port()
                                                 val url =
-                                                    "http://${call.request.origin.host}:${call.request.port()}/plots?page=$pageName&plot=${cell.plotId}"
+                                                    "http://${dataHost}:${dataPort}/plots?page=$pageName&plot=${cell.plotId}"
+
                                                 unsafe {
                                                     +"\n    createPlotFrom('$id','$url');\n"
                                                 }
@@ -183,16 +184,13 @@ class PlotlyServer(
                                                 when (updateMode) {
                                                     UpdateMode.PUSH -> {
                                                         val updateHost = config["update.uri"]
-                                                            ?: "ws://${call.request.origin.host.replace(
-                                                                "http",
-                                                                "ws"
-                                                            )}:${call.request.port()}/ws"
+                                                            ?: "ws://${dataHost.replace("http", "ws")}:${dataPort}/ws"
                                                         val query = "?page=$pageName&plot=${cell.plotId}"
                                                         unsafe {
                                                             +"\n    startPush('$id','$pageName', '${cell.plotId}','$updateHost$query');\n"
                                                         }
                                                     }
-                                                    UpdateMode.PULL->{
+                                                    UpdateMode.PULL -> {
                                                         unsafe {
                                                             +"\n    startPull('$id','$url',${updateInterval.toLong()});\n"
                                                         }
@@ -217,7 +215,7 @@ class PlotlyServer(
      * Gracefully stop the server
      */
     fun stop() {
-        server?.stop(1000, 5000, TimeUnit.MILLISECONDS)
+        server?.stop(1000, 5000)
         server = null
     }
 

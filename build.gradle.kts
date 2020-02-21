@@ -1,12 +1,12 @@
 plugins {
-    id("scientifik.mpp") version "0.1.5" apply false
-    id("scientifik.jvm") version "0.1.5" apply false
-    id("scientifik.publish") version "0.1.5" apply false
+    id("scientifik.mpp") version "0.3.2" apply false
+    id("scientifik.jvm") version "0.3.2" apply false
+    id("scientifik.publish") version "0.3.2" apply false
 }
 
-val ktorVersion by extra("1.2.3")
+val ktorVersion by extra("1.3.1")
 val dataforgeVersion by extra("0.1.2")
-val htmlVersion by extra("0.6.12")
+val htmlVersion by extra("0.7.1")
 
 val bintrayRepo by extra("scientifik")
 val githubProject by extra("plotly.kt")
@@ -20,5 +20,5 @@ allprojects {
     }
 
     group = "scientifik"
-    version = "0.1.3-dev"
+    version = "0.1.4-dev"
 }

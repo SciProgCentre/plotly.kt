@@ -10,10 +10,6 @@ repositories {
 val ktorVersion: String by rootProject.extra
 val dataforgeVersion: String by rootProject.extra
 
-scientifik{
-    withDokka()
-}
-
 dependencies {
     api(project(":plotlykt-core"))
     api("io.ktor:ktor-server-cio:$ktorVersion")

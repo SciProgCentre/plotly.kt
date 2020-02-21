@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm").version("1.3.41")
+    id("org.jetbrains.kotlin.jvm").version("1.3.61")
 }
 
 repositories {
@@ -13,5 +13,5 @@ repositories {
 }
 
 dependencies {
-    implementation("scientifik:plotlykt-server:0.1.3-dev")
+    implementation("scientifik:plotlykt-server:0.1.4-dev")
 }

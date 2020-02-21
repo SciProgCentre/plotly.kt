@@ -28,7 +28,7 @@ class PlotlyView : View("Hello PlotlyFX") {
                 webview {
                     controller.address.onChange {
                         if (it != null) {
-                            this.engine.load(it)
+                            engine.load(it)
                         }
                     }
                 }
