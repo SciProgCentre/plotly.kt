@@ -1,7 +1,7 @@
 package scientifik.plotly
 
-import hep.dataforge.io.toJson
-import hep.dataforge.meta.Specific
+import hep.dataforge.meta.scheme.Scheme
+import hep.dataforge.meta.toJson
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonArray
@@ -17,20 +17,19 @@ object Plotly {
     fun page(block: PlotGrid.() -> Unit): PlotGrid = PlotGrid().apply(block)
 }
 
-
-fun Specific.toJson(): JsonObject = config.toJson()
+fun Scheme.toJson(): JsonObject = config.toJson()
 
 /**
  * Convert any type-safe configurator to json string
  */
-fun Specific.toJsonString(): String = toJson().toString()
+fun Scheme.toJsonString(): String = toJson().toString()
 
 
-fun List<Specific>.toJson(): JsonArray = jsonArray {
+fun List<Scheme>.toJson(): JsonArray = jsonArray {
     forEach { +it.toJson() }
 }
 
 /**
  * Convert list of type-safe configurators to json array string
  */
-fun List<Specific>.toJsonString(): String = toJson().toString()
+fun List<Scheme>.toJsonString(): String = toJson().toString()

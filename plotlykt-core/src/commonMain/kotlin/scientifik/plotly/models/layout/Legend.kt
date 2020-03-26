@@ -1,12 +1,13 @@
 package scientifik.plotly.models.layout
 
-import hep.dataforge.meta.*
+import hep.dataforge.meta.scheme.*
 import scientifik.plotly.models.Font
 import kotlin.js.JsName
 
 enum class Orientation {
     @JsName("V")
     vertical,
+
     @JsName("h")
     horizontal
 }
@@ -25,7 +26,7 @@ enum class YAnchor {
     bottom
 }
 
-class Legend(override val config: Config) : Specific {
+class Legend : Scheme() {
     //    var bgcolor
 //    var bordercolor
     var borderwidth by int(0)
@@ -35,13 +36,11 @@ class Legend(override val config: Config) : Specific {
     var yanchor by enum(YAnchor.auto)
     var font by spec(Font)
     var orientation by enum(Orientation.vertical)
+
     // var traceorder
     fun font(block: Font.() -> Unit) {
-        font = Font.build(block)
+        font = Font(block)
     }
 
-    companion object : Specification<Legend> {
-        override fun wrap(config: Config): Legend =
-            Legend(config)
-    }
+    companion object : SchemeSpec<Legend>(::Legend)
 }

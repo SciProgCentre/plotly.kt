@@ -18,7 +18,7 @@ fun main() {
             type = Type.histogram
             histnorm = HistNorm.probability
             marker{
-                color = "rgb(255,255,100)"
+                color(255,255,100)
             }
         }
         layout {

@@ -9,14 +9,14 @@ import java.util.*
 
 fun main() {
     val rnd = Random()
-    val x = List(500){rnd.nextDouble()}
+    val values = List(500){rnd.nextDouble()}
 
     val plot = Plotly.plot2D{
         trace{
             name = "Random data"
             type = Type.histogram
 
-            this.x = x
+            x(values)
             cumulative {
                 enabled = true
             }

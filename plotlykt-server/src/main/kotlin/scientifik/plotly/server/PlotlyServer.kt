@@ -1,6 +1,12 @@
 package scientifik.plotly.server
 
-import hep.dataforge.meta.*
+import hep.dataforge.meta.Config
+import hep.dataforge.meta.get
+import hep.dataforge.meta.scheme.Configurable
+import hep.dataforge.meta.scheme.boolean
+import hep.dataforge.meta.scheme.enum
+import hep.dataforge.meta.scheme.number
+import hep.dataforge.names.toName
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.application.log
@@ -32,8 +38,7 @@ import kotlin.coroutines.EmptyCoroutineContext
 /**
  * A simple Ktor server for displaying and updating plots
  */
-@KtorExperimentalAPI
-@ExperimentalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class, KtorExperimentalAPI::class)
 class PlotlyServer(
     override val coroutineContext: CoroutineContext = GlobalScope.newCoroutineContext(EmptyCoroutineContext)
 ) : Configurable, CoroutineScope {
@@ -49,9 +54,9 @@ class PlotlyServer(
     /**
      * Control dynamic updates via websocket
      */
-    var updateMode by enum(UpdateMode.NONE, "update.mode")
-    var updateInterval by number("update.interval") { 300 }
-    var embedData by boolean { false }
+    var updateMode by enum(UpdateMode.NONE, key = "update.mode".toName())
+    var updateInterval by number(300, "update.interval".toName())
+    var embedData by boolean(false)
 
     /**
      * A collection of all pages served by this server
@@ -261,16 +266,12 @@ class PlotlyServer(
 /**
  * Start static server (updates via reload)
  */
-@ExperimentalCoroutinesApi
-@KtorExperimentalAPI
 fun Plotly.serve(block: PlotlyServer.() -> Unit): PlotlyServer =
     PlotlyServer().apply(block).apply { start() }
 
 /**
  * Configure server to start sending updates in push mode. Does not affect loaded pages
  */
-@ExperimentalCoroutinesApi
-@KtorExperimentalAPI
 fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply {
     updateMode = PlotlyServer.UpdateMode.PUSH
     this.updateInterval = interval
@@ -280,8 +281,6 @@ fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply {
  * Configure client to request regular updates from server. Pull updates are more expensive than push updates since
  * they contain the full plot data and server can't decide what to send.
  */
-@ExperimentalCoroutinesApi
-@KtorExperimentalAPI
 fun PlotlyServer.pullUpdates(interval: Long = 1000): PlotlyServer = apply {
     updateMode = PlotlyServer.UpdateMode.PULL
     this.updateInterval = interval

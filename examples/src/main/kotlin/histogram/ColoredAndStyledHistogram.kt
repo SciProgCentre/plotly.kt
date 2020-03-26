@@ -6,7 +6,6 @@ import scientifik.plotly.models.BarMode
 import scientifik.plotly.models.HisFunc
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.Type
-import scientifik.plotly.trace
 import java.util.*
 
 
@@ -22,7 +21,7 @@ fun main() {
         name = "control"
         histfunc = HisFunc.count
         marker {
-            color = "rgba(255, 100, 102, 0.7)"
+            color(255, 100, 102, 0.7)
         }
         opacity = 0.5
         type = Type.histogram
@@ -36,7 +35,7 @@ fun main() {
     val trace2 = Trace.build(x2,y2){
         name = "experimental"
         marker {
-            color = "rgba(100, 200, 102, 0.7)"
+            color(100, 200, 102, 0.7)
         }
         opacity = 0.75
         type = Type.histogram

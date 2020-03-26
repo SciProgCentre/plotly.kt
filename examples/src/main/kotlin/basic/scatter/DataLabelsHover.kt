@@ -9,8 +9,8 @@ import scientifik.plotly.trace
 fun main() {
     val plot = Plotly.plot2D {
         trace {
-            x = listOf(1, 2, 3, 4)
-            y = listOf(10, 15, 13, 17)
+            x(1, 2, 3, 4)
+            y(10, 15, 13, 17)
             mode = Mode.markers
             type = Type.scatter
             name = "Team A"
@@ -18,8 +18,8 @@ fun main() {
             marker { size = 12 }
         }
         trace {
-            x = listOf(2, 3, 4, 5)
-            y = listOf(10, 15, 13, 17)
+            x(2, 3, 4, 5)
+            y(10, 15, 13, 17)
             mode = Mode.lines
             type = Type.scatter
             name = "Team B"

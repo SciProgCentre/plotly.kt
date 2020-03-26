@@ -1,7 +1,5 @@
 package scientifik.plotly.models.general
 
-import hep.dataforge.meta.Specific
+import hep.dataforge.meta.scheme.Scheme
 
-abstract class Line : Specific {
-
-}
+abstract class Line : Scheme()

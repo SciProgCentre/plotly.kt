@@ -42,7 +42,7 @@ fun main() {
                 delay(10)
                 time += 10
                 val dynamicY = x.map { sin(2.0 * PI * (it + time.toDouble() / 1000.0)) }
-                trace.y = dynamicY
+                trace.y(dynamicY)
             }
         }
     }

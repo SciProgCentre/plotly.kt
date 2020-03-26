@@ -1,4 +1,5 @@
-import hep.dataforge.meta.configure
+
+import hep.dataforge.meta.scheme.configure
 import hep.dataforge.meta.set
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile

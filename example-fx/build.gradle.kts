@@ -3,10 +3,10 @@ import org.openjfx.gradle.JavaFXOptions
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
-    id("org.jetbrains.kotlin.jvm").version("1.3.61")
+    kotlin("jvm") version "1.3.71"
     application
     if(JavaVersion.current().isJava11Compatible) {
-        id("org.openjfx.javafxplugin") version "0.0.7"
+        id("org.openjfx.javafxplugin") version "0.0.8"
     }
 }
 
@@ -15,6 +15,7 @@ repositories {
     jcenter()
     maven("https://dl.bintray.com/mipt-npm/dataforge")
     maven("https://dl.bintray.com/mipt-npm/scientifik")
+    maven("https://dl.bintray.com/mipt-npm/dev")
     maven("https://dl.bintray.com/kotlin/ktor/")
     maven("https://dl.bintray.com/kotlin/kotlin-eap")
     maven("https://kotlin.bintray.com/kotlinx")
@@ -22,8 +23,8 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    compile("no.tornado:tornadofx:1.7.19")
-    implementation("scientifik:plotlykt-server:0.1.4-dev")
+    implementation("no.tornado:tornadofx:1.7.19")
+    implementation("scientifik:plotlykt-server:0.1.5")
 }
 
 if(JavaVersion.current().isJava11Compatible) {
@@ -38,9 +39,9 @@ application {
 
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+    jvmTarget = "11"
 }
 val compileTestKotlin: KotlinCompile by tasks
 compileTestKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+    jvmTarget = "11"
 }

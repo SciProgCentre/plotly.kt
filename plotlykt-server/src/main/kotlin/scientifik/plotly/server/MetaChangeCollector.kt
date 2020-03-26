@@ -1,9 +1,10 @@
 package scientifik.plotly.server
 
-import hep.dataforge.meta.*
+import hep.dataforge.meta.Config
+import hep.dataforge.meta.Meta
+import hep.dataforge.meta.MetaItem
+import hep.dataforge.meta.seal
 import hep.dataforge.names.Name
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
@@ -30,10 +31,10 @@ class MetaChangeCollector {
     }
 }
 
-fun MutableMetaNode<*>.collect(scope: CoroutineScope): MetaChangeCollector {
-    val collector = MetaChangeCollector()
-    this.onChange(collector) { name, _, item ->
-        scope.launch { collector.collect(name, item) }
-    }
-    return collector
-}
+//fun MutableMeta<*>.collect(scope: CoroutineScope): MetaChangeCollector {
+//    val collector = MetaChangeCollector()
+//    this.onChange(collector) { name, _, item ->
+//        scope.launch { collector.collect(name, item) }
+//    }
+//    return collector
+//}

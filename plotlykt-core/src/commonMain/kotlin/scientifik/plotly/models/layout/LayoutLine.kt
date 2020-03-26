@@ -1,9 +1,8 @@
 package scientifik.plotly.models.layout
 
-import hep.dataforge.meta.Config
-import hep.dataforge.meta.Specification
-import hep.dataforge.meta.enum
-import scientifik.plotly.models.general.Line
+import hep.dataforge.meta.scheme.Scheme
+import hep.dataforge.meta.scheme.SchemeSpec
+import hep.dataforge.meta.scheme.enum
 
 
 enum class Shape {
@@ -15,11 +14,8 @@ enum class Shape {
     linear
 }
 
-class LayoutLine(override val config: Config) : Line() {
+class LayoutLine : Scheme() {
     var shape by enum(Shape.linear)
 
-    companion object : Specification<LayoutLine> {
-        override fun wrap(config: Config): LayoutLine =
-            LayoutLine(config)
-    }
+    companion object : SchemeSpec<LayoutLine>(::LayoutLine)
 }

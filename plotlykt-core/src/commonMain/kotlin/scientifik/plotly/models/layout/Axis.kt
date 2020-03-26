@@ -1,6 +1,6 @@
 package scientifik.plotly.models.layout
 
-import hep.dataforge.meta.*
+import hep.dataforge.meta.scheme.*
 import kotlin.js.JsName
 
 
@@ -14,7 +14,7 @@ enum class Type {
     multicategory;
 }
 
-class Axis(override val config: Config): Specific {
+class Axis : Scheme() {
     var title by string()
     var type by enum(Type.`-`)
     var visible by boolean()
@@ -22,7 +22,5 @@ class Axis(override val config: Config): Specific {
     var range: Pair<Double, Double>? = null
     var color by string()
 
-    companion object: Specification<Axis>{
-        override fun wrap(config: Config): Axis = Axis(config)
-    }
+    companion object : SchemeSpec<Axis>(::Axis)
 }

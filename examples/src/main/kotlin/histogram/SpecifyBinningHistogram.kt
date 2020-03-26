@@ -5,26 +5,26 @@ import scientifik.plotly.makeFile
 import scientifik.plotly.models.HisFunc
 import scientifik.plotly.models.Type
 import scientifik.plotly.trace
-import java.util.*
 
 
 fun main() {
-    val x = listOf("Apples","Apples","Apples","Organges", "Bananas")
-    val y = listOf("5","10","3","10","5")
+    val categories = listOf("Apples","Apples","Apples","Organges", "Bananas")
+    val values = listOf("5","10","3","10","5")
 
     val plot = Plotly.plot2D{
         trace{
             name = "count"
             type = Type.histogram
-            this.x = x
-            this.y = y
+            categoryX(categories)
+            categoryY(values)
             histfunc = HisFunc.count
         }
+
         trace{
             name = "sum"
             type = Type.histogram
-            this.x = x
-            this.y = y
+            categoryX(categories)
+            categoryY(values)
             histfunc = HisFunc.sum
         }
         layout {

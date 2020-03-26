@@ -6,7 +6,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import scientifik.plotly.models.Trace
 import scientifik.plotly.server.PlotlyServer
-import scientifik.plotly.server.pullUpdates
+import scientifik.plotly.server.pushUpdates
 import scientifik.plotly.server.serve
 import kotlin.math.PI
 import kotlin.math.cos
@@ -55,10 +55,10 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
                 time += 10
                 val frequency = scale.get().toDouble()
                 val dynamicY = x.map { sin(2.0 * PI * frequency * (it + time.toDouble() / 1000.0)) }
-                trace.y = dynamicY
+                trace.y(dynamicY)
             }
         }
     }
-}.pullUpdates(300)
+}.pushUpdates(300)
 
 
