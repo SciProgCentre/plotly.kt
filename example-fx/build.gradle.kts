@@ -1,13 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.openjfx.gradle.JavaFXOptions
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
     kotlin("jvm") version "1.3.71"
     application
-    if(JavaVersion.current().isJava11Compatible) {
-        id("org.openjfx.javafxplugin") version "0.0.8"
-    }
+    id("org.openjfx.javafxplugin") version "0.0.8"
 }
 
 repositories {
@@ -27,10 +24,8 @@ dependencies {
     implementation("scientifik:plotlykt-server:0.1.5")
 }
 
-if(JavaVersion.current().isJava11Compatible) {
-    configure<JavaFXOptions>{
-        modules("javafx.web")
-    }
+javafx{
+    modules("javafx.web")
 }
 
 application {

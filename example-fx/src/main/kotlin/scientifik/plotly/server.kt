@@ -59,6 +59,6 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
             }
         }
     }
-}.pushUpdates(300)
+}.pushUpdates(50)
 
 

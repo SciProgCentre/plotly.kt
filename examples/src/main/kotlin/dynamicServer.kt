@@ -1,5 +1,3 @@
-import io.ktor.util.KtorExperimentalAPI
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -10,8 +8,6 @@ import scientifik.plotly.server.serve
 import kotlin.math.PI
 import kotlin.math.sin
 
-@KtorExperimentalAPI
-@ExperimentalCoroutinesApi
 fun main() {
 
     val server = Plotly.serve{

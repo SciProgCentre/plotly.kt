@@ -27,8 +27,11 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.util.KtorExperimentalAPI
 import io.ktor.websocket.WebSockets
 import io.ktor.websocket.webSocket
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.newCoroutineContext
 import kotlinx.html.*
 import scientifik.plotly.*
 import java.time.Duration
@@ -89,19 +92,18 @@ class PlotlyServer(
                     val plotName = call.request.queryParameters["plot"] ?: ""
 
                     val subscription = updateChannel.openSubscription()
-                    log.debug("Opened server socket for ${call.request.queryParameters}")
+                    try {
+                        log.debug("Opened server socket for ${call.request.queryParameters}")
 
-                    launch {
-                        closeReason.await()
+                        for (update in subscription) {
+                            if (update.page == pageName && update.plot == plotName) {
+                                val json = update.toJson()
+                                outgoing.send(Frame.Text(json.toString()))
+                            }
+                        }
+                    } catch (ex: Exception) {
                         subscription.cancel()
                         log.debug("Closed server socket for ${call.request.queryParameters}")
-                    }
-
-                    for (update in subscription) {
-                        if (update.page == pageName && update.plot == plotName) {
-                            val json = update.toJson()
-                            send(Frame.Text(json.toString()))
-                        }
                     }
                 }
                 //Plots in their json representation
