@@ -1,7 +1,18 @@
 package scientifik.plotly
 
-import kotlinx.html.*
+import kotlinx.html.body
+import kotlinx.html.div
+import kotlinx.html.head
+import kotlinx.html.html
+import kotlinx.html.id
+import kotlinx.html.link
+import kotlinx.html.meta
+import kotlinx.html.script
 import kotlinx.html.stream.createHTML
+import kotlinx.html.title
+import kotlinx.html.unsafe
+import scientifik.plotly.assets.AssetLocator
+import scientifik.plotly.assets.create
 import java.awt.Desktop
 import java.io.File
 
@@ -56,25 +67,28 @@ fun Plot2D.makeFile(file: File? = null, show: Boolean = true) {
 
 /**
  * Create a html string for page
+ *
+ * @param selfContained set to `true` to include all assets into html
  */
-fun PlotGrid.makeHtml(): String {
+fun PlotGrid.makeHtml(selfContained: Boolean = false): String {
     val rows = cells.groupBy { it.rowNumber }.mapValues {
         it.value.sortedBy { plot -> plot.colOrderNumber }
     }.toList().sortedBy { it.first }
 
+    val a = AssetLocator.create(selfContained = selfContained)
 
     return createHTML().html {
         head {
             meta {
                 charset = "utf-8"
-                script { src = "https://cdn.plot.ly/plotly-latest.min.js" }
+                script { src = a("https://cdn.plot.ly/plotly-latest.min.js") }
                 link(
                     rel = "stylesheet",
-                    href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                    href = a("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
                 )
-                script { src = "https://code.jquery.com/jquery-3.3.1.slim.min.js" }
-                script { src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" }
-                script { src = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" }
+                script { src = a("https://code.jquery.com/jquery-3.3.1.slim.min.js") }
+                script { src = a("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js") }
+                script { src = a("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js") }
             }
             title(this@makeHtml.title ?: "Untitled")
         }
@@ -107,9 +121,11 @@ fun PlotGrid.makeHtml(): String {
  * @param file the reference to html file. If null, create a temporary file
  * @param show if true, start the browser after file is created
  */
-fun PlotGrid.makeFile(file: File? = null, show: Boolean = true) {
+fun PlotGrid.makeFile(file: File? = null,
+                      show: Boolean = true,
+                      selfContained: Boolean = false) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
-    actualFile.writeText(makeHtml())
+    actualFile.writeText(makeHtml(selfContained = selfContained))
     if (show) {
         Desktop.getDesktop().browse(actualFile.toURI())
     }
