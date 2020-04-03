@@ -1,5 +1,9 @@
 package scientifik.plotly.assets
 
+import scientifik.plotly.assets.AssetsInclusion.BundledAssets
+import scientifik.plotly.assets.AssetsInclusion.LocalAssets
+import scientifik.plotly.assets.AssetsInclusion.OnlineAssets
+
 
 internal interface AssetLocator {
 
@@ -32,6 +36,18 @@ internal fun AssetLocator.Companion.create(
         DataUriAssetLocator()
     else
         TransparentAssetLocator()
+
+enum class AssetsInclusion {
+    OnlineAssets,
+    BundledAssets,
+    LocalAssets
+}
+
+internal fun AssetsInclusion.createLocator() = when (this) {
+    OnlineAssets -> TransparentAssetLocator()
+    BundledAssets -> DataUriAssetLocator()
+    LocalAssets -> TODO()
+}
 
 private class TransparentAssetLocator : AssetLocator {
     override fun invoke(assetUri: String): String = assetUri

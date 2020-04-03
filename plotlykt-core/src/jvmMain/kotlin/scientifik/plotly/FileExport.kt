@@ -11,8 +11,8 @@ import kotlinx.html.script
 import kotlinx.html.stream.createHTML
 import kotlinx.html.title
 import kotlinx.html.unsafe
-import scientifik.plotly.assets.AssetLocator
-import scientifik.plotly.assets.create
+import scientifik.plotly.assets.AssetsInclusion
+import scientifik.plotly.assets.createLocator
 import java.awt.Desktop
 import java.io.File
 
@@ -70,12 +70,14 @@ fun Plot2D.makeFile(file: File? = null, show: Boolean = true) {
  *
  * @param selfContained set to `true` to include all assets into html
  */
-fun PlotGrid.makeHtml(selfContained: Boolean = false): String {
+fun PlotGrid.makeHtml(
+    assetsInclusion: AssetsInclusion = AssetsInclusion.OnlineAssets
+): String {
     val rows = cells.groupBy { it.rowNumber }.mapValues {
         it.value.sortedBy { plot -> plot.colOrderNumber }
     }.toList().sortedBy { it.first }
 
-    val a = AssetLocator.create(selfContained = selfContained)
+    val a = assetsInclusion.createLocator()
 
     return createHTML().html {
         head {
@@ -123,9 +125,10 @@ fun PlotGrid.makeHtml(selfContained: Boolean = false): String {
  */
 fun PlotGrid.makeFile(file: File? = null,
                       show: Boolean = true,
-                      selfContained: Boolean = false) {
+                      assetsInclusion: AssetsInclusion = AssetsInclusion.OnlineAssets) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
-    actualFile.writeText(makeHtml(selfContained = selfContained))
+    val html = makeHtml(assetsInclusion)
+    actualFile.writeText(html)
     if (show) {
         Desktop.getDesktop().browse(actualFile.toURI())
     }

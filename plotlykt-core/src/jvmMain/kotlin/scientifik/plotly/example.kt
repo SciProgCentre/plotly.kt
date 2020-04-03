@@ -49,5 +49,5 @@ fun main() {
 
     plot.makeFile(
         file = File("out/example.html"),
-        selfContained = true)
+        assetsInclusion = AssetsInclusion.BundledAssets)
 }
