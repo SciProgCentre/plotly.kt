@@ -1,6 +1,6 @@
 package scientifik.plotly
 
-import scientifik.plotly.assets.AssetsProvidingType
+import scientifik.plotly.assets.AssetsProvidingMode
 import scientifik.plotly.models.Trace
 import java.io.File
 import kotlin.math.PI
@@ -50,6 +50,6 @@ fun main() {
 
     plot.makeFile(
         file = File("out/example.html"),
-        assetsProviding = AssetsProvidingType.Bundled
+        provideAssets = AssetsProvidingMode.Bundled
     )
 }

@@ -1,7 +1,7 @@
 package scientifik.plotly.assets
 
-import scientifik.plotly.assets.AssetsProvidingType.Bundled
-import scientifik.plotly.assets.AssetsProvidingType.Online
+import scientifik.plotly.assets.AssetsProvidingMode.Bundled
+import scientifik.plotly.assets.AssetsProvidingMode.Online
 
 
 internal interface AssetLocator {
@@ -28,7 +28,7 @@ internal interface AssetLocator {
  * }
  * ```
  */
-internal fun AssetLocator.Companion.of(type: AssetsProvidingType) = when (type) {
+internal fun AssetLocator.Companion.of(mode: AssetsProvidingMode) = when (mode) {
     Online -> TransparentAssetLocator()
     Bundled -> DataUriAssetLocator()
 }

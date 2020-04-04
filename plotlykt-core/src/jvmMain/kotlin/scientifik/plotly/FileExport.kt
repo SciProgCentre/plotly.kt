@@ -12,26 +12,34 @@ import kotlinx.html.stream.createHTML
 import kotlinx.html.title
 import kotlinx.html.unsafe
 import scientifik.plotly.assets.AssetLocator
-import scientifik.plotly.assets.AssetsProvidingType
+import scientifik.plotly.assets.AssetsProvidingMode
 import scientifik.plotly.assets.of
 import java.awt.Desktop
 import java.io.File
 
 /**
  * Create a html string from plot
+ *
+ * @param provideAssets use this to control the way assets (js-files/images/etc)
+ *                      will be referenced. Check [specific entries][AssetsProvidingType]
+ *                      for details
  */
-fun Plot2D.makeHtml(): String {
+fun Plot2D.makeHtml(
+    provideAssets: AssetsProvidingMode = AssetsProvidingMode.Online
+): String {
     val tracesParsed = data.toJsonString()
     val layoutParsed = layout.toJsonString()
+
+    val a = AssetLocator.of(provideAssets)
 
     return createHTML().html {
         head {
             meta {
                 charset = "utf-8"
-                script { src = "https://cdn.plot.ly/plotly-latest.min.js" }
+                script { src = a("https://cdn.plot.ly/plotly-latest.min.js") }
                 link(
                     rel = "stylesheet",
-                    href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                    href = a("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
                 )
             }
             title(layout.title ?: "Untitled models")
@@ -57,10 +65,20 @@ fun Plot2D.makeHtml(): String {
  * Create a standalone html with the plot
  * @param file the reference to html file. If null, create a temporary file
  * @param show if true, start the browser after file is created
+ * @param provideAssets use this to control the way assets (js-files/images/etc)
+ *                      will be referenced. Check [specific entries][AssetsProvidingType]
+ *                      for details
  */
-fun Plot2D.makeFile(file: File? = null, show: Boolean = true) {
+fun Plot2D.makeFile(
+    file: File? = null,
+    show: Boolean = true,
+    provideAssets: AssetsProvidingMode = AssetsProvidingMode.Online
+) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
-    actualFile.writeText(makeHtml())
+
+    val html = makeHtml(provideAssets = provideAssets)
+    actualFile.writeText(html)
+
     if (show) {
         Desktop.getDesktop().browse(actualFile.toURI())
     }
@@ -69,18 +87,18 @@ fun Plot2D.makeFile(file: File? = null, show: Boolean = true) {
 /**
  * Create a html string for page
  *
- * @param assetsProviding use this to control the way assets (js-files/images/etc)
- *                        will be referenced. Check [specific entries][AssetsProvidingType]
- *                        for details
+ * @param provideAssets use this to control the way assets (js-files/images/etc)
+ *                      will be referenced. Check [specific entries][AssetsProvidingType]
+ *                      for details
  */
 fun PlotGrid.makeHtml(
-    assetsProviding: AssetsProvidingType = AssetsProvidingType.Online
+    provideAssets: AssetsProvidingMode = AssetsProvidingMode.Online
 ): String {
     val rows = cells.groupBy { it.rowNumber }.mapValues {
         it.value.sortedBy { plot -> plot.colOrderNumber }
     }.toList().sortedBy { it.first }
 
-    val a = AssetLocator.of(assetsProviding)
+    val a = AssetLocator.of(provideAssets)
 
     return createHTML().html {
         head {
@@ -125,16 +143,20 @@ fun PlotGrid.makeHtml(
  * Create a standalone html with the page
  * @param file the reference to html file. If null, create a temporary file
  * @param show if true, start the browser after file is created
- * @param assetsProviding use this to control the way assets (js-files/images/etc)
- *                        will be referenced. Check [specific entries][AssetsProvidingType]
- *                        for details
+ * @param provideAssets use this to control the way assets (js-files/images/etc)
+ *                      will be referenced. Check [specific entries][AssetsProvidingType]
+ *                      for details
  */
-fun PlotGrid.makeFile(file: File? = null,
-                      show: Boolean = true,
-                      assetsProviding: AssetsProvidingType = AssetsProvidingType.Online) {
+fun PlotGrid.makeFile(
+    file: File? = null,
+    show: Boolean = true,
+    provideAssets: AssetsProvidingMode = AssetsProvidingMode.Online
+) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
-    val html = makeHtml(assetsProviding)
+
+    val html = makeHtml(provideAssets = provideAssets)
     actualFile.writeText(html)
+
     if (show) {
         Desktop.getDesktop().browse(actualFile.toURI())
     }
