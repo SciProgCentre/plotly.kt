@@ -4,19 +4,19 @@ import scientifik.plotly.assets.AssetsProvidingMode.Bundled
 import scientifik.plotly.assets.AssetsProvidingMode.Online
 
 
-internal interface AssetLocator {
+internal interface AssetsLocator {
 
     operator fun invoke(assetUri: String): String
 
     /**
-     * Use [AssetLocator.of()][AssetLocator.Companion.of]
+     * Use [AssetLocator.of()][AssetsLocator.Companion.of]
      * to build new instance.
      */
     companion object
 }
 
 /**
- * Create new [AssetLocator] instance.
+ * Create new [AssetsLocator] instance.
  *
  * Usage:
  *
@@ -28,16 +28,16 @@ internal interface AssetLocator {
  * }
  * ```
  */
-internal fun AssetLocator.Companion.of(mode: AssetsProvidingMode) = when (mode) {
-    Online -> TransparentAssetLocator()
-    Bundled -> DataUriAssetLocator()
+internal fun AssetsLocator.Companion.of(mode: AssetsProvidingMode) = when (mode) {
+    Online -> TransparentAssetsLocator()
+    Bundled -> DataUriAssetsLocator()
 }
 
-private class TransparentAssetLocator : AssetLocator {
+private class TransparentAssetsLocator : AssetsLocator {
     override fun invoke(assetUri: String): String = assetUri
 }
 
-private class DataUriAssetLocator : AssetLocator {
+private class DataUriAssetsLocator : AssetsLocator {
 
     override fun invoke(assetUri: String): String {
         val content = encodeBase64(

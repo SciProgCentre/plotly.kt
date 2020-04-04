@@ -11,7 +11,7 @@ import kotlinx.html.script
 import kotlinx.html.stream.createHTML
 import kotlinx.html.title
 import kotlinx.html.unsafe
-import scientifik.plotly.assets.AssetLocator
+import scientifik.plotly.assets.AssetsLocator
 import scientifik.plotly.assets.AssetsProvidingMode
 import scientifik.plotly.assets.of
 import java.awt.Desktop
@@ -30,7 +30,7 @@ fun Plot2D.makeHtml(
     val tracesParsed = data.toJsonString()
     val layoutParsed = layout.toJsonString()
 
-    val a = AssetLocator.of(provideAssets)
+    val a = AssetsLocator.of(provideAssets)
 
     return createHTML().html {
         head {
@@ -98,7 +98,7 @@ fun PlotGrid.makeHtml(
         it.value.sortedBy { plot -> plot.colOrderNumber }
     }.toList().sortedBy { it.first }
 
-    val a = AssetLocator.of(provideAssets)
+    val a = AssetsLocator.of(provideAssets)
 
     return createHTML().html {
         head {

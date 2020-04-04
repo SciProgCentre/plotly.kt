@@ -18,6 +18,14 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-html-jvm:$htmlVersion")
+
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                val kotest_version = "4.0.2"
+                implementation("io.kotest:kotest-runner-junit5-jvm:$kotest_version")
+                implementation("io.kotest:kotest-assertions-core-jvm:$kotest_version")
             }
         }
 
@@ -28,4 +36,8 @@ kotlin {
             }
         }
     }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
