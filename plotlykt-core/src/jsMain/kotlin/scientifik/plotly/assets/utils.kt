@@ -7,6 +7,9 @@ internal actual fun encodeBase64(content: ByteArray): String =
 
 internal actual fun fetchContent(uri: String): ByteArray {
     TODO()
+
+    // FIXME No fetch?
+
     /*val request = XMLHttpRequest()
     request.open("GET", uri, async = false)
     request.responseType = XMLHttpRequestResponseType.ARRAYBUFFER
