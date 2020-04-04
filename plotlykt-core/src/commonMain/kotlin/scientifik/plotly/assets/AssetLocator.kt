@@ -1,8 +1,8 @@
 package scientifik.plotly.assets
 
-import scientifik.plotly.assets.AssetsInclusion.BundledAssets
-import scientifik.plotly.assets.AssetsInclusion.LocalAssets
-import scientifik.plotly.assets.AssetsInclusion.OnlineAssets
+import scientifik.plotly.assets.AssetsProvidingType.Bundled
+import scientifik.plotly.assets.AssetsProvidingType.Offline
+import scientifik.plotly.assets.AssetsProvidingType.Online
 
 
 internal interface AssetLocator {
@@ -10,7 +10,7 @@ internal interface AssetLocator {
     operator fun invoke(assetUri: String): String
 
     /**
-     * Use [AssetLocator.create()][AssetLocator.Companion.create]
+     * Use [AssetLocator.of()][AssetLocator.Companion.of]
      * to build new instance.
      */
     companion object
@@ -22,31 +22,17 @@ internal interface AssetLocator {
  * Usage:
  *
  * ```
- * val a = AssetLocator.create()
+ * val a = AssetLocator.of(AssetsProvidingType.Offline)
  *
  * html {
  *   img { src = a("https://cataas.com/cat") }
  * }
  * ```
  */
-internal fun AssetLocator.Companion.create(
-    selfContained: Boolean = false
-): AssetLocator =
-    if (selfContained)
-        DataUriAssetLocator()
-    else
-        TransparentAssetLocator()
-
-enum class AssetsInclusion {
-    OnlineAssets,
-    BundledAssets,
-    LocalAssets
-}
-
-internal fun AssetsInclusion.createLocator() = when (this) {
-    OnlineAssets -> TransparentAssetLocator()
-    BundledAssets -> DataUriAssetLocator()
-    LocalAssets -> TODO()
+internal fun AssetLocator.Companion.of(type: AssetsProvidingType) = when (type) {
+    Online -> TransparentAssetLocator()
+    Bundled -> DataUriAssetLocator()
+    Offline -> TODO()
 }
 
 private class TransparentAssetLocator : AssetLocator {

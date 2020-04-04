@@ -11,8 +11,9 @@ import kotlinx.html.script
 import kotlinx.html.stream.createHTML
 import kotlinx.html.title
 import kotlinx.html.unsafe
-import scientifik.plotly.assets.AssetsInclusion
-import scientifik.plotly.assets.createLocator
+import scientifik.plotly.assets.AssetLocator
+import scientifik.plotly.assets.AssetsProvidingType
+import scientifik.plotly.assets.of
 import java.awt.Desktop
 import java.io.File
 
@@ -68,16 +69,18 @@ fun Plot2D.makeFile(file: File? = null, show: Boolean = true) {
 /**
  * Create a html string for page
  *
- * @param selfContained set to `true` to include all assets into html
+ * @param assetsProviding use this to control the way assets (js-files/images/etc)
+ *                        will be referenced. Check [specific entries][AssetsProvidingType]
+ *                        for details
  */
 fun PlotGrid.makeHtml(
-    assetsInclusion: AssetsInclusion = AssetsInclusion.OnlineAssets
+    assetsProviding: AssetsProvidingType = AssetsProvidingType.Online
 ): String {
     val rows = cells.groupBy { it.rowNumber }.mapValues {
         it.value.sortedBy { plot -> plot.colOrderNumber }
     }.toList().sortedBy { it.first }
 
-    val a = assetsInclusion.createLocator()
+    val a = AssetLocator.of(assetsProviding)
 
     return createHTML().html {
         head {
@@ -122,12 +125,15 @@ fun PlotGrid.makeHtml(
  * Create a standalone html with the page
  * @param file the reference to html file. If null, create a temporary file
  * @param show if true, start the browser after file is created
+ * @param assetsProviding use this to control the way assets (js-files/images/etc)
+ *                        will be referenced. Check [specific entries][AssetsProvidingType]
+ *                        for details
  */
 fun PlotGrid.makeFile(file: File? = null,
                       show: Boolean = true,
-                      assetsInclusion: AssetsInclusion = AssetsInclusion.OnlineAssets) {
+                      assetsProviding: AssetsProvidingType = AssetsProvidingType.Online) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
-    val html = makeHtml(assetsInclusion)
+    val html = makeHtml(assetsProviding)
     actualFile.writeText(html)
     if (show) {
         Desktop.getDesktop().browse(actualFile.toURI())
