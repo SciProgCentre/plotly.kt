@@ -1,7 +1,6 @@
 package scientifik.plotly.assets
 
 import scientifik.plotly.assets.AssetsProvidingType.Bundled
-import scientifik.plotly.assets.AssetsProvidingType.Offline
 import scientifik.plotly.assets.AssetsProvidingType.Online
 
 
@@ -32,7 +31,6 @@ internal interface AssetLocator {
 internal fun AssetLocator.Companion.of(type: AssetsProvidingType) = when (type) {
     Online -> TransparentAssetLocator()
     Bundled -> DataUriAssetLocator()
-    Offline -> TODO()
 }
 
 private class TransparentAssetLocator : AssetLocator {
@@ -56,6 +54,11 @@ private class DataUriAssetLocator : AssetLocator {
         return when (extension) {
             "css" -> "text/css"
             "js" -> "text/javascript"
+
+            "jpeg", "jpg" -> "image/jpeg"
+            "png" -> "image/png"
+            "svg" -> "image/svg+xml"
+
             else -> TODO("MIME for '.$extension' is not found.")
         }
     }
