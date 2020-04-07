@@ -1,4 +1,4 @@
-package basic.scatter
+package scatter
 
 import hep.dataforge.values.asValue
 import scientifik.plotly.Plotly

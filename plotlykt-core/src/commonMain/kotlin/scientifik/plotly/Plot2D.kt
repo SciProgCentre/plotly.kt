@@ -1,5 +1,6 @@
 package scientifik.plotly
 
+import hep.dataforge.meta.DFBuilder
 import hep.dataforge.meta.Meta
 import hep.dataforge.meta.MetaRepr
 import hep.dataforge.meta.toJson
@@ -8,7 +9,9 @@ import kotlinx.serialization.json.json
 import kotlinx.serialization.json.jsonArray
 import scientifik.plotly.models.Layout
 import scientifik.plotly.models.Trace
+import scientifik.plotly.models.layout.Annotation
 
+@DFBuilder
 class Plot2D : MetaRepr {
     var data: MutableList<Trace> = ArrayList()
     var layout: Layout = Layout.empty()
@@ -30,8 +33,8 @@ class Plot2D : MetaRepr {
     }
 
     override fun toMeta(): Meta = Meta {
-        "layout" to layout.config
-        "data" to data.map { it.config }
+        "layout" to this@Plot2D.layout.config
+        "data" to this@Plot2D.data.map { it.config }
     }
 
     fun toJson(): JsonObject = json {
@@ -55,4 +58,8 @@ fun Plot2D.trace(x: Iterable<Number>, block: Trace.() -> Unit = {}) {
 
 fun Plot2D.trace(block: Trace.() -> Unit) {
     trace(Trace(block))
+}
+
+fun Plot2D.text(block: Annotation.() -> Unit) {
+    layout.annotation(block)
 }

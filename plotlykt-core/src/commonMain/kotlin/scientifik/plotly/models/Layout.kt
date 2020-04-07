@@ -1,6 +1,6 @@
 package scientifik.plotly.models
 
-import hep.dataforge.meta.scheme.*
+import hep.dataforge.meta.*
 import scientifik.plotly.list
 import scientifik.plotly.models.layout.Annotation
 import scientifik.plotly.models.layout.Axis
@@ -35,6 +35,14 @@ class Layout : Scheme() {
 
     fun yaxis(block: Axis.() -> Unit) {
         yaxis = Axis(block)
+    }
+
+    fun annotation(an: Annotation) {
+        config.append("annotations", an)
+    }
+
+    fun annotation(anBuilder: Annotation.() -> Unit) {
+        annotation(Annotation(anBuilder))
     }
 
     companion object : SchemeSpec<Layout>(::Layout)

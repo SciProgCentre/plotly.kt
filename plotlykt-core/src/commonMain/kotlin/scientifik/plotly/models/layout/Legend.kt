@@ -1,6 +1,6 @@
 package scientifik.plotly.models.layout
 
-import hep.dataforge.meta.scheme.*
+import hep.dataforge.meta.*
 import scientifik.plotly.models.Font
 import kotlin.js.JsName
 

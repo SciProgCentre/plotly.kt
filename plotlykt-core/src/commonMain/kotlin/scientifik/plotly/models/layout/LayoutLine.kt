@@ -1,9 +1,8 @@
 package scientifik.plotly.models.layout
 
-import hep.dataforge.meta.scheme.Scheme
-import hep.dataforge.meta.scheme.SchemeSpec
-import hep.dataforge.meta.scheme.enum
-
+import hep.dataforge.meta.Scheme
+import hep.dataforge.meta.SchemeSpec
+import hep.dataforge.meta.enum
 
 enum class Shape {
     hv,

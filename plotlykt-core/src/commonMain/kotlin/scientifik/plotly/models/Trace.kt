@@ -1,6 +1,6 @@
 package scientifik.plotly.models
 
-import hep.dataforge.meta.scheme.*
+import hep.dataforge.meta.*
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import scientifik.plotly.list

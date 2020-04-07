@@ -1,11 +1,6 @@
 package scientifik.plotly.server
 
-import hep.dataforge.meta.Config
-import hep.dataforge.meta.get
-import hep.dataforge.meta.scheme.Configurable
-import hep.dataforge.meta.scheme.boolean
-import hep.dataforge.meta.scheme.enum
-import hep.dataforge.meta.scheme.number
+import hep.dataforge.meta.*
 import hep.dataforge.names.toName
 import io.ktor.application.call
 import io.ktor.application.install

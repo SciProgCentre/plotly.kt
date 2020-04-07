@@ -1,6 +1,6 @@
 package scientifik.plotly
 
-import hep.dataforge.meta.scheme.Scheme
+import hep.dataforge.meta.Scheme
 import hep.dataforge.meta.toJson
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject

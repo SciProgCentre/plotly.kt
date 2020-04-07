@@ -1,14 +1,14 @@
 package scientifik.plotly
 
 import hep.dataforge.meta.*
-import hep.dataforge.meta.scheme.Configurable
-import hep.dataforge.meta.scheme.Specification
 import hep.dataforge.names.Name
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
+
+//extensions for DataForge
 
 /**
  * A delegate for list of objects with specification
@@ -28,6 +28,9 @@ fun <T : Configurable> Configurable.list(
     }
 }
 
+/**
+ * List of values delegate
+ */
 fun Configurable.list(
     key: Name? = null
 ): ReadWriteProperty<Any?, List<Value>> = object : ReadWriteProperty<Any?, List<Value>> {

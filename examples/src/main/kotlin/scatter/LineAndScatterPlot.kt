@@ -1,4 +1,4 @@
-package basic.scatter
+package scatter
 
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
