@@ -1,5 +1,5 @@
 
-import hep.dataforge.meta.scheme.configure
+import hep.dataforge.meta.configure
 import hep.dataforge.meta.set
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
@@ -22,7 +22,7 @@ fun main() {
     }
 
     val plot = Plotly.plot2D {
-        trace(trace)
+        addTrace(trace)
         layout {
             title = "Plot with labels"
             xaxis { title = "x axis name" }

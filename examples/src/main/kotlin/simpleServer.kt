@@ -22,7 +22,7 @@ fun main() {
         //root level plots go to default page
 
         plot(1, 8) {
-            trace(trace1, trace2)
+            addTrace(trace1, trace2)
             layout {
                 title = "First graph, row: 1, size: 8/12"
                 xaxis { title = "x axis name" }
@@ -31,7 +31,7 @@ fun main() {
         }
 
         val plot1 = plot(1, 4) {
-            trace(trace1, trace2)
+            addTrace(trace1, trace2)
             layout {
                 title = "Second graph, row: 1, size: 4/12"
                 xaxis { title = "x axis name" }
@@ -40,7 +40,7 @@ fun main() {
         }
 
         plot(2, 12) {
-            trace(trace1, trace2)
+            addTrace(trace1, trace2)
             layout {
                 title = "Third graph, row: 2, size: 12/12"
                 xaxis { title = "x axis name" }

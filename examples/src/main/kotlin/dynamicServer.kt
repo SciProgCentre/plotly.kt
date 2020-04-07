@@ -24,7 +24,7 @@ fun main() {
         //root level plots go to default page
 
         plot {
-            trace(trace)
+            addTrace(trace)
             layout {
                 title = "Dynamic plot"
                 xaxis { title = "x axis name" }

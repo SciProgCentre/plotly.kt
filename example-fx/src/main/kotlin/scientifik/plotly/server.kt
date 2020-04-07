@@ -21,7 +21,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
         val trace1 = Trace.build(x = x, y = y1) { name = "sin" }
         val trace2 = Trace.build(x = x, y = y2) { name = "cos" }
         plot {
-            trace(trace1, trace2)
+            addTrace(trace1, trace2)
             layout {
                 title = "First graph, row: 1, size: 8/12"
                 xaxis { title = "x axis name" }
@@ -40,7 +40,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
         //root level plots go to default page
 
         plot {
-            trace(trace)
+            addTrace(trace)
             layout {
                 title = "Dynamic plot"
                 xaxis { title = "x axis name" }

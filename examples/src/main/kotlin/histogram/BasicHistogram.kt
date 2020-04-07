@@ -17,7 +17,7 @@ fun main() {
             type = Type.histogram
             x(values)
         }
-        layout {
+        layout{
             title = "Basic Histogram"
             xaxis {
                 title = "Bins"

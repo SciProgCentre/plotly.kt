@@ -29,7 +29,7 @@ fun main() {
         }
     }
     val plot = Plotly.plot2D {
-        trace(trace1, trace2)
+        addTrace(trace1, trace2)
         layout {
             title = "Overlaid Histogram"
             barmode = BarMode.overlay

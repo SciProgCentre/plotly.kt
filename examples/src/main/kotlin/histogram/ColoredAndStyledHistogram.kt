@@ -47,7 +47,7 @@ fun main() {
     }
 
     val plot = Plotly.plot2D{
-        trace(trace1, trace2)
+        addTrace(trace1, trace2)
         layout {
             bargap = 0.05
             bargroupgap = 0.2
