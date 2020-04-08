@@ -12,10 +12,9 @@ fun main() {
     val values = List(500){rnd.nextDouble()}
 
     val plot = Plotly.plot2D{
-        trace{
+        trace(values){
             name = "Random data"
             type = Type.histogram
-            x(values)
         }
         layout{
             title = "Basic Histogram"

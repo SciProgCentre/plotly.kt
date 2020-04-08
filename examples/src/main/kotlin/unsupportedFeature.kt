@@ -10,7 +10,7 @@ fun main() {
     val x = (0..5)
     val y = x.map { it * it }
 
-    val trace = Trace.build(x, y) {
+    val trace = Trace(x, y) {
         name = "sin"
         /* The hover text definition is currently not supported.
          * We are applying it directly to configuration.

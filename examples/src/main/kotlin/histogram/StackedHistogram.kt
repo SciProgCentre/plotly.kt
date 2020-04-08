@@ -14,14 +14,14 @@ fun main() {
     val x1 = k.map { it }.toList()
     val x2 = k.map { it/2 }.toList()
 
-    val trace1 = Trace.build(x1) {
+    val trace1 = Trace(x1) {
         type = Type.histogram
         opacity = 0.5
         marker {
             color("green")
         }
     }
-    val trace2 = Trace.build(x2) {
+    val trace2 = Trace(x2) {
         type = Type.histogram
         opacity = 0.6
         marker {

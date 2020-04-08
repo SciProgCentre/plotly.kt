@@ -11,8 +11,8 @@ fun main() {
     val y1 = x.map { sin(2.0 * PI * it) }
     val y2 = x.map { cos(2.0 * PI * it) }
 
-    val trace1 = Trace.build(x, y1) { name = "sin" }
-    val trace2 = Trace.build(x, y2) { name = "cos" }
+    val trace1 = Trace(x, y1) { name = "sin" }
+    val trace2 = Trace(x, y2) { name = "cos" }
 
 
     val plot = Plotly.page {

@@ -9,7 +9,7 @@ import scientifik.plotly.trace
 fun main() {
     val plot = Plotly.plot2D {
         trace {
-            y(List(40) { 5.0 })
+            y.set(List(40) { 5.0 })
             mode = Mode.markers
             marker {
                 size = 40

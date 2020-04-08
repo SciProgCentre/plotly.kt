@@ -15,7 +15,7 @@ fun main() {
         trace{
             name = "Random data"
             type = Type.histogram
-            y(values)
+            y.set(values)
             marker {
                 color("pink")
             }

@@ -29,6 +29,8 @@ import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.newCoroutineContext
 import kotlinx.html.*
 import scientifik.plotly.*
+import java.awt.Desktop
+import java.net.URI
 import java.time.Duration
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -53,8 +55,10 @@ class PlotlyServer(
      * Control dynamic updates via websocket
      */
     var updateMode by enum(UpdateMode.NONE, key = "update.mode".toName())
-    var updateInterval by number(300, "update.interval".toName())
+    var updateInterval by number(300, UPDATE_INTERVAL_KEY)
     var embedData by boolean(false)
+    var host by string("localhost")
+    var port by int(7777)
 
     /**
      * A collection of all pages served by this server
@@ -68,7 +72,7 @@ class PlotlyServer(
     /**
      * Start a server
      */
-    fun start(host: String = "localhost", port: Int = 7777) {
+    fun start() {
         server = embeddedServer(io.ktor.server.cio.CIO, port, host) {
             install(WebSockets) {
                 pingPeriod = Duration.ofSeconds(1)
@@ -225,6 +229,11 @@ class PlotlyServer(
         return pages.getOrPut(pageId) {
             val listener = CollectingPageListener(this, updateChannel, pageId, updateInterval.toLong())
             listener.start()
+            config.onChange(listener) { name, oldItem, newItem ->
+                if (name == UPDATE_INTERVAL_KEY) {
+                    listener.interval = newItem.long ?: 300
+                }
+            }
             PlotGrid(listener).apply { title = "Plot page: $pageId" }
         }
     }
@@ -255,8 +264,15 @@ class PlotlyServer(
         block: Plot2D.() -> Unit
     ): Plot2D = getPage(DEFAULT_PAGE).plot(rowNumber, size, colOrderNumber, plotId, block)
 
+    fun show() {
+        val uri = URI("http", null, host, port, null, null, null)
+        Desktop.getDesktop().browse(uri)
+    }
+
+
     companion object {
         const val DEFAULT_PAGE = ""
+        val UPDATE_INTERVAL_KEY = "update.interval".toName()
     }
 }
 
@@ -271,7 +287,7 @@ fun Plotly.serve(block: PlotlyServer.() -> Unit): PlotlyServer =
  */
 fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply {
     updateMode = PlotlyServer.UpdateMode.PUSH
-    this.updateInterval = interval
+    updateInterval = interval
 }
 
 /**
@@ -280,5 +296,5 @@ fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply {
  */
 fun PlotlyServer.pullUpdates(interval: Long = 1000): PlotlyServer = apply {
     updateMode = PlotlyServer.UpdateMode.PULL
-    this.updateInterval = interval
+    updateInterval = interval
 }

@@ -15,16 +15,16 @@ fun main() {
         trace{
             name = "count"
             type = Type.histogram
-            categoryX(categories)
-            categoryY(values)
+            x.set(categories)
+            y.set(values)
             histfunc = HisFunc.count
         }
 
         trace{
             name = "sum"
             type = Type.histogram
-            categoryX(categories)
-            categoryY(values)
+            x.set(categories)
+            y.set(values)
             histfunc = HisFunc.sum
         }
         layout {

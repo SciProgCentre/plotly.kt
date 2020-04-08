@@ -18,8 +18,12 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
         val x = (0..100).map { it.toDouble() / 100.0 }.toDoubleArray()
         val y1 = x.map { sin(2.0 * PI * it) }.toDoubleArray()
         val y2 = x.map { cos(2.0 * PI * it) }.toDoubleArray()
-        val trace1 = Trace.build(x = x, y = y1) { name = "sin" }
-        val trace2 = Trace.build(x = x, y = y2) { name = "cos" }
+        val trace1 = Trace(x,y1) {
+            name = "sin"
+        }
+        val trace2 = Trace(x,y2){
+            name = "cos"
+        }
         plot {
             addTrace(trace1, trace2)
             layout {
@@ -34,7 +38,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
         val x = (0..100).map { it.toDouble() / 100.0 }
         val y = x.map { sin(2.0 * PI * it) }
 
-        val trace = Trace.build(x = x, y = y) { name = "sin" }
+        val trace = Trace(x, y){ name = "sin" }
 
 
         //root level plots go to default page
@@ -55,10 +59,10 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
                 time += 10
                 val frequency = scale.get().toDouble()
                 val dynamicY = x.map { sin(2.0 * PI * frequency * (it + time.toDouble() / 1000.0)) }
-                trace.y(dynamicY)
+                trace.y.numbers = dynamicY
             }
         }
     }
-}.pushUpdates(50)
+}.pushUpdates(100)
 
 

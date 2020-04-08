@@ -21,12 +21,13 @@ class Plot2D : MetaRepr {
         data.addAll(trace)
     }
 
-    fun trace(x: DoubleArray, block: Trace.() -> Unit = {}) {
-        addTrace(Trace.build(x, block))
+    inline fun trace(xs: DoubleArray, block: Trace.() -> Unit = {}) = trace {
+        block()
+        x.doubles = xs
     }
 
-    fun trace(x: DoubleArray, y: DoubleArray, block: Trace.() -> Unit = {}) {
-        addTrace(Trace.build(x, y, block))
+    fun trace(xs: DoubleArray, ys: DoubleArray, block: Trace.() -> Unit = {}) {
+        addTrace(Trace(xs, ys, block))
     }
 
     override fun toMeta(): Meta = Meta {
@@ -45,15 +46,11 @@ class Plot2D : MetaRepr {
 
 }
 
-fun Plot2D.trace(x: Iterable<Number>, y: Iterable<Number>, block: Trace.() -> Unit = {}) {
-    trace(x.map { it.toDouble() }.toDoubleArray(), y.map { it.toDouble() }.toDoubleArray(), block)
+fun Plot2D.trace(xs: Any, ys: Any? = null, block: Trace.() -> Unit = {}) {
+    addTrace(Trace(xs, ys, block))
 }
 
-fun Plot2D.trace(x: Iterable<Number>, block: Trace.() -> Unit = {}) {
-    trace(x.map { it.toDouble() }.toDoubleArray(), block)
-}
-
-fun Plot2D.trace(block: Trace.() -> Unit) {
+inline fun Plot2D.trace(block: Trace.() -> Unit) {
     addTrace(Trace(block))
 }
 

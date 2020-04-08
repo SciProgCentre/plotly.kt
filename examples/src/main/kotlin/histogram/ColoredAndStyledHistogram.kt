@@ -12,12 +12,12 @@ import java.util.*
 fun main() {
     val rnd = Random()
     val k = List(500) { rnd.nextDouble() }
-    val x1 = k.map { it*5 }.toList()
-    val x2 = k.map { it*10 }.toList()
+    val x1 = k.map { it * 5 }.toList()
+    val x2 = k.map { it * 10 }.toList()
     val y1 = k.map { it }.toList()
-    val y2 = k.map { it*2 }.toList()
+    val y2 = k.map { it * 2 }.toList()
 
-    val trace1 = Trace.build(x1,y1){
+    val trace1 = Trace(x1, y1) {
         name = "control"
         histfunc = HisFunc.count
         marker {
@@ -32,7 +32,7 @@ fun main() {
         }
     }
 
-    val trace2 = Trace.build(x2,y2){
+    val trace2 = Trace(x2, y2) {
         name = "experimental"
         marker {
             color(100, 200, 102, 0.7)
@@ -46,7 +46,7 @@ fun main() {
         }
     }
 
-    val plot = Plotly.plot2D{
+    val plot = Plotly.plot2D {
         addTrace(trace1, trace2)
         layout {
             bargap = 0.05

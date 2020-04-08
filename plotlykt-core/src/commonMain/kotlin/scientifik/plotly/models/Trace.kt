@@ -1,9 +1,11 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.names.asName
+import hep.dataforge.values.DoubleArrayValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
-import scientifik.plotly.list
+import hep.dataforge.values.doubleArray
 import scientifik.plotly.models.general.Line
 import kotlin.js.JsName
 
@@ -205,7 +207,55 @@ class Bins : Scheme() {
     companion object : SchemeSpec<Bins>(::Bins)
 }
 
-class Trace : Scheme() {
+/**
+ * Type-safe accessor class for values in the trace
+ */
+class TraceValues internal constructor(val trace: Trace, axis: String) {
+    var value by trace.value(key = axis.asName())
+
+    var doubles: DoubleArray
+        get() = value?.doubleArray ?: doubleArrayOf()
+        set(value) {
+            this.value = DoubleArrayValue(value)
+        }
+
+    var numbers: List<Number>
+        get() = value?.list?.map { it.number } ?: emptyList()
+        set(value) {
+            this.value = value.map { it.asValue() }.asValue()
+        }
+
+    var strings: List<String>
+        get() = value?.list?.map { it.string } ?: emptyList()
+        set(value) {
+            this.value = value.map { it.asValue() }.asValue()
+        }
+
+    /**
+     * Smart fill for
+     */
+    fun set(values: Any?) {
+        value = when (values) {
+            null -> null
+            is DoubleArray -> values.asValue()
+            is IntArray ->  values.map { it.asValue() }.asValue()
+            is Array<*> -> values.map { Value.of(it) }.asValue()
+            is Iterable<*> -> values.map { Value.of(it) }.asValue()
+            else -> error("Unrecognized values type ${values::class}")
+        }
+    }
+
+    operator fun invoke(vararg numbers: Number) {
+        this.numbers = numbers.asList()
+    }
+
+    operator fun invoke(vararg strings: String) {
+        this.strings = strings.asList()
+    }
+
+}
+
+class Trace() : Scheme() {
     /*
     TODO(Create  specialized classes for scatter, histogram etc )
     trace{
@@ -217,40 +267,8 @@ class Trace : Scheme() {
     ...
     }
      */
-    var x: List<Value> by list()
-    var y: List<Value> by list()
-
-    fun x(vararg xs: Number) {
-        x = xs.map { it.asValue() }
-    }
-
-    fun y(vararg ys: Number) {
-        y = ys.map { it.asValue() }
-    }
-
-    fun x(numbers: Iterable<Number>){
-        x = numbers.map { it.asValue() }
-    }
-
-    fun y(numbers: Iterable<Number>){
-        y = numbers.map { it.asValue() }
-    }
-
-    fun categoryX(vararg xs: String) {
-        x = xs.map { it.asValue() }
-    }
-
-    fun categoryY(vararg ys: String) {
-        y = ys.map { it.asValue() }
-    }
-
-    fun categoryX(numbers: Iterable<String>){
-        x = numbers.map { it.asValue() }
-    }
-
-    fun categoryY(numbers: Iterable<String>){
-        y = numbers.map { it.asValue() }
-    }
+    val x = TraceValues(this, "x")
+    val y = TraceValues(this, "y")
 
     var name by string()
     var mode by enum(Mode.lines)
@@ -294,44 +312,10 @@ class Trace : Scheme() {
     }
 
     companion object : SchemeSpec<Trace>(::Trace) {
-
-        fun build(x: DoubleArray, block: Trace.() -> Unit = {}): Trace = invoke(block).apply {
-            this.x = x.map { it.asValue() }
-        }
-
-        fun build(x: List<Double>, block: Trace.() -> Unit = {}): Trace = invoke(block).apply {
-            this.x = x.map { it.asValue() }
-        }
-
-        // FIXME("This code don't compile")
-//        fun build(x: Iterable<Number>,  block: Trace.() -> Unit = {}): Trace = build(block).apply {
-//            this.x = x.map { it.toDouble() }
-//        }
-
-        fun build(x: DoubleArray, y: DoubleArray, block: Trace.() -> Unit = {}): Trace = invoke(block).apply {
-            this.x = x.map { it.asValue() }
-            this.y = y.map { it.asValue() }
-        }
-
-        fun build(x: List<Double>, y: List<Double>, block: Trace.() -> Unit = {}): Trace = invoke(block).apply {
-            this.x = x.map { it.asValue() }
-            this.y = y.map { it.asValue() }
-        }
-
-        fun build(x: Iterable<Number>, y: Iterable<Number>, block: Trace.() -> Unit = {}): Trace = invoke(block).apply {
-            this.x = x.map { it.asValue() }
-            this.y = y.map { it.asValue() }
-        }
-
-        fun build(points: Iterable<Pair<Double, Double>>, block: Trace.() -> Unit = {}): Trace = invoke(block).apply {
-            val x = ArrayList<Value>()
-            val y = ArrayList<Value>()
-            points.forEach {
-                x.add(it.first.asValue())
-                y.add(it.second.asValue())
-            }
-            this.x = x
-            this.y = y
+        operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Trace.() -> Unit = {}) = invoke {
+            block()
+            x.set(xs)
+            y.set(ys)
         }
     }
 }

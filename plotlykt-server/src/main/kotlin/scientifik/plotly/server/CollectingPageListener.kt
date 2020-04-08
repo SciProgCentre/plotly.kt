@@ -25,7 +25,7 @@ class CollectingPageListener(
     scope: CoroutineScope,
     val updateChannel: SendChannel<Update>,
     val pageId: String,
-    val interval: Long
+    var interval: Long
 ) : PageListener {
 
     private val collectors = HashMap<String, PlotCollector>()
