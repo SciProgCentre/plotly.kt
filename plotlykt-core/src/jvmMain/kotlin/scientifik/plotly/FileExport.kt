@@ -48,6 +48,7 @@ fun Plot2D.makeHtml(): String {
  */
 fun Plot2D.makeFile(file: File? = null, show: Boolean = true) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
+    actualFile.mkdirs()
     actualFile.writeText(makeHtml())
     if (show) {
         Desktop.getDesktop().browse(actualFile.toURI())
@@ -109,6 +110,7 @@ fun PlotGrid.makeHtml(): String {
  */
 fun PlotGrid.makeFile(file: File? = null, show: Boolean = true) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
+    actualFile.mkdirs()
     actualFile.writeText(makeHtml())
     if (show) {
         Desktop.getDesktop().browse(actualFile.toURI())
