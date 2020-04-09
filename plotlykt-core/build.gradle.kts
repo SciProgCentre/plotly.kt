@@ -11,7 +11,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-html-common:$htmlVersion")
-                api("hep.dataforge:dataforge-io:$dataforgeVersion")
+                api("hep.dataforge:dataforge-meta:$dataforgeVersion")
             }
         }
 
@@ -24,7 +24,6 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-html-js:${htmlVersion}")
-                api(npm("text-encoding")) //FIX for https://github.com/Kotlin/kotlinx-io/issues/57
             }
         }
     }
