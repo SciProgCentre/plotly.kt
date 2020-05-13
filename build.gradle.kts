@@ -1,5 +1,5 @@
 plugins {
-    val toolsVersion = "0.4.2"
+    val toolsVersion = "0.5.0"
     id("scientifik.mpp") version toolsVersion apply false
     id("scientifik.jvm") version toolsVersion apply false
     id("scientifik.publish") version toolsVersion apply false
@@ -24,5 +24,5 @@ allprojects {
     }
 
     group = "scientifik"
-    version = "0.2.0-dev-1"
+    version = "0.2.0-dev-2"
 }

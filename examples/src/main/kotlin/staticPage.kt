@@ -1,6 +1,6 @@
 import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
 import scientifik.plotly.models.Trace
+import scientifik.plotly.show
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -45,5 +45,5 @@ fun main() {
         }
     }
 
-    plot.makeFile()
+    plot.show()
 }

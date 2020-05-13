@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
     implementation("scientifik:plotlykt-server:0.1.5")
+    implementation(kotlin("script-runtime"))
 }
 
 val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks

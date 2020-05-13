@@ -24,6 +24,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-html-js:${htmlVersion}")
+                api(npm("plotly.js"))
             }
         }
     }
