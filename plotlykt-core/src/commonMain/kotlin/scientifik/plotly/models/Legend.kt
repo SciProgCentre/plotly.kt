@@ -1,7 +1,6 @@
-package scientifik.plotly.models.layout
+package scientifik.plotly.models
 
 import hep.dataforge.meta.*
-import scientifik.plotly.models.Font
 import kotlin.js.JsName
 
 enum class Orientation {

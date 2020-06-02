@@ -2,7 +2,7 @@ package histogram
 
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.Type
+import scientifik.plotly.models.AxisType
 import scientifik.plotly.trace
 import java.util.*
 
@@ -14,7 +14,7 @@ fun main() {
     val plot = Plotly.plot2D{
         trace{
             name = "Random data"
-            type = Type.histogram
+            type = AxisType.histogram
             y.set(values)
             marker {
                 color("pink")

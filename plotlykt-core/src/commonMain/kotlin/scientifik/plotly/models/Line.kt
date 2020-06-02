@@ -1,4 +1,4 @@
-package scientifik.plotly.models.general
+package scientifik.plotly.models
 
 import hep.dataforge.meta.Scheme
 

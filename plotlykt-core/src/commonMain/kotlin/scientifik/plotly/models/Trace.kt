@@ -6,7 +6,6 @@ import hep.dataforge.values.DoubleArrayValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
-import scientifik.plotly.models.general.Line
 import kotlin.js.JsName
 
 
@@ -18,7 +17,7 @@ enum class Mode {
     markers
 }
 
-enum class Type {
+enum class TraceType {
     // Simple
     scatter,
     scattergl,
@@ -256,23 +255,12 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
 }
 
 class Trace() : Scheme() {
-    /*
-    TODO(Create  specialized classes for scatter, histogram etc )
-    trace{
-    type = Type.histogram
-    ...
-    }
-    convert to
-    histogram{
-    ...
-    }
-     */
     val x = TraceValues(this, "x")
     val y = TraceValues(this, "y")
 
     var name by string()
     var mode by enum(Mode.lines)
-    var type by enum(Type.scatter)
+    var type by enum(TraceType.scatter)
     var visible by enum(Visible.True)
     var showlegend by boolean(true)
     var legendgroup by string("")

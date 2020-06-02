@@ -1,8 +1,7 @@
-package scientifik.plotly.models.layout
+package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import hep.dataforge.values.asValue
-import scientifik.plotly.models.Font
 
 /**
  * Text annotation

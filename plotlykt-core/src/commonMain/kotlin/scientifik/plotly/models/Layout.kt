@@ -2,9 +2,6 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import scientifik.plotly.list
-import scientifik.plotly.models.layout.Annotation
-import scientifik.plotly.models.layout.Axis
-import scientifik.plotly.models.layout.Legend
 
 
 enum class BarMode {

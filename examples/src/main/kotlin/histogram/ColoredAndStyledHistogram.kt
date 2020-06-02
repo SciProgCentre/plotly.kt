@@ -2,10 +2,10 @@ package histogram
 
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
+import scientifik.plotly.models.AxisType
 import scientifik.plotly.models.BarMode
 import scientifik.plotly.models.HisFunc
 import scientifik.plotly.models.Trace
-import scientifik.plotly.models.Type
 import java.util.*
 
 
@@ -24,7 +24,7 @@ fun main() {
             color(255, 100, 102, 0.7)
         }
         opacity = 0.5
-        type = Type.histogram
+        type = AxisType.histogram
         xbins {
             end = 2.8
             start = 0.5
@@ -38,7 +38,7 @@ fun main() {
             color(100, 200, 102, 0.7)
         }
         opacity = 0.75
-        type = Type.histogram
+        type = AxisType.histogram
         xbins {
             end = 4.0
             start = -3.2

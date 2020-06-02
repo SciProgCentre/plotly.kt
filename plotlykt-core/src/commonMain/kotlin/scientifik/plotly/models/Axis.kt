@@ -1,10 +1,10 @@
-package scientifik.plotly.models.layout
+package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import kotlin.js.JsName
 
 
-enum class Type {
+enum class AxisType {
     @JsName("default")
     `-`,
     linear,
@@ -16,7 +16,7 @@ enum class Type {
 
 class Axis : Scheme() {
     var title by string()
-    var type by enum(Type.`-`)
+    var type by enum(AxisType.`-`)
     var visible by boolean()
     var autorange by boolean(true)
     var range: Pair<Double, Double>? = null

@@ -24,5 +24,5 @@ allprojects {
     }
 
     group = "scientifik"
-    version = "0.2.0-dev-2"
+    version = "0.2.0-dev-3"
 }
