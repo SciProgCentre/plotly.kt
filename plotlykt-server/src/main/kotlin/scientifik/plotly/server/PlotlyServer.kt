@@ -22,26 +22,24 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.util.KtorExperimentalAPI
 import io.ktor.websocket.WebSockets
 import io.ktor.websocket.webSocket
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.newCoroutineContext
 import kotlinx.html.*
 import scientifik.plotly.*
 import java.awt.Desktop
 import java.net.URI
 import java.time.Duration
 import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * A simple Ktor server for displaying and updating plots
  */
 @OptIn(ExperimentalCoroutinesApi::class, KtorExperimentalAPI::class)
 class PlotlyServer(
-    override val coroutineContext: CoroutineContext = GlobalScope.newCoroutineContext(EmptyCoroutineContext)
+    parentScope: CoroutineScope = GlobalScope
 ) : Configurable, CoroutineScope {
+
+    override val coroutineContext: CoroutineContext = parentScope.newCoroutineContext(Job(parentScope.coroutineContext[Job]))
 
     override val config: Config = Config()
 
@@ -55,7 +53,7 @@ class PlotlyServer(
      * Control dynamic updates via websocket
      */
     var updateMode by enum(UpdateMode.NONE, key = "update.mode".toName())
-    var updateInterval by number(300, UPDATE_INTERVAL_KEY)
+    var updateInterval by number(300, key = UPDATE_INTERVAL_KEY)
     var embedData by boolean(false)
     var host by string("localhost")
     var port by int(7777)
@@ -279,8 +277,8 @@ class PlotlyServer(
 /**
  * Start static server (updates via reload)
  */
-fun Plotly.serve(block: PlotlyServer.() -> Unit): PlotlyServer =
-    PlotlyServer().apply(block).apply { start() }
+fun Plotly.serve(scope: CoroutineScope = GlobalScope, block: PlotlyServer.() -> Unit): PlotlyServer =
+    PlotlyServer(scope).apply(block).apply { start() }
 
 /**
  * Configure server to start sending updates in push mode. Does not affect loaded pages

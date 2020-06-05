@@ -3,8 +3,8 @@ package scatter
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.AxisType
-import scientifik.plotly.models.Mode
 import scientifik.plotly.models.TextPosition
+import scientifik.plotly.models.TraceMode
 import scientifik.plotly.trace
 
 fun main() {
@@ -12,7 +12,7 @@ fun main() {
         trace {
             x (1, 2, 3, 4)
             y (10, 15, 13, 17)
-            mode = Mode.markers
+            mode = TraceMode.markers
             type = AxisType.scatter
             name = "Team A"
             text = listOf("A-1", "A-2", "A-3", "A-4", "A-5")
@@ -25,7 +25,7 @@ fun main() {
         trace {
             x(2, 3, 4, 5)
             y(10, 15, 13, 17)
-            mode = Mode.lines
+            mode = TraceMode.lines
             type = AxisType.scatter
             name = "Team B"
             text = listOf("B-a", "B-b", "B-c", "B-d", "B-e")

@@ -5,8 +5,13 @@ import hep.dataforge.names.Name
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
+import hep.dataforge.values.long
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
+import kotlin.time.Duration
+import kotlin.time.DurationUnit
+import kotlin.time.milliseconds
+import kotlin.time.toDuration
 
 //extensions for DataForge
 
@@ -46,18 +51,65 @@ fun Configurable.list(
 }
 
 /**
- * A variation of [spec] extension which adds
+ * A variation of [spec] extension with lazy initialization of empty specified nod in case it is missing
  */
-fun <T : Configurable> Configurable.scheme(
+fun <T : Configurable> Configurable.lazySpec(
     spec: Specification<T>, key: Name? = null
 ): ReadWriteProperty<Any?, T> = object : ReadWriteProperty<Any?, T> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {
         val name = key ?: property.name.asName()
-        return config[name].node?.let { spec.wrap(it) } ?: spec.empty().also { config[name] = it.config }
+        return config[name].node?.let { spec.wrap(it) }
+            ?: spec.empty().also { config[name] = it.config }
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
         val name = key ?: property.name.asName()
         config[name] = value.config
+    }
+}
+
+/**
+ * A safe [Double] range
+ */
+fun Configurable.doubleRange(
+    range: ClosedFloatingPointRange<Double>,
+    default: Double? = null,
+    key: Name? = null
+): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
+    override fun getValue(thisRef: Any?, property: KProperty<*>): Double {
+        val name = key ?: property.name.asName()
+        return config[name].double ?: default ?: Double.NaN
+    }
+
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: Double) {
+        val name = key ?: property.name.asName()
+        if (value in range) {
+            config[name] = value
+        } else {
+            error("$value not in range $range")
+        }
+    }
+}
+
+fun Configurable.duration(
+    default: Duration? = null,
+    key: Name? = null
+): ReadWriteProperty<Any?, Duration?> = object : ReadWriteProperty<Any?, Duration?> {
+    override fun getValue(thisRef: Any?, property: KProperty<*>): Duration? {
+        val name = key ?: property.name.asName()
+        val item = config[name]
+        return when (item) {
+            null -> null
+            is MetaItem.ValueItem -> item.value.long.milliseconds
+            is MetaItem.NodeItem<*> -> {
+                val value = item.node["value"].long ?: error("Duration value is not defined")
+                val unit = item.node["unit"].enum<DurationUnit>() ?: DurationUnit.MILLISECONDS
+                value.toDuration(unit)
+            }
+        }
+    }
+
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: Duration?) {
+        TODO("Not yet implemented")
     }
 }

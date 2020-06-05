@@ -6,7 +6,7 @@ plugins {
 }
 
 val ktorVersion by extra("1.3.2")
-val dataforgeVersion by extra("0.1.7")
+val dataforgeVersion by extra("0.1.8-dev-4")
 val htmlVersion by extra("0.7.1")
 
 val bintrayRepo by extra("scientifik")
@@ -24,5 +24,5 @@ allprojects {
     }
 
     group = "scientifik"
-    version = "0.2.0-dev-3"
+    version = "0.2.0-dev-4"
 }

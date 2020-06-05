@@ -6,10 +6,11 @@ import hep.dataforge.values.DoubleArrayValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
+import scientifik.plotly.doubleRange
 import kotlin.js.JsName
 
 
-enum class Mode {
+enum class TraceMode {
     lines,
 
     @JsName("linesMarkers")
@@ -218,7 +219,7 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
             this.value = DoubleArrayValue(value)
         }
 
-    var numbers: List<Number>
+    var numbers: Iterable<Number>
         get() = value?.list?.map { it.number } ?: emptyList()
         set(value) {
             this.value = value.map { it.asValue() }.asValue()
@@ -231,7 +232,7 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
         }
 
     /**
-     * Smart fill for
+     * Smart fill for trace values
      */
     fun set(values: Any?) {
         value = when (values) {
@@ -255,16 +256,16 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
 }
 
 class Trace() : Scheme() {
-    val x = TraceValues(this, "x")
-    val y = TraceValues(this, "y")
+    val x = TraceValues(this, X_AXIS)
+    val y = TraceValues(this, Y_AXIS)
 
     var name by string()
-    var mode by enum(Mode.lines)
+    var mode by enum(TraceMode.lines)
     var type by enum(TraceType.scatter)
     var visible by enum(Visible.True)
     var showlegend by boolean(true)
     var legendgroup by string("")
-    var opacity by double(1.0) // FIXME("number between or equal to 0 and 1")
+    var opacity by doubleRange(0.0..1.0, default = 1.0)
     var cumulative by spec(Cumulative)
 
     // val autobinx by boolean() is not needed
@@ -300,6 +301,9 @@ class Trace() : Scheme() {
     }
 
     companion object : SchemeSpec<Trace>(::Trace) {
+        const val X_AXIS = "x"
+        const val Y_AXIS = "y"
+
         operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Trace.() -> Unit = {}) = invoke {
             block()
             x.set(xs)
