@@ -1,3 +1,4 @@
+import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.models.Trace
 import scientifik.plotly.show

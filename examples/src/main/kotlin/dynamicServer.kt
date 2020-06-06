@@ -2,6 +2,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import scientifik.plotly.Plotly
+import scientifik.plotly.layout
 import scientifik.plotly.models.Trace
 import scientifik.plotly.server.pushUpdates
 import scientifik.plotly.server.serve

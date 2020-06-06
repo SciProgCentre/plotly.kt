@@ -1,9 +1,10 @@
 package histogram
 
+import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.AxisType
 import scientifik.plotly.models.HistNorm
+import scientifik.plotly.models.TraceType
 import scientifik.plotly.trace
 import java.util.*
 
@@ -15,7 +16,7 @@ fun main() {
     val plot = Plotly.plot2D{
         trace(x){
             name = "Random data"
-            type = AxisType.histogram
+            type = TraceType.histogram
             histnorm = HistNorm.probability
             marker{
                 color(255,255,100)

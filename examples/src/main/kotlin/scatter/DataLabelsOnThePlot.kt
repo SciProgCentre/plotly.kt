@@ -1,10 +1,11 @@
 package scatter
 
+import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.AxisType
 import scientifik.plotly.models.TextPosition
 import scientifik.plotly.models.TraceMode
+import scientifik.plotly.models.TraceType
 import scientifik.plotly.trace
 
 fun main() {
@@ -13,7 +14,7 @@ fun main() {
             x (1, 2, 3, 4)
             y (10, 15, 13, 17)
             mode = TraceMode.markers
-            type = AxisType.scatter
+            type = TraceType.scatter
             name = "Team A"
             text = listOf("A-1", "A-2", "A-3", "A-4", "A-5")
             textposition = TextPosition.topCenter
@@ -26,7 +27,7 @@ fun main() {
             x(2, 3, 4, 5)
             y(10, 15, 13, 17)
             mode = TraceMode.lines
-            type = AxisType.scatter
+            type = TraceType.scatter
             name = "Team B"
             text = listOf("B-a", "B-b", "B-c", "B-d", "B-e")
             textposition = TextPosition.bottomCenter

@@ -1,11 +1,8 @@
 package annotation
 
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.AxisType
+import scientifik.plotly.*
 import scientifik.plotly.models.TraceMode
-import scientifik.plotly.text
-import scientifik.plotly.trace
+import scientifik.plotly.models.TraceType
 
 fun main() {
     val plot = Plotly.plot2D {
@@ -13,16 +10,16 @@ fun main() {
             x(2, 3, 4, 5)
             y(10, 15, 13, 17)
             mode = TraceMode.lines
-            type = AxisType.scatter
+            type = TraceType.scatter
         }
 
-        text{
-            position(2,10)
+        text {
+            position(2, 10)
             text = "start"
         }
 
-        text{
-            position(5,17)
+        text {
+            position(5, 17)
             text = "finish"
         }
 

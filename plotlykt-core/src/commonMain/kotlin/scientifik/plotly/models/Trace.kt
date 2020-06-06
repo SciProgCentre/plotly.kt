@@ -225,14 +225,15 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
             this.value = value.map { it.asValue() }.asValue()
         }
 
-    var strings: List<String>
+    var strings: Iterable<String>
         get() = value?.list?.map { it.string } ?: emptyList()
         set(value) {
             this.value = value.map { it.asValue() }.asValue()
         }
 
     /**
-     * Smart fill for trace values
+     * Smart fill for trace values. The following types are accepted: [DoubleArray], [IntArray], [Array] of primitive or string,
+     * [Iterable] of primitive or string.
      */
     fun set(values: Any?) {
         value = when (values) {
@@ -256,8 +257,10 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
 }
 
 class Trace() : Scheme() {
-    val x = TraceValues(this, X_AXIS)
-    val y = TraceValues(this, Y_AXIS)
+    fun axis(axisName: String) = TraceValues(this, axisName)
+
+    val x = axis(X_AXIS)
+    val y = axis(Y_AXIS)
 
     var name by string()
     var mode by enum(TraceMode.lines)
@@ -303,6 +306,7 @@ class Trace() : Scheme() {
     companion object : SchemeSpec<Trace>(::Trace) {
         const val X_AXIS = "x"
         const val Y_AXIS = "y"
+        const val TEXT_AXIS = "text"
 
         operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Trace.() -> Unit = {}) = invoke {
             block()

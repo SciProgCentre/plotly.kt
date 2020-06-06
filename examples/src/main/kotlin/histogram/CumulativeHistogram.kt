@@ -1,8 +1,9 @@
 package histogram
 
+import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.AxisType
+import scientifik.plotly.models.TraceType
 import scientifik.plotly.trace
 import java.util.*
 
@@ -14,7 +15,7 @@ fun main() {
     val plot = Plotly.plot2D{
         trace(values){
             name = "Random data"
-            type = AxisType.histogram
+            type = TraceType.histogram
 
             cumulative {
                 enabled = true

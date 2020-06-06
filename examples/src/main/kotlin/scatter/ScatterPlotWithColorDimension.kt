@@ -1,5 +1,6 @@
 package scatter
 
+import hep.dataforge.meta.invoke
 import hep.dataforge.values.asValue
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile

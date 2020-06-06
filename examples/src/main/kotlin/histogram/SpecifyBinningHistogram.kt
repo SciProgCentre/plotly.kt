@@ -1,9 +1,10 @@
 package histogram
 
+import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.AxisType
 import scientifik.plotly.models.HisFunc
+import scientifik.plotly.models.TraceType
 import scientifik.plotly.trace
 
 
@@ -14,7 +15,7 @@ fun main() {
     val plot = Plotly.plot2D{
         trace{
             name = "count"
-            type = AxisType.histogram
+            type = TraceType.histogram
             x.set(categories)
             y.set(values)
             histfunc = HisFunc.count
@@ -22,7 +23,7 @@ fun main() {
 
         trace{
             name = "sum"
-            type = AxisType.histogram
+            type = TraceType.histogram
             x.set(categories)
             y.set(values)
             histfunc = HisFunc.sum
