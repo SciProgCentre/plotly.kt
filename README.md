@@ -2,6 +2,8 @@ Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-np
 
 Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/scientifik/plotlykt-server/_latestVersion)
 
+[![DOI](https://zenodo.org/badge/186020000.svg)](https://zenodo.org/badge/latestdoi/186020000)
+
 # Description
 
 This project is developed to allow simple access to plotly functionality from kotlin-multiplatform.
@@ -46,9 +48,15 @@ repositories {
 }
 
 dependencies {
-    implementation("scientifik:plotlykt-server:0.1.5")
+    implementation("scientifik:plotlykt-server:0.1.2")
 }
 ```
+
+When using development versions (if version contains `dev`), one should also add
+```
+    maven("https://dl.bintray.com/mipt-npm/dev")
+```
+into the repository list.
 
 If you do not need the server, then use plotlykt-core instead and remove `ktor` repository.
 
