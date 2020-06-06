@@ -1,8 +1,18 @@
+[![JetBrains Research](https://jb.gg/badges/research.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+[![DOI](https://zenodo.org/badge/186020000.svg)](https://zenodo.org/badge/latestdoi/186020000)
+![Gradle build](https://github.com/mipt-npm/plotly.kt/workflows/Gradle%20build/badge.svg)
+
+## Release version
+
 Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/scientifik/plotlykt-core/_latestVersion)
 
 Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/scientifik/plotlykt-server/_latestVersion)
 
-[![DOI](https://zenodo.org/badge/186020000.svg)](https://zenodo.org/badge/latestdoi/186020000)
+## Development version
+
+Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/dev/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/dev/plotlykt-core/_latestVersion)
+
+Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/dev/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/dev/plotlykt-server/_latestVersion)
 
 # Description
 
