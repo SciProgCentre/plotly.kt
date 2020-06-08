@@ -71,7 +71,7 @@ fun <T : Configurable> Configurable.lazySpec(
 /**
  * A safe [Double] range
  */
-fun Configurable.doubleRange(
+fun Configurable.doubleInRange(
     range: ClosedFloatingPointRange<Double>,
     default: Double? = null,
     key: Name? = null

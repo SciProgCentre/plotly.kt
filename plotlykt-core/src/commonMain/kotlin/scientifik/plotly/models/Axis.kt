@@ -1,6 +1,9 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.values.ListValue
+import hep.dataforge.values.asValue
+import hep.dataforge.values.doubleArray
 import kotlin.js.JsName
 
 
@@ -19,7 +22,11 @@ class Axis : Scheme() {
     var type by enum(AxisType.`-`)
     var visible by boolean()
     var autorange by boolean(true)
-    var range: Pair<Double, Double>? = null
+    var range: ClosedFloatingPointRange<Double>?
+        get() = config["range"]?.value?.doubleArray?.let { it[0]..it[1] }
+        set(value) {
+            config["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
+        }
     var color by string()
 
     companion object : SchemeSpec<Axis>(::Axis)

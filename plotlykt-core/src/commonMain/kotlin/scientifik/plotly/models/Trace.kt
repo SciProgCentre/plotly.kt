@@ -6,7 +6,7 @@ import hep.dataforge.values.DoubleArrayValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
-import scientifik.plotly.doubleRange
+import scientifik.plotly.doubleInRange
 import kotlin.js.JsName
 
 
@@ -268,7 +268,7 @@ class Trace() : Scheme() {
     var visible by enum(Visible.True)
     var showlegend by boolean(true)
     var legendgroup by string("")
-    var opacity by doubleRange(0.0..1.0, default = 1.0)
+    var opacity by doubleInRange(0.0..1.0, default = 1.0)
     var cumulative by spec(Cumulative)
 
     // val autobinx by boolean() is not needed
