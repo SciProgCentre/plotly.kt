@@ -187,7 +187,7 @@ enum class HistNorm {
     probability_density
 }
 
-enum class HisFunc {
+enum class HistFunc {
     count,
     sum,
 
@@ -273,7 +273,7 @@ class Trace() : Scheme() {
 
     // val autobinx by boolean() is not needed
     var histnorm by enum(HistNorm.empty)
-    var histfunc by enum(HisFunc.count)
+    var histfunc by enum(HistFunc.count)
     var xbins by spec(Bins)
     var ybins by spec(Bins)
 

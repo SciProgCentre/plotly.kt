@@ -3,7 +3,7 @@ package histogram
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.HisFunc
+import scientifik.plotly.models.HistFunc
 import scientifik.plotly.models.TraceType
 import scientifik.plotly.trace
 
@@ -18,7 +18,7 @@ fun main() {
             type = TraceType.histogram
             x.set(categories)
             y.set(values)
-            histfunc = HisFunc.count
+            histfunc = HistFunc.count
         }
 
         trace{
@@ -26,7 +26,7 @@ fun main() {
             type = TraceType.histogram
             x.set(categories)
             y.set(values)
-            histfunc = HisFunc.sum
+            histfunc = HistFunc.sum
         }
         layout {
             title = "Specify Binning Function"

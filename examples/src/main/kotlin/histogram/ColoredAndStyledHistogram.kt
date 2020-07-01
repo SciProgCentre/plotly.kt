@@ -4,7 +4,7 @@ import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.BarMode
-import scientifik.plotly.models.HisFunc
+import scientifik.plotly.models.HistFunc
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.TraceType
 import java.util.*
@@ -20,7 +20,7 @@ fun main() {
 
     val trace1 = Trace(x1, y1) {
         name = "control"
-        histfunc = HisFunc.count
+        histfunc = HistFunc.count
         marker {
             color(255, 100, 102, 0.7)
         }

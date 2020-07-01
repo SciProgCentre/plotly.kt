@@ -41,9 +41,6 @@ fun main() {
             xaxis {
                 range = 0.75..5.25
             }
-            yaxis {
-                range = 0.0..8.0
-            }
             legend {
                 y = 0.5
                 font {
