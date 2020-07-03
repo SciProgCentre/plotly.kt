@@ -81,14 +81,42 @@ enum class Symbol {
     cross
 }
 
+interface ColorHolder {
+    var color: Value?
+
+    fun color(number: Number) {
+        color = number.asValue()
+    }
+
+    fun color(string: String) {
+        val pattern = "^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$".toRegex()
+        if (string.startsWith("#")) { // html-like color
+            if (string.matches(pattern)) {
+                color = string.asValue()
+            } else {
+                error("$string is not a valid color")
+            }
+        }
+        color = string.asValue()
+    }
+
+    fun color(red: Number, green: Number, blue: Number) {
+        color("rgb(${red.toFloat()},${green.toFloat()},${blue.toFloat()})")
+    }
+
+    fun color(red: Number, green: Number, blue: Number, alpha: Number) {
+        color("rgba(${red.toFloat()},${green.toFloat()},${blue.toFloat()},${alpha.toFloat()})")
+    }
+}
+
 enum class SizeMode {
     diameter,
     area
 }
 
-class MarkerLine : Line() {
+class MarkerLine : Line(), ColorHolder {
     var width by intGreaterThan(0)
-    var color by string()
+    override var color by value()
     var cauto by boolean(true)
     var cmin by int()
     var cmax by int()
@@ -114,41 +142,24 @@ enum class TextPosition {
     bottomRight,
 }
 
-class Font : Scheme() {
+class Font : Scheme(), ColorHolder {
     var family by string()
     var size by intGreaterThan(1)
-    var color by string()
+    override var color by value()
 
     companion object : SchemeSpec<Font>(::Font)
 }
 
-
-class Marker : Scheme() {
+class Marker : Scheme(), ColorHolder {
     var symbol: Symbol by enum(Symbol.circle)
     var size by intGreaterThan(0)
-    var color by value() // FIXME("Create special type for color)
+    override  var color by value()
     var opacity by doubleInRange(0.0..1.0)
     var maxdisplayed by intGreaterThan(0)
     var sizeref by int(1)
     var sizemin by intGreaterThan(0)
     var sizemode by enum(SizeMode.diameter)
     var line by spec(MarkerLine)
-
-    fun color(number: Number) {
-        color = number.asValue()
-    }
-
-    fun color(string: String) {
-        color = string.asValue()
-    }
-
-    fun color(red: Number, green: Number, blue: Number) {
-        color("rgb(${red.toFloat()},${green.toFloat()},${blue.toFloat()})")
-    }
-
-    fun color(red: Number, green: Number, blue: Number, alpha: Number) {
-        color("rgba(${red.toFloat()},${green.toFloat()},${blue.toFloat()},${alpha.toFloat()})")
-    }
 
     fun colors(colors: Iterable<Any>) {
         color = colors.map { Value.of(it) }.asValue()

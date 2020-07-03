@@ -17,7 +17,7 @@ enum class AxisType {
     multicategory;
 }
 
-class Axis : Scheme() {
+class Axis : Scheme(), ColorHolder {
     var title by string()
     var type by enum(AxisType.`-`)
     var visible by boolean()
@@ -27,7 +27,7 @@ class Axis : Scheme() {
         set(value) {
             config["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
         }
-    var color by string()
+    override var color by value()
 
     companion object : SchemeSpec<Axis>(::Axis)
 }
