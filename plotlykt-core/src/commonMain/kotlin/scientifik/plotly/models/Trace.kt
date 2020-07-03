@@ -6,7 +6,9 @@ import hep.dataforge.values.DoubleArrayValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
+import scientifik.plotly.doubleGreaterThan
 import scientifik.plotly.doubleInRange
+import scientifik.plotly.intGreaterThan
 import kotlin.js.JsName
 
 
@@ -85,7 +87,7 @@ enum class SizeMode {
 }
 
 class MarkerLine : Line() {
-    var width by int() // FIXME("number greater than or equal to 0")
+    var width by intGreaterThan(0)
     var color by string()
     var cauto by boolean(true)
     var cmin by int()
@@ -114,7 +116,7 @@ enum class TextPosition {
 
 class Font : Scheme() {
     var family by string()
-    var size by int()
+    var size by intGreaterThan(1)
     var color by string()
 
     companion object : SchemeSpec<Font>(::Font)
@@ -123,12 +125,12 @@ class Font : Scheme() {
 
 class Marker : Scheme() {
     var symbol: Symbol by enum(Symbol.circle)
-    var size by int(6)
+    var size by intGreaterThan(0)
     var color by value() // FIXME("Create special type for color)
-    var opacity by double() // FIXME("number between or equal to 0 and 1")
-    var maxdisplayed by int(0)
+    var opacity by doubleInRange(0.0..1.0)
+    var maxdisplayed by intGreaterThan(0)
     var sizeref by int(1)
-    var sizemin by int(0) // FIXME("number greater than or equal to 0")
+    var sizemin by intGreaterThan(0)
     var sizemode by enum(SizeMode.diameter)
     var line by spec(MarkerLine)
 
@@ -202,7 +204,7 @@ class Bins : Scheme() {
     //FIXME("add categorical coordinate string")
     var start by double()
     var end by double()
-    var size by double()
+    var size by doubleGreaterThan(0.0)
 
     companion object : SchemeSpec<Bins>(::Bins)
 }

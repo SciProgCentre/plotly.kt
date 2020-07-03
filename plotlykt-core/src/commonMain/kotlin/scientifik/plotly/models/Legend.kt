@@ -1,6 +1,8 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import scientifik.plotly.doubleInRange
+import scientifik.plotly.intGreaterThan
 import kotlin.js.JsName
 
 enum class Orientation {
@@ -28,10 +30,10 @@ enum class YAnchor {
 class Legend : Scheme() {
     //    var bgcolor
 //    var bordercolor
-    var borderwidth by int(0)
-    var x by double(1.02) //FIXME("number between or equal to -2 and 3")
+    var borderwidth by intGreaterThan(0)
+    var x by doubleInRange(-2.0..3.0)
     var xanchor by enum(XAnchor.left)
-    var y by double(1.0)//FIXME("number between or equal to -2 and 3")
+    var y by doubleInRange(-2.0..3.0)
     var yanchor by enum(YAnchor.auto)
     var font by spec(Font)
     var orientation by enum(Orientation.vertical)

@@ -91,6 +91,77 @@ fun Configurable.doubleInRange(
     }
 }
 
+/**
+ * A safe [Double] ray
+ */
+fun Configurable.doubleGreaterThan(
+        minValue: Double,
+        default: Double? = null,
+        key: Name? = null
+): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
+    override fun getValue(thisRef: Any?, property: KProperty<*>): Double {
+        val name = key ?: property.name.asName()
+        return config[name].double ?: default ?: Double.NaN
+    }
+
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: Double) {
+        val name = key ?: property.name.asName()
+        if (value >= minValue) {
+            config[name] = value
+        } else {
+            error("$value less than $minValue")
+        }
+    }
+}
+
+
+/**
+ * A safe [Int] ray
+ */
+fun Configurable.intGreaterThan(
+        minValue: Int,
+        default: Int? = null,
+        key: Name? = null
+): ReadWriteProperty<Any?, Int> = object : ReadWriteProperty<Any?, Int> {
+    override fun getValue(thisRef: Any?, property: KProperty<*>): Int {
+        val name = key ?: property.name.asName()
+        return config[name].int ?: default ?: minValue
+    }
+
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: Int) {
+        val name = key ?: property.name.asName()
+        if (value >= minValue) {
+            config[name] = value
+        } else {
+            error("$value less than $minValue")
+        }
+    }
+}
+
+/**
+ * A safe [Int] range
+ */
+fun Configurable.intInRange(
+        range: ClosedRange<Int>,
+        default: Int? = null,
+        key: Name? = null
+): ReadWriteProperty<Any?, Int> = object : ReadWriteProperty<Any?, Int> {
+    override fun getValue(thisRef: Any?, property: KProperty<*>): Int {
+        val name = key ?: property.name.asName()
+        return config[name].int ?: default ?: 0
+    }
+
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: Int) {
+        val name = key ?: property.name.asName()
+        if (value in range) {
+            config[name] = value
+        } else {
+            error("$value not in range $range")
+        }
+    }
+}
+
+
 fun Configurable.duration(
     default: Duration? = null,
     key: Name? = null

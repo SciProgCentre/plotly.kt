@@ -1,6 +1,7 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import scientifik.plotly.doubleInRange
 import scientifik.plotly.lazySpec
 import scientifik.plotly.list
 
@@ -17,8 +18,8 @@ class Layout : Scheme() {
     var xaxis by lazySpec(Axis)
     var yaxis by lazySpec(Axis)
     var barmode: BarMode by enum(BarMode.group)
-    var bargap by double() // FIXME("number between or equal to 0 and 1")
-    var bargroupgap by double() // FIXME("number between or equal to 0 and 1")
+    var bargap by doubleInRange(0.0..1.0)
+    var bargroupgap by doubleInRange(0.0..1.0)
     var legend by lazySpec(Legend)
     var annotations by list(Annotation)
 
