@@ -1,4 +1,8 @@
-package scientifik.plotly
+package scientifik.plotly.palettes
+
+/**
+ * Color names from xkcd color survey
+ */
 
 object XKCD {
     const val CLOUDY_BLUE = "#ACC2D9"
