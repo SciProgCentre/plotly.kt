@@ -2,6 +2,7 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import scientifik.plotly.doubleInRange
+import scientifik.plotly.intGreaterThan
 import scientifik.plotly.lazySpec
 import scientifik.plotly.list
 
@@ -14,6 +15,18 @@ enum class BarMode {
 }
 
 class Layout : Scheme() {
+    /**
+     * Sets the plot's width (in px).
+     * Number greater than or equal to 10, default: 700.
+     */
+    var width by intGreaterThan(10)
+
+    /**
+     * Sets the plot's height (in px).
+     * Number greater than or equal to 10, default: 450.
+     */
+    var height by intGreaterThan(10)
+
     var title by string()
     var xaxis by lazySpec(Axis)
     var yaxis by lazySpec(Axis)
