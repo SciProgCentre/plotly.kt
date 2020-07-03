@@ -27,6 +27,11 @@ enum class YAnchor {
     bottom
 }
 
+enum class TraceOrder {
+    normal,
+    reversed
+}
+
 class Legend : Scheme() {
     //    var bgcolor
 //    var bordercolor
@@ -38,7 +43,13 @@ class Legend : Scheme() {
     var font by spec(Font)
     var orientation by enum(Orientation.vertical)
 
-    // var traceorder
+    /**
+     * The order at which the legend items are displayed.
+     * "normal": top-to-bottom in the same order as the input data.
+     * "reversed": the items are displayed in the opposite order.
+     */
+    var traceorder by enum(TraceOrder.normal)
+
     fun font(block: Font.() -> Unit) {
         font = Font(block)
     }
