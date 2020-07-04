@@ -27,13 +27,49 @@ class Layout : Scheme() {
      */
     var height by intGreaterThan(10)
 
+    /**
+     * Sets the plot's title.
+     */
     var title by string()
+
     var xaxis by lazySpec(Axis)
+
     var yaxis by lazySpec(Axis)
+
+    /**
+     * Enumerated, one of ( "stack" | "group" | "overlay" | "relative" )
+     * Determines how bars at the same location coordinate
+     * are displayed on the graph. With "stack", the bars
+     * are stacked on top of one another With "relative",
+     * the bars are stacked on top of one another, with negative values
+     * below the axis, positive values above With "group", the bars
+     * are plotted next to one another centered around the shared location.
+     * With "overlay", the bars are plotted over one another, you might
+     * need to an "opacity" to see multiple bars.
+     * Default: "group".
+     */
     var barmode: BarMode by enum(BarMode.group)
+
+    /**
+     * Sets the gap (in plot fraction) between bars
+     * of adjacent location coordinates.
+     */
     var bargap by doubleInRange(0.0..1.0)
+
+    /**
+     * Sets the gap (in plot fraction) between bars of the same location coordinate.
+     * Default: 0.
+     */
     var bargroupgap by doubleInRange(0.0..1.0)
+
     var legend by lazySpec(Legend)
+
+    /**
+     * An annotation is a text element that can be placed anywhere in the plot.
+     * It can be positioned with respect to relative coordinates in the plot
+     * or with respect to the actual data coordinates of the graph.
+     * Annotations can be shown with or without an arrow.
+     */
     var annotations by list(Annotation)
 
     fun legend(block: Legend.() -> Unit) {

@@ -14,6 +14,12 @@ enum class Shape {
 }
 
 class LayoutLine : Scheme() {
+    /**
+     * Determines the line shape. With "spline" the lines
+     * are drawn using spline interpolation. The other
+     * available values correspond to step-wise line shapes.
+     * Default: "linear"
+     */
     var shape by enum(Shape.linear)
 
     companion object : SchemeSpec<LayoutLine>(::LayoutLine)
