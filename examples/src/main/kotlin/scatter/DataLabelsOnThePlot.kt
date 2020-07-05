@@ -46,6 +46,7 @@ fun main() {
                 font {
                     family = "Arial, sans-serif"
                     size = 20
+                    color("grey")
                 }
             }
         }
