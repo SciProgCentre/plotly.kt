@@ -1,6 +1,7 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.names.asName
 import hep.dataforge.values.ListValue
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
@@ -17,7 +18,7 @@ enum class AxisType {
     multicategory;
 }
 
-class Axis : Scheme(), ColorHolder {
+class Axis : Scheme() {
     /**
      * Sets the title of this axis.
      */
@@ -69,7 +70,7 @@ class Axis : Scheme(), ColorHolder {
      * by blending this with the plot background Individual pieces can override this.
      * Default: #444.
      */
-    override var color by value()
+    val color = Color(this, "color".asName())
 
     companion object : SchemeSpec<Axis>(::Axis)
 }

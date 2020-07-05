@@ -1,6 +1,7 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.names.asName
 import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
 import kotlin.js.JsName
@@ -36,13 +37,13 @@ class Legend : Scheme() {
     /**
      * Sets the legend background color. Defaults to `paper_bgcolor`.
      */
-    // var bgcolor
+    val bgcolor = Color(this, "color".asName())
 
     /**
      * Sets the color of the border enclosing the legend.
      * Default: #444.
      */
-    // var bordercolor
+    val bordercolor = Color(this, "color".asName())
 
     /**
      * Sets the width (in px) of the border enclosing the legend.

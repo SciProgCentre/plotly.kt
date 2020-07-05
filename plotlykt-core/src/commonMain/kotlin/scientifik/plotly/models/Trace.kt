@@ -81,40 +81,12 @@ enum class Symbol {
     cross
 }
 
-interface ColorHolder {
-    var color: Value?
-
-    fun color(number: Number) {
-        color = number.asValue()
-    }
-
-    fun color(string: String) {
-        val pattern = "^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$".toRegex()
-        if (string.startsWith("#")) { // html-like color
-            if (string.matches(pattern)) {
-                color = string.asValue()
-            } else {
-                error("$string is not a valid color")
-            }
-        }
-        color = string.asValue()
-    }
-
-    fun color(red: Number, green: Number, blue: Number) {
-        color("rgb(${red.toFloat()},${green.toFloat()},${blue.toFloat()})")
-    }
-
-    fun color(red: Number, green: Number, blue: Number, alpha: Number) {
-        color("rgba(${red.toFloat()},${green.toFloat()},${blue.toFloat()},${alpha.toFloat()})")
-    }
-}
-
 enum class SizeMode {
     diameter,
     area
 }
 
-class MarkerLine : Line(), ColorHolder {
+class MarkerLine : Line() {
     /**
      * Number than or equal to 0. Sets the width (in px)
      * of the lines bounding the marker points.
@@ -127,7 +99,7 @@ class MarkerLine : Line(), ColorHolder {
      * relative to the max and min values of the array or relative to
      * `cmin` and `cmax` if set.
      */
-    override var color by value()
+    val color = Color(this, "color".asName())
 
     /**
      * Determines whether or not the color domain is computed with respect
@@ -216,7 +188,7 @@ enum class TextPosition {
     bottomRight,
 }
 
-class Font : Scheme(), ColorHolder {
+class Font : Scheme() {
     /**
      * HTML font family - the typeface that will be applied
      * by the web browser. The web browser will only be able
@@ -235,80 +207,10 @@ class Font : Scheme(), ColorHolder {
 
     var size by intGreaterThan(1)
 
-    override var color by value()
+    val color = Color(this, "color".asName())
 
     companion object : SchemeSpec<Font>(::Font)
 }
-
-class Marker : Scheme(), ColorHolder {
-    /**
-     * Sets the marker symbol type.
-     * Default: circle.
-     */
-    var symbol: Symbol by enum(Symbol.circle)
-
-    /**
-     * Sets the marker size (in px).
-     * Default: 6.
-     */
-    var size by intGreaterThan(0)
-
-    /**
-     * Sets themarkercolor. It accepts either a specific color
-     * or an array of numbers that are mapped to the colorscale
-     * relative to the max and min values of the array or relative
-     * to `marker.cmin` and `marker.cmax` if set.
-     */
-    override  var color by value()
-
-    /**
-     * Sets the marker opacity.
-     */
-    var opacity by doubleInRange(0.0..1.0)
-
-    /**
-     * Sets a maximum number of points to be drawn on the graph.
-     * "0" corresponds to no limit.
-     * Default: 0.
-     */
-    var maxdisplayed by intGreaterThan(0)
-
-    /**
-     * Has an effect only if `size` is set to a numerical array.
-     * Sets the scale factor used to determine the rendered size
-     * of marker points. Use with `sizemin` and `sizemode`.
-     * Default: 1.
-     */
-    var sizeref by int()
-
-    /**
-     * Has an effect only if `marker.size` is set to a numerical array.
-     * Sets the minimum size (in px) of the rendered marker points.
-     * Default: 0.
-     */
-    var sizemin by intGreaterThan(0)
-
-    /**
-     * Enumerated , one of ( "diameter" | "area" )
-     * Has an effect only if `marker.size` is set to a numerical array.
-     * Sets the rule for which the data in `size` is converted to pixels.
-     * Default: "diameter".
-     */
-    var sizemode by enum(SizeMode.diameter)
-
-    var line by spec(MarkerLine)
-
-    fun colors(colors: Iterable<Any>) {
-        color = colors.map { Value.of(it) }.asValue()
-    }
-
-    fun line(block: MarkerLine.() -> Unit) {
-        line = MarkerLine(block)
-    }
-
-    companion object : SchemeSpec<Marker>(::Marker)
-}
-
 
 enum class Direction {
     increasing,
@@ -418,55 +320,6 @@ class Bins : Scheme() {
     var size by doubleGreaterThan(0.0)
 
     companion object : SchemeSpec<Bins>(::Bins)
-}
-
-/**
- * Type-safe accessor class for values in the trace
- */
-class TraceValues internal constructor(val trace: Trace, axis: String) {
-    var value by trace.value(key = axis.asName())
-
-    var doubles: DoubleArray
-        get() = value?.doubleArray ?: doubleArrayOf()
-        set(value) {
-            this.value = DoubleArrayValue(value)
-        }
-
-    var numbers: Iterable<Number>
-        get() = value?.list?.map { it.number } ?: emptyList()
-        set(value) {
-            this.value = value.map { it.asValue() }.asValue()
-        }
-
-    var strings: Iterable<String>
-        get() = value?.list?.map { it.string } ?: emptyList()
-        set(value) {
-            this.value = value.map { it.asValue() }.asValue()
-        }
-
-    /**
-     * Smart fill for trace values. The following types are accepted: [DoubleArray], [IntArray], [Array] of primitive or string,
-     * [Iterable] of primitive or string.
-     */
-    fun set(values: Any?) {
-        value = when (values) {
-            null -> null
-            is DoubleArray -> values.asValue()
-            is IntArray ->  values.map { it.asValue() }.asValue()
-            is Array<*> -> values.map { Value.of(it) }.asValue()
-            is Iterable<*> -> values.map { Value.of(it) }.asValue()
-            else -> error("Unrecognized values type ${values::class}")
-        }
-    }
-
-    operator fun invoke(vararg numbers: Number) {
-        this.numbers = numbers.asList()
-    }
-
-    operator fun invoke(vararg strings: String) {
-        this.strings = strings.asList()
-    }
-
 }
 
 class Trace() : Scheme() {
