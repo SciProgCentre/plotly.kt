@@ -2,10 +2,6 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
-import hep.dataforge.values.DoubleArrayValue
-import hep.dataforge.values.Value
-import hep.dataforge.values.asValue
-import hep.dataforge.values.doubleArray
 import scientifik.plotly.doubleInRange
 import kotlin.js.JsName
 
@@ -86,7 +82,6 @@ enum class SizeMode {
 
 class MarkerLine : Line() {
     var width by int() // FIXME("number greater than or equal to 0")
-    var color by string()
     var cauto by boolean(true)
     var cmin by int()
     var cmax by int()
@@ -96,6 +91,8 @@ class MarkerLine : Line() {
     var autocolorscale by boolean(true)
     var reversescale by boolean()
     // var coloraxis TODO()
+
+    val color = Color(this, "color".asName())
 
     companion object : SchemeSpec<MarkerLine>(::MarkerLine)
 }
@@ -115,48 +112,10 @@ enum class TextPosition {
 class Font : Scheme() {
     var family by string()
     var size by int()
-    var color by string()
+
+    val color = Color(this, "color".asName())
 
     companion object : SchemeSpec<Font>(::Font)
-}
-
-
-class Marker : Scheme() {
-    var symbol: Symbol by enum(Symbol.circle)
-    var size by int(6)
-    var color by value() // FIXME("Create special type for color)
-    var opacity by double() // FIXME("number between or equal to 0 and 1")
-    var maxdisplayed by int(0)
-    var sizeref by int(1)
-    var sizemin by int(0) // FIXME("number greater than or equal to 0")
-    var sizemode by enum(SizeMode.diameter)
-    var line by spec(MarkerLine)
-
-    fun color(number: Number) {
-        color = number.asValue()
-    }
-
-    fun color(string: String) {
-        color = string.asValue()
-    }
-
-    fun color(red: Number, green: Number, blue: Number) {
-        color("rgb(${red.toFloat()},${green.toFloat()},${blue.toFloat()})")
-    }
-
-    fun color(red: Number, green: Number, blue: Number, alpha: Number) {
-        color("rgba(${red.toFloat()},${green.toFloat()},${blue.toFloat()},${alpha.toFloat()})")
-    }
-
-    fun colors(colors: Iterable<Any>) {
-        color = colors.map { Value.of(it) }.asValue()
-    }
-
-    fun line(block: MarkerLine.() -> Unit) {
-        line = MarkerLine(block)
-    }
-
-    companion object : SchemeSpec<Marker>(::Marker)
 }
 
 
@@ -205,55 +164,6 @@ class Bins : Scheme() {
     var size by double()
 
     companion object : SchemeSpec<Bins>(::Bins)
-}
-
-/**
- * Type-safe accessor class for values in the trace
- */
-class TraceValues internal constructor(val trace: Trace, axis: String) {
-    var value by trace.value(key = axis.asName())
-
-    var doubles: DoubleArray
-        get() = value?.doubleArray ?: doubleArrayOf()
-        set(value) {
-            this.value = DoubleArrayValue(value)
-        }
-
-    var numbers: Iterable<Number>
-        get() = value?.list?.map { it.number } ?: emptyList()
-        set(value) {
-            this.value = value.map { it.asValue() }.asValue()
-        }
-
-    var strings: Iterable<String>
-        get() = value?.list?.map { it.string } ?: emptyList()
-        set(value) {
-            this.value = value.map { it.asValue() }.asValue()
-        }
-
-    /**
-     * Smart fill for trace values. The following types are accepted: [DoubleArray], [IntArray], [Array] of primitive or string,
-     * [Iterable] of primitive or string.
-     */
-    fun set(values: Any?) {
-        value = when (values) {
-            null -> null
-            is DoubleArray -> values.asValue()
-            is IntArray ->  values.map { it.asValue() }.asValue()
-            is Array<*> -> values.map { Value.of(it) }.asValue()
-            is Iterable<*> -> values.map { Value.of(it) }.asValue()
-            else -> error("Unrecognized values type ${values::class}")
-        }
-    }
-
-    operator fun invoke(vararg numbers: Number) {
-        this.numbers = numbers.asList()
-    }
-
-    operator fun invoke(vararg strings: String) {
-        this.strings = strings.asList()
-    }
-
 }
 
 class Trace() : Scheme() {

@@ -1,6 +1,7 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.names.asName
 import hep.dataforge.values.ListValue
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
@@ -27,7 +28,8 @@ class Axis : Scheme() {
         set(value) {
             config["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
         }
-    var color by string()
+
+    val color = Color(this, "color".asName())
 
     companion object : SchemeSpec<Axis>(::Axis)
 }

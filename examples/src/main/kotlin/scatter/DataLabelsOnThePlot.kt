@@ -11,8 +11,8 @@ import scientifik.plotly.trace
 fun main() {
     val plot = Plotly.plot2D {
         trace {
-            x (1, 2, 3, 4)
-            y (10, 15, 13, 17)
+            x(1, 2, 3, 4)
+            y(10, 15, 13, 17)
             mode = TraceMode.markers
             type = TraceType.scatter
             name = "Team A"
@@ -46,7 +46,7 @@ fun main() {
                 font {
                     family = "Arial, sans-serif"
                     size = 20
-                    color = "grey"
+                    color("grey")
                 }
             }
         }
