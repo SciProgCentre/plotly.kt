@@ -2,10 +2,9 @@ package scientifik.plotly
 
 import kotlinx.html.*
 
-fun FlowContent.plot(plotId: String, plot: Plot2D, divConfig: DIV.() -> Unit = {}) {
+fun FlowContent.plot(plot: Plot2D, plotId: String = plot.toString()) {
     div {
         id = plotId
-        divConfig()
     }
     script {
         val tracesString = plot.data.toJsonString()
@@ -23,6 +22,11 @@ fun FlowContent.plot(plotId: String, plot: Plot2D, divConfig: DIV.() -> Unit = {
     }
 }
 
+fun FlowContent.plot(plotId: String? = null, builder: Plot2D.() -> Unit) {
+    val plot = Plot2D().apply(builder)
+    plot(plot, plotId ?: plot.toString())
+}
+
 @UnstablePlotlyAPI
 fun FlowContent.plotGrid(plotGrid: PlotGrid) {
     div {
@@ -31,8 +35,9 @@ fun FlowContent.plotGrid(plotGrid: PlotGrid) {
             div {
                 style = "display: flex; flex-direction: row;"
                 row.forEach { cell ->
-                    plot(cell.id, cell.plot) {
+                    div {
                         style = "flex-grow: ${cell.width};"
+                        plot(cell.plot, cell.id)
                     }
                 }
             }

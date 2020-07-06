@@ -56,6 +56,8 @@ fun main() {
 
     }
 
+    server.show()
+
     println("Press Enter to close server")
     readLine()
 

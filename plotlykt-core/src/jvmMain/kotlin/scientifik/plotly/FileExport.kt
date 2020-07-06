@@ -18,11 +18,11 @@ fun Plot2D.makeHtml(plotlyPath: String = "https://cdn.plot.ly/plotly-latest.min.
                     src = plotlyPath
                 }
             }
-            title(layout.title ?: "Untitled models")
+            title(layout.title ?: "Plotly.kt")
         }
         body {
             div { id = "plot" }
-            plot("plot", this@makeHtml)
+            plot(this@makeHtml, "plot")
         }
     }
 }
@@ -42,6 +42,46 @@ fun Plot2D.makeFile(file: File? = null, show: Boolean = true) {
 }
 
 /**
+ * Create a custom layout with loaded plotly dependency
+ */
+fun Plotly.makeHtml(
+    plotlyPath: String = "https://cdn.plot.ly/plotly-latest.min.js",
+    title: String? = null,
+    bodyBuilder: BODY.() -> Unit
+): String {
+    return createHTML().html {
+        head {
+            meta {
+                charset = "utf-8"
+                script {
+                    src = plotlyPath
+                }
+            }
+            title(title ?: "Plotly.kt")
+        }
+        body {
+            div { id = "plot" }
+            bodyBuilder()
+        }
+    }
+}
+
+/**
+ * Make a file with a custom page layout
+ */
+fun Plotly.makeFile(file: File? = null, show: Boolean = true, title: String? = null, bodyBuilder: BODY.() -> Unit) {
+    val actualFile = file ?: File.createTempFile("tempPlot", ".html")
+    actualFile.mkdirs()
+    actualFile.writeText(makeHtml("https://cdn.plot.ly/plotly-latest.min.js", title, bodyBuilder))
+    if (show) {
+        Desktop.getDesktop().browse(actualFile.toURI())
+    }
+}
+
+fun Plotly.show(title: String? = null, bodyBuilder: BODY.() -> Unit) = makeFile(null, true, title, bodyBuilder)
+
+
+/**
  * Create a html string for page
  */
 @UnstablePlotlyAPI
@@ -54,7 +94,7 @@ fun PlotGrid.makeHtml(plotlyPath: String = "https://cdn.plot.ly/plotly-latest.mi
                     src = plotlyPath
                 }
             }
-            title(this@makeHtml.title ?: "Untitled models")
+            title(this@makeHtml.title ?: "Plotly.kt")
         }
         body {
             plotGrid(this@makeHtml)
