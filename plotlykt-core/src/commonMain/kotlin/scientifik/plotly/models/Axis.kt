@@ -5,6 +5,7 @@ import hep.dataforge.names.asName
 import hep.dataforge.values.ListValue
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
+import scientifik.plotly.intGreaterThan
 import kotlin.js.JsName
 
 
@@ -41,6 +42,28 @@ class Axis : Scheme() {
     var visible by boolean()
 
     /**
+     * Sets the tick length (in px).
+     * Default: 5.
+     */
+    var ticklen by intGreaterThan(0)
+
+    /**
+     * Sets the tick width (in px).
+     * Default: 1.
+     */
+    var tickwidth by intGreaterThan(0)
+
+    /**
+     * Sets the tick color.
+     * Default: #444.
+     */
+    var tickcolor = Color(this, "tickcolor".asName())
+
+    /**
+     * Sets the tick font.
+     */
+    var tickfont by spec(Font)
+    /**
      * Determines whether or not the range of this axis is computed
      * in relation to the input data. See `rangemode` for more info.
      * If `range` is provided, then `autorange` is set to "false".
@@ -71,6 +94,10 @@ class Axis : Scheme() {
      * Default: #444.
      */
     val color = Color(this, "color".asName())
+
+    fun tickfont(block: Font.() -> Unit) {
+        tickfont = Font(block)
+    }
 
     companion object : SchemeSpec<Axis>(::Axis)
 }
