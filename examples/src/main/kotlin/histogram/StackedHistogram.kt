@@ -24,9 +24,9 @@ fun main() {
     }
     val trace2 = Trace(x2) {
         type = TraceType.histogram
-        opacity = 0.6
+        opacity = 0.5
         marker {
-            color("red")
+            color("orange")
         }
     }
     val plot = Plotly.plot2D {

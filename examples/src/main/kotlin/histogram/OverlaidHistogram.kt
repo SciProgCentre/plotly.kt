@@ -6,9 +6,14 @@ import scientifik.plotly.makeFile
 import scientifik.plotly.models.BarMode
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.TraceType
+import scientifik.plotly.palettes.T10
 import java.util.*
 
-
+/**
+ * - overlaying histograms
+ * - use T10 as color palette
+ * - change legend font size and color
+ */
 fun main() {
     val rnd = Random()
     val k = List(500) { rnd.nextDouble() }
@@ -19,14 +24,14 @@ fun main() {
         type = TraceType.histogram
         opacity = 0.5
         marker {
-            color("green")
+            color(T10.BLUE)
         }
     }
     val trace2 = Trace(x2) {
         type = TraceType.histogram
         opacity = 0.6
         marker {
-            color("red")
+            color(T10.PINK)
         }
     }
     val plot = Plotly.plot2D {
@@ -34,6 +39,14 @@ fun main() {
         layout {
             title = "Overlaid Histogram"
             barmode = BarMode.overlay
+            bargap = 0.1
+
+            legend {
+                font {
+                    size = 16
+                    color("black")
+                }
+            }
         }
     }
 

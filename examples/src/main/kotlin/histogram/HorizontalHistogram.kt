@@ -5,30 +5,40 @@ import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.TraceType
 import scientifik.plotly.trace
-import java.util.*
+import scientifik.plotly.palettes.T10
 
 
+/**
+ * - horizontal histogram
+ * - use T10 as color palette (default color circle)
+ * - use color array
+ * - white ticks as space between axis and labels
+ * - change ticklen, tickcolor parameters
+ */
 fun main() {
-    val rnd = Random()
-    val values = List(500){rnd.nextDouble()}
+    val values = listOf(1, 2, 2, 3, 2, 1, 4, 4)
+    val colors = listOf(T10.BLUE, T10.ORANGE, T10.GREEN, T10.RED)
 
     val plot = Plotly.plot2D{
-        trace{
+        trace {
             name = "Random data"
             type = TraceType.histogram
             y.set(values)
             marker {
-                color("pink")
+                colors(colors.reversed())
             }
         }
         layout {
             title = "Horizontal Histogram"
             xaxis {
-                title = "Height"
+                title = "Count"
             }
             yaxis {
-                title = "Bins"
+                title = "Value"
+                ticklen = 3
+                tickcolor("#FFF")
             }
+            bargap = 0.1
         }
     }
 

@@ -7,7 +7,10 @@ import scientifik.plotly.models.TraceType
 import scientifik.plotly.trace
 import java.util.*
 
-
+/**
+ * - basic histogram
+ * - change bargap parameter
+ */
 fun main() {
     val rnd = Random()
     val values = List(500){rnd.nextDouble()}
@@ -20,11 +23,12 @@ fun main() {
         layout{
             title = "Basic Histogram"
             xaxis {
-                title = "Bins"
+                title = "Value"
             }
             yaxis {
-                title = "Height"
+                title = "Count"
             }
+            bargap = 0.1
         }
     }
 
