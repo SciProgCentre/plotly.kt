@@ -37,13 +37,13 @@ class Legend : Scheme() {
     /**
      * Sets the legend background color. Defaults to `paper_bgcolor`.
      */
-    val bgcolor = Color(this, "color".asName())
+    var bgcolor = Color(this, "bgcolor".asName())
 
     /**
      * Sets the color of the border enclosing the legend.
      * Default: #444.
      */
-    val bordercolor = Color(this, "color".asName())
+    var bordercolor = Color(this, "bordercolor".asName())
 
     /**
      * Sets the width (in px) of the border enclosing the legend.
