@@ -97,9 +97,8 @@ fun Configurable.duration(
 ): ReadWriteProperty<Any?, Duration?> = object : ReadWriteProperty<Any?, Duration?> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Duration? {
         val name = key ?: property.name.asName()
-        val item = config[name]
-        return when (item) {
-            null -> null
+        return when (val item = config[name]) {
+            null -> default
             is MetaItem.ValueItem -> item.value.long.milliseconds
             is MetaItem.NodeItem<*> -> {
                 val value = item.node["value"].long ?: error("Duration value is not defined")
@@ -110,6 +109,7 @@ fun Configurable.duration(
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Duration?) {
-        TODO("Not yet implemented")
+        val name = key ?: property.name.asName()
+
     }
 }
