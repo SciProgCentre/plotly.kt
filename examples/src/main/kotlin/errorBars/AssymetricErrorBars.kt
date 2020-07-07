@@ -3,18 +3,16 @@ package errorBars
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.ErrorType
-import scientifik.plotly.models.TraceType
-import scientifik.plotly.models.XAnchor
-import scientifik.plotly.models.YAnchor
+import scientifik.plotly.models.*
 import scientifik.plotly.trace
 
 /**
- * - asymmetrical error bars
+ * - asymmetric error bars
  * - use numeric array as error length
  * - use only negative or positive errors
  * - change legend position
  * - change width of the legend border
+ * - change order of legend items
  */
 fun main() {
     val x1 = listOf(1, 2, 3, 4)
@@ -24,7 +22,7 @@ fun main() {
     val plot = Plotly.plot2D{
         trace(x1, y1){
             type = TraceType.scatter
-            name = "both limits"
+            name = "both errors"
             error_y {
                 type = ErrorType.data
                 array = err
@@ -56,13 +54,14 @@ fun main() {
 
         layout{
             title {
-                text = "Asymmetrical Error Bars"
+                text = "Asymmetric Error Bars"
             }
             legend {
                 x = 0.05
                 borderwidth = 1
                 xanchor = XAnchor.left
                 yanchor = YAnchor.top
+                traceorder = TraceOrder.reversed
             }
         }
     }
