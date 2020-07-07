@@ -340,6 +340,100 @@ class Title : Scheme() {
     companion object : SchemeSpec<Title>(::Title)
 }
 
+enum class ErrorType {
+    percent,
+    constant,
+    sqrt,
+    data
+}
+
+class Error : Scheme() {
+    /**
+     * Determines whether or not this set of error bars is visible.
+     */
+    var visible by boolean()
+
+    /**
+     * Enumerated , one of ("percent" | "constant" | "sqrt" | "data")
+     * Determines the rule used to generate the error bars.
+     * If "constant`, the bar lengths are of a constant value.
+     * Set this constant in `value`. If "percent", the bar lengths correspond
+     * to a percentage of underlying data. Set this percentage in `value`.
+     * If "sqrt", the bar lengths correspond to the square of the underlying data.
+     * If "data", the bar lengths are set with data set `array`.
+     * Default: constant.
+     */
+    var type by enum(ErrorType.constant)
+
+    /**
+     * Determines whether or not the error bars have the same length in both
+     * direction (top/bottom for vertical bars, left/right for horizontal bars.
+     */
+    var symmetric by boolean()
+
+    /**
+     * Sets the data corresponding the length of each error bar.
+     * Values are plotted relative to the underlying data.
+     */
+    var array by numberList()
+
+    /**
+     * Sets the data corresponding the length of each error bar
+     * in the bottom (left) direction for vertical (horizontal) bars.
+     * Values are plotted relative to the underlying data.
+     */
+    var arrayminus by numberList()
+
+    /**
+     * Number greater than or equal to 0.
+     * Sets the value of either the percentage (if `type` is set to "percent")
+     * or the constant (if `type` is set to "constant")
+     * corresponding to the lengths of the error bars.
+     * Default: 10.
+     */
+    var value by doubleGreaterThan(0.0)
+
+    /**
+     * Number greater than or equal to 0.
+     * Sets the value of either the percentage (if `type` is set to "percent")
+     * or the constant (if `type` is set to "constant")
+     * corresponding to the lengths of the error bars in the bottom (left)
+     * direction for vertical (horizontal) bars.
+     * Default: 10.
+     */
+    var valueminus by doubleGreaterThan(0.0)
+
+    /**
+     * Sets the stoke color of the error bars.
+     */
+    var color = Color(this, "color".asName())
+
+    /**
+     * Sets the thickness (in px) of the error bars.
+     * Default: 2.
+     */
+    var thickness by intGreaterThan(0)
+
+    /**
+     * Sets the width (in px) of the cross-bar at both ends of the error bars.
+     */
+    var width by intGreaterThan(0)
+
+    /**
+     * Integer greater than or equal to 0.
+     * Default: 0.
+     */
+    var traceref by intGreaterThan(0)
+
+    /**
+     * Integer greater than or equal to 0.
+     * Default: 0.
+     */
+    var tracerefminus by intGreaterThan(0)
+
+    companion object : SchemeSpec<Error>(::Error)
+}
+
 class Trace() : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
 
@@ -458,6 +552,10 @@ class Trace() : Scheme() {
      */
     var textfont by spec(Font)
 
+    var error_x by spec(Error)
+
+    var error_y by spec(Error)
+
     fun textfont(block: Font.() -> Unit) {
         textfont = Font(block)
     }
@@ -476,6 +574,14 @@ class Trace() : Scheme() {
 
     fun ybins(block: Bins.() -> Unit) {
         ybins = Bins(block)
+    }
+
+    fun error_x(block: Error.() -> Unit) {
+        error_x = Error(block)
+    }
+
+    fun error_y(block: Error.() -> Unit) {
+        error_y = Error(block)
     }
 
     companion object : SchemeSpec<Trace>(::Trace) {
