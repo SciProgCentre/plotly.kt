@@ -1,4 +1,4 @@
-package errorBars
+package errorPlots
 
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
