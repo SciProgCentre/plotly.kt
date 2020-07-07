@@ -19,7 +19,9 @@ fun main() {
         }
 
         layout {
-            title = "ScatterPlotWithColorDimension"
+            title {
+                text = "ScatterPlotWithColorDimension"
+            }
         }
     }
 

@@ -36,7 +36,9 @@ fun main() {
         }
         layout {
             width = 750
-            title = "Specify Binning Function"
+            title {
+                text = "Specify Binning Function"
+            }
             legend {
                 x = 1.0
                 y = 1.0

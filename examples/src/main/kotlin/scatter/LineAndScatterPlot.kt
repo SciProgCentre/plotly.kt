@@ -28,7 +28,9 @@ fun main() {
             type = TraceType.scatter
         }
         layout {
-            title = "Line and Scatter Plot"
+            title {
+                text = "Line and Scatter Plot"
+            }
         }
     }
 

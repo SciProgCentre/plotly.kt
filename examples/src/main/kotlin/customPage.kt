@@ -20,9 +20,9 @@ fun main() {
         plot {
             addTrace(trace1, trace2)
             layout {
-                title = "The plot above"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                title { text = "The plot above" }
+                xaxis { title { text = "x axis name" } }
+                yaxis { title { text = "y axis name" } }
             }
         }
         hr()
@@ -31,9 +31,9 @@ fun main() {
         plot{
             addTrace(trace1, trace2)
             layout {
-                title = "The plot below"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                title { text = "The plot below" }
+                xaxis { title { text = "x axis name" } }
+                yaxis { title { text = "y axis name" } }
             }
         }
     }

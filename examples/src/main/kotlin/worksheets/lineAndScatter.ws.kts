@@ -25,6 +25,6 @@ Plotly.plot2D {
         type = TraceType.scatter
     }
     layout {
-        title = "Line and Scatter Plot"
+        title { text = "Line and Scatter Plot" }
     }
 }.makeHtml()

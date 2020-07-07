@@ -27,9 +27,9 @@ fun main() {
         plot {
             addTrace(trace)
             layout {
-                title = "Dynamic plot"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                title { text = "Dynamic plot" }
+                xaxis { title { text = "x axis name" } }
+                yaxis { title { text = "y axis name" } }
             }
         }
 

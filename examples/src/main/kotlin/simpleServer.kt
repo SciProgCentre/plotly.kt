@@ -25,27 +25,27 @@ fun main() {
         plot(8, width = 1) {
             addTrace(trace1, trace2)
             layout {
-                title = "First graph, row: 1, size: 8/12"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                title { text = "First graph, row: 1, size: 8/12" }
+                xaxis { title { text = "x axis name" } }
+                yaxis { title { text = "y axis name" } }
             }
         }
 
         val plot1 = plot(4, width = 1) {
             addTrace(trace1, trace2)
             layout {
-                title = "Second graph, row: 1, size: 4/12"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                title { text = "Second graph, row: 1, size: 4/12" }
+                xaxis { title { text = "x axis name" } }
+                yaxis { title { text = "y axis name" } }
             }
         }
 
         plot(12, width = 2) {
             addTrace(trace1, trace2)
             layout {
-                title = "Third graph, row: 2, size: 12/12"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                title { text = "Third graph, row: 2, size: 12/12" }
+                xaxis { title { text = "x axis name" } }
+                yaxis { title { text = "y axis name" } }
             }
         }
 

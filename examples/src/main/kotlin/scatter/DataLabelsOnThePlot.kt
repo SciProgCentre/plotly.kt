@@ -37,7 +37,9 @@ fun main() {
             marker { size = 12 }
         }
         layout {
-            title = "Data Labels Hover"
+            title {
+                text = "Data Labels Hover"
+            }
             xaxis {
                 range = 0.75..5.25
             }

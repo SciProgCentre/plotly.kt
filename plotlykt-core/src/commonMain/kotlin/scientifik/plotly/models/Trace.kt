@@ -322,6 +322,24 @@ class Bins : Scheme() {
     companion object : SchemeSpec<Bins>(::Bins)
 }
 
+class Title : Scheme() {
+    /**
+     * Sets the plot's title.
+     */
+    var text by string()
+
+    /**
+     * Sets the title font.
+     */
+    var font by spec(Font)
+
+    fun font(block: Font.() -> Unit) {
+        font = Font(block)
+    }
+
+    companion object : SchemeSpec<Title>(::Title)
+}
+
 class Trace() : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
 

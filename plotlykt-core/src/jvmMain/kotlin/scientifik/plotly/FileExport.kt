@@ -18,7 +18,7 @@ fun Plot2D.makeHtml(plotlyPath: String = "https://cdn.plot.ly/plotly-latest.min.
                     src = plotlyPath
                 }
             }
-            title(layout.title ?: "Plotly.kt")
+            title(layout.title.text ?: "Plotly.kt")
         }
         body {
             div { id = "plot" }

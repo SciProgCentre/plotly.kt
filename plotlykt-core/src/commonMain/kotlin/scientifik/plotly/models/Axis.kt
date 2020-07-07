@@ -23,7 +23,7 @@ class Axis : Scheme() {
     /**
      * Sets the title of this axis.
      */
-    var title by string()
+    var title by spec(Title)
 
     /**
      * Enumerated, one of ( "-" | "linear" | "log" | "date" | "category" | "multicategory" ) .
@@ -94,6 +94,10 @@ class Axis : Scheme() {
      * Default: #444.
      */
     val color = Color(this, "color".asName())
+
+    fun title(block: Title.() -> Unit) {
+        title = Title(block)
+    }
 
     fun tickfont(block: Font.() -> Unit) {
         tickfont = Font(block)

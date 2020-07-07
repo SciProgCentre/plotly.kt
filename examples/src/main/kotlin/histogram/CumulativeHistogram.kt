@@ -30,12 +30,18 @@ fun main() {
             }
         }
         layout {
-            title = "Cumulative Histogram"
+            title {
+                text = "Cumulative Histogram"
+            }
             xaxis {
-                title = "Value"
+                title {
+                    text = "Value"
+                }
             }
             yaxis {
-                title = "Sum of probabilities"
+                title {
+                    text = "Sum of probabilities"
+                }
             }
         }
     }

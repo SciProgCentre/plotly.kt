@@ -9,7 +9,9 @@ import java.util.*
 
 /**
  * - basic histogram
- * - change bargap parameter
+ * - change size of gap between bins
+ * - change font color and size of title
+ * - change font size of axis title
  */
 fun main() {
     val rnd = Random()
@@ -21,14 +23,30 @@ fun main() {
             type = TraceType.histogram
         }
         layout{
-            title = "Basic Histogram"
+            bargap = 0.1
+            title {
+                text = "Basic Histogram"
+                font {
+                    size = 20
+                    color("black")
+                }
+            }
             xaxis {
-                title = "Value"
+                title {
+                    text = "Value"
+                    font {
+                        size = 16
+                    }
+                }
             }
             yaxis {
-                title = "Count"
+                title {
+                    text = "Count"
+                    font {
+                        size = 16
+                    }
+                }
             }
-            bargap = 0.1
         }
     }
 

@@ -30,7 +30,7 @@ class Layout : Scheme() {
     /**
      * Sets the plot's title.
      */
-    var title by string()
+    var title by lazySpec(Title)
 
     var xaxis by lazySpec(Axis)
 
@@ -74,6 +74,10 @@ class Layout : Scheme() {
 
     fun legend(block: Legend.() -> Unit) {
         legend.apply(block)
+    }
+
+    fun title(block: Title.() -> Unit) {
+        title.apply(block)
     }
 
     //TODO moe title to parameter block

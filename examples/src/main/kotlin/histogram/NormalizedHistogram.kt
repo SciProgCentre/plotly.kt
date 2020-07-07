@@ -10,8 +10,9 @@ import scientifik.plotly.trace
 import java.util.*
 
 /**
- * - normalized histogram
- * - change gap between bins
+ * - normalized histogram: the counts normalized to form a probability density,
+ * i.e., the area (or integral) under the histogram will sum to 1.
+ * - change size of gap between bins
  * - change font size of tick labels
  */
 fun main() {
@@ -28,7 +29,9 @@ fun main() {
             }
         }
         layout {
-            title = "Normalized Histogram"
+            title {
+                text = "Normalized Histogram"
+            }
             bargap = 0.1
             xaxis {
                 tickfont {

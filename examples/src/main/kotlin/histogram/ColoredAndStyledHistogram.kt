@@ -56,12 +56,18 @@ fun main() {
             bargap = 0.05
             bargroupgap = 0.2
             barmode = BarMode.overlay
-            title = "Sampled Results"
+            title {
+                text = "Sampled Results"
+            }
             xaxis {
-                title = "Value"
+                title {
+                    text = "Value"
+                }
             }
             yaxis {
-                title = "Count"
+                title {
+                    text = "Count"
+                }
             }
             legend {
                 x = 1.0
