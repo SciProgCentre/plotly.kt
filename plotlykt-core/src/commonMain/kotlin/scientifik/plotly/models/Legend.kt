@@ -18,7 +18,7 @@ enum class XAnchor {
     auto,
     left,
     center,
-    rigth
+    right
 }
 
 enum class YAnchor {
