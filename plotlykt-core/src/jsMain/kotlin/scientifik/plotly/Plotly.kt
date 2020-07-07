@@ -3,8 +3,8 @@ package scientifik.plotly
 import org.w3c.dom.Element
 
 @JsName("Plotly")
-@JsModule("plotly.js")
-@JsNonModule
+//@JsModule("plotly.js")
+//@JsNonModule
 external object PlotlyJs {
     fun newPlot(
         graphDiv: Element,

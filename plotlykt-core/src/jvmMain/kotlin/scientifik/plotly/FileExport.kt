@@ -5,36 +5,24 @@ import kotlinx.html.stream.createHTML
 import java.awt.Desktop
 import java.io.File
 
+
 /**
  * Create a html string from plot
  */
-fun Plot2D.makeHtml(): String {
-    val tracesParsed = data.toJsonString()
-    val layoutParsed = layout.toJsonString()
-
+fun Plot2D.makeHtml(plotlyPath: String = "https://cdn.plot.ly/plotly-latest.min.js"): String {
     return createHTML().html {
         head {
             meta {
                 charset = "utf-8"
                 script {
-                    src = "https://cdn.plot.ly/plotly-latest.min.js"
+                    src = plotlyPath
                 }
             }
-            title(layout.title ?: "Untitled models")
+            title(layout.title ?: "Plotly.kt")
         }
         body {
             div { id = "plot" }
-            script {
-                unsafe {
-                    +"""
-                        Plotly.newPlot(
-                        'plot',
-                        $tracesParsed,
-                        $layoutParsed,
-                        {showSendToCloud: true});
-                    """.trimIndent()
-                }
-            }
+            plot(this@makeHtml, "plot")
         }
     }
 }
@@ -47,70 +35,69 @@ fun Plot2D.makeHtml(): String {
 fun Plot2D.makeFile(file: File? = null, show: Boolean = true) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
     actualFile.mkdirs()
-    actualFile.writeText(makeHtml())
+    actualFile.writeText(makeHtml("https://cdn.plot.ly/plotly-latest.min.js"))
     if (show) {
         Desktop.getDesktop().browse(actualFile.toURI())
     }
 }
 
 /**
- * Create a html string for page
+ * Create a custom layout with loaded plotly dependency
  */
-fun PlotGrid.makeHtml(): String {
-    val rows = cells.groupBy { it.rowNumber }.mapValues {
-        it.value.sortedBy { plot -> plot.colOrderNumber }
-    }.toList().sortedBy { it.first }
-
-
+fun Plotly.makeHtml(
+    plotlyPath: String = "https://cdn.plot.ly/plotly-latest.min.js",
+    title: String? = null,
+    bodyBuilder: BODY.() -> Unit
+): String {
     return createHTML().html {
         head {
             meta {
                 charset = "utf-8"
-                script { src = "https://cdn.plot.ly/plotly-latest.min.js" }
                 script {
-                    src = "https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                    integrity = "sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                    attributes["crossorigin"] = "anonymous"
-                }
-                script {
-                    src = "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                    integrity = "sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-                    attributes["crossorigin"] = "anonymous"
-                }
-                script {
-                    src = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-                    integrity = "sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-                    attributes["crossorigin"] = "anonymous"
-                }
-                link {
-                    rel = "stylesheet"
-                    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-                    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-                    attributes["crossorigin"] = "anonymous"
+                    src = plotlyPath
                 }
             }
-            title(this@makeHtml.title ?: "Untitled")
+            title(title ?: "Plotly.kt")
         }
         body {
-            plotGrid(rows)
-            rows.forEach { row ->
-                row.second.mapIndexed { idx, cell ->
-                    val id = "${row.first}-$idx"
-                    val tracesParsed = cell.plot.data.toJsonString()
-                    val layoutParsed = cell.plot.layout.toJsonString()
-                    script {
-                        unsafe {
-                            +"""
-                                Plotly.newPlot(
-                                '$id',
-                                $tracesParsed,
-                                $layoutParsed,
-                                {showSendToCloud: true});
-                            """.trimIndent()
-                        }
-                    }
+            div { id = "plot" }
+            bodyBuilder()
+        }
+    }
+}
+
+/**
+ * Make a file with a custom page layout
+ */
+fun Plotly.makeFile(file: File? = null, show: Boolean = true, title: String? = null, bodyBuilder: BODY.() -> Unit) {
+    val actualFile = file ?: File.createTempFile("tempPlot", ".html")
+    actualFile.mkdirs()
+    actualFile.writeText(makeHtml("https://cdn.plot.ly/plotly-latest.min.js", title, bodyBuilder))
+    if (show) {
+        Desktop.getDesktop().browse(actualFile.toURI())
+    }
+}
+
+fun Plotly.show(title: String? = null, bodyBuilder: BODY.() -> Unit) = makeFile(null, true, title, bodyBuilder)
+
+
+/**
+ * Create a html string for page
+ */
+@UnstablePlotlyAPI
+fun PlotGrid.makeHtml(plotlyPath: String = "https://cdn.plot.ly/plotly-latest.min.js"): String {
+    return createHTML().html {
+        head {
+            meta {
+                charset = "utf-8"
+                script {
+                    src = plotlyPath
                 }
             }
+            title(this@makeHtml.title ?: "Plotly.kt")
+        }
+        body {
+            plotGrid(this@makeHtml)
         }
     }
 }
@@ -120,13 +107,15 @@ fun PlotGrid.makeHtml(): String {
  * @param file the reference to html file. If null, create a temporary file
  * @param show if true, start the browser after file is created
  */
+@UnstablePlotlyAPI
 fun PlotGrid.makeFile(file: File? = null, show: Boolean = true) {
     val actualFile = file ?: File.createTempFile("tempPlot", ".html")
     actualFile.mkdirs()
-    actualFile.writeText(makeHtml())
+    actualFile.writeText(makeHtml("https://cdn.plot.ly/plotly-latest.min.js"))
     if (show) {
         Desktop.getDesktop().browse(actualFile.toURI())
     }
 }
 
+@UnstablePlotlyAPI
 fun PlotGrid.show() = makeFile()

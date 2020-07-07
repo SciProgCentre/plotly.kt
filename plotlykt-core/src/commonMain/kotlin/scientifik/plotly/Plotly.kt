@@ -14,7 +14,8 @@ import kotlin.js.JsName
 object Plotly {
     fun plot2D(block: Plot2D.() -> Unit): Plot2D = Plot2D().apply(block)
 
-    fun page(block: PlotGrid.() -> Unit): PlotGrid = PlotGrid().apply(block)
+    @UnstablePlotlyAPI
+    fun grid(block: PlotGrid.() -> Unit): PlotGrid = PlotGrid().apply(block)
 }
 
 fun Scheme.toJson(): JsonObject = config.toJson()
@@ -33,3 +34,7 @@ fun List<Scheme>.toJson(): JsonArray = jsonArray {
  * Convert list of type-safe configurators to json array string
  */
 fun List<Scheme>.toJsonString(): String = toJson().toString()
+
+
+@RequiresOptIn("Unstable API subjected to change in future releases",RequiresOptIn.Level.WARNING)
+annotation class UnstablePlotlyAPI
