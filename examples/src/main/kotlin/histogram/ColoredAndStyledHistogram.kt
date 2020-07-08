@@ -19,14 +19,13 @@ fun main() {
     val y1 = k.map { it }.toList()
     val y2 = k.map { it * 2 }.toList()
 
-    val trace1 = Trace(x1, y1) {
+    val trace1 = Histogram(x1, y1) {
         name = "control"
         histfunc = HistFunc.count
         marker {
             color(255, 50, 102, 0.7)
         }
         opacity = 0.5
-        type = TraceType.histogram
         xbins {
             end = 2.8
             start = 0.5
@@ -34,13 +33,12 @@ fun main() {
         }
     }
 
-    val trace2 = Trace(x2, y2) {
+    val trace2 = Histogram(x2, y2) {
         name = "experimental"
         marker {
            color(0, 100, 255, 0.7)
         }
         opacity = 0.75
-        type = TraceType.histogram
         xbins {
             end = 4.0
             start = -3.2

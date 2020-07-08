@@ -4,8 +4,7 @@ import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.BarMode
-import scientifik.plotly.models.Trace
-import scientifik.plotly.models.TraceType
+import scientifik.plotly.models.Histogram
 import java.util.*
 
 
@@ -15,15 +14,13 @@ fun main() {
     val x1 = k.map { it }.toList()
     val x2 = k.map { it/2 }.toList()
 
-    val trace1 = Trace(x1) {
-        type = TraceType.histogram
+    val trace1 = Histogram(x1) {
         opacity = 0.5
         marker {
             color("green")
         }
     }
-    val trace2 = Trace(x2) {
-        type = TraceType.histogram
+    val trace2 = Histogram(x2) {
         opacity = 0.5
         marker {
             color("orange")

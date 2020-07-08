@@ -4,9 +4,8 @@ import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.HistFunc
-import scientifik.plotly.models.TraceType
 import scientifik.plotly.models.XAnchor
-import scientifik.plotly.trace
+import scientifik.plotly.histogram
 
 
 /**
@@ -19,17 +18,15 @@ fun main() {
     val values = listOf("5","10","3","10","5")
 
     val plot = Plotly.plot2D{
-        trace{
+        histogram {
             name = "count"
-            type = TraceType.histogram
             x.set(categories)
             y.set(values)
             histfunc = HistFunc.count
         }
 
-        trace{
+        histogram {
             name = "sum"
-            type = TraceType.histogram
             x.set(categories)
             y.set(values)
             histfunc = HistFunc.sum

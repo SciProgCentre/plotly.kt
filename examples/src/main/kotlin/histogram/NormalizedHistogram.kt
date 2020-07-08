@@ -4,9 +4,9 @@ import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.HistNorm
-import scientifik.plotly.models.TraceType
 import scientifik.plotly.palettes.XKCD
-import scientifik.plotly.trace
+import scientifik.plotly.histogram
+
 import java.util.*
 
 /**
@@ -20,9 +20,8 @@ fun main() {
     val x = List(500){rnd.nextDouble()}
 
     val plot = Plotly.plot2D{
-        trace(x){
+        histogram(x){
             name = "Random data"
-            type = TraceType.histogram
             histnorm = HistNorm.probability
             marker{
                 color(XKCD.BLUE_GREEN)

@@ -7,6 +7,8 @@ import kotlinx.serialization.json.jsonArray
 import scientifik.plotly.models.Annotation
 import scientifik.plotly.models.Layout
 import scientifik.plotly.models.Trace
+import scientifik.plotly.models.TraceType
+import scientifik.plotly.models.Histogram
 
 @DFBuilder
 class Plot2D : MetaRepr {
@@ -57,6 +59,34 @@ inline fun Plot2D.trace(block: Trace.() -> Unit): Trace {
     val trace = Trace(block)
     addTrace(trace)
     return trace
+}
+
+
+inline fun Plot2D.histogram(block: Histogram.() -> Unit): Histogram {
+    val trace = Histogram(block)
+    trace.type  = TraceType.histogram
+    addTrace(trace)
+    return trace
+}
+
+fun Plot2D.histogram(xs: DoubleArray, ys: DoubleArray, block: Histogram.() -> Unit = {}): Histogram {
+    val trace = Histogram(xs, ys, block)
+    trace.type = TraceType.histogram
+    addTrace(trace)
+    return trace
+}
+
+fun Plot2D.histogram(xs: Any, ys: Any? = null, block: Histogram.() -> Unit = {}): Histogram {
+    val trace = Histogram(xs, ys, block)
+    trace.type = TraceType.histogram
+    addTrace(trace)
+    return trace
+}
+
+inline fun Plot2D.histogram(xs: DoubleArray, block: Histogram.() -> Unit = {}) = histogram {
+    block()
+    type = TraceType.histogram
+    x.doubles = xs
 }
 
 fun Plot2D.text(block: Annotation.() -> Unit) {

@@ -3,8 +3,7 @@ package histogram
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.TraceType
-import scientifik.plotly.trace
+import scientifik.plotly.histogram
 import scientifik.plotly.palettes.T10
 
 
@@ -21,9 +20,8 @@ fun main() {
     val colors = listOf(T10.RED, T10.GREEN, T10.ORANGE, T10.BLUE)
 
     val plot = Plotly.plot2D{
-        trace {
+        histogram {
             name = "Random data"
-            type = TraceType.histogram
             y.set(values)
             marker {
                 colors(colors)
