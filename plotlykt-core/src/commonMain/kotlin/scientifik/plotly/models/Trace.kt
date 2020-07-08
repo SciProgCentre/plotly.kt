@@ -9,6 +9,7 @@ import hep.dataforge.values.doubleArray
 import scientifik.plotly.doubleGreaterThan
 import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.list
 import kotlin.js.JsName
 
 
@@ -448,6 +449,18 @@ open class Trace() : Scheme() {
     val y = axis(Y_AXIS)
 
     /**
+     * Data array. Sets the z data.
+     */
+    var z by value()
+
+    /**
+     * Sets the colorscale. The colorscale must be an array
+     * containing arrays mapping a normalized value to an rgb,
+     * rgba, hex, hsl, hsv, or named color string.
+     */
+    var colorscale by value()
+
+    /**
      * Sets the trace name. The trace name appear as the legend item and on hover.
      */
     var name by string()
@@ -529,6 +542,10 @@ open class Trace() : Scheme() {
     var error_x by spec(Error)
 
     var error_y by spec(Error)
+
+    fun z(array: Iterable<Any>) {
+        z = array.map{ Value.of(it) }.asValue()
+    }
 
     fun textfont(block: Font.() -> Unit) {
         textfont = Font(block)
