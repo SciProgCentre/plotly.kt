@@ -21,7 +21,7 @@ fun main() {
     val plot = Plotly.grid {
         title = "Page sample"
         plot(row = 1, width = 8) {
-            addTrace(trace1, trace2)
+            traces(trace1, trace2)
             layout {
                 title = "First graph, row: 1, size: 8/12"
                 xaxis { title = "x axis name" }
@@ -30,7 +30,7 @@ fun main() {
         }
 
         plot(row = 1, width = 4) {
-            addTrace(trace1, trace2)
+            traces(trace1, trace2)
             layout {
                 title = "Second graph, row: 1, size: 4/12"
                 xaxis { title = "x axis name" }
@@ -39,7 +39,7 @@ fun main() {
         }
 
         plot(row = 2, width = 12) {
-            addTrace(trace1, trace2)
+            traces(trace1, trace2)
             layout {
                 title = "Third graph, row: 2, size: 12/12"
                 xaxis { title = "x axis name" }

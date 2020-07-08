@@ -75,12 +75,10 @@ function startPull(target, from, millis){
 
 /**
  * Start push updates via websocket
- * @param target element id for plot
- * @param page the name of the current page to filter events
- * @param plot the name of the plot
+ * @param id {string} element id for plot
  * @param ws {string} a websocket address
  */
-function startPush(target, page, plot, ws) {
+function startPush(id, ws) {
     let socket = new WebSocket(ws);
 
     socket.onopen = function () {
@@ -103,7 +101,7 @@ function startPush(target, page, plot, ws) {
     socket.onmessage = function (event) {
         //console.log('got message: ' + event.data);
         let json = JSON.parse(event.data);
-        if (json.page === page && json.plot === plot) {
+        if (json.plotId === id) {
             if (json.contentType === "layout") {
                 Plotly.relayout(target, json.content)
             } else if (json.contentType === "trace") {
@@ -115,7 +113,7 @@ function startPush(target, page, plot, ws) {
                 if (content.hasOwnProperty('y')) {
                     content.y = [content.y]
                 }
-                Plotly.restyle(target, content, json['trace']);
+                Plotly.restyle(id, content, json['trace']);
             }
         }
     };

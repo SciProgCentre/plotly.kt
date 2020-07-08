@@ -2,8 +2,6 @@ package scientifik.plotly
 
 import javafx.beans.value.ObservableIntegerValue
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
 import scientifik.plotly.models.Trace
 import scientifik.plotly.server.PlotlyServer
 import scientifik.plotly.server.pushUpdates
@@ -25,7 +23,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
             name = "cos"
         }
         plot {
-            addTrace(trace1, trace2)
+            traces(trace1, trace2)
             layout {
                 title = "First graph, row: 1, size: 8/12"
                 xaxis { title = "x axis name" }
@@ -44,7 +42,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
         //root level plots go to default page
 
         plot {
-            addTrace(trace)
+            traces(trace)
             layout {
                 title = "Dynamic plot"
                 xaxis { title = "x axis name" }

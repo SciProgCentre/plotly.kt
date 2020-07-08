@@ -18,7 +18,7 @@ fun main() {
 
     Plotly.show {
         plot {
-            addTrace(trace1, trace2)
+            traces(trace1, trace2)
             layout {
                 title = "The plot above"
                 xaxis { title = "x axis name" }
@@ -29,7 +29,7 @@ fun main() {
         h1 { +"A custom separator" }
         hr()
         plot{
-            addTrace(trace1, trace2)
+            traces(trace1, trace2)
             layout {
                 title = "The plot below"
                 xaxis { title = "x axis name" }

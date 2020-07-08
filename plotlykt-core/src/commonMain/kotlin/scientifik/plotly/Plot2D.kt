@@ -10,10 +10,11 @@ import scientifik.plotly.models.Trace
 
 @DFBuilder
 class Plot2D : MetaRepr {
-    var data: MutableList<Trace> = ArrayList()
-    var layout: Layout = Layout.empty()
+    //TODO listen to traces changes
+    val data: MutableList<Trace> = ArrayList()
+    val layout: Layout = Layout.empty()
 
-    fun addTrace(vararg trace: Trace) {
+    fun traces(vararg trace: Trace) {
         data.addAll(trace)
     }
 
@@ -38,13 +39,13 @@ inline fun Plot2D.layout(block: Layout.() -> Unit) {
 
 fun Plot2D.trace(xs: DoubleArray, ys: DoubleArray, block: Trace.() -> Unit = {}): Trace {
     val trace = Trace(xs, ys, block)
-    addTrace(trace)
+    traces(trace)
     return trace
 }
 
 fun Plot2D.trace(xs: Any, ys: Any? = null, block: Trace.() -> Unit = {}): Trace {
     val trace = Trace(xs, ys, block)
-    addTrace(trace)
+    traces(trace)
     return trace
 }
 
@@ -55,7 +56,7 @@ inline fun Plot2D.trace(xs: DoubleArray, block: Trace.() -> Unit = {}) = trace {
 
 inline fun Plot2D.trace(block: Trace.() -> Unit): Trace {
     val trace = Trace(block)
-    addTrace(trace)
+    traces(trace)
     return trace
 }
 

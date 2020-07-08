@@ -8,13 +8,12 @@ import kotlinx.serialization.json.json
 /**
  * An update message for both data and layout
  */
-sealed class Update(val page: String, val plot: String) {
+sealed class Update(val id: String) {
     abstract fun toJson(): JsonObject
 
-    class Trace(page: String, plot: String, val trace: Int, val content: Meta) : Update(page, plot) {
+    class Trace(id: String, val trace: Int, val content: Meta) : Update(id) {
         override fun toJson(): JsonObject = json {
-            "page" to page
-            "plot" to plot
+            "plotId" to id
             "contentType" to "trace"
             "trace" to trace
             "content" to content.toJson()
@@ -22,10 +21,9 @@ sealed class Update(val page: String, val plot: String) {
 
     }
 
-    class Layout(page: String, plot: String, val content: Meta) : Update(page, plot) {
+    class Layout(id: String, val content: Meta) : Update(id) {
         override fun toJson(): JsonObject = json {
-            "page" to page
-            "plot" to plot
+            "plotId" to id
             "contentType" to "layout"
             "content" to content.toJson()
         }
