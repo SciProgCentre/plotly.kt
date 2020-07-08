@@ -454,6 +454,21 @@ open class Trace() : Scheme() {
     var z by value()
 
     /**
+     * Data array. Sets the values of the sectors.
+     * If omitted, we count occurrences of each label.
+     */
+    var values by list()
+
+    /**
+     * Data array. Sets the sector labels. If `labels` entries
+     * are duplicated, we sum associated `values` or simply
+     * count occurrences if `values` is not provided.
+     * For other array attributes (including color) we use the first
+     * non-empty entry among all occurrences of the label.
+     */
+    var labels by list()
+
+    /**
      * Sets the colorscale. The colorscale must be an array
      * containing arrays mapping a normalized value to an rgb,
      * rgba, hex, hsl, hsv, or named color string.
@@ -545,6 +560,14 @@ open class Trace() : Scheme() {
 
     fun z(array: Iterable<Any>) {
         z = array.map{ Value.of(it) }.asValue()
+    }
+
+    fun values(array: Iterable<Any>) {
+        values = array.map{ Value.of(it) }
+    }
+
+    fun labels(array: Iterable<Any>) {
+        labels = array.map{ Value.of(it) }
     }
 
     fun textfont(block: Font.() -> Unit) {
