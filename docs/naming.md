@@ -1,3 +1,3 @@
-****Какие-то мысли по поводу названий полей и методов****
-1. На данный момент было решено везде, где это возможно, 
-сохранить исходные наименования Plotly. 
+****Some thoughts about parameters and methods naming****
+1. At present it was decided to keep the original 
+Plotly names wherever it is possible
