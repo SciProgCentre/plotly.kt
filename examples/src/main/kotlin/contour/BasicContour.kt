@@ -3,6 +3,7 @@ package contour
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
+import scientifik.plotly.models.MeasureMode
 import scientifik.plotly.trace
 import scientifik.plotly.models.TraceType
 
@@ -11,6 +12,7 @@ import scientifik.plotly.models.TraceType
  * - basic contour plot
  * - change font size of labels ticks
  * - setting x and y coordinates
+ * - change color bar size
  */
 fun main() {
     val values = listOf(10, 10.625, 12.5, 15.625, 20.0,
@@ -25,6 +27,14 @@ fun main() {
         trace(x, y) {
             type = TraceType.contour
             z(values)
+
+            colorbar {
+                thickness = 75.0
+                thicknessmode = MeasureMode.pixels
+                len = 0.9
+                lenmode = MeasureMode.fraction
+                outlinewidth = 0
+            }
         }
 
         layout {

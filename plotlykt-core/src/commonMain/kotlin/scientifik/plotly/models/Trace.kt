@@ -2,10 +2,8 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
-import hep.dataforge.values.DoubleArrayValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
-import hep.dataforge.values.doubleArray
 import scientifik.plotly.doubleGreaterThan
 import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
@@ -435,6 +433,118 @@ class Error : Scheme() {
     companion object : SchemeSpec<Error>(::Error)
 }
 
+enum class MeasureMode {
+    fraction,
+    pixels
+}
+
+class ColorBar : Scheme() {
+    /**
+     * Determines whether this color bar's thickness (i.e. the measure
+     * in the constant color direction) is set in units of plot "fraction"
+     * or in "pixels" (default). Use `thickness` to set the value.
+     */
+    var thicknessmode by enum(MeasureMode.pixels)
+
+    /**
+     * Sets the thickness of the color bar.
+     * This measure excludes the size of the padding, ticks and labels.
+     * Default: 30.
+     */
+    var thickness by doubleGreaterThan(0.0)
+
+    /**
+     * Determines whether this color bar's length (i.e. the measure
+     * in the color variation direction) is set in units of plot
+     * "fraction" (default) or in "pixels. Use `len` to set the value.
+     */
+    var lenmode by enum(MeasureMode.fraction)
+
+    /**
+     * Sets the length of the color bar This measure excludes
+     * the padding of both ends. That is, the color bar length
+     * is this length minus the padding on both ends.
+     * Default: 1.
+     */
+    var len by doubleGreaterThan(0.0)
+
+    /**
+     * Sets the x position of the color bar (in plot fraction).
+     * Default: 1.02.
+     */
+    var x by doubleInRange(-2.0..3.0)
+
+    /**
+     * Sets this color bar's horizontal position anchor.
+     * This anchor binds the `x` position to the "left" (default),
+     * "center" or "right" of the color bar.
+     */
+    var xanchor by enum(XAnchor.left)
+
+    /**
+     * Sets the amount of padding (in px) along the x direction.
+     * Default: 10.
+     */
+    var xpad by intGreaterThan(0)
+
+    /**
+     * Sets the y position of the color bar (in plot fraction).
+     * Default: 0.5.
+     */
+    var y by doubleInRange(-2.0..3.0)
+
+    /**
+     * Sets this color bar's vertical position anchor.
+     * This anchor binds the `y` position to the "top",
+     * "middle" (default) or "bottom" of the color bar.
+     */
+    var yanchor by enum(YAnchor.middle)
+
+    /**
+     * Sets the amount of padding (in px) along the y direction.
+     * Default: 10.
+     */
+    var ypad by intGreaterThan(0)
+
+    /**
+     * Sets the axis line color.
+     * Default: #444.
+     */
+    var bordercolor = Color(this, "bordercolor".asName())
+
+    /**
+     * Sets the width (in px) or the border enclosing this color bar.
+     * Default: 0.
+     */
+    var borderwidth by intGreaterThan(0)
+
+    /**
+     * Sets the color of padded area.
+     * Default: rgba(0, 0, 0, 0).
+     */
+    var bgcolor = Color(this, "bgcolor".asName())
+
+    var title by spec(Title)
+
+    /**
+     * Sets the width (in px) of the axis line.
+     * Default: 1.
+     */
+    var outlinewidth by intGreaterThan(0)
+
+    /**
+     * Sets the axis line color.
+     * Default: #444.
+     */
+    var outlinecolor = Color(this, "outlinecolor".asName())
+
+    fun title(block: Title.() -> Unit) {
+        title = Title(block)
+    }
+
+    companion object : SchemeSpec<ColorBar>(::ColorBar)
+}
+
 open class Trace() : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
 
@@ -474,6 +584,8 @@ open class Trace() : Scheme() {
      * rgba, hex, hsl, hsv, or named color string.
      */
     var colorscale by value()
+
+    var colorbar by spec(ColorBar)
 
     /**
      * Sets the trace name. The trace name appear as the legend item and on hover.
@@ -568,6 +680,10 @@ open class Trace() : Scheme() {
 
     fun labels(array: Iterable<Any>) {
         labels = array.map{ Value.of(it) }
+    }
+
+    fun colorbar(block: ColorBar.() -> Unit) {
+        colorbar = ColorBar(block)
     }
 
     fun textfont(block: Font.() -> Unit) {
