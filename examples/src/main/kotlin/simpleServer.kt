@@ -1,10 +1,10 @@
 import hep.dataforge.meta.invoke
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.html.a
+import kotlinx.html.div
+import kotlinx.html.h1
 import kotlinx.html.style
-import kotlinx.html.table
-import kotlinx.html.td
-import kotlinx.html.tr
 import scientifik.plotly.Plot2D
 import scientifik.plotly.Plotly
 import scientifik.plotly.models.Trace
@@ -29,44 +29,52 @@ fun main() {
 
         //root level plots go to default page
         page {
-            table {
-                tr {
-                    td {
-                        style = "width = 66%;"
-                        plot1 = plot {
-                            traces(trace1, trace2)
-                            layout {
-                                title = "First graph, row: 1, size: 8/12"
-                                xaxis { title = "x axis name" }
-                                yaxis { title = "y axis name" }
-                            }
+            h1 { +"This is the plot page" }
+            a("/other") { +"The other page" }
+            div {
+                style = "display: flex;   align-items: stretch; "
+                div {
+                    style = "width: 64%;"
+                    plot1 = plot {
+                        traces(trace1, trace2)
+                        layout {
+                            title = "First graph, row: 1, size: 8/12"
+                            xaxis { title = "x axis name" }
+                            yaxis { title = "y axis name" }
                         }
                     }
-                    td {
-                        style = "width = 33%;"
-                        plot {
-                            traces(trace1, trace2)
-                            layout {
-                                title = "Second graph, row: 1, size: 4/12"
-                                xaxis { title = "x axis name" }
-                                yaxis { title = "y axis name" }
-                            }
+                }
+                div {
+                    style = "width: 32%;"
+                    plot {
+                        traces(trace1, trace2)
+                        layout {
+                            title = "Second graph, row: 1, size: 4/12"
+                            xaxis { title = "x axis name" }
+                            yaxis { title = "y axis name" }
                         }
                     }
                 }
             }
 
-            plot {
-                traces(trace1, trace2)
-                layout {
-                    title = "Third graph, row: 2, size: 12/12"
-                    xaxis { title = "x axis name" }
-                    yaxis { title = "y axis name" }
+
+
+            div {
+                plot {
+
+                    traces(trace1, trace2)
+                    layout {
+                        title = "Third graph, row: 2, size: 12/12"
+                        xaxis { title = "x axis name" }
+                        yaxis { title = "y axis name" }
+                    }
                 }
             }
         }
 
         page("other") {
+            h1 { +"This is the other plot page" }
+            a("/") { +"Back to the main page" }
             plot(plot1)
         }
 

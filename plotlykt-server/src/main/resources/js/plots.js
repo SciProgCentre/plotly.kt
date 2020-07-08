@@ -1,74 +1,69 @@
 /**
  * Create plot directly
- * @param target
+ * @param id
  * @param data
  * @param layout
  */
-function createPlot(target, data, layout) {
-    Plotly.newPlot(target, data, layout, {showSendToCloud: true});
+function createPlot(id, data, layout) {
+    Plotly.newPlot(id, data, layout, {showSendToCloud: true});
 }
 
 /**
  * Request and parse json from given address
- * @param url
+ * @param url {URL}
  * @param callback
+ * @return Promise<Json>
  */
 function getJSON(url, callback) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.responseType = 'json';
-    xhr.onload = function () {
-        let status = xhr.status;
-        if (status === 200) {
-            callback(null, xhr.response);
-        } else {
-            callback(status, Json.parse(xhr.response));
+    function handleErrors(response) {
+        if (!response.ok) {
+            throw Error(response.statusText);
         }
-    };
-    xhr.send();
+        return response;
+    }
+
+
+    fetch(url,{
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+        }
+    })
+        .then(handleErrors)
+        .then(response => response.json())
+        .then(json => callback(json))
+        .catch(error => console.log(error));
 }
 
 /**
  * Create a plot taking data from given url
- * @param target {string} element id for plot
- * @param from {string} json server url
+ * @param id {string} element id for plot
+ * @param from {URL} json server url
  * @return {JSON}
  */
-function createPlotFrom(target, from) {
-    getJSON(from, function (err, json) {
-        if (err !== null) {
-            alert('Something went wrong: ' + err);
-        } else {
-            Plotly.newPlot(target, json.data, json.layout, {showSendToCloud: true});
-        }
-    });
+function createPlotFrom(id, from) {
+    getJSON(from, json => Plotly.newPlot(id, json.data, json.layout, {showSendToCloud: true}));
 }
 
 /**
  * Update a plot taking data from given url
- * @param target {string} element id for plot
- * @param from {string} json server url
+ * @param id {string} element id for plot
+ * @param from {URL} json server url
  * @return {JSON}
  */
-function updatePlotFrom(target, from) {
-    getJSON(from, function (err, json) {
-        if (err !== null) {
-            alert('Something went wrong: ' + err);
-        } else {
-            Plotly.react(target, json.data, json.layout);
-        }
-    });
+function updatePlotFrom(id, from) {
+    getJSON(from, json=> Plotly.react(id, json.data, json.layout));
 }
 
 /**
  * Start pull updates with regular requests from client side
- * @param target
+ * @param id {string}
  * @param from
  * @param millis
  */
-function startPull(target, from, millis){
-    let action = function(){
-      updatePlotFrom(target,from)
+function startPull(id, from, millis) {
+    let action = function () {
+        updatePlotFrom(id, from)
     };
     window.setInterval(action, millis)
 }
@@ -76,7 +71,7 @@ function startPull(target, from, millis){
 /**
  * Start push updates via websocket
  * @param id {string} element id for plot
- * @param ws {string} a websocket address
+ * @param ws {URL} a websocket address
  */
 function startPush(id, ws) {
     let socket = new WebSocket(ws);
@@ -103,7 +98,7 @@ function startPush(id, ws) {
         let json = JSON.parse(event.data);
         if (json.plotId === id) {
             if (json.contentType === "layout") {
-                Plotly.relayout(target, json.content)
+                Plotly.relayout(id, json.content)
             } else if (json.contentType === "trace") {
                 let content = json.content;
                 //This is done to satisfy plotly requirements of arrays-in-arrays for data
@@ -121,7 +116,8 @@ function startPush(id, ws) {
     //gracefully close socket just in case
     window.onbeforeunload = function () {
         console.log("Gracefully closing socket");
-        socket.onclose = function () { }; // disable onclose handler first
+        socket.onclose = function () {
+        }; // disable onclose handler first
         socket.close();
     };
 }

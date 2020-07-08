@@ -29,10 +29,6 @@ class PlotlyController : Controller() {
         }
     }
 
-    fun stopServer() {
-        server?.stop()
-    }
-
     val pages = observableListOf(
         "Dynamic",
         "Static"

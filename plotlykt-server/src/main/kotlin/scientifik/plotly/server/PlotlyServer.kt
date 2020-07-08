@@ -1,6 +1,8 @@
 package scientifik.plotly.server
 
 import hep.dataforge.names.toName
+import io.ktor.application.install
+import io.ktor.features.CORS
 import io.ktor.routing.routing
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
@@ -28,6 +30,9 @@ class PlotlyServer(
     private val serverStarterWaiter = CompletableDeferred<Unit>()
 
     private val server: ApplicationEngine = parentScope.embeddedServer(io.ktor.server.cio.CIO, port, host) {
+        install(CORS){
+            anyHost()
+        }
         routing {
             //Need to wait for routing to start
             serverStarterWaiter.complete(Unit)

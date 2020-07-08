@@ -13,7 +13,6 @@ import io.ktor.features.origin
 import io.ktor.html.respondHtml
 import io.ktor.http.*
 import io.ktor.http.cio.websocket.Frame
-import io.ktor.http.cio.websocket.pingPeriod
 import io.ktor.http.content.resource
 import io.ktor.http.content.static
 import io.ktor.response.respond
@@ -28,7 +27,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.html.*
 import scientifik.plotly.Plot2D
-import java.time.Duration
 
 enum class PlotlyUpdateMode {
     NONE,
@@ -64,7 +62,9 @@ fun FlowContent.servePlot(
     div {
         id = plotId
 
-        val dataUrl = baseUrl.copy(encodedPath = baseUrl.encodedPath + "/data/$plotId")
+        val dataUrl = baseUrl.copy(
+            encodedPath = baseUrl.encodedPath + "/data/$plotId"
+        )
         script {
             unsafe {
                 +"\n    createPlotFrom('$plotId','$dataUrl');\n"
@@ -119,9 +119,7 @@ class PlotlyPage(
  *
  */
 fun Application.plotlyModule(pages: List<PlotlyPage>) {
-    install(WebSockets) {
-        pingPeriod = Duration.ofSeconds(1)
-    }
+    install(WebSockets)
 
     routing {
         static {
@@ -159,7 +157,7 @@ fun Application.plotlyModule(pages: List<PlotlyPage>) {
                     if (plot == null) {
                         call.respond(HttpStatusCode.NotFound, "Plot with id = $id not found")
                     } else {
-                        call.respondText(plot.toJson().toString(), contentType = ContentType.Application.Json)
+                        call.respondText(plot.toJson().toString(), contentType = ContentType.Application.Json, status = HttpStatusCode.OK)
                     }
                 }
                 //filled pages
@@ -181,7 +179,8 @@ fun Application.plotlyModule(pages: List<PlotlyPage>) {
                             val origin = call.request.origin
                             val url = URLBuilder().apply {
                                 protocol = URLProtocol.createOrDefault(origin.scheme)
-                                host =  if(origin.host == "0:0:0:0:0:0:0:1") "localhost" else origin.host
+                                //workaround for https://github.com/ktorio/ktor/issues/1663
+                                host =  if(origin.host. startsWith("0:")) "[${origin.host}]" else origin.host
                                 port = origin.port
                                 encodedPath = origin.uri
                             }.build()
