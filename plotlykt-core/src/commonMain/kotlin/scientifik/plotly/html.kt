@@ -1,8 +1,30 @@
 package scientifik.plotly
 
 import kotlinx.html.*
+import kotlinx.html.stream.createHTML
 
-fun FlowContent.plot(plot: Plot2D, plotId: String = plot.toString()):Plot2D {
+interface HtmlHeader {
+    operator fun invoke(meta: META)
+}
+
+object PlotlyCdnHeader : HtmlHeader {
+    override fun invoke(meta: META) = meta.script {
+        this.src = "https://cdn.plot.ly/plotly-latest.min.js"
+    }
+}
+
+fun META.applyHeaders(headers: Array<out HtmlHeader>){
+    //Apply cdn header by default
+    if(headers.isEmpty()){
+        PlotlyCdnHeader(this)
+    } else {
+        headers.forEach {
+            it(this)
+        }
+    }
+}
+
+fun FlowContent.plot(plot: Plot2D, plotId: String = plot.toString()): Plot2D {
     div {
         id = plotId
         script {
@@ -29,20 +51,42 @@ fun FlowContent.plot(plotId: String? = null, builder: Plot2D.() -> Unit): Plot2D
     return plot(plot, plotId ?: plot.toString())
 }
 
-@UnstablePlotlyAPI
-fun FlowContent.plotGrid(plotGrid: PlotGrid) {
-    div {
-        style = "display: flex; flex-direction: column;"
-        plotGrid.grid.forEach { row ->
-            div {
-                style = "display: flex; flex-direction: row;"
-                row.forEach { cell ->
-                    div {
-                        style = "flex-grow: ${cell.width};"
-                        plot(cell.plot, cell.id)
-                    }
-                }
+/**
+ * Create a html string from plot
+ */
+fun Plot2D.toHTML(vararg headers: HtmlHeader): String {
+    return createHTML().html {
+        head {
+            meta {
+                charset = "utf-8"
+                applyHeaders(headers)
             }
+            title(layout.title ?: "Plotly.kt")
+        }
+        body {
+            plot(this@toHTML, "plot")
+        }
+    }
+}
+
+/**
+ * Create a custom layout with loaded plotly dependency
+ */
+fun Plotly.page(
+    vararg headers: HtmlHeader,
+    title: String? = null,
+    bodyBuilder: BODY.() -> Unit
+): String {
+    return createHTML().html {
+        head {
+            meta {
+                charset = "utf-8"
+                applyHeaders(headers)
+            }
+            title(title ?: "Plotly.kt")
+        }
+        body {
+            bodyBuilder()
         }
     }
 }
