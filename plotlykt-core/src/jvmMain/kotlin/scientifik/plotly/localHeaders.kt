@@ -1,6 +1,6 @@
 package scientifik.plotly
 
-import kotlinx.html.META
+import kotlinx.html.HEAD
 import kotlinx.html.link
 import kotlinx.html.script
 import kotlinx.html.unsafe
@@ -41,9 +41,9 @@ class LocalScriptHeader(
     val scriptPath: Path,
     val resource: String
 ) : HtmlHeader {
-    override fun invoke(meta: META): Unit {
+    override fun invoke(head: HEAD): Unit {
         val relativePath = checkOrStoreFile(basePath, scriptPath, resource)
-        meta.script {
+        head.script {
             src = relativePath.toString()
         }
     }
@@ -54,9 +54,9 @@ class LocalCssHeader(
     val cssPath: Path,
     val resource: String
 ) : HtmlHeader {
-    override fun invoke(meta: META): Unit {
+    override fun invoke(head: HEAD): Unit {
         val relativePath = checkOrStoreFile(basePath, cssPath, resource)
-        meta.link {
+        head.link {
             rel = "stylesheet"
             href = relativePath.toString()
         }
@@ -81,8 +81,8 @@ val SystemPlotlyJs = LocalScriptHeader(
  * embedded plotly script
  */
 object EmbededPlotlyJs : HtmlHeader {
-    override fun invoke(meta: META) {
-        meta.script {
+    override fun invoke(head: HEAD) {
+        head.script {
             unsafe {
                 val bytes = LocalScriptHeader::class.java.getResourceAsStream(plotlyResource).readAllBytes()
                 +bytes.toString(Charsets.UTF_8)

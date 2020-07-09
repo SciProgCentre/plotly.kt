@@ -4,18 +4,18 @@ import kotlinx.html.*
 import kotlinx.html.stream.createHTML
 
 interface HtmlHeader {
-    operator fun invoke(meta: META)
+    operator fun invoke(head: HEAD)
 }
 
 object PlotlyCdnHeader : HtmlHeader {
-    override fun invoke(meta: META) = meta.script {
+    override fun invoke(head: HEAD) = head.script {
         this.src = "https://cdn.plot.ly/plotly-latest.min.js"
     }
 }
 
-fun META.applyHeaders(headers: Array<out HtmlHeader>){
+fun HEAD.applyHeaders(headers: Array<out HtmlHeader>) {
     //Apply cdn header by default
-    if(headers.isEmpty()){
+    if (headers.isEmpty()) {
         PlotlyCdnHeader(this)
     } else {
         headers.forEach {
@@ -59,8 +59,8 @@ fun Plot2D.toHTML(vararg headers: HtmlHeader): String {
         head {
             meta {
                 charset = "utf-8"
-                applyHeaders(headers)
             }
+            applyHeaders(headers)
             title(layout.title ?: "Plotly.kt")
         }
         body {
@@ -81,8 +81,8 @@ fun Plotly.page(
         head {
             meta {
                 charset = "utf-8"
-                applyHeaders(headers)
             }
+            applyHeaders(headers)
             title(title ?: "Plotly.kt")
         }
         body {

@@ -105,8 +105,8 @@ fun PlotGrid.toHtml(vararg headers: HtmlHeader): String {
         head {
             meta {
                 charset = "utf-8"
-                applyHeaders(headers)
             }
+            applyHeaders(headers)
             title(this@toHtml.title ?: "Plotly.kt")
         }
         body {
