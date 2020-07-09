@@ -6,8 +6,8 @@ import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
 import kotlin.js.JsName
 
-enum class Orientation {
-    @JsName("V")
+enum class LegendOrientation {
+    @JsName("v")
     vertical,
 
     @JsName("h")
@@ -101,7 +101,7 @@ class Legend : Scheme() {
      * Sets the orientation of the legend (vertical/horizontal).
      * Default: vertical.
      */
-    var orientation by enum(Orientation.vertical)
+    var orientation by enum(LegendOrientation.vertical)
 
     /**
      * The order at which the legend items are displayed.

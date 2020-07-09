@@ -77,7 +77,10 @@ enum class Symbol {
 
     @JsName("crossThin")
     `cross-thin`,
-    cross
+    cross,
+
+    @JsName("lineNs")
+    `line-ns`
 }
 
 enum class SizeMode {
@@ -545,6 +548,86 @@ class ColorBar : Scheme() {
     companion object : SchemeSpec<ColorBar>(::ColorBar)
 }
 
+enum class Orientation {
+    @JsName("v")
+    vertical,
+
+    @JsName("h")
+    horizontal
+}
+
+enum class ViolinHoveron {
+    violins,
+    points,
+    kde,
+    `violins+points`,
+    `violins+kde`,
+    `points+kde`,
+    `violins+points+kde`,
+    all
+}
+
+class MeanLine : Scheme() {
+    /**
+     * Sets the mean line width.
+     */
+    var width by intGreaterThan(0)
+
+    /**
+     * Sets the mean line color.
+     */
+    var color = Color(this, "color".asName())
+
+    /**
+     * Determines if a line corresponding to the sample's
+     * mean is shown inside the violins. If `box.visible` is
+     * turned on, the mean line is drawn inside the inner box.
+     * Otherwise, the mean line is drawn from one side of the violin to other.
+     */
+    var visible by boolean()
+
+    companion object : SchemeSpec<MeanLine>(::MeanLine)
+}
+
+enum class ViolinPoints {
+    all,
+    outliers,
+    suspectedoutliers,
+    `false`
+}
+
+enum class ViolinSide {
+    positive,
+    negative,
+    both
+}
+
+class Box : Scheme() {
+    /**
+     * Sets the width of the inner box plots relative to the violins' width.
+     * For example, with 1, the inner box plots are as wide as the violins.
+     * Default: 0.25.
+     */
+    var width by doubleInRange(0.0..1.0)
+
+    /**
+     * Determines if an miniature box plot is drawn inside the violins.
+     */
+    var visible by boolean()
+
+    /**
+     * Sets the inner box plot fill color.
+     */
+    var fillcolor = Color(this, "fillcolor".asName())
+
+    companion object : SchemeSpec<Box>(::Box)
+}
+
+enum class ViolinScaleMode {
+    count,
+    width
+}
+
 open class Trace() : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
 
@@ -559,9 +642,15 @@ open class Trace() : Scheme() {
     val y = axis(Y_AXIS)
 
     /**
+     * Sets the y coordinate for single-box traces or the starting coordinate
+     * for multi-box traces set using q1/median/q3. See overview for more info.
+     */
+    var y0 by value()
+
+    /**
      * Data array. Sets the z data.
      */
-    var z by value()
+    var z by list()
 
     /**
      * Data array. Sets the values of the sectors.
@@ -641,7 +730,8 @@ open class Trace() : Scheme() {
 
     var ybins by spec(Bins)
 
-    //    var line by spec(Line)
+    //var line by spec(Line)
+
     var marker by spec(Marker)
 
     /**
@@ -670,8 +760,76 @@ open class Trace() : Scheme() {
 
     var error_y by spec(Error)
 
+    /**
+     * Sets the orientation of the violin(s).
+     * If "vertical" ("horizontal"), the distribution
+     * is visualized along the vertical (horizontal).
+     */
+    var orientation by enum(Orientation.horizontal)
+
+    /**
+     * Do the hover effects highlight individual violins or sample
+     * points or the kernel density estimate or any combination of them?
+     */
+    var hoveron by enum(ViolinHoveron.`violins+points+kde`)
+
+    var meanline by spec(MeanLine)
+
+    /**
+     * If there are multiple violins that should be sized according to
+     * some metric (see `scalemode`), link them by providing a non-empty
+     * group id here shared by every trace in the same group.
+     * If a violin's `width` is undefined, `scalegroup` will default
+     * to the trace's name. In this case, violins with the same names
+     * will be linked together. Default: ""
+     */
+    var scalegroup by string()
+
+    /**
+     * If "outliers", only the sample points lying outside the whiskers
+     * are shown If "suspectedoutliers", the outlier points are shown
+     * and points either less than 4"Q1-3"Q3 or greater than 4"Q3-3"Q1
+     * are highlighted (see `outliercolor`) If "all", all sample points
+     * are shown If "false", only the violins are shown with no sample points.
+     */
+    var points by enum(ViolinPoints.`false`)
+
+    /**
+     * Sets the position of the sample points in relation to the violins.
+     * If "0", the sample points are places over the center of the violins.
+     * Positive (negative) values correspond to positions to the right (left)
+     * for vertical violins and above (below) for horizontal violins.
+     */
+    var pointpos by doubleInRange(-2.0..2.0)
+
+    /**
+     * Sets the amount of jitter in the sample points drawn.
+     * If "0", the sample points align along the distribution axis.
+     * If "1", the sample points are drawn in a random jitter
+     * of width equal to the width of the violins.
+     */
+    var jitter by doubleInRange(0.0..1.0)
+
+    var box by spec(Box)
+
+    /**
+     * Sets the metric by which the width of each violin is determined.
+     * "width" (default) means each violin has the same (max) width
+     * "count" means the violins are scaled by the number
+     * of sample points making up each violin.
+     */
+    var scalemode by enum(ViolinScaleMode.width)
+
+    /**
+     * Determines on which side of the position value the density
+     * function making up one half of a violin is plotted.
+     * Useful when comparing two violin traces under "overlay" mode,
+     * where one trace has `side` set to "positive" and the other to "negative".
+     */
+    var side by enum(ViolinSide.both)
+
     fun z(array: Iterable<Any>) {
-        z = array.map{ Value.of(it) }.asValue()
+        z = array.map{ Value.of(it) }
     }
 
     fun values(array: Iterable<Any>) {
@@ -684,6 +842,14 @@ open class Trace() : Scheme() {
 
     fun colorbar(block: ColorBar.() -> Unit) {
         colorbar = ColorBar(block)
+    }
+
+    fun meanline(block: MeanLine.() -> Unit) {
+        meanline = MeanLine(block)
+    }
+
+    fun box(block: Box.() -> Unit) {
+        box = Box(block)
     }
 
     fun textfont(block: Font.() -> Unit) {
