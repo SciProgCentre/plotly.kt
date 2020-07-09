@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.3.71"
+    kotlin("jvm") version "1.3.72"
 }
 
 repositories {
@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("scientifik:plotlykt-server:0.1.5")
+    implementation("scientifik:plotlykt-server:0.2.0")
     implementation(kotlin("script-runtime"))
 }
 

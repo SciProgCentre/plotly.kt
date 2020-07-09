@@ -23,7 +23,7 @@ fun main() {
     }
 
     val plot = Plotly.plot2D {
-        addTrace(trace)
+        traces(trace)
         layout {
             title { text = "Plot with labels" }
             xaxis { title { text = "x axis name" } }

@@ -5,6 +5,8 @@ import hep.dataforge.meta.Configurable
 import hep.dataforge.meta.MetaItem
 import hep.dataforge.meta.string
 import hep.dataforge.names.Name
+import kotlinx.html.*
+import kotlinx.html.stream.createHTML
 
 @UnstablePlotlyAPI
 interface PageListener {
@@ -73,4 +75,42 @@ class PlotGrid(private val listener: PageListener? = null) : Configurable{
         return plot(plot, id ?: plot.toString(), width, row, col)
     }
 
+}
+
+@UnstablePlotlyAPI
+fun FlowContent.plotGrid(plotGrid: PlotGrid) {
+    div {
+        style = "display: flex; flex-direction: column;"
+        plotGrid.grid.forEach { row ->
+            div {
+                style = "display: flex; flex-direction: row;"
+                row.forEach { cell ->
+                    div {
+                        style = "flex-grow: ${cell.width};"
+                        plot(cell.plot, cell.id)
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/**
+ * Create a html string for page
+ */
+@UnstablePlotlyAPI
+fun PlotGrid.toHtml(vararg headers: HtmlHeader): String {
+    return createHTML().html {
+        head {
+            meta {
+                charset = "utf-8"
+                applyHeaders(headers)
+            }
+            title(this@toHtml.title ?: "Plotly.kt")
+        }
+        body {
+            plotGrid(this@toHtml)
+        }
+    }
 }

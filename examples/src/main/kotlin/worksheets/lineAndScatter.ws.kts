@@ -1,8 +1,8 @@
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
-import scientifik.plotly.makeHtml
 import scientifik.plotly.models.TraceMode
 import scientifik.plotly.models.TraceType
+import scientifik.plotly.toHTML
 import scientifik.plotly.trace
 
 Plotly.plot2D {
@@ -27,4 +27,4 @@ Plotly.plot2D {
     layout {
         title { text = "Line and Scatter Plot" }
     }
-}.makeHtml()
+}.toHTML()

@@ -1,8 +1,14 @@
 import hep.dataforge.meta.invoke
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.html.a
+import kotlinx.html.div
+import kotlinx.html.h1
+import kotlinx.html.style
+import scientifik.plotly.Plot2D
 import scientifik.plotly.Plotly
 import scientifik.plotly.models.Trace
+import scientifik.plotly.plot
 import scientifik.plotly.server.serve
 import kotlin.math.PI
 import kotlin.math.cos
@@ -19,39 +25,57 @@ fun main() {
         val trace1 = Trace(x, y1) { name = "sin" }
         val trace2 = Trace(x, y2) { name = "cos" }
 
+        lateinit var plot1: Plot2D
 
         //root level plots go to default page
-
-        plot(8, width = 1) {
-            addTrace(trace1, trace2)
-            layout {
-                title { text = "First graph, row: 1, size: 8/12" }
-                xaxis { title { text = "x axis name" } }
-                yaxis { title { text = "y axis name" } }
+        page {
+            h1 { +"This is the plot page" }
+            a("/other") { +"The other page" }
+            div {
+                style = "display: flex;   align-items: stretch; "
+                div {
+                    style = "width: 64%;"
+                    plot1 = plot {
+                        traces(trace1, trace2)
+                        layout {
+                            title = "First graph, row: 1, size: 8/12"
+                            xaxis { title = "x axis name" }
+                            yaxis { title = "y axis name" }
+                        }
+                    }
+                }
+                div {
+                    style = "width: 32%;"
+                    plot {
+                        traces(trace1, trace2)
+                        layout {
+                            title = "Second graph, row: 1, size: 4/12"
+                            xaxis { title = "x axis name" }
+                            yaxis { title = "y axis name" }
+                        }
+                    }
+                }
             }
-        }
 
-        val plot1 = plot(4, width = 1) {
-            addTrace(trace1, trace2)
-            layout {
-                title { text = "Second graph, row: 1, size: 4/12" }
-                xaxis { title { text = "x axis name" } }
-                yaxis { title { text = "y axis name" } }
-            }
-        }
 
-        plot(12, width = 2) {
-            addTrace(trace1, trace2)
-            layout {
-                title { text = "Third graph, row: 2, size: 12/12" }
-                xaxis { title { text = "x axis name" } }
-                yaxis { title { text = "y axis name" } }
+
+            div {
+                plot {
+
+                    traces(trace1, trace2)
+                    layout {
+                        title = "Third graph, row: 2, size: 12/12"
+                        xaxis { title = "x axis name" }
+                        yaxis { title = "y axis name" }
+                    }
+                }
             }
         }
 
         page("other") {
-            title = "Other page"
-            plot(plot1, id = "plot1")
+            h1 { +"This is the other plot page" }
+            a("/") { +"Back to the main page" }
+            plot(plot1)
         }
 
     }
@@ -61,6 +85,6 @@ fun main() {
     println("Press Enter to close server")
     readLine()
 
-    server.stop()
+    server.close()
 
 }

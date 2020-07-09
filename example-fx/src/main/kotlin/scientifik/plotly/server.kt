@@ -1,6 +1,7 @@
 package scientifik.plotly
 
 import javafx.beans.value.ObservableIntegerValue
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -8,13 +9,14 @@ import scientifik.plotly.models.Trace
 import scientifik.plotly.server.PlotlyServer
 import scientifik.plotly.server.pushUpdates
 import scientifik.plotly.server.serve
+import scientifik.plotly.server.servePlot
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
 fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
 
-    page("Static") {
+    page("Static") { container ->
         val x = (0..100).map { it.toDouble() / 100.0 }.toDoubleArray()
         val y1 = x.map { sin(2.0 * PI * it) }.toDoubleArray()
         val y2 = x.map { cos(2.0 * PI * it) }.toDoubleArray()
@@ -24,8 +26,8 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
         val trace2 = Trace(x,y2){
             name = "cos"
         }
-        plot {
-            addTrace(trace1, trace2)
+        servePlot(container){
+            traces(trace1, trace2)
             layout {
                 title = "First graph, row: 1, size: 8/12"
                 xaxis { title = "x axis name" }
@@ -34,7 +36,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
         }
     }
 
-    page("Dynamic") {
+    page("Dynamic") {container ->
         val x = (0..100).map { it.toDouble() / 100.0 }
         val y = x.map { sin(2.0 * PI * it) }
 
@@ -43,8 +45,8 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
 
         //root level plots go to default page
 
-        plot {
-            addTrace(trace)
+        servePlot(container){
+            traces(trace)
             layout {
                 title = "Dynamic plot"
                 xaxis { title = "x axis name" }
@@ -52,7 +54,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
             }
         }
 
-        launch {
+        GlobalScope.launch {
             var time: Long = 0
             while (isActive) {
                 delay(10)
