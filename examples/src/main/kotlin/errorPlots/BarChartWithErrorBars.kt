@@ -36,7 +36,7 @@ fun main() {
         type = TraceType.bar
     }
     val plot = Plotly.plot2D {
-        addTrace(trace1, trace2)
+        traces(trace1, trace2)
         layout {
             barmode = BarMode.group
             title {

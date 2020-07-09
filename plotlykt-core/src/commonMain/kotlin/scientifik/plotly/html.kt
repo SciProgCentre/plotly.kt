@@ -61,7 +61,7 @@ fun Plot2D.toHTML(vararg headers: HtmlHeader): String {
                 charset = "utf-8"
                 applyHeaders(headers)
             }
-            title(layout.title ?: "Plotly.kt")
+            title(layout.title.text ?: "Plotly.kt")
         }
         body {
             plot(this@toHTML, "plot")

@@ -30,9 +30,9 @@ fun main() {
             servePlot(container) {
                 traces(trace)
                 layout {
-                    title = "Dynamic plot"
-                    xaxis { title = "x axis name" }
-                    yaxis { title = "y axis name" }
+                    title { text = "Dynamic plot" }
+                    xaxis { title { text = "x axis name" } }
+                    yaxis { title { text = "y axis name" } }
                 }
             }
         }
@@ -43,9 +43,9 @@ fun main() {
             servePlot(container) {
                 traces(trace)
                 layout {
-                    title = "Dynamic plot"
-                    xaxis { title = "x axis name" }
-                    yaxis { title = "y axis name" }
+                    title { text = "Dynamic plot" }
+                    xaxis { title { text = "x axis name" } }
+                    yaxis { title {text = "y axis name" } }
                 }
             }
         }

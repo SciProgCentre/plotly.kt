@@ -42,7 +42,7 @@ fun main() {
     }
 
     val plot = Plotly.plot2D {
-        addTrace(trace)
+        traces(trace)
         layout {
             title {
                 text = "Simple Contour Plot"

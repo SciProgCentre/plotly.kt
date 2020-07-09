@@ -66,21 +66,21 @@ inline fun Plot2D.trace(block: Trace.() -> Unit): Trace {
 inline fun Plot2D.histogram(block: Histogram.() -> Unit): Histogram {
     val trace = Histogram(block)
     trace.type  = TraceType.histogram
-    addTrace(trace)
+    traces(trace)
     return trace
 }
 
 fun Plot2D.histogram(xs: DoubleArray, ys: DoubleArray, block: Histogram.() -> Unit = {}): Histogram {
     val trace = Histogram(xs, ys, block)
     trace.type = TraceType.histogram
-    addTrace(trace)
+    traces(trace)
     return trace
 }
 
 fun Plot2D.histogram(xs: Any, ys: Any? = null, block: Histogram.() -> Unit = {}): Histogram {
     val trace = Histogram(xs, ys, block)
     trace.type = TraceType.histogram
-    addTrace(trace)
+    traces(trace)
     return trace
 }
 

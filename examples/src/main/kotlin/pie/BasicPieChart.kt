@@ -22,7 +22,7 @@ fun main() {
     }
 
     val plot = Plotly.plot2D {
-        addTrace(trace)
+        traces(trace)
         layout {
             width = 500
             height = 450

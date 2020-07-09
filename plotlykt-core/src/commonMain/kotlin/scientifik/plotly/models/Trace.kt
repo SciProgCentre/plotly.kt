@@ -3,7 +3,6 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
-import hep.dataforge.values.asValue
 import scientifik.plotly.doubleGreaterThan
 import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
