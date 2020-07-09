@@ -6,10 +6,24 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 enum class ResourceLocation {
+    /**
+     * Use cdn source for assets
+     */
     CDN,
+
+    /**
+     * Store assets in a sibling folder `plotly-assets` or in a system-wide folder if this is a default temporary file
+     */
     LOCAL,
+
+    /**
+     * Store assets in a system-widw `~/.plotly/plotly-assets` folder
+     */
     SYSTEM,
 
+    /**
+     * Embed the asset into the html
+     */
     @Deprecated(
         "Embedded scripts could significantly increase the size of resulting file",
         level = DeprecationLevel.WARNING
