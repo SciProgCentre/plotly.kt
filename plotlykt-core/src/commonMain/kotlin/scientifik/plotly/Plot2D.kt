@@ -9,6 +9,8 @@ import scientifik.plotly.models.Layout
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.TraceType
 import scientifik.plotly.models.Histogram
+import scientifik.plotly.models.Histogram2D
+import scientifik.plotly.models.Histogram2DContour
 
 @DFBuilder
 class Plot2D : MetaRepr {
@@ -87,6 +89,60 @@ fun Plot2D.histogram(xs: Any, ys: Any? = null, block: Histogram.() -> Unit = {})
 inline fun Plot2D.histogram(xs: DoubleArray, block: Histogram.() -> Unit = {}) = histogram {
     block()
     type = TraceType.histogram
+    x.doubles = xs
+}
+
+inline fun Plot2D.histogram2d(block: Histogram2D.() -> Unit): Histogram2D {
+    val trace = Histogram2D(block)
+    trace.type  = TraceType.histogram2d
+    traces(trace)
+    return trace
+}
+
+fun Plot2D.histogram2d(xs: DoubleArray, ys: DoubleArray, block: Histogram2D.() -> Unit = {}): Histogram2D {
+    val trace = Histogram2D(xs, ys, block)
+    trace.type = TraceType.histogram2d
+    traces(trace)
+    return trace
+}
+
+fun Plot2D.histogram2d(xs: Any, ys: Any? = null, block: Histogram2D.() -> Unit = {}): Histogram2D {
+    val trace = Histogram2D(xs, ys, block)
+    trace.type = TraceType.histogram2d
+    traces(trace)
+    return trace
+}
+
+inline fun Plot2D.histogram2d(xs: DoubleArray, block: Histogram2D.() -> Unit = {}) = histogram2d {
+    block()
+    type = TraceType.histogram2d
+    x.doubles = xs
+}
+
+inline fun Plot2D.histogram2dcontour(block: Histogram2DContour.() -> Unit): Histogram2DContour {
+    val trace = Histogram2DContour(block)
+    trace.type  = TraceType.histogram2dcontour
+    traces(trace)
+    return trace
+}
+
+fun Plot2D.histogram2dcontour(xs: DoubleArray, ys: DoubleArray, block: Histogram2DContour.() -> Unit = {}): Histogram2DContour {
+    val trace = Histogram2DContour(xs, ys, block)
+    trace.type = TraceType.histogram2dcontour
+    traces(trace)
+    return trace
+}
+
+fun Plot2D.histogram2dcontour(xs: Any, ys: Any? = null, block: Histogram2DContour.() -> Unit = {}): Histogram2DContour {
+    val trace = Histogram2DContour(xs, ys, block)
+    trace.type = TraceType.histogram2dcontour
+    traces(trace)
+    return trace
+}
+
+inline fun Plot2D.histogram2dcontour(xs: DoubleArray, block: Histogram2DContour.() -> Unit = {}) = histogram2dcontour() {
+    block()
+    type = TraceType.histogram2dcontour
     x.doubles = xs
 }
 

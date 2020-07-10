@@ -214,115 +214,6 @@ class Font : Scheme() {
     companion object : SchemeSpec<Font>(::Font)
 }
 
-enum class Direction {
-    increasing,
-    decreasing
-}
-
-enum class CurrentBin {
-    include,
-    exclude,
-    half
-}
-
-class Cumulative : Scheme() {
-    /**
-     * If true, display the cumulative distribution by summing
-     * the binned values. Use the `direction` and `centralbin`
-     * attributes to tune the accumulation method. Note: in this mode,
-     * the "density" `histnorm` settings behave the same
-     * as their equivalents without "density": "" and "density"
-     * both rise to the number of data points, and "probability"
-     * and "probability density" both rise to the number of sample points.
-     */
-    var enabled by boolean()
-
-    /**
-     * Enumerated , one of ( "increasing" | "decreasing" )
-     * Only applies if cumulative is enabled. If "increasing" (default)
-     * we sum all prior bins, so the result increases from left to right.
-     * If "decreasing" we sum later bins so the result decreases from left to right.
-     * Default: increasing.
-     */
-    var direction by enum(Direction.increasing)
-
-    /**
-     * Enumerated , one of ( "include" | "exclude" | "half" )
-     * Only applies if cumulative is enabled. Sets whether the current bin
-     * is included, excluded, or has half of its value included in
-     * the current cumulative value. "include" is the default for
-     * compatibility with various other tools, however it introduces
-     * a half-bin bias to the results. "exclude" makes the opposite
-     * half-bin bias, and "half" removes it.
-     * Default: include.
-     */
-    var currentbin by enum(CurrentBin.include)
-
-    companion object : SchemeSpec<Cumulative>(::Cumulative)
-}
-
-enum class HistNorm {
-    empty,
-    percent,
-    probability,
-    density,
-    probability_density
-}
-
-enum class HistFunc {
-    count,
-    sum,
-
-    @JsName("avg")
-    average,
-    min,
-    max
-}
-
-
-class Bins : Scheme() {
-    //FIXME("add categorical coordinate string")
-
-    /**
-     * Sets the starting value for the x axis bins.
-     * Defaults to the minimum data value, shifted down
-     * if necessary to make nice round values and to remove
-     * ambiguous bin edges. For example, if most of the data
-     * is integers we shift the bin edges 0.5 down, so a `size`
-     * of 5 would have a default `start` of -0.5, so it is clear
-     * that 0-4 are in the first bin, 5-9 in the second, but
-     * continuous data gets a start of 0 and bins [0,5), [5,10) etc.
-     * Dates behave similarly, and `start` should be a date string.
-     * For category data, `start` is based on the category
-     * serial numbers, and defaults to -0.5.
-     */
-    var start by double()
-
-    /**
-     * Sets the end value for the x axis bins. The last bin may
-     * not end exactly at this value, we increment the bin edge
-     * by `size` from `start` until we reach or exceed `end`.
-     * Defaults to the maximum data value. Like `start`, for
-     * dates use a date string, and for category data `end`
-     * is based on the category serial numbers.
-     */
-    var end by double()
-
-    /**
-     * Sets the size of each x axis bin. Default behavior:
-     * If `nbinsx` is 0 or omitted, we choose a nice round
-     * bin size such that the number of bins is about
-     * the same as the typical number of samples in each bin.
-     * If `nbinsx` is provided, we choose a nice round bin size
-     * giving no more than that many bins. For date data,
-     * use milliseconds or "M<n>" for months, as in `axis.dtick`.
-     * For category data, the number of categories to bin together
-     * (always defaults to 1).
-     */
-    var size by doubleGreaterThan(0.0)
-
-    companion object : SchemeSpec<Bins>(::Bins)
-}
 
 class Title : Scheme() {
     /**
@@ -721,15 +612,6 @@ open class Trace() : Scheme() {
      */
     var opacity by doubleInRange(0.0..1.0)
 
-
-    var cumulative by spec(Cumulative)
-
-    // val autobinx by boolean() is not needed
-
-    var xbins by spec(Bins)
-
-    var ybins by spec(Bins)
-
     //var line by spec(Line)
 
     var marker by spec(Marker)
@@ -858,18 +740,6 @@ open class Trace() : Scheme() {
 
     fun marker(block: Marker.() -> Unit) {
         marker = Marker(block)
-    }
-
-    fun cumulative(block: Cumulative.() -> Unit) {
-        cumulative = Cumulative(block)
-    }
-
-    fun xbins(block: Bins.() -> Unit) {
-        xbins = Bins(block)
-    }
-
-    fun ybins(block: Bins.() -> Unit) {
-        ybins = Bins(block)
     }
 
     fun error_x(block: Error.() -> Unit) {
