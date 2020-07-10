@@ -519,6 +519,75 @@ enum class ViolinScaleMode {
     width
 }
 
+enum class ContoursType {
+    levels,
+    constraint
+}
+
+enum class ContoursColoring {
+    fill,
+    heatmap,
+    lines,
+    none
+}
+
+
+class Contours : Scheme() {
+    /**
+     * If `levels`, the data is represented as a contour plot with multiple
+     * levels displayed. If `constraint`, the data is represented as constraints
+     * with the invalid region shaded as specified by the `operation` and `value` parameters.
+     */
+    var type by enum(ContoursType.levels)
+
+    /**
+     * Sets the starting contour level value. Must be less than `contours.end`
+     */
+    var start by int()
+
+    /**
+     * Sets the end contour level value. Must be more than `contours.start`
+     */
+    var end by int()
+
+    /**
+     * Sets the step between each contour level. Must be positive.
+     */
+    var size by intGreaterThan(0)
+
+    /**
+     * Determines the coloring method showing the contour values.
+     * If "fill" (default), coloring is done evenly between each contour level
+     * If "heatmap", a heatmap gradient coloring is applied between each contour level.
+     * If "lines", coloring is done on the contour lines. If "none",
+     * no coloring is applied on this trace.
+     */
+    var coloring by enum(ContoursColoring.fill)
+
+    /**
+     * Determines whether or not the contour lines are drawn.
+     * Has an effect only if `contours.coloring` is set to "fill".
+     */
+    var showlines by boolean()
+
+    /**
+     * Determines whether to label the contour lines with their values.
+     */
+    var showlables by boolean()
+
+    /**
+     * Sets the font used for labeling the contour levels. The default color
+     * comes from the lines, if shown. The default family and size come from `layout.font`.
+     */
+    var labelfont by spec(Font)
+
+    fun labelfont(block: Font.() -> Unit) {
+        labelfont = Font(block)
+    }
+
+    companion object : SchemeSpec<Contours>(::Contours)
+}
+
 open class Trace() : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
 
@@ -643,8 +712,8 @@ open class Trace() : Scheme() {
     var error_y by spec(Error)
 
     /**
-     * Sets the orientation of the violin(s).
-     * If "vertical" ("horizontal"), the distribution
+     * Sets the orientation of the plot(s).
+     * If "vertical" ("horizontal"), the data
      * is visualized along the vertical (horizontal).
      */
     var orientation by enum(Orientation.horizontal)
@@ -709,6 +778,27 @@ open class Trace() : Scheme() {
      * where one trace has `side` set to "positive" and the other to "negative".
      */
     var side by enum(ViolinSide.both)
+
+    var contours by spec(Contours)
+
+    /**
+     * Sets the maximum number of contour levels. The actual number of contours
+     * will be chosen automatically to be less than or equal to the value of `ncontours`.
+     * Has an effect only if `autocontour` is "true" or if `contours.size` is missing.
+     * Default: 15.
+     */
+    var ncontours by intGreaterThan(1)
+
+    /**
+     * Determines whether or not the contour level attributes are picked by an algorithm.
+     * If "true" (default), the number of contour levels can be set in `ncontours`.
+     * If "false", set the contour level attributes in `contours`.
+     */
+    var autocontour by boolean()
+
+    fun contours(block: Contours.() -> Unit) {
+        contours = Contours(block)
+    }
 
     fun z(array: Iterable<Any>) {
         z = array.map{ Value.of(it) }

@@ -2,6 +2,7 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import scientifik.plotly.doubleGreaterThan
+import scientifik.plotly.intGreaterThan
 import kotlin.js.JsName
 
 
@@ -107,8 +108,6 @@ class Cumulative : Scheme() {
 
 
 open class Histogram() : Trace() {
-//    type only in [TraceType.histogram, TraceType.histogram2dcontour, TraceType.histogram2d)]
-
     /**
      * Enumerated, one of ( "empty" | "percent" | "probability" | "density" | "probability density" )
      * Specifies the type of normalization used for this histogram trace.
@@ -147,11 +146,50 @@ open class Histogram() : Trace() {
 
     var cumulative by spec(Cumulative)
 
-    // val autobinx by boolean() is not needed
-
     var xbins by spec(Bins)
 
     var ybins by spec(Bins)
+
+    /**
+     * Specifies the maximum number of desired bins. This value will be used in an algorithm
+     * that will decide the optimal bin size such that the histogram best visualizes the
+     * distribution of the data. Ignored if `xbins.size` is provided.
+     */
+    var nbinsx by intGreaterThan(0)
+
+    /**
+     * Specifies the maximum number of desired bins. This value will be used in an algorithm
+     * that will decide the optimal bin size such that the histogram best visualizes the
+     * distribution of the data. Ignored if `ybins.size` is provided.
+     */
+    var nbinsy by intGreaterThan(0)
+
+    /**
+     * Set a group of histogram traces which will have compatible bin settings.
+     * Note that traces on the same subplot and with the same "orientation" under
+     * `barmode` "stack", "relative" and "group" are forced into the same bingroup,
+     * Using `bingroup`, traces under `barmode` "overlay" and on different axes
+     * (of the same axis type) can have compatible bin settings. Note that histogram
+     * and histogram2d" trace can share the same `bingroup`.
+     * Default: "".
+     */
+    var bingroup by string()
+
+    /**
+     * Set a group of histogram traces which will have compatible x-bin settings.
+     * Using `xbingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type)
+     * can have compatible x-bin settings. Note that the same `xbingroup` value
+     * can be used to set (1D) histogram `bingroup`
+     */
+    var xbingroup by string()
+
+    /**
+     * Set a group of histogram traces which will have compatible x-bin settings.
+     * Using `ybingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type)
+     * can have compatible x-bin settings. Note that the same `ybingroup` value
+     * can be used to set (1D) histogram `bingroup`
+     */
+    var ybingroup by string()
 
     fun cumulative(block: Cumulative.() -> Unit) {
         cumulative = Cumulative(block)
@@ -180,6 +218,16 @@ open class Histogram() : Trace() {
 }
 
 class Histogram2D() : Histogram() {
+    /**
+     * Sets the horizontal gap (in pixels) between bricks.
+     */
+    var xgap by intGreaterThan(0)
+
+    /**
+     * Sets the vertical gap (in pixels) between bricks.
+     */
+    var ygap by intGreaterThan(0)
+
     companion object : SchemeSpec<Histogram2D>(::Histogram2D) {
         const val X_AXIS = "x"
         const val Y_AXIS = "y"
