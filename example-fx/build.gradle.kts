@@ -4,7 +4,7 @@ plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
     kotlin("jvm") version "1.3.72"
     application
-    id("org.openjfx.javafxplugin") version "0.0.8"
+    id("org.openjfx.javafxplugin") version "0.0.9"
 }
 
 repositories {
@@ -26,6 +26,7 @@ dependencies {
 
 javafx{
     modules("javafx.web")
+    version = "14"
 }
 
 application {

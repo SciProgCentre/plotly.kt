@@ -24,7 +24,11 @@ fun HEAD.applyHeaders(headers: Array<out HtmlHeader>) {
     }
 }
 
-fun FlowContent.plot(plot: Plot2D, plotId: String = plot.toString()): Plot2D {
+fun FlowContent.staticPlot(
+    plot: Plot2D,
+    plotId: String = plot.toString(),
+    plotlyConfig: PlotlyConfig = PlotlyConfig()
+): Plot2D {
     div {
         id = plotId
         script {
@@ -33,12 +37,14 @@ fun FlowContent.plot(plot: Plot2D, plotId: String = plot.toString()): Plot2D {
             unsafe {
                 //language=JavaScript
                 +"""
-                    Plotly.newPlot(
+                    
+                    Plotly.react(
                         '$plotId',
-                         $tracesString,
-                         $layoutString,
-                         {showSendToCloud: true}
+                        $tracesString,
+                        $layoutString,
+                        $plotlyConfig
                     );
+                    
                 """.trimIndent()
             }
         }
@@ -46,15 +52,19 @@ fun FlowContent.plot(plot: Plot2D, plotId: String = plot.toString()): Plot2D {
     return plot
 }
 
-fun FlowContent.plot(plotId: String? = null, builder: Plot2D.() -> Unit): Plot2D {
+fun FlowContent.staticPlot(
+    plotId: String? = null,
+    plotlyConfig: PlotlyConfig = PlotlyConfig(),
+    builder: Plot2D.() -> Unit
+): Plot2D {
     val plot = Plot2D().apply(builder)
-    return plot(plot, plotId ?: plot.toString())
+    return staticPlot(plot, plotId ?: plot.toString(), plotlyConfig)
 }
 
 /**
  * Create a html string from plot
  */
-fun Plot2D.toHTML(vararg headers: HtmlHeader): String {
+fun Plot2D.toHTML(vararg headers: HtmlHeader, config: PlotlyConfig = PlotlyConfig()): String {
     return createHTML().html {
         head {
             meta {
@@ -64,7 +74,7 @@ fun Plot2D.toHTML(vararg headers: HtmlHeader): String {
             title(layout.title ?: "Plotly.kt")
         }
         body {
-            plot(this@toHTML, "plot")
+            staticPlot(this@toHTML, "plot", config)
         }
     }
 }

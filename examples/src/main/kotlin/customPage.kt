@@ -17,7 +17,7 @@ fun main() {
     val trace2 = Trace(x, y2) { name = "cos" }
 
     Plotly.show {
-        plot {
+        staticPlot {
             traces(trace1, trace2)
             layout {
                 title = "The plot above"
@@ -28,7 +28,7 @@ fun main() {
         hr()
         h1 { +"A custom separator" }
         hr()
-        plot{
+        staticPlot{
             traces(trace1, trace2)
             layout {
                 title = "The plot below"

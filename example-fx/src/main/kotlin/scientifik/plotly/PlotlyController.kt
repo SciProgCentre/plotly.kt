@@ -8,10 +8,6 @@ import kotlinx.coroutines.launch
 import scientifik.plotly.server.PlotlyServer
 import tornadofx.*
 
-//data class PlotItem(val name: String) {
-//    val address: String get() = "http://localhost:7777/pages/$name"
-//}
-
 class PlotlyController : Controller() {
 
     val scale = SimpleIntegerProperty(1)
@@ -43,6 +39,6 @@ class PlotlyController : Controller() {
     }
 
     companion object {
-        const val ADDRESS_BASE = "http://localhost:7777/pages/"
+        const val ADDRESS_BASE = "http://localhost:7777/"
     }
 }

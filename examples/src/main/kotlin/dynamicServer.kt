@@ -7,9 +7,9 @@ import kotlinx.html.h1
 import scientifik.plotly.Plotly
 import scientifik.plotly.layout
 import scientifik.plotly.models.Trace
+import scientifik.plotly.server.dynamicPlot
 import scientifik.plotly.server.pushUpdates
 import scientifik.plotly.server.serve
-import scientifik.plotly.server.servePlot
 import kotlin.math.PI
 import kotlin.math.sin
 
@@ -27,7 +27,7 @@ fun main() {
         page { container ->
             h1{+"This is the plot page"}
             a("/other"){ +"The other page"}
-            servePlot(container) {
+            dynamicPlot(container) {
                 traces(trace)
                 layout {
                     title = "Dynamic plot"
@@ -40,7 +40,7 @@ fun main() {
         page("other") { container ->
             h1 { +"This is the other plot page" }
             a("/"){ +"Back to the main page"}
-            servePlot(container) {
+            dynamicPlot(container) {
                 traces(trace)
                 layout {
                     title = "Dynamic plot"

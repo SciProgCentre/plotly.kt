@@ -7,9 +7,9 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import scientifik.plotly.models.Trace
 import scientifik.plotly.server.PlotlyServer
-import scientifik.plotly.server.pushUpdates
+import scientifik.plotly.server.dynamicPlot
+import scientifik.plotly.server.pullUpdates
 import scientifik.plotly.server.serve
-import scientifik.plotly.server.servePlot
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -26,7 +26,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
         val trace2 = Trace(x,y2){
             name = "cos"
         }
-        servePlot(container){
+        staticPlot{//static plot
             traces(trace1, trace2)
             layout {
                 title = "First graph, row: 1, size: 8/12"
@@ -45,7 +45,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
 
         //root level plots go to default page
 
-        servePlot(container){
+        dynamicPlot(container){
             traces(trace)
             layout {
                 title = "Dynamic plot"
@@ -65,6 +65,6 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
             }
         }
     }
-}.pushUpdates(100)
+}.pullUpdates(500)
 
 

@@ -87,7 +87,7 @@ fun FlowContent.plotGrid(plotGrid: PlotGrid) {
                 row.forEach { cell ->
                     div {
                         style = "flex-grow: ${cell.width};"
-                        plot(cell.plot, cell.id)
+                        staticPlot(cell.plot, cell.id)
                     }
                 }
             }

@@ -1,12 +1,12 @@
-/**
- * Create plot directly
- * @param id
- * @param data
- * @param layout
- */
-function createPlot(id, data, layout) {
-    Plotly.newPlot(id, data, layout, {showSendToCloud: true});
-}
+// /**
+//  * Create plot directly
+//  * @param id
+//  * @param data
+//  * @param layout
+//  */
+// function createPlot(id, data, layout) {
+//     Plotly.newPlot(id, data, layout, {showSendToCloud: true});
+// }
 
 /**
  * Request and parse json from given address
@@ -15,6 +15,7 @@ function createPlot(id, data, layout) {
  * @return Promise<Json>
  */
 function getJSON(url, callback) {
+
     function handleErrors(response) {
         if (!response.ok) {
             throw Error(response.statusText);
@@ -22,27 +23,31 @@ function getJSON(url, callback) {
         return response;
     }
 
-
-    fetch(url,{
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-        }
-    })
-        .then(handleErrors)
-        .then(response => response.json())
-        .then(json => callback(json))
-        .catch(error => console.log(error));
+    try {
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+            }
+        })
+            .then(handleErrors)
+            .then(response => response.json())
+            .then(json => callback(json))
+            .catch(error => console.log(error));
+    } catch (e) {
+        alert("Fetch of plot data failed with error: "+ e)
+    }
 }
 
 /**
  * Create a plot taking data from given url
  * @param id {string} element id for plot
  * @param from {URL} json server url
+ * @param config {object} plotly configuration
  * @return {JSON}
  */
-function createPlotFrom(id, from) {
-    getJSON(from, json => Plotly.newPlot(id, json.data, json.layout, {showSendToCloud: true}));
+function createPlotFrom(id, from, config) {
+    getJSON(from, json => Plotly.react(id, json.data, json.layout, config));
 }
 
 /**
@@ -96,6 +101,7 @@ function startPush(id, ws) {
     socket.onmessage = function (event) {
         //console.log('got message: ' + event.data);
         let json = JSON.parse(event.data);
+        //TODO check if plotly is initialized in a cell
         if (json.plotId === id) {
             if (json.contentType === "layout") {
                 Plotly.relayout(id, json.content)

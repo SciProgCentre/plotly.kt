@@ -1,7 +1,6 @@
 package scientifik.plotly
 
-import hep.dataforge.meta.Scheme
-import hep.dataforge.meta.toJson
+import hep.dataforge.meta.*
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonArray
@@ -38,3 +37,18 @@ fun List<Scheme>.toJsonString(): String = toJson().toString()
 
 @RequiresOptIn("Unstable API subjected to change in future releases",RequiresOptIn.Level.WARNING)
 annotation class UnstablePlotlyAPI
+
+class PlotlyConfig: Scheme(){
+    var editable by boolean()
+    var showEditInChartStudio by boolean()
+    var plotlyServerURL by string()
+    var responsive by boolean()
+
+    fun withEditorButton(){
+        showEditInChartStudio = true
+        plotlyServerURL = "https://chart-studio.plotly.com"
+    }
+
+    override fun toString(): String = toJsonString()
+    companion object: SchemeSpec<PlotlyConfig>(::PlotlyConfig)
+}
