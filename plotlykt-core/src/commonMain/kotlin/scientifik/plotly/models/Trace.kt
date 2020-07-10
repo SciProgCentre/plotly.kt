@@ -3,10 +3,7 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
-import scientifik.plotly.doubleGreaterThan
-import scientifik.plotly.doubleInRange
-import scientifik.plotly.intGreaterThan
-import scientifik.plotly.list
+import scientifik.plotly.*
 import kotlin.js.JsName
 
 
@@ -26,7 +23,11 @@ enum class TraceType {
     pie,
     heatmap,
     contour,
+
+    @UnsupportedPlotlyAPI
     table,
+    @UnsupportedPlotlyAPI
+    image,
 
     // Distributions
     box,
