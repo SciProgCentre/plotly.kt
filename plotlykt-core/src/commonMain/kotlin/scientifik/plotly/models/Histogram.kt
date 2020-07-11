@@ -68,7 +68,7 @@ class Bins : Scheme() {
     companion object : SchemeSpec<Bins>(::Bins)
 }
 
-enum class Direction {
+enum class HistogramDirection {
     increasing,
     decreasing
 }
@@ -142,7 +142,7 @@ open class Histogram() : Trace() {
      * If "decreasing" we sum later bins so the result decreases from left to right.
      * Default: increasing.
      */
-    var direction by enum(Direction.increasing)
+    var direction by enum(HistogramDirection.increasing)
 
     var cumulative by spec(Cumulative)
 

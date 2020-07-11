@@ -8,6 +8,7 @@ import scientifik.plotly.models.Annotation
 import scientifik.plotly.models.Layout
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.TraceType
+import scientifik.plotly.models.Pie
 import scientifik.plotly.models.Histogram
 import scientifik.plotly.models.Histogram2D
 import scientifik.plotly.models.Histogram2DContour
@@ -140,9 +141,36 @@ fun Plot2D.histogram2dcontour(xs: Any, ys: Any? = null, block: Histogram2DContou
     return trace
 }
 
-inline fun Plot2D.histogram2dcontour(xs: DoubleArray, block: Histogram2DContour.() -> Unit = {}) = histogram2dcontour() {
+inline fun Plot2D.histogram2dcontour(xs: DoubleArray, block: Histogram2DContour.() -> Unit = {}) = histogram2dcontour {
     block()
     type = TraceType.histogram2dcontour
+    x.doubles = xs
+}
+
+inline fun Plot2D.pie(block: Pie.() -> Unit): Pie {
+    val trace = Pie(block)
+    trace.type  = TraceType.pie
+    traces(trace)
+    return trace
+}
+
+fun Plot2D.pie(xs: DoubleArray, ys: DoubleArray, block: Pie.() -> Unit = {}): Pie {
+    val trace = Pie(xs, ys, block)
+    trace.type = TraceType.pie
+    traces(trace)
+    return trace
+}
+
+fun Plot2D.pie(xs: Any, ys: Any? = null, block: Pie.() -> Unit = {}): Pie {
+    val trace = Pie(xs, ys, block)
+    trace.type = TraceType.pie
+    traces(trace)
+    return trace
+}
+
+inline fun Plot2D.pie(xs: DoubleArray, block: Pie.() -> Unit = {}) = pie {
+    block()
+    type = TraceType.pie
     x.doubles = xs
 }
 

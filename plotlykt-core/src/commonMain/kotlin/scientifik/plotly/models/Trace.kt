@@ -9,10 +9,21 @@ import kotlin.js.JsName
 
 enum class TraceMode {
     lines,
+    markers,
+    text,
+    none,
 
     @JsName("linesMarkers")
     `lines+markers`,
-    markers
+
+    @JsName("linesText")
+    `lines+text`,
+
+    @JsName("markersText")
+    `markers+text`,
+
+    @JsName("linesMarkersText")
+    `lines+markers+text`
 }
 
 enum class TraceType {
@@ -332,6 +343,13 @@ enum class MeasureMode {
     pixels
 }
 
+enum class ConstrainText {
+    inside,
+    outside,
+    both,
+    none
+}
+
 class ColorBar : Scheme() {
     /**
      * Determines whether this color bar's thickness (i.e. the measure
@@ -431,6 +449,11 @@ class ColorBar : Scheme() {
      * Default: #444.
      */
     var outlinecolor = Color(this, "outlinecolor".asName())
+
+    /**
+     * Constrain the size of text inside or outside a bar to be no larger than the bar itself.
+     */
+    var constraintext by enum(ConstrainText.both)
 
     fun title(block: Title.() -> Unit) {
         title = Title(block)
@@ -597,15 +620,34 @@ open class Trace() : Scheme() {
     val x = axis(X_AXIS)
 
     /**
+     * Alternate to `x`. Builds a linear space of x coordinates.
+     * Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+     * Default: 0.
+     */
+    var x0 by value()
+
+    /**
+     * Sets the x coordinate step. See `x0` for more info.
+     * Default: 1.
+     */
+    var dx by doubleGreaterThan(0.0)
+
+    /**
      * Sets the y coordinates.
      */
     val y = axis(Y_AXIS)
 
     /**
-     * Sets the y coordinate for single-box traces or the starting coordinate
-     * for multi-box traces set using q1/median/q3. See overview for more info.
+     * Alternate to `y`. Builds a linear space of y coordinates.
+     * Use with `dy` where `y0` is the starting coordinate and `dy` the step.
      */
     var y0 by value()
+
+    /**
+     * Sets the y coordinate step. See `y0` for more info.
+     * Default: 1.
+     */
+    var dy by doubleGreaterThan(0.0)
 
     /**
      * Data array. Sets the z data.
@@ -626,6 +668,19 @@ open class Trace() : Scheme() {
      * non-empty entry among all occurrences of the label.
      */
     var labels by list()
+
+    /**
+     * Sets the label step. See `label0` for more info.
+     * Default: 1.
+     */
+    var dlabel by double()
+
+    /**
+     * Alternate to `labels`. Builds a numeric set of labels.
+     * Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
+     * Default: 0.
+     */
+    var label0 by double()
 
     /**
      * Sets the colorscale. The colorscale must be an array
@@ -795,6 +850,12 @@ open class Trace() : Scheme() {
      * If "false", set the contour level attributes in `contours`.
      */
     var autocontour by boolean()
+
+    /**
+     * Sets where the bar base is drawn (in position axis units). In "stack" or "relative" barmode,
+     * traces that set "base" will be excluded and drawn in "overlay" mode instead.
+     */
+    var base by value()
 
     fun contours(block: Contours.() -> Unit) {
         contours = Contours(block)

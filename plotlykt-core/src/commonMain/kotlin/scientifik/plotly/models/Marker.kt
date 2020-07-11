@@ -60,12 +60,18 @@ class Marker : Scheme() {
 
     val color = Color(this, "color".asName())
 
+    var colorbar by spec(ColorBar)
+
     fun colors(colors: Iterable<Any>) {
         color.value = colors.map { Value.of(it) }.asValue()
     }
 
     fun line(block: MarkerLine.() -> Unit) {
         line = MarkerLine(block)
+    }
+
+    fun colorbar(block: ColorBar.() -> Unit) {
+        colorbar = ColorBar(block)
     }
 
     companion object : SchemeSpec<Marker>(::Marker)
