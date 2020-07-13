@@ -114,3 +114,6 @@ fun PlotGrid.toHtml(vararg headers: HtmlHeader): String {
         }
     }
 }
+
+@UnstablePlotlyAPI
+fun Plotly.grid(block: PlotGrid.() -> Unit): PlotGrid = PlotGrid().apply(block)

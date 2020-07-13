@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm")
     application
     id("org.openjfx.javafxplugin") version "0.0.9"
 }
@@ -21,7 +21,7 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("no.tornado:tornadofx:1.7.19")
-    implementation("scientifik:plotlykt-server:0.2.0")
+    implementation(project(":plotlykt-server"))
 }
 
 javafx{

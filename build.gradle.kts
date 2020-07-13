@@ -13,16 +13,6 @@ val bintrayRepo by extra("scientifik")
 val githubProject by extra("plotly.kt")
 
 allprojects {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        jcenter()
-        maven("https://kotlin.bintray.com/kotlinx")
-        maven("https://dl.bintray.com/mipt-npm/dev")
-        maven("https://dl.bintray.com/mipt-npm/scientifik")
-        maven("https://dl.bintray.com/mipt-npm/dataforge")
-    }
-
     group = "scientifik"
-    version = "0.2.0-dev-5"
+    version = "0.2.0-dev-6"
 }

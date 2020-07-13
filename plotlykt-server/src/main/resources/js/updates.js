@@ -114,6 +114,9 @@ function startPush(id, ws) {
                 if (content.hasOwnProperty('y')) {
                     content.y = [content.y]
                 }
+                if (content.hasOwnProperty('z')) {
+                    content.z = [content.z]
+                }
                 Plotly.restyle(id, content, json['trace']);
             }
         }

@@ -54,4 +54,8 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
         this.strings = strings.asList()
     }
 
+    operator fun invoke(numbers: Iterable<Number>) {
+        this.numbers = numbers
+    }
+
 }

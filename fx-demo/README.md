@@ -10,5 +10,5 @@ The build requires either JDK8 with installed JavaFX or lated JDK with manually 
 
 To run use application plugin:
 ```
-gradle run
+gradle :fx-demo:run
 ```

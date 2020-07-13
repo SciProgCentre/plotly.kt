@@ -32,6 +32,7 @@ fun FlowContent.staticPlot(
     div {
         id = plotId
         script {
+            defer = true
             val tracesString = plot.data.toJsonString()
             val layoutString = plot.layout.toJsonString()
             unsafe {

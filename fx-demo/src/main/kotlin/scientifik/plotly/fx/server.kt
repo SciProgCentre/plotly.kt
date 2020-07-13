@@ -1,15 +1,18 @@
-package scientifik.plotly
+package scientifik.plotly.fx
 
 import javafx.beans.value.ObservableIntegerValue
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import scientifik.plotly.Plotly
+import scientifik.plotly.layout
 import scientifik.plotly.models.Trace
 import scientifik.plotly.server.PlotlyServer
 import scientifik.plotly.server.dynamicPlot
 import scientifik.plotly.server.pullUpdates
 import scientifik.plotly.server.serve
+import scientifik.plotly.staticPlot
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin

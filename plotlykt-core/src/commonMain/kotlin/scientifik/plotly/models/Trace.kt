@@ -171,6 +171,7 @@ class Trace() : Scheme() {
 
     val x = axis(X_AXIS)
     val y = axis(Y_AXIS)
+    val z = axis(Z_AXIS)
 
     var name by string()
     var mode by enum(TraceMode.lines)
@@ -216,6 +217,7 @@ class Trace() : Scheme() {
     companion object : SchemeSpec<Trace>(::Trace) {
         const val X_AXIS = "x"
         const val Y_AXIS = "y"
+        const val Z_AXIS = "z"
         const val TEXT_AXIS = "text"
 
         operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Trace.() -> Unit = {}) = invoke {

@@ -1,4 +1,4 @@
-package scientifik.plotly
+package scientifik.plotly.fx
 
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.scene.control.SelectionMode

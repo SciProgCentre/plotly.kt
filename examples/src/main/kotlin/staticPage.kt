@@ -1,8 +1,5 @@
-import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.UnstablePlotlyAPI
+import scientifik.plotly.*
 import scientifik.plotly.models.Trace
-import scientifik.plotly.show
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin

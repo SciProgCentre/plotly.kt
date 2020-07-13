@@ -1,12 +1,41 @@
 package scientifik.plotly
 
-import org.w3c.dom.Element
-import kotlin.js.json
+import hep.dataforge.meta.Scheme
+import hep.dataforge.meta.toDynamic
+import org.w3c.dom.HTMLElement
 
-fun Plot2D.show(element: Element, dynamic: Boolean = true) {
-    val traces = data.map { it.toJson() }
-    PlotlyJs.react(element, traces, layout.toJson(), json("responsive" to true))
-    if(dynamic){
-        //TODO do updates
+private fun Scheme.toDynamic() = config.toDynamic()
+
+/**
+ * Attach a plot to this element
+ */
+fun HTMLElement.plot(plot: Plot2D, plotlyConfig: PlotlyConfig = PlotlyConfig()) {
+    val traces = plot.data.map { it.toDynamic() }.toTypedArray()
+    PlotlyJs.react(this, traces, plot.layout.toDynamic(), plotlyConfig.toDynamic())
+    plot.layout.config.onChange(this) { _, _, _ ->
+        PlotlyJs.relayout(this, plot.layout.toDynamic())
     }
+    plot.data.forEachIndexed { index, trace ->
+        trace.config.onChange(this) { _, _, _ ->
+            val traceData = trace.toDynamic()
+
+            if (trace.x.value != null) {
+                traceData.x = arrayOf(traceData.x)
+            }
+
+            if (trace.y.value != null) {
+                traceData.y = arrayOf(traceData.y)
+            }
+
+            if (trace.z.value != null) {
+                traceData.z = arrayOf(traceData.z)
+            }
+
+            PlotlyJs.restyle(this, traceData, arrayOf(index))
+        }
+    }
+}
+
+fun HTMLElement.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plotBuilder: Plot2D.() -> Unit) {
+    plot(Plot2D().apply(plotBuilder), plotlyConfig)
 }
