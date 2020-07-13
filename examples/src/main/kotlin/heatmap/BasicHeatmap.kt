@@ -18,13 +18,13 @@ fun main() {
     val y = listOf(6, 7, 8, 9, 10)
     val z1 = (1..25).chunked(5)
 
-    val plot = Plotly.plot2D {
-        trace(x, y) {
-            type = TraceType.heatmap
-            z(z1)
-            colorscale = Value.of("Reds")
-        }
+    val heatmap = Heatmap(x, y) {
+        z(z1)
+        colorscale = Value.of("Reds")
+    }
 
+    val plot = Plotly.plot2D {
+        traces(heatmap)
         layout {
             title {
                 text = "Red Heatmap"

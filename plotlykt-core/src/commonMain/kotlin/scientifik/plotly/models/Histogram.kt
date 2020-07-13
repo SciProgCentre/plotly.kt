@@ -219,10 +219,25 @@ open class Histogram() : Trace() {
     }
 }
 
-class Histogram2D() : Histogram() {
+class Histogram2D() : Histogram(), `2DTableInterface` {
     init {
         type = TraceType.histogram2d
     }
+
+    /**
+     * Sets the horizontal gap (in pixels) between bricks.
+     */
+    override var xgap by intGreaterThan(0)
+
+    /**
+     * Sets the vertical gap (in pixels) between bricks.
+     */
+    override var ygap by intGreaterThan(0)
+
+    /**
+     * Picks a smoothing algorithm use to smooth `z` data.
+     */
+    override var zsmooth by enum(ZsmoothType.best)
 
     companion object : SchemeSpec<Histogram2D>(::Histogram2D) {
         const val X_AXIS = "x"
@@ -237,9 +252,30 @@ class Histogram2D() : Histogram() {
     }
 }
 
-class Histogram2DContour() : Histogram() {
+class Histogram2DContour() : Histogram(), Histogram2DContourInterface {
     init {
         type = TraceType.histogram2dcontour
+    }
+
+    /**
+     * Sets the maximum number of contour levels. The actual number of contours
+     * will be chosen automatically to be less than or equal to the value of `ncontours`.
+     * Has an effect only if `autocontour` is "true" or if `contours.size` is missing.
+     * Default: 15.
+     */
+    override var ncontours by intGreaterThan(1)
+
+    override var contours by spec(Contours)
+
+    /**
+     * Determines whether or not the contour level attributes are picked by an algorithm.
+     * If "true" (default), the number of contour levels can be set in `ncontours`.
+     * If "false", set the contour level attributes in `contours`.
+     */
+    override var autocontour by boolean()
+
+    fun contours(block: Contours.() -> Unit) {
+        contours = Contours(block)
     }
 
     companion object : SchemeSpec<Histogram2DContour>(::Histogram2DContour) {

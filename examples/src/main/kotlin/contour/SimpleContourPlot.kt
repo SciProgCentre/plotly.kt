@@ -35,14 +35,13 @@ fun main() {
         }
     }
 
-    val trace = Trace(x, y) {
-        type = TraceType.contour
+    val contour = Contour(x, y) {
         z(z)
         colorscale = "YlGnBu".asValue()
     }
 
     val plot = Plotly.plot2D {
-        traces(trace)
+        traces(contour)
         layout {
             title {
                 text = "Simple Contour Plot"

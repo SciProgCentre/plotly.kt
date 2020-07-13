@@ -33,6 +33,7 @@ enum class TraceType {
     bar,
     pie,
     heatmap,
+    heatmapgl,
     contour,
 
     @UnsupportedPlotlyAPI
@@ -555,73 +556,6 @@ enum class ContoursColoring {
 }
 
 
-class Contours : Scheme() {
-    /**
-     * If `levels`, the data is represented as a contour plot with multiple
-     * levels displayed. If `constraint`, the data is represented as constraints
-     * with the invalid region shaded as specified by the `operation` and `value` parameters.
-     */
-    var type by enum(ContoursType.levels)
-
-    /**
-     * Sets the starting contour level value. Must be less than `contours.end`
-     */
-    var start by int()
-
-    /**
-     * Sets the end contour level value. Must be more than `contours.start`
-     */
-    var end by int()
-
-    /**
-     * Sets the step between each contour level. Must be positive.
-     */
-    var size by intGreaterThan(0)
-
-    /**
-     * Determines the coloring method showing the contour values.
-     * If "fill" (default), coloring is done evenly between each contour level
-     * If "heatmap", a heatmap gradient coloring is applied between each contour level.
-     * If "lines", coloring is done on the contour lines. If "none",
-     * no coloring is applied on this trace.
-     */
-    var coloring by enum(ContoursColoring.fill)
-
-    /**
-     * Determines whether or not the contour lines are drawn.
-     * Has an effect only if `contours.coloring` is set to "fill".
-     */
-    var showlines by boolean()
-
-    /**
-     * Determines whether to label the contour lines with their values.
-     */
-    var showlables by boolean()
-
-    /**
-     * Sets the font used for labeling the contour levels. The default color
-     * comes from the lines, if shown. The default family and size come from `layout.font`.
-     */
-    var labelfont by spec(Font)
-
-    fun labelfont(block: Font.() -> Unit) {
-        labelfont = Font(block)
-    }
-
-    companion object : SchemeSpec<Contours>(::Contours)
-}
-
-enum class DataType {
-    array,
-    scaled
-}
-
-enum class ZsmoothType {
-    fast,
-    best,
-    `false`
-}
-
 open class Trace() : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
 
@@ -644,12 +578,6 @@ open class Trace() : Scheme() {
     var dx by doubleGreaterThan(0.0)
 
     /**
-     * If "array", the heatmap's x coordinates are given by "x" (the default behavior when `x` is provided).
-     * If "scaled", the heatmap's x coordinates are given by "x0" and "dx" (the default behavior when `x` is not provided).
-     */
-    var xtype by enum(DataType.array)
-
-    /**
      * Sets the y coordinates.
      */
     val y = axis(Y_AXIS)
@@ -665,12 +593,6 @@ open class Trace() : Scheme() {
      * Default: 1.
      */
     var dy by doubleGreaterThan(0.0)
-
-    /**
-     * If "array", the heatmap's y coordinates are given by "y" (the default behavior when `y` is provided)
-     * If "scaled", the heatmap's y coordinates are given by "y0" and "dy" (the default behavior when `y` is not provided)
-     */
-    var ytype by enum(DataType.array)
 
     /**
      * Data array. Sets the z data.
@@ -704,11 +626,6 @@ open class Trace() : Scheme() {
      * Has no effect when `zauto` is `false`.
      */
     var zmid by int()
-
-    /**
-     * Picks a smoothing algorithm use to smooth `z` data.
-     */
-    var zsmooth by enum(ZsmoothType.best)
 
     /**
      * Data array. Sets the values of the sectors.
@@ -896,22 +813,6 @@ open class Trace() : Scheme() {
      */
     var side by enum(ViolinSide.both)
 
-    var contours by spec(Contours)
-
-    /**
-     * Sets the maximum number of contour levels. The actual number of contours
-     * will be chosen automatically to be less than or equal to the value of `ncontours`.
-     * Has an effect only if `autocontour` is "true" or if `contours.size` is missing.
-     * Default: 15.
-     */
-    var ncontours by intGreaterThan(1)
-
-    /**
-     * Determines whether or not the contour level attributes are picked by an algorithm.
-     * If "true" (default), the number of contour levels can be set in `ncontours`.
-     * If "false", set the contour level attributes in `contours`.
-     */
-    var autocontour by boolean()
 
     /**
      * Sets where the bar base is drawn (in position axis units). In "stack" or "relative" barmode,
@@ -936,25 +837,11 @@ open class Trace() : Scheme() {
     var transpose by boolean()
 
     /**
-     * Sets the horizontal gap (in pixels) between bricks.
-     */
-    var xgap by intGreaterThan(0)
-
-    /**
-     * Sets the vertical gap (in pixels) between bricks.
-     */
-    var ygap by intGreaterThan(0)
-
-    /**
      * Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in.
      * It is defaulted to true if `z` is a one dimensional array and `zsmooth` is not false;
      * otherwise it is defaulted to false.
      */
     var connectgaps by boolean()
-
-    fun contours(block: Contours.() -> Unit) {
-        contours = Contours(block)
-    }
 
     fun z(array: Iterable<Any>) {
         z = array.map{ Value.of(it) }

@@ -4,8 +4,7 @@ import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.MeasureMode
-import scientifik.plotly.trace
-import scientifik.plotly.models.TraceType
+import scientifik.plotly.models.Contour
 
 
 /**
@@ -23,19 +22,20 @@ fun main() {
     val x = listOf(-9, -6, -5 , -3, -1)
     val y = listOf(0, 1, 4, 5, 7)
 
-    val plot = Plotly.plot2D {
-        trace(x, y) {
-            type = TraceType.contour
-            z(values)
+    val contour = Contour(x, y) {
+        z(values)
 
-            colorbar {
-                thickness = 75.0
-                thicknessmode = MeasureMode.pixels
-                len = 0.9
-                lenmode = MeasureMode.fraction
-                outlinewidth = 0
-            }
+        colorbar {
+            thickness = 75.0
+            thicknessmode = MeasureMode.pixels
+            len = 0.9
+            lenmode = MeasureMode.fraction
+            outlinewidth = 0
         }
+    }
+
+    val plot = Plotly.plot2D {
+        traces(contour)
 
         layout {
             title {
