@@ -5,7 +5,6 @@ import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.*
-import scientifik.plotly.trace
 
 
 /**

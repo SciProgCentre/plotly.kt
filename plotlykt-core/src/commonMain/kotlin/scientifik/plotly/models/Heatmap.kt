@@ -2,7 +2,7 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import scientifik.plotly.intGreaterThan
 
-open class Heatmap(): Trace(), `2DTableInterface`, HeatmapContourInterface {
+open class Heatmap(): Trace(), Table2DInterface, HeatmapContourInterface {
     init {
         type = TraceType.heatmap
     }

@@ -6,7 +6,7 @@ enum class ZsmoothType {
     `false`
 }
 
-interface `2DTableInterface` {
+interface Table2DInterface {
     var xgap: Int
 
     var ygap: Int
