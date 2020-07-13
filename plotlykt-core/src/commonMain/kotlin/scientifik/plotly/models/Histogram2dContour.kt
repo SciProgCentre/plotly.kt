@@ -59,7 +59,7 @@ class Contours : Scheme() {
     companion object : SchemeSpec<Contours>(::Contours)
 }
 
-interface Histogram2DContourInterface {
+interface Histogram2dContour {
     var ncontours: Int
 
     var contours: Contours?

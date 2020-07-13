@@ -219,7 +219,7 @@ open class Histogram() : Trace() {
     }
 }
 
-class Histogram2D() : Histogram(), Table2DInterface {
+class Histogram2D() : Histogram(), Table2D {
     init {
         type = TraceType.histogram2d
     }
@@ -252,7 +252,7 @@ class Histogram2D() : Histogram(), Table2DInterface {
     }
 }
 
-class Histogram2DContour() : Histogram(), Histogram2DContourInterface {
+class Histogram2DContour() : Histogram(), Histogram2dContour {
     init {
         type = TraceType.histogram2dcontour
     }

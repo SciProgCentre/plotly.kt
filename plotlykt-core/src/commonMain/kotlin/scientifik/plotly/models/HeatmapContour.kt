@@ -5,7 +5,7 @@ enum class DataType {
     scaled
 }
 
-interface HeatmapContourInterface {
+interface HeatmapContour {
     var xtype: DataType
 
     var ytype: DataType

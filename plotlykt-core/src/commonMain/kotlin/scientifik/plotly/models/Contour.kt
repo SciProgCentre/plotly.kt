@@ -6,7 +6,7 @@ import hep.dataforge.meta.enum
 import hep.dataforge.meta.spec
 import scientifik.plotly.intGreaterThan
 
-class Contour(): Trace(), HeatmapContourInterface, Histogram2DContourInterface {
+class Contour(): Trace(), HeatmapContour, Histogram2dContour {
     init {
         type = TraceType.contour
     }
