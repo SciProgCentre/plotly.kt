@@ -108,6 +108,9 @@ class Cumulative : Scheme() {
 
 
 open class Histogram() : Trace() {
+    init {
+        type = TraceType.histogram
+    }
     /**
      * Enumerated, one of ( "empty" | "percent" | "probability" | "density" | "probability density" )
      * Specifies the type of normalization used for this histogram trace.
@@ -209,7 +212,6 @@ open class Histogram() : Trace() {
         const val TEXT_AXIS = "text"
 
         operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Histogram.() -> Unit = {}) = invoke {
-            type = TraceType.histogram
             block()
             x.set(xs)
             y.set(ys)
@@ -218,15 +220,9 @@ open class Histogram() : Trace() {
 }
 
 class Histogram2D() : Histogram() {
-    /**
-     * Sets the horizontal gap (in pixels) between bricks.
-     */
-    var xgap by intGreaterThan(0)
-
-    /**
-     * Sets the vertical gap (in pixels) between bricks.
-     */
-    var ygap by intGreaterThan(0)
+    init {
+        type = TraceType.histogram2d
+    }
 
     companion object : SchemeSpec<Histogram2D>(::Histogram2D) {
         const val X_AXIS = "x"
@@ -234,7 +230,6 @@ class Histogram2D() : Histogram() {
         const val TEXT_AXIS = "text"
 
         operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Histogram2D.() -> Unit = {}) = Histogram2D.invoke {
-            type = TraceType.histogram2d
             block()
             x.set(xs)
             y.set(ys)
@@ -243,13 +238,16 @@ class Histogram2D() : Histogram() {
 }
 
 class Histogram2DContour() : Histogram() {
+    init {
+        type = TraceType.histogram2dcontour
+    }
+
     companion object : SchemeSpec<Histogram2DContour>(::Histogram2DContour) {
         const val X_AXIS = "x"
         const val Y_AXIS = "y"
         const val TEXT_AXIS = "text"
 
         operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Histogram2DContour.() -> Unit = {}) = Histogram2DContour.invoke {
-            type = TraceType.histogram2dcontour
             block()
             x.set(xs)
             y.set(ys)

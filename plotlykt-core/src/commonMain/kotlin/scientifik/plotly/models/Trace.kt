@@ -611,6 +611,17 @@ class Contours : Scheme() {
     companion object : SchemeSpec<Contours>(::Contours)
 }
 
+enum class DataType {
+    array,
+    scaled
+}
+
+enum class ZsmoothType {
+    fast,
+    best,
+    `false`
+}
+
 open class Trace() : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
 
@@ -633,6 +644,12 @@ open class Trace() : Scheme() {
     var dx by doubleGreaterThan(0.0)
 
     /**
+     * If "array", the heatmap's x coordinates are given by "x" (the default behavior when `x` is provided).
+     * If "scaled", the heatmap's x coordinates are given by "x0" and "dx" (the default behavior when `x` is not provided).
+     */
+    var xtype by enum(DataType.array)
+
+    /**
      * Sets the y coordinates.
      */
     val y = axis(Y_AXIS)
@@ -650,9 +667,48 @@ open class Trace() : Scheme() {
     var dy by doubleGreaterThan(0.0)
 
     /**
+     * If "array", the heatmap's y coordinates are given by "y" (the default behavior when `y` is provided)
+     * If "scaled", the heatmap's y coordinates are given by "y0" and "dy" (the default behavior when `y` is not provided)
+     */
+    var ytype by enum(DataType.array)
+
+    /**
      * Data array. Sets the z data.
      */
     var z by list()
+
+    /**
+     * Determines whether or not the color domain is computed with respect to
+     * the input data (here in `z`) or the bounds set in `zmin` and `zmax`
+     * Defaults to `false` when `zmin` and `zmax` are set by the user.
+     *
+     */
+    var zauto by boolean()
+
+    /**
+     * Sets the lower bound of the color domain. Value should have the same units
+     * as in `z` and if set, `zmax` must be set as well.
+     */
+    var zmin by int()
+
+    /**
+     * Sets the upper bound of the color domain. Value should have the same units
+     * as in `z` and if set, `zmin` must be set as well.
+
+     */
+    var zmax by int()
+
+    /**
+     * Sets the mid-point of the color domain by scaling `zmin` and/or `zmax`
+     * to be equidistant to this point. Value should have the same units as in `z`.
+     * Has no effect when `zauto` is `false`.
+     */
+    var zmid by int()
+
+    /**
+     * Picks a smoothing algorithm use to smooth `z` data.
+     */
+    var zsmooth by enum(ZsmoothType.best)
 
     /**
      * Data array. Sets the values of the sectors.
@@ -690,6 +746,12 @@ open class Trace() : Scheme() {
     var colorscale by value()
 
     var colorbar by spec(ColorBar)
+
+    /**
+     * Sets the fill color if `contours.type` is "constraint". Defaults to
+     * a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+     */
+    var fillcolor = Color(this, "fillcolor".asName())
 
     /**
      * Sets the trace name. The trace name appear as the legend item and on hover.
@@ -856,6 +918,39 @@ open class Trace() : Scheme() {
      * traces that set "base" will be excluded and drawn in "overlay" mode instead.
      */
     var base by value()
+
+    /**
+     * Determines whether or not a colorbar is displayed for this trace.
+     */
+    var showscale by boolean()
+
+    /**
+     * Reverses the color mapping if true. If true, `zmin` will
+     * correspond to the last color in the array and `zmax` will correspond to the first color.
+     */
+    var reversescale by boolean()
+
+    /**
+     * Transposes the z data.
+     */
+    var transpose by boolean()
+
+    /**
+     * Sets the horizontal gap (in pixels) between bricks.
+     */
+    var xgap by intGreaterThan(0)
+
+    /**
+     * Sets the vertical gap (in pixels) between bricks.
+     */
+    var ygap by intGreaterThan(0)
+
+    /**
+     * Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in.
+     * It is defaulted to true if `z` is a one dimensional array and `zsmooth` is not false;
+     * otherwise it is defaulted to false.
+     */
+    var connectgaps by boolean()
 
     fun contours(block: Contours.() -> Unit) {
         contours = Contours(block)

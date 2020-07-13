@@ -12,6 +12,10 @@ enum class PieDirection {
 }
 
 class Pie() : Trace() {
+    init {
+        type = TraceType.pie
+    }
+
     /**
      * Sets the fraction of larger radius to pull the sectors out from the center.
      * This can be a constant to pull all slices apart from each other
@@ -49,7 +53,6 @@ class Pie() : Trace() {
         const val TEXT_AXIS = "text"
 
         operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Pie.() -> Unit = {}) = Pie.invoke {
-            type = TraceType.pie
             block()
             x.set(xs)
             y.set(ys)
