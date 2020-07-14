@@ -26,34 +26,7 @@ enum class QuartileMethod {
     inclusive
 }
 
-class SelectMarker : Scheme() {
-    /**
-     * Sets the marker opacity of selected points.
-     */
-    var opacity by doubleInRange(0.0..1.0)
-
-    /**
-     * Sets the marker color of selected points.
-     */
-    var color = Color(this, "color".asName())
-
-    /**
-     * Sets the marker size of selected points.
-     */
-    var size by intGreaterThan(0)
-
-    companion object : SchemeSpec<SelectMarker>(::SelectMarker)
-}
-
-class SelectPoints : Scheme() {
-    var marker by spec(SelectMarker)
-
-
-
-    companion object : SchemeSpec<SelectPoints>(::SelectPoints)
-}
-
-class Box(): Trace() {
+class Box(): Trace(), SelectedPoints {
     /**
      * Sets the width of the box in data coordinate If "0" (default value) the width is
      * automatically selected based on the positions of other box traces in the same subplot.
@@ -170,11 +143,11 @@ class Box(): Trace() {
      * Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas,
      * any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
      */
-    var selectedpoints by numberList()
+    override var selectedpoints by numberList()
 
-    var selected by spec(SelectPoints)
+    override var selected by spec(SelectPoints)
 
-    var unselected by spec(SelectPoints)
+    override var unselected by spec(SelectPoints)
 
     /**
      * Sets the amount of jitter in the sample points drawn.

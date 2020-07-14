@@ -1,9 +1,6 @@
 package scientifik.plotly.models
 
-import hep.dataforge.meta.SchemeSpec
-import hep.dataforge.meta.boolean
-import hep.dataforge.meta.enum
-import hep.dataforge.meta.numberList
+import hep.dataforge.meta.*
 import scientifik.plotly.doubleInRange
 
 enum class PieDirection {
@@ -46,6 +43,19 @@ class Pie() : Trace() {
      * Default: true.
      */
     var sort by boolean()
+
+    /**
+     * Sets the label step. See `label0` for more info.
+     * Default: 1.
+     */
+    var dlabel by double()
+
+    /**
+     * Alternate to `labels`. Builds a numeric set of labels.
+     * Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
+     * Default: 0.
+     */
+    var label0 by double()
 
     companion object : SchemeSpec<Pie>(::Pie)
 }

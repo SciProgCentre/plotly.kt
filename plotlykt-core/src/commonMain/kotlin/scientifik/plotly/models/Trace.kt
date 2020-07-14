@@ -571,19 +571,6 @@ open class Trace() : Scheme() {
     var labels by list()
 
     /**
-     * Sets the label step. See `label0` for more info.
-     * Default: 1.
-     */
-    var dlabel by double()
-
-    /**
-     * Alternate to `labels`. Builds a numeric set of labels.
-     * Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
-     * Default: 0.
-     */
-    var label0 by double()
-
-    /**
      * Sets the colorscale. The colorscale must be an array
      * containing arrays mapping a normalized value to an rgb,
      * rgba, hex, hsl, hsv, or named color string.
