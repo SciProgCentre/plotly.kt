@@ -5,7 +5,6 @@ import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.*
-import scientifik.plotly.palettes.T10
 
 fun main() {
     val trace1 = Violin {
@@ -13,7 +12,7 @@ fun main() {
         marker {
             line {
                 width = 2
-                color(T10.BLUE)
+                color("#bebada")
             }
             symbol = Symbol.valueOf("line-ns")
         }
@@ -34,6 +33,9 @@ fun main() {
         showlegend = false
         side = ViolinSide.positive
         y0 = Value.of(0)
+        line {
+            color("#bebada")
+        }
 
         name = "F"
 
@@ -47,7 +49,7 @@ fun main() {
         marker {
             line {
                 width = 2
-                color(T10.ORANGE)
+                color("#8dd3c7")
             }
             symbol = Symbol.valueOf("line-ns")
         }
@@ -69,6 +71,9 @@ fun main() {
         side = ViolinSide.negative
         y0 = Value.of(0)
 
+        line {
+            color("#8dd3c7")
+        }
         name = "M"
 
         x.set(listOf(27.2, 22.76, 17.29, 19.44, 16.66, 32.68, 15.98, 13.03, 18.28, 24.71,
