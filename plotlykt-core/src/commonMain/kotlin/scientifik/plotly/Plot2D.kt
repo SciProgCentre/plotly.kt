@@ -125,8 +125,8 @@ inline fun Plot2D.contour(xs: DoubleArray, block: Trace.() -> Unit = {}) = conto
     x.doubles = xs
 }
 
-inline fun Plot2D.scatter(block: Trace.() -> Unit): Trace {
-    val trace = Trace(block)
+inline fun Plot2D.scatter(block: Scatter.() -> Unit): Scatter {
+    val trace = Scatter(block)
     trace.type  = TraceType.scatter
     traces(trace)
     return trace
@@ -135,19 +135,6 @@ inline fun Plot2D.scatter(block: Trace.() -> Unit): Trace {
 inline fun Plot2D.scatter(xs: DoubleArray, block: Trace.() -> Unit = {}) = scatter {
     block()
     type = TraceType.scatter
-    x.doubles = xs
-}
-
-inline fun Plot2D.bar(block: Trace.() -> Unit): Trace {
-    val trace = Trace(block)
-    trace.type  = TraceType.bar
-    traces(trace)
-    return trace
-}
-
-inline fun Plot2D.bar(xs: DoubleArray, block: Trace.() -> Unit = {}) = scatter {
-    block()
-    type = TraceType.bar
     x.doubles = xs
 }
 
@@ -187,6 +174,19 @@ inline fun Plot2D.violin(block: Violin.() -> Unit): Violin {
 inline fun Plot2D.violin(xs: DoubleArray, block: Trace.() -> Unit = {}) = violin {
     block()
     type = TraceType.violin
+    x.doubles = xs
+}
+
+inline fun Plot2D.bar(block: Bar.() -> Unit): Bar {
+    val trace = Bar(block)
+    trace.type  = TraceType.bar
+    traces(trace)
+    return trace
+}
+
+inline fun Plot2D.bar(xs: DoubleArray, block: Trace.() -> Unit = {}) = bar {
+    block()
+    type = TraceType.bar
     x.doubles = xs
 }
 

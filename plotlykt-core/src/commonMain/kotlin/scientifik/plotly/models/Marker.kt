@@ -8,6 +8,28 @@ import hep.dataforge.values.asValue
 import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
 
+enum class GradientType {
+    radial,
+    horizontal,
+    vertical,
+    none
+}
+
+class Gradient : Scheme() {
+    /**
+     * Sets the final color of the gradient fill: the center color for radial,
+     * the right for horizontal, or the bottom for vertical.
+     */
+    var color = Color(this, "color".asName())
+
+    /**
+     * Sets the type of gradient used to fill the markers
+     */
+    var type by enum(GradientType.none)
+
+    companion object : SchemeSpec<Gradient>(::Gradient)
+}
+
 class Marker : Scheme() {
     /**
      * Sets the marker symbol type.
@@ -62,6 +84,8 @@ class Marker : Scheme() {
 
     var colorbar by spec(ColorBar)
 
+    var gradient by spec(Gradient)
+
     fun colors(colors: Iterable<Any>) {
         color.value = colors.map { Value.of(it) }.asValue()
     }
@@ -72,6 +96,10 @@ class Marker : Scheme() {
 
     fun colorbar(block: ColorBar.() -> Unit) {
         colorbar = ColorBar(block)
+    }
+
+    fun gradient(block: Gradient.() -> Unit) {
+        gradient = Gradient(block)
     }
 
     companion object : SchemeSpec<Marker>(::Marker)

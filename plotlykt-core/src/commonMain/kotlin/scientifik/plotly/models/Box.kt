@@ -26,6 +26,12 @@ enum class QuartileMethod {
     inclusive
 }
 
+enum class BoxHoveron {
+    boxes,
+    points,
+    `boxes+points`
+}
+
 class Box(): Trace(), SelectedPoints {
     /**
      * Sets the width of the box in data coordinate If "0" (default value) the width is
@@ -164,6 +170,11 @@ class Box(): Trace(), SelectedPoints {
      * for vertical violins and above (below) for horizontal violins.
      */
     var pointpos by doubleInRange(-2.0..2.0)
+
+    /**
+     * Do the hover effects highlight individual boxes or sample points or both?
+     */
+    var hoveron by enum(BoxHoveron.`boxes+points`)
 
     fun q1(array: Iterable<Any>) {
         q1 = array.map{ Value.of(it) }

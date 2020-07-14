@@ -7,25 +7,6 @@ import scientifik.plotly.*
 import kotlin.js.JsName
 
 
-enum class TraceMode {
-    lines,
-    markers,
-    text,
-    none,
-
-    @JsName("linesMarkers")
-    `lines+markers`,
-
-    @JsName("linesText")
-    `lines+text`,
-
-    @JsName("markersText")
-    `markers+text`,
-
-    @JsName("linesMarkersText")
-    `lines+markers+text`
-}
-
 enum class TraceType {
     // Simple
     scatter,
@@ -100,12 +81,12 @@ enum class SizeMode {
     area
 }
 
-class MarkerLine : Line() {
+class MarkerLine : Scheme(), Line {
     /**
      * Number than or equal to 0. Sets the width (in px)
      * of the lines bounding the marker points.
      */
-    var width by intGreaterThan(0)
+    override var width by intGreaterThan(0)
 
     /**
      * Sets themarker.linecolor. It accepts either a specific color
@@ -113,7 +94,7 @@ class MarkerLine : Line() {
      * relative to the max and min values of the array or relative to
      * `cmin` and `cmax` if set.
      */
-    val color = Color(this, "color".asName())
+    override val color = Color(this, "color".asName())
 
     /**
      * Determines whether or not the color domain is computed with respect
@@ -186,6 +167,17 @@ class MarkerLine : Line() {
      * color scales can be linked to the same color axis.
      */
     // var coloraxis TODO()
+
+    /**
+     * Sets the border line color of the outlier sample points. Defaults to marker.color
+     */
+    var outliercolor = Color(this, "outliercolor".asName())
+
+    /**
+     * Sets the border line width (in px) of the outlier sample points.
+     * Default: 1
+     */
+    var outlierwidth by intGreaterThan(0)
 
     companion object : SchemeSpec<MarkerLine>(::MarkerLine)
 }
@@ -483,6 +475,25 @@ enum class ContoursColoring {
     none
 }
 
+enum class Calendar {
+    gregorian,
+    chinese,
+    coptic,
+    discworld,
+    ethiopian,
+    hebrew,
+    islamic,
+    julian,
+    mayan,
+    nanakshahi,
+    nepali,
+    persian,
+    jalali,
+    taiwan,
+    thai,
+    ummalqura
+}
+
 
 open class Trace() : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
@@ -521,6 +532,13 @@ open class Trace() : Scheme() {
      * Default: 1.
      */
     var dy by doubleGreaterThan(0.0)
+
+    /**
+     * Determines whether or not markers and text nodes are clipped about the subplot axes.
+     * To show markers and text nodes above axis lines and tick labels, make sure
+     * to set `xaxis.layer` and `yaxis.layer` to "below traces".
+     */
+    var cliponaxis by boolean()
 
     /**
      * Data array. Sets the z data.
@@ -570,6 +588,8 @@ open class Trace() : Scheme() {
      */
     var labels by list()
 
+    var line by spec(LayoutLine)
+
     /**
      * Sets the colorscale. The colorscale must be an array
      * containing arrays mapping a normalized value to an rgb,
@@ -589,16 +609,6 @@ open class Trace() : Scheme() {
      * Sets the trace name. The trace name appear as the legend item and on hover.
      */
     var name by string()
-
-    /**
-     * Flaglist string. Any combination of "lines", "markers", "text"
-     * joined with a "+" OR "none". Determines the drawing mode for
-     * this scatter trace. If the provided `mode` includes "text" then
-     * the `text` elements appear at the coordinates. Otherwise,
-     * the `text` elements appear on hover.
-     * Default: lines.
-     */
-    var mode by enum(TraceMode.lines)
 
     var type by enum(TraceType.scatter)
 
@@ -678,12 +688,6 @@ open class Trace() : Scheme() {
     var scalegroup by string()
 
     /**
-     * Sets where the bar base is drawn (in position axis units). In "stack" or "relative" barmode,
-     * traces that set "base" will be excluded and drawn in "overlay" mode instead.
-     */
-    var base by value()
-
-    /**
      * Determines whether or not a colorbar is displayed for this trace.
      */
     var showscale by boolean()
@@ -705,6 +709,16 @@ open class Trace() : Scheme() {
      * otherwise it is defaulted to false.
      */
     var connectgaps by boolean()
+
+    /**
+     * Sets the calendar system to use with `x` date data.
+     */
+    var xcalendar by enum(Calendar.gregorian)
+
+    /**
+     * Sets the calendar system to use with `y` date data.
+     */
+    var ycalendar by enum(Calendar.gregorian)
 
     fun z(array: Iterable<Any>) {
         z = array.map{ Value.of(it) }
@@ -728,6 +742,10 @@ open class Trace() : Scheme() {
 
     fun marker(block: Marker.() -> Unit) {
         marker = Marker(block)
+    }
+
+    fun line(block: LayoutLine.() -> Unit) {
+        line = LayoutLine(block)
     }
 
     fun error_x(block: Error.() -> Unit) {

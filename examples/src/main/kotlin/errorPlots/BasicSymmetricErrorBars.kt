@@ -4,7 +4,6 @@ import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.ErrorType
-import scientifik.plotly.models.TraceType
 import scientifik.plotly.trace
 
 /**
@@ -13,15 +12,15 @@ import scientifik.plotly.trace
  * - change color or error bars
  */
 fun main() {
-    val values_x = listOf(0, 1, 2)
-    val values_y = listOf(6, 10, 2)
-    val values_err = listOf(1, 2, 3)
+    val x = listOf(0, 1, 2)
+    val y = listOf(6, 10, 2)
+    val err = listOf(1, 2, 3)
 
     val plot = Plotly.plot2D{
-        trace(values_x, values_y) {
+        trace(x, y) {
             error_y {
                 type = ErrorType.data
-                array = values_err
+                array = err
                 visible = true
                 color("orange")
             }

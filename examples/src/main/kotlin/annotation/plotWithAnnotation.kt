@@ -1,16 +1,14 @@
 package annotation
 
 import scientifik.plotly.*
-import scientifik.plotly.models.TraceMode
-import scientifik.plotly.models.TraceType
+import scientifik.plotly.models.ScatterMode
 
 fun main() {
     val plot = Plotly.plot2D {
-        trace {
+        scatter {
             x(2, 3, 4, 5)
             y(10, 15, 13, 17)
-            mode = TraceMode.lines
-            type = TraceType.scatter
+            mode = ScatterMode.lines
         }
 
         text {

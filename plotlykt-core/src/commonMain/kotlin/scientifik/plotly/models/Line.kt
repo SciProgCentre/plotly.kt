@@ -1,5 +1,7 @@
 package scientifik.plotly.models
 
-import hep.dataforge.meta.Scheme
+interface Line {
+    val color: Color?
 
-abstract class Line : Scheme()
+    var width: Int
+}
