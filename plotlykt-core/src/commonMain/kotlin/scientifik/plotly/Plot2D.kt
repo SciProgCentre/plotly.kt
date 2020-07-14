@@ -164,6 +164,18 @@ inline fun Plot2D.heatmap(xs: DoubleArray, block: Trace.() -> Unit = {}) = heatm
     x.doubles = xs
 }
 
+inline fun Plot2D.box(block: Box.() -> Unit): Box {
+    val trace = Box(block)
+    trace.type  = TraceType.box
+    traces(trace)
+    return trace
+}
+
+inline fun Plot2D.box(xs: DoubleArray, block: Trace.() -> Unit = {}) = box {
+    block()
+    type = TraceType.box
+    x.doubles = xs
+}
 
 fun Plot2D.text(block: Annotation.() -> Unit) {
     layout.annotation(block)

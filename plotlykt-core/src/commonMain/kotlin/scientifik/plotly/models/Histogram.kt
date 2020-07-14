@@ -21,6 +21,8 @@ enum class HistNorm {
     percent,
     probability,
     density,
+
+    @JsName("probabilityDensity")
     probability_density
 }
 

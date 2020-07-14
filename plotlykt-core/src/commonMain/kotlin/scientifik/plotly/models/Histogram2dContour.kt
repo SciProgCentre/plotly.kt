@@ -44,7 +44,7 @@ class Contours : Scheme() {
     /**
      * Determines whether to label the contour lines with their values.
      */
-    var showlables by boolean()
+    var showlabels by boolean()
 
     /**
      * Sets the font used for labeling the contour levels. The default color

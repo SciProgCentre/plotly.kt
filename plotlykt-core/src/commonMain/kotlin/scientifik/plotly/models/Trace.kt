@@ -517,7 +517,7 @@ enum class ViolinSide {
     both
 }
 
-class Box : Scheme() {
+class ViolinBox : Scheme() {
     /**
      * Sets the width of the inner box plots relative to the violins' width.
      * For example, with 1, the inner box plots are as wide as the violins.
@@ -535,7 +535,7 @@ class Box : Scheme() {
      */
     var fillcolor = Color(this, "fillcolor".asName())
 
-    companion object : SchemeSpec<Box>(::Box)
+    companion object : SchemeSpec<ViolinBox>(::ViolinBox)
 }
 
 enum class ViolinScaleMode {
@@ -795,7 +795,7 @@ open class Trace() : Scheme() {
      */
     var jitter by doubleInRange(0.0..1.0)
 
-    var box by spec(Box)
+    var box by spec(ViolinBox)
 
     /**
      * Sets the metric by which the width of each violin is determined.
@@ -863,8 +863,8 @@ open class Trace() : Scheme() {
         meanline = MeanLine(block)
     }
 
-    fun box(block: Box.() -> Unit) {
-        box = Box(block)
+    fun box(block: ViolinBox.() -> Unit) {
+        box = ViolinBox(block)
     }
 
     fun textfont(block: Font.() -> Unit) {
