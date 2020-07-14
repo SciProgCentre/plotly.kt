@@ -8,8 +8,7 @@ import scientifik.plotly.models.*
 import scientifik.plotly.palettes.T10
 
 fun main() {
-    val trace1 = Trace {
-
+    val trace1 = Violin {
         text = listOf("sample length: 32")
         marker {
             line {
@@ -36,7 +35,6 @@ fun main() {
         side = ViolinSide.positive
         y0 = Value.of(0)
 
-        type = TraceType.violin
         name = "F"
 
         x.set(listOf(10.07, 34.83, 10.65, 12.43, 24.08, 13.42, 12.48, 29.8, 14.52, 11.38,
@@ -44,7 +42,7 @@ fun main() {
             8.35, 18.64, 11.87, 19.81, 43.11, 13.0, 12.74, 13.0, 16.4, 16.47, 18.78))
     }
 
-    val trace2 = Trace {
+    val trace2 = Violin {
         text = listOf("sample length: 32")
         marker {
             line {
@@ -71,7 +69,6 @@ fun main() {
         side = ViolinSide.negative
         y0 = Value.of(0)
 
-        type = TraceType.violin
         name = "M"
 
         x.set(listOf(27.2, 22.76, 17.29, 19.44, 16.66, 32.68, 15.98, 13.03, 18.28, 24.71,

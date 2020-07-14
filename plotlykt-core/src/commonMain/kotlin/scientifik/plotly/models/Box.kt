@@ -176,6 +176,22 @@ class Box(): Trace() {
 
     var unselected by spec(SelectPoints)
 
+    /**
+     * Sets the amount of jitter in the sample points drawn.
+     * If "0", the sample points align along the distribution axis.
+     * If "1", the sample points are drawn in a random jitter
+     * of width equal to the width of the violins.
+     */
+    var jitter by doubleInRange(0.0..1.0)
+
+    /**
+     * Sets the position of the sample points in relation to the violins.
+     * If "0", the sample points are places over the center of the violins.
+     * Positive (negative) values correspond to positions to the right (left)
+     * for vertical violins and above (below) for horizontal violins.
+     */
+    var pointpos by doubleInRange(-2.0..2.0)
+
     fun q1(array: Iterable<Any>) {
         q1 = array.map{ Value.of(it) }
     }

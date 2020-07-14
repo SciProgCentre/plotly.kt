@@ -177,6 +177,19 @@ inline fun Plot2D.box(xs: DoubleArray, block: Trace.() -> Unit = {}) = box {
     x.doubles = xs
 }
 
+inline fun Plot2D.violin(block: Violin.() -> Unit): Violin {
+    val trace = Violin(block)
+    trace.type  = TraceType.violin
+    traces(trace)
+    return trace
+}
+
+inline fun Plot2D.violin(xs: DoubleArray, block: Trace.() -> Unit = {}) = violin {
+    block()
+    type = TraceType.violin
+    x.doubles = xs
+}
+
 fun Plot2D.text(block: Annotation.() -> Unit) {
     layout.annotation(block)
 }
