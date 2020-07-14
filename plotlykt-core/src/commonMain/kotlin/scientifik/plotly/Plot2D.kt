@@ -11,11 +11,24 @@ import scientifik.plotly.models.Trace
 @DFBuilder
 class Plot2D : MetaRepr {
     //TODO listen to traces changes
-    val data: MutableList<Trace> = ArrayList()
+    private val _data: MutableList<Trace> = ArrayList()
+    val data: List<Trace> get() = _data
     val layout: Layout = Layout.empty()
 
     fun traces(vararg trace: Trace) {
-        data.addAll(trace)
+        _data.addAll(trace)
+    }
+
+    fun removeTrace(trace: Trace) {
+        _data.remove(trace)
+    }
+
+    operator fun Trace.unaryPlus() {
+        traces(this)
+    }
+
+    operator fun Trace.unaryMinus() {
+        removeTrace(this)
     }
 
     override fun toMeta(): Meta = Meta {
