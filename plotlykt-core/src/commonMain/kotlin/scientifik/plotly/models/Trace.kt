@@ -887,11 +887,11 @@ open class Trace() : Scheme() {
         const val X_AXIS = "x"
         const val Y_AXIS = "y"
         const val TEXT_AXIS = "text"
-
-        operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Trace.() -> Unit = {}) = invoke {
-            block()
-            x.set(xs)
-            y.set(ys)
-        }
     }
+}
+
+operator fun <T: Trace> SchemeSpec<T>.invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Trace.() -> Unit = {}) = invoke{
+    block()
+    x.set(xs)
+    y.set(ys)
 }

@@ -14,7 +14,6 @@ fun main() {
             x(1, 2, 3, 4)
             y(10, 15, 13, 17)
             mode = TraceMode.markers
-            type = TraceType.scatter
             name = "Team A"
             text = listOf("A-1", "A-2", "A-3", "A-4", "A-5")
             textposition = TextPosition.topCenter
@@ -23,11 +22,11 @@ fun main() {
             }
             marker { size = 12 }
         }
+
         trace {
             x(2, 3, 4, 5)
             y(10, 15, 13, 17)
             mode = TraceMode.lines
-            type = TraceType.scatter
             name = "Team B"
             text = listOf("B-a", "B-b", "B-c", "B-d", "B-e")
             textposition = TextPosition.bottomCenter
@@ -36,6 +35,7 @@ fun main() {
             }
             marker { size = 12 }
         }
+
         layout {
             title {
                 text = "Data Labels Hover"

@@ -4,6 +4,7 @@ import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.*
+import scientifik.plotly.bar
 
 
 /**
@@ -17,26 +18,29 @@ fun main() {
     val y2 = listOf(4, 7, 3)
 
 
-    val trace1 = Trace(x1, y1) {
-        name = "Control"
-        error_y {
-            type = ErrorType.data
-            array = listOf(1, 0.5, 1.5)
-            visible = true
-        }
-        type = TraceType.bar
-    }
-    val trace2 = Trace(x1, y2) {
-        name = "Experimental"
-        error_y {
-            type = ErrorType.data
-            array = listOf(0.5, 1, 2)
-            visible = true
-        }
-        type = TraceType.bar
-    }
     val plot = Plotly.plot2D {
-        traces(trace1, trace2)
+        bar {
+            x.set(x1)
+            y.set(y1)
+            name = "Experimental"
+            error_y {
+                type = ErrorType.data
+                array = listOf(1, 0.5, 1.5)
+                visible = true
+            }
+        }
+
+        bar {
+            x.set(x1)
+            y.set(y2)
+            name = "Control"
+            error_y {
+                type = ErrorType.data
+                array = listOf(1, 0.5, 1.5)
+                visible = true
+            }
+        }
+
         layout {
             barmode = BarMode.group
             title {

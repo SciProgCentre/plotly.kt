@@ -17,15 +17,17 @@ import scientifik.plotly.models.MeasureMode
  * - change contours coloring
  */
 fun main() {
-    val x = mutableListOf<Double>()
-    val y = mutableListOf<Double>()
+    val x1 = mutableListOf<Double>()
+    val y1 = mutableListOf<Double>()
 
     for (i in 0 until 500) {
-        x.add(Math.random())
-        y.add(Math.random())
+        x1.add(Math.random())
+        y1.add(Math.random())
     }
 
-    val trace = Histogram2DContour(x, y) {
+    val trace = Histogram2DContour {
+        x.set(x1)
+        y.set(y1)
         colorscale = Value.of("Greens")
         contours {
             coloring = ContoursColoring.heatmap

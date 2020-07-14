@@ -21,7 +21,6 @@ fun main() {
 
     val plot = Plotly.plot2D {
         trace(x, x) {
-            type = TraceType.scatter
             marker {
                 color(XKCD.PURPLE)
             }

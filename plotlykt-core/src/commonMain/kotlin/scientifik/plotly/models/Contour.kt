@@ -44,16 +44,5 @@ class Contour(): Trace(), HeatmapContour, Histogram2dContour {
         contours = Contours(block)
     }
 
-
-    companion object : SchemeSpec<Contour>(::Contour) {
-        const val X_AXIS = "x"
-        const val Y_AXIS = "y"
-        const val TEXT_AXIS = "text"
-
-        operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Contour.() -> Unit = {}) = Contour.invoke {
-            block()
-            x.set(xs)
-            y.set(ys)
-        }
-    }
+    companion object : SchemeSpec<Contour>(::Contour)
 }

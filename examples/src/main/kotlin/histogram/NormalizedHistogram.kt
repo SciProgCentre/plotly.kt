@@ -17,16 +17,18 @@ import java.util.*
  */
 fun main() {
     val rnd = Random()
-    val x = List(500){rnd.nextDouble()}
+    val x1 = List(500){rnd.nextDouble()}
 
     val plot = Plotly.plot2D{
-        histogram(x){
+        histogram {
+            x.set(x1)
             name = "Random data"
             histnorm = HistNorm.probability
             marker{
                 color(XKCD.BLUE_GREEN)
             }
         }
+
         layout {
             title {
                 text = "Normalized Histogram"

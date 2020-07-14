@@ -111,6 +111,7 @@ open class Histogram() : Trace() {
     init {
         type = TraceType.histogram
     }
+
     /**
      * Enumerated, one of ( "empty" | "percent" | "probability" | "density" | "probability density" )
      * Specifies the type of normalization used for this histogram trace.
@@ -206,17 +207,7 @@ open class Histogram() : Trace() {
         ybins = Bins(block)
     }
 
-    companion object : SchemeSpec<Histogram>(::Histogram) {
-        const val X_AXIS = "x"
-        const val Y_AXIS = "y"
-        const val TEXT_AXIS = "text"
-
-        operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Histogram.() -> Unit = {}) = invoke {
-            block()
-            x.set(xs)
-            y.set(ys)
-        }
-    }
+    companion object : SchemeSpec<Histogram>(::Histogram)
 }
 
 class Histogram2D() : Histogram(), Table2D {
@@ -239,17 +230,7 @@ class Histogram2D() : Histogram(), Table2D {
      */
     override var zsmooth by enum(ZsmoothType.best)
 
-    companion object : SchemeSpec<Histogram2D>(::Histogram2D) {
-        const val X_AXIS = "x"
-        const val Y_AXIS = "y"
-        const val TEXT_AXIS = "text"
-
-        operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Histogram2D.() -> Unit = {}) = Histogram2D.invoke {
-            block()
-            x.set(xs)
-            y.set(ys)
-        }
-    }
+    companion object : SchemeSpec<Histogram2D>(::Histogram2D)
 }
 
 class Histogram2DContour() : Histogram(), Histogram2dContour {
@@ -278,15 +259,5 @@ class Histogram2DContour() : Histogram(), Histogram2dContour {
         contours = Contours(block)
     }
 
-    companion object : SchemeSpec<Histogram2DContour>(::Histogram2DContour) {
-        const val X_AXIS = "x"
-        const val Y_AXIS = "y"
-        const val TEXT_AXIS = "text"
-
-        operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Histogram2DContour.() -> Unit = {}) = Histogram2DContour.invoke {
-            block()
-            x.set(xs)
-            y.set(ys)
-        }
-    }
+    companion object : SchemeSpec<Histogram2DContour>(::Histogram2DContour)
 }

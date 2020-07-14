@@ -19,10 +19,12 @@ fun main() {
         2.5, 3.125, 5.0, 8.125, 12.5,
         0.625, 1.25, 3.125, 6.25, 10.625,
         0.0, 0.625, 2.5, 5.625, 10).chunked(5)
-    val x = listOf(-9, -6, -5 , -3, -1)
-    val y = listOf(0, 1, 4, 5, 7)
+    val x1 = listOf(-9, -6, -5 , -3, -1)
+    val y1 = listOf(0, 1, 4, 5, 7)
 
-    val contour = Contour(x, y) {
+    val contour = Contour {
+        x.set(x1)
+        y.set(y1)
         z(values)
 
         colorbar {

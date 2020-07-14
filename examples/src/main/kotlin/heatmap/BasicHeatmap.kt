@@ -4,7 +4,7 @@ import hep.dataforge.meta.invoke
 import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.*
+import scientifik.plotly.heatmap
 
 
 /**
@@ -13,17 +13,18 @@ import scientifik.plotly.models.*
  * - use 2D array as z
  */
 fun main() {
-    val x = listOf(1, 2, 3, 4, 5)
-    val y = listOf(6, 7, 8, 9, 10)
+    val x1 = listOf(1, 2, 3, 4, 5)
+    val y1 = listOf(6, 7, 8, 9, 10)
     val z1 = (1..25).chunked(5)
 
-    val heatmap = Heatmap(x, y) {
-        z(z1)
-        colorscale = Value.of("Reds")
-    }
-
     val plot = Plotly.plot2D {
-        traces(heatmap)
+        heatmap {
+            x.set(x1)
+            y.set(y1)
+            z(z1)
+            colorscale = Value.of("Reds")
+        }
+
         layout {
             title {
                 text = "Red Heatmap"

@@ -2,6 +2,7 @@ import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.UnstablePlotlyAPI
 import scientifik.plotly.models.Trace
+import scientifik.plotly.models.invoke
 import scientifik.plotly.show
 import scientifik.plotly.palettes.T10
 import kotlin.math.PI
@@ -15,19 +16,19 @@ fun main() {
     val y1 = x.map { sin(2.0 * PI * it) }
     val y2 = x.map { cos(2.0 * PI * it) }
 
-    val trace1 = Trace(x, y1) {
+    val trace1 = Trace.invoke(x, y1) {
         name = "sin"
         marker {
             color(T10.BLUE)
         }
     }
-    val trace2 = Trace(x, y2) {
+
+    val trace2 = Trace.invoke(x, y2) {
         name = "cos"
         marker {
             color(T10.ORANGE)
         }
     }
-
 
     val plot = Plotly.grid {
         title = "Page sample"

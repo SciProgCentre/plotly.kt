@@ -31,6 +31,7 @@ fun main() {
             y.set(values)
             histfunc = HistFunc.sum
         }
+
         layout {
             width = 750
             title {

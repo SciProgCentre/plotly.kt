@@ -105,5 +105,4 @@ class Color internal constructor(parent: Scheme, key: Name) {
     operator fun invoke(red: Number, green: Number, blue: Number, alpha: Number) {
         invoke("rgba(${red.toFloat()},${green.toFloat()},${blue.toFloat()},${alpha.toFloat()})")
     }
-
 }

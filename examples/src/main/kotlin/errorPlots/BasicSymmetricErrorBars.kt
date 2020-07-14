@@ -18,8 +18,7 @@ fun main() {
     val values_err = listOf(1, 2, 3)
 
     val plot = Plotly.plot2D{
-        trace(values_x, values_y){
-            type = TraceType.scatter
+        trace(values_x, values_y) {
             error_y {
                 type = ErrorType.data
                 array = values_err
@@ -27,6 +26,7 @@ fun main() {
                 color("orange")
             }
         }
+
         layout{
             title {
                 text = "Basic Symmetric Error Bars"

@@ -19,7 +19,9 @@ fun main() {
     val y1 = k.map { it }.toList()
     val y2 = k.map { it * 2 }.toList()
 
-    val trace1 = Histogram(x1, y1) {
+    val trace1 = Histogram {
+        x.set(x1)
+        y.set(y1)
         name = "control"
         histfunc = HistFunc.count
         marker {
@@ -33,7 +35,9 @@ fun main() {
         }
     }
 
-    val trace2 = Histogram(x2, y2) {
+    val trace2 = Histogram {
+        x.set(x2)
+        y.set(y2)
         name = "experimental"
         marker {
            color(0, 100, 255, 0.7)

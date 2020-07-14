@@ -17,9 +17,11 @@ fun main() {
     val values = List(500){rnd.nextDouble()}
 
     val plot = Plotly.plot2D{
-        histogram(values){
+        histogram {
+            x.set(values)
             name = "Random data"
         }
+
         layout{
             bargap = 0.1
             title {

@@ -47,15 +47,5 @@ class Pie() : Trace() {
      */
     var sort by boolean()
 
-    companion object : SchemeSpec<Pie>(::Pie) {
-        const val X_AXIS = "x"
-        const val Y_AXIS = "y"
-        const val TEXT_AXIS = "text"
-
-        operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Pie.() -> Unit = {}) = Pie.invoke {
-            block()
-            x.set(xs)
-            y.set(ys)
-        }
-    }
+    companion object : SchemeSpec<Pie>(::Pie)
 }

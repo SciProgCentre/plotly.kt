@@ -34,17 +34,7 @@ open class Heatmap(): Trace(), Table2D, HeatmapContour {
      */
     override var ytype by enum(DataType.array)
 
-    companion object : SchemeSpec<Heatmap>(::Heatmap) {
-        const val X_AXIS = "x"
-        const val Y_AXIS = "y"
-        const val TEXT_AXIS = "text"
-
-        operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Heatmap.() -> Unit = {}) = Heatmap.invoke {
-            block()
-            x.set(xs)
-            y.set(ys)
-        }
-    }
+    companion object : SchemeSpec<Heatmap>(::Heatmap)
 }
 
 class HeatmapGL(): Heatmap() {
@@ -52,15 +42,5 @@ class HeatmapGL(): Heatmap() {
         type = TraceType.heatmapgl
     }
 
-    companion object : SchemeSpec<HeatmapGL>(::HeatmapGL) {
-        const val X_AXIS = "x"
-        const val Y_AXIS = "y"
-        const val TEXT_AXIS = "text"
-
-        operator fun invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: HeatmapGL.() -> Unit = {}) = HeatmapGL.invoke {
-            block()
-            x.set(xs)
-            y.set(ys)
-        }
-    }
+    companion object : SchemeSpec<HeatmapGL>(::HeatmapGL)
 }

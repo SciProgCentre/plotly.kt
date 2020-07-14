@@ -27,6 +27,7 @@ fun main() {
                 colors(colors)
             }
         }
+
         layout {
             title {
                 text = "Horizontal Histogram"
@@ -46,7 +47,6 @@ fun main() {
             }
         }
     }
-
 
     plot.makeFile()
 }

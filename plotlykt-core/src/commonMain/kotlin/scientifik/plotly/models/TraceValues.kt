@@ -53,5 +53,4 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
     operator fun invoke(vararg strings: String) {
         this.strings = strings.asList()
     }
-
 }

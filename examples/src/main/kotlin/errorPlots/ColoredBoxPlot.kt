@@ -28,6 +28,7 @@ fun main() {
                 color(T10.PINK)
             }
         }
+
         trace {
             y.set(y2)
             type = TraceType.box

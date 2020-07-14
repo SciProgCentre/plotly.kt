@@ -14,13 +14,15 @@ fun main() {
     val x1 = k.map { it }.toList()
     val x2 = k.map { it/2 }.toList()
 
-    val trace1 = Histogram(x1) {
+    val trace1 = Histogram {
+        x.set(x1)
         opacity = 0.5
         marker {
             color("green")
         }
     }
-    val trace2 = Histogram(x2) {
+    val trace2 = Histogram {
+        x.set(x2)
         opacity = 0.5
         marker {
             color("orange")
@@ -35,7 +37,6 @@ fun main() {
             barmode = BarMode.stack
         }
     }
-
 
     plot.makeFile()
 }

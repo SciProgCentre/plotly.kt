@@ -4,7 +4,7 @@ import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.*
-import scientifik.plotly.trace
+import scientifik.plotly.scatter
 
 /**
  * - asymmetric error bars
@@ -20,8 +20,9 @@ fun main() {
     val err = listOf(0.5, 0.75, 1.0, 1.25)
 
     val plot = Plotly.plot2D{
-        trace(x1, y1){
-            type = TraceType.scatter
+        scatter {
+            x.set(x1)
+            y.set(y1)
             name = "both errors"
             error_y {
                 type = ErrorType.data
@@ -30,8 +31,9 @@ fun main() {
             }
         }
 
-        trace(x1, y1.map{it + 4}.toList()){
-            type = TraceType.scatter
+        scatter {
+            x.set(x1)
+            y.set(y1.map{it + 4}.toList())
             name = "positive err"
             error_y {
                 type = ErrorType.data
@@ -41,8 +43,9 @@ fun main() {
             }
         }
 
-        trace(x1, y1.map{it + 8}.toList()){
-            type = TraceType.scatter
+        scatter {
+            x.set(x1)
+            y.set(y1.map{it + 8}.toList())
             name = "negative err"
             error_y {
                 type = ErrorType.data

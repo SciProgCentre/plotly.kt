@@ -19,13 +19,15 @@ fun main() {
     val x1 = k.map { it + 1 }.toList()
     val x2 = k.map { it + 1.1 }.toList()
 
-    val trace1 = Histogram(x1) {
+    val trace1 = Histogram {
+        x.set(x1)
         opacity = 0.5
         marker {
             color(T10.BLUE)
         }
     }
-    val trace2 = Histogram(x2) {
+    val trace2 = Histogram {
+        x.set(x2)
         opacity = 0.6
         marker {
             color(T10.PINK)
