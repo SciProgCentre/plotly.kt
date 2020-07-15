@@ -10,6 +10,7 @@ import kotlin.js.JsName
 
 
 enum class AxisType {
+    @JsName("default")
     `-`,
     linear,
     log,

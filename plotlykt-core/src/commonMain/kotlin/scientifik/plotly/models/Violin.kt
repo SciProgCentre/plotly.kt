@@ -4,6 +4,7 @@ import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import scientifik.plotly.*
+import kotlin.js.JsName
 
 enum class ViolinScaleMode {
     count,
@@ -27,9 +28,13 @@ enum class ViolinHoveron {
     violins,
     points,
     kde,
+    @JsName("ViolinsPoints")
     `violins+points`,
+    @JsName("ViolinsKde")
     `violins+kde`,
+    @JsName("PointsKde")
     `points+kde`,
+    @JsName("ViolinsPointsKde")
     `violins+points+kde`,
     all
 }

@@ -3,6 +3,7 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.values.Value
 import scientifik.plotly.*
+import kotlin.js.JsName
 
 enum class BoxMean {
     `true`,
@@ -26,6 +27,7 @@ enum class QuartileMethod {
 enum class BoxHoveron {
     boxes,
     points,
+    @JsName("boxesPoints")
     `boxes+points`
 }
 
