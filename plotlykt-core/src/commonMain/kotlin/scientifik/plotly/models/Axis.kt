@@ -24,7 +24,11 @@ class Axis : Scheme() {
     /**
      * Sets the title of this axis.
      */
-    var title by string()
+    var title: String?
+        get() = config["title.text"].string ?: config["title"].string
+        set(value) {
+            config["title"] = value
+        }
 
     /**
      * Enumerated, one of ( "-" | "linear" | "log" | "date" | "category" | "multicategory" ) .

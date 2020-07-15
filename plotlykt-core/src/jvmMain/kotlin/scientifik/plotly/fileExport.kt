@@ -22,12 +22,8 @@ enum class ResourceLocation {
     SYSTEM,
 
     /**
-     * Embed the asset into the html
+     * Embed the asset into the html. Could produce very large files.
      */
-    @Deprecated(
-        "Embedded scripts could significantly increase the size of resulting file",
-        level = DeprecationLevel.WARNING
-    )
     EMBED
 }
 

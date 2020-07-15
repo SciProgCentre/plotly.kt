@@ -1,8 +1,8 @@
 package histogram
 
-import hep.dataforge.meta.invoke
 import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
+import scientifik.plotly.layout
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.ContoursColoring
 import scientifik.plotly.models.Histogram2DContour
@@ -25,7 +25,7 @@ fun main() {
         y1.add(Math.random())
     }
 
-    val trace = Histogram2DContour {
+    val trace = Histogram2DContour.invoke {
         x.set(x1)
         y.set(y1)
         colorscale = Value.of("Greens")

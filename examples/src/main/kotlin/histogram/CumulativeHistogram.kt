@@ -1,9 +1,9 @@
 package histogram
 
-import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
 import scientifik.plotly.histogram
+import scientifik.plotly.layout
+import scientifik.plotly.makeFile
 import scientifik.plotly.palettes.T10
 import java.util.*
 

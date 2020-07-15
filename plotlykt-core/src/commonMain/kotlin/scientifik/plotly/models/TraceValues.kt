@@ -58,4 +58,8 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
         this.numbers = numbers
     }
 
+    operator fun invoke(lists: List<List<Number>>){
+        this.value = lists.map{ row -> row.map{it.asValue()}.asValue()}.asValue()
+    }
+
 }

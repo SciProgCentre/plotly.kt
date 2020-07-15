@@ -9,7 +9,6 @@ import scientifik.plotly.Plot2D
 import scientifik.plotly.Plotly
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.invoke
-import scientifik.plotly.plot
 import scientifik.plotly.server.serve
 import scientifik.plotly.staticPlot
 import kotlin.math.PI

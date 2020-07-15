@@ -30,7 +30,11 @@ class Layout : Scheme() {
     /**
      * Sets the plot's title.
      */
-    var title by string()
+    var title: String?
+        get() = config["title.text"].string ?: config["title"].string
+        set(value) {
+            config["title"] = value
+        }
 
     var xaxis by lazySpec(Axis)
 

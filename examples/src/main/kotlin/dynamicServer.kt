@@ -7,13 +7,12 @@ import kotlinx.html.h1
 import scientifik.plotly.Plotly
 import scientifik.plotly.layout
 import scientifik.plotly.models.Trace
+import scientifik.plotly.models.invoke
 import scientifik.plotly.server.dynamicPlot
 import scientifik.plotly.server.pushUpdates
 import scientifik.plotly.server.serve
 import kotlin.math.PI
 import kotlin.math.sin
-import scientifik.plotly.models.Trace
-import scientifik.plotly.models.invoke
 
 
 fun main() {

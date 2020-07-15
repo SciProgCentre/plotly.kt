@@ -24,6 +24,7 @@ enableFeaturePreview("GRADLE_METADATA")
 include(
     ":plotlykt-core",
     ":plotlykt-server",
+    ":examples",
     ":fx-demo",
     ":js-demo"
 )
