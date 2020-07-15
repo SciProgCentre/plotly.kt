@@ -21,6 +21,7 @@ fun main() {
             color("green")
         }
     }
+
     val trace2 = Histogram {
         x.set(x2)
         opacity = 0.5
@@ -28,6 +29,7 @@ fun main() {
             color("orange")
         }
     }
+
     val plot = Plotly.plot2D {
         traces(trace1, trace2)
         layout {

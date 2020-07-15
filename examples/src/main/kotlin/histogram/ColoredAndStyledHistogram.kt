@@ -72,8 +72,8 @@ fun main() {
                 }
             }
             legend {
-                x = 1.0
-                y = 1.0
+                x = 1
+                y = 1
                 xanchor = XAnchor.auto
                 bgcolor("#E2E2E2")
                 traceorder = TraceOrder.normal

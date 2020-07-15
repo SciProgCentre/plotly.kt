@@ -18,6 +18,7 @@ fun main() {
         labels(labels)
         hole = 0.2
     }
+
     val plot = Plotly.plot2D {
         traces(pie)
         layout {

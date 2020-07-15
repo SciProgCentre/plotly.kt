@@ -47,8 +47,8 @@ fun main() {
                 text = "Bar Chart with Error Bars"
             }
             legend {
-                x = 1.0
-                y = 1.0
+                x = 1
+                y = 1
                 bordercolor("black")
                 borderwidth = 1
                 xanchor = XAnchor.auto

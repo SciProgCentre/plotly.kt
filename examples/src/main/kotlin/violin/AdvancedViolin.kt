@@ -25,7 +25,7 @@ fun main() {
         scalegroup = "F"
         points = ViolinPoints.all
         pointpos = 1.2
-        jitter = 0.0
+        jitter = 0
         box {
             visible = true
         }
@@ -62,7 +62,7 @@ fun main() {
         scalegroup = "M"
         points = ViolinPoints.all
         pointpos = -1.2
-        jitter = 0.0
+        jitter = 0
         box {
             visible = true
         }

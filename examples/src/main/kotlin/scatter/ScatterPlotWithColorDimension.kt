@@ -1,7 +1,7 @@
 package scatter
 
 import hep.dataforge.meta.invoke
-import hep.dataforge.values.asValue
+import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.ScatterMode
@@ -13,9 +13,8 @@ fun main() {
         mode = ScatterMode.markers
         marker {
             size = 40
-            colors(List(40) { it.asValue() })
+            colors(List(40) { Value.of(it) })
         }
-
     }
 
     val plot = Plotly.plot2D {
