@@ -73,9 +73,6 @@ fun Plot2D.toHTML(vararg headers: HtmlHeader, config: PlotlyConfig = PlotlyConfi
             }
             applyHeaders(headers)
             title(layout.title ?: "Plotly.kt")
-                applyHeaders(headers)
-            }
-            title(layout.title.text ?: "Plotly.kt")
         }
         body {
             staticPlot(this@toHTML, "plot", config)

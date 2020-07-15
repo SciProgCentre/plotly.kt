@@ -7,10 +7,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.w3c.dom.HTMLElement
-import scientifik.plotly.models.TraceMode
+import scientifik.plotly.models.ScatterMode
 import scientifik.plotly.models.TraceType
 import scientifik.plotly.plot
-import scientifik.plotly.trace
+import scientifik.plotly.scatter
 import kotlin.browser.document
 import kotlin.random.Random
 
@@ -21,16 +21,16 @@ fun main() {
 
         console.log("element loaded")
         element.plot {
-            trace {
+            scatter {
                 x(1, 2, 3, 4)
                 y(10, 15, 13, 17)
-                mode = TraceMode.markers
+                mode = ScatterMode.markers
                 type = TraceType.scatter
             }
-            trace {
+            scatter {
                 x(2, 3, 4, 5)
                 y(10, 15, 13, 17)
-                mode = TraceMode.lines
+                mode = ScatterMode.lines
                 type = TraceType.scatter
                 marker {
                     GlobalScope.launch {
@@ -45,10 +45,10 @@ fun main() {
                     }
                 }
             }
-            trace {
+            scatter {
                 x(1, 2, 3, 4)
                 y(12, 5, 2, 12)
-                mode = TraceMode.`lines+markers`
+                mode = ScatterMode.`lines+markers`
                 type = TraceType.scatter
                 marker {
                     color("red")

@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import scientifik.plotly.Plotly
 import scientifik.plotly.layout
 import scientifik.plotly.models.Trace
+import scientifik.plotly.models.invoke
 import scientifik.plotly.server.PlotlyServer
 import scientifik.plotly.server.dynamicPlot
 import scientifik.plotly.server.pullUpdates
@@ -33,7 +34,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
             traces(trace1, trace2)
             layout {
                 title = "First graph, row: 1, size: 8/12"
-                xaxis { title = "x axis name" }
+                xaxis.title = "x axis name"
                 yaxis { title = "y axis name" }
             }
         }
@@ -52,8 +53,8 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
             traces(trace)
             layout {
                 title = "Dynamic plot"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                xaxis.title = "x axis name"
+                yaxis.title = "y axis name"
             }
         }
 

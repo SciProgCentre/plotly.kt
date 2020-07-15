@@ -30,7 +30,7 @@ class Layout : Scheme() {
     /**
      * Sets the plot's title.
      */
-    var title by lazySpec(Title)
+    var title by string()
 
     var xaxis by lazySpec(Axis)
 
@@ -77,7 +77,9 @@ class Layout : Scheme() {
     }
 
     fun title(block: Title.() -> Unit) {
-        title.apply(block)
+        val spec = config["title"].node?.let { Title.wrap(it) }
+            ?: Title.empty().also { config["title"] = it.config }
+        spec.apply(block)
     }
 
     //TODO moe title to parameter block

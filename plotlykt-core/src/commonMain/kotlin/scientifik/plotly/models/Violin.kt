@@ -6,6 +6,7 @@ import hep.dataforge.values.Value
 import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
 import scientifik.plotly.list
+import kotlin.js.JsName
 
 enum class ViolinScaleMode {
     count,
@@ -29,9 +30,13 @@ enum class ViolinHoveron {
     violins,
     points,
     kde,
+    @JsName("violinsAndPoints")
     `violins+points`,
+    @JsName("violinsAndKde")
     `violins+kde`,
+    @JsName("pointsAndKde")
     `points+kde`,
+    @JsName("violinsAndPointsAndKde")
     `violins+points+kde`,
     all
 }
