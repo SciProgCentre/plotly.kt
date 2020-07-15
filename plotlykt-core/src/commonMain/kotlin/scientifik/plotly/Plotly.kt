@@ -32,8 +32,11 @@ fun List<Scheme>.toJson(): JsonArray = jsonArray {
 fun List<Scheme>.toJsonString(): String = toJson().toString()
 
 
-@RequiresOptIn("Unstable API subjected to change in future releases",RequiresOptIn.Level.WARNING)
+@RequiresOptIn("Unstable API subjected to change in future releases", RequiresOptIn.Level.WARNING)
 annotation class UnstablePlotlyAPI
+
+@RequiresOptIn("Unsupported API subjected", RequiresOptIn.Level.ERROR)
+annotation class UnsupportedPlotlyAPI
 
 class PlotlyConfig: Scheme(){
     var editable by boolean()
@@ -49,3 +52,4 @@ class PlotlyConfig: Scheme(){
     override fun toString(): String = toJsonString()
     companion object: SchemeSpec<PlotlyConfig>(::PlotlyConfig)
 }
+

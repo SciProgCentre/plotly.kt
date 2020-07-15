@@ -15,12 +15,12 @@ fun main() {
             name = "for a single trace in graph its name would be hidden"
         }
         layout {
-            title = "Graph name"
+            title { text = "Graph name" }
             xaxis {
-                title = "x axis"
+                title { text = "x axis" }
             }
             yaxis {
-                title = "y axis"
+                title { text = "y axis" }
             }
         }
     }

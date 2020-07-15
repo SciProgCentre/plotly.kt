@@ -5,24 +5,25 @@ import scientifik.plotly.models.Trace
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
+import scientifik.plotly.models.invoke
 
 @UnstablePlotlyAPI
 fun main() {
 
-    val x = (0..100).map { it.toDouble() / 100.0 }
-    val y1 = x.map { sin(2.0 * PI * it) }
-    val y2 = x.map { cos(2.0 * PI * it) }
+    val x1 = (0..100).map { it.toDouble() / 100.0 }
+    val y1 = x1.map { sin(2.0 * PI * it) }
+    val y2 = x1.map { cos(2.0 * PI * it) }
 
-    val trace1 = Trace(x, y1) { name = "sin" }
-    val trace2 = Trace(x, y2) { name = "cos" }
+    val trace1 = Trace.invoke(x1, y1) { name = "sin" }
+    val trace2 = Trace.invoke(x1, y2) { name = "cos" }
 
     Plotly.show {
         staticPlot {
             traces(trace1, trace2)
             layout {
-                title = "The plot above"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                title { text = "The plot above" }
+                xaxis { title { text = "x axis name" } }
+                yaxis { title { text = "y axis name" } }
             }
         }
         hr()
@@ -31,9 +32,9 @@ fun main() {
         staticPlot{
             traces(trace1, trace2)
             layout {
-                title = "The plot below"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                title { text = "The plot below" }
+                xaxis { title { text = "x axis name" } }
+                yaxis { title { text = "y axis name" } }
             }
         }
     }

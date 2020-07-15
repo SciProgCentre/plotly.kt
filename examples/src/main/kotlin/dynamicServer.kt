@@ -12,6 +12,9 @@ import scientifik.plotly.server.pushUpdates
 import scientifik.plotly.server.serve
 import kotlin.math.PI
 import kotlin.math.sin
+import scientifik.plotly.models.Trace
+import scientifik.plotly.models.invoke
+
 
 fun main() {
 
@@ -20,7 +23,7 @@ fun main() {
         val x = (0..100).map { it.toDouble() / 100.0 }
         val y = x.map { sin(2.0 * PI * it) }
 
-        val trace = Trace(x, y) { name = "sin" }
+        val trace = Trace.invoke(x, y) { name = "sin" }
 
 
         //root level plots go to default page
@@ -30,9 +33,9 @@ fun main() {
             dynamicPlot(container) {
                 traces(trace)
                 layout {
-                    title = "Dynamic plot"
-                    xaxis { title = "x axis name" }
-                    yaxis { title = "y axis name" }
+                    title { text = "Dynamic plot" }
+                    xaxis { title { text = "x axis name" } }
+                    yaxis { title { text = "y axis name" } }
                 }
             }
         }
@@ -43,9 +46,9 @@ fun main() {
             dynamicPlot(container) {
                 traces(trace)
                 layout {
-                    title = "Dynamic plot"
-                    xaxis { title = "x axis name" }
-                    yaxis { title = "y axis name" }
+                    title { text = "Dynamic plot" }
+                    xaxis { title { text = "x axis name" } }
+                    yaxis { title {text = "y axis name" } }
                 }
             }
         }

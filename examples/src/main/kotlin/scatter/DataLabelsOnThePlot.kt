@@ -3,18 +3,16 @@ package scatter
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
+import scientifik.plotly.models.ScatterMode
 import scientifik.plotly.models.TextPosition
-import scientifik.plotly.models.TraceMode
-import scientifik.plotly.models.TraceType
-import scientifik.plotly.trace
+import scientifik.plotly.scatter
 
 fun main() {
     val plot = Plotly.plot2D {
-        trace {
+        scatter {
             x(1, 2, 3, 4)
             y(10, 15, 13, 17)
-            mode = TraceMode.markers
-            type = TraceType.scatter
+            mode = ScatterMode.markers
             name = "Team A"
             text = listOf("A-1", "A-2", "A-3", "A-4", "A-5")
             textposition = TextPosition.topCenter
@@ -23,11 +21,11 @@ fun main() {
             }
             marker { size = 12 }
         }
-        trace {
+
+        scatter {
             x(2, 3, 4, 5)
             y(10, 15, 13, 17)
-            mode = TraceMode.lines
-            type = TraceType.scatter
+            mode = ScatterMode.lines
             name = "Team B"
             text = listOf("B-a", "B-b", "B-c", "B-d", "B-e")
             textposition = TextPosition.bottomCenter
@@ -36,8 +34,11 @@ fun main() {
             }
             marker { size = 12 }
         }
+
         layout {
-            title = "Data Labels Hover"
+            title {
+                text = "Data Labels Hover"
+            }
             xaxis {
                 range = 0.75..5.25
             }

@@ -3,32 +3,33 @@ package scatter
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.TraceMode
-import scientifik.plotly.models.TraceType
-import scientifik.plotly.trace
+import scientifik.plotly.models.ScatterMode
+import scientifik.plotly.scatter
 
 fun main() {
     val plot = Plotly.plot2D {
-        trace {
+        scatter {
             x(1, 2, 3, 4)
             y(10, 15, 13, 17)
-            mode = TraceMode.markers
-            type = TraceType.scatter
+            mode = ScatterMode.markers
         }
-        trace {
+
+        scatter {
             x(2, 3, 4, 5)
             y(10, 15, 13, 17)
-            mode = TraceMode.lines
-            type = TraceType.scatter
+            mode = ScatterMode.lines
         }
-        trace {
+
+        scatter {
             x(1, 2, 3, 4)
             y(12, 5, 2, 12)
-            mode = TraceMode.`lines+markers`
-            type = TraceType.scatter
+            mode = ScatterMode.`lines+markers`
         }
+
         layout {
-            title = "Line and Scatter Plot"
+            title {
+                text = "Line and Scatter Plot"
+            }
         }
     }
 

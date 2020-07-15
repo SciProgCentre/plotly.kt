@@ -5,13 +5,14 @@ import hep.dataforge.meta.set
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.Trace
+import scientifik.plotly.models.invoke
 
 fun main() {
 
     val x = (0..5)
     val y = x.map { it * it }
 
-    val trace = Trace(x, y) {
+    val trace = Trace.invoke(x, y) {
         name = "sin"
         /* The hover text definition is currently not supported.
          * We are applying it directly to configuration.
@@ -25,9 +26,9 @@ fun main() {
     val plot = Plotly.plot2D {
         traces(trace)
         layout {
-            title = "Plot with labels"
-            xaxis { title = "x axis name" }
-            yaxis { title = "y axis name" }
+            title { text = "Plot with labels" }
+            xaxis { title { text = "x axis name" } }
+            yaxis { title { text = "y axis name" } }
         }
     }
 

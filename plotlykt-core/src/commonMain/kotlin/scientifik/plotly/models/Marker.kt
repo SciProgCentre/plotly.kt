@@ -5,18 +5,86 @@ import hep.dataforge.names.Name
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
+import scientifik.plotly.doubleInRange
+import scientifik.plotly.intGreaterThan
+
+enum class GradientType {
+    radial,
+    horizontal,
+    vertical,
+    none
+}
+
+class Gradient : Scheme() {
+    /**
+     * Sets the final color of the gradient fill: the center color for radial,
+     * the right for horizontal, or the bottom for vertical.
+     */
+    var color = Color(this, "color".asName())
+
+    /**
+     * Sets the type of gradient used to fill the markers
+     */
+    var type by enum(GradientType.none)
+
+    companion object : SchemeSpec<Gradient>(::Gradient)
+}
 
 class Marker : Scheme() {
+    /**
+     * Sets the marker symbol type.
+     * Default: circle.
+     */
     var symbol: Symbol by enum(Symbol.circle)
-    var size by int(6)
-    var opacity by double() // FIXME("number between or equal to 0 and 1")
-    var maxdisplayed by int(0)
-    var sizeref by int(1)
-    var sizemin by int(0) // FIXME("number greater than or equal to 0")
+
+    /**
+     * Sets the marker size (in px).
+     * Default: 6.
+     */
+    var size by intGreaterThan(0)
+
+    /**
+     * Sets the marker opacity.
+     */
+    var opacity by doubleInRange(0.0..1.0)
+
+    /**
+     * Sets a maximum number of points to be drawn on the graph.
+     * "0" corresponds to no limit.
+     * Default: 0.
+     */
+    var maxdisplayed by intGreaterThan(0)
+
+    /**
+     * Has an effect only if `size` is set to a numerical array.
+     * Sets the scale factor used to determine the rendered size
+     * of marker points. Use with `sizemin` and `sizemode`.
+     * Default: 1.
+     */
+    var sizeref by int()
+
+    /**
+     * Has an effect only if `marker.size` is set to a numerical array.
+     * Sets the minimum size (in px) of the rendered marker points.
+     * Default: 0.
+     */
+    var sizemin by intGreaterThan(0)
+
+    /**
+     * Enumerated , one of ( "diameter" | "area" )
+     * Has an effect only if `marker.size` is set to a numerical array.
+     * Sets the rule for which the data in `size` is converted to pixels.
+     * Default: "diameter".
+     */
     var sizemode by enum(SizeMode.diameter)
+
     var line by spec(MarkerLine)
 
     val color = Color(this, "color".asName())
+
+    var colorbar by spec(ColorBar)
+
+    var gradient by spec(Gradient)
 
     fun colors(colors: Iterable<Any>) {
         color.value = colors.map { Value.of(it) }.asValue()
@@ -24,6 +92,14 @@ class Marker : Scheme() {
 
     fun line(block: MarkerLine.() -> Unit) {
         line = MarkerLine(block)
+    }
+
+    fun colorbar(block: ColorBar.() -> Unit) {
+        colorbar = ColorBar(block)
+    }
+
+    fun gradient(block: Gradient.() -> Unit) {
+        gradient = Gradient(block)
     }
 
     companion object : SchemeSpec<Marker>(::Marker)
@@ -57,5 +133,4 @@ class Color internal constructor(parent: Scheme, key: Name) {
     operator fun invoke(red: Number, green: Number, blue: Number, alpha: Number) {
         invoke("rgba(${red.toFloat()},${green.toFloat()},${blue.toFloat()},${alpha.toFloat()})")
     }
-
 }

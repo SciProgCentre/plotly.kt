@@ -3,13 +3,14 @@ package histogram
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.BarMode
-import scientifik.plotly.models.HistFunc
-import scientifik.plotly.models.Trace
-import scientifik.plotly.models.TraceType
+import scientifik.plotly.models.*
 import java.util.*
 
-
+/**
+ * - overlaying histograms
+ * - use RGBA as color palette
+ * - change bargap, bargroupgap, barmode parameters
+ */
 fun main() {
     val rnd = Random()
     val k = List(500) { rnd.nextDouble() }
@@ -18,14 +19,15 @@ fun main() {
     val y1 = k.map { it }.toList()
     val y2 = k.map { it * 2 }.toList()
 
-    val trace1 = Trace(x1, y1) {
+    val trace1 = Histogram {
+        x.set(x1)
+        y.set(y1)
         name = "control"
         histfunc = HistFunc.count
         marker {
-            color(255, 100, 102, 0.7)
+            color(255, 50, 102, 0.7)
         }
         opacity = 0.5
-        type = TraceType.histogram
         xbins {
             end = 2.8
             start = 0.5
@@ -33,13 +35,14 @@ fun main() {
         }
     }
 
-    val trace2 = Trace(x2, y2) {
+    val trace2 = Histogram {
+        x.set(x2)
+        y.set(y2)
         name = "experimental"
         marker {
-            color(100, 200, 102, 0.7)
+           color(0, 100, 255, 0.7)
         }
         opacity = 0.75
-        type = TraceType.histogram
         xbins {
             end = 4.0
             start = -3.2
@@ -50,15 +53,30 @@ fun main() {
     val plot = Plotly.plot2D {
         traces(trace1, trace2)
         layout {
+            width = 900
+            height = 500
             bargap = 0.05
             bargroupgap = 0.2
             barmode = BarMode.overlay
-            title = "Sampled Results"
+            title {
+                text = "Sampled Results"
+            }
             xaxis {
-                title = "Value"
+                title {
+                    text = "Value"
+                }
             }
             yaxis {
-                title = "Count"
+                title {
+                    text = "Count"
+                }
+            }
+            legend {
+                x = 1.0
+                y = 1.0
+                xanchor = XAnchor.auto
+                bgcolor("#E2E2E2")
+                traceorder = TraceOrder.normal
             }
         }
     }

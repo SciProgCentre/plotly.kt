@@ -4,32 +4,45 @@ import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.HistFunc
-import scientifik.plotly.models.TraceType
-import scientifik.plotly.trace
+import scientifik.plotly.models.XAnchor
+import scientifik.plotly.histogram
 
 
+/**
+ * - defferent binning functions
+ * - default color cycle
+ * - change legend border width
+ */
 fun main() {
-    val categories = listOf("Apples","Apples","Apples","Organges", "Bananas")
+    val categories = listOf("Apples","Apples","Apples","Oranges", "Bananas")
     val values = listOf("5","10","3","10","5")
 
     val plot = Plotly.plot2D{
-        trace{
+        histogram {
             name = "count"
-            type = TraceType.histogram
             x.set(categories)
             y.set(values)
             histfunc = HistFunc.count
         }
 
-        trace{
+        histogram {
             name = "sum"
-            type = TraceType.histogram
             x.set(categories)
             y.set(values)
             histfunc = HistFunc.sum
         }
+
         layout {
-            title = "Specify Binning Function"
+            width = 750
+            title {
+                text = "Specify Binning Function"
+            }
+            legend {
+                x = 1.0
+                y = 1.0
+                xanchor = XAnchor.auto
+                borderwidth = 1
+            }
         }
     }
 
