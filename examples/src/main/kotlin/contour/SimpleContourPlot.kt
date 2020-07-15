@@ -4,7 +4,6 @@ import hep.dataforge.meta.invoke
 import hep.dataforge.values.asValue
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.*
 import kotlin.math.cos
 import kotlin.math.ln
 import kotlin.math.sin

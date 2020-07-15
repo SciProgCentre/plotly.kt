@@ -48,31 +48,18 @@ enum class TraceType {
 }
 
 enum class Visible {
-    @JsName("true")
-    True,
-
-    @JsName("false")
-    False,
+    `true`,
+    `false`,
     legendonly
 }
 
 enum class Symbol {
     circle,
-
-    @JsName("triangleUp")
     `triangle-up`,
-
-    @JsName("triangleDown")
     `triangle-down`,
-
-    @JsName("squareCross")
     `square-cross`,
-
-    @JsName("crossThin")
     `cross-thin`,
     cross,
-
-    @JsName("lineNs")
     `line-ns`
 }
 
@@ -110,14 +97,14 @@ class MarkerLine : Scheme(), Line {
      * in `color`is set to a numerical array. Value should have
      * the same units as in `color` and if set, `cmax` must be set as well.
      */
-    var cmin by int()
+    var cmin by number()
 
     /**
      * Sets the upper bound of the color domain. Has an effect only if
      * in `color`is set to a numerical array. Value should have
      * the same units as in `color` and if set, `cmin` must be set as well.
      */
-    var cmax by int()
+    var cmax by number()
 
     /**
      * Sets the mid-point of the color domain by scaling `cmin` and/or `cmax`
@@ -125,7 +112,7 @@ class MarkerLine : Scheme(), Line {
      * is set to a numerical array. Value should have the same units
      * as in `color`. Has no effect when `cauto` is `false`.
      */
-    var cmid by int()
+    var cmid by number()
 
     /**
      * Sets the colorscale. Has an effect only if in `color`is set to a numerical array.
@@ -183,15 +170,15 @@ class MarkerLine : Scheme(), Line {
 }
 
 enum class TextPosition {
-    topLeft,
-    topCenter,
-    topRight,
-    middleLeft,
-    middleCenter,
-    middleRight,
-    bottomLeft,
-    bottomCenter,
-    bottomRight,
+    `top left`,
+    `top center`,
+    `top right`,
+    `middle left`,
+    `middle center`,
+    `middle right`,
+    `bottom left`,
+    `bottom center`,
+    `bottom right`
 }
 
 class Font : Scheme() {
@@ -288,7 +275,7 @@ class Error : Scheme() {
      * corresponding to the lengths of the error bars.
      * Default: 10.
      */
-    var value by doubleGreaterThan(0.0)
+    var value by numberGreaterThan(0)
 
     /**
      * Number greater than or equal to 0.
@@ -298,7 +285,7 @@ class Error : Scheme() {
      * direction for vertical (horizontal) bars.
      * Default: 10.
      */
-    var valueminus by doubleGreaterThan(0.0)
+    var valueminus by numberGreaterThan(0)
 
     /**
      * Sets the stoke color of the error bars.
@@ -356,7 +343,7 @@ class ColorBar : Scheme() {
      * This measure excludes the size of the padding, ticks and labels.
      * Default: 30.
      */
-    var thickness by doubleGreaterThan(0.0)
+    var thickness by numberGreaterThan(0)
 
     /**
      * Determines whether this color bar's length (i.e. the measure
@@ -371,13 +358,13 @@ class ColorBar : Scheme() {
      * is this length minus the padding on both ends.
      * Default: 1.
      */
-    var len by doubleGreaterThan(0.0)
+    var len by numberGreaterThan(0)
 
     /**
      * Sets the x position of the color bar (in plot fraction).
      * Default: 1.02.
      */
-    var x by doubleInRange(-2.0..3.0)
+    var x by numberInRange(-2.0..3.0)
 
     /**
      * Sets this color bar's horizontal position anchor.
@@ -396,7 +383,7 @@ class ColorBar : Scheme() {
      * Sets the y position of the color bar (in plot fraction).
      * Default: 0.5.
      */
-    var y by doubleInRange(-2.0..3.0)
+    var y by numberInRange(-2.0..3.0)
 
     /**
      * Sets this color bar's vertical position anchor.
@@ -514,7 +501,7 @@ open class Trace() : Scheme() {
      * Sets the x coordinate step. See `x0` for more info.
      * Default: 1.
      */
-    var dx by doubleGreaterThan(0.0)
+    var dx by numberGreaterThan(0)
 
     /**
      * Sets the y coordinates.
@@ -531,7 +518,7 @@ open class Trace() : Scheme() {
      * Sets the y coordinate step. See `y0` for more info.
      * Default: 1.
      */
-    var dy by doubleGreaterThan(0.0)
+    var dy by numberGreaterThan(0)
 
     /**
      * Determines whether or not markers and text nodes are clipped about the subplot axes.
@@ -557,21 +544,21 @@ open class Trace() : Scheme() {
      * Sets the lower bound of the color domain. Value should have the same units
      * as in `z` and if set, `zmax` must be set as well.
      */
-    var zmin by int()
+    var zmin by number()
 
     /**
      * Sets the upper bound of the color domain. Value should have the same units
      * as in `z` and if set, `zmin` must be set as well.
 
      */
-    var zmax by int()
+    var zmax by number()
 
     /**
      * Sets the mid-point of the color domain by scaling `zmin` and/or `zmax`
      * to be equidistant to this point. Value should have the same units as in `z`.
      * Has no effect when `zauto` is `false`.
      */
-    var zmid by int()
+    var zmid by number()
 
     /**
      * Data array. Sets the values of the sectors.
@@ -619,7 +606,7 @@ open class Trace() : Scheme() {
      * as a legend item (provided that the legend itself is visible).
      * Default: true.
      */
-    var visible by enum(Visible.True)
+    var visible by enum(Visible.`true`)
 
     /**
      * Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -638,7 +625,7 @@ open class Trace() : Scheme() {
      * Sets the opacity of the trace.
      * Default: 1.
      */
-    var opacity by doubleInRange(0.0..1.0)
+    var opacity by numberInRange(0.0..1.0)
 
     //var line by spec(Line)
 
@@ -659,7 +646,7 @@ open class Trace() : Scheme() {
      * with respects to the (x,y) coordinates.
      * Default: "middle center".
      */
-    var textposition by enum(TextPosition.middleCenter)
+    var textposition by enum(TextPosition.`middle center`)
 
     /**
      * Sets the text font.

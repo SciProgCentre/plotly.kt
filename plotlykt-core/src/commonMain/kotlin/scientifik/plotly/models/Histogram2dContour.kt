@@ -1,7 +1,7 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
-import scientifik.plotly.intGreaterThan
+import scientifik.plotly.numberGreaterThan
 
 class Contours : Scheme() {
     /**
@@ -14,17 +14,17 @@ class Contours : Scheme() {
     /**
      * Sets the starting contour level value. Must be less than `contours.end`
      */
-    var start by int()
+    var start by number()
 
     /**
      * Sets the end contour level value. Must be more than `contours.start`
      */
-    var end by int()
+    var end by number()
 
     /**
      * Sets the step between each contour level. Must be positive.
      */
-    var size by intGreaterThan(0)
+    var size by numberGreaterThan(0)
 
     /**
      * Determines the coloring method showing the contour values.

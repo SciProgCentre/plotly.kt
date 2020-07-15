@@ -2,17 +2,16 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.Scheme
 import hep.dataforge.meta.SchemeSpec
-import hep.dataforge.meta.numberList
 import hep.dataforge.meta.spec
 import hep.dataforge.names.asName
-import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.numberInRange
 
 class SelectMarker : Scheme() {
     /**
      * Sets the marker opacity of selected points.
      */
-    var opacity by doubleInRange(0.0..1.0)
+    var opacity by numberInRange(0.0..1.0)
 
     /**
      * Sets the marker color of selected points.

@@ -4,8 +4,8 @@ import hep.dataforge.meta.Scheme
 import hep.dataforge.meta.SchemeSpec
 import hep.dataforge.meta.enum
 import hep.dataforge.names.asName
-import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.numberInRange
 
 enum class Shape {
     hv,
@@ -51,8 +51,9 @@ class LayoutLine : Scheme(), Line {
 
     /**
      * Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.
+     * Default: 1.
      */
-    var smoothing by doubleInRange(0.0..1.3)
+    var smoothing by numberInRange(0.0..1.3)
 
     companion object : SchemeSpec<LayoutLine>(::LayoutLine)
 }

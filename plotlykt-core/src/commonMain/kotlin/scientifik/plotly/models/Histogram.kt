@@ -1,8 +1,8 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
-import scientifik.plotly.doubleGreaterThan
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.numberGreaterThan
 import kotlin.js.JsName
 
 
@@ -21,9 +21,7 @@ enum class HistNorm {
     percent,
     probability,
     density,
-
-    @JsName("probabilityDensity")
-    probability_density
+    `probability density`
 }
 
 class Bins : Scheme() {
@@ -42,7 +40,7 @@ class Bins : Scheme() {
      * For category data, `start` is based on the category
      * serial numbers, and defaults to -0.5.
      */
-    var start by double()
+    var start by number()
 
     /**
      * Sets the end value for the x axis bins. The last bin may
@@ -52,7 +50,7 @@ class Bins : Scheme() {
      * dates use a date string, and for category data `end`
      * is based on the category serial numbers.
      */
-    var end by double()
+    var end by number()
 
     /**
      * Sets the size of each x axis bin. Default behavior:
@@ -65,7 +63,7 @@ class Bins : Scheme() {
      * For category data, the number of categories to bin together
      * (always defaults to 1).
      */
-    var size by doubleGreaterThan(0.0)
+    var size by numberGreaterThan(0)
 
     companion object : SchemeSpec<Bins>(::Bins)
 }

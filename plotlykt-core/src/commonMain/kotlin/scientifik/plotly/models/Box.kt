@@ -1,11 +1,8 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
-import hep.dataforge.names.asName
 import hep.dataforge.values.Value
-import scientifik.plotly.doubleInRange
-import scientifik.plotly.intGreaterThan
-import scientifik.plotly.list
+import scientifik.plotly.*
 
 enum class BoxMean {
     `true`,
@@ -37,7 +34,7 @@ class Box(): Trace(), SelectedPoints {
      * Sets the width of the box in data coordinate If "0" (default value) the width is
      * automatically selected based on the positions of other box traces in the same subplot.
      */
-    var width by intGreaterThan(0)
+    var width by numberGreaterThan(0)
 
     /**
      * If "true", the mean of the box(es)' underlying distribution is drawn as a dashed line
@@ -86,7 +83,7 @@ class Box(): Trace(), SelectedPoints {
      * Sets the width of the whiskers relative to the box' width. For example, with 1,
      * the whiskers are as wide as the box(es). Default: 0.5.
      */
-    var whiskerwidth by doubleInRange(0.0..1.0)
+    var whiskerwidth by numberInRange(0.0..1.0)
 
     /**
      * Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
@@ -161,7 +158,7 @@ class Box(): Trace(), SelectedPoints {
      * If "1", the sample points are drawn in a random jitter
      * of width equal to the width of the violins.
      */
-    var jitter by doubleInRange(0.0..1.0)
+    var jitter by numberInRange(0.0..1.0)
 
     /**
      * Sets the position of the sample points in relation to the violins.
@@ -169,7 +166,7 @@ class Box(): Trace(), SelectedPoints {
      * Positive (negative) values correspond to positions to the right (left)
      * for vertical violins and above (below) for horizontal violins.
      */
-    var pointpos by doubleInRange(-2.0..2.0)
+    var pointpos by numberInRange(-2.0..2.0)
 
     /**
      * Do the hover effects highlight individual boxes or sample points or both?

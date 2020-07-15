@@ -1,10 +1,7 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
-import scientifik.plotly.doubleInRange
-import scientifik.plotly.intGreaterThan
-import scientifik.plotly.lazySpec
-import scientifik.plotly.list
+import scientifik.plotly.*
 
 
 enum class BarMode {
@@ -54,13 +51,13 @@ class Layout : Scheme() {
      * Sets the gap (in plot fraction) between bars
      * of adjacent location coordinates.
      */
-    var bargap by doubleInRange(0.0..1.0)
+    var bargap by numberInRange(0.0..1.0)
 
     /**
      * Sets the gap (in plot fraction) between bars of the same location coordinate.
      * Default: 0.
      */
-    var bargroupgap by doubleInRange(0.0..1.0)
+    var bargroupgap by numberInRange(0.0..1.0)
 
     var legend by lazySpec(Legend)
 

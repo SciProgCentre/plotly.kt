@@ -73,12 +73,11 @@ fun <T : Configurable> Configurable.lazySpec(
  */
 fun Configurable.doubleInRange(
     range: ClosedFloatingPointRange<Double>,
-    default: Double? = null,
     key: Name? = null
 ): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Double {
         val name = key ?: property.name.asName()
-        return config[name].double ?: default ?: Double.NaN
+        return config[name].double ?: Double.NaN
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Double) {
@@ -96,12 +95,11 @@ fun Configurable.doubleInRange(
  */
 fun Configurable.doubleGreaterThan(
         minValue: Double,
-        default: Double? = null,
         key: Name? = null
 ): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Double {
         val name = key ?: property.name.asName()
-        return config[name].double ?: default ?: Double.NaN
+        return config[name].double ?: Double.NaN
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Double) {
@@ -120,12 +118,11 @@ fun Configurable.doubleGreaterThan(
  */
 fun Configurable.intGreaterThan(
         minValue: Int,
-        default: Int? = null,
         key: Name? = null
 ): ReadWriteProperty<Any?, Int> = object : ReadWriteProperty<Any?, Int> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Int {
         val name = key ?: property.name.asName()
-        return config[name].int ?: default ?: minValue
+        return config[name].int ?: minValue
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Int) {
@@ -143,17 +140,60 @@ fun Configurable.intGreaterThan(
  */
 fun Configurable.intInRange(
         range: ClosedRange<Int>,
-        default: Int? = null,
         key: Name? = null
 ): ReadWriteProperty<Any?, Int> = object : ReadWriteProperty<Any?, Int> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Int {
         val name = key ?: property.name.asName()
-        return config[name].int ?: default ?: 0
+        return config[name].int ?: 0
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Int) {
         val name = key ?: property.name.asName()
         if (value in range) {
+            config[name] = value
+        } else {
+            error("$value not in range $range")
+        }
+    }
+}
+
+/**
+ * A safe [Number] ray
+ */
+fun Configurable.numberGreaterThan(
+        minValue: Number,
+        key: Name? = null
+): ReadWriteProperty<Any?, Number> = object : ReadWriteProperty<Any?, Number> {
+    override fun getValue(thisRef: Any?, property: KProperty<*>): Number {
+        val name = key ?: property.name.asName()
+        return config[name].number ?: minValue
+    }
+
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: Number) {
+        val name = key ?: property.name.asName()
+        if (value.toDouble() >= minValue.toDouble()) {
+            config[name] = value
+        } else {
+            error("$value less than $minValue")
+        }
+    }
+}
+
+/**
+ * A safe [Number] range
+ */
+fun Configurable.numberInRange(
+        range: ClosedRange<Double>,
+        key: Name? = null
+): ReadWriteProperty<Any?, Number> = object : ReadWriteProperty<Any?, Number> {
+    override fun getValue(thisRef: Any?, property: KProperty<*>): Number {
+        val name = key ?: property.name.asName()
+        return config[name].int ?: 0
+    }
+
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: Number) {
+        val name = key ?: property.name.asName()
+        if (value.toDouble() in range) {
             config[name] = value
         } else {
             error("$value not in range $range")

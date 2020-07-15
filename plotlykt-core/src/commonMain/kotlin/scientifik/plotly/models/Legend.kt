@@ -2,8 +2,8 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
-import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.numberInRange
 import kotlin.js.JsName
 
 enum class LegendOrientation {
@@ -57,7 +57,7 @@ class Legend : Scheme() {
      * Defaults to "1.02" for vertical legends and
      * defaults to "0" for horizontal legends.
      */
-    var x by doubleInRange(-2.0..3.0)
+    var x by numberInRange(-2.0..3.0)
 
     /**
      * Sets the legend's horizontal position anchor.
@@ -79,7 +79,7 @@ class Legend : Scheme() {
      * defaults to "1.1" for horizontal legends on graph
      * with one or multiple range sliders.
      */
-    var y by doubleInRange(-2.0..3.0)
+    var y by numberInRange(-2.0..3.0)
 
     /**
      * Sets the legend's vertical position anchor.

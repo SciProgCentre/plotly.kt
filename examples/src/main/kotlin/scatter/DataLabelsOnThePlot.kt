@@ -15,7 +15,7 @@ fun main() {
             mode = ScatterMode.markers
             name = "Team A"
             text = listOf("A-1", "A-2", "A-3", "A-4", "A-5")
-            textposition = TextPosition.topCenter
+            textposition = TextPosition.`top center`
             textfont {
                 family = "Raleway, sans-serif"
             }
@@ -28,7 +28,7 @@ fun main() {
             mode = ScatterMode.lines
             name = "Team B"
             text = listOf("B-a", "B-b", "B-c", "B-d", "B-e")
-            textposition = TextPosition.bottomCenter
+            textposition = TextPosition.`bottom center`
             textfont {
                 family = "Times New Roman"
             }

@@ -5,8 +5,9 @@ import hep.dataforge.names.Name
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
-import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.numberGreaterThan
+import scientifik.plotly.numberInRange
 
 enum class GradientType {
     radial,
@@ -46,7 +47,7 @@ class Marker : Scheme() {
     /**
      * Sets the marker opacity.
      */
-    var opacity by doubleInRange(0.0..1.0)
+    var opacity by numberInRange(0.0..1.0)
 
     /**
      * Sets a maximum number of points to be drawn on the graph.
@@ -61,14 +62,14 @@ class Marker : Scheme() {
      * of marker points. Use with `sizemin` and `sizemode`.
      * Default: 1.
      */
-    var sizeref by int()
+    var sizeref by number()
 
     /**
      * Has an effect only if `marker.size` is set to a numerical array.
      * Sets the minimum size (in px) of the rendered marker points.
      * Default: 0.
      */
-    var sizemin by intGreaterThan(0)
+    var sizemin by numberGreaterThan(0)
 
     /**
      * Enumerated , one of ( "diameter" | "area" )

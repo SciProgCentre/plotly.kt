@@ -3,9 +3,7 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
-import scientifik.plotly.doubleInRange
-import scientifik.plotly.intGreaterThan
-import scientifik.plotly.list
+import scientifik.plotly.*
 
 enum class ViolinScaleMode {
     count,
@@ -40,7 +38,7 @@ class MeanLine : Scheme() {
     /**
      * Sets the mean line width.
      */
-    var width by intGreaterThan(0)
+    var width by numberGreaterThan(0)
 
     /**
      * Sets the mean line color.
@@ -70,7 +68,7 @@ class ViolinBox : Scheme() {
      * For example, with 1, the inner box plots are as wide as the violins.
      * Default: 0.25.
      */
-    var width by doubleInRange(0.0..1.0)
+    var width by numberInRange(0.0..1.0)
 
     /**
      * Determines if an miniature box plot is drawn inside the violins.
@@ -144,7 +142,7 @@ class Violin() : Trace() {
      * If "1", the sample points are drawn in a random jitter
      * of width equal to the width of the violins.
      */
-    var jitter by doubleInRange(0.0..1.0)
+    var jitter by numberInRange(0.0..1.0)
 
     /**
      * Sets the position of the sample points in relation to the violins.
@@ -152,7 +150,7 @@ class Violin() : Trace() {
      * Positive (negative) values correspond to positions to the right (left)
      * for vertical violins and above (below) for horizontal violins.
      */
-    var pointpos by doubleInRange(-2.0..2.0)
+    var pointpos by numberInRange(-2.0..2.0)
 
     fun meanline(block: MeanLine.() -> Unit) {
         meanline = MeanLine(block)
