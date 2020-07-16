@@ -62,15 +62,6 @@ fun FlowContent.staticPlot(
     plotlyConfig: PlotlyConfig = PlotlyConfig()
 ): Plot2D = consumer.staticPlot(plot, plotId, plotlyConfig)
 
-//fun FlowContent.staticPlot(
-//    plotId: String? = null,
-//    plotlyConfig: PlotlyConfig = PlotlyConfig(),
-//    builder: Plot2D.() -> Unit
-//): Plot2D {
-//    val plot = Plot2D().apply(builder)
-//    return staticPlot(plot, plotId ?: plot.toString(), plotlyConfig)
-//}
-
 /**
  * Create a html (including headers) string from plot
  */
@@ -216,40 +207,54 @@ class LocalBootstrap(val basePath: Path) : HtmlHeader {
 
 object PlotlyJupyter {
     const val JUPYTER_ASSETS_PATH = ".jupyter_kotlin/assets/"
-    private const val PLOTLY_DEFINED_FLAG = "kotlinPlotly"
+    private const val PLOTLY_LOADER = "kotlinPlotly"
 
     fun initScript(): String {
         val filePath = checkOrStoreFile(
             Path.of("."),
             Path.of(System.getProperty("user.home")).resolve(JUPYTER_ASSETS_PATH + plotlyResource),
             plotlyResource
-        )
+        ).toAbsolutePath().toString().replace("\\", "/")
         return createHTML().div {
-            val divID = "${PLOTLY_DEFINED_FLAG}-init"
+            val divID = "${PLOTLY_LOADER}-init"
             id = divID
             script {
                 unsafe {
                     //language=JavaScript
                     +"""
 
-                    if(typeof window.$PLOTLY_DEFINED_FLAG === 'undefined'){
-                        (function() {
+                    if(typeof window.$PLOTLY_LOADER === 'undefined'){
+                        let element = document.getElementById("$divID");
+                        window.$PLOTLY_LOADER = new Promise((resolve, reject) => {
                             let script = document.createElement("script");
                             script.type = "text/javascript";
                             script.src = "${filePath}";
                             script.onload = function() {
-                                window.$PLOTLY_DEFINED_FLAG = true
+                                resolve(script)
                             };
                             script.onerror = function(event) {
+                                console.log("Error loading local Plotly JS from "${filePath}", using CDN instead")
                                 let div = document.createElement("div");
                                 div.style.color = 'darkred';
-                                div.textContent = 'Error loading Plotly JS';
-                                document.getElementById("$divID").appendChild(div);
+                                div.textContent = 'Error loading local Plotly JS from ${filePath}, using CDN instead';
+                                element.appendChild(div);
+                                console.log("Loading plotly from CDN")
+                                let cdnScript = document.createElement("script");
+                                cdnScript.type = "text/javascript";
+                                cdnScript.src = "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.54.6/plotly.min.js";
+                                cdnScript.onload = function() {
+                                    console.log("Successfully loaded Plotly from cdn")
+                                    resolve(cdnScript)
+                                };
+                                cdnScript.onerror = function(event){
+                                    console.log("Failed to load Plotly from cdn")
+                                    reject("Failed to load Plotly from cdn")
+                                }
+                                element.appendChild(cdnScript);
                             };
-                            var e = document.getElementById("$divID");
-                            e.appendChild(script);
-                        })();
-    
+
+                            element.appendChild(script);
+                        });               
                     }
 
                     """.trimIndent()
@@ -259,7 +264,7 @@ object PlotlyJupyter {
     }
 
     fun plotToHTML(plot: Plot2D): String = createHTML().div {
-        staticPlot(plot)
+        plot(plot, config = PlotlyConfig { responsive = true })
     }
 
     fun pageToHTML(page: PlotlyPage): String = createHTML().div {

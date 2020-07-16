@@ -1,7 +1,6 @@
 package scientifik.plotly
 
-import kotlinx.html.*
-import kotlinx.html.stream.createHTML
+import kotlinx.html.FlowContent
 
 interface PlotlyContainer {
     fun FlowContent.renderPlot(
@@ -35,35 +34,36 @@ fun FlowContent.plot(
     return plot(plot, plotId ?: plot.toString(), plotlyConfig, handle)
 }
 
-
 class PlotlyPage(val renderPage: FlowContent.(container: PlotlyContainer) -> Unit)
 
-/**
- * Create a custom layout with loaded plotly dependency
- */
-fun Plotly.page(
-    vararg headers: HtmlHeader,
-    title: String? = null,
-    page: PlotlyPage
-): String {
-    return createHTML().html {
-        head {
-            meta {
-                charset = "utf-8"
-            }
-            applyHeaders(headers)
-            title(title ?: "Plotly.kt")
-        }
-        body {
-            with(page) {
-                renderPage(StaticPlotlyContainer(this@body))
-            }
-        }
-    }
-}
+fun Plotly.page(renderPage: FlowContent.(container: PlotlyContainer) -> Unit) = PlotlyPage(renderPage)
 
-fun Plotly.page(
-    vararg headers: HtmlHeader,
-    title: String? = null,
-    pageBuilder: FlowContent.(container: PlotlyContainer) -> Unit
-): String = page(headers = *headers, title = title, page = PlotlyPage(pageBuilder))
+///**
+// * Create a custom layout with loaded plotly dependency
+// */
+//fun Plotly.page(
+//    vararg headers: HtmlHeader,
+//    title: String? = null,
+//    page: PlotlyPage
+//): String {
+//    return createHTML().html {
+//        head {
+//            meta {
+//                charset = "utf-8"
+//            }
+//            applyHeaders(headers)
+//            title(title ?: "Plotly.kt")
+//        }
+//        body {
+//            with(page) {
+//                renderPage(StaticPlotlyContainer(this@body))
+//            }
+//        }
+//    }
+//}
+//
+//fun Plotly.page(
+//    vararg headers: HtmlHeader,
+//    title: String? = null,
+//    pageBuilder: FlowContent.(container: PlotlyContainer) -> Unit
+//): String = page(headers = *headers, title = title, page = PlotlyPage(pageBuilder))

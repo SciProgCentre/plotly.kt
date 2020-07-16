@@ -1,6 +1,7 @@
 package scientifik.plotly
 
-import kotlinx.html.FlowContent
+import kotlinx.html.*
+import kotlinx.html.stream.createHTML
 import java.awt.Desktop
 import java.nio.file.Files
 import java.nio.file.Path
@@ -46,22 +47,27 @@ fun Plot2D.makeFile(
     }
 }
 
-/**
- * Make a file with a custom page layout
- */
-fun Plotly.makeFile(
+fun PlotlyPage.makeFile(
     path: Path? = null,
     show: Boolean = true,
     title: String? = null,
-    resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
-    pageBuilder: FlowContent.(container: PlotlyContainer) -> Unit
+    resourceLocation: ResourceLocation = ResourceLocation.LOCAL
 ) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
     Files.createDirectories(actualFile.parent)
-    Files.writeString(
-        actualFile,
-        page(inferPlotlyHeader(path, resourceLocation), title = title, pageBuilder = pageBuilder)
-    )
+    val string = createHTML().html {
+        head {
+            meta {
+                charset = "utf-8"
+            }
+            inferPlotlyHeader(path, resourceLocation).invoke(this)
+            title(title ?: "Plotly.kt")
+        }
+        body {
+            renderPage(StaticPlotlyContainer(this@body))
+        }
+    }
+    Files.writeString(actualFile, string)
     if (show) {
         Desktop.getDesktop().browse(actualFile.toFile().toURI())
     }
@@ -71,4 +77,4 @@ fun Plotly.show(
     title: String? = null,
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
     pageBuilder: FlowContent.(container: PlotlyContainer) -> Unit
-) = makeFile(null, true, title, resourceLocation, pageBuilder)
+) = page(pageBuilder).makeFile(null, true, title, resourceLocation)
