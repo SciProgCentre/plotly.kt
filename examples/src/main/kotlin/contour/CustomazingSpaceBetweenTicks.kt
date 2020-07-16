@@ -14,7 +14,7 @@ fun main() {
                     0, 0.625, 2.5, 5.625, 10).chunked(5)
 
     val contour = Contour {
-        z(z1)
+        z.set(z1)
         colorscale = Value.of("Jet")
         dx = 10
         x0 = Value.of(5)

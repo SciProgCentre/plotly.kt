@@ -15,7 +15,7 @@ fun main() {
     val x1 = (0..7)
     val y2 = (0..6)
 
-    val z = listOf(null, null, null, 12, 13, 14, 15, 16,
+    val z1 = listOf(null, null, null, 12, 13, 14, 15, 16,
             null, 1, null, 11, null, null, null, 17,
             null, 2, 6, 7, null, null, null, 18,
             null, 3, null, 8, null, null, null, 19,
@@ -26,20 +26,20 @@ fun main() {
     val contour1 = Contour {
         x.set(x1)
         y.set(y2)
-        z(z)
+        z.set(z1)
         showscale = false
     }
 
     val contour2 = Contour {
         x.set(x1)
         y.set(y2)
-        z(z)
+        z.set(z1)
         showscale = false
         connectgaps = true
     }
 
     Plotly.show {
-        plot {
+        staticPlot {
             traces(contour1)
             layout {
                 width = 800
@@ -50,7 +50,7 @@ fun main() {
             }
         }
 
-        plot {
+        staticPlot {
             traces(contour2)
             layout {
                 width = 800
@@ -59,7 +59,6 @@ fun main() {
                     text = "Connected Gaps"
                 }
             }
-
         }
     }
 }

@@ -67,7 +67,9 @@ fun main() {
                 tickcolor("white")
             }
             annotations = annotationsList
-            title.text = "Heatmap with Annotations"
+            title {
+                text = "Heatmap with Annotations"
+            }
         }
     }
 

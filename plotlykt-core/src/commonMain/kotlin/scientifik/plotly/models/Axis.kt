@@ -7,6 +7,7 @@ import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
 import scientifik.plotly.intGreaterThan
 import scientifik.plotly.lazySpec
+import scientifik.plotly.numberInRange
 import kotlin.js.JsName
 
 
@@ -63,6 +64,12 @@ class Axis : Scheme() {
      * Default: #444.
      */
     var tickcolor = Color(this, "tickcolor".asName())
+
+    /**
+     * Sets the angle of the tick labels with respect to the horizontal.
+     * For example, a `tickangle` of -90 draws the tick labels vertically.
+     */
+    var tickangle by numberInRange(-360.0..360.0)
 
     /**
      * Sets the tick font.

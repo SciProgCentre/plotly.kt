@@ -49,7 +49,7 @@ fun main() {
         contour {
             x.set(x1)
             y.set(y1)
-            z(z1)
+            z.set(z1)
 
             line {
                 width = 4
@@ -66,7 +66,7 @@ fun main() {
         contour {
             x.set(x1)
             y.set(y1)
-            z(z2)
+            z.set(z2)
 
             line {
                 width = 4
