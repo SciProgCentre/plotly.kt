@@ -449,8 +449,17 @@ class ColorBar : Scheme() {
      */
     var constraintext by enum(ConstrainText.both)
 
+    /**
+     * Sets the color bar's tick label font
+     */
+    var tickfont by spec(Font)
+
     fun title(block: Title.() -> Unit) {
         title = Title(block)
+    }
+
+    fun tickfont(block: Font.() -> Unit) {
+        tickfont = Font(block)
     }
 
     companion object : SchemeSpec<ColorBar>(::ColorBar)

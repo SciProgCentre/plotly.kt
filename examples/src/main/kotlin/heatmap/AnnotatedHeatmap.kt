@@ -59,6 +59,7 @@ fun main() {
 
         layout {
             height = 800
+            width = 1400
             xaxis {
                 tickcolor("white")
             }
