@@ -233,7 +233,7 @@ object PlotlyJupyter {
                                 resolve(script)
                             };
                             script.onerror = function(event) {
-                                console.log("Error loading local Plotly JS from "${filePath}", using CDN instead")
+                                console.log("Error loading local Plotly JS from ${filePath}, using CDN instead")
                                 let div = document.createElement("div");
                                 div.style.color = 'darkred';
                                 div.textContent = 'Error loading local Plotly JS from ${filePath}, using CDN instead';
