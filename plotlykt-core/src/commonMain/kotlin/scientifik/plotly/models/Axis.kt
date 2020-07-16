@@ -63,6 +63,13 @@ class Axis : Scheme() {
      * Sets the tick font.
      */
     var tickfont by spec(Font)
+
+    /**
+     * Sets the angle of the tick labels with respect to the horizontal.
+     * For example, a `tickangle` of -90 draws the tick labels vertically.
+     */
+    var tickangle by number()
+
     /**
      * Determines whether or not the range of this axis is computed
      * in relation to the input data. See `rangemode` for more info.
