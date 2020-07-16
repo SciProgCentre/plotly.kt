@@ -8,7 +8,7 @@ import scientifik.plotly.Plotly
 import scientifik.plotly.layout
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.invoke
-import scientifik.plotly.server.dynamicPlot
+import scientifik.plotly.plot
 import scientifik.plotly.server.pushUpdates
 import scientifik.plotly.server.serve
 import kotlin.math.PI
@@ -26,10 +26,10 @@ fun main() {
 
 
         //root level plots go to default page
-        page { container ->
-            h1{+"This is the plot page"}
-            a("/other"){ +"The other page"}
-            dynamicPlot(container) {
+        page { plotly ->
+            h1 { +"This is the plot page" }
+            a("/other") { +"The other page" }
+            plot(handle = plotly) {
                 traces(trace)
                 layout {
                     title { text = "Dynamic plot" }
@@ -39,15 +39,15 @@ fun main() {
             }
         }
 
-        page("other") { container ->
+        page("other") { plotly ->
             h1 { +"This is the other plot page" }
-            a("/"){ +"Back to the main page"}
-            dynamicPlot(container) {
+            a("/") { +"Back to the main page" }
+            plot(handle = plotly) {
                 traces(trace)
                 layout {
                     title { text = "Dynamic plot" }
                     xaxis { title { text = "x axis name" } }
-                    yaxis { title {text = "y axis name" } }
+                    yaxis { title { text = "y axis name" } }
                 }
             }
         }

@@ -28,6 +28,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.html.*
 import scientifik.plotly.Plot2D
 import scientifik.plotly.PlotlyConfig
+import scientifik.plotly.PlotlyContainer
 
 enum class PlotlyUpdateMode {
     NONE,
@@ -35,7 +36,7 @@ enum class PlotlyUpdateMode {
     PULL
 }
 
-class PlotlyPageConfig : Scheme() {
+class PlotlyServerPageConfig : Scheme() {
     //TODO make separate title for different pages
     var title by string("Plotly.kt page")
     var updateMode by enum(PlotlyUpdateMode.NONE, key = "update.mode".toName())
@@ -47,83 +48,60 @@ class PlotlyPageConfig : Scheme() {
 }
 
 
-class PlotServerContainer(val baseUrl: Url, val controller: PlotlyPageController, val updateMode: PlotlyUpdateMode)
+class PlotServerContainer(val baseUrl: Url, val controller: PlotlyPageController, val updateMode: PlotlyUpdateMode): PlotlyContainer{
+    override fun FlowContent.renderPlot(plot: Plot2D, plotId: String, config: PlotlyConfig): Plot2D {
+        controller.listenTo(plot, plotId)
+        div {
+            id = plotId
 
-/**
- * Attach plot with active data source to the element
- *
- * @param container an environment required to register plot data updates
- */
-fun FlowContent.dynamicPlot(
-    container: PlotServerContainer,
-    plot: Plot2D,
-    plotId: String = plot.toString(),
-    config: PlotlyConfig = PlotlyConfig()
-): Plot2D = with(container) {
-
-    controller.listenTo(plot, plotId)
-
-    div {
-        id = plotId
-
-        val dataUrl = baseUrl.copy(
-            encodedPath = baseUrl.encodedPath + "/data/$plotId"
-        )
-        script {
-            unsafe {
-                //language=JavaScript
-                +"\n    createPlotFrom('$plotId','$dataUrl', $config);\n"
-            }
-
-            // starting plot updates if required
-            when (updateMode) {
-                PlotlyUpdateMode.PUSH -> {
-                    val wsUrl = baseUrl.copy(
-                        protocol = URLProtocol.WS,
-                        encodedPath = baseUrl.encodedPath + "/ws/$plotId"
-                    )
-                    unsafe {
-                        //language=JavaScript
-                        +"\n    startPush('$plotId', '$wsUrl');\n"
-                    }
+            val dataUrl = baseUrl.copy(
+                encodedPath = baseUrl.encodedPath + "/data/$plotId"
+            )
+            script {
+                unsafe {
+                    //language=JavaScript
+                    +"\n    createPlotFrom('$plotId','$dataUrl', $config);\n"
                 }
-                PlotlyUpdateMode.PULL -> {
-                    unsafe {
-                        //language=JavaScript
-                        +"\n    startPull('$plotId', '$dataUrl', ${controller.updateInterval});\n"
+
+                // starting plot updates if required
+                when (updateMode) {
+                    PlotlyUpdateMode.PUSH -> {
+                        val wsUrl = baseUrl.copy(
+                            protocol = URLProtocol.WS,
+                            encodedPath = baseUrl.encodedPath + "/ws/$plotId"
+                        )
+                        unsafe {
+                            //language=JavaScript
+                            +"\n    startPush('$plotId', '$wsUrl');\n"
+                        }
                     }
-                }
-                PlotlyUpdateMode.NONE -> {
-                    //do nothing
+                    PlotlyUpdateMode.PULL -> {
+                        unsafe {
+                            //language=JavaScript
+                            +"\n    startPull('$plotId', '$dataUrl', ${controller.updateInterval});\n"
+                        }
+                    }
+                    PlotlyUpdateMode.NONE -> {
+                        //do nothing
+                    }
                 }
             }
         }
+        return plot
     }
-    return@with plot
+
 }
 
-/**
- * Create a dynamic plot with pull or push data updates
- */
-fun FlowContent.dynamicPlot(
-    container: PlotServerContainer,
-    plotId: String? = null,
-    plotBuilder: Plot2D.() -> Unit
-): Plot2D {
-    val plot = Plot2D().apply(plotBuilder)
-    return dynamicPlot(container, plot, plotId ?: plot.toString())
-}
-
-class PlotlyPage(
-    val config: PlotlyPageConfig,
+class PlotlyServerPage(
+    val config: PlotlyServerPageConfig,
     val route: String = "/",
-    val bodyBuilder: BODY.(container: PlotServerContainer) -> Unit
+    val renderContent: FlowContent.(container: PlotlyContainer) -> Unit
 )
 
 /**
  *
  */
-fun Application.plotlyModule(pages: List<PlotlyPage>) {
+fun Application.plotlyModule(pages: List<PlotlyServerPage>) {
     install(WebSockets){
         pingPeriodMillis = 3000
     }
@@ -196,7 +174,9 @@ fun Application.plotlyModule(pages: List<PlotlyPage>) {
                                 controller,
                                 page.config.updateMode
                             )
-                            with(page) { bodyBuilder(container) }
+                            with(page) {
+                               renderContent(container)
+                            }
                         }
                     }
 
@@ -207,9 +187,9 @@ fun Application.plotlyModule(pages: List<PlotlyPage>) {
 }
 
 fun Application.plotlyModule(
-    config: PlotlyPageConfig,
+    config: PlotlyServerPageConfig,
     route: String = "/",
-    bodyBuilder: BODY.(container: PlotServerContainer) -> Unit
+    contentRender: FlowContent.(container: PlotlyContainer) -> Unit
 ) {
-    plotlyModule(listOf(PlotlyPage(config, route, bodyBuilder)))
+    plotlyModule(listOf(PlotlyServerPage(config, route, contentRender)))
 }

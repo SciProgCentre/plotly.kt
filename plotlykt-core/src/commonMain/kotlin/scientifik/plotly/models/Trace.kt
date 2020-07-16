@@ -19,6 +19,7 @@ enum class TraceType {
 
     @UnsupportedPlotlyAPI
     table,
+
     @UnsupportedPlotlyAPI
     image,
 
@@ -721,11 +722,11 @@ open class Trace() : Scheme() {
     var ycalendar by enum(Calendar.gregorian)
 
     fun values(array: Iterable<Any>) {
-        values = array.map{ Value.of(it) }
+        values = array.map { Value.of(it) }
     }
 
     fun labels(array: Iterable<Any>) {
-        labels = array.map{ Value.of(it) }
+        labels = array.map { Value.of(it) }
     }
 
     fun colorbar(block: ColorBar.() -> Unit) {
@@ -760,8 +761,14 @@ open class Trace() : Scheme() {
     }
 }
 
-operator fun <T: Trace> SchemeSpec<T>.invoke(xs: Any, ys: Any? = null/*, zs: Any? = null*/, block: Trace.() -> Unit = {}) = invoke{
-    block()
+operator fun <T : Trace> SchemeSpec<T>.invoke(
+    xs: Any,
+    ys: Any? = null,
+    zs: Any? = null,
+    block: Trace.() -> Unit = {}
+) = invoke {
     x.set(xs)
-    y.set(ys)
+    if (ys != null) y.set(ys)
+    if (zs != null) z.set(zs)
+    block()
 }

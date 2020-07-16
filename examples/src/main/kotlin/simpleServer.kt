@@ -9,8 +9,8 @@ import scientifik.plotly.Plot2D
 import scientifik.plotly.Plotly
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.invoke
+import scientifik.plotly.plot
 import scientifik.plotly.server.serve
-import scientifik.plotly.staticPlot
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -36,7 +36,7 @@ fun main() {
                 style = "display: flex;   align-items: stretch; "
                 div {
                     style = "width: 64%;"
-                    plot1 = staticPlot {
+                    plot1 = plot {
                         traces(trace1, trace2)
                         layout {
                             title { text = "First graph, row: 1, size: 8/12" }
@@ -47,7 +47,7 @@ fun main() {
                 }
                 div {
                     style = "width: 32%;"
-                    staticPlot {
+                    plot {
                         traces(trace1, trace2)
                         layout {
                             title { text = "Second graph, row: 1, size: 4/12" }
@@ -61,8 +61,7 @@ fun main() {
 
 
             div {
-                staticPlot {
-
+                plot {
                     traces(trace1, trace2)
                     layout {
                         title { text = "Third graph, row: 2, size: 12/12" }
@@ -76,7 +75,7 @@ fun main() {
         page("other") {
             h1 { +"This is the other plot page" }
             a("/") { +"Back to the main page" }
-            staticPlot(plot1)
+            plot(plot1)
         }
 
     }

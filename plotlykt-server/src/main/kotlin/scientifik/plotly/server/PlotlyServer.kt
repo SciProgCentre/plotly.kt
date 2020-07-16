@@ -8,8 +8,9 @@ import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.*
-import kotlinx.html.BODY
+import kotlinx.html.FlowContent
 import scientifik.plotly.Plotly
+import scientifik.plotly.PlotlyContainer
 import scientifik.plotly.UnstablePlotlyAPI
 import java.awt.Desktop
 import java.net.URI
@@ -25,7 +26,7 @@ class PlotlyServer(
     val port: Int = 7777
 ) : AutoCloseable {
 
-    val config: PlotlyPageConfig = PlotlyPageConfig()
+    val config: PlotlyServerPageConfig = PlotlyServerPageConfig()
 
     private val serverStarterWaiter = CompletableDeferred<Unit>()
 
@@ -42,7 +43,7 @@ class PlotlyServer(
     /**
      * Generate a new page with plots
      */
-    fun page(route: String = DEFAULT_PAGE, bodyBuilder: BODY.(container: PlotServerContainer) -> Unit) {
+    fun page(route: String = DEFAULT_PAGE, bodyBuilder: FlowContent.(container: PlotlyContainer) -> Unit) {
         parentScope.launch {
             serverStarterWaiter.join()
             server.application.plotlyModule(config, route, bodyBuilder)

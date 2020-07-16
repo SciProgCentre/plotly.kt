@@ -7,6 +7,9 @@ import hep.dataforge.meta.string
 import hep.dataforge.names.Name
 import kotlinx.html.*
 import kotlinx.html.stream.createHTML
+import java.awt.Desktop
+import java.nio.file.Files
+import java.nio.file.Path
 
 @UnstablePlotlyAPI
 interface PageListener {
@@ -117,3 +120,25 @@ fun PlotGrid.toHtml(vararg headers: HtmlHeader): String {
 
 @UnstablePlotlyAPI
 fun Plotly.grid(block: PlotGrid.() -> Unit): PlotGrid = PlotGrid().apply(block)
+
+/**
+ * Create a standalone html with the page
+ * @param path the reference to html file. If null, create a temporary file
+ * @param show if true, start the browser after file is created
+ */
+@UnstablePlotlyAPI
+fun PlotGrid.makeFile(
+    path: Path? = null,
+    show: Boolean = true,
+    resourceLocation: ResourceLocation = ResourceLocation.LOCAL
+) {
+    val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
+    Files.createDirectories(actualFile.parent)
+    Files.writeString(actualFile, toHtml(inferPlotlyHeader(path, resourceLocation)))
+    if (show) {
+        Desktop.getDesktop().browse(actualFile.toFile().toURI())
+    }
+}
+
+@UnstablePlotlyAPI
+fun PlotGrid.show() = makeFile()
