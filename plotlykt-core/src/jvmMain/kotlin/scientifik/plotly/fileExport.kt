@@ -7,9 +7,9 @@ import java.nio.file.Path
 
 enum class ResourceLocation {
     /**
-     * Use cdn source for assets
+     * Use cdn or other remote source for assets
      */
-    CDN,
+    REMOTE,
 
     /**
      * Store assets in a sibling folder `plotly-assets` or in a system-wide folder if this is a default temporary file
@@ -22,19 +22,15 @@ enum class ResourceLocation {
     SYSTEM,
 
     /**
-     * Embed the asset into the html
+     * Embed the asset into the html. Could produce very large files.
      */
-    @Deprecated(
-        "Embedded scripts could significantly increase the size of resulting file",
-        level = DeprecationLevel.WARNING
-    )
     EMBED
 }
 
-private fun inferHeader(target: Path?, resourceLocation: ResourceLocation): HtmlHeader = when(resourceLocation){
-    ResourceLocation.CDN -> PlotlyCdnHeader
+private fun inferPlotlyHeader(target: Path?, resourceLocation: ResourceLocation): HtmlHeader = when(resourceLocation){
+    ResourceLocation.REMOTE -> PlotlyCdnHeader
     ResourceLocation.LOCAL -> if(target != null) {
-        localPlotlyJs(target)
+        LocalPlotlyJs(target)
     } else{
         SystemPlotlyJs
     }
@@ -50,11 +46,12 @@ private fun inferHeader(target: Path?, resourceLocation: ResourceLocation): Html
 fun Plot2D.makeFile(
     path: Path? = null,
     show: Boolean = true,
-    resourceLocation: ResourceLocation = ResourceLocation.LOCAL
+    resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
+    config: PlotlyConfig = PlotlyConfig()
 ) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
     Files.createDirectories(actualFile.parent)
-    Files.writeString(actualFile, toHTML(inferHeader(path, resourceLocation)))
+    Files.writeString(actualFile, toHTML(inferPlotlyHeader(path, resourceLocation), config = config))
     if (show) {
         Desktop.getDesktop().browse(actualFile.toFile().toURI())
     }
@@ -72,7 +69,7 @@ fun Plotly.makeFile(
 ) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
     Files.createDirectories(actualFile.parent)
-    Files.writeString(actualFile, page(inferHeader(path, resourceLocation), title = title, bodyBuilder = bodyBuilder))
+    Files.writeString(actualFile, page(inferPlotlyHeader(path, resourceLocation), title = title, bodyBuilder = bodyBuilder))
     if (show) {
         Desktop.getDesktop().browse(actualFile.toFile().toURI())
     }
@@ -97,7 +94,7 @@ fun PlotGrid.makeFile(
 ) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
     Files.createDirectories(actualFile.parent)
-    Files.writeString(actualFile, toHtml(inferHeader(path,resourceLocation)))
+    Files.writeString(actualFile, toHtml(inferPlotlyHeader(path,resourceLocation)))
     if (show) {
         Desktop.getDesktop().browse(actualFile.toFile().toURI())
     }

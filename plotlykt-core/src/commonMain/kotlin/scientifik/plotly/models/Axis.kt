@@ -6,6 +6,7 @@ import hep.dataforge.values.ListValue
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.lazySpec
 import kotlin.js.JsName
 
 
@@ -23,7 +24,11 @@ class Axis : Scheme() {
     /**
      * Sets the title of this axis.
      */
-    var title by spec(Title)
+    var title: String?
+        get() = config["title.text"].string ?: config["title"].string
+        set(value) {
+            config["title"] = value
+        }
 
     /**
      * Enumerated, one of ( "-" | "linear" | "log" | "date" | "category" | "multicategory" ) .
@@ -62,14 +67,7 @@ class Axis : Scheme() {
     /**
      * Sets the tick font.
      */
-    var tickfont by spec(Font)
-
-    /**
-     * Sets the angle of the tick labels with respect to the horizontal.
-     * For example, a `tickangle` of -90 draws the tick labels vertically.
-     */
-    var tickangle by number()
-
+    var tickfont by lazySpec(Font)
     /**
      * Determines whether or not the range of this axis is computed
      * in relation to the input data. See `rangemode` for more info.
@@ -103,7 +101,9 @@ class Axis : Scheme() {
     val color = Color(this, "color".asName())
 
     fun title(block: Title.() -> Unit) {
-        title = Title(block)
+        val spec = config["title"].node?.let { Title.wrap(it) }
+            ?: Title.empty().also { config["title"] = it.config }
+        spec.apply(block)
     }
 
     fun tickfont(block: Font.() -> Unit) {

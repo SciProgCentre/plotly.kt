@@ -1,7 +1,9 @@
 plugins {
     id("scientifik.mpp")
     id("scientifik.publish")
+    id("org.jetbrains.dokka")
 }
+
 
 val dataforgeVersion: String by rootProject.extra
 val htmlVersion: String by rootProject.extra
@@ -27,7 +29,7 @@ kotlin {
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-html-js:${htmlVersion}")
                 api("org.jetbrains:kotlin-css-js:1.0.0-pre.109-kotlin-1.3.72")
-//                api(npm("plotly.js"))
+                api(npm("plotly.js", "1.54.6"))
             }
         }
     }

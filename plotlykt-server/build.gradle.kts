@@ -1,6 +1,7 @@
 plugins {
     id("scientifik.jvm")
     id("scientifik.publish")
+    id("org.jetbrains.dokka")
 }
 
 repositories {

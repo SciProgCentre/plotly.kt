@@ -37,7 +37,6 @@ class MetaChangeCollector {
     }
 }
 
-
 /**
  * A structure that collects changes to plot layout as well as trace configuration
  */

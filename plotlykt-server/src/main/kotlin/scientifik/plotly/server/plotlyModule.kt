@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.html.*
 import scientifik.plotly.Plot2D
+import scientifik.plotly.PlotlyConfig
 
 enum class PlotlyUpdateMode {
     NONE,
@@ -53,12 +54,15 @@ class PlotServerContainer(val baseUrl: Url, val controller: PlotlyPageController
  *
  * @param container an environment required to register plot data updates
  */
-fun FlowContent.servePlot(
+fun FlowContent.dynamicPlot(
     container: PlotServerContainer,
     plot: Plot2D,
-    plotId: String = plot.toString()
+    plotId: String = plot.toString(),
+    config: PlotlyConfig = PlotlyConfig()
 ): Plot2D = with(container) {
+
     controller.listenTo(plot, plotId)
+
     div {
         id = plotId
 
@@ -67,7 +71,8 @@ fun FlowContent.servePlot(
         )
         script {
             unsafe {
-                +"\n    createPlotFrom('$plotId','$dataUrl');\n"
+                //language=JavaScript
+                +"\n    createPlotFrom('$plotId','$dataUrl', $config);\n"
             }
 
             // starting plot updates if required
@@ -100,13 +105,13 @@ fun FlowContent.servePlot(
 /**
  * Create a dynamic plot with pull or push data updates
  */
-fun FlowContent.servePlot(
+fun FlowContent.dynamicPlot(
     container: PlotServerContainer,
     plotId: String? = null,
     plotBuilder: Plot2D.() -> Unit
 ): Plot2D {
     val plot = Plot2D().apply(plotBuilder)
-    return servePlot(container, plot, plotId ?: plot.toString())
+    return dynamicPlot(container, plot, plotId ?: plot.toString())
 }
 
 class PlotlyPage(
@@ -119,12 +124,14 @@ class PlotlyPage(
  *
  */
 fun Application.plotlyModule(pages: List<PlotlyPage>) {
-    install(WebSockets)
+    install(WebSockets){
+        pingPeriodMillis = 3000
+    }
 
     routing {
         static {
-            resource("/js/plots.js")
             resource("/js/plotly.min.js")
+            resource("/js/updates.js")
         }
         pages.forEach { page ->
             val controller = PlotlyPageController(this@plotlyModule, page.config.updateInterval)
@@ -170,7 +177,7 @@ fun Application.plotlyModule(pages: List<PlotlyPage>) {
                                     src = "/js/plotly.min.js"
                                 }
                                 script {
-                                    src = "/js/plots.js"
+                                    src = "/js/updates.js"
                                 }
                             }
                             title(page.config.title)

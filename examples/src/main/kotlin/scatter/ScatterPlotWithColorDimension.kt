@@ -21,6 +21,7 @@ fun main() {
         traces(scatter)
 
         layout {
+            title = "Scatter plot with color dimension"
             title {
                 text = "ScatterPlotWithColorDimension"
             }

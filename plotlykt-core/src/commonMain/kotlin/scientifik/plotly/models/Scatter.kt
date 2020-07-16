@@ -24,7 +24,7 @@ enum class ScatterMode {
 
 enum class GroupNorm {
     @JsName("empty")
-    `""`,
+    ` `,
     fraction,
     percent
 }
@@ -42,7 +42,7 @@ enum class FillType {
 enum class ScatterHoveron {
     points,
     fills,
-    @JsName("pointsFills")
+    @JsName("pointsAndFills")
     `points+fills`
 }
 
@@ -74,7 +74,7 @@ open class Scatter() : Trace(), SelectedPoints {
      * trace values at that location. "percent" is the same but multiplied by 100 to show percentages. If there are
      * multiple subplots, or multiple `stackgroup`s on one subplot, each will be normalized within its own set.
      */
-    var groupnorm by enum(GroupNorm.`""`)
+    var groupnorm by enum(GroupNorm.` `)
 
     /**
      * Set several scatter traces (on the same subplot) to the same stackgroup in order to add their

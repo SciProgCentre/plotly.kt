@@ -532,6 +532,11 @@ open class Trace() : Scheme() {
     val y = axis(Y_AXIS)
 
     /**
+     * Z coordinates
+     */
+    var z = axis(Z_AXIS)
+
+    /**
      * Alternate to `y`. Builds a linear space of y coordinates.
      * Use with `dy` where `y0` is the starting coordinate and `dy` the step.
      */
@@ -549,11 +554,6 @@ open class Trace() : Scheme() {
      * to set `xaxis.layer` and `yaxis.layer` to "below traces".
      */
     var cliponaxis by boolean()
-
-    /**
-     * Data array. Sets the z data.
-     */
-    var z by list()
 
     /**
      * Determines whether or not the color domain is computed with respect to
@@ -730,10 +730,6 @@ open class Trace() : Scheme() {
      */
     var ycalendar by enum(Calendar.gregorian)
 
-    fun z(array: Iterable<Any>) {
-        z = array.map{ Value.of(it) }
-    }
-
     fun values(array: Iterable<Any>) {
         values = array.map{ Value.of(it) }
     }
@@ -769,6 +765,7 @@ open class Trace() : Scheme() {
     companion object : SchemeSpec<Trace>(::Trace) {
         const val X_AXIS = "x"
         const val Y_AXIS = "y"
+        const val Z_AXIS = "z"
         const val TEXT_AXIS = "text"
     }
 }

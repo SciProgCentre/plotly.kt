@@ -201,7 +201,7 @@ fun Configurable.numberInRange(
     }
 }
 
-
+@OptIn(DFExperimental::class)
 fun Configurable.duration(
     default: Duration? = null,
     key: Name? = null
@@ -221,6 +221,13 @@ fun Configurable.duration(
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Duration?) {
         val name = key ?: property.name.asName()
-
+        if (value == null) {
+            config.remove(name)
+        } else {
+            config.edit(name) {
+                set("value", value.inMilliseconds)
+                set("unit", DurationUnit.MILLISECONDS)
+            }
+        }
     }
 }

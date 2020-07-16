@@ -234,7 +234,7 @@ class Histogram2D() : Histogram(), Table2D {
     companion object : SchemeSpec<Histogram2D>(::Histogram2D)
 }
 
-class Histogram2DContour() : Histogram(), Histogram2dContour {
+class Histogram2DContour : Histogram(), ContourSpec {
     init {
         type = TraceType.histogram2dcontour
     }
