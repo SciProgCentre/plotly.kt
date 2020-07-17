@@ -6,7 +6,7 @@ import scientifik.plotly.makeFile
 import scientifik.plotly.models.Pie
 
 /**
- * - basic pie(donut) chart
+ * - basic pie chart
  * - change height and width of the plot
  */
 fun main() {
@@ -16,7 +16,6 @@ fun main() {
     val pie = Pie {
         values(values)
         labels(labels)
-        hole = 0.2
     }
 
     val plot = Plotly.plot2D {
