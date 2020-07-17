@@ -26,9 +26,9 @@ fun main() {
     val plot = Plotly.plot2D {
         traces(trace)
         layout {
-            title { text = "Plot with labels" }
-            xaxis { title { text = "x axis name" } }
-            yaxis { title { text = "y axis name" } }
+            title = "Plot with labels"
+            xaxis { title = "x axis name" }
+            yaxis { title = "y axis name" }
         }
     }
 

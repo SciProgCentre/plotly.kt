@@ -6,6 +6,7 @@ import java.nio.file.Files
 import kotlin.math.PI
 import kotlin.math.sin
 
+
 fun main() {
     val x = (0..100).map { it.toDouble() / 100.0 }
     val y = x.map { sin(2.0 * PI * it) }
@@ -15,12 +16,12 @@ fun main() {
             name = "for a single trace in graph its name would be hidden"
         }
         layout {
-            title { text = "Graph name" }
+            title = "Graph name"
             xaxis {
-                title { text = "x axis" }
+                title = "x axis"
             }
             yaxis {
-                title { text = "y axis" }
+                title = "y axis"
             }
         }
     }

@@ -21,12 +21,12 @@ fun main() {
     val y1 = (0..size).map { it.toDouble() / 5 }
     val z = mutableListOf<MutableList<Double>>()
 
-    for (i in 0..size) {
+    for (i in y1.indices) {
         z.add(MutableList(size+1){0.0})
     }
 
-    for (i in 0..size) {
-        for (j in 0..size) {
+    for (i in x1.indices) {
+        for (j in y1.indices) {
             z[i][j] = sin(x1[i]).pow(10) + cos(10 + y1[j] * x1[i]) * cos(x1[i])
         }
     }
@@ -52,9 +52,7 @@ fun main() {
         layout {
             width = 1000
             height = 500
-            title {
-                text = "Colored Contour Plot"
-            }
+            title  = "Colored Contour Plot"
         }
     }
 

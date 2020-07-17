@@ -5,6 +5,7 @@ import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.heatmap
 
+
 /**
  * - Annotated heatmap with categorical labels
  * - change size of labels font
@@ -13,7 +14,10 @@ import scientifik.plotly.heatmap
 fun main() {
     val x1 = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
     val y1 = listOf("Morning", "Afternoon", "Evening")
-    val z1 = listOf(1, null, 30, 50, 1, 20, 1, 60, 80, 30, 30, 60, 1, -10, 20).chunked(5)
+    val z1 = listOf(
+            listOf<Number?>(1, null, 30, 50, 1),
+            listOf<Number>(20, 1, 60, 80, 30),
+            listOf<Number>(30, 60, 1, -10, 20))
 
     val plot = Plotly.plot2D {
         heatmap {

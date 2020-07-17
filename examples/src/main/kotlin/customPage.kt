@@ -21,9 +21,9 @@ fun main() {
         staticPlot {
             traces(trace1, trace2)
             layout {
-                title { text = "The plot above" }
-                xaxis { title { text = "x axis name" } }
-                yaxis { title { text = "y axis name" } }
+                title = "The plot above"
+                xaxis { title = "x axis name" }
+                yaxis { title = "y axis name" }
             }
         }
         hr()
@@ -32,9 +32,9 @@ fun main() {
         staticPlot{
             traces(trace1, trace2)
             layout {
-                title { text = "The plot below" }
-                xaxis { title { text = "x axis name" } }
-                yaxis { title { text = "y axis name" } }
+                title = "The plot below"
+                xaxis { title = "x axis name" }
+                yaxis { title = "y axis name" }
             }
         }
     }

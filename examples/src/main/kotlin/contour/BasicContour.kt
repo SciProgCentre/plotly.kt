@@ -42,9 +42,7 @@ fun main() {
         traces(contour)
 
         layout {
-            title {
-                text = "Basic Contour Plot"
-            }
+            title  = "Basic Contour Plot"
             xaxis {
                 tickfont {
                     size = 16

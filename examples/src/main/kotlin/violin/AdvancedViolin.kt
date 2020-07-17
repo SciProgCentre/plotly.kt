@@ -81,13 +81,10 @@ fun main() {
                 7.51, 28.44, 15.48, 16.58, 7.56, 10.34, 13.51, 18.71, 20.53))
     }
 
-
     val plot = Plotly.plot2D {
         traces(trace1, trace2)
         layout {
-            title {
-                text = "Advanced Violin Plot"
-            }
+            title = "Advanced Violin Plot"
         }
     }
 

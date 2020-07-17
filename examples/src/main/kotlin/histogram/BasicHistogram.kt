@@ -6,6 +6,7 @@ import scientifik.plotly.makeFile
 import scientifik.plotly.histogram
 import java.util.*
 
+
 /**
  * - basic histogram
  * - change size of gap between bins

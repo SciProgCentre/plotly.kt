@@ -21,14 +21,12 @@ fun main() {
         heatmap {
             x.set(x1)
             y.set(y1)
-            z(z1)
+            z.set(z1)
             colorscale = Value.of("Reds")
         }
 
         layout {
-            title {
-                text = "Red Heatmap"
-            }
+            title = "Red Heatmap"
         }
     }
 

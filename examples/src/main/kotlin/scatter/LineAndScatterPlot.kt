@@ -6,6 +6,7 @@ import scientifik.plotly.makeFile
 import scientifik.plotly.models.ScatterMode
 import scientifik.plotly.scatter
 
+
 fun main() {
     val plot = Plotly.plot2D {
         scatter {
@@ -27,9 +28,7 @@ fun main() {
         }
 
         layout {
-            title {
-                text = "Line and Scatter Plot"
-            }
+            title = "Line and Scatter Plot"
         }
     }
 

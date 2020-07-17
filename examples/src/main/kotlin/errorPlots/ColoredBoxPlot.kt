@@ -36,9 +36,7 @@ fun main() {
         }
 
         layout {
-            title {
-                text = "Colored Box Plot"
-            }
+            title = "Colored Box Plot"
         }
     }
 

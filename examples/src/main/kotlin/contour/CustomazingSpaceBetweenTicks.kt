@@ -7,11 +7,12 @@ import scientifik.plotly.makeFile
 import scientifik.plotly.models.Contour
 
 fun main() {
-    val z1 = listOf(10, 10.625, 12.5, 15.625, 20,
-                    5.625, 6.25, 8.125, 11.25, 15.625,
-                    2.5, 3.125, 5.0, 8.125, 12.5,
-                    0.625, 1.25, 3.125, 6.25, 10.625,
-                    0, 0.625, 2.5, 5.625, 10).chunked(5)
+    val z1 = listOf(
+            listOf<Number>(10, 10.625, 12.5, 15.625, 20),
+            listOf<Number>(5.625, 6.25, 8.125, 11.25, 15.625),
+            listOf<Number>(2.5, 3.125, 5.0, 8.125, 12.5),
+            listOf<Number>(0.625, 1.25, 3.125, 6.25, 10.625),
+            listOf<Number>(0, 0.625, 2.5, 5.625, 10))
 
     val contour = Contour {
         z.set(z1)
@@ -26,7 +27,7 @@ fun main() {
         traces(contour)
 
         layout {
-            title { text = "Customizing Spacing Between X and Y Axis Ticks" }
+            title = "Customizing Spacing Between X and Y Axis Ticks"
         }
     }
 

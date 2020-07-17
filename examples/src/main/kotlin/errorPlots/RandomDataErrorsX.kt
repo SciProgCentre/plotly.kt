@@ -30,9 +30,7 @@ fun main() {
             }
         }
         layout {
-            title {
-                text = "Random Data Error"
-            }
+            title  = "Random Data Error"
         }
     }
 

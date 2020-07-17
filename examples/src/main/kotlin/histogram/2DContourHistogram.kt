@@ -43,9 +43,7 @@ fun main() {
         traces(trace)
 
         layout {
-            title {
-                text = "2D Contour Histogram of a Bivariate Normal Distribution"
-            }
+            title= "2D Contour Histogram of a Bivariate Normal Distribution"
         }
     }
 

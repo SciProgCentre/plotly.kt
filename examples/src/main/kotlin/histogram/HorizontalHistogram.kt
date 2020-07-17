@@ -29,19 +29,13 @@ fun main() {
         }
 
         layout {
-            title {
-                text = "Horizontal Histogram"
-            }
+            title= "Horizontal Histogram"
             bargap = 0.1
             xaxis {
-                title {
-                    text = "Count"
-                }
+                title = "Count"
             }
             yaxis {
-                title {
-                    text = "Value"
-                }
+                title = "Value"
                 ticklen = 3
                 tickcolor("#FFF")
             }

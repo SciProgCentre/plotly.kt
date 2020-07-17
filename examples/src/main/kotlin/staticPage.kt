@@ -33,27 +33,27 @@ fun main() {
         plot(row = 1, width = 8) {
             traces(trace1, trace2)
             layout {
-                title { text = "First graph, row: 1, size: 8/12" }
-                xaxis { title { text = "x axis name" } }
-                yaxis { title { text = "y axis name" } }
+                title = "First graph, row: 1, size: 8/12"
+                xaxis { title = "x axis name" }
+                yaxis { title = "y axis name" }
             }
         }
 
         plot(row = 1, width = 4) {
             traces(trace1, trace2)
             layout {
-                title { text = "Second graph, row: 1, size: 4/12" }
-                xaxis { title { text = "x axis name" } }
-                yaxis { title { text = "y axis name" } }
+                title = "Second graph, row: 1, size: 4/12"
+                xaxis { title = "x axis name" }
+                yaxis { title = "y axis name" }
             }
         }
 
         plot(row = 2, width = 12) {
             traces(trace1, trace2)
             layout {
-                title { text = "Third graph, row: 2, size: 12/12" }
-                xaxis { title { text = "x axis name" } }
-                yaxis { title { text = "y axis name" } }
+                title = "Third graph, row: 2, size: 12/12"
+                xaxis { title = "x axis name" }
+                yaxis { title = "y axis name" }
             }
         }
     }

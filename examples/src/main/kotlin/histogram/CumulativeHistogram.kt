@@ -7,6 +7,7 @@ import scientifik.plotly.makeFile
 import scientifik.plotly.palettes.T10
 import java.util.*
 
+
 /**
  * - cumulative histogram
  * - use Tableau10 as color palette
@@ -30,18 +31,12 @@ fun main() {
         }
 
         layout {
-            title {
-                text = "Cumulative Histogram"
-            }
+            title = "Cumulative Histogram"
             xaxis {
-                title {
-                    text = "Value"
-                }
+                title = "Value"
             }
             yaxis {
-                title {
-                    text = "Sum of probabilities"
-                }
+                title = "Sum of probabilities"
             }
         }
     }

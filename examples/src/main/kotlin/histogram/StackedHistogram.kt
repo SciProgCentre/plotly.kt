@@ -33,9 +33,7 @@ fun main() {
     val plot = Plotly.plot2D {
         traces(trace1, trace2)
         layout {
-            title {
-                text = "Stacked Histogram"
-            }
+            title = "Stacked Histogram"
             barmode = BarMode.stack
         }
     }

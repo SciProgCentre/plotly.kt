@@ -7,6 +7,7 @@ import scientifik.plotly.models.ScatterMode
 import scientifik.plotly.models.TextPosition
 import scientifik.plotly.scatter
 
+
 fun main() {
     val plot = Plotly.plot2D {
         scatter {
@@ -36,9 +37,7 @@ fun main() {
         }
 
         layout {
-            title {
-                text = "Data Labels Hover"
-            }
+            title = "Data Labels Hover"
             xaxis {
                 range = 0.75..5.25
             }

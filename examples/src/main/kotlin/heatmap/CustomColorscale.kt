@@ -16,7 +16,11 @@ import scientifik.plotly.models.Font
 fun main() {
     val x1 = listOf("Monday", "Wednesday", "Friday", "Sunday")
     val y1 = listOf("June", "July", "August")
-    val z1 = listOf(listOf(.1, .3, .5, .7), listOf(1.0, .8, .6, .4), listOf(.6, .4, .2, 0.0), listOf(.9, .7, .5, .3))
+    val z1 = listOf(
+            listOf<Number>(.1, .3, .5, .7),
+            listOf<Number>(1.0, .8, .6, .4),
+            listOf<Number>(.6, .4, .2, 0.0),
+            listOf<Number>(.9, .7, .5, .3))
     val customColorscale = listOf(listOf(0, "navy"), listOf(1, "plum"))
 
     val annotationsList = mutableListOf<Annotation>()

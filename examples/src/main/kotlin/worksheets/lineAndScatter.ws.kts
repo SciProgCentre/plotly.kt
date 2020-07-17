@@ -24,6 +24,6 @@ Plotly.plot2D {
     }
 
     layout {
-        title { text = "Line and Scatter Plot" }
+        title = "Line and Scatter Plot"
     }
 }.toHTML()

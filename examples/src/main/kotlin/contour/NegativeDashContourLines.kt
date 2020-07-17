@@ -25,13 +25,13 @@ fun main() {
     val z1 = mutableListOf<MutableList<Double?>>()
     val z2 = mutableListOf<MutableList<Double?>>()
 
-    for (i in 0 until rangeSize) {
+    for (i in x1.indices) {
         z1.add(MutableList(rangeSize){0.0})
         z2.add(MutableList(rangeSize){0.0})
     }
 
-    for (i in 0 until rangeSize) {
-        for (j in 0 until rangeSize) {
+    for (i in x1.indices) {
+        for (j in y1.indices) {
             val elem1 = exp(-x1[i].pow(2) - y1[j].pow(2))
             val elem2 = exp(-(x1[i] - 1).pow(2) - (y1[j] - 1).pow(2))
             val elem = (elem1 - elem2) * 2
@@ -85,7 +85,7 @@ fun main() {
         layout {
             width = 900
             height = 750
-            title { text = "Negative Contours Dashed"}
+            title = "Negative Contours Dashed"
         }
     }
 

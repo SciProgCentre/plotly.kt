@@ -26,10 +26,8 @@ fun main() {
             }
         }
 
-        layout{
-            title {
-                text = "Basic Symmetric Error Bars"
-            }
+        layout {
+            title  = "Basic Symmetric Error Bars"
         }
     }
 

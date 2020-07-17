@@ -56,9 +56,7 @@ fun main() {
         }
 
         layout{
-            title {
-                text = "Asymmetric Error Bars"
-            }
+            title  = "Asymmetric Error Bars"
             legend {
                 x = 0.05
                 borderwidth = 1

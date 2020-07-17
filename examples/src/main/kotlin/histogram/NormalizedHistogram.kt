@@ -24,15 +24,13 @@ fun main() {
             x.set(x1)
             name = "Random data"
             histnorm = HistNorm.probability
-            marker{
+            marker {
                 color(XKCD.BLUE_GREEN)
             }
         }
 
         layout {
-            title {
-                text = "Normalized Histogram"
-            }
+            title= "Normalized Histogram"
             bargap = 0.1
             xaxis {
                 tickfont {

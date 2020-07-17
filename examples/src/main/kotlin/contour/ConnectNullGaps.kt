@@ -15,13 +15,14 @@ fun main() {
     val x1 = (0..7)
     val y2 = (0..6)
 
-    val z1 = listOf(null, null, null, 12, 13, 14, 15, 16,
-            null, 1, null, 11, null, null, null, 17,
-            null, 2, 6, 7, null, null, null, 18,
-            null, 3, null, 8, null, null, null, 19,
-            5, 4, 10, 9, null, null, null, 20,
-            null, null, null, 27, null, null, null, 21,
-            null, null, null, 26, 25, 24, 23, 22).chunked(8)
+    val z1 = listOf(
+            listOf<Number?>(null, null, null, 12, 13, 14, 15, 16),
+            listOf<Number?>(null, 1, null, 11, null, null, null, 17),
+            listOf<Number?>(null, 2, 6, 7, null, null, null, 18),
+            listOf<Number?>(null, 3, null, 8, null, null, null, 19),
+            listOf<Number?>(5, 4, 10, 9, null, null, null, 20),
+            listOf<Number?>(null, null, null, 27, null, null, null, 21),
+            listOf<Number?>(null, null, null, 26, 25, 24, 23, 22))
 
     val contour1 = Contour {
         x.set(x1)
@@ -44,9 +45,7 @@ fun main() {
             layout {
                 width = 800
                 height = 450
-                title {
-                    text = "Gaps Between Nulls"
-                }
+                title = "Gaps Between Nulls"
             }
         }
 
@@ -55,9 +54,7 @@ fun main() {
             layout {
                 width = 800
                 height = 450
-                title {
-                    text = "Connected Gaps"
-                }
+                title = "Connected Gaps"
             }
         }
     }
