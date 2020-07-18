@@ -5,27 +5,24 @@ import kotlinx.html.unsafe
 import java.nio.file.Path
 
 
-internal const val plotlyResource = "/js/plotly.min.js"
-
+const val PLOTLY_SCRIPT_PATH = "/js/plotly.min.js"
 const val PLOTLY_PROMISE_NAME = "promiseOfPlotly"
 
-internal const val PLOTLY_VERSION = "1.54.6"
-
-val PlotlyCdnHeader = HtmlFragment {
+val cdnPlotlyHeader = HtmlFragment {
     script {
         attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
         attributes["onerror"] = "console.log('Failed to load Plotly from CDN')"
         type = "text/javascript"
-        src = "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/${PLOTLY_VERSION}/plotly.min.js"
+        src = "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/${Plotly.VERSION}/plotly.min.js"
     }
 }
 
 
-fun LocalPlotlyJs(
+fun localPlotlyHeader(
     path: Path,
-    relativeScriptPath: String = "$assetsDirectory$plotlyResource"
+    relativeScriptPath: String = "$assetsDirectory$PLOTLY_SCRIPT_PATH"
 ) = HtmlFragment {
-    val relativePath = checkOrStoreFile(path, Path.of(relativeScriptPath), plotlyResource)
+    val relativePath = checkOrStoreFile(path, Path.of(relativeScriptPath), PLOTLY_SCRIPT_PATH)
     script {
         attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
         attributes["onerror"] = "console.log('Failed to load script from $relativePath')"
@@ -38,11 +35,11 @@ fun LocalPlotlyJs(
 /**
  * A system-wide plotly store location
  */
-val SystemPlotlyJs = HtmlFragment {
+val systemPlotlyHeader = HtmlFragment {
     val relativePath = checkOrStoreFile(
         Path.of("."),
-        Path.of(System.getProperty("user.home")).resolve(".plotly/$assetsDirectory$plotlyResource"),
-        plotlyResource
+        Path.of(System.getProperty("user.home")).resolve(".plotly/$assetsDirectory$PLOTLY_SCRIPT_PATH"),
+        PLOTLY_SCRIPT_PATH
     )
     script {
         attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
@@ -56,12 +53,12 @@ val SystemPlotlyJs = HtmlFragment {
 /**
  * embedded plotly script
  */
-val EmbededPlotlyJs = HtmlFragment {
+val embededPlotlyHeader = HtmlFragment {
     script {
         attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
         attributes["onerror"] = "console.log('Failed to load embed script')"
         unsafe {
-            val bytes = HtmlFragment::class.java.getResourceAsStream(plotlyResource).readAllBytes()
+            val bytes = HtmlFragment::class.java.getResourceAsStream(PLOTLY_SCRIPT_PATH).readAllBytes()
             +bytes.toString(Charsets.UTF_8)
         }
     }
@@ -72,12 +69,12 @@ internal fun inferPlotlyHeader(
     target: Path?,
     resourceLocation: ResourceLocation
 ): HtmlFragment = when (resourceLocation) {
-    ResourceLocation.REMOTE -> PlotlyCdnHeader
+    ResourceLocation.REMOTE -> cdnPlotlyHeader
     ResourceLocation.LOCAL -> if (target != null) {
-        LocalPlotlyJs(target)
+        localPlotlyHeader(target)
     } else {
-        SystemPlotlyJs
+        systemPlotlyHeader
     }
-    ResourceLocation.SYSTEM -> SystemPlotlyJs
-    ResourceLocation.EMBED -> EmbededPlotlyJs
+    ResourceLocation.SYSTEM -> systemPlotlyHeader
+    ResourceLocation.EMBED -> embededPlotlyHeader
 }

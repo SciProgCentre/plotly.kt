@@ -110,7 +110,7 @@ fun Application.plotlyModule(pages: List<PlotlyServerPage>) {
     routing {
         static {
             resource("/js/plotly.min.js")
-            resource("/js/updates.js")
+            resource("/js/plotly-push.js")
         }
         pages.forEach { page ->
             val controller = PlotlyPageController(this@plotlyModule, page.config.updateInterval)
@@ -158,7 +158,7 @@ fun Application.plotlyModule(pages: List<PlotlyServerPage>) {
                                     src = "/js/plotly.min.js"
                                 }
                                 script {
-                                    src = "/js/updates.js"
+                                    src = "/js/plotly-push.js"
                                 }
                             }
                             title(page.config.title)

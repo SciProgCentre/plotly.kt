@@ -53,9 +53,9 @@ class PlotGrid {
 }
 
 @UnstablePlotlyAPI
-fun Plotly.grid(block: PlotGrid.() -> Unit): PlotlyPage {
+fun Plotly.grid(block: PlotGrid.() -> Unit): PlotlyFragment {
     val grid = PlotGrid().apply(block)
-    return page { container ->
+    return fragment { container ->
         div {
             style = "display: flex; flex-direction: column;"
             grid.grid.forEach { row ->

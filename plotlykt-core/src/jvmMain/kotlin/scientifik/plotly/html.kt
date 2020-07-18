@@ -6,8 +6,8 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardOpenOption
 
-class HtmlFragment(val visit: TagConsumer<*>.() -> Unit){
-    override fun toString(): String{
+class HtmlFragment(val visit: TagConsumer<*>.() -> Unit) {
+    override fun toString(): String {
         return createHTML().also(visit).finalize()
     }
 }
@@ -15,20 +15,18 @@ class HtmlFragment(val visit: TagConsumer<*>.() -> Unit){
 /**
  * Create a html (including headers) string from plot
  */
-fun Plot.toHTML(vararg headers: HtmlFragment, config: PlotlyConfig = PlotlyConfig()): String {
+fun Plot.toHTML(
+    vararg headers: HtmlFragment = arrayOf(cdnPlotlyHeader),
+    config: PlotlyConfig = PlotlyConfig()
+): String {
     return createHTML().html {
         head {
             meta {
                 charset = "utf-8"
             }
             title(layout.title ?: "Plotly.kt")
-            //Apply cdn header by default
-            if (headers.isEmpty()) {
-                PlotlyCdnHeader.visit(consumer)
-            } else {
-                headers.forEach {
-                    it.visit(consumer)
-                }
+            headers.forEach {
+                it.visit(consumer)
             }
         }
         body {

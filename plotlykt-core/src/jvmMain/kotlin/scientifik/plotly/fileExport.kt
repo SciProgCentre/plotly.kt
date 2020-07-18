@@ -1,7 +1,6 @@
 package scientifik.plotly
 
-import kotlinx.html.*
-import kotlinx.html.stream.createHTML
+import kotlinx.html.FlowContent
 import java.awt.Desktop
 import java.nio.file.Files
 import java.nio.file.Path
@@ -39,47 +38,38 @@ fun Plot.makeFile(
     path: Path? = null,
     show: Boolean = true,
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
-    additionalHeaders: List<HtmlFragment> = emptyList(),
     config: PlotlyConfig = PlotlyConfig()
 ) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
     Files.createDirectories(actualFile.parent)
-    val headers = additionalHeaders + inferPlotlyHeader(path, resourceLocation)
-    Files.writeString(actualFile, toHTML(*headers.toTypedArray(), config = config))
+    Files.writeString(actualFile, toHTML(inferPlotlyHeader(path, resourceLocation), config = config))
     if (show) {
         Desktop.getDesktop().browse(actualFile.toFile().toURI())
     }
 }
 
-fun PlotlyPage.makeFile(
-    path: Path? = null,
-    show: Boolean = true,
-    title: String? = null,
-    additionalHeaders: List<HtmlFragment> = emptyList(),
-    resourceLocation: ResourceLocation = ResourceLocation.LOCAL
-) {
+fun PlotlyPage.makeFile(path: Path? = null, show: Boolean = true) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
     Files.createDirectories(actualFile.parent)
-    val string = createHTML().html {
-        head {
-            meta {
-                charset = "utf-8"
-            }
-            title(title ?: "Plotly.kt")
-            (additionalHeaders + inferPlotlyHeader(path, resourceLocation)).forEach { it.visit(consumer) }
-        }
-        body {
-            renderPage(StaticPlotlyContainer)
-        }
-    }
-    Files.writeString(actualFile, string)
+    Files.writeString(actualFile, render())
     if (show) {
         Desktop.getDesktop().browse(actualFile.toFile().toURI())
     }
 }
 
-fun Plotly.show(
-    title: String? = null,
+fun PlotlyFragment.makeFile(
+    path: Path? = null,
+    show: Boolean = true,
+    title: String = "Plotly.kt",
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
+    additionalHeaders: List<HtmlFragment> = emptyList()
+) {
+    toPage(
+        title = title,
+        headers = *(additionalHeaders + inferPlotlyHeader(path, resourceLocation)).toTypedArray()
+    ).makeFile(path, show)
+}
+
+fun Plotly.display(
     pageBuilder: FlowContent.(container: PlotlyContainer) -> Unit
-) = page(pageBuilder).makeFile(null, true, title, resourceLocation = resourceLocation)
+) = fragment(pageBuilder).makeFile(null, true)
