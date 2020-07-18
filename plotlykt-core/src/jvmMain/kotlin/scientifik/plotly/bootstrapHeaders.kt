@@ -8,7 +8,7 @@ import java.nio.file.Path
 private const val bootstrapJsPath = "/js/bootstrap.bundle.min.js"
 private const val bootstrapCssPath = "/css/bootstrap.min.css"
 
-fun localBootstrap(basePath: Path) = html {
+fun localBootstrap(basePath: Path) = HtmlFragment {
     script {
         src = checkOrStoreFile(
             basePath,

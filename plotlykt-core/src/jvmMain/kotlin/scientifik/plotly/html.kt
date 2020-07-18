@@ -6,20 +6,16 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardOpenOption
 
-class HtmlBuilder(val visit: TagConsumer<*>.() -> Unit){
+class HtmlFragment(val visit: TagConsumer<*>.() -> Unit){
     override fun toString(): String{
         return createHTML().also(visit).finalize()
     }
 }
 
-
-
-fun html(visit: TagConsumer<*>.() -> Unit) = HtmlBuilder(visit)
-
 /**
  * Create a html (including headers) string from plot
  */
-fun Plot.toHTML(vararg headers: HtmlBuilder, config: PlotlyConfig = PlotlyConfig()): String {
+fun Plot.toHTML(vararg headers: HtmlFragment, config: PlotlyConfig = PlotlyConfig()): String {
     return createHTML().html {
         head {
             meta {
@@ -54,7 +50,7 @@ internal fun checkOrStoreFile(basePath: Path, filePath: Path, resource: String):
     } else {
         //TODO add logging
 
-        val bytes = HtmlBuilder::class.java.getResourceAsStream(resource).readAllBytes()
+        val bytes = HtmlFragment::class.java.getResourceAsStream(resource).readAllBytes()
         Files.createDirectories(fullPath.parent)
         Files.write(fullPath, bytes, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)
     }
@@ -73,7 +69,7 @@ fun localScriptHeader(
     basePath: Path,
     scriptPath: Path,
     resource: String
-) = html {
+) = HtmlFragment {
     val relativePath = checkOrStoreFile(basePath, scriptPath, resource)
     script {
         type = "text/javascript"
@@ -87,10 +83,30 @@ fun localCssHeader(
     basePath: Path,
     cssPath: Path,
     resource: String
-) = html {
+) = HtmlFragment {
     val relativePath = checkOrStoreFile(basePath, cssPath, resource)
     link {
         rel = "stylesheet"
         href = relativePath.toString()
     }
 }
+
+@UnstablePlotlyAPI
+val mathJaxHeader = HtmlFragment {
+    script {
+        type = "text/x-mathjax-config"
+        unsafe {
+            +"""
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+            });
+            """
+        }
+    }
+    script {
+        type = "text/javascript"
+        async = true
+        src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_SVG"
+    }
+}
+

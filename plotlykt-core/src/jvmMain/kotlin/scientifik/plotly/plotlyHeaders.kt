@@ -11,7 +11,7 @@ const val PLOTLY_PROMISE_NAME = "promiseOfPlotly"
 
 internal const val PLOTLY_VERSION = "1.54.6"
 
-val PlotlyCdnHeader = html {
+val PlotlyCdnHeader = HtmlFragment {
     script {
         attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
         attributes["onerror"] = "console.log('Failed to load Plotly from CDN')"
@@ -24,7 +24,7 @@ val PlotlyCdnHeader = html {
 fun LocalPlotlyJs(
     path: Path,
     relativeScriptPath: String = "$assetsDirectory$plotlyResource"
-) = html {
+) = HtmlFragment {
     val relativePath = checkOrStoreFile(path, Path.of(relativeScriptPath), plotlyResource)
     script {
         attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
@@ -38,7 +38,7 @@ fun LocalPlotlyJs(
 /**
  * A system-wide plotly store location
  */
-val SystemPlotlyJs = html {
+val SystemPlotlyJs = HtmlFragment {
     val relativePath = checkOrStoreFile(
         Path.of("."),
         Path.of(System.getProperty("user.home")).resolve(".plotly/$assetsDirectory$plotlyResource"),
@@ -56,12 +56,12 @@ val SystemPlotlyJs = html {
 /**
  * embedded plotly script
  */
-val EmbededPlotlyJs = html {
+val EmbededPlotlyJs = HtmlFragment {
     script {
         attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
         attributes["onerror"] = "console.log('Failed to load embed script')"
         unsafe {
-            val bytes = HtmlBuilder::class.java.getResourceAsStream(plotlyResource).readAllBytes()
+            val bytes = HtmlFragment::class.java.getResourceAsStream(plotlyResource).readAllBytes()
             +bytes.toString(Charsets.UTF_8)
         }
     }
@@ -71,7 +71,7 @@ val EmbededPlotlyJs = html {
 internal fun inferPlotlyHeader(
     target: Path?,
     resourceLocation: ResourceLocation
-): HtmlBuilder = when (resourceLocation) {
+): HtmlFragment = when (resourceLocation) {
     ResourceLocation.REMOTE -> PlotlyCdnHeader
     ResourceLocation.LOCAL -> if (target != null) {
         LocalPlotlyJs(target)

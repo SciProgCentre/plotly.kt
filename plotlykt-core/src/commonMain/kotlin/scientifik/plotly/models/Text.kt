@@ -2,6 +2,7 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import hep.dataforge.values.asValue
+import scientifik.plotly.lazySpec
 
 /**
  * Text annotation
@@ -25,7 +26,7 @@ class Text : Scheme() {
     /**
      * Sets the annotation text font.
      */
-    var font by spec(Font)
+    var font by lazySpec(Font)
 
     /**
      * Sets the annotation's x position. If the axis `type` is "log",

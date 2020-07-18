@@ -39,11 +39,13 @@ fun Plot.makeFile(
     path: Path? = null,
     show: Boolean = true,
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
+    additionalHeaders: List<HtmlFragment> = emptyList(),
     config: PlotlyConfig = PlotlyConfig()
 ) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
     Files.createDirectories(actualFile.parent)
-    Files.writeString(actualFile, toHTML(inferPlotlyHeader(path, resourceLocation), config = config))
+    val headers = additionalHeaders + inferPlotlyHeader(path, resourceLocation)
+    Files.writeString(actualFile, toHTML(*headers.toTypedArray(), config = config))
     if (show) {
         Desktop.getDesktop().browse(actualFile.toFile().toURI())
     }
@@ -53,6 +55,7 @@ fun PlotlyPage.makeFile(
     path: Path? = null,
     show: Boolean = true,
     title: String? = null,
+    additionalHeaders: List<HtmlFragment> = emptyList(),
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL
 ) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
@@ -63,7 +66,7 @@ fun PlotlyPage.makeFile(
                 charset = "utf-8"
             }
             title(title ?: "Plotly.kt")
-            inferPlotlyHeader(path, resourceLocation).visit(consumer)
+            (additionalHeaders + inferPlotlyHeader(path, resourceLocation)).forEach { it.visit(consumer) }
         }
         body {
             renderPage(StaticPlotlyContainer)
@@ -79,4 +82,4 @@ fun Plotly.show(
     title: String? = null,
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
     pageBuilder: FlowContent.(container: PlotlyContainer) -> Unit
-) = page(pageBuilder).makeFile(null, true, title, resourceLocation)
+) = page(pageBuilder).makeFile(null, true, title, resourceLocation = resourceLocation)
