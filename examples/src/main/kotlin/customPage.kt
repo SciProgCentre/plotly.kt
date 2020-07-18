@@ -19,7 +19,7 @@ fun main() {
     val trace2 = Trace(x1, y2) { name = "cos" }
 
     Plotly.page { container ->
-        plot(handle = container) {
+        plot(container = container) {
             traces(trace1, trace2)
             layout {
                 title = "The plot above"

@@ -48,7 +48,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
 
         //root level plots go to default page
 
-        plot(handle = container){
+        plot(container = container){
             traces(trace)
             layout {
                 title = "Dynamic plot"

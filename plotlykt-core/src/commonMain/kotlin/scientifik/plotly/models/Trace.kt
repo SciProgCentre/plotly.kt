@@ -765,7 +765,7 @@ operator fun <T : Trace> SchemeSpec<T>.invoke(
     xs: Any,
     ys: Any? = null,
     zs: Any? = null,
-    block: Trace.() -> Unit = {}
+    block: Trace.() -> Unit
 ) = invoke {
     x.set(xs)
     if (ys != null) y.set(ys)

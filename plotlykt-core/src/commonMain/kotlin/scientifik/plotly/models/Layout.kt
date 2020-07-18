@@ -33,7 +33,7 @@ class Layout : Scheme() {
     var title: String?
         get() = config["title.text"].string ?: config["title"].string
         set(value) {
-            config["title"] = value
+            config["title.text"] = value
         }
 
     var xaxis by lazySpec(Axis)

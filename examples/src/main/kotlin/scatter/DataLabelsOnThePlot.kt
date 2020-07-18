@@ -36,9 +36,7 @@ fun main() {
         }
 
         layout {
-            title {
-                text = "Data Labels Hover"
-            }
+            title = "Data Labels Hover"
             xaxis {
                 range = 0.75..5.25
             }

@@ -31,7 +31,7 @@ class PlotlyServer(
     private val serverStarterWaiter = CompletableDeferred<Unit>()
 
     private val server: ApplicationEngine = parentScope.embeddedServer(io.ktor.server.cio.CIO, port, host) {
-        install(CORS){
+        install(CORS) {
             anyHost()
         }
         routing {
@@ -90,8 +90,12 @@ class PlotlyServer(
 /**
  * Start static server (updates via reload)
  */
-fun Plotly.serve(scope: CoroutineScope = GlobalScope, block: PlotlyServer.() -> Unit): PlotlyServer =
-    PlotlyServer(scope).apply(block)
+fun Plotly.serve(
+    scope: CoroutineScope = GlobalScope,
+    host: String = "localhost",
+    port: Int = 7777,
+    block: PlotlyServer.() -> Unit
+): PlotlyServer = PlotlyServer(scope, host, port).apply(block)
 
 /**
  * Configure server to start sending updates in push mode. Does not affect loaded pages

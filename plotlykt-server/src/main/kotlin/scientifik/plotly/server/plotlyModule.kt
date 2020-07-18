@@ -26,6 +26,7 @@ import io.ktor.websocket.webSocket
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.html.*
+import scientifik.plotly.PLOTLY_PROMISE_NAME
 import scientifik.plotly.Plot2D
 import scientifik.plotly.PlotlyConfig
 import scientifik.plotly.PlotlyContainer
@@ -152,6 +153,8 @@ fun Application.plotlyModule(pages: List<PlotlyServerPage>) {
                             meta {
                                 charset = "utf-8"
                                 script {
+                                    attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
+                                    type = "text/javascript"
                                     src = "/js/plotly.min.js"
                                 }
                                 script {

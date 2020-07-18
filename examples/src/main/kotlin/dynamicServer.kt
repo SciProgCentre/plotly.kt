@@ -17,7 +17,7 @@ import kotlin.math.sin
 
 fun main() {
 
-    val server = Plotly.serve {
+    val server = Plotly.serve(port = 3872) {
 
         val x = (0..100).map { it.toDouble() / 100.0 }
         val y = x.map { sin(2.0 * PI * it) }
@@ -29,10 +29,10 @@ fun main() {
         page { plotly ->
             h1 { +"This is the plot page" }
             a("/other") { +"The other page" }
-            plot(handle = plotly) {
+            plot(container = plotly) {
                 traces(trace)
                 layout {
-                    title { text = "Dynamic plot" }
+                    title = "Dynamic plot"
                     xaxis { title { text = "x axis name" } }
                     yaxis { title { text = "y axis name" } }
                 }
@@ -42,7 +42,7 @@ fun main() {
         page("other") { plotly ->
             h1 { +"This is the other plot page" }
             a("/") { +"Back to the main page" }
-            plot(handle = plotly) {
+            plot(container = plotly) {
                 traces(trace)
                 layout {
                     title { text = "Dynamic plot" }

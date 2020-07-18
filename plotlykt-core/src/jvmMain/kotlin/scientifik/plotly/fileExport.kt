@@ -6,6 +6,8 @@ import java.awt.Desktop
 import java.nio.file.Files
 import java.nio.file.Path
 
+internal const val assetsDirectory = "assets"
+
 enum class ResourceLocation {
     /**
      * Use cdn or other remote source for assets
@@ -60,11 +62,11 @@ fun PlotlyPage.makeFile(
             meta {
                 charset = "utf-8"
             }
-            inferPlotlyHeader(path, resourceLocation).invoke(this)
             title(title ?: "Plotly.kt")
+            inferPlotlyHeader(path, resourceLocation).visit(consumer)
         }
         body {
-            renderPage(StaticPlotlyContainer(this@body))
+            renderPage(StaticPlotlyContainer)
         }
     }
     Files.writeString(actualFile, string)

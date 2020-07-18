@@ -4,7 +4,6 @@ import hep.dataforge.meta.*
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.json
 import kotlinx.serialization.json.jsonArray
-import scientifik.plotly.models.Annotation
 import scientifik.plotly.models.*
 
 @DFBuilder
@@ -50,13 +49,13 @@ inline fun Plot2D.layout(block: Layout.() -> Unit) {
 }
 
 fun Plot2D.trace(xs: DoubleArray, ys: DoubleArray, block: Trace.() -> Unit = {}): Trace {
-    val trace = Trace.invoke(xs, ys, block)
+    val trace = Trace(xs, ys, block = block)
     traces(trace)
     return trace
 }
 
 fun Plot2D.trace(xs: Any, ys: Any? = null, block: Trace.() -> Unit = {}): Trace {
-    val trace = Trace.invoke(xs, ys, block)
+    val trace = Trace.invoke(xs, ys, block = block)
     traces(trace)
     return trace
 }
