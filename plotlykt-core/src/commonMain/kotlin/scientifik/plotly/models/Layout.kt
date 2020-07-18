@@ -74,7 +74,7 @@ class Layout : Scheme() {
      * or with respect to the actual data coordinates of the graph.
      * Annotations can be shown with or without an arrow.
      */
-    var annotations by list(Annotation)
+    var annotations by list(Text)
 
     fun legend(block: Legend.() -> Unit) {
         legend.apply(block)
@@ -95,12 +95,12 @@ class Layout : Scheme() {
         yaxis.apply(block)
     }
 
-    fun annotation(an: Annotation) {
+    fun annotation(an: Text) {
         config.append("annotations", an)
     }
 
-    fun annotation(anBuilder: Annotation.() -> Unit) {
-        annotation(Annotation(anBuilder))
+    fun annotation(anBuilder: Text.() -> Unit) {
+        annotation(Text(anBuilder))
     }
 
     companion object : SchemeSpec<Layout>(::Layout)

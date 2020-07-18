@@ -6,7 +6,7 @@ import hep.dataforge.values.asValue
 /**
  * Text annotation
  */
-class Annotation : Scheme() {
+class Text : Scheme() {
     /**
      * Determines whether or not this annotation is visible.
      * Default: true
@@ -54,5 +54,5 @@ class Annotation : Scheme() {
         this.y = y.asValue()
     }
 
-    companion object : SchemeSpec<Annotation>(::Annotation)
+    companion object : SchemeSpec<Text>(::Text)
 }

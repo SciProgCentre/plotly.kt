@@ -202,6 +202,6 @@ inline fun Plot2D.bar(xs: DoubleArray, block: Trace.() -> Unit = {}) = bar {
     x.doubles = xs
 }
 
-fun Plot2D.text(block: Annotation.() -> Unit) {
+fun Plot2D.text(block: Text.() -> Unit) {
     layout.annotation(block)
 }
