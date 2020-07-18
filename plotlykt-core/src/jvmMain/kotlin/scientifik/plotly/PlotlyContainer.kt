@@ -4,14 +4,14 @@ import kotlinx.html.*
 
 interface PlotlyContainer {
     fun FlowContent.renderPlot(
-        plot: Plot2D,
+        plot: Plot,
         plotId: String = plot.toString(),
         config: PlotlyConfig = PlotlyConfig()
-    ): Plot2D
+    ): Plot
 }
 
 object StaticPlotlyContainer : PlotlyContainer {
-    override fun FlowContent.renderPlot(plot: Plot2D, plotId: String, config: PlotlyConfig): Plot2D {
+    override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         div {
             id = plotId
             script {
@@ -39,11 +39,11 @@ object StaticPlotlyContainer : PlotlyContainer {
 }
 
 fun FlowContent.plot(
-    plot: Plot2D,
+    plot: Plot,
     plotId: String = plot.toString(),
     config: PlotlyConfig = PlotlyConfig(),
     container: PlotlyContainer = StaticPlotlyContainer
-): Plot2D = with(container) {
+): Plot = with(container) {
     renderPlot(plot, plotId, config)
 }
 
@@ -51,8 +51,8 @@ fun FlowContent.plot(
     plotId: String? = null,
     plotlyConfig: PlotlyConfig = PlotlyConfig(),
     container: PlotlyContainer = StaticPlotlyContainer,
-    builder: Plot2D.() -> Unit
-): Plot2D {
-    val plot = Plot2D().apply(builder)
+    builder: Plot.() -> Unit
+): Plot {
+    val plot = Plot().apply(builder)
     return plot(plot, plotId ?: plot.toString(), plotlyConfig, container)
 }

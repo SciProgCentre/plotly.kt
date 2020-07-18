@@ -50,7 +50,7 @@ fun main() {
         }
     }
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         traces(trace1, trace2)
         layout {
             width = 900

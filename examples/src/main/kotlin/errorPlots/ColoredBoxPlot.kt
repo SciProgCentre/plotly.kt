@@ -2,8 +2,8 @@ package errorPlots
 
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
 import scientifik.plotly.box
+import scientifik.plotly.makeFile
 import scientifik.plotly.palettes.T10
 import java.util.*
 
@@ -18,7 +18,7 @@ fun main() {
     val y1 = List(50){ rnd.nextDouble() }
     val y2 = List(50){ rnd.nextDouble() + 1}
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         box {
             y.set(y1)
             name = "Sample A"

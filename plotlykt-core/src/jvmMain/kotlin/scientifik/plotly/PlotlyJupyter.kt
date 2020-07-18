@@ -29,10 +29,10 @@ object PlotlyJupyter {
 
                 if(typeof window.$PLOTLY_PROMISE_NAME === 'undefined'){
                     console.log("Plotly loader is not defined. Loading from $url.")
-                    window.$PLOTLY_PROMISE_NAME = Promise( (resolve,reject) => {
+                    window.$PLOTLY_PROMISE_NAME = new Promise( (resolve, reject) => {
                         let cdnScript = document.createElement("script");
                         cdnScript.type = "text/javascript";
-                        cdnScript.src = $url;
+                        cdnScript.src = "$url";
                         cdnScript.onload = function() {
                             console.log("Successfully loaded Plotly from $url")
                             resolve(Plotly)
@@ -124,7 +124,7 @@ object PlotlyJupyter {
         return consumer.finalize()
     }
 
-    fun plotToHTML(plot: Plot2D): String = createHTML().div {
+    fun plotToHTML(plot: Plot): String = createHTML().div {
         ensurePlotlyLoaded()
         plot(plot, config = PlotlyConfig { responsive = true })
     }

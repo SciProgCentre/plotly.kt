@@ -13,7 +13,7 @@ interface HtmlVisitor {
 /**
  * Create a html (including headers) string from plot
  */
-fun Plot2D.toHTML(vararg headers: HtmlVisitor, config: PlotlyConfig = PlotlyConfig()): String {
+fun Plot.toHTML(vararg headers: HtmlVisitor, config: PlotlyConfig = PlotlyConfig()): String {
     return createHTML().html {
         head {
             meta {

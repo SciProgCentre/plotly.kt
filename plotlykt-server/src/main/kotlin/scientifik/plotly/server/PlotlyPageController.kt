@@ -11,7 +11,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import scientifik.plotly.Plot2D
+import scientifik.plotly.Plot
 
 
 /**
@@ -56,8 +56,8 @@ class PlotlyPageController(
     /**
      * A collection of all plots served on this page
      */
-    val _plots = HashMap<String, Plot2D>()
-    val plots: Map<String, Plot2D> get() = _plots
+    val _plots = HashMap<String, Plot>()
+    val plots: Map<String, Plot> get() = _plots
 
     private val channel = Channel<Update>()
 
@@ -83,7 +83,7 @@ class PlotlyPageController(
         }
     }
 
-    fun listenTo(plot: Plot2D, plotId: String) {
+    fun listenTo(plot: Plot, plotId: String) {
         _plots[plotId] = plot
         plot.data.forEachIndexed { index, trace ->
             trace.config.onChange(this) { name, _, newItem ->

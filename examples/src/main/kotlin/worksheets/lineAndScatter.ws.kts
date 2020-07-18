@@ -1,10 +1,10 @@
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.models.ScatterMode
-import scientifik.plotly.toHTML
 import scientifik.plotly.scatter
+import scientifik.plotly.toHTML
 
-Plotly.plot2D {
+Plotly.plot {
     scatter {
         x(1, 2, 3, 4)
         y(10, 15, 13, 17)

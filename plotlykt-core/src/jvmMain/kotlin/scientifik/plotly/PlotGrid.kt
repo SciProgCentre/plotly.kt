@@ -6,7 +6,7 @@ import kotlinx.html.style
 
 @UnstablePlotlyAPI
 class PlotGrid : PlotlyPage {
-    data class PlotCell(val id: String, val plot: Plot2D, val row: Int, val col: Int, val width: Int = 1)
+    data class PlotCell(val id: String, val plot: Plot, val row: Int, val col: Int, val width: Int = 1)
 
     private val cells = HashMap<String, PlotCell>()
 
@@ -21,12 +21,12 @@ class PlotGrid : PlotlyPage {
     private var currentCol = 0
 
     fun plot(
-        plot: Plot2D,
+        plot: Plot,
         id: String = plot.toString(),
         width: Int = 6,
         row: Int? = null,
         col: Int? = null
-    ): Plot2D {
+    ): Plot {
         val actualRow = if (row != null) {
             row
         } else {
@@ -46,9 +46,9 @@ class PlotGrid : PlotlyPage {
         col: Int? = null,
         id: String? = null,
         width: Int = 6,
-        block: Plot2D.() -> Unit
-    ): Plot2D {
-        val plot = Plotly.plot2D(block)
+        block: Plot.() -> Unit
+    ): Plot {
+        val plot = Plotly.plot(block)
         return plot(plot, id ?: plot.toString(), width, row, col)
     }
 

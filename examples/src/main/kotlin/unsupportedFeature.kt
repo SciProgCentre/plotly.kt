@@ -23,7 +23,7 @@ fun main() {
         }
     }
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         traces(trace)
         layout {
             title { text = "Plot with labels" }

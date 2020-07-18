@@ -16,7 +16,7 @@ fun main() {
     val y = listOf(6, 10, 2)
     val err = listOf(1, 2, 3)
 
-    val plot = Plotly.plot2D{
+    val plot = Plotly.plot{
         trace(x, y) {
             error_y {
                 type = ErrorType.data

@@ -5,7 +5,7 @@ import kotlinx.html.a
 import kotlinx.html.div
 import kotlinx.html.h1
 import kotlinx.html.style
-import scientifik.plotly.Plot2D
+import scientifik.plotly.Plot
 import scientifik.plotly.Plotly
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.invoke
@@ -26,7 +26,7 @@ fun main() {
         val trace1 = Trace(x, y1) { name = "sin" }
         val trace2 = Trace(x, y2) { name = "cos" }
 
-        lateinit var plot1: Plot2D
+        lateinit var plot1: Plot
 
         //root level plots go to default page
         page {

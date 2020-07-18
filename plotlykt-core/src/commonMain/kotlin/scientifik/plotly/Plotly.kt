@@ -11,7 +11,7 @@ import kotlin.js.JsName
  */
 @JsName("PlotlyKt")
 object Plotly {
-    fun plot2D(block: Plot2D.() -> Unit): Plot2D = Plot2D().apply(block)
+    fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
 }
 
 fun Scheme.toJson(): JsonObject = config.toJson()

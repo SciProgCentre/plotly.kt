@@ -35,7 +35,7 @@ enum class ResourceLocation {
  * @param path the reference to html file. If null, create a temporary file
  * @param show if true, start the browser after file is created
  */
-fun Plot2D.makeFile(
+fun Plot.makeFile(
     path: Path? = null,
     show: Boolean = true,
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL,

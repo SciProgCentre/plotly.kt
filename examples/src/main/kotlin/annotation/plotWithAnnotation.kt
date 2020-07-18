@@ -4,7 +4,7 @@ import scientifik.plotly.*
 import scientifik.plotly.models.ScatterMode
 
 fun main() {
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         scatter {
             x(2, 3, 4, 5)
             y(10, 15, 13, 17)

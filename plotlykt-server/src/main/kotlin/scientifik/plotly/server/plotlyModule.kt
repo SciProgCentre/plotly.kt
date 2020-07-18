@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.html.*
 import scientifik.plotly.PLOTLY_PROMISE_NAME
-import scientifik.plotly.Plot2D
+import scientifik.plotly.Plot
 import scientifik.plotly.PlotlyConfig
 import scientifik.plotly.PlotlyContainer
 
@@ -50,7 +50,7 @@ class PlotlyServerPageConfig : Scheme() {
 
 
 class PlotServerContainer(val baseUrl: Url, val controller: PlotlyPageController, val updateMode: PlotlyUpdateMode): PlotlyContainer{
-    override fun FlowContent.renderPlot(plot: Plot2D, plotId: String, config: PlotlyConfig): Plot2D {
+    override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         controller.listenTo(plot, plotId)
         div {
             id = plotId

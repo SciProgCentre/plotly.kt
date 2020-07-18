@@ -15,7 +15,7 @@ fun main() {
     val rnd = Random()
     val values = List(500){rnd.nextDouble()}
 
-    val plot = Plotly.plot2D{
+    val plot = Plotly.plot{
         histogram {
             x.set(values)
             name = "Random data"

@@ -3,12 +3,11 @@ package contour
 import hep.dataforge.meta.invoke
 import hep.dataforge.values.asValue
 import scientifik.plotly.Plotly
+import scientifik.plotly.contour
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.*
 import kotlin.math.cos
 import kotlin.math.ln
 import kotlin.math.sin
-import scientifik.plotly.contour
 
 
 /**
@@ -36,7 +35,7 @@ fun main() {
         }
     }
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         contour {
             x.set(x1)
             y.set(x1)
