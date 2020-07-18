@@ -1,11 +1,10 @@
 package  scientifik.plotly
 
-import kotlinx.html.FlowContent
 import kotlinx.html.div
 import kotlinx.html.style
 
 @UnstablePlotlyAPI
-class PlotGrid : PlotlyPage {
+class PlotGrid {
     data class PlotCell(val id: String, val plot: Plot, val row: Int, val col: Int, val width: Int = 1)
 
     private val cells = HashMap<String, PlotCell>()
@@ -51,11 +50,15 @@ class PlotGrid : PlotlyPage {
         val plot = Plotly.plot(block)
         return plot(plot, id ?: plot.toString(), width, row, col)
     }
+}
 
-    override fun FlowContent.renderPage(container: PlotlyContainer) {
+@UnstablePlotlyAPI
+fun Plotly.grid(block: PlotGrid.() -> Unit): PlotlyPage {
+    val grid = PlotGrid().apply(block)
+    return page { container ->
         div {
             style = "display: flex; flex-direction: column;"
-            grid.forEach { row ->
+            grid.grid.forEach { row ->
                 div {
                     style = "display: flex; flex-direction: row;"
                     row.forEach { cell ->
@@ -69,6 +72,3 @@ class PlotGrid : PlotlyPage {
         }
     }
 }
-
-@UnstablePlotlyAPI
-fun Plotly.grid(block: PlotGrid.() -> Unit): PlotGrid = PlotGrid().apply(block)

@@ -6,14 +6,20 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardOpenOption
 
-interface HtmlVisitor {
-    fun visit(consumer: TagConsumer<*>)
+class HtmlBuilder(val visit: TagConsumer<*>.() -> Unit){
+    override fun toString(): String{
+        return createHTML().also(visit).finalize()
+    }
 }
+
+
+
+fun html(visit: TagConsumer<*>.() -> Unit) = HtmlBuilder(visit)
 
 /**
  * Create a html (including headers) string from plot
  */
-fun Plot.toHTML(vararg headers: HtmlVisitor, config: PlotlyConfig = PlotlyConfig()): String {
+fun Plot.toHTML(vararg headers: HtmlBuilder, config: PlotlyConfig = PlotlyConfig()): String {
     return createHTML().html {
         head {
             meta {
@@ -48,7 +54,7 @@ internal fun checkOrStoreFile(basePath: Path, filePath: Path, resource: String):
     } else {
         //TODO add logging
 
-        val bytes = LocalScriptHeader::class.java.getResourceAsStream(resource).readAllBytes()
+        val bytes = HtmlBuilder::class.java.getResourceAsStream(resource).readAllBytes()
         Files.createDirectories(fullPath.parent)
         Files.write(fullPath, bytes, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)
     }
@@ -63,33 +69,28 @@ internal fun checkOrStoreFile(basePath: Path, filePath: Path, resource: String):
 /**
  * A header that automatically copies relevant scripts to given path
  */
-class LocalScriptHeader(
-    val basePath: Path,
-    val scriptPath: Path,
-    val resource: String
-) : HtmlVisitor {
-    override fun visit(consumer: TagConsumer<*>): Unit {
-        val relativePath = checkOrStoreFile(basePath, scriptPath, resource)
-        consumer.script {
-            type = "text/javascript"
-            src = relativePath.toString()
-            attributes["onload"] = "console.log('Script successfully loaded from $relativePath')"
-            attributes["onerror"] = "console.log('Failed to load script from $relativePath')"
-        }
+fun localScriptHeader(
+    basePath: Path,
+    scriptPath: Path,
+    resource: String
+) = html {
+    val relativePath = checkOrStoreFile(basePath, scriptPath, resource)
+    script {
+        type = "text/javascript"
+        src = relativePath.toString()
+        attributes["onload"] = "console.log('Script successfully loaded from $relativePath')"
+        attributes["onerror"] = "console.log('Failed to load script from $relativePath')"
     }
 }
 
-class LocalCssHeader(
-    val basePath: Path,
-    val cssPath: Path,
-    val resource: String
-) : HtmlVisitor {
-    override fun visit(consumer: TagConsumer<*>): Unit {
-        val relativePath = checkOrStoreFile(basePath, cssPath, resource)
-        consumer.link {
-            rel = "stylesheet"
-            href = relativePath.toString()
-        }
+fun localCssHeader(
+    basePath: Path,
+    cssPath: Path,
+    resource: String
+) = html {
+    val relativePath = checkOrStoreFile(basePath, cssPath, resource)
+    link {
+        rel = "stylesheet"
+        href = relativePath.toString()
     }
 }
-
