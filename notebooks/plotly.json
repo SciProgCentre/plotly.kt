@@ -1,0 +1,35 @@
+{
+    "imports": [
+        "scientifik.plotly.*",
+        "scientifik.plotly.models.*",
+        "scientifik.plotly.server.Jupyter",
+        "hep.dataforge.meta.*",
+        "kotlinx.html.*",
+    ],
+    "repositories": [
+        "*mavenLocal",
+        "https://dl.bintray.com/mipt-npm/dataforge",
+        "https://dl.bintray.com/mipt-npm/scientifik",
+        "https://dl.bintray.com/mipt-npm/dev"
+    ],
+    "properties": {
+        "v": "0.2.0-dev-11",
+        "port": 8882
+    },
+    "init": [
+        "DISPLAY(HTML(cdnPlotlyHeader.toString()))"
+    ],
+    "shutdown":[
+        "DISPLAY(HTML(Jupyter.stopUpdates().toString()))"
+    ],
+    "renderers": {
+        "scientifik.plotly.HtmlFragment": "DISPLAY(HTML($it.toString()))",
+        "scientifik.plotly.Plot": "HTML(Jupyter.renderPlot($it))",
+        "scientifik.plotly.PlotlyFragment": "HTML(Jupyter.renderFragment($it))",
+        "scientifik.plotly.PlotlyPage": "HTML(Jupyter.renderPage($it), true)"
+    },
+    "link": "https://github.com/mipt-npm/plotly.kt",
+    "dependencies": [
+        "scientifik:plotlykt-server:$v"
+    ]
+}

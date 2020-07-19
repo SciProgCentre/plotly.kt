@@ -4,3 +4,4 @@ build/
 out/
 
 #gradle.properties
+/notebooks/.ipynb_checkpoints/
