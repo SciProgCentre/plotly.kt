@@ -1,17 +1,22 @@
 package scientifik.plotly.server
 
 import hep.dataforge.names.toName
+import io.ktor.application.Application
+import io.ktor.application.ApplicationStarted
 import io.ktor.application.install
 import io.ktor.features.CORS
 import io.ktor.routing.routing
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
 import io.ktor.util.KtorExperimentalAPI
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
 import kotlinx.html.FlowContent
 import scientifik.plotly.Plotly
 import scientifik.plotly.PlotlyContainer
 import scientifik.plotly.UnstablePlotlyAPI
+import scientifik.plotly.page
 import java.awt.Desktop
 import java.net.URI
 
@@ -26,9 +31,7 @@ class PlotlyServer(
     val port: Int = 7777
 ) : AutoCloseable {
 
-    val config: PlotlyServerPageConfig = PlotlyServerPageConfig()
-
-    private val serverStarterWaiter = CompletableDeferred<Unit>()
+    val config: PlotlyServerConfig = PlotlyServerConfig()
 
     private val server: ApplicationEngine = parentScope.embeddedServer(io.ktor.server.cio.CIO, port, host) {
         install(CORS) {
@@ -36,17 +39,19 @@ class PlotlyServer(
         }
         routing {
             //Need to wait for routing to start
-            serverStarterWaiter.complete(Unit)
         }
     }.start()
+
+    fun whenStarted(callback: Application.() -> Unit) {
+        server.environment.monitor.subscribe(ApplicationStarted, callback)
+    }
 
     /**
      * Generate a new page with plots
      */
-    fun page(route: String = DEFAULT_PAGE, bodyBuilder: FlowContent.(container: PlotlyContainer) -> Unit) {
-        parentScope.launch {
-            serverStarterWaiter.join()
-            server.application.plotlyModule(config, route, bodyBuilder)
+    fun page(route: String = DEFAULT_PAGE, title: String= "Plotly.kt", bodyBuilder: FlowContent.(container: PlotlyContainer) -> Unit) {
+        whenStarted {
+            plotlyModule(route, config, Plotly.page(title = title, content = bodyBuilder))
         }
     }
 

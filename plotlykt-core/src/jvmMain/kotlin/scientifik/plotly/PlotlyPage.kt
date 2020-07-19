@@ -9,11 +9,11 @@ fun PlotlyFragment.toPage(
     vararg headers: HtmlFragment = arrayOf(cdnPlotlyHeader),
     title: String = "Plotly.kt",
     container: PlotlyContainer = StaticPlotlyContainer
-) = PlotlyPage(this, headers.toList(), title, container)
+) = PlotlyPage(headers.toList(), this, title, container)
 
 data class PlotlyPage(
-    val fragment: PlotlyFragment,
     val headers: Collection<HtmlFragment>,
+    val fragment: PlotlyFragment,
     val title: String = "Plotly.kt",
     val container: PlotlyContainer = StaticPlotlyContainer
 ) {
@@ -39,4 +39,4 @@ fun Plotly.page(
     title: String = "Plotly.kt",
     container: PlotlyContainer = StaticPlotlyContainer,
     content: FlowContent.(container: PlotlyContainer) -> Unit
-) = PlotlyPage(fragment(content), headers.toList(), title, container)
+) = PlotlyPage(headers.toList(), fragment(content), title, container)

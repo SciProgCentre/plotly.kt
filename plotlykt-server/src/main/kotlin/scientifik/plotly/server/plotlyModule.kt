@@ -1,14 +1,12 @@
 package scientifik.plotly.server
 
 import hep.dataforge.meta.Scheme
+import hep.dataforge.meta.SchemeSpec
 import hep.dataforge.meta.enum
 import hep.dataforge.meta.long
-import hep.dataforge.meta.string
 import hep.dataforge.names.toName
-import io.ktor.application.Application
-import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.application.log
+import io.ktor.application.*
+import io.ktor.features.CORS
 import io.ktor.features.origin
 import io.ktor.html.respondHtml
 import io.ktor.http.*
@@ -26,10 +24,10 @@ import io.ktor.websocket.webSocket
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.html.*
-import scientifik.plotly.PLOTLY_PROMISE_NAME
-import scientifik.plotly.Plot
-import scientifik.plotly.PlotlyConfig
-import scientifik.plotly.PlotlyContainer
+import scientifik.plotly.*
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.set
 
 enum class PlotlyUpdateMode {
     NONE,
@@ -37,19 +35,22 @@ enum class PlotlyUpdateMode {
     PULL
 }
 
-class PlotlyServerPageConfig : Scheme() {
-    //TODO make separate title for different pages
-    var title by string("Plotly.kt page")
-    var updateMode by enum(PlotlyUpdateMode.NONE, key = "update.mode".toName())
+class PlotlyServerConfig : Scheme() {
+    var updateMode by enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
     var updateInterval by long(300, key = UPDATE_INTERVAL_KEY)
 
-    companion object {
+    companion object : SchemeSpec<PlotlyServerConfig>(::PlotlyServerConfig) {
+        val UPDATE_MODE_KEY = "update.mode".toName()
         val UPDATE_INTERVAL_KEY = "update.interval".toName()
     }
 }
 
 
-class PlotServerContainer(val baseUrl: Url, val controller: PlotlyPageController, val updateMode: PlotlyUpdateMode): PlotlyContainer{
+class PlotServerContainer(
+    val baseUrl: Url,
+    val controller: PlotlyPageController,
+    val updateMode: PlotlyUpdateMode
+) : PlotlyContainer {
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         controller.listenTo(plot, plotId)
         div {
@@ -93,18 +94,24 @@ class PlotServerContainer(val baseUrl: Url, val controller: PlotlyPageController
 
 }
 
-class PlotlyServerPage(
-    val config: PlotlyServerPageConfig,
-    val route: String = "/",
-    val renderContent: FlowContent.(container: PlotlyContainer) -> Unit
-)
+//class PlotlyServerPage(
+//    val config: PlotlyServerPageConfig,
+//    val route: String = "/",
+//    val renderContent: FlowContent.(container: PlotlyContainer) -> Unit
+//)
 
 /**
  *
  */
-fun Application.plotlyModule(pages: List<PlotlyServerPage>) {
-    install(WebSockets){
-        pingPeriodMillis = 3000
+fun Application.plotlyModule(pages: Map<String, PlotlyPage>, config: PlotlyServerConfig = PlotlyServerConfig.empty()) {
+    if (featureOrNull(WebSockets) == null) {
+        install(WebSockets)
+    }
+
+    if (featureOrNull(CORS) == null) {
+        install(CORS) {
+            anyHost()
+        }
     }
 
     routing {
@@ -112,9 +119,9 @@ fun Application.plotlyModule(pages: List<PlotlyServerPage>) {
             resource("/js/plotly.min.js")
             resource("/js/plotly-push.js")
         }
-        pages.forEach { page ->
-            val controller = PlotlyPageController(this@plotlyModule, page.config.updateInterval)
-            route(page.route) {
+        pages.forEach { (route, page) ->
+            val controller = PlotlyPageController(this@plotlyModule, config.updateInterval)
+            route(route) {
 
                 //Update websocket
                 webSocket("ws/{id}") {
@@ -143,7 +150,11 @@ fun Application.plotlyModule(pages: List<PlotlyServerPage>) {
                     if (plot == null) {
                         call.respond(HttpStatusCode.NotFound, "Plot with id = $id not found")
                     } else {
-                        call.respondText(plot.toJson().toString(), contentType = ContentType.Application.Json, status = HttpStatusCode.OK)
+                        call.respondText(
+                            plot.toJson().toString(),
+                            contentType = ContentType.Application.Json,
+                            status = HttpStatusCode.OK
+                        )
                     }
                 }
                 //filled pages
@@ -158,27 +169,25 @@ fun Application.plotlyModule(pages: List<PlotlyServerPage>) {
                                     src = "/js/plotly.min.js"
                                 }
                                 script {
+                                    attributes["onload"] = "window.promiseOfPlotlyPush = Promise.resolve()"
+                                    type = "text/javascript"
                                     src = "/js/plotly-push.js"
                                 }
                             }
-                            title(page.config.title)
+                            title(page.title)
                         }
                         body {
                             val origin = call.request.origin
                             val url = URLBuilder().apply {
                                 protocol = URLProtocol.createOrDefault(origin.scheme)
                                 //workaround for https://github.com/ktorio/ktor/issues/1663
-                                host =  if(origin.host. startsWith("0:")) "[${origin.host}]" else origin.host
+                                host = if (origin.host.startsWith("0:")) "[${origin.host}]" else origin.host
                                 port = origin.port
                                 encodedPath = origin.uri
                             }.build()
-                            val container = PlotServerContainer(
-                                url,
-                                controller,
-                                page.config.updateMode
-                            )
-                            with(page) {
-                               renderContent(container)
+                            val container = PlotServerContainer(url, controller, config.updateMode)
+                            with(page.fragment) {
+                                render(container)
                             }
                         }
                     }
@@ -190,9 +199,18 @@ fun Application.plotlyModule(pages: List<PlotlyServerPage>) {
 }
 
 fun Application.plotlyModule(
-    config: PlotlyServerPageConfig,
     route: String = "/",
-    contentRender: FlowContent.(container: PlotlyContainer) -> Unit
+    config: PlotlyServerConfig = PlotlyServerConfig(),
+    page: PlotlyPage
 ) {
-    plotlyModule(listOf(PlotlyServerPage(config, route, contentRender)))
+    plotlyModule(mapOf(route to page), config)
+}
+
+fun Application.plotlyModule(
+    route: String = "/",
+    config: PlotlyServerConfig = PlotlyServerConfig(),
+    title: String = "Plotly.kt",
+    bodyBuilder: FlowContent.(container: PlotlyContainer) -> Unit
+) {
+    plotlyModule(route, config, Plotly.page(title = title, content = bodyBuilder))
 }

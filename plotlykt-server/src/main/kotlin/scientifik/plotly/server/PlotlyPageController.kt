@@ -52,7 +52,6 @@ class PlotlyPageController(
     val scope: CoroutineScope,
     val updateInterval: Long
 ) {
-
     /**
      * A collection of all plots served on this page
      */
