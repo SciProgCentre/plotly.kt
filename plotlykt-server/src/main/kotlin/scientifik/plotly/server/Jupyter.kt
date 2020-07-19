@@ -20,6 +20,7 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.runBlocking
 import kotlinx.html.*
@@ -60,10 +61,10 @@ private class PlotlyJupyterServer(
 
                     val plotId: String? = call.parameters["id"] ?: error("Plot id not defined")
 
+                    application.log.debug("Opened server socket for $plotId")
+                    val subscription = controller.subscribe()
                     try {
-                        application.log.debug("Opened server socket for $plotId")
-
-                        controller.updates().filter { it.id == plotId }.collect { update ->
+                        subscription.consumeAsFlow().filter { it.id == plotId }.collect { update ->
                             if (update.id == plotId) {
                                 val json = update.toJson()
                                 outgoing.send(Frame.Text(json.toString()))
@@ -71,6 +72,8 @@ private class PlotlyJupyterServer(
                         }
                     } catch (ex: Exception) {
                         application.log.debug("Closed server socket for $plotId")
+                    } finally {
+                        subscription.cancel()
                     }
                 }
             }
@@ -294,7 +297,7 @@ object Jupyter {
      * Start a dynamic update server
      */
     fun startUpdates(port: Int = 8882): HtmlFragment {
-        if(jupyterPlotlyServer.isRunning){
+        if (jupyterPlotlyServer.isRunning) {
             return HtmlFragment {
                 div {
                     style = "color: \"darkblue\""
@@ -310,7 +313,7 @@ object Jupyter {
      * Stop dynamic update server
      */
     fun stopUpdates(): HtmlFragment {
-        if(!jupyterPlotlyServer.isRunning){
+        if (!jupyterPlotlyServer.isRunning) {
             return HtmlFragment {
                 div {
                     +"Update server is not running"
@@ -328,7 +331,7 @@ object Jupyter {
                     """.trimIndent()
                 }
             }
-            div{
+            div {
                 +"Update server is stopped script headers are reset"
             }
             cdnPlotlyHeader.visit

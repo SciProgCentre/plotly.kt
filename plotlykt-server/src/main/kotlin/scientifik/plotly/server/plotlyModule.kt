@@ -22,6 +22,7 @@ import io.ktor.websocket.WebSockets
 import io.ktor.websocket.application
 import io.ktor.websocket.webSocket
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.html.*
 import scientifik.plotly.*
@@ -129,10 +130,11 @@ fun Application.plotlyModule(pages: Map<String, PlotlyPage>, config: PlotlyServe
 
                     val plotId: String? = call.parameters["id"] ?: error("Plot id not defined")
 
-                    try {
-                        application.log.debug("Opened server socket for $plotId")
+                    application.log.debug("Opened server socket for $plotId")
 
-                        controller.updates().filter { it.id == plotId }.collect { update ->
+                    val subscription = controller.subscribe()
+                    try {
+                        subscription.consumeAsFlow().filter { it.id == plotId }.collect { update ->
                             if (update.id == plotId) {
                                 val json = update.toJson()
                                 outgoing.send(Frame.Text(json.toString()))
@@ -140,6 +142,8 @@ fun Application.plotlyModule(pages: Map<String, PlotlyPage>, config: PlotlyServe
                         }
                     } catch (ex: Exception) {
                         application.log.debug("Closed server socket for $plotId")
+                    } finally {
+                        subscription.cancel()
                     }
                 }
                 //Plots in their json representation

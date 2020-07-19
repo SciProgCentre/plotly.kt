@@ -49,21 +49,20 @@ suspend fun Trace.updateXYFrom(flow: Flow<Iterable<Pair<Double, Double>>>) {
     }
 }
 
-
 fun main() {
     val server = Plotly.serve {
         val sinFlow = flow {
-            while(true){
-                delay(200)
+            while (true) {
+                delay(40)
                 val time = Instant.now()
-                emit(sin(time.toEpochMilli().toDouble() / 5000))
+                emit(sin(time.toEpochMilli().toDouble() / 2500))
             }
         }
         val cosFlow = flow {
-            while(true){
-                delay(250)
+            while (true) {
+                delay(50)
                 val time = Instant.now()
-                emit(cos(time.toEpochMilli().toDouble() / 5000))
+                emit(cos(time.toEpochMilli().toDouble() / 2500))
             }
         }
         val sinCosFlow = sinFlow.zip(cosFlow) { sin, cos ->
@@ -85,8 +84,8 @@ fun main() {
                             yaxis.title = "sin"
                         }
                         trace {
+                            val flow: Flow<Iterable<Double>> = sinFlow.windowed(100)
                             GlobalScope.launch {
-                                val flow: Flow<Iterable<Double>> = sinFlow.windowed(100)
                                 updateFrom(Trace.Y_AXIS, flow)
                             }
                         }
@@ -100,8 +99,8 @@ fun main() {
                             yaxis.title = "cos"
                         }
                         trace {
+                            val flow: Flow<Iterable<Double>> = cosFlow.windowed(100)
                             GlobalScope.launch {
-                                val flow: Flow<Iterable<Double>> = cosFlow.windowed(100)
                                 updateFrom(Trace.Y_AXIS, flow)
                             }
                         }
@@ -118,8 +117,8 @@ fun main() {
                         }
                         trace {
                             name = "non-synchronized"
+                            val flow: Flow<Iterable<Pair<Double, Double>>> = sinCosFlow.windowed(30)
                             GlobalScope.launch {
-                                val flow: Flow<Iterable<Pair<Double, Double>>> = sinCosFlow.windowed(30)
                                 updateXYFrom(flow)
                             }
                         }
