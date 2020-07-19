@@ -8,12 +8,15 @@ import java.nio.file.Path
 const val PLOTLY_SCRIPT_PATH = "/js/plotly.min.js"
 const val PLOTLY_PROMISE_NAME = "promiseOfPlotly"
 
+const val PLOTLY_CDN = "https://cdn.plot.ly/plotly-${Plotly.VERSION}.min.js"
+//"https://cdnjs.cloudflare.com/ajax/libs/plotly.js/${Plotly.VERSION}/plotly.min.js"
+
 val cdnPlotlyHeader = HtmlFragment {
     script {
         attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
         attributes["onerror"] = "console.log('Failed to load Plotly from CDN')"
         type = "text/javascript"
-        src = "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/${Plotly.VERSION}/plotly.min.js"
+        src = PLOTLY_CDN
     }
 }
 

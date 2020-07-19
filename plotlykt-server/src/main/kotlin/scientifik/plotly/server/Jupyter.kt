@@ -1,5 +1,7 @@
 package scientifik.plotly.server
 
+import io.ktor.application.Application
+import io.ktor.application.ApplicationStarted
 import io.ktor.application.install
 import io.ktor.application.log
 import io.ktor.features.CORS
@@ -26,46 +28,61 @@ import scientifik.plotly.*
 import java.nio.file.Path
 
 private class PlotlyJupyterServer(
-    val port: Int = 7777,
     updateInterval: Long = 50,
-    parentScope: CoroutineScope = GlobalScope
-) : PlotlyContainer, AutoCloseable {
+    val parentScope: CoroutineScope = GlobalScope
+) : PlotlyContainer {
 
     private val controller = PlotlyPageController(parentScope, updateInterval)
 
-    val serverStarted = CompletableDeferred(Unit)
+    var port: Int = 8882
+        private set
 
-    private val server: ApplicationEngine = parentScope.embeddedServer(io.ktor.server.cio.CIO, port) {
-        install(CORS) {
-            anyHost()
-        }
-        install(WebSockets)
-        routing {
-            static {
-                resource("/js/plotly.min.js")
-                resource("/js/plotly-push.js")
+    var isRunning: Boolean = false
+        private set
+
+
+    private var server: ApplicationEngine? = null
+
+    suspend fun start(port: Int = 8882) {
+        this.port = port
+        server = parentScope.embeddedServer(io.ktor.server.cio.CIO, port) {
+            install(CORS) {
+                anyHost()
             }
-            webSocket("ws/{id}") {
-                //Use server-side filtering for specific page and plot if they are present in the request
+            install(WebSockets)
+            routing {
+                static {
+                    resource("/js/plotly.min.js")
+                    resource("/js/plotly-push.js")
+                }
+                webSocket("ws/{id}") {
+                    //Use server-side filtering for specific page and plot if they are present in the request
 
-                val plotId: String? = call.parameters["id"] ?: error("Plot id not defined")
+                    val plotId: String? = call.parameters["id"] ?: error("Plot id not defined")
 
-                try {
-                    application.log.debug("Opened server socket for $plotId")
+                    try {
+                        application.log.debug("Opened server socket for $plotId")
 
-                    controller.updates().filter { it.id == plotId }.collect { update ->
-                        if (update.id == plotId) {
-                            val json = update.toJson()
-                            outgoing.send(Frame.Text(json.toString()))
+                        controller.updates().filter { it.id == plotId }.collect { update ->
+                            if (update.id == plotId) {
+                                val json = update.toJson()
+                                outgoing.send(Frame.Text(json.toString()))
+                            }
                         }
+                    } catch (ex: Exception) {
+                        application.log.debug("Closed server socket for $plotId")
                     }
-                } catch (ex: Exception) {
-                    application.log.debug("Closed server socket for $plotId")
                 }
             }
-            serverStarted.complete(Unit)
+        }.start().also {
+            val deferred = CompletableDeferred<Application>()
+            it.environment.monitor.subscribe(ApplicationStarted) {
+                deferred.complete(it)
+            }
+            deferred.join()
         }
-    }.start()
+        isRunning = true
+    }
 
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         controller.listenTo(plot, plotId)
@@ -90,31 +107,34 @@ private class PlotlyJupyterServer(
                     """.trimIndent()
                 }
             }
-            script {
-                attributes["id"] = "$plotId-push"
-                val wsUrl = url {
-                    host = "localhost"
-                    port = this@PlotlyJupyterServer.port
-                    protocol = URLProtocol.WS
-                    encodedPath = "/ws/$plotId"
-                }
-                unsafe {
-                    //language=JavaScript
-                    +"\n    startPush('$plotId', '$wsUrl');\n"
+            if (isRunning) {
+                script {
+                    attributes["id"] = "$plotId-push"
+                    val wsUrl = url {
+                        host = "localhost"
+                        port = this@PlotlyJupyterServer.port
+                        protocol = URLProtocol.WS
+                        encodedPath = "/ws/$plotId"
+                    }
+                    unsafe {
+                        //language=JavaScript
+                        +"\n    startPush('$plotId', '$wsUrl');\n"
+                    }
                 }
             }
         }
         return plot
     }
 
-    override fun close() {
-        server.stop(1000, 5000)
+    suspend fun stop() {
+        isRunning = false
+        server?.stop(1000, 5000)
     }
 }
 
-
+@UnstablePlotlyAPI
 object Jupyter {
-    const val JUPYTER_ASSETS_PATH = ".jupyter_kotlin/assets/"
+    private const val JUPYTER_ASSETS_PATH = ".jupyter_kotlin/assets/"
 
     private val plotlyJupyterHeader = localScriptHeader(
         Path.of("."),
@@ -124,71 +144,125 @@ object Jupyter {
         PLOTLY_SCRIPT_PATH
     )
 
+    fun useLocalPlotly() = plotlyJupyterHeader
+
+    fun useCdnPlotly() = cdnPlotlyHeader
+
+//    fun useCdnPlotly() = HtmlFragment {
+//        div {
+//            id = "plotly_cdn_loader"
+//            script {
+//                type = "text/javascript"
+//                //language=JavaScript
+//                +"""
+//                if(typeof window.$PLOTLY_PROMISE_NAME === 'undefined'){
+//                    console.log("Plotly loader is not defined. Loading from $PLOTLY_CDN.")
+//                    window.$PLOTLY_PROMISE_NAME = new Promise( (resolve, reject) => {
+//                        let plotlyScript = document.createElement("script");
+//                        plotlyScript.type = "text/javascript";
+//                        plotlyScript.src = "$PLOTLY_CDN";
+//                        plotlyScript.onload = function() {
+//                            console.log("Successfully loaded Plotly from $PLOTLY_CDN");
+//                            resolve(Plotly);
+//                        };
+//                        plotlyScript.onerror = function(event){
+//                            console.log("Failed to load Plotly from $PLOTLY_CDN");
+//                            reject("Failed to load Plotly from $PLOTLY_CDN");
+//                            window.$PLOTLY_PROMISE_NAME = undefined;
+//                            let errorDiv = document.createElement("div");
+//                            errorDiv.style.color = "darkred";
+//                            errorDiv.textContent = "Failed to load Plotly from CDN try using Jupyter.startUpdates() to obtain local copy.";
+//                            document.getElementById("plotly_cdn_loader").appendChild(errorDiv);
+//                        }
+//                        document.body.appendChild(plotlyScript);
+//                    });
+//                }
+//                """.trimIndent()
+//            }
+//        }
+//    }
+
+    fun usePlotlyForClassicNotebook() = HtmlFragment {
+        script {
+            type = "text/javascript"
+            unsafe {
+                //language=JavaScript
+                +"""
+                    require.config({ 
+                         paths: { 
+                            "plotly_notebook": '$PLOTLY_CDN'
+                         }
+                    });
+                    window.$PLOTLY_PROMISE_NAME = new Promise( (resolve) =>{
+                        require(['plotly_notebook'], (plotly) => {
+                            resolve(plotly);
+                            console.log(plotly);
+                        });
+                    });
+                """.trimIndent()
+            }
+        }
+    }
+
     /**
      * Check if plotly loader is started and if not use url loader
      */
-    private fun loadScripts(serverUrl: String) = HtmlFragment {
+    private fun loadServerScripts(serverUrl: String) = HtmlFragment {
         script {
+            type = "text/javascript"
             val plotlyUrl = "$serverUrl/js/plotly.min.js"
-            val pushUrl = "$serverUrl/js/plotly-push.js"
             unsafe {
                 //language=JavaScript
                 +"""
                 if(typeof window.$PLOTLY_PROMISE_NAME === 'undefined'){
-                    console.log("Plotly loader is not defined. Loading from $plotlyUrl.")
-                    let plotlyPromise = new Promise( (resolve, reject) => {
+                    console.log("Plotly loader is not defined. Loading from $plotlyUrl.");
+                    window.$PLOTLY_PROMISE_NAME = new Promise( (resolve, reject) => {
                         let plotlyScript = document.createElement("script");
                         plotlyScript.type = "text/javascript";
                         plotlyScript.src = "$plotlyUrl";
                         plotlyScript.onload = function() {
-                            console.log("Successfully loaded Plotly from $plotlyUrl")
-                            resolve(Plotly)
+                            console.log("Successfully loaded Plotly from $plotlyUrl");
+                            resolve(Plotly);
                         };
                         plotlyScript.onerror = function(event){
                             console.log("Failed to load Plotly from $plotlyUrl")
-                            reject("Failed to load Plotly from $plotlyUrl")
+                            reject("Failed to load Plotly from $plotlyUrl");
+                            window.$PLOTLY_PROMISE_NAME = undefined;
                         }
                         document.body.appendChild(plotlyScript);
                     });  
-                    
-                    let pushPromise = new Promise( resolve => {
+                }
+                """.trimIndent()
+            }
+        }
+        script {
+            type = "text/javascript"
+            val pushUrl = "$serverUrl/js/plotly-push.js"
+            unsafe {
+                //language=JavaScript
+                +"""
+                if(typeof window.promiseOfPlotlyPush === 'undefined'){
+                    window.promiseOfPlotlyPush = new Promise( resolve => {
                         let pushScript = document.createElement("script");
                         pushScript.type = "text/javascript";
                         pushScript.src = "$pushUrl";
                         pushScript.onload = function() {
-                            resolve()
+                            console.log("Plotly push sctipts are loaded")
+                            resolve();
                         };
                         pushScript.onerror = function(event){
-                            console.log("Failed to load Plotly-push from $pushUrl")
-                            reject("Failed to load Plotly-push from $pushUrl")
+                            console.log("Failed to load Plotly-push from $pushUrl");
+                            reject("Failed to load Plotly-push from $pushUrl");
+                            window.promiseOfPlotlyPush = undefined;
                         }                        
                         document.body.appendChild(pushScript);
                     });
-                    
-                    window.$PLOTLY_PROMISE_NAME = Promise.all([plotlyPromise, pushPromise])
-                        .then(values => values[0])
-                        .catch(reason => window.$PLOTLY_PROMISE_NAME = undefined)
                 }
                     
             """.trimIndent()
             }
         }
     }
-
-    /**
-     * Embed plotly script into the jupyter notebook
-     */
-    fun embedPlotly() = embededPlotlyHeader
-
-    /**
-     * Use local system-wide storage for scripts
-     */
-    fun localPlotly() = plotlyJupyterHeader
-
-    /**
-     * Use cdn script loader for plotly
-     */
-    fun cdnPlotly() = cdnPlotlyHeader
 
     @UnstablePlotlyAPI
     fun useMathJax() = HtmlFragment {
@@ -214,28 +288,57 @@ object Jupyter {
         }
     }
 
-    private var jupyterPlotlyServer: PlotlyJupyterServer? = null
+    private var jupyterPlotlyServer: PlotlyJupyterServer = PlotlyJupyterServer()
 
-    private val port = 8882
-
-    fun startServer(updateInterval: Long = 50): HtmlFragment {
-        jupyterPlotlyServer = PlotlyJupyterServer(port = port, updateInterval = updateInterval).also {
-            runBlocking {
-                it.serverStarted.await()
+    /**
+     * Start a dynamic update server
+     */
+    fun startUpdates(port: Int = 8882): HtmlFragment {
+        if(jupyterPlotlyServer.isRunning){
+            return HtmlFragment {
+                div {
+                    style = "color: \"darkblue\""
+                    +"The server is already running on ${jupyterPlotlyServer.port}. It must be shut down first to be restarted."
+                }
             }
         }
-        return loadScripts("http://localhost:$port")
+        runBlocking { jupyterPlotlyServer.start(port) }
+        return loadServerScripts("http://localhost:$port")
     }
 
-    fun stopServer() {
-        jupyterPlotlyServer?.close()
+    /**
+     * Stop dynamic update server
+     */
+    fun stopUpdates(): HtmlFragment {
+        if(!jupyterPlotlyServer.isRunning){
+            return HtmlFragment {
+                div {
+                    +"Update server is not running"
+                }
+            }
+        }
+        runBlocking { jupyterPlotlyServer.stop() }
+        return HtmlFragment {
+            script {
+                unsafe {
+                    //language=JavaScript
+                    +"""
+                    window.$PLOTLY_PROMISE_NAME = undefined
+                    window.promiseOfPlotlyPush = undefined
+                    """.trimIndent()
+                }
+            }
+            div{
+                +"Update server is stopped script headers are reset"
+            }
+            cdnPlotlyHeader.visit
+        }
     }
 
     private val jupyterPlotlyContainer = object : PlotlyContainer {
         override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
-            loadScripts("http://localhost:$port").visit(consumer)
             //choose dynamic or static rendering depending on what is active
-            return (jupyterPlotlyServer ?: StaticPlotlyContainer).run { renderPlot(plot, plotId, config) }
+            return jupyterPlotlyServer.run { renderPlot(plot, plotId, config) }
         }
     }
 
