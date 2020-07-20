@@ -37,6 +37,11 @@ class Margin : Scheme() {
     companion object : SchemeSpec<Margin>(::Margin)
 }
 
+enum class BoxMode {
+    overlay,
+    group
+}
+
 class Layout : Scheme() {
     /**
      * Sets the plot's width (in px).
@@ -112,6 +117,14 @@ class Layout : Scheme() {
     var plot_bgcolor = Color(this, "plot_bgcolor".asName())
 
     var margin by spec(Margin)
+
+    /**
+     * Determines how boxes at the same location coordinate are displayed on the graph. If "group",
+     * the boxes are plotted next to one another centered around the shared location. If "overlay",
+     * the boxes are plotted over one another, you might need to set "opacity" to see them multiple boxes.
+     * Has no effect on traces that have "width" set.
+     */
+    var boxmode by enum(BoxMode.overlay)
 
     fun legend(block: Legend.() -> Unit) {
         legend.apply(block)

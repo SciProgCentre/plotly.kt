@@ -16,7 +16,7 @@ fun main() {
             }
             symbol = Symbol.valueOf("line-ns")
         }
-        orientation = Orientation.horizontal
+        orientation = Orientation.h
         hoveron = ViolinHoveron.`points+kde`
         meanline {
             visible = true
@@ -53,7 +53,7 @@ fun main() {
             }
             symbol = Symbol.valueOf("line-ns")
         }
-        orientation = Orientation.horizontal
+        orientation = Orientation.h
         hoveron = ViolinHoveron.`points+kde`
         meanline {
             visible = true

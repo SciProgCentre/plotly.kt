@@ -474,10 +474,10 @@ class ColorBar : Scheme() {
 
 enum class Orientation {
     @JsName("v")
-    vertical,
+    v,
 
     @JsName("h")
-    horizontal
+    h
 }
 
 enum class ContoursType {
@@ -718,7 +718,7 @@ open class Trace() : Scheme() {
      * If "vertical" ("horizontal"), the data
      * is visualized along the vertical (horizontal).
      */
-    var orientation by enum(Orientation.horizontal)
+    var orientation by enum(Orientation.h)
 
     /**
      * If there are multiple violins that should be sized according to
