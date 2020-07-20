@@ -19,7 +19,7 @@ fun main() {
             listOf<Number>(20, 1, 60, 80, 30),
             listOf<Number>(30, 60, 1, -10, 20))
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         heatmap {
             x.set(x1)
             y.set(y1)

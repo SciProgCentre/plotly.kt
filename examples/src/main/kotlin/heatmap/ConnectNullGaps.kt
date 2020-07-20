@@ -2,7 +2,6 @@ package heatmap
 
 import scientifik.plotly.Plotly
 import scientifik.plotly.models.Heatmap
-import scientifik.plotly.show
 import scientifik.plotly.*
 
 
@@ -39,8 +38,8 @@ fun main() {
         connectgaps = true
     }
 
-    Plotly.show {
-        staticPlot {
+    Plotly.fragment {
+        plot {
             traces(heatmap1)
             layout {
                 width = 800
@@ -49,7 +48,7 @@ fun main() {
             }
         }
 
-        staticPlot {
+        plot {
             traces(heatmap2)
             layout {
                 width = 800

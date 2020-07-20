@@ -3,11 +3,10 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import hep.dataforge.values.ListValue
+import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
-import scientifik.plotly.intGreaterThan
-import scientifik.plotly.lazySpec
-import scientifik.plotly.numberInRange
+import scientifik.plotly.*
 import kotlin.js.JsName
 
 
@@ -19,6 +18,12 @@ enum class AxisType {
     date,
     category,
     multicategory;
+}
+
+enum class TickMode {
+    array,
+    auto,
+    linear
 }
 
 class Axis : Scheme() {
@@ -107,6 +112,87 @@ class Axis : Scheme() {
      */
     val color = Color(this, "color".asName())
 
+    /**
+     * Determines whether or not a line bounding this axis is drawn.
+     */
+    var showline by boolean()
+
+    /**
+     * Sets the axis line color. Default: #444.
+     */
+    var linecolor = Color(this, "linecolor".asName())
+
+    /**
+     * Sets the width (in px) of the axis line. Default: 1.
+     */
+    var linewidth by intGreaterThan(0)
+
+    /**
+     * Determines whether or not grid lines are drawn. If "true",
+     * the grid lines are drawn at every tick mark.
+     */
+    var showgrid by boolean()
+
+    /**
+     * Sets the color of the grid lines. Default: #eee
+     */
+    var gridcolor = Color(this, "gridcolor".asName())
+
+    /**
+     * Sets the width (in px) of the grid lines. Default: 1.
+     */
+    var gridwidth by intGreaterThan(0)
+
+    /**
+     * Determines whether or not a line is drawn at along the 0 value of this axis.
+     * If "true", the zero line is drawn on top of the grid lines.
+     */
+    var zeroline by boolean()
+
+    /**
+     * Sets the line color of the zero line. Default: #444
+     */
+    var zerolinecolor = Color(this, "zerolinecolor".asName())
+
+    /**
+     * Sets the width (in px) of the zero line. Default: 1.
+     */
+    var zerolinewidth by intGreaterThan(0)
+
+    /**
+     * Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`.
+     * If "linear", the placement of the ticks is determined by a starting position `tick0`
+     * and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided).
+     * If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
+     * ("array" is the default value if `tickvals` is provided).
+     */
+    var tickmode by enum(TickMode.auto)
+
+    /**
+     * Sets the values at which ticks on this axis appear.
+     * Only has an effect if `tickmode` is set to "array". Used with `ticktext`.
+     */
+    var tickvals by list()
+
+    /**
+     *Sets the text displayed at the ticks position via `tickvals`.
+     * Only has an effect if `tickmode` is set to "array". Used with `tickvals`.
+     */
+    var ticktext by list()
+
+    /**
+     * Enumerated, one of ( "free" | "/^x([2-9]|[1-9][0-9]+)?$/" | "/^y([2-9]|[1-9][0-9]+)?$/" )
+     * If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding
+     * opposite-letter axis. If set to "free", this axis' position is determined by `position`.
+     */
+    var anchor by string()
+
+    /**
+     * Sets the position of this axis in the plotting space (in normalized coordinates).
+     * Only has an effect if `anchor` is set to "free". Default: 0.
+     */
+    var position by numberInRange(0.0..1.0)
+
     fun title(block: Title.() -> Unit) {
         val spec = config["title"].node?.let { Title.wrap(it) }
             ?: Title.empty().also { config["title"] = it.config }
@@ -115,6 +201,14 @@ class Axis : Scheme() {
 
     fun tickfont(block: Font.() -> Unit) {
         tickfont = Font(block)
+    }
+
+    fun tickvals(array: Iterable<Any>) {
+        tickvals = array.map { Value.of(it) }
+    }
+
+    fun ticktext(array: Iterable<Any>) {
+        ticktext = array.map { Value.of(it) }
     }
 
     companion object : SchemeSpec<Axis>(::Axis)

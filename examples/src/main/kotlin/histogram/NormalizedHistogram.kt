@@ -18,7 +18,7 @@ fun main() {
     val rnd = Random()
     val x1 = List(500){rnd.nextDouble()}
 
-    val plot = Plotly.plot{
+    val plot = Plotly.plot {
         histogram {
             x.set(x1)
             name = "Random data"

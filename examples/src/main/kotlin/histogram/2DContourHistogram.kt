@@ -25,7 +25,7 @@ fun main() {
         y1.add(Math.random())
     }
 
-    val trace = Histogram2DContour.invoke {
+    val trace = Histogram2DContour {
         x.set(x1)
         y.set(y1)
         colorscale = Value.of("Greens")

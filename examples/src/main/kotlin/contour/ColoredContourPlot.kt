@@ -46,7 +46,7 @@ fun main() {
         }
     }
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         traces(contour)
 
         layout {

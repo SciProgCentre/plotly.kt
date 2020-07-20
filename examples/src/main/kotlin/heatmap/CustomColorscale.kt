@@ -5,7 +5,7 @@ import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
 import scientifik.plotly.heatmap
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.Annotation
+import scientifik.plotly.models.Text
 import scientifik.plotly.models.Font
 
 /**
@@ -23,13 +23,13 @@ fun main() {
             listOf<Number>(.9, .7, .5, .3))
     val customColorscale = listOf(listOf(0, "navy"), listOf(1, "plum"))
 
-    val annotationsList = mutableListOf<Annotation>()
+    val annotationsList = mutableListOf<Text>()
     val annotationFont = Font()
     annotationFont.color("white")
     annotationFont.size = 16
     for (i in y1.indices) {
         for (j in x1.indices) {
-            val curAnnotation = Annotation()
+            val curAnnotation = Text()
             curAnnotation.font = annotationFont
             curAnnotation.x = Value.of(x1[j])
             curAnnotation.y = Value.of(y1[i])
@@ -39,7 +39,7 @@ fun main() {
         }
     }
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         heatmap {
             x.set(x1)
             y.set(y1)

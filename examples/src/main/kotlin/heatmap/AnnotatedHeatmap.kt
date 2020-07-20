@@ -5,8 +5,8 @@ import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
 import scientifik.plotly.heatmap
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.Annotation
 import scientifik.plotly.models.Font
+import scientifik.plotly.models.Text
 import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.sin
@@ -26,12 +26,12 @@ fun main() {
         z1.add(MutableList(x1.size){0.0})
     }
 
-    val annotationsList = mutableListOf<Annotation>()
+    val annotationsList = mutableListOf<Text>()
 
     for (i in y1.indices) {
         for (j in x1.indices) {
             z1[i][j] = sin(x1[i]).pow(10) + cos(10 + y1[j] * x1[i]) * cos(x1[i])
-            val annotation = Annotation()
+            val annotation = Text()
             annotation.x = Value.of(x1[j])
             annotation.y = Value.of(y1[i])
             annotation.text = z1[i][j].toString().substring(0..4)
@@ -49,7 +49,7 @@ fun main() {
         }
     }
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         heatmap {
             x.set(x1)
             y.set(y1)

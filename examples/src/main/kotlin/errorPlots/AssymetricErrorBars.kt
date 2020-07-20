@@ -22,7 +22,7 @@ fun main() {
     val y1 = listOf(2, 3, 5, 8)
     val err = listOf(0.5, 0.75, 1.0, 1.25)
 
-    val plot = Plotly.plot{
+    val plot = Plotly.plot {
         scatter {
             x.set(x1)
             y.set(y1)

@@ -2,9 +2,9 @@ package pie
 
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
+import scientifik.plotly.fragment
 import scientifik.plotly.models.Pie
-import scientifik.plotly.show
-import scientifik.plotly.staticPlot
+import scientifik.plotly.plot
 
 
 fun main() {
@@ -20,8 +20,8 @@ fun main() {
         hole = 0.4
     }
 
-    Plotly.show {
-        staticPlot {
+    Plotly.fragment {
+        plot {
             traces(donut1)
 
             layout {
@@ -31,7 +31,7 @@ fun main() {
             }
         }
 
-        staticPlot {
+        plot {
             traces(donut2)
 
             layout {

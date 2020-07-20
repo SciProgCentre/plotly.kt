@@ -33,7 +33,7 @@ fun main() {
         }
     }
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         contour {
             x.set(x1)
             y.set(y1)

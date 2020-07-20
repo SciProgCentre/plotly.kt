@@ -17,7 +17,7 @@ fun main() {
     val categories = listOf("Apples","Apples","Apples","Oranges", "Bananas")
     val values = listOf("5","10","3","10","5")
 
-    val plot = Plotly.plot{
+    val plot = Plotly.plot {
         histogram {
             name = "count"
             x.set(categories)

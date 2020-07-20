@@ -19,7 +19,7 @@ fun main() {
     val values = listOf(1, 2, 2, 3, 2, 1, 4, 4)
     val colors = listOf(T10.RED, T10.GREEN, T10.ORANGE, T10.BLUE)
 
-    val plot = Plotly.plot{
+    val plot = Plotly.plot {
         histogram {
             name = "Random data"
             y.set(values)

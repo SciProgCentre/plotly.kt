@@ -93,9 +93,38 @@ class Text : Scheme() {
      */
     var arrowcolor = Color(this, "arrowcolor".asName())
 
+    /**
+     * Sets the angle at which the `text` is drawn with respect to the horizontal.
+     */
+    var textangle by numberInRange(-360.0..360.0)
+
+    /**
+     * Sets a distance, in pixels, to move the end arrowhead away from the position
+     * it is pointing at, for example to point at the edge of a marker independent of zoom.
+     * Note that this shortens the arrow from the `ax` / `ay` vector, in contrast
+     * to `xshift` / `yshift` which moves everything by this amount.
+     */
+    var standoff by numberGreaterThan(0)
+
+    var ax by value()
+
+    var ay by value()
+
+    var xref by value()
+
+    var yref by value()
+
+    var align by string()
+
+    var valign by string()
+
     fun position(x: Number, y: Number) {
         this.x = x.asValue()
         this.y = y.asValue()
+    }
+
+    fun font(block: Font.() -> Unit) {
+        font = Font(block)
     }
 
     companion object : SchemeSpec<Text>(::Text)

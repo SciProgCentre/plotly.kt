@@ -23,7 +23,7 @@ fun main() {
         y0 = Value.of(10)
     }
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         traces(contour)
 
         layout {

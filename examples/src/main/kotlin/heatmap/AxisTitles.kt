@@ -40,7 +40,7 @@ fun main() {
         colorscale = Value.of(customColorscale)
     }
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         traces(flightsHeatmap)
 
         layout {
