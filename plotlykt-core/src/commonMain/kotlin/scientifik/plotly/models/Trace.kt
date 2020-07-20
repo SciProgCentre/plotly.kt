@@ -473,10 +473,7 @@ class ColorBar : Scheme() {
 }
 
 enum class Orientation {
-    @JsName("v")
     v,
-
-    @JsName("h")
     h
 }
 
