@@ -2,10 +2,42 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import scientifik.plotly.numberInRange
+import kotlin.js.JsName
 
 enum class PieDirection {
     clockwise,
     counterclockwise
+}
+
+enum class TextInfo {
+    label,
+    text,
+    value,
+    percent,
+    none,
+
+    @JsName("labelText")
+    `label+text`,
+    @JsName("labelValue")
+    `label+value`,
+    @JsName("labelPercent")
+    `label+percent`,
+    @JsName("textValue")
+    `text+value`,
+    @JsName("textPercent")
+    `text+percent`,
+    @JsName("valuePercent")
+    `value+percent`,
+    @JsName("labelTextValue")
+    `label+text+value`,
+    @JsName("labelTextPercent")
+    `label+text+percent`,
+    @JsName("labelValuePercent")
+    `label+value+percent`,
+    @JsName("textValuePercent")
+    `text+value_percent`,
+    @JsName("labelTextValuePercent")
+    `label+text+value+percent`
 }
 
 class Pie() : Trace() {
@@ -56,6 +88,13 @@ class Pie() : Trace() {
      * Default: 0.
      */
     var label0 by number()
+
+    /**
+     * Determines which trace information appear on the graph.
+     */
+    var textinfo by enum(TextInfo.percent)
+
+//    var
 
     companion object : SchemeSpec<Pie>(::Pie)
 }

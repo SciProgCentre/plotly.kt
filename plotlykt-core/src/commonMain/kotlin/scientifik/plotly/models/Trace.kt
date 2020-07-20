@@ -193,7 +193,13 @@ enum class TextPosition {
     @JsName("bottomCenter")
     `bottom center`,
     @JsName("bottomRight")
-    `bottom right`
+    `bottom right`,
+
+    // pie
+    inside,
+    outside,
+    auto,
+    none
 }
 
 class Font : Scheme() {
