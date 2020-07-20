@@ -14,10 +14,11 @@ import scientifik.plotly.palettes.XKCD
  * - Change legend borderwidth
  */
 fun main() {
-    val labels = listOf("A", "B", "C", "D")
+    val labels = listOf("party A", "party B", "party C", "party D")
     val colorsPie = listOf(XKCD.RED, XKCD.GREEN, XKCD.ORANGE, XKCD.BLUE).map { Value.of(it) }
 
     val firstPie = Pie {
+        name = "First day"
         values(listOf(3, 2, 2, 3))
         labels(labels)
         hole = 0.5
@@ -37,6 +38,7 @@ fun main() {
     }
 
     val secondPie = Pie {
+        name = "Second day"
         values(listOf(8, 7, 6, 5))
         labels(labels)
         hole = 0.77
