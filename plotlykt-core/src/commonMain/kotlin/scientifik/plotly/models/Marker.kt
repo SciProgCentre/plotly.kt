@@ -90,6 +90,8 @@ class Marker : Scheme() {
 
     var gradient by spec(Gradient)
 
+    var outliercolor = Color(this, "outliercolor".asName())
+
     fun colors(colors: Iterable<Any>) {
         color.value = colors.map { Value.of(it) }.asValue()
     }

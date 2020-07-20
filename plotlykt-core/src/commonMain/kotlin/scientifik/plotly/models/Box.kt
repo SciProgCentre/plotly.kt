@@ -34,6 +34,10 @@ enum class BoxHoveron {
 }
 
 class Box(): Trace(), SelectedPoints {
+    init {
+        type = TraceType.box
+    }
+
     /**
      * Sets the width of the box in data coordinate If "0" (default value) the width is
      * automatically selected based on the positions of other box traces in the same subplot.

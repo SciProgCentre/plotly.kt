@@ -1,6 +1,8 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.names.asName
+import kotlinx.html.MAIN
 import scientifik.plotly.*
 
 
@@ -9,6 +11,30 @@ enum class BarMode {
     group,
     overlay,
     relative
+}
+
+class Margin : Scheme() {
+    /**
+     * Sets the left margin (in px). Default: 80.
+     */
+    var l by intGreaterThan(0)
+
+    /**
+     * Sets the right margin (in px). Default: 80.
+     */
+    var r by intGreaterThan(0)
+
+    /**
+     * Sets the top margin (in px). Default: 100.
+     */
+    var t by intGreaterThan(0)
+
+    /**
+     * Sets the bottom margin (in px). Default: 80.
+     */
+    var b by intGreaterThan(0)
+
+    companion object : SchemeSpec<Margin>(::Margin)
 }
 
 class Layout : Scheme() {
@@ -73,6 +99,20 @@ class Layout : Scheme() {
      */
     var annotations by list(Text)
 
+    /**
+     * Sets the background color of the paper where the graph is drawn.
+     * Default: #fff.
+     */
+    var paper_bgcolor = Color(this, "paper_bgcolor".asName())
+
+    /**
+     * Sets the background color of the plotting area in-between x and y axes.
+     * Default: #fff.
+     */
+    var plot_bgcolor = Color(this, "plot_bgcolor".asName())
+
+    var margin by spec(Margin)
+
     fun legend(block: Legend.() -> Unit) {
         legend.apply(block)
     }
@@ -98,6 +138,10 @@ class Layout : Scheme() {
 
     fun annotation(anBuilder: Text.() -> Unit) {
         annotation(Text(anBuilder))
+    }
+
+    fun margin(block: Margin.() -> Unit) {
+        margin = Margin(block)
     }
 
     companion object : SchemeSpec<Layout>(::Layout)
