@@ -6,6 +6,7 @@ import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.list
 import scientifik.plotly.numberGreaterThan
 import scientifik.plotly.numberInRange
 
@@ -82,6 +83,8 @@ class Marker : Scheme() {
     var line by spec(MarkerLine)
 
     val color = Color(this, "color".asName())
+
+    var colors by list()
 
     var colorbar by spec(ColorBar)
 

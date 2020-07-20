@@ -511,6 +511,32 @@ enum class Calendar {
     ummalqura
 }
 
+class Domain : Scheme() {
+    /**
+     * Sets the horizontal domain of this pie trace (in plot fraction).
+     * Default: [0, 1]
+     */
+    var x by numberList()
+
+    /**
+     * Sets the vertical domain of this pie trace (in plot fraction).
+     * Default: [0, 1]
+     */
+    var y by numberList()
+
+    /**
+     * If there is a layout grid, use the domain for this row in the grid for this pie trace.
+     */
+    var row by intGreaterThan(0)
+
+    /**
+     * If there is a layout grid, use the domain for this column in the grid for this pie trace.
+     */
+    var column by intGreaterThan(0)
+
+    companion object : SchemeSpec<Domain>(::Domain)
+}
+
 
 open class Trace() : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
@@ -737,6 +763,8 @@ open class Trace() : Scheme() {
      */
     var ycalendar by enum(Calendar.gregorian)
 
+    var domain by spec(Domain)
+
     fun values(array: Iterable<Any>) {
         values = array.map { Value.of(it) }
     }
@@ -767,6 +795,10 @@ open class Trace() : Scheme() {
 
     fun error_y(block: Error.() -> Unit) {
         error_y = Error(block)
+    }
+
+    fun domain(block: Domain.() -> Unit) {
+        domain = Domain(block)
     }
 
     companion object : SchemeSpec<Trace>(::Trace) {
