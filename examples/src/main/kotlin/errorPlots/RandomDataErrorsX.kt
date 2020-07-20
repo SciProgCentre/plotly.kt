@@ -3,9 +3,8 @@ package errorPlots
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.TraceType
-import scientifik.plotly.trace
 import scientifik.plotly.palettes.XKCD
+import scientifik.plotly.trace
 import java.util.*
 
 
@@ -19,7 +18,7 @@ fun main() {
     val x = (0..100 step 4).toList().map{ it / 20.0}
     val xerr = List(26){rnd.nextDouble() / 2}
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         trace(x, x) {
             marker {
                 color(XKCD.PURPLE)

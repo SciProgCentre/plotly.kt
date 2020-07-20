@@ -4,8 +4,8 @@ import hep.dataforge.meta.invoke
 import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.ScatterMode
 import scientifik.plotly.models.Scatter
+import scientifik.plotly.models.ScatterMode
 
 fun main() {
     val scatter = Scatter {
@@ -17,7 +17,7 @@ fun main() {
         }
     }
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         traces(scatter)
 
         layout {

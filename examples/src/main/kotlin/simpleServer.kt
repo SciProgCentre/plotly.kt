@@ -5,12 +5,12 @@ import kotlinx.html.a
 import kotlinx.html.div
 import kotlinx.html.h1
 import kotlinx.html.style
-import scientifik.plotly.Plot2D
+import scientifik.plotly.Plot
 import scientifik.plotly.Plotly
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.invoke
+import scientifik.plotly.plot
 import scientifik.plotly.server.serve
-import scientifik.plotly.staticPlot
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -23,10 +23,10 @@ fun main() {
         val y1 = x.map { sin(2.0 * PI * it) }.toDoubleArray()
         val y2 = x.map { cos(2.0 * PI * it) }.toDoubleArray()
 
-        val trace1 = Trace.invoke(x, y1) { name = "sin" }
-        val trace2 = Trace.invoke(x, y2) { name = "cos" }
+        val trace1 = Trace(x, y1) { name = "sin" }
+        val trace2 = Trace(x, y2) { name = "cos" }
 
-        lateinit var plot1: Plot2D
+        lateinit var plot1: Plot
 
         //root level plots go to default page
         page {
@@ -36,7 +36,7 @@ fun main() {
                 style = "display: flex;   align-items: stretch; "
                 div {
                     style = "width: 64%;"
-                    plot1 = staticPlot {
+                    plot1 = plot {
                         traces(trace1, trace2)
                         layout {
                             title = "First graph, row: 1, size: 8/12"
@@ -47,7 +47,7 @@ fun main() {
                 }
                 div {
                     style = "width: 32%;"
-                    staticPlot {
+                    plot {
                         traces(trace1, trace2)
                         layout {
                             title = "Second graph, row: 1, size: 4/12"
@@ -61,8 +61,7 @@ fun main() {
 
 
             div {
-                staticPlot {
-
+                plot {
                     traces(trace1, trace2)
                     layout {
                         title = "Third graph, row: 2, size: 12/12"
@@ -76,7 +75,7 @@ fun main() {
         page("other") {
             h1 { +"This is the other plot page" }
             a("/") { +"Back to the main page" }
-            staticPlot(plot1)
+            plot(plot1)
         }
 
     }

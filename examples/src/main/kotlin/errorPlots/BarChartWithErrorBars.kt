@@ -2,9 +2,11 @@ package errorPlots
 
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.*
 import scientifik.plotly.bar
+import scientifik.plotly.makeFile
+import scientifik.plotly.models.BarMode
+import scientifik.plotly.models.ErrorType
+import scientifik.plotly.models.XAnchor
 
 
 /**
@@ -18,7 +20,7 @@ fun main() {
     val y2 = listOf(4, 7, 3)
 
 
-    val plot = Plotly.plot2D {
+    val plot = Plotly.plot {
         bar {
             x.set(x1)
             y.set(y1)

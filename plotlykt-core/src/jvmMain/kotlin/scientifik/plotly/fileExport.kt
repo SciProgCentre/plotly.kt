@@ -1,9 +1,11 @@
 package scientifik.plotly
 
-import kotlinx.html.BODY
+import kotlinx.html.FlowContent
 import java.awt.Desktop
 import java.nio.file.Files
 import java.nio.file.Path
+
+internal const val assetsDirectory = "assets"
 
 enum class ResourceLocation {
     /**
@@ -27,23 +29,12 @@ enum class ResourceLocation {
     EMBED
 }
 
-private fun inferPlotlyHeader(target: Path?, resourceLocation: ResourceLocation): HtmlHeader = when(resourceLocation){
-    ResourceLocation.REMOTE -> PlotlyCdnHeader
-    ResourceLocation.LOCAL -> if(target != null) {
-        LocalPlotlyJs(target)
-    } else{
-        SystemPlotlyJs
-    }
-    ResourceLocation.SYSTEM -> SystemPlotlyJs
-    ResourceLocation.EMBED -> EmbededPlotlyJs
-}
-
 /**
  * Create a standalone html with the plot
  * @param path the reference to html file. If null, create a temporary file
  * @param show if true, start the browser after file is created
  */
-fun Plot2D.makeFile(
+fun Plot.makeFile(
     path: Path? = null,
     show: Boolean = true,
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
@@ -57,48 +48,28 @@ fun Plot2D.makeFile(
     }
 }
 
-/**
- * Make a file with a custom page layout
- */
-fun Plotly.makeFile(
-    path: Path? = null,
-    show: Boolean = true,
-    title: String? = null,
-    resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
-    bodyBuilder: BODY.() -> Unit
-) {
+fun PlotlyPage.makeFile(path: Path? = null, show: Boolean = true) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
     Files.createDirectories(actualFile.parent)
-    Files.writeString(actualFile, page(inferPlotlyHeader(path, resourceLocation), title = title, bodyBuilder = bodyBuilder))
+    Files.writeString(actualFile, render())
     if (show) {
         Desktop.getDesktop().browse(actualFile.toFile().toURI())
     }
 }
 
-fun Plotly.show(
-    title: String? = null,
-    resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
-    bodyBuilder: BODY.() -> Unit
-) = makeFile(null, true, title, resourceLocation, bodyBuilder)
-
-/**
- * Create a standalone html with the page
- * @param path the reference to html file. If null, create a temporary file
- * @param show if true, start the browser after file is created
- */
-@UnstablePlotlyAPI
-fun PlotGrid.makeFile(
+fun PlotlyFragment.makeFile(
     path: Path? = null,
     show: Boolean = true,
-    resourceLocation: ResourceLocation = ResourceLocation.LOCAL
+    title: String = "Plotly.kt",
+    resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
+    additionalHeaders: List<HtmlFragment> = emptyList()
 ) {
-    val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
-    Files.createDirectories(actualFile.parent)
-    Files.writeString(actualFile, toHtml(inferPlotlyHeader(path,resourceLocation)))
-    if (show) {
-        Desktop.getDesktop().browse(actualFile.toFile().toURI())
-    }
+    toPage(
+        title = title,
+        headers = *(additionalHeaders + inferPlotlyHeader(path, resourceLocation)).toTypedArray()
+    ).makeFile(path, show)
 }
 
-@UnstablePlotlyAPI
-fun PlotGrid.show() = makeFile()
+fun Plotly.display(
+    pageBuilder: FlowContent.(container: PlotlyContainer) -> Unit
+) = fragment(pageBuilder).makeFile(null, true)

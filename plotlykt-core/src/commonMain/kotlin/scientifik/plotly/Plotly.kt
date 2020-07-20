@@ -11,7 +11,8 @@ import kotlin.js.JsName
  */
 @JsName("PlotlyKt")
 object Plotly {
-    fun plot2D(block: Plot2D.() -> Unit): Plot2D = Plot2D().apply(block)
+    const val VERSION = "1.54.6"
+    fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
 }
 
 fun Scheme.toJson(): JsonObject = config.toJson()
@@ -35,21 +36,22 @@ fun List<Scheme>.toJsonString(): String = toJson().toString()
 @RequiresOptIn("Unstable API subjected to change in future releases", RequiresOptIn.Level.WARNING)
 annotation class UnstablePlotlyAPI
 
-@RequiresOptIn("Unsupported API subjected", RequiresOptIn.Level.ERROR)
+@RequiresOptIn("This Plotly API is not fully supported. Use it at your own risk.", RequiresOptIn.Level.ERROR)
 annotation class UnsupportedPlotlyAPI
 
-class PlotlyConfig: Scheme(){
+class PlotlyConfig : Scheme() {
     var editable by boolean()
     var showEditInChartStudio by boolean()
     var plotlyServerURL by string()
     var responsive by boolean()
 
-    fun withEditorButton(){
+    fun withEditorButton() {
         showEditInChartStudio = true
         plotlyServerURL = "https://chart-studio.plotly.com"
     }
 
     override fun toString(): String = toJsonString()
-    companion object: SchemeSpec<PlotlyConfig>(::PlotlyConfig)
+
+    companion object : SchemeSpec<PlotlyConfig>(::PlotlyConfig)
 }
 

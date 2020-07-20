@@ -1,14 +1,12 @@
 package scientifik.plotly.server
 
 import hep.dataforge.meta.Scheme
+import hep.dataforge.meta.SchemeSpec
 import hep.dataforge.meta.enum
 import hep.dataforge.meta.long
-import hep.dataforge.meta.string
 import hep.dataforge.names.toName
-import io.ktor.application.Application
-import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.application.log
+import io.ktor.application.*
+import io.ktor.features.CORS
 import io.ktor.features.origin
 import io.ktor.html.respondHtml
 import io.ktor.http.*
@@ -24,10 +22,13 @@ import io.ktor.websocket.WebSockets
 import io.ktor.websocket.application
 import io.ktor.websocket.webSocket
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.html.*
-import scientifik.plotly.Plot2D
-import scientifik.plotly.PlotlyConfig
+import scientifik.plotly.*
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.set
 
 enum class PlotlyUpdateMode {
     NONE,
@@ -35,107 +36,93 @@ enum class PlotlyUpdateMode {
     PULL
 }
 
-class PlotlyPageConfig : Scheme() {
-    //TODO make separate title for different pages
-    var title by string("Plotly.kt page")
-    var updateMode by enum(PlotlyUpdateMode.NONE, key = "update.mode".toName())
+class PlotlyServerConfig : Scheme() {
+    var updateMode by enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
     var updateInterval by long(300, key = UPDATE_INTERVAL_KEY)
 
-    companion object {
+    companion object : SchemeSpec<PlotlyServerConfig>(::PlotlyServerConfig) {
+        val UPDATE_MODE_KEY = "update.mode".toName()
         val UPDATE_INTERVAL_KEY = "update.interval".toName()
     }
 }
 
 
-class PlotServerContainer(val baseUrl: Url, val controller: PlotlyPageController, val updateMode: PlotlyUpdateMode)
+class PlotServerContainer(
+    val baseUrl: Url,
+    val controller: PlotlyPageController,
+    val updateMode: PlotlyUpdateMode
+) : PlotlyContainer {
+    override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
+        controller.listenTo(plot, plotId)
+        div {
+            id = plotId
 
-/**
- * Attach plot with active data source to the element
- *
- * @param container an environment required to register plot data updates
- */
-fun FlowContent.dynamicPlot(
-    container: PlotServerContainer,
-    plot: Plot2D,
-    plotId: String = plot.toString(),
-    config: PlotlyConfig = PlotlyConfig()
-): Plot2D = with(container) {
-
-    controller.listenTo(plot, plotId)
-
-    div {
-        id = plotId
-
-        val dataUrl = baseUrl.copy(
-            encodedPath = baseUrl.encodedPath + "/data/$plotId"
-        )
-        script {
-            unsafe {
-                //language=JavaScript
-                +"\n    createPlotFrom('$plotId','$dataUrl', $config);\n"
-            }
-
-            // starting plot updates if required
-            when (updateMode) {
-                PlotlyUpdateMode.PUSH -> {
-                    val wsUrl = baseUrl.copy(
-                        protocol = URLProtocol.WS,
-                        encodedPath = baseUrl.encodedPath + "/ws/$plotId"
-                    )
-                    unsafe {
-                        //language=JavaScript
-                        +"\n    startPush('$plotId', '$wsUrl');\n"
-                    }
+            val dataUrl = baseUrl.copy(
+                encodedPath = baseUrl.encodedPath + "/data/$plotId"
+            )
+            script {
+                unsafe {
+                    //language=JavaScript
+                    +"\n    createPlotFrom('$plotId','$dataUrl', $config);\n"
                 }
-                PlotlyUpdateMode.PULL -> {
-                    unsafe {
-                        //language=JavaScript
-                        +"\n    startPull('$plotId', '$dataUrl', ${controller.updateInterval});\n"
+
+                // starting plot updates if required
+                when (updateMode) {
+                    PlotlyUpdateMode.PUSH -> {
+                        val wsUrl = baseUrl.copy(
+                            protocol = URLProtocol.WS,
+                            encodedPath = baseUrl.encodedPath + "/ws/$plotId"
+                        )
+                        unsafe {
+                            //language=JavaScript
+                            +"\n    startPush('$plotId', '$wsUrl');\n"
+                        }
                     }
-                }
-                PlotlyUpdateMode.NONE -> {
-                    //do nothing
+                    PlotlyUpdateMode.PULL -> {
+                        unsafe {
+                            //language=JavaScript
+                            +"\n    startPull('$plotId', '$dataUrl', ${controller.updateInterval});\n"
+                        }
+                    }
+                    PlotlyUpdateMode.NONE -> {
+                        //do nothing
+                    }
                 }
             }
         }
+        return plot
     }
-    return@with plot
+
 }
 
-/**
- * Create a dynamic plot with pull or push data updates
- */
-fun FlowContent.dynamicPlot(
-    container: PlotServerContainer,
-    plotId: String? = null,
-    plotBuilder: Plot2D.() -> Unit
-): Plot2D {
-    val plot = Plot2D().apply(plotBuilder)
-    return dynamicPlot(container, plot, plotId ?: plot.toString())
-}
-
-class PlotlyPage(
-    val config: PlotlyPageConfig,
-    val route: String = "/",
-    val bodyBuilder: BODY.(container: PlotServerContainer) -> Unit
-)
+//class PlotlyServerPage(
+//    val config: PlotlyServerPageConfig,
+//    val route: String = "/",
+//    val renderContent: FlowContent.(container: PlotlyContainer) -> Unit
+//)
 
 /**
  *
  */
-fun Application.plotlyModule(pages: List<PlotlyPage>) {
-    install(WebSockets){
-        pingPeriodMillis = 3000
+fun Application.plotlyModule(pages: Map<String, PlotlyPage>, config: PlotlyServerConfig = PlotlyServerConfig.empty()) {
+    if (featureOrNull(WebSockets) == null) {
+        install(WebSockets)
+    }
+
+    if (featureOrNull(CORS) == null) {
+        install(CORS) {
+            anyHost()
+        }
     }
 
     routing {
         static {
             resource("/js/plotly.min.js")
-            resource("/js/updates.js")
+            resource("/js/plotly-push.js")
         }
-        pages.forEach { page ->
-            val controller = PlotlyPageController(this@plotlyModule, page.config.updateInterval)
-            route(page.route) {
+        pages.forEach { (route, page) ->
+            val controller = PlotlyPageController(this@plotlyModule, config.updateInterval)
+            route(route) {
 
                 //Update websocket
                 webSocket("ws/{id}") {
@@ -143,10 +130,11 @@ fun Application.plotlyModule(pages: List<PlotlyPage>) {
 
                     val plotId: String? = call.parameters["id"] ?: error("Plot id not defined")
 
-                    try {
-                        application.log.debug("Opened server socket for $plotId")
+                    application.log.debug("Opened server socket for $plotId")
 
-                        controller.updates().filter { it.id == plotId }.collect { update ->
+                    val subscription = controller.subscribe()
+                    try {
+                        subscription.consumeAsFlow().filter { it.id == plotId }.collect { update ->
                             if (update.id == plotId) {
                                 val json = update.toJson()
                                 outgoing.send(Frame.Text(json.toString()))
@@ -154,6 +142,8 @@ fun Application.plotlyModule(pages: List<PlotlyPage>) {
                         }
                     } catch (ex: Exception) {
                         application.log.debug("Closed server socket for $plotId")
+                    } finally {
+                        subscription.cancel()
                     }
                 }
                 //Plots in their json representation
@@ -164,7 +154,11 @@ fun Application.plotlyModule(pages: List<PlotlyPage>) {
                     if (plot == null) {
                         call.respond(HttpStatusCode.NotFound, "Plot with id = $id not found")
                     } else {
-                        call.respondText(plot.toJson().toString(), contentType = ContentType.Application.Json, status = HttpStatusCode.OK)
+                        call.respondText(
+                            plot.toJson().toString(),
+                            contentType = ContentType.Application.Json,
+                            status = HttpStatusCode.OK
+                        )
                     }
                 }
                 //filled pages
@@ -174,29 +168,31 @@ fun Application.plotlyModule(pages: List<PlotlyPage>) {
                             meta {
                                 charset = "utf-8"
                                 script {
+                                    attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
+                                    type = "text/javascript"
                                     src = "/js/plotly.min.js"
                                 }
                                 script {
-                                    src = "/js/updates.js"
+                                    attributes["onload"] = "window.promiseOfPlotlyPush = Promise.resolve()"
+                                    type = "text/javascript"
+                                    src = "/js/plotly-push.js"
                                 }
                             }
-                            title(page.config.title)
+                            title(page.title)
                         }
                         body {
                             val origin = call.request.origin
                             val url = URLBuilder().apply {
                                 protocol = URLProtocol.createOrDefault(origin.scheme)
                                 //workaround for https://github.com/ktorio/ktor/issues/1663
-                                host =  if(origin.host. startsWith("0:")) "[${origin.host}]" else origin.host
+                                host = if (origin.host.startsWith("0:")) "[${origin.host}]" else origin.host
                                 port = origin.port
                                 encodedPath = origin.uri
                             }.build()
-                            val container = PlotServerContainer(
-                                url,
-                                controller,
-                                page.config.updateMode
-                            )
-                            with(page) { bodyBuilder(container) }
+                            val container = PlotServerContainer(url, controller, config.updateMode)
+                            with(page.fragment) {
+                                render(container)
+                            }
                         }
                     }
 
@@ -207,9 +203,18 @@ fun Application.plotlyModule(pages: List<PlotlyPage>) {
 }
 
 fun Application.plotlyModule(
-    config: PlotlyPageConfig,
     route: String = "/",
-    bodyBuilder: BODY.(container: PlotServerContainer) -> Unit
+    config: PlotlyServerConfig = PlotlyServerConfig(),
+    page: PlotlyPage
 ) {
-    plotlyModule(listOf(PlotlyPage(config, route, bodyBuilder)))
+    plotlyModule(mapOf(route to page), config)
+}
+
+fun Application.plotlyModule(
+    route: String = "/",
+    config: PlotlyServerConfig = PlotlyServerConfig(),
+    title: String = "Plotly.kt",
+    bodyBuilder: FlowContent.(container: PlotlyContainer) -> Unit
+) {
+    plotlyModule(route, config, Plotly.page(title = title, content = bodyBuilder))
 }

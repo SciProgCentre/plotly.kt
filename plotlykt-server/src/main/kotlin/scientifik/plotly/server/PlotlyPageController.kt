@@ -3,15 +3,15 @@ package scientifik.plotly.server
 import hep.dataforge.meta.*
 import hep.dataforge.names.Name
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import scientifik.plotly.Plot2D
+import scientifik.plotly.Plot
+import java.util.concurrent.ConcurrentHashMap
 
 
 /**
@@ -29,10 +29,14 @@ class MetaChangeCollector {
     }
 
     suspend fun read(): Meta {
-        return mutex.withLock {
-            state.seal().also {
-                state = Config()
+        return if (!state.isEmpty()) {
+            mutex.withLock {
+                state.seal().also {
+                    state = Config()
+                }
             }
+        } else {
+            Meta.EMPTY
         }
     }
 }
@@ -42,9 +46,9 @@ class MetaChangeCollector {
  */
 private class SinglePlotCollector {
     val layoutCollector = MetaChangeCollector()
-    val traceCollectors = HashMap<Int, MetaChangeCollector>()
+    val traceCollectors = ConcurrentHashMap<Int, MetaChangeCollector>()
 
-    fun getTrace(trace: Int) = traceCollectors.getOrPut(trace, ::MetaChangeCollector)
+    fun getTrace(trace: Int): MetaChangeCollector = traceCollectors.getOrPut(trace, ::MetaChangeCollector)
 }
 
 
@@ -52,24 +56,19 @@ class PlotlyPageController(
     val scope: CoroutineScope,
     val updateInterval: Long
 ) {
-
     /**
      * A collection of all plots served on this page
      */
-    val _plots = HashMap<String, Plot2D>()
-    val plots: Map<String, Plot2D> get() = _plots
+    val _plots = HashMap<String, Plot>()
+    val plots: Map<String, Plot> get() = _plots
 
-    private val channel = Channel<Update>()
+    private val channel = BroadcastChannel<Update>(100)
 
-    fun updates(): Flow<Update> = channel.receiveAsFlow()
+    fun subscribe(): ReceiveChannel<Update> = channel.openSubscription()
 
-    private val collectors = HashMap<String, SinglePlotCollector>()
+    private val collectors = ConcurrentHashMap<String, SinglePlotCollector>()
 
-    private val mutex = Mutex()
-
-    private suspend fun getCollector(plotId: String) =
-        mutex.withLock { collectors.getOrPut(plotId, ::SinglePlotCollector) }
-
+    private fun getCollector(plotId: String) = collectors.getOrPut(plotId, ::SinglePlotCollector)
 
     private fun traceChanged(plotId: String, traceId: Int, itemName: Name, item: MetaItem<*>?) {
         scope.launch {
@@ -83,7 +82,7 @@ class PlotlyPageController(
         }
     }
 
-    fun listenTo(plot: Plot2D, plotId: String) {
+    fun listenTo(plot: Plot, plotId: String) {
         _plots[plotId] = plot
         plot.data.forEachIndexed { index, trace ->
             trace.config.onChange(this) { name, _, newItem ->
@@ -104,14 +103,16 @@ class PlotlyPageController(
             while (isActive) {
                 delay(updateInterval)
                 //checking all incoming changes
-                mutex.withLock {
-                    collectors.forEach { (plotId, collector) ->
+                collectors.forEach { (plotId, collector) ->
+                    launch {
                         val layoutChange = collector.layoutCollector.read()
                         //send layout change if it is not empty
                         if (!layoutChange.isEmpty()) {
                             channel.send(Update.Layout(plotId, layoutChange))
                         }
-                        collector.traceCollectors.forEach { (traceNum, traceCollector) ->
+                    }
+                    collector.traceCollectors.forEach { (traceNum, traceCollector) ->
+                        launch {
                             val change = traceCollector.read()
                             //send trace change if it is not empty
                             if (!change.isEmpty()) {
@@ -119,6 +120,7 @@ class PlotlyPageController(
                             }
                         }
                     }
+
                 }
             }
         }

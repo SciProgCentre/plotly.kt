@@ -3,13 +3,14 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import hep.dataforge.values.asValue
+import scientifik.plotly.lazySpec
 import scientifik.plotly.numberGreaterThan
 import scientifik.plotly.numberInRange
 
 /**
  * Text annotation
  */
-class Annotation : Scheme() {
+class Text : Scheme() {
     /**
      * Determines whether or not this annotation is visible.
      * Default: true
@@ -28,7 +29,7 @@ class Annotation : Scheme() {
     /**
      * Sets the annotation text font.
      */
-    var font by spec(Font)
+    var font by lazySpec(Font)
 
     /**
      * Sets the annotation's x position. If the axis `type` is "log",
@@ -97,5 +98,5 @@ class Annotation : Scheme() {
         this.y = y.asValue()
     }
 
-    companion object : SchemeSpec<Annotation>(::Annotation)
+    companion object : SchemeSpec<Text>(::Text)
 }

@@ -9,7 +9,7 @@ private fun Scheme.toDynamic() = config.toDynamic()
 /**
  * Attach a plot to this element
  */
-fun HTMLElement.plot(plot: Plot2D, plotlyConfig: PlotlyConfig = PlotlyConfig()) {
+fun HTMLElement.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig()) {
     val traces = plot.data.map { it.toDynamic() }.toTypedArray()
     PlotlyJs.react(this, traces, plot.layout.toDynamic(), plotlyConfig.toDynamic())
     plot.layout.config.onChange(this) { _, _, _ ->
@@ -36,6 +36,6 @@ fun HTMLElement.plot(plot: Plot2D, plotlyConfig: PlotlyConfig = PlotlyConfig()) 
     }
 }
 
-fun HTMLElement.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plotBuilder: Plot2D.() -> Unit) {
-    plot(Plot2D().apply(plotBuilder), plotlyConfig)
+fun HTMLElement.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plotBuilder: Plot.() -> Unit) {
+    plot(Plot().apply(plotBuilder), plotlyConfig)
 }

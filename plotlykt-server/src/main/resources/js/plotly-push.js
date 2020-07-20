@@ -1,12 +1,3 @@
-// /**
-//  * Create plot directly
-//  * @param id
-//  * @param data
-//  * @param layout
-//  */
-// function createPlot(id, data, layout) {
-//     Plotly.newPlot(id, data, layout, {showSendToCloud: true});
-// }
 
 /**
  * Request and parse json from given address
@@ -82,7 +73,7 @@ function startPush(id, ws) {
     let socket = new WebSocket(ws);
 
     socket.onopen = function () {
-        console.log("A connection with server established");
+        console.log("[Plotly.kt] A connection for plot with id = " + id +" with server established on " + ws);
     };
 
     socket.onclose = function (event) {

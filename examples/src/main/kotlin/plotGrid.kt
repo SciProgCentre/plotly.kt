@@ -1,7 +1,6 @@
 import scientifik.plotly.*
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.invoke
-import scientifik.plotly.show
 import scientifik.plotly.palettes.T10
 import kotlin.math.PI
 import kotlin.math.cos
@@ -29,7 +28,7 @@ fun main() {
     }
 
     val plot = Plotly.grid {
-        title = "Page sample"
+//        title = "Page sample"
         plot(row = 1, width = 8) {
             traces(trace1, trace2)
             layout {
@@ -58,5 +57,5 @@ fun main() {
         }
     }
 
-    plot.show()
+    plot.makeFile()
 }

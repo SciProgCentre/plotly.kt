@@ -2,8 +2,8 @@ package histogram
 
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
 import scientifik.plotly.histogram
+import scientifik.plotly.makeFile
 import java.util.*
 
 
@@ -17,7 +17,7 @@ fun main() {
     val rnd = Random()
     val values = List(500){rnd.nextDouble()}
 
-    val plot = Plotly.plot2D{
+    val plot = Plotly.plot{
         histogram {
             x.set(values)
             name = "Random data"
