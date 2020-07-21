@@ -22,7 +22,7 @@ class Bar() : Trace(), SelectedPoints {
      * Sets where the bar base is drawn (in position axis units). In "stack" or "relative" barmode,
      * traces that set "base" will be excluded and drawn in "overlay" mode instead.
      */
-    var base by number()
+    var base by numberList()
 
     /**
      * Array of numbers greater than or equal to 0. Sets the bar width (in position axis units).
