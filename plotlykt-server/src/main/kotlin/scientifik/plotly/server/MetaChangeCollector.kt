@@ -4,7 +4,9 @@ import hep.dataforge.meta.*
 import hep.dataforge.names.Name
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -62,9 +64,17 @@ private fun Config.flowChanges(scope: CoroutineScope, updateInterval: Long): Flo
 }
 
 fun Plot.collectUpdates(plotId: String, scope: CoroutineScope, updateInterval: Long): Flow<Update> {
-    val layoutChangeFlow = layout.config.flowChanges(scope, updateInterval).map { Update.Layout(plotId, it) }
-    val traceFlows = data.mapIndexed { index, trace ->
-        trace.config.flowChanges(scope, updateInterval).map { Update.Trace(plotId, index, it) }
+    return config.flowChanges(scope, updateInterval).flatMapMerge { change ->
+        flow<Update> {
+            change["layout"].node?.let { emit(Update.Layout(plotId, it)) }
+            change.getIndexed("data").values.mapNotNull { it.node }.forEachIndexed { index, metaItem ->
+                emit(Update.Trace(plotId, index, metaItem))
+            }
+        }
     }
-    return flowOf(layoutChangeFlow, *traceFlows.toTypedArray()).flattenMerge()
+//    val layoutChangeFlow = layout.config.flowChanges(scope, updateInterval).map { Update.Layout(plotId, it) }
+//    val traceFlows = data.mapIndexed { index, trace ->
+//        trace.config.flowChanges(scope, updateInterval).map { Update.Trace(plotId, index, it) }
+//    }
+//    return flowOf(layoutChangeFlow, *traceFlows.toTypedArray()).flattenMerge()
 }

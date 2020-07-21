@@ -332,24 +332,17 @@ object Jupyter {
         }
     }
 
-    private val jupyterPlotlyContainer = object : PlotlyContainer {
-        override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
-            //choose dynamic or static rendering depending on what is active
-            return jupyterPlotlyServer.run { renderPlot(plot, plotId, config) }
-        }
-    }
-
     fun renderPlot(plot: Plot): String = createHTML().div {
         plot(plot, config = PlotlyConfig {
             responsive = true
-        }, container = jupyterPlotlyContainer)
+        }, container = jupyterPlotlyServer)
     }
 
     fun renderFragment(fragment: PlotlyFragment): String = createHTML().div {
         with(fragment) {
-            render(jupyterPlotlyContainer)
+            render(jupyterPlotlyServer)
         }
     }
 
-    fun renderPage(page: PlotlyPage): String = page.copy(container = jupyterPlotlyContainer).render()
+    fun renderPage(page: PlotlyPage): String = page.copy(container = jupyterPlotlyServer).render()
 }

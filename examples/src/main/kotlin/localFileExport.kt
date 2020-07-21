@@ -1,8 +1,8 @@
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
+import scientifik.plotly.selectFile
 import scientifik.plotly.trace
-import java.nio.file.Files
 import kotlin.math.PI
 import kotlin.math.sin
 
@@ -25,5 +25,6 @@ fun main() {
         }
     }
 
-    plot.makeFile(Files.createTempFile("plotlykt",".html"))
+    plot.makeFile(selectFile())
+    //plot.makeFile(Files.createTempFile("plotlykt",".html"))
 }

@@ -4,6 +4,8 @@ import kotlinx.html.FlowContent
 import java.awt.Desktop
 import java.nio.file.Files
 import java.nio.file.Path
+import javax.swing.JFileChooser
+
 
 internal const val assetsDirectory = "assets"
 
@@ -73,3 +75,21 @@ fun PlotlyFragment.makeFile(
 fun Plotly.display(
     pageBuilder: FlowContent.(container: PlotlyContainer) -> Unit
 ) = fragment(pageBuilder).makeFile(null, true)
+
+/**
+ * Select file to save plot to
+ */
+@UnstablePlotlyAPI
+fun selectFile(): Path? {
+    val fileChooser = JFileChooser()
+    fileChooser.dialogTitle = "Specify a file to save"
+
+    val userSelection = fileChooser.showSaveDialog(null)
+
+    return if (userSelection == JFileChooser.APPROVE_OPTION) {
+        val fileToSave = fileChooser.selectedFile
+        fileToSave.toPath()
+    } else {
+        null
+    }
+}

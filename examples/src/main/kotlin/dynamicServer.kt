@@ -34,9 +34,9 @@ fun main() {
             plot(container = plotly) {
                 traces(trace)
                 layout {
-                    title = "Dynamic plot"
-                    xaxis { title { text = "x axis name" } }
-                    yaxis { title { text = "y axis name" } }
+                    title = "Other dynamic plot"
+                    xaxis.title = "x axis name"
+                    yaxis.title = "y axis name"
                 }
             }
         }
@@ -47,9 +47,9 @@ fun main() {
             plot(container = plotly) {
                 traces(trace)
                 layout {
-                    title { text = "Dynamic plot" }
-                    xaxis { title { text = "x axis name" } }
-                    yaxis { title { text = "y axis name" } }
+                    title = "Dynamic plot"
+                    xaxis.title = "x axis name"
+                    yaxis.title = "y axis name"
                 }
             }
         }
