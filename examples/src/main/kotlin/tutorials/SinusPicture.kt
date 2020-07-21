@@ -1,3 +1,5 @@
+package tutorials
+
 import kotlin.math.*
 import scientifik.plotly.Plotly
 import hep.dataforge.values.Value
