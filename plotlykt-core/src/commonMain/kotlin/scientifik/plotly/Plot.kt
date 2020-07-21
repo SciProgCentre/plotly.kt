@@ -13,6 +13,11 @@ class Plot : MetaRepr {
     val data: List<Trace> get() = _data
     val layout: Layout = Layout.empty()
 
+
+    fun traces(traces: Collection<Trace>) {
+        _data.addAll(traces)
+    }
+
     fun traces(vararg trace: Trace) {
         _data.addAll(trace)
     }

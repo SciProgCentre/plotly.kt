@@ -10,14 +10,13 @@ import scientifik.plotly.layout
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.invoke
 import scientifik.plotly.plot
-import scientifik.plotly.server.PlotlyServer
 import scientifik.plotly.server.pullUpdates
 import scientifik.plotly.server.serve
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
+fun serve(scale: ObservableIntegerValue) = Plotly.serve {
 
     page("Static") { container ->
         val x = (0..100).map { it.toDouble() / 100.0 }.toDoubleArray()
@@ -68,6 +67,7 @@ fun serve(scale: ObservableIntegerValue): PlotlyServer = Plotly.serve {
             }
         }
     }
-}.pullUpdates(500)
+    pullUpdates(500)
+}
 
 

@@ -20,8 +20,6 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.consumeAsFlow
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.runBlocking
 import kotlinx.html.*
 import kotlinx.html.stream.createHTML
@@ -29,11 +27,9 @@ import scientifik.plotly.*
 import java.nio.file.Path
 
 private class PlotlyJupyterServer(
-    updateInterval: Long = 50,
+    val updateInterval: Long = 50,
     val parentScope: CoroutineScope = GlobalScope
 ) : PlotlyContainer {
-
-    private val controller = PlotlyPageController(parentScope, updateInterval)
 
     var port: Int = 8882
         private set
@@ -43,6 +39,8 @@ private class PlotlyJupyterServer(
 
 
     private var server: ApplicationEngine? = null
+
+    private val plots = HashMap<String,Plot>()
 
     suspend fun start(port: Int = 8882) {
         this.port = port
@@ -57,23 +55,19 @@ private class PlotlyJupyterServer(
                     resource("/js/plotly-push.js")
                 }
                 webSocket("ws/{id}") {
-                    //Use server-side filtering for specific page and plot if they are present in the request
-
-                    val plotId: String? = call.parameters["id"] ?: error("Plot id not defined")
+                    val plotId: String = call.parameters["id"] ?: error("Plot id not defined")
 
                     application.log.debug("Opened server socket for $plotId")
-                    val subscription = controller.subscribe()
+
+                    val plot = plots[plotId] ?: error("Plot with id='$plotId' not registered")
+
                     try {
-                        subscription.consumeAsFlow().filter { it.id == plotId }.collect { update ->
-                            if (update.id == plotId) {
-                                val json = update.toJson()
-                                outgoing.send(Frame.Text(json.toString()))
-                            }
+                        plot.collectUpdates(plotId, this, updateInterval).collect { update ->
+                            val json = update.toJson()
+                            outgoing.send(Frame.Text(json.toString()))
                         }
                     } catch (ex: Exception) {
                         application.log.debug("Closed server socket for $plotId")
-                    } finally {
-                        subscription.cancel()
                     }
                 }
             }
@@ -88,7 +82,7 @@ private class PlotlyJupyterServer(
     }
 
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
-        controller.listenTo(plot, plotId)
+        plots[plotId] = plot
         div {
             id = plotId
             script {
@@ -129,7 +123,7 @@ private class PlotlyJupyterServer(
         return plot
     }
 
-    suspend fun stop() {
+    fun stop() {
         isRunning = false
         server?.stop(1000, 5000)
     }

@@ -1,18 +1,18 @@
 package scientifik.plotly.fx
 
+import io.ktor.server.engine.ApplicationEngine
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import scientifik.plotly.server.PlotlyServer
 import tornadofx.*
 
 class PlotlyController : Controller() {
 
     val scale = SimpleIntegerProperty(1)
 
-    private var server: PlotlyServer? = null
+    private var server: ApplicationEngine? = null
 
     fun startServer() {
         GlobalScope.launch(Dispatchers.Default) {

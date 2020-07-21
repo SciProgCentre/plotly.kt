@@ -1,9 +1,30 @@
 import hep.dataforge.meta.invoke
+import kotlinx.html.script
+import kotlinx.html.unsafe
 import scientifik.plotly.*
 
-@UnstablePlotlyAPI
+val myMathJaxHeader = HtmlFragment {
+    script {
+        type = "text/x-mathjax-config"
+        unsafe {
+            //language=JavaScript
+            +"""
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+            });
+            """
+        }
+    }
+    script {
+        type = "text/javascript"
+        async = true
+        src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_SVG"
+    }
+}
+
+
 fun main() {
-    Plotly.page(mathJaxHeader, cdnPlotlyHeader) {
+    Plotly.page(myMathJaxHeader, cdnPlotlyHeader) {
         plot {
             scatter {
                 x(2, 3, 4, 5)

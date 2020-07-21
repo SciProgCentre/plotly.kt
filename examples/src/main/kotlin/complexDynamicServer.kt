@@ -13,6 +13,7 @@ import scientifik.plotly.models.Trace
 import scientifik.plotly.plot
 import scientifik.plotly.server.pushUpdates
 import scientifik.plotly.server.serve
+import scientifik.plotly.server.show
 import scientifik.plotly.trace
 import java.time.Instant
 import java.util.concurrent.ConcurrentLinkedQueue
@@ -127,12 +128,13 @@ fun main() {
             }
 
         }
-    }.pushUpdates(50)        // start sending updates via websocket to the front-end
+        pushUpdates(100) // start sending updates via websocket to the front-end
+    }
 
     server.show()
 
     println("Press Enter to close server")
     readLine()
 
-    server.close()
+    server.stop(1000, 5000)
 }
