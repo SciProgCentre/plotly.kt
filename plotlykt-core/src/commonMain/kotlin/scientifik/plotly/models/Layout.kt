@@ -2,7 +2,6 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
-import kotlinx.html.MAIN
 import scientifik.plotly.*
 
 
@@ -125,6 +124,14 @@ class Layout : Scheme() {
      * Has no effect on traces that have "width" set.
      */
     var boxmode by enum(BoxMode.overlay)
+
+    /**
+     * Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these:
+     * a) Two or more traces would by default be shown in the legend.
+     * b) One pie trace is shown in the legend.
+     * c) One trace is explicitly given with `showlegend: true`.
+     */
+    var showlegend by boolean()
 
     fun legend(block: Legend.() -> Unit) {
         legend.apply(block)
