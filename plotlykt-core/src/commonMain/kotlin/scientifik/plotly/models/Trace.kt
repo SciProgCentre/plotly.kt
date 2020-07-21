@@ -706,6 +706,14 @@ open class Trace() : Scheme() {
      */
     var textfont by spec(Font)
 
+    /**
+     * Flaglist string. Any combination of "x", "y", "z", "text", "name" joined with a "+" OR "all" or "none" or "skip".
+     * Examples: "x", "y", "x+y", "x+y+z", "all", default: "all". Determines which trace information appear on hover.
+     * If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+     * click and hover events are still fired.
+     */
+    var hoverinfo by string()
+
     var error_x by spec(Error)
 
     var error_y by spec(Error)
