@@ -26,6 +26,12 @@ enum class TickMode {
     linear
 }
 
+enum class Ticks {
+    `""`,
+    inside,
+    outside
+}
+
 class Axis : Scheme() {
     /**
      * Sets the title of this axis.
@@ -80,6 +86,13 @@ class Axis : Scheme() {
      * Sets the tick font.
      */
     var tickfont by lazySpec(Font)
+
+    /**
+     * Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn.
+     * If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.
+     */
+    var ticks by enum(Ticks.inside)
+
     /**
      * Determines whether or not the range of this axis is computed
      * in relation to the input data. See `rangemode` for more info.
@@ -179,6 +192,13 @@ class Axis : Scheme() {
      * Only has an effect if `tickmode` is set to "array". Used with `tickvals`.
      */
     var ticktext by list()
+
+    /**
+     * Determines whether or not the tick labels are drawn.
+     */
+    var showticklabels by boolean()
+
+    var autotick by boolean()
 
     /**
      * Enumerated, one of ( "free" | "/^x([2-9]|[1-9][0-9]+)?$/" | "/^y([2-9]|[1-9][0-9]+)?$/" )

@@ -7,6 +7,18 @@ import scientifik.plotly.lazySpec
 import scientifik.plotly.numberGreaterThan
 import scientifik.plotly.numberInRange
 
+enum class HorizontalAlign {
+    left,
+    right,
+    center
+}
+
+enum class VerticalAlign {
+    top,
+    bottom,
+    middle
+}
+
 /**
  * Text annotation
  */
@@ -106,17 +118,66 @@ class Text : Scheme() {
      */
     var standoff by numberGreaterThan(0)
 
+    /**
+     * Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)
+     * component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis,
+     * this is an absolute value on that axis, like `x`, NOT a relative value.
+     */
     var ax by value()
 
+    /**
+     * Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)
+     * component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis,
+     * this is an absolute value on that axis, like `y`, NOT a relative value.
+     */
     var ay by value()
 
-    var xref by value()
+    /**
+     * Sets the annotation's x coordinate axis. If set to an x axis id (e.g. "x" or "x2"), the `x` position refers
+     * to an x coordinate If set to "paper", the `x` position refers to the distance from the left side
+     * of the plotting area in normalized coordinates where 0 (1) corresponds to the left (right) side.
+     */
+    var xref by string()
 
-    var yref by value()
+    /**
+     * Sets the annotation's y coordinate axis. If set to an y axis id (e.g. "y" or "y2"), the `y` position refers
+     * to an y coordinate If set to "paper", the `y` position refers to the distance from the bottom
+     * of the plotting area in normalized coordinates where 0 (1) corresponds to the bottom (top).
+     */
+    var yref by string()
 
-    var align by string()
+    /**
+     * Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans two or more lines
+     * (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
+     * Default: center.
+     */
+    var align by enum(HorizontalAlign.center)
 
-    var valign by string()
+    /**
+     * Sets the vertical alignment of the `text` within the box. Has an effect only if an explicit height is set
+     * to override the text height. Default: middle.
+     */
+    var valign by enum(VerticalAlign.middle)
+
+    /**
+     * Sets the text box's horizontal position anchor This anchor binds the `x` position to the "left",
+     * "center" or "right" of the annotation. For example, if `x` is set to 1, `xref` to "paper" and `xanchor` to
+     * "right" then the right-most portion of the annotation lines up with the right-most edge of the plotting area.
+     * If "auto", the anchor is equivalent to "center" for data-referenced annotations or if there is an arrow,
+     * whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+     * Default: auto.
+     */
+    var xanchor by enum(XAnchor.auto)
+
+    /**
+     * Sets the text box's vertical position anchor This anchor binds the `y` position to the "top", "middle"
+     * or "bottom" of the annotation. For example, if `y` is set to 1, `yref` to "paper" and `yanchor` to "top" then
+     * the top-most portion of the annotation lines up with the top-most edge of the plotting area. If "auto",
+     * the anchor is equivalent to "middle" for data-referenced annotations or if there is an arrow, whereas
+     * for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+     * Default: auto.
+     */
+    var yanchor by enum(YAnchor.auto)
 
     fun position(x: Number, y: Number) {
         this.x = x.asValue()

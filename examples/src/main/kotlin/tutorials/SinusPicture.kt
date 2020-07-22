@@ -38,7 +38,7 @@ fun main() {
         y = Value.of(1 + 20 / div)
         ax = Value.of(0)
         ay = Value.of(430)
-        valign = "top"
+        valign = VerticalAlign.top
     }
     val yAnnotation = Text {
         y = Value.of(0)

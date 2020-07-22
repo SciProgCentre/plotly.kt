@@ -14,6 +14,17 @@ enum class BarMode {
 
 class Margin : Scheme() {
     /**
+     * Turns on/off margin expansion computations. Legends, colorbars, updatemenus, sliders,
+     * axis rangeselector and rangeslider are allowed to push the margins by defaults.
+     */
+    var autoexpand by boolean()
+
+    /**
+     * Sets the amount of padding (in px) between the plotting area and the axis lines
+     */
+    var pad by intGreaterThan(0)
+
+    /**
      * Sets the left margin (in px). Default: 80.
      */
     var l by intGreaterThan(0)
@@ -53,6 +64,13 @@ class Layout : Scheme() {
      * Number greater than or equal to 10, default: 450.
      */
     var height by intGreaterThan(10)
+
+    /**
+     * Determines whether or not a layout width or height that has been left undefined
+     * by the user is initialized on each relayout. Note that, regardless of this attribute, an undefined layout
+     * width or height is always initialized on the first call to plot.
+     */
+    var autosize by boolean()
 
     /**
      * Sets the plot's title.
