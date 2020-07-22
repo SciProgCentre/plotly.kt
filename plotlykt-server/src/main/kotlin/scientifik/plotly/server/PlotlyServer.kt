@@ -12,12 +12,14 @@ import io.ktor.html.respondHtml
 import io.ktor.http.*
 import io.ktor.http.cio.websocket.Frame
 import io.ktor.http.content.resource
+import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.*
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
+import io.ktor.util.KtorExperimentalAPI
 import io.ktor.websocket.WebSockets
 import io.ktor.websocket.application
 import io.ktor.websocket.webSocket
@@ -146,15 +148,12 @@ class PlotlyServer internal constructor(val root: Route) : Configurable {
                             meta {
                                 charset = "utf-8"
                                 script {
-                                    attributes["onload"] =
-                                        "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
                                     type = "text/javascript"
                                     src = "js/plotly.min.js"
                                 }
                                 script {
-                                    attributes["onload"] = "window.promiseOfPlotlyPush = Promise.resolve()"
                                     type = "text/javascript"
-                                    src = "js/plotly-push.js"
+                                    src = "js/plotly-server.js"
                                 }
                             }
                             title(title)
@@ -209,15 +208,15 @@ fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer {
     routing {
         route(route) {
             static {
-                resource("js/plotly.min.js")
-                resource("js/plotly-push.js")
+                resources()
+                resource("js/require.js")
+//                resource("js/plotly.min.js")
+//                resource("js/plotly-server.js")
             }
         }
     }
 
     val root: Route = feature(Routing).createRouteFromPath(route)
-
-
     return PlotlyServer(root)
 }
 
@@ -242,6 +241,7 @@ fun PlotlyServer.pullUpdates(interval: Long = 1000): PlotlyServer = apply {
 /**
  * Start static server (updates via reload)
  */
+@OptIn(KtorExperimentalAPI::class)
 fun Plotly.serve(
     scope: CoroutineScope = GlobalScope,
     host: String = "localhost",

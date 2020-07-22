@@ -20,16 +20,12 @@ object StaticPlotlyContainer : PlotlyContainer {
                 unsafe {
                     //language=JavaScript
                     +"""
-
-                    window.$PLOTLY_PROMISE_NAME.then( plotly =>{
-                        plotly.react(
+                        Plotly.react(
                             '$plotId',
                             $tracesString,
                             $layoutString,
                             $config
                         );
-                    });
-                    
                     """.trimIndent()
                 }
             }

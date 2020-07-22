@@ -1,11 +1,8 @@
-import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.selectFile
-import scientifik.plotly.trace
+import scientifik.plotly.*
 import kotlin.math.PI
 import kotlin.math.sin
 
+@UnstablePlotlyAPI
 fun main() {
     val x = (0..100).map { it.toDouble() / 100.0 }
     val y = x.map { sin(2.0 * PI * it) }

@@ -1,3 +1,14 @@
+/**
+ * Use requireJS to resolve plotly if it is available
+ * @param action
+ */
+function withPlotly(action) {
+    if (typeof require === "undefined") {
+        return action(Plotly);
+    } else {
+        require(["plotly"], plotly => action(plotly));
+    }
+}
 
 /**
  * Request and parse json from given address
@@ -26,7 +37,7 @@ function getJSON(url, callback) {
             .then(json => callback(json))
             .catch(error => console.log(error));
     } catch (e) {
-        alert("Fetch of plot data failed with error: "+ e)
+        alert("Fetch of plot data failed with error: " + e)
     }
 }
 
@@ -48,7 +59,7 @@ function createPlotFrom(id, from, config) {
  * @return {JSON}
  */
 function updatePlotFrom(id, from) {
-    getJSON(from, json=> Plotly.react(id, json.data, json.layout));
+    getJSON(from, json => Plotly.react(id, json.data, json.layout));
 }
 
 /**
@@ -73,7 +84,7 @@ function startPush(id, ws) {
     let socket = new WebSocket(ws);
 
     socket.onopen = function () {
-        console.log("[Plotly.kt] A connection for plot with id = " + id +" with server established on " + ws);
+        console.log("[Plotly.kt] A connection for plot with id = " + id + " with server established on " + ws);
     };
 
     socket.onclose = function (event) {
@@ -95,20 +106,20 @@ function startPush(id, ws) {
         //TODO check if plotly is initialized in a cell
         if (json.plotId === id) {
             if (json.contentType === "layout") {
-                Plotly.relayout(id, json.content)
+                withPlotly(plotly => plotly.relayout(id, json.content));
             } else if (json.contentType === "trace") {
                 let content = json.content;
                 //This is done to satisfy plotly requirements of arrays-in-arrays for data
                 if (content.hasOwnProperty('x')) {
-                    content.x = [content.x]
+                    content.x = [content.x];
                 }
                 if (content.hasOwnProperty('y')) {
-                    content.y = [content.y]
+                    content.y = [content.y];
                 }
                 if (content.hasOwnProperty('z')) {
-                    content.z = [content.z]
+                    content.z = [content.z];
                 }
-                Plotly.restyle(id, content, json['trace']);
+                withPlotly(plotly => plotly.restyle(id, content, json['trace']));
             }
         }
     };

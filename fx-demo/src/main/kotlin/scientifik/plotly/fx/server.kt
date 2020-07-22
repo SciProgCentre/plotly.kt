@@ -22,13 +22,13 @@ fun serve(scale: ObservableIntegerValue) = Plotly.serve {
         val x = (0..100).map { it.toDouble() / 100.0 }.toDoubleArray()
         val y1 = x.map { sin(2.0 * PI * it) }.toDoubleArray()
         val y2 = x.map { cos(2.0 * PI * it) }.toDoubleArray()
-        val trace1 = Trace(x,y1) {
+        val trace1 = Trace(x, y1) {
             name = "sin"
         }
-        val trace2 = Trace(x,y2){
+        val trace2 = Trace(x, y2) {
             name = "cos"
         }
-        plot{//static plot
+        plot(container = container) {//static plot
             traces(trace1, trace2)
             layout {
                 title = "First graph, row: 1, size: 8/12"
@@ -38,16 +38,16 @@ fun serve(scale: ObservableIntegerValue) = Plotly.serve {
         }
     }
 
-    page("Dynamic") {container ->
+    page("Dynamic") { container ->
         val x = (0..100).map { it.toDouble() / 100.0 }
         val y = x.map { sin(2.0 * PI * it) }
 
-        val trace = Trace(x, y){ name = "sin" }
+        val trace = Trace(x, y) { name = "sin" }
 
 
         //root level plots go to default page
 
-        plot(container = container){
+        plot(container = container) {
             traces(trace)
             layout {
                 title = "Dynamic plot"
