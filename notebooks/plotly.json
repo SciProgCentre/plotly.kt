@@ -2,9 +2,9 @@
     "imports": [
         "scientifik.plotly.*",
         "scientifik.plotly.models.*",
-        "scientifik.plotly.server.Jupyter",
+        "scientifik.plotly.server.JupyterPlotly",
         "hep.dataforge.meta.*",
-        "kotlinx.html.*",
+        "kotlinx.html.*"
     ],
     "repositories": [
         "*mavenLocal",
@@ -13,20 +13,20 @@
         "https://dl.bintray.com/mipt-npm/dev"
     ],
     "properties": {
-        "v": "0.2.0-dev-11",
+        "v": "0.2.0-dev-12",
         "port": 8882
     },
     "init": [
-        "DISPLAY(HTML(cdnPlotlyHeader.toString()))"
+        "DISPLAY(HTML(JupyterPlotly.startUpdates().toString()))"
     ],
     "shutdown":[
-        "DISPLAY(HTML(Jupyter.stopUpdates().toString()))"
+        "DISPLAY(HTML(JupyterPlotly.stopUpdates().toString()))"
     ],
     "renderers": {
         "scientifik.plotly.HtmlFragment": "DISPLAY(HTML($it.toString()))",
-        "scientifik.plotly.Plot": "HTML(Jupyter.renderPlot($it))",
-        "scientifik.plotly.PlotlyFragment": "HTML(Jupyter.renderFragment($it))",
-        "scientifik.plotly.PlotlyPage": "HTML(Jupyter.renderPage($it), true)"
+        "scientifik.plotly.Plot": "HTML(JupyterPlotly.renderPlot($it))",
+        "scientifik.plotly.PlotlyFragment": "HTML(JupyterPlotly.renderFragment($it))",
+        "scientifik.plotly.PlotlyPage": "HTML(JupyterPlotly.renderPage($it), true)"
     },
     "link": "https://github.com/mipt-npm/plotly.kt",
     "dependencies": [

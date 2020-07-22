@@ -13,8 +13,6 @@ const val PLOTLY_CDN = "https://cdn.plot.ly/plotly-${Plotly.VERSION}.min.js"
 
 val cdnPlotlyHeader = HtmlFragment {
     script {
-        attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
-        attributes["onerror"] = "console.log('Failed to load Plotly from CDN')"
         type = "text/javascript"
         src = PLOTLY_CDN
     }
@@ -27,8 +25,6 @@ fun localPlotlyHeader(
 ) = HtmlFragment {
     val relativePath = checkOrStoreFile(path, Path.of(relativeScriptPath), PLOTLY_SCRIPT_PATH)
     script {
-        attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
-        attributes["onerror"] = "console.log('Failed to load script from $relativePath')"
         type = "text/javascript"
         src = relativePath.toString()
     }
@@ -45,8 +41,6 @@ val systemPlotlyHeader = HtmlFragment {
         PLOTLY_SCRIPT_PATH
     )
     script {
-        attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
-        attributes["onerror"] = "console.log('Failed to load script from $relativePath')"
         type = "text/javascript"
         src = relativePath.toString()
     }
@@ -58,8 +52,6 @@ val systemPlotlyHeader = HtmlFragment {
  */
 val embededPlotlyHeader = HtmlFragment {
     script {
-        attributes["onload"] = "window.$PLOTLY_PROMISE_NAME = Promise.resolve(Plotly)"
-        attributes["onerror"] = "console.log('Failed to load embed script')"
         unsafe {
             val bytes = HtmlFragment::class.java.getResourceAsStream(PLOTLY_SCRIPT_PATH).readAllBytes()
             +bytes.toString(Charsets.UTF_8)

@@ -20,16 +20,12 @@ object StaticPlotlyContainer : PlotlyContainer {
                 unsafe {
                     //language=JavaScript
                     +"""
-
-                    window.$PLOTLY_PROMISE_NAME.then( plotly =>{
-                        plotly.react(
+                        Plotly.react(
                             '$plotId',
                             $tracesString,
                             $layoutString,
                             $config
                         );
-                    });
-                    
                     """.trimIndent()
                 }
             }
@@ -49,10 +45,10 @@ fun FlowContent.plot(
 
 fun FlowContent.plot(
     plotId: String? = null,
-    plotlyConfig: PlotlyConfig = PlotlyConfig(),
+    config: PlotlyConfig = PlotlyConfig(),
     container: PlotlyContainer = StaticPlotlyContainer,
     builder: Plot.() -> Unit
 ): Plot {
     val plot = Plot().apply(builder)
-    return plot(plot, plotId ?: plot.toString(), plotlyConfig, container)
+    return plot(plot, plotId ?: plot.toString(), config, container)
 }

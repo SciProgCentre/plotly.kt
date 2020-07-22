@@ -9,8 +9,10 @@ import scientifik.plotly.layout
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.invoke
 import scientifik.plotly.plot
+import scientifik.plotly.server.close
 import scientifik.plotly.server.pushUpdates
 import scientifik.plotly.server.serve
+import scientifik.plotly.server.show
 import kotlin.math.PI
 import kotlin.math.sin
 
@@ -32,9 +34,9 @@ fun main() {
             plot(container = plotly) {
                 traces(trace)
                 layout {
-                    title = "Dynamic plot"
-                    xaxis { title = "x axis name" }
-                    yaxis { title = "y axis name" }
+                    title = "Other dynamic plot"
+                    xaxis.title = "x axis name"
+                    yaxis.title = "y axis name"
                 }
             }
         }
@@ -46,8 +48,8 @@ fun main() {
                 traces(trace)
                 layout {
                     title = "Dynamic plot"
-                    xaxis { title = "x axis name" }
-                    yaxis { title = "y axis name" }
+                    xaxis.title = "x axis name"
+                    yaxis.title = "y axis name"
                 }
             }
         }
@@ -61,7 +63,8 @@ fun main() {
                 trace.y.set(dynamicY)
             }
         }
-    }.pushUpdates(50)        // start sending updates via websocket to the front-end
+        pushUpdates(50)       // start sending updates via websocket to the front-end
+    }
 
     server.show()
 
