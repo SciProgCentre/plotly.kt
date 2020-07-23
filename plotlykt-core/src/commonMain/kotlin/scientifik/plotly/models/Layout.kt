@@ -64,6 +64,18 @@ enum class HoverMode {
     `y unified`
 }
 
+enum class BarNorm {
+    fraction,
+    percent,
+    @JsName("empty")
+    `""`
+}
+
+enum class ViolinMode {
+    group,
+    overlay
+}
+
 class Layout : Scheme() {
     /**
      * Sets the plot's width (in px).
@@ -109,7 +121,14 @@ class Layout : Scheme() {
      * need to an "opacity" to see multiple bars.
      * Default: "group".
      */
-    var barmode: BarMode by enum(BarMode.group)
+    var barmode by enum(BarMode.group)
+
+    /**
+     * Sets the normalization for bar traces on the graph. With "fraction", the value of each bar
+     * is divided by the sum of all values at that location coordinate. "percent" is the same but multiplied
+     * by 100 to show percentages. Default: "".
+     */
+    var barnorm by enum(BarNorm.`""`)
 
     /**
      * Sets the gap (in plot fraction) between bars
@@ -122,6 +141,26 @@ class Layout : Scheme() {
      * Default: 0.
      */
     var bargroupgap by numberInRange(0.0..1.0)
+
+    /**
+     * Determines how violins at the same location coordinate are displayed on the graph. If "group",
+     * the violins are plotted next to one another centered around the shared location. If "overlay",
+     * the violins are plotted over one another, you might need to set "opacity" to see them multiple violins.
+     * Has no effect on traces that have "width" set.
+     */
+    var violinmode by enum(ViolinMode.overlay)
+
+    /**
+     * Sets the gap (in plot fraction) between violins of adjacent location coordinates.
+     * Has no effect on traces that have "width" set. Default: 0.3
+     */
+    var violingap by numberInRange(0.0..1.0)
+
+    /**
+     * Sets the gap (in plot fraction) between violins of the same location coordinate.
+     * Has no effect on traces that have "width" set. Default: 0.3
+     */
+    var violingroupgap by numberInRange(0.0..1.0)
 
     var legend by lazySpec(Legend)
 
@@ -158,6 +197,18 @@ class Layout : Scheme() {
     var boxmode by enum(BoxMode.overlay)
 
     /**
+     * Sets the gap (in plot fraction) between boxes of adjacent location coordinates.
+     * Has no effect on traces that have "width" set. Default: 0.3
+     */
+    var boxgap by numberInRange(0.0..1.0)
+
+    /**
+     * Sets the gap (in plot fraction) between boxes of the same location coordinate.
+     * Has no effect on traces that have "width" set. Default: 0.3
+     */
+    var boxgroupgap by numberInRange(0.0..1.0)
+
+    /**
      * Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these:
      * a) Two or more traces would by default be shown in the legend.
      * b) One pie trace is shown in the legend.
@@ -178,6 +229,26 @@ class Layout : Scheme() {
      * For anything else the default value is "closest".
      */
     var hovermode by enum(HoverMode.closest)
+
+    /**
+     * Sets the decimal and thousand separators. For example, ". " puts a '.' before decimals and a space
+     * between thousands. In English locales, dflt is ".," but other locales may alter this default.
+     */
+    var separators by string()
+
+    /**
+     * Sets the default distance (in pixels) to look for data to add hover labels (-1 means no cutoff,
+     * 0 means no looking for data). This is only a real distance for hovering on point-like objects, like
+     * scatter points. For area-like objects (bars, scatter fills, etc) hovering is on inside the area and off outside,
+     * but these objects will not supersede hover on point-like objects in case of conflict.
+     * Default: 20.
+     */
+    var hoverdistance by intGreaterThan(-1)
+
+    /**
+     * Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
+     */
+    var calendar by enum(Calendar.gregorian)
 
     fun legend(block: Legend.() -> Unit) {
         legend.apply(block)
