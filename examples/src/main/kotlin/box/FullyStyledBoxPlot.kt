@@ -9,12 +9,6 @@ import scientifik.plotly.models.Trace
 import kotlin.random.Random
 
 
-/**
- * - Styled box plot
- * - Style zeroline & grid
- * - Change background color of the plot
- */
-
 fun getRandom(size: Int, mul: Double): List<Double> {
     val value = mutableListOf<Double>()
     for (i in 0..size) {
@@ -23,6 +17,12 @@ fun getRandom(size: Int, mul: Double): List<Double> {
     return value.toList()
 }
 
+/**
+ * - Styled box plot
+ * - Style zeroline & grid
+ * - Change background color of the plot
+ * - Use array of traces
+ */
 fun main() {
     val xData = listOf("Carmelo<br>Anthony", "Dwyane<br>Wade", "Deron<br>Williams",
             "Brook<br>Lopez", "Damian<br>Lillard", "David<br>West",
@@ -62,7 +62,7 @@ fun main() {
     }
 
     val plot = Plotly.plot {
-        traces(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8])
+        traces(data)
 
         layout {
             title = "Points Scored by the Top 9 Scoring NBA Players in 2012"

@@ -7,6 +7,11 @@ import scientifik.plotly.makeFile
 import scientifik.plotly.models.*
 
 
+/**
+ * - Styled scatter plot
+ * - Use array of traces
+ * - Style annotations
+ */
 fun main() {
     val xData = listOf(2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2013)
     val yData = listOf(
@@ -111,8 +116,7 @@ fun main() {
     }
 
     val plot = Plotly.plot {
-        traces(tracesList[0], tracesList[1], tracesList[2], tracesList[3],
-                tracesList[4], tracesList[5], tracesList[6], tracesList[7])
+        traces(tracesList)
 
         layout {
             showlegend = false

@@ -3,6 +3,7 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import scientifik.plotly.*
+import kotlin.js.JsName
 
 
 enum class BarMode {
@@ -50,6 +51,17 @@ class Margin : Scheme() {
 enum class BoxMode {
     overlay,
     group
+}
+
+enum class HoverMode {
+    x,
+    y,
+    closest,
+    `false`,
+    @JsName("xUnified")
+    `x unified`,
+    @JsName("yUnified")
+    `y unified`
 }
 
 class Layout : Scheme() {
@@ -150,6 +162,20 @@ class Layout : Scheme() {
      * c) One trace is explicitly given with `showlegend: true`.
      */
     var showlegend by boolean()
+
+    /**
+     * Determines the mode of hover interactions. If "closest", a single hoverlabel will appear for the "closest"
+     * point within the `hoverdistance`. If "x" (or "y"), multiple hoverlabels will appear for multiple points
+     * at the "closest" x- (or y-) coordinate within the `hoverdistance`, with the caveat that no more than one
+     * hoverlabel will appear per trace. If "x unified" (or "y unified"), a single hoverlabel will appear
+     * multiple points at the closest x- (or y-) coordinate within the `hoverdistance` with the caveat that
+     * no more than one hoverlabel will appear per trace. In this mode, spikelines are enabled by
+     * default perpendicular to the specified axis. If false, hover interactions are disabled. If `clickmode` includes
+     * the "select" flag, `hovermode` defaults to "closest". If `clickmode` lacks the "select" flag, it defaults
+     * to "x" or "y" (depending on the trace's `orientation` value) for plots based on cartesian coordinates.
+     * For anything else the default value is "closest".
+     */
+    var hovermode by enum(HoverMode.closest)
 
     fun legend(block: Legend.() -> Unit) {
         legend.apply(block)
