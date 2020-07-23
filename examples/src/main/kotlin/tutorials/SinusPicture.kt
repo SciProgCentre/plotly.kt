@@ -93,7 +93,7 @@ fun main() {
                 x(-PI * 2 + sub, -PI * 2 + sub)
                 y(0, 0.5)
                 line {
-                    shape = Shape.vh
+                    shape = LineShape.vh
                     color("red")
                 }
                 marker { size = 8 }
@@ -105,7 +105,7 @@ fun main() {
                 x(-PI - sub, -PI - sub)
                 y(0, 0.5)
                 line {
-                    shape = Shape.vh
+                    shape = LineShape.vh
                     color("red")
                 }
                 marker { size = 8 }
@@ -117,7 +117,7 @@ fun main() {
                 x(sub, sub)
                 y(0, 0.5)
                 line {
-                    shape = Shape.vh
+                    shape = LineShape.vh
                     color("red")
                 }
                 marker { size = 8 }
@@ -129,7 +129,7 @@ fun main() {
                 x(PI - sub, PI - sub)
                 y(0, 0.5)
                 line {
-                    shape = Shape.vh
+                    shape = LineShape.vh
                     color("red")
                 }
                 marker { size = 8 }

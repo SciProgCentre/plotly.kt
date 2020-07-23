@@ -225,3 +225,7 @@ inline fun Plot.bar(xs: DoubleArray, block: Trace.() -> Unit = {}) = bar {
 fun Plot.text(block: Text.() -> Unit) {
     layout.annotation(block)
 }
+
+fun Plot.shape(block: Shape.() -> Unit) {
+    layout.figure(block)
+}

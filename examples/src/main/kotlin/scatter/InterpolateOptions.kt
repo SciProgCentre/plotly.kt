@@ -5,7 +5,7 @@ import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.Scatter
 import scientifik.plotly.models.ScatterMode
-import scientifik.plotly.models.Shape
+import scientifik.plotly.models.LineShape
 import scientifik.plotly.models.TraceOrder
 
 
@@ -21,7 +21,7 @@ fun main() {
         mode = ScatterMode.`lines+markers`
         name = "linear"
         line {
-            shape = Shape.linear
+            shape = LineShape.linear
         }
     }
 
@@ -37,7 +37,7 @@ fun main() {
             "tweak line smoothness<br>with \"smoothing\" in line object",
             "tweak line smoothness<br>with \"smoothing\" in line object")
         line {
-            shape = Shape.spline
+            shape = LineShape.spline
         }
     }
 
@@ -47,7 +47,7 @@ fun main() {
         mode = ScatterMode.`lines+markers`
         name = "vhv"
         line {
-            shape = Shape.vhv
+            shape = LineShape.vhv
         }
     }
 
@@ -57,7 +57,7 @@ fun main() {
         mode = ScatterMode.`lines+markers`
         name = "hvh"
         line {
-            shape = Shape.hvh
+            shape = LineShape.hvh
         }
     }
 
@@ -67,7 +67,7 @@ fun main() {
         mode = ScatterMode.`lines+markers`
         name = "vh"
         line {
-            shape = Shape.vh
+            shape = LineShape.vh
         }
     }
 
@@ -77,7 +77,7 @@ fun main() {
         mode = ScatterMode.`lines+markers`
         name = "hv"
         line {
-            shape = Shape.hv
+            shape = LineShape.hv
         }
     }
 

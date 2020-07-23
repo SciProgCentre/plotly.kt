@@ -133,6 +133,8 @@ class Layout : Scheme() {
      */
     var annotations by list(Text)
 
+    var shapes by list(Shape)
+
     /**
      * Sets the background color of the paper where the graph is drawn.
      * Default: #fff.
@@ -202,6 +204,14 @@ class Layout : Scheme() {
 
     fun annotation(anBuilder: Text.() -> Unit) {
         annotation(Text(anBuilder))
+    }
+
+    fun figure(sh: Shape) {
+        config.append("shapes", sh)
+    }
+
+    fun figure(shBuilder: Shape.() -> Unit) {
+        figure(Shape(shBuilder))
     }
 
     fun margin(block: Margin.() -> Unit) {

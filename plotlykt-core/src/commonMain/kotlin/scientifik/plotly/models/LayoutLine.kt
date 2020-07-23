@@ -7,7 +7,7 @@ import hep.dataforge.names.asName
 import scientifik.plotly.intGreaterThan
 import scientifik.plotly.numberInRange
 
-enum class Shape {
+enum class LineShape {
     hv,
     vh,
     hvh,
@@ -42,7 +42,7 @@ class LayoutLine : Scheme(), Line {
      * available values correspond to step-wise line shapes.
      * Default: "linear"
      */
-    var shape by enum(Shape.linear)
+    var shape by enum(LineShape.linear)
 
     /**
      * Sets the style of the lines.
