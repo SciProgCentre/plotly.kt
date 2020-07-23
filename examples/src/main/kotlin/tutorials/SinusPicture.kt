@@ -142,7 +142,6 @@ fun main() {
                     showgrid = false
                     anchor = "free"
                     position = 0.485
-                    tickmode = TickMode.array
                     tickvals(listOf(-0.91, 0.09, 1.09))
                     ticktext(listOf("\$\\Large{-1}\$", "\$\\Large{0}\$", "\$\\Large{1}\$"))
                 }
