@@ -3,6 +3,7 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
+import hep.dataforge.values.asValue
 import scientifik.plotly.*
 import kotlin.js.JsName
 
@@ -222,6 +223,10 @@ class Font : Scheme() {
     var size by intGreaterThan(1)
 
     val color = Color(this, "color".asName())
+
+    fun colors(array: Iterable<Any>) {
+        color.value = array.map { Value.of(it) }.asValue()
+    }
 
     companion object : SchemeSpec<Font>(::Font)
 }
