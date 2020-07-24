@@ -20,7 +20,7 @@ fun main() {
 
     val plot = Plotly.plot {
         histogram {
-            x.set(x1)
+            x.numbers = x1
             name = "Random data"
             histnorm = HistNorm.probability
             marker {

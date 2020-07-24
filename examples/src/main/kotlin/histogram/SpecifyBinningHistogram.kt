@@ -20,15 +20,15 @@ fun main() {
     val plot = Plotly.plot {
         histogram {
             name = "count"
-            x.set(categories)
-            y.set(values)
+            x.strings = categories
+            y.strings = values
             histfunc = HistFunc.count
         }
 
         histogram {
             name = "sum"
-            x.set(categories)
-            y.set(values)
+            x.strings = categories
+            y.strings = values
             histfunc = HistFunc.sum
         }
 

@@ -33,8 +33,8 @@ fun main() {
 
 
     val contour = Contour {
-        x.set(x1)
-        y.set(y1)
+        x.numbers = x1
+        y.numbers = y1
         z(z)
 
         transpose = true

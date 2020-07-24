@@ -24,8 +24,8 @@ fun main() {
     }
 
     val bar = Bar {
-        y.set(colors)
-        x.set(length)
+        y.strings = colors
+        x.numbers = length
         orientation = Orientation.h
         marker {
             colors(colors)

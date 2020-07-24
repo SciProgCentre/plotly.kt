@@ -18,7 +18,7 @@ fun main() {
 
     val plot = Plotly.plot {
         histogram {
-            x.set(values)
+            x.numbers = values
             name = "Random data"
 
             cumulative {

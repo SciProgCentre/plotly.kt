@@ -14,15 +14,15 @@ import scientifik.plotly.models.TextPosition
  * - Show text on the bars
  */
 fun main() {
-    val xValue = listOf("Product A", "Product B", "Product C")
+    val xValues = listOf("Product A", "Product B", "Product C")
 
-    val yValue = listOf(20, 14, 23)
-    val yValue2 = listOf(24, 16, 20)
+    val yValues = listOf(20, 14, 23)
+    val yValues2 = listOf(24, 16, 20)
 
     val trace1 = Bar {
-        x.set(xValue)
-        y.set(yValue)
-        text = yValue.map{ it.toString() }
+        x.strings = xValues
+        y.numbers = yValues
+        text = yValues.map{ it.toString() }
         textposition = TextPosition.auto
         hoverinfo = "none"
         opacity = 0.5
@@ -37,9 +37,9 @@ fun main() {
     }
 
     val trace2 = Bar {
-        x.set(xValue)
-        y.set(yValue2)
-        text = yValue2.map{ it.toString() }
+        x.strings = xValues
+        y.numbers = yValues2
+        text = yValues2.map{ it.toString() }
         textposition = TextPosition.auto
         hoverinfo = "none"
         showlegend = false
