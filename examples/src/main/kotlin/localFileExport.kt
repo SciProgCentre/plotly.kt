@@ -5,11 +5,13 @@ import kotlin.math.sin
 
 @UnstablePlotlyAPI
 fun main() {
-    val x = (0..100).map { it.toDouble() / 100.0 }
-    val y = x.map { sin(2.0 * PI * it) }
+    val xValues = (0..100).map { it.toDouble() / 100.0 }
+    val yValues = xValues.map { sin(2.0 * PI * it) }
 
     val plot = Plotly.plot {
-        trace(x, y) {
+        trace {
+            x.set(xValues)
+            y.set(yValues)
             name = "for a single trace in graph its name would be hidden"
         }
         layout {

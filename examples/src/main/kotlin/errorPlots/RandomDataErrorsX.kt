@@ -15,11 +15,12 @@ import java.util.*
  */
 fun main() {
     val rnd = Random()
-    val x = (0..100 step 4).toList().map{ it / 20.0}
+    val xValues = (0..100 step 4).toList().map{ it / 20.0}
     val err = List(26){rnd.nextDouble() / 2}
 
     val plot = Plotly.plot {
-        trace(x, x) {
+        trace {
+            x.numbers = xValues
             marker {
                 color(XKCD.PURPLE)
             }

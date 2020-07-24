@@ -12,12 +12,14 @@ import scientifik.plotly.trace
  * - change color or error bars
  */
 fun main() {
-    val x = listOf(0, 1, 2)
-    val y = listOf(6, 10, 2)
+    val xValues = listOf(0, 1, 2)
+    val yValues = listOf(6, 10, 2)
     val err = listOf(1, 2, 3)
 
     val plot = Plotly.plot {
-        trace(x, y) {
+        trace {
+            x.numbers = xValues
+            y.numbers = yValues
             error_y {
                 type = ErrorType.data
                 array = err
