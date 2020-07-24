@@ -643,7 +643,7 @@ open class Trace() : Scheme() {
 
     //var line by spec(Line)
 
-    var marker by spec(Marker)
+    var marker by lazySpec(Marker)
 
     /**
      * Sets text elements associated with each (x,y) pair.
