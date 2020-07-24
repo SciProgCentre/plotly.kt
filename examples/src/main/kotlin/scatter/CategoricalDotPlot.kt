@@ -22,8 +22,8 @@ fun main() {
     val regVoters = listOf<Number>(49.1, 42, 52.7, 84.3, 51.7, 61.1, 55.3, 64.2, 91.1, 58.9)
 
     val trace1 = Scatter {
-        x.set(votingPop)
-        y.set(country)
+        x.numbers = votingPop
+        y.strings = country
         mode = ScatterMode.markers
         name = "Percent of estimated voting age population"
         marker {
@@ -38,8 +38,8 @@ fun main() {
     }
 
     val trace2 = Scatter {
-        x.set(regVoters)
-        y.set(country)
+        x.numbers = regVoters
+        y.strings = country
         mode = ScatterMode.markers
         name = "Percent of estimated registered voters"
         marker {
