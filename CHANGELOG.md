@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Interfaces with common parameters for some plots (Histogram, Contour, Heatmap)
 - New parameters for different plots
 - Add Z axis
+- Tutorial about drawing sinus
+- Loading resources using krangl
+- TraceValues extension about krangl columns
 
 ### Changed
 
@@ -28,5 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unnecessary constructors removed
 - Change Title methods
 - Project structure updated
+- Removed other Plot functions
+- Plot2D renamed to Plot
 
 ## [0.2.0]
