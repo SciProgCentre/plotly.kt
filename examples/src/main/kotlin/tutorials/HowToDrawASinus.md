@@ -214,5 +214,7 @@ so that in the end you will get a visual and informative plot.
     ```
 
 7. Final picture:
+
 ![Картинка](https://i.ibb.co/wKTCp4H/newplot-17.png)
+
 Source code is available at: https://mipt-npm.jetbrains.space/p/plt/code/plotly.kt/files/dev-katsam-3/examples/src/main/kotlin/tutorials/SinusPicture.kt
