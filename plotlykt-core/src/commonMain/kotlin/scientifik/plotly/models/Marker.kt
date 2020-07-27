@@ -82,6 +82,10 @@ class Marker : Scheme() {
 
     var line by spec(MarkerLine)
 
+    /**
+     * Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale
+     * relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
+     */
     val color = Color(this, "color".asName())
 
     var colors by list()
@@ -90,6 +94,9 @@ class Marker : Scheme() {
 
     var gradient by spec(Gradient)
 
+    /**
+     * Sets the color of the outlier sample points. Default: rgba(0, 0, 0, 0).
+     */
     var outliercolor = Color(this, "outliercolor".asName())
 
     fun colors(colors: Iterable<Any>) {

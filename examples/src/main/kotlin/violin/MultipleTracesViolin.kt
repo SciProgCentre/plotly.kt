@@ -25,7 +25,7 @@ fun main() {
     val plot = Plotly.plot {
         violin {
             name = "Thursday"
-            y.set(thursdayDf["total_bill"].values().toList())
+            y.set(thursdayDf["total_bill"].values())
 
             line { color("green") }
             box { visible = true }
@@ -34,7 +34,7 @@ fun main() {
 
         violin {
             name = "Friday"
-            y.set(fridayDf["total_bill"].values().toList())
+            y.set(fridayDf["total_bill"].values())
 
             line { color("red") }
             box { visible = true }
@@ -43,7 +43,7 @@ fun main() {
 
         violin {
             name = "Saturday"
-            y.set(saturdayDf["total_bill"].values().toList())
+            y.set(saturdayDf["total_bill"].values())
 
             line { color("orange") }
             box { visible = true }
@@ -52,7 +52,7 @@ fun main() {
 
         violin {
             name = "Sunday"
-            y.set(sundayDf["total_bill"].values().toList())
+            y.set(sundayDf["total_bill"].values())
 
             line { color("blue") }
             box { visible = true }

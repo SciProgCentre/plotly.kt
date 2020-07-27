@@ -31,7 +31,6 @@ fun main() {
         }
     }
 
-
     val contour = Contour {
         x.numbers = x1
         y.numbers = y1

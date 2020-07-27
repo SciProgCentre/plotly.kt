@@ -20,38 +20,28 @@ fun main() {
 
     val plot = Plotly.plot {
         bar {
-            y.set(values)
-            marker {
-                color("red")
-            }
+            y.numbers = values
+            marker { color("red") }
         }
 
         bar {
-            y.set(values)
-            marker {
-                color("orange")
-            }
+            y.numbers = values
+            marker { color("orange") }
         }
 
         bar {
-            y.set(values)
-            marker {
-                color("yellow")
-            }
+            y.numbers = values
+            marker { color("yellow") }
         }
 
         bar {
-            y.set(values)
-            marker {
-                color("greenyellow")
-            }
+            y.numbers = values
+            marker { color("greenyellow") }
         }
 
         bar {
-            y.set(values)
-            marker {
-                color("limegreen")
-            }
+            y.numbers = values
+            marker { color("limegreen") }
         }
 
         layout {

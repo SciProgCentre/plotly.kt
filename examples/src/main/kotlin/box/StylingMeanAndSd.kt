@@ -12,7 +12,7 @@ fun main() {
             3.75, 1.35, 2.98, 4.50, 0.18, 4.66, 1.30, 2.06, 1.19)
 
     val trace1 = Box {
-        y.set(y1)
+        y.numbers = y1
         name = "Only Mean"
         marker {
             color(XKCD.CERULEAN)
@@ -21,7 +21,7 @@ fun main() {
     }
 
     val trace2 = Box {
-        y.set(y1)
+        y.numbers = y1
         name = "Mean and Standard Deviation"
         marker {
             color(XKCD.BLUE_VIOLET)

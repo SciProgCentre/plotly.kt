@@ -41,7 +41,6 @@ fun main() {
     )
 
     val data = mutableListOf<Trace>()
-
     for (i in xData.indices) {
         val result = Box {
             y.set(yData[i])

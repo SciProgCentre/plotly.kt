@@ -15,7 +15,6 @@ import scientifik.plotly.models.TextPosition
  */
 fun main() {
     val xValues = listOf("Product A", "Product B", "Product C")
-
     val yValues = listOf(20, 14, 23)
     val yValues2 = listOf(24, 16, 20)
 

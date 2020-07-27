@@ -22,7 +22,7 @@ fun main() {
         }
 
         layout {
-            title  ="Plot with annotation"
+            title = "Plot with annotation"
         }
     }
 
