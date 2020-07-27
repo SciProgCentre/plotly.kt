@@ -15,16 +15,14 @@ fun main() {
 
     val trace1 = Trace(x, y1) {
         name = "sin"
-        marker {
-            color(T10.BLUE)
-        }
+        marker.color(T10.BLUE)
+
     }
 
     val trace2 = Trace(x, y2) {
         name = "cos"
-        marker {
-            color(T10.ORANGE)
-        }
+        marker.color(T10.ORANGE)
+
     }
 
     val plot = Plotly.grid {
@@ -33,8 +31,8 @@ fun main() {
             traces(trace1, trace2)
             layout {
                 title = "First graph, row: 1, size: 8/12"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                xaxis.title = "x axis name"
+                xaxis.title = "y axis name"
             }
         }
 
@@ -42,8 +40,8 @@ fun main() {
             traces(trace1, trace2)
             layout {
                 title = "Second graph, row: 1, size: 4/12"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                xaxis.title = "x axis name"
+                xaxis.title = "y axis name"
             }
         }
 
@@ -51,8 +49,8 @@ fun main() {
             traces(trace1, trace2)
             layout {
                 title = "Third graph, row: 2, size: 12/12"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+                xaxis.title = "x axis name"
+                xaxis.title = "y axis name"
             }
         }
     }

@@ -25,8 +25,8 @@ fun main() {
     val y1 = listOf(0, 1, 4, 5, 7)
 
     val contour = Contour {
-        x(x1)
-        y(y1)
+        x.numbers = x1
+        y.numbers = y1
         z(values)
 
         colorbar {

@@ -11,7 +11,6 @@ import io.ktor.features.origin
 import io.ktor.html.respondHtml
 import io.ktor.http.*
 import io.ktor.http.cio.websocket.Frame
-import io.ktor.http.content.resource
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.response.respond
@@ -88,7 +87,7 @@ private class PlotServerContainer(
 
 }
 
-class PlotlyServer internal constructor(val root: Route) : Configurable {
+class PlotlyServer internal constructor(private val routing: Routing, private val rootRoute: String) : Configurable {
     override val config = Config()
     var updateMode by enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
     var updateInterval by long(300, key = UPDATE_INTERVAL_KEY)
@@ -98,7 +97,7 @@ class PlotlyServer internal constructor(val root: Route) : Configurable {
         title: String = "Plotly server page '$route'",
         plotlyFragment: PlotlyFragment
     ) {
-        root {
+        routing.createRouteFromPath(rootRoute).apply{
             val plots = HashMap<String, Plot>()
             route(route) {
                 //Update websocket
@@ -149,20 +148,19 @@ class PlotlyServer internal constructor(val root: Route) : Configurable {
                                 charset = "utf-8"
                                 script {
                                     type = "text/javascript"
-                                    src = "js/plotly.min.js"
+                                    src = "$rootRoute/js/plotly.min.js"
                                 }
                                 script {
                                     type = "text/javascript"
-                                    src = "js/plotly-server.js"
+                                    src = "$rootRoute/js/plotly-server.js"
                                 }
                             }
                             title(title)
                         }
                         body {
-                            val container =
-                                PlotServerContainer(url, updateMode, updateInterval) { plotId, plot ->
-                                    plots[plotId] = plot
-                                }
+                            val container = PlotServerContainer(url, updateMode, updateInterval) { plotId, plot ->
+                                plots[plotId] = plot
+                            }
                             with(plotlyFragment) {
                                 render(container)
                             }
@@ -209,15 +207,12 @@ fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer {
         route(route) {
             static {
                 resources()
-                resource("js/require.js")
-//                resource("js/plotly.min.js")
-//                resource("js/plotly-server.js")
             }
         }
     }
 
-    val root: Route = feature(Routing).createRouteFromPath(route)
-    return PlotlyServer(root)
+//    val root: Route = feature(Routing).createRouteFromPath(route)
+    return PlotlyServer(feature(Routing), route)
 }
 
 
