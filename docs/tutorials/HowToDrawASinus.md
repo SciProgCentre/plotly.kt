@@ -16,7 +16,7 @@ so that in the end you will get a visual and informative plot.
    text. After that, let's sign the axes themselves. It is also important to specify the required 
    chart sizes (`width`,` height`) so that after saving the graph will look the same as in the browser.
         
-    ```
+    ```kotlin
     Plotly.page {                                // making new html page with plot
         layout {
             width = 900                          // width of the plot (in px.)
@@ -54,7 +54,7 @@ so that in the end you will get a visual and informative plot.
    the variation of the `mode` parameter (` ScatterMode: lines, markers`) the intersection points with the OY axis
    will be marked with a slightly darker shade of the same color.
    
-    ```
+    ```kotlin
     x1 = (-410..410).map{ it / 200 * PI }        // function domain (-2PI - eps, 2PI + eps)
     y1 = sin(x1)                                 // function values
 
@@ -80,7 +80,7 @@ so that in the end you will get a visual and informative plot.
    This requires changing `line.dash` parameter to `Dash.dash` value. The specified values ​​will be plotted after that 
    on the OY axis using the `tickvals` and` ticklabels` parameters.
 
-    ```
+    ```kotlin
     ...
     Plotly.page {
         ...
@@ -120,7 +120,7 @@ so that in the end you will get a visual and informative plot.
    which equals 1/2, and the value itself in LaTeX format. Shapes are used again for this - an array
    values ​​of type `Shape.line`. To use LaTeX format you need to include the `MathJax` header.
 
-    ```
+    ```kotlin
     ...
     val sub = PI / 6
     val xElems = listOf(-2PI + sub, -PI - sub, 0 + sub, PI - sub)
@@ -159,7 +159,7 @@ so that in the end you will get a visual and informative plot.
 5. It remains to add labels on OX corresponding to the intersections of the sinus with the axis. It
    is done in a similar way, using axis labels (`tickvals`,` ticktext`) and writing text in LaTeX format.
                                                                                                  
-    ```
+    ```kotlin
     ...
     Plolty.page(mathJaxHeader, cdnPlotlyHeader) {
         ...
@@ -190,7 +190,7 @@ so that in the end you will get a visual and informative plot.
    and` yanchor = top` set the position of the legend so that the coordinates specified by the parameters 
    `x = 1`,` y = 1` correspond to the position in the upper right corner of the image.
 
-    ```
+    ```kotlin
     ...
     Plotly.page(mathJaxHeader, cdnPlotlyHeader) {
         scatter {                                   // sinus Scatter trace
@@ -217,4 +217,4 @@ so that in the end you will get a visual and informative plot.
 
 ![Картинка](https://i.ibb.co/wKTCp4H/newplot-17.png)
 
-Source code is available at: https://mipt-npm.jetbrains.space/p/plt/code/plotly.kt/files/dev-katsam-3/examples/src/main/kotlin/tutorials/SinusPicture.kt
+Source code is available at: https://github.com/mipt-npm/plotly.kt/tree/dev/examples/src/main/kotlin/tutorials/SinusPicture.kt
