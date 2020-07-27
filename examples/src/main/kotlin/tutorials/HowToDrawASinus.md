@@ -1,219 +1,218 @@
 ### How To Draw A Sinus?
-В задачах визуализации данных достаточно часто возникает необходимость
-изображать математические функции - например, чтобы сравнить скорость сходимость модели
-с идеальной или найти аппроксимацию для заданного времянного ряда. У таких
-графиков есть ряд особенностей, не присущих большинству остальных графиков: например,
-изображение перпендикулярных осей OX и OY из нуля и достаточно большое количество
-дополнительной информации. Это может быть ожидаемое значение функции, точки её 
-экстремумов, отклонение в различных точках и т.д.
+In data visualization tasks, quite often there is a need to depict mathematical 
+functions - for example, to compare the convergence rate of a model
+with ideal one or to find an approximation for a given time series. Such charts 
+have a number of features that are not inherent in most other charts: for example,
+visualizing the perpendicular axes (OX, OY) from (0, 0) and a large number of
+additional information. This can be the expected value of the function, its extremum
+points, deviation at various points, etc.
 
-В данном материале будет рассказано, как с помощью средств библиотеки `Plotly.kt` 
-изобразить обыкновенный синус так, чтобы в итоге получился наглядный и информативный
-график.
+This article will tell you how to depict an ordinary sinus using the library `Plotly.kt`
+so that in the end you will get a visual and informative plot.
 
-
-1. Начнем с того, что изобразим перпендикулярные оси OX и OY. Для этого необходимо
-сделать несколько вещей: скрыть линии осей по умолчанию, скрыть линию нуля (т.к. на её конце
-нельзя нарисовать стрелку) и добавить перпендикулярные стрелки с помощью аннотаций (`Text`) 
-без текста, но с видимыми стрелочками. После этого подпишем сами оси. Также важно с самого начала 
-указывать нужные размеры графика (`width`, `height`) для того, чтобы после сохранения
-график выглядел так же, как и в браузере.
+1. Let's start with drawing perpendicular OX and OY axes. This requires to do a few things:
+   hide default axes lines, hide zero lines (it's impossible to draw an arrow on the end of it),
+   add perpendicular arrows using annotations (`Text`) with visible arrows on the end, but without
+   text. After that, let's sign the axes themselves. It is also important to specify the required 
+   chart sizes (`width`,` height`) so that after saving the graph will look the same as in the browser.
         
     ```
-    Plotly.page {                                // создание новой html-страницы с графиком
+    Plotly.page {                                // making new html page with plot
         layout {
-            width = 900                          // ширина графика в пикселях
-            height = 500                         // высота графика в пикселях
+            width = 900                          // width of the plot (in px.)
+            height = 500                         // height of the plot (in px.)
 
-            text {                               // вертикальная ось
-                x = Value.of(0)                  // положение верхнего края стрелки = (0, 1+eps)
+            text {                               // vertical axis
+                x = Value.of(0)                  // position of the top end of the arrow = (0, 1+eps)
                 y = Value.of(1 + eps)
-                ax = Value.of(0)                 // ax, ay означает смещение нижнего края относительно верхнего
-                ay = Value.of(430)               // положительное (отрицательное) значение - это длина стрелки
-                                                 // снизу вверх (сверху вниз) и справа налево (слева направо)
+                ax = Value.of(0)                 // ax, ay means the offset of the bottom edge relative to the top
+                ay = Value.of(430)               // positive (negative) value is the arrow length
+                                                 // upwards (top down) and from right to left (from left to right)
             }
 
-            text {                               // горизонтальная ось
-                y = Value.of(0)                  // положение правого края стрелки = (2PI + eps, 0)
+            text {                               // horizontal axis
+                y = Value.of(0)                  // arrow left position = (2PI + eps, 0)
                 x = Value.of(2 * PI + eps)
-                ax = Value.of(-800)              // положение левого края стрелки 
+                ax = Value.of(-800)              // position of the left end of the arrow
                 ay = Value.of(0)
             }
 
-            xaxis {                              // параметры OX
-                showline = false                 // скрыть линию OX
-                zeroline = false                 // скрыть линию нуля
+            xaxis {                              // OX parameters
+                showline = false                 // hide OX line
+                zeroline = false                 // hide zero line
             }
-            yaxis {                              // параметры OY
-                showline = false                 // скрыть линию OY
-                zeroline = false                 // скрыть линию нуля
+            yaxis {                              // OY parameters
+                showline = false                 // hide OY line
+                zeroline = false                 // hide zero line
             }
         }
-    }.makeFile()                                 // создание временного файла и отображение в браузере графика
+    }.makeFile()                                 // making temporary file and visualing plot in the browser
     ```
          
-2. Теперь нарисуем саму функцию синуса - для её изображения выберем ярко-голубой цвет,
-контрастирующий и с белым фоном, и с черными метками на осях. Также с помощью вариьрования
-параметра `mode` (`ScatterMode: lines, markers`) точки пересечения с осью OY отметим
-чуть более темным оттенком того же цвета.
-
+2. Now we will draw the sinus function itself - for its visualization let's choose a bright blue color,
+   contrasting with both the white background and the black ticks on the axes. After that using 
+   the variation of the `mode` parameter (` ScatterMode: lines, markers`) the intersection points with the OY axis
+   will be marked with a slightly darker shade of the same color.
+   
     ```
-    x1 = (-410..410).map{ it / 200 * PI }        // области определения функции (-2PI - eps, 2PI + eps)
-    y1 = sin(x1)                                 // значения функции - синус
+    x1 = (-410..410).map{ it / 200 * PI }        // function domain (-2PI - eps, 2PI + eps)
+    y1 = sin(x1)                                 // function values
 
     Plotly.page {
-        scatter {                                // создание графика типа Scatter - синус
-            x.set(x1)                            // задание значений линии по OX
-            y.set(y1)                            // задание значений линии по OY
-            line { color(XKCD.CERULEAN) }        // цвет линии - лазурный
+        scatter {                                // making Scatter plot (sinus)
+            x.set(x1)                            // assigning OX values
+            y.set(y1)                            // assigning OY values
+            line { color(XKCD.CERULEAN) }        // color of the line is cerulean
         }
 
-        scatter {                                // создание графика типа Scatter - точки на OX
-            mode = ScatterMode.markers           // отображение только точек
-            x(-2* PI, -PI, PI, 2* PI)            // точки пересечения синуса с OX - значения по оси X
-            y(0, 0, 0, 0)                        // точки пересечения синуса с OX - значения по оси Y
-            line { color(XKCD.CERULEAN_BLUE) }   // цвет точек - более темный лазурный
-            marker { size = 8 }                  // диаметр точки - 8 пикселей
+        scatter {                                // making Scatter plot (OX axis dots)
+            mode = ScatterMode.markers           // visualizing only dots
+            x(-2* PI, -PI, PI, 2* PI)            // points of intersection of sinus with OX (values ​​along the X axis)
+            y(0, 0, 0, 0)                        // points of intersection of sinus with OX (values ​​along the Y axis)
+            line { color(XKCD.CERULEAN_BLUE) }   // color of the dots is darker cerulean
+            marker { size = 8 }                  // dot's diameter is 8 px.
         }
 
         layout { ... }
     }.makeFile()
     ```
-3. Для большей наглядности нанесем на график горизонтальные пунктирные линии,
-соответствующие значениям, равным -1, 1/2 и 1. Для этого нужно указать параметр `line.dash -> dash`.
-Указанные значения в дальнейшем будут нанесены на ось OY с помощью параметров `tickvals` и `ticklabels`.
+3. Let's draw horizontal dashed lines on the chart, corresponding to values ​​equal to -1, 1 (extremum lines) and 1/2.
+   This requires changing `line.dash` parameter to `Dash.dash` value. The specified values ​​will be plotted after that 
+   on the OY axis using the `tickvals` and` ticklabels` parameters.
 
     ```
     ...
     Plotly.page {
         ...
         layout {
-            shape {                               // добавление новой фигуры - линии y = 1
-                x0 = Value.of(-2*PI)              // прямой линией будут соединены 
-                x1 = Value.of(2*PI)               // координаты (-2PI, 1) и (2PI, 1)
+            shape {                               // adding new figure (line y = 1)
+                x0 = Value.of(-2*PI)              // (-2PI, 1) and (2PI, 1) coordinates  
+                x1 = Value.of(2*PI)               // will be connected by a line
                 y0 = Value.of(1)
                 y1 = Value.of(1)
-                line { dash = Dash.dash }         // вид линии - пунктирный
+                line { dash = Dash.dash }         // dashed type of the line
             }
 
-            shape {                               // добавление новой фигуры - линии y = 1/2
-                x0 = Value.of(-2*PI)              // прямой линией будут соединены 
-                x1 = Value.of(2*PI)               // координаты (-2PI, 1/2) и (2PI, 1/2)
+            shape {                               // adding new figure (line y = 1/2)
+                x0 = Value.of(-2*PI)              // coordinates (-2PI, 1/2) and (2PI, 1/2) 
+                x1 = Value.of(2*PI)               // will be connected by a line
                 y0 = Value.of(0.5)
                 y1 = Value.of(0.5)
                 line {
-                    color("red")                  // цвет линии - красный
-                    dash = Dash.dash              // вид линии - пунктирный
+                    color("red")                  // red color of the line
+                    dash = Dash.dash              // dashed type of the line
                 }
             }
 
-            shape {                               // добавление новой фигуры - линии y = -1
-                x0 = Value.of(-2*PI)              // прямой линией будут соединены 
-                x1 = Value.of(2*PI)               // координаты (-2PI, -1) и (2PI, -1)
+            shape {                               // adding new figure (line y = -1)
+                x0 = Value.of(-2*PI)              // coordinates (-2PI, -1) and (2PI, -1) 
+                x1 = Value.of(2*PI)               // will be connected by a line
                 y0 = Value.of(-1)
                 y1 = Value.of(-1)
-                line { dash = Dash.dash }         // вид линии - пунктирный
+                line { dash = Dash.dash }         // dashed type of the line
             }
             ...
         }
     }.makeFile()
     ```
 
-4. После этого стоит добавить вертикальные линии, соединияющие точки на OX, значение
-в которых равно 1/2, и само значение в формате LaTeX. Для этого снова используются фигуры - массив 
-значений типа `Shape.line`. Для использования формата LaTeX необходимо подключить заголовок `MathJax`.
+4. After that, it is worth adding vertical lines connecting points on OX, the values in
+   which equals 1/2, and the value itself in LaTeX format. Shapes are used again for this - an array
+   values ​​of type `Shape.line`. To use LaTeX format you need to include the `MathJax` header.
+
     ```
     ...
     val sub = PI / 6
     val xElems = listOf(-2PI + sub, -PI - sub, 0 + sub, PI - sub)
-    // точки, в которых значение синуса равно 1/2
+    // points, where sinus equals 1/2
 
-    val shapesList = mutableListOf<Shape>()        // создание списка нужных линий
+    val shapesList = mutableListOf<Shape>()        // making list of lines
     for (x: xElems) {
         val shape = Shape {
-            x0 = Value.of(x)                       // будут соединены координаты (x, 0) и (x, 0.5)
+            x0 = Value.of(x)                       // (x, 0) and (x, 0.5) will be connected
             y0 = Value.of(0)
             x1 = Value.of(x)
             y0 = Value.of(1/2)
-            line { color("red") }                  // цвет линии - красный
+            line { color("red") }                  // red color of the line
         }
-        shapesList.add(shape)                      // добавление полученной фигуры в список
+        shapesList.add(shape)                      // adding new figure to the list
     }
 
     Plotly.page(mathJaxHeader, cdnPlotlyHeader) {
-        scatter {                                  // добавление надписи "1/2"
-            mode = ScatterMode.text                // будет выведен только текст
-            x(-0.35)                               // положение надписи на OX
-            y(0.56)                                // положение надписи на OY
-            text = listOf("$\Large{1/2}$")         // увеличение шрифта средствами ТеХа
-            textfont { color("red") }              // цвет шрифта - красный
-            showlegend = false                     // не отображать в легенде эту запись
-            hoverinfo = "none"                     // не показывать ничего при наведении курсора
+        scatter {                                  // add string "1/2"
+            mode = ScatterMode.text                // visualing only text
+            x(-0.35)                               // text position on the OX axis
+            y(0.56)                                // text position on the OX axis
+            text = listOf("$\Large{1/2}$")         // increasing font size with ТеХ
+            textfont { color("red") }              // red color of the font
+            showlegend = false                     // do not show this trace in the legend
+            hoverinfo = "none"                     // do not show anything on hover
         }
         ...
-        layout {                                   // добавление полученного списка фигур в график
+        layout {                                   // adding figure list to the plot
             shapes = shapesList                      
             ...
         }
     }.makeFile()
     ``` 
 
-5. Осталось добавить на OX метки, соответствующие пересечениям синуса с осью. Это
-делается аналогично с использованием меток осей (`tickvals`, `ticktext`) и записи текста в формате LaTeX.
+5. It remains to add labels on OX corresponding to the intersections of the sinus with the axis. It
+   is done in a similar way, using axis labels (`tickvals`,` ticktext`) and writing text in LaTeX format.
+                                                                                                 
     ```
     ...
     Plolty.page(mathJaxHeader, cdnPlotlyHeader) {
         ...
         layout {
-            xaxis {                                // параметры OX
+            xaxis {                                // OX axis parameters
                 ...
-                anchor = "free"                    // положение оси задается вручную
-                position = 0.43                    // заданная позиция оси
+                anchor = "free"                    // axis position is set manually
+                position = 0.43                    // assigning axis position
                 tickvals(listOf(-2 * PI-0.05, -PI - 0.15, PI - 0.05, 2 * PI + 0.1))
                 ticktext(listOf("\$\\huge{-2\\pi}\$", "\$\\huge{-\\pi}\$", "\$\\huge{\\pi}\$", "\$\\huge{2\\pi}\$"))
-                // положения меток и соответствующий им текст
+                // ticks positions and text
             }
-            yaxis {                                // параметры OY
+            yaxis {                                // OY axis parameters
                 ...
-                anchor = "free"                    // положение оси задается вручную
-                position = 0.485                   // заданная позиция оси
+                anchor = "free"                    // axis position is set manually
+                position = 0.485                   // assigning axis position
                 tickvals(listOf(-0.91, 0.09, 1.09))
                 ticktext(listOf("\$\\Large{-1}\$", "\$\\Large{0}\$", "\$\\Large{1}\$"))
-                // положения меток и соответствующий им текст
+                // ticks positions and text
             }
             ...
         }
     }.makeFile()
     ```
 
-6. В качестве финального улучшения добавим легенду к графику, которая будет помещена в
-правый верхний угол графика. Сначала нужно задать имя соответствующей линии, после чего
-с использованием параметров `xanchor = right` и `yanchor = top`, устанавливается положение легенды так,
-чтобы координаты, задаваемые параметрами `x = 1`, `y = 1`, соответствуют положению 
-в правом верхнем углу изображения.
+6. As a final improvement, let's add a legend to the plot, which will be placed in upper right corner of the graph.
+   First you need to set the name of the corresponding line, after which with using the parameters `xanchor = right` 
+   and` yanchor = top` set the position of the legend so that the coordinates specified by the parameters 
+   `x = 1`,` y = 1` correspond to the position in the upper right corner of the image.
+
     ```
     ...
     Plotly.page(mathJaxHeader, cdnPlotlyHeader) {
-        scatter {                                   // график синуса
+        scatter {                                   // sinus Scatter trace
             ...
             name = "\$\\Large{y = \\mathrm{sin}\\,x}\$"
-            // отображаемое в легенде название графика
+            // the name of the plot displayed in the legend
         }
 
         layout {
-            legend {                                // параметры легенды
-                x = 0.97                            // положение легенды по горизонтали
-                y = 1                               // положение легенды по вертикали
-                borderwidth = 1                     // ширина границы по краям легенды
-                font { size = 32 }                  // размер шрифта названий графиков
-                xanchor = XAnchor.right             // "привязывания" положения легенды к правому углу графика
-                yanchor = YAnchor.top               // "привязывание" положения легенды к низу графика
+            legend {                                // legend parameters
+                x = 0.97                            // horizontal position of the legend
+                y = 1                               // vertical position of the legend
+                borderwidth = 1                     // width of the legend border
+                font { size = 32 }                  // size of the legend font
+                xanchor = XAnchor.right             // "anchoring" the position of the legend to the right corner
+                yanchor = YAnchor.top               // "anchoring" the position of the legend to the bottom of the graph
             }
             ...
         }
     }.makeFile()
     ```
 
-7. Готовое изображение:
+7. Final picture:
 ![Картинка](https://i.ibb.co/wKTCp4H/newplot-17.png)
-Полный код доступен по ссылке: https://mipt-npm.jetbrains.space/p/plt/code/plotly.kt/files/dev-katsam-3/examples/src/main/kotlin/tutorials/SinusPicture.kt
+Source code is available at: https://mipt-npm.jetbrains.space/p/plt/code/plotly.kt/files/dev-katsam-3/examples/src/main/kotlin/tutorials/SinusPicture.kt
