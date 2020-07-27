@@ -6,10 +6,9 @@ import scientifik.plotly.makeFile
 import scientifik.plotly.models.ScatterMode
 import scientifik.plotly.scatter
 
-@OptIn(ExperimentalStdlibApi::class)
+
 fun main() {
-    //val file = File("D:\\Work\\Projects\\plotly.kt\\examples\\src\\main\\resources\\helloWorld.txt ")
-    val resource = Plotly.javaClass.getResourceAsStream("/helloWorld.txt").readAllBytes().decodeToString()
+    val resource = readResourceAsString("/simpleData.txt")
 
     val data = resource.lines().map { it.split(" ").map { it.toInt() } }
 
