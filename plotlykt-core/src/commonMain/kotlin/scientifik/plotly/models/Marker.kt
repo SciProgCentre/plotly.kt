@@ -88,7 +88,10 @@ class Marker : Scheme() {
      */
     val color = Color(this, "color".asName())
 
-    var colors by list()
+    /**
+     * Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+     */
+    var pieColors by list(key="colors".asName())
 
     var colorbar by spec(ColorBar)
 
