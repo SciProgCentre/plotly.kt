@@ -1,9 +1,8 @@
-import hep.dataforge.meta.invoke
 import kotlinx.html.script
 import kotlinx.html.unsafe
 import scientifik.plotly.*
 
-val myMathJaxHeader = HtmlFragment {
+val customMathJaxHeader = HtmlFragment {
     script {
         type = "text/x-mathjax-config"
         unsafe {
@@ -24,7 +23,7 @@ val myMathJaxHeader = HtmlFragment {
 
 
 fun main() {
-    Plotly.page(myMathJaxHeader, cdnPlotlyHeader) {
+    Plotly.page(customMathJaxHeader, cdnPlotlyHeader) {
         plot {
             scatter {
                 x(2, 3, 4, 5)
