@@ -1,9 +1,8 @@
 package violin
 
+import hep.dataforge.meta.invoke
 import hep.dataforge.values.Value
-import hep.dataforge.meta.*
-import krangl.DataFrame
-import krangl.readCSV
+import io.readResourceAsCsv
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.ViolinPoints
@@ -17,8 +16,7 @@ import scientifik.plotly.violin
  * - Show all points
  */
 fun main() {
-    val path = "examples/src/main/kotlin/violin/violin_data.csv"
-    val df = DataFrame.readCSV(path)
+    val df = readResourceAsCsv("/violin_data.csv")
 
     val plot = Plotly.plot {
         violin {
