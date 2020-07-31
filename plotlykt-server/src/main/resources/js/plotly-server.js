@@ -49,7 +49,7 @@ function getJSON(url, callback) {
  * @return {JSON}
  */
 function createPlotFrom(id, from, config) {
-    getJSON(from, json => Plotly.react(id, json.data, json.layout, config));
+    getJSON(from, json => withPlotly(plotly => plotly.react(id, json.data, json.layout, config)));
 }
 
 /**
@@ -59,7 +59,7 @@ function createPlotFrom(id, from, config) {
  * @return {JSON}
  */
 function updatePlotFrom(id, from) {
-    getJSON(from, json => Plotly.react(id, json.data, json.layout));
+    getJSON(from, json => withPlotly(plotly => plotly.react(id, json.data, json.layout)));
 }
 
 /**

@@ -30,7 +30,7 @@ javafx{
 }
 
 application {
-    mainClassName = "scientifik.plotly.PlotlyAppKt"
+    mainClassName = "scientifik.plotly.fx.PlotlyAppKt"
 }
 
 val compileKotlin: KotlinCompile by tasks

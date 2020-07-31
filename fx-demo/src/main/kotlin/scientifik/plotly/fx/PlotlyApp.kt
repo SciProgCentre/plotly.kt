@@ -26,6 +26,13 @@ class PlotlyView : View("Hello PlotlyFX") {
         vbox {
             stackpane {
                 webview {
+                    engine.setOnError {
+                        log.warning(it.message)
+                    }
+                    engine.setOnAlert {
+                        log.info(it.data)
+                    }
+
                     controller.address.onChange {
                         if (it != null) {
                             engine.load(it)

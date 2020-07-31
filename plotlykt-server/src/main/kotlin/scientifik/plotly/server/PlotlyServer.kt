@@ -92,12 +92,22 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
     var updateMode by enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
     var updateInterval by long(300, key = UPDATE_INTERVAL_KEY)
 
+    /**
+     * a list of headers that should be applied to all pages
+     */
+    val customHeaders = ArrayList<HtmlFragment>()
+
+    fun header(block: TagConsumer<*>.() -> Unit) {
+        customHeaders.add(HtmlFragment(block))
+    }
+
     fun page(
+        plotlyFragment: PlotlyFragment,
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
-        plotlyFragment: PlotlyFragment
+        headers: List<HtmlFragment> = customHeaders
     ) {
-        routing.createRouteFromPath(rootRoute).apply{
+        routing.createRouteFromPath(rootRoute).apply {
             val plots = HashMap<String, Plot>()
             route(route) {
                 //Update websocket
@@ -143,16 +153,25 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
                         encodedPath = origin.uri
                     }.build()
                     call.respondHtml {
+                        val normalizedRoute = if (rootRoute.endsWith("/")) {
+                            rootRoute
+                        } else {
+                            "$rootRoute/"
+                        }
+
                         head {
                             meta {
                                 charset = "utf-8"
-                                script {
-                                    type = "text/javascript"
-                                    src = "$rootRoute/js/plotly.min.js"
+                                headers.forEach {
+                                    it.visit(consumer)
                                 }
                                 script {
                                     type = "text/javascript"
-                                    src = "$rootRoute/js/plotly-server.js"
+                                    src = "${normalizedRoute}js/plotly.min.js"
+                                }
+                                script {
+                                    type = "text/javascript"
+                                    src = "${normalizedRoute}js/plotly-server.js"
                                 }
                             }
                             title(title)
@@ -174,9 +193,10 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
     fun page(
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
+        headers: List<HtmlFragment> = customHeaders,
         content: FlowContent.(container: PlotlyContainer) -> Unit
     ) {
-        page(route, title, PlotlyFragment(content))
+        page(PlotlyFragment(content), route, title, headers)
     }
 
 
