@@ -86,17 +86,15 @@ private class PlotlyJupyterServer(
         div {
             id = plotId
             script {
-                val tracesString = plot.data.toJsonString()
-                val layoutString = plot.layout.toJsonString()
                 unsafe {
                     //language=JavaScript
                     +"""
 
-                    require(["plotly"], plotly =>{
+                    withPlotly(plotly =>{
                         plotly.react(
                             '$plotId',
-                            $tracesString,
-                            $layoutString,
+                            ${plot.data.toJsonString()},
+                            ${plot.layout.toJsonString()},
                             $config
                         );
                     });

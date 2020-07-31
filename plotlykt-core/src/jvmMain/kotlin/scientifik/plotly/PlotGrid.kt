@@ -1,7 +1,6 @@
 package  scientifik.plotly
 
 import kotlinx.html.div
-import kotlinx.html.style
 
 @UnstablePlotlyAPI
 class PlotGrid {
@@ -56,14 +55,11 @@ class PlotGrid {
 fun Plotly.grid(block: PlotGrid.() -> Unit): PlotlyPage {
     val grid = PlotGrid().apply(block)
     return page(cdnBootstrap, cdnPlotlyHeader) { container ->
-        div {
-            style = "display: flex; flex-direction: column;"
+        div("col") {
             grid.grid.forEach { row ->
-                div {
-                    style = "display: flex; flex-direction: row;"
+                div("row") {
                     row.forEach { cell ->
-                        div {
-                            style = "flex-grow: ${cell.width};"
+                        div("col-${cell.width}") {
                             plot(cell.plot, cell.id, container = container)
                         }
                     }

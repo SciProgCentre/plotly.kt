@@ -1,9 +1,6 @@
 package scientifik.plotly.server
 
-import hep.dataforge.meta.Config
-import hep.dataforge.meta.Configurable
-import hep.dataforge.meta.enum
-import hep.dataforge.meta.long
+import hep.dataforge.meta.*
 import hep.dataforge.names.toName
 import io.ktor.application.*
 import io.ktor.features.CORS
@@ -42,6 +39,7 @@ private class PlotServerContainer(
     val baseUrl: Url,
     val updateMode: PlotlyUpdateMode,
     val updateInterval: Long,
+    val embedData: Boolean,
     val plotCallback: (plotId: String, plot: Plot) -> Unit
 ) : PlotlyContainer {
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
@@ -53,9 +51,27 @@ private class PlotServerContainer(
                 encodedPath = baseUrl.encodedPath + "/data/$plotId"
             )
             script {
-                unsafe {
-                    //language=JavaScript
-                    +"\n    createPlotFrom('$plotId','$dataUrl', $config);\n"
+                if(embedData) {
+                    unsafe {
+                        //language=JavaScript
+                        +"""
+
+                    withPlotly(plotly =>{
+                        plotly.newPlot(
+                            '$plotId',
+                            ${plot.data.toJsonString()},
+                            ${plot.layout.toJsonString()},
+                            $config
+                        );
+                    });
+
+                    """.trimIndent()
+                    }
+                } else {
+                    unsafe {
+                        //language=JavaScript
+                        +"\n    createPlotFrom('$plotId','$dataUrl', $config);\n"
+                    }
                 }
 
                 // starting plot updates if required
@@ -91,21 +107,22 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
     override val config = Config()
     var updateMode by enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
     var updateInterval by long(300, key = UPDATE_INTERVAL_KEY)
+    var embedData by boolean(false)
 
     /**
      * a list of headers that should be applied to all pages
      */
-    val customHeaders = ArrayList<HtmlFragment>()
+    val globalHeaders = ArrayList<HtmlFragment>()
 
     fun header(block: TagConsumer<*>.() -> Unit) {
-        customHeaders.add(HtmlFragment(block))
+        globalHeaders.add(HtmlFragment(block))
     }
 
     fun page(
         plotlyFragment: PlotlyFragment,
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
-        headers: List<HtmlFragment> = customHeaders
+        headers: List<HtmlFragment> = emptyList()
     ) {
         routing.createRouteFromPath(rootRoute).apply {
             val plots = HashMap<String, Plot>()
@@ -162,7 +179,7 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
                         head {
                             meta {
                                 charset = "utf-8"
-                                headers.forEach {
+                                (globalHeaders + headers).forEach {
                                     it.visit(consumer)
                                 }
                                 script {
@@ -177,7 +194,7 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
                             title(title)
                         }
                         body {
-                            val container = PlotServerContainer(url, updateMode, updateInterval) { plotId, plot ->
+                            val container = PlotServerContainer(url, updateMode, updateInterval, embedData) { plotId, plot ->
                                 plots[plotId] = plot
                             }
                             with(plotlyFragment) {
@@ -193,7 +210,7 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
     fun page(
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
-        headers: List<HtmlFragment> = customHeaders,
+        headers: List<HtmlFragment> = emptyList(),
         content: FlowContent.(container: PlotlyContainer) -> Unit
     ) {
         page(PlotlyFragment(content), route, title, headers)

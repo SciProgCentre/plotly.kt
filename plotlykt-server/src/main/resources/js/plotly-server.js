@@ -48,8 +48,10 @@ function getJSON(url, callback) {
  * @param config {object} plotly configuration
  * @return {JSON}
  */
-function createPlotFrom(id, from, config) {
-    getJSON(from, json => withPlotly(plotly => plotly.react(id, json.data, json.layout, config)));
+function createPlotFrom(id, from, config = {}) {
+    getJSON(from, json => withPlotly(plotly => {
+        plotly.newPlot(id, json.data, json.layout, config)
+    }));
 }
 
 /**
@@ -97,7 +99,8 @@ function startPush(id, ws) {
     };
 
     socket.onerror = function (error) {
-        alert("Error " + error.message);
+        console.error("Ploty push update error: " + error.message);
+        socket.close()
     };
 
     socket.onmessage = function (event) {

@@ -5,7 +5,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.html.h1
 import scientifik.plotly.Plotly
 import scientifik.plotly.layout
 import scientifik.plotly.models.Trace
@@ -18,6 +17,7 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 fun serve(scale: ObservableIntegerValue) = Plotly.serve {
+    embedData = true //Should be set this way to avid FX browser bug
 
     page("Static") {
         val x = (0..100).map { it.toDouble() / 100.0 }.toDoubleArray()
@@ -45,19 +45,13 @@ fun serve(scale: ObservableIntegerValue) = Plotly.serve {
 
         val trace = Trace(x, y) { name = "sin" }
 
-        h1{
-            +"Header"
-        }
-        plot(container = container) {
+        plot("dynamic", container = container) {
             traces(trace)
             layout {
                 title = "Dynamic plot"
                 xaxis.title = "x axis name"
                 yaxis.title = "y axis name"
             }
-        }
-        h1{
-            +"Footer"
         }
 
         GlobalScope.launch {
@@ -71,7 +65,7 @@ fun serve(scale: ObservableIntegerValue) = Plotly.serve {
             }
         }
     }
-    pushUpdates(500)
+    pushUpdates(100)
 }
 
 

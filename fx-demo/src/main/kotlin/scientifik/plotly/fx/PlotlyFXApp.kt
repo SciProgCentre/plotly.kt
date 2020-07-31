@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
 }
 
 class PlotlyView : View("Hello PlotlyFX") {
-    private val controller: PlotlyController by inject()
+    private val controller: PlotlyFXController by inject()
     private val hide = SimpleBooleanProperty(false)
     override val root = hbox {
         listview(controller.pages) {

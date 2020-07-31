@@ -8,7 +8,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import tornadofx.*
 
-class PlotlyController : Controller() {
+class PlotlyFXController : Controller() {
 
     val scale = SimpleIntegerProperty(1)
 
