@@ -7,7 +7,7 @@ import org.w3c.dom.HTMLElement
 private fun Scheme.toDynamic() = config.toDynamic()
 
 /**
- * Attach a plot to this element
+ * Attach a plot to this element or update existing plot
  */
 fun HTMLElement.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig()) {
     val traces = plot.data.map { it.toDynamic() }.toTypedArray()
