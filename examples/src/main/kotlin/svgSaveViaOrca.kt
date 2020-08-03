@@ -80,9 +80,7 @@ fun main() {
     val scriptName = "./examples/src/main/kotlin/orca_script.py"
 
     val processBuilder = ProcessBuilder(scriptName, jsonString, fileName, directoryName, "svg")
-    processBuilder.redirectOutput(ProcessBuilder.Redirect.INHERIT)
-    processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT)
-    val process = processBuilder.start()
-    println(String(process.errorStream.readAllBytes()))
+    val process = processBuilder.inheritIO().start()
+    println(String(process.inputStream.readAllBytes()))
     println(process.waitFor())
 }
