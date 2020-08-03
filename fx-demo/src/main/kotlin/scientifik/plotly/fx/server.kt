@@ -10,15 +10,16 @@ import scientifik.plotly.layout
 import scientifik.plotly.models.Trace
 import scientifik.plotly.models.invoke
 import scientifik.plotly.plot
-import scientifik.plotly.server.pullUpdates
+import scientifik.plotly.server.pushUpdates
 import scientifik.plotly.server.serve
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
 fun serve(scale: ObservableIntegerValue) = Plotly.serve {
+    embedData = true //Should be set this way to avid FX browser bug
 
-    page("Static") { container ->
+    page("Static") {
         val x = (0..100).map { it.toDouble() / 100.0 }.toDoubleArray()
         val y1 = x.map { sin(2.0 * PI * it) }.toDoubleArray()
         val y2 = x.map { cos(2.0 * PI * it) }.toDoubleArray()
@@ -28,7 +29,7 @@ fun serve(scale: ObservableIntegerValue) = Plotly.serve {
         val trace2 = Trace(x, y2) {
             name = "cos"
         }
-        plot(container = container) {//static plot
+        plot {//static plot
             traces(trace1, trace2)
             layout {
                 title = "First graph, row: 1, size: 8/12"
@@ -44,10 +45,7 @@ fun serve(scale: ObservableIntegerValue) = Plotly.serve {
 
         val trace = Trace(x, y) { name = "sin" }
 
-
-        //root level plots go to default page
-
-        plot(container = container) {
+        plot("dynamic", container = container) {
             traces(trace)
             layout {
                 title = "Dynamic plot"
@@ -67,7 +65,7 @@ fun serve(scale: ObservableIntegerValue) = Plotly.serve {
             }
         }
     }
-    pullUpdates(500)
+    pushUpdates(100)
 }
 
 

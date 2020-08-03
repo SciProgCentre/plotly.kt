@@ -1,12 +1,11 @@
 package tutorials
 
-import kotlin.math.*
-import scientifik.plotly.Plotly
 import hep.dataforge.values.Value
 import scientifik.plotly.*
 import scientifik.plotly.models.*
 import scientifik.plotly.palettes.XKCD
-import kotlin.reflect.jvm.internal.ReflectProperties
+import kotlin.math.PI
+import kotlin.math.sin
 
 
 /**

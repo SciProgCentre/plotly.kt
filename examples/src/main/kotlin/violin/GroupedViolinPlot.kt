@@ -32,9 +32,10 @@ fun main() {
     val df = readResourceAsCsv("/violin_data.csv")
 
     val violin1 = Violin {
-        val females = df.filter { it["sex"] eq "Female" }
-        x.column(females, "day")
-        y.column(females, "total_bill")
+        val males = df.filter { it["sex"] eq "Male" }
+
+        x.column(males, "day")
+        y.column(males, "total_bill")
         legendgroup = "M"
         scalegroup = "M"
         name = "M"
@@ -44,9 +45,10 @@ fun main() {
     }
 
     val violin2 = Violin {
-        val males = df.filter { it["sex"] eq "Male" }
-        x.column(males, "day")
-        y.column(males, "total_bill")
+        val females = df.filter { it["sex"] eq "Female" }
+
+        x.column(females, "day")
+        y.column(females, "total_bill")
         legendgroup = "F"
         scalegroup = "F"
         name = "F"
