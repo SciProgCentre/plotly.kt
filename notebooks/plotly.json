@@ -17,7 +17,7 @@
         "port": 8882
     },
     "init": [
-        "DISPLAY(HTML(JupyterPlotly.start().toString()))"
+        "DISPLAY(HTML(JupyterPlotly.start($port).toString()))"
     ],
     "shutdown":[
         "DISPLAY(HTML(JupyterPlotly.stop().toString()))"

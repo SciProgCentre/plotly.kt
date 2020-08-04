@@ -164,7 +164,7 @@ object JupyterPlotly {
                     };
                     
                     window.startupPlotly = function (){
-                        console.info("Starting up plotly and calling deferred operations stack.")
+                        console.info("Starting up plotly and calling deferred operations queue.")
                         window.plotlyCall = function(f) {f();};
                         window.plotlyCallQueue.forEach(function(f) {f();});
                         window.plotlyCallQueue = [];    
