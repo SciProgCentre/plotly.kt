@@ -1,9 +1,17 @@
-import hep.dataforge.meta.invoke
+package scatter
+
+import hep.dataforge.meta.*
 import scientifik.plotly.Plotly
+import scientifik.plotly.imageExport
 import scientifik.plotly.models.Scatter
 import scientifik.plotly.models.ScatterMode
-import java.lang.ProcessBuilder
 
+
+/**
+ * - Scatter plot with many traces
+ * - Hide axis & grid lines
+ * - Export picture as svg using orca
+ */
 fun main() {
     val trace1 = Scatter {
         x(52698, 43117)
@@ -76,11 +84,6 @@ fun main() {
 
     val jsonString = plot.toJson().toString()
     val fileName = "quarterGrowth.svg"
-    val directoryName = "examples/src/main/kotlin"
-    val scriptName = "./examples/src/main/kotlin/orca_script.py"
-
-    val processBuilder = ProcessBuilder(scriptName, jsonString, fileName, directoryName, "svg")
-    val process = processBuilder.inheritIO().start()
-    println(String(process.inputStream.readAllBytes()))
-    println(process.waitFor())
+    val directoryName = "examples/src/main/kotlin/scatter"
+    imageExport(jsonString, fileName, directoryName)
 }
