@@ -89,15 +89,14 @@ private class PlotlyJupyterServer(
                 unsafe {
                     //language=JavaScript
                     +"""
-
-                    withPlotly(plotly =>{
-                        plotly.react(
-                            '$plotId',
-                            ${plot.data.toJsonString()},
-                            ${plot.layout.toJsonString()},
-                            $config
-                        );
-                    });
+                        window.plotlyCall(function (){                    
+                            makePlot(
+                                '$plotId',
+                                ${plot.data.toJsonString()},
+                                ${plot.layout.toJsonString()},
+                                $config
+                            );
+                        });
                     
                     """.trimIndent()
                 }
@@ -114,9 +113,10 @@ private class PlotlyJupyterServer(
                     unsafe {
                         //language=JavaScript
                         +"""
-                            require(["plotly-server"], plotlyServer =>{
+                            window.plotlyCall(function (){        
                                 startPush('$plotId', '$wsUrl');
-                            });
+                            });    
+                            
                         """
                     }
                 }
@@ -136,69 +136,70 @@ object JupyterPlotly {
     private const val JUPYTER_ASSETS_PATH = ".jupyter_kotlin/assets/"
 
     private fun loadJs(serverUrl: String) = HtmlFragment {
+        div {
+            id = "plotly-load-scripts"
+        }
         script {
             type = "text/javascript"
-            src = "$serverUrl/js/require.js"
-        }
-        div {
-            id = "plotly-script-loader"
-            script {
-                type = "text/javascript"
-                unsafe {
-                    //language=JavaScript
-                    +"""
+            unsafe {
+                //language=JavaScript
+                +"""
+                (function() {
+                    console.log("Starting up plotly script loader");
                     if (window.MathJax){ 
                         MathJax.Hub.Config({
                             SVG: {
                                 font: "STIX-Web"
                             }
-                        })
+                        });
                         window.PlotlyConfig = {MathJaxConfig: 'local'};
                     }
-                    var configureRequire = function() {
-                        console.log("Configuring require to use with plotly server")
-                        require.config({
-                            paths: { 
-                                "plotly": ["$serverUrl/js/plotly.min", "//cdn.plot.ly/plotly-${Plotly.VERSION}"],
-                                "plotly-server": ["$serverUrl/js/plotly-server"],
-                                "mathjax": ["//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax"]
-                            },
-                            shim: {
-                                "plotly-server": {  
-                                    deps:["plotly"]
-                                }
-                            }
-                        }); 
+                    
+                    if(!window.plotlyCallQueue) {
+                        window.plotlyCallQueue = [];
                     }
-                    if(typeof require === 'undefined'){
-                        console.log("Require-js is not loaded. Loading it from cdn")
-                        let requireScript = document.createElement("script");
-                        requireScript.type = "text/javascript";
-                        requireScript.src =  "//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js";
-                        requireScript.onload = () => {
-                            console.log("Require-js loaded")
-                            configureRequire()
-                        };
-                        requireScript.onerror = (error) => {
-                            console.log("Loading require-js is failed with error: " + error)                        
-                        };
-                        document.getElementById("plotly-script-loader").appendChild(requireScript);
-                    } else {
-                        console.log("Require-js is found. Applying configuration.")
-                        configureRequire()
+                    
+                    window.plotlyCall = function(f) {
+                        window.plotlyCallQueue.push(f);
+                    };
+                    
+                    window.startupPlotly = function (){
+                        console.info("Starting up plotly and calling deferred operations queue.")
+                        window.plotlyCall = function(f) {f();};
+                        window.plotlyCallQueue.forEach(function(f) {f();});
+                        window.plotlyCallQueue = [];    
                     }
+                })();
                 """.trimIndent()
-                }
             }
         }
-     }
+
+        script {
+            type = "text/javascript"
+            src = "$serverUrl/js/plotly.min.js"
+        }
+
+        script {
+            type = "text/javascript"
+            val connectorScript = javaClass.getResource("/js/plotlyConnect.js")!!.readText()
+            unsafe {
+                +connectorScript
+            }
+            unsafe {
+                //language=JavaScript
+                +"""
+                    window.startupPlotly()
+                """.trimIndent()
+            }
+        }
+    }
 
     private var jupyterPlotlyServer: PlotlyJupyterServer = PlotlyJupyterServer()
 
     /**
      * Start a dynamic update server
      */
-    fun startUpdates(port: Int = 8882): HtmlFragment {
+    fun start(port: Int = 8882): HtmlFragment {
         if (jupyterPlotlyServer.isRunning) {
             return HtmlFragment {
                 div {
@@ -214,7 +215,7 @@ object JupyterPlotly {
     /**
      * Stop dynamic update server
      */
-    fun stopUpdates(): HtmlFragment {
+    fun stop(): HtmlFragment {
         if (!jupyterPlotlyServer.isRunning) {
             return HtmlFragment {
                 div {

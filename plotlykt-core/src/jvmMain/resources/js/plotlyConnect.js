@@ -3,10 +3,25 @@
  * @param action
  */
 function withPlotly(action) {
-    if (typeof require === "undefined") {
-        return action(Plotly);
+    if (typeof Plotly !== "undefined") {
+        action(Plotly);
+    } else if (typeof window.promiseOfPlotly !== "undefined") {
+        window.promiseOfPlotly.then(plotly => action(plotly));
     } else {
-        require(["plotly"], plotly => action(plotly));
+        window.promiseOfPlotly = new Promise((accept, reject) => {
+            let plotlyLoaderScript = document.createElement("script");
+            plotlyLoaderScript.src = "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.54.6/plotly.min.js";
+            plotlyLoaderScript.type = 'text/javascript';
+            // plotlyLoaderScript.integrity = "sha512-nImrVUd2OlM2T1PrCuXXMDsIyXD5zlpjpRRYicksbmLwn8uZhYFfSGLGeRIhnKJBsCdXY+ecvOiCFJnokwfEvg==";
+            // plotlyLoaderScript.crossorigin = "anonymous";
+            plotlyLoaderScript.onload = () => {
+                accept(Plotly);
+            }
+            plotlyLoaderScript.onerror = (error) => {
+                console.error(error)
+            }
+            document.head.appendChild(plotlyLoaderScript)
+        });
     }
 }
 
@@ -39,6 +54,17 @@ function getJSON(url, callback) {
     } catch (e) {
         alert("Fetch of plot data failed with error: " + e)
     }
+}
+
+/**
+ * Safe call for Plotly.newPlot
+ * @param id
+ * @param data
+ * @param layout
+ * @param config
+ */
+function makePlot(id, data, layout, config) {
+    withPlotly(plotly => plotly.newPlot(id, data, layout, config))
 }
 
 /**
@@ -135,4 +161,5 @@ function startPush(id, ws) {
         socket.close();
     };
 }
+
 

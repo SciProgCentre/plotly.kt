@@ -13,14 +13,14 @@
         "https://dl.bintray.com/mipt-npm/dev"
     ],
     "properties": {
-        "v": "0.2.0-dev-12",
+        "v": "0.2.0-dev-14",
         "port": 8882
     },
     "init": [
-        "DISPLAY(HTML(JupyterPlotly.startUpdates().toString()))"
+        "DISPLAY(HTML(JupyterPlotly.start($port).toString()))"
     ],
     "shutdown":[
-        "DISPLAY(HTML(JupyterPlotly.stopUpdates().toString()))"
+        "DISPLAY(HTML(JupyterPlotly.stop().toString()))"
     ],
     "renderers": {
         "scientifik.plotly.HtmlFragment": "DISPLAY(HTML($it.toString()))",

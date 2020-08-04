@@ -56,14 +56,13 @@ private class PlotServerContainer(
                         //language=JavaScript
                         +"""
 
-                    withPlotly(plotly =>{
-                        plotly.newPlot(
-                            '$plotId',
-                            ${plot.data.toJsonString()},
-                            ${plot.layout.toJsonString()},
-                            $config
-                        );
-                    });
+                    makePlot(
+                        '$plotId',
+                        ${plot.data.toJsonString()},
+                        ${plot.layout.toJsonString()},
+                        $config
+                    );
+
 
                     """.trimIndent()
                     }
@@ -188,7 +187,7 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
                                 }
                                 script {
                                     type = "text/javascript"
-                                    src = "${normalizedRoute}js/plotly-server.js"
+                                    src = "${normalizedRoute}js/plotlyConnect.js"
                                 }
                             }
                             title(title)
