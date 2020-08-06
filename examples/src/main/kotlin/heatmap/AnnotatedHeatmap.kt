@@ -23,7 +23,7 @@ fun main() {
     val z1 = mutableListOf<MutableList<Double>>()
 
     for (i in y1.indices) {
-        z1.add(MutableList(x1.size){0.0})
+        z1.add(MutableList(x1.size) { 0.0 })
     }
 
     val annotationsList = mutableListOf<Text>()

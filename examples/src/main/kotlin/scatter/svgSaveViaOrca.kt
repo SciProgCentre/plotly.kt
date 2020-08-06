@@ -1,6 +1,6 @@
 package scatter
 
-import hep.dataforge.meta.*
+import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.imageExport
 import scientifik.plotly.models.Scatter

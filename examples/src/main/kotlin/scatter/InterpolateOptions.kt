@@ -3,9 +3,9 @@ package scatter
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
+import scientifik.plotly.models.LineShape
 import scientifik.plotly.models.Scatter
 import scientifik.plotly.models.ScatterMode
-import scientifik.plotly.models.LineShape
 import scientifik.plotly.models.TraceOrder
 
 
@@ -31,11 +31,11 @@ fun main() {
         mode = ScatterMode.`lines+markers`
         name = "spline"
         text = listOf("tweak line smoothness<br>with \"smoothing\" in line object",
-            "tweak line smoothness<br>with \"smoothing\" in line object",
-            "tweak line smoothness<br>with \"smoothing\" in line object",
-            "tweak line smoothness<br>with \"smoothing\" in line object",
-            "tweak line smoothness<br>with \"smoothing\" in line object",
-            "tweak line smoothness<br>with \"smoothing\" in line object")
+                "tweak line smoothness<br>with \"smoothing\" in line object",
+                "tweak line smoothness<br>with \"smoothing\" in line object",
+                "tweak line smoothness<br>with \"smoothing\" in line object",
+                "tweak line smoothness<br>with \"smoothing\" in line object",
+                "tweak line smoothness<br>with \"smoothing\" in line object")
         line {
             shape = LineShape.spline
         }

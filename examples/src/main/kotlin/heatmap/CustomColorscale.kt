@@ -5,8 +5,8 @@ import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
 import scientifik.plotly.heatmap
 import scientifik.plotly.makeFile
-import scientifik.plotly.models.Text
 import scientifik.plotly.models.Font
+import scientifik.plotly.models.Text
 
 /**
  * - Simple heatmap with annotations

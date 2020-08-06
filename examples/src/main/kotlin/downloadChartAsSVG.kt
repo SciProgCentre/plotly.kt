@@ -9,7 +9,7 @@ import scientifik.plotly.models.ScatterMode
  */
 fun main() {
     val fragment = Plotly.fragment {
-        val plotConfig = PlotlyConfig{
+        val plotConfig = PlotlyConfig {
             config["toImageButtonOptions.format"] = "svg"
         }
 
@@ -20,7 +20,7 @@ fun main() {
                 text = listOf("A<br>size: 40", "B<br>size: 60", "C<br>size: 80", "D<br>size: 100")
                 mode = ScatterMode.markers
                 marker {
-                    colors(listOf("rgb(93, 164, 214)", "rgb(255, 144, 14)",  "rgb(44, 160, 101)", "rgb(255, 65, 54)"))
+                    colors(listOf("rgb(93, 164, 214)", "rgb(255, 144, 14)", "rgb(44, 160, 101)", "rgb(255, 65, 54)"))
                     sizes = listOf(40, 60, 80, 100)
                 }
             }

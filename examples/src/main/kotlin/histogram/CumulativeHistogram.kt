@@ -14,7 +14,7 @@ import java.util.*
  */
 fun main() {
     val rnd = Random()
-    val values = List(500){rnd.nextDouble()}
+    val values = List(500) { rnd.nextDouble() }
 
     val plot = Plotly.plot {
         histogram {

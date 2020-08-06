@@ -40,7 +40,7 @@ fun main() {
         y.set(y2)
         name = "experimental"
         marker {
-           color(0, 100, 255, 0.7)
+            color(0, 100, 255, 0.7)
         }
         opacity = 0.75
         xbins {

@@ -21,17 +21,17 @@ fun main() {
     val y1 = mutableListOf<Double>()
     val z1 = mutableListOf<MutableList<Double>>()
 
-    for(i in 0 until size) {
+    for (i in 0 until size) {
         val elem = -2 * Math.PI + 4 * Math.PI * i / size
         x1.add(elem)
         y1.add(elem)
-        z1.add(MutableList(size){0.0})
+        z1.add(MutableList(size) { 0.0 })
     }
 
     for (i in x1.indices) {
         for (j in y1.indices) {
             val r2 = x1[i] * x1[i] + y1[j] * y1[j]
-            z1[i][j] = sin(x1[i]) * cos(y1[j]) * sin(r2) / ln(r2+1)
+            z1[i][j] = sin(x1[i]) * cos(y1[j]) * sin(r2) / ln(r2 + 1)
         }
     }
 
@@ -44,7 +44,7 @@ fun main() {
         }
 
         layout {
-            title  = "Simple Contour Plot"
+            title = "Simple Contour Plot"
         }
     }
 
