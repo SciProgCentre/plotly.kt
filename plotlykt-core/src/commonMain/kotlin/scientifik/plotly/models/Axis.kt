@@ -63,13 +63,13 @@ class Axis : Scheme() {
      * Sets the tick length (in px).
      * Default: 5.
      */
-    var ticklen by intGreaterThan(0)
+    var ticklen by numberGreaterThan(0)
 
     /**
      * Sets the tick width (in px).
      * Default: 1.
      */
-    var tickwidth by intGreaterThan(0)
+    var tickwidth by numberGreaterThan(0)
 
     /**
      * Sets the tick color.
@@ -155,7 +155,7 @@ class Axis : Scheme() {
     /**
      * Sets the width (in px) of the axis line. Default: 1.
      */
-    var linewidth by intGreaterThan(0)
+    var linewidth by numberGreaterThan(0)
 
     /**
      * Determines whether or not grid lines are drawn. If "true",
@@ -171,7 +171,7 @@ class Axis : Scheme() {
     /**
      * Sets the width (in px) of the grid lines. Default: 1.
      */
-    var gridwidth by intGreaterThan(0)
+    var gridwidth by numberGreaterThan(0)
 
     /**
      * Determines whether or not a line is drawn at along the 0 value of this axis.
@@ -187,7 +187,7 @@ class Axis : Scheme() {
     /**
      * Sets the width (in px) of the zero line. Default: 1.
      */
-    var zerolinewidth by intGreaterThan(0)
+    var zerolinewidth by numberGreaterThan(0)
 
     /**
      * Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`.

@@ -7,9 +7,9 @@ enum class ZsmoothType {
 }
 
 interface Table2D {
-    var xgap: Int
+    var xgap: Number
 
-    var ygap: Int
+    var ygap: Number
 
     var zsmooth: ZsmoothType
 }

@@ -1,6 +1,7 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.names.asName
 import scientifik.plotly.numberInRange
 import kotlin.js.JsName
 
@@ -35,7 +36,7 @@ enum class TextInfo {
     @JsName("labelValuePercent")
     `label+value+percent`,
     @JsName("textValuePercent")
-    `text+value_percent`,
+    `text+value+percent`,
     @JsName("labelTextValuePercent")
     `label+text+value+percent`
 }
@@ -47,11 +48,16 @@ class Pie() : Trace() {
 
     /**
      * Sets the fraction of larger radius to pull the sectors out from the center.
-     * This can be a constant to pull all slices apart from each other
-     * equally or an array to highlight one or more slices.
+     * This is a constant to pull all slices apart from each other.
      * Default: 0.
      */
-    var pull by numberList()
+    var pull by number()
+
+    /**
+     * Sets the fraction of larger radius to pull the sectors out from the center.
+     * This is an array to highlight one or more slices.
+     */
+    var pullList by numberList(key = "pull".asName())
 
     /**
      * Specifies the direction at which succeeding sectors follow one another.
@@ -93,8 +99,6 @@ class Pie() : Trace() {
      * Determines which trace information appear on the graph.
      */
     var textinfo by enum(TextInfo.percent)
-
-//    var
 
     companion object : SchemeSpec<Pie>(::Pie)
 }

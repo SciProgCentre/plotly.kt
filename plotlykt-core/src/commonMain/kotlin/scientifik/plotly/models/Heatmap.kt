@@ -1,6 +1,7 @@
 package scientifik.plotly.models
 import hep.dataforge.meta.*
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.numberGreaterThan
 
 open class Heatmap(): Trace(), Table2D, HeatmapContour {
     init {
@@ -10,12 +11,12 @@ open class Heatmap(): Trace(), Table2D, HeatmapContour {
     /**
      * Sets the horizontal gap (in pixels) between bricks.
      */
-    override var xgap by intGreaterThan(0)
+    override var xgap by numberGreaterThan(0)
 
     /**
      * Sets the vertical gap (in pixels) between bricks.
      */
-    override var ygap by intGreaterThan(0)
+    override var ygap by numberGreaterThan(0)
 
     /**
      * Picks a smoothing algorithm use to smooth `z` data.

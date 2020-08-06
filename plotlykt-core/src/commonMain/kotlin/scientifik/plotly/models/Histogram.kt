@@ -219,12 +219,12 @@ class Histogram2D() : Histogram(), Table2D {
     /**
      * Sets the horizontal gap (in pixels) between bricks.
      */
-    override var xgap by intGreaterThan(0)
+    override var xgap by numberGreaterThan(0)
 
     /**
      * Sets the vertical gap (in pixels) between bricks.
      */
-    override var ygap by intGreaterThan(0)
+    override var ygap by numberGreaterThan(0)
 
     /**
      * Picks a smoothing algorithm use to smooth `z` data.

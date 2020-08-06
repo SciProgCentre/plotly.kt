@@ -18,7 +18,7 @@ fun main() {
         y(53, 31)
         mode = ScatterMode.markers
         name = "North America"
-        text = listOf("United States", "Canada")
+        textsList = listOf("United States", "Canada")
         marker {
             color("rgb(164, 194, 244)")
             size = 12
@@ -34,7 +34,7 @@ fun main() {
         y(33, 20, 13, 19, 27, 19, 49, 44, 38)
         mode = ScatterMode.markers
         name = "Europe"
-        text = listOf("Germany", "Britain", "France", "Spain", "Italy", "Czech Rep.", "Greece", "Poland")
+        textsList = listOf("Germany", "Britain", "France", "Spain", "Italy", "Czech Rep.", "Greece", "Poland")
         marker {
             color("rgb(255, 217, 102)")
             size = 12
@@ -46,7 +46,7 @@ fun main() {
         y(23, 42, 54, 89, 14, 99, 93, 70)
         mode = ScatterMode.markers
         name = "Asia/Pacific"
-        text = listOf("Australia", "Japan", "South Korea", "Malaysia", "China", "Indonesia", "Philippines", "India")
+        textsList = listOf("Australia", "Japan", "South Korea", "Malaysia", "China", "Indonesia", "Philippines", "India")
         marker {
             color("rgb(234, 153, 153)")
             size = 12
@@ -58,7 +58,7 @@ fun main() {
         y(43, 47, 56, 80, 86, 93, 80)
         mode = ScatterMode.markers
         name = "Latin America"
-        text = listOf("Chile", "Argentina", "Mexico", "Venezuela", "Venezuela", "El Salvador", "Bolivia")
+        textsList = listOf("Chile", "Argentina", "Mexico", "Venezuela", "Venezuela", "El Salvador", "Bolivia")
         marker {
             color("rgb(142, 124, 195)")
             size = 12

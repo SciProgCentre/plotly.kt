@@ -77,10 +77,16 @@ enum class SizeMode {
 
 class MarkerLine : Scheme(), Line {
     /**
-     * Number than or equal to 0. Sets the width (in px)
+     * Number greater than or equal to 0. Sets the width (in px)
      * of the lines bounding the marker points.
      */
-    override var width by intGreaterThan(0)
+    override var width by numberGreaterThan(0)
+
+    /**
+     * Array of numbers greater than or equal to 0. Sets the width (in px)
+     * of the lines bounding the marker points.
+     */
+    override var widthList by numberList(key = "width".asName())
 
     /**
      * Sets themarker.linecolor. It accepts either a specific color
@@ -171,7 +177,7 @@ class MarkerLine : Scheme(), Line {
      * Sets the border line width (in px) of the outlier sample points.
      * Default: 1
      */
-    var outlierwidth by intGreaterThan(0)
+    var outlierwidth by numberGreaterThan(0)
 
     companion object : SchemeSpec<MarkerLine>(::MarkerLine)
 }
@@ -376,12 +382,12 @@ class Error : Scheme() {
      * Sets the thickness (in px) of the error bars.
      * Default: 2.
      */
-    var thickness by intGreaterThan(0)
+    var thickness by numberGreaterThan(0)
 
     /**
      * Sets the width (in px) of the cross-bar at both ends of the error bars.
      */
-    var width by intGreaterThan(0)
+    var width by numberGreaterThan(0)
 
     /**
      * Integer greater than or equal to 0.
@@ -457,7 +463,7 @@ class ColorBar : Scheme() {
      * Sets the amount of padding (in px) along the x direction.
      * Default: 10.
      */
-    var xpad by intGreaterThan(0)
+    var xpad by numberGreaterThan(0)
 
     /**
      * Sets the y position of the color bar (in plot fraction).
@@ -488,7 +494,7 @@ class ColorBar : Scheme() {
      * Sets the width (in px) or the border enclosing this color bar.
      * Default: 0.
      */
-    var borderwidth by intGreaterThan(0)
+    var borderwidth by numberGreaterThan(0)
 
     /**
      * Sets the color of padded area.
@@ -502,7 +508,7 @@ class ColorBar : Scheme() {
      * Sets the width (in px) of the axis line.
      * Default: 1.
      */
-    var outlinewidth by intGreaterThan(0)
+    var outlinewidth by numberGreaterThan(0)
 
     /**
      * Sets the axis line color.
@@ -745,20 +751,33 @@ open class Trace() : Scheme() {
 
     /**
      * Sets text elements associated with each (x,y) pair.
-     * If a single string, the same string appears over
-     * all the data points. If an array of string, the items
-     * are mapped in order to the this trace's (x,y) coordinates.
+     * The same string appears over all the data points.
      * If trace `hoverinfo` contains a "text" flag and "hovertext" is not set,
      * these elements will be seen in the hover labels.
      */
-    var text by stringList()
+    var text by string()
+
+    /**
+     * Sets text elements associated with each (x,y) pair.
+     * The items are mapped in order to the this trace's (x,y) coordinates.
+     * If trace `hoverinfo` contains a "text" flag and "hovertext" is not set,
+     * these elements will be seen in the hover labels.
+     */
+    var textsList by stringList(key = "text".asName())
+
+    /**
+     * Sets the position of the `text` elements
+     * with respects to the (x,y) coordinates.
+     * Default: "middle center".
+     */
+    var textposition by enum(TextPosition.`middle center`)
 
     /**
      * Sets the positions of the `text` elements
      * with respects to the (x,y) coordinates.
      * Default: "middle center".
      */
-    var textposition by enum(TextPosition.`middle center`)
+    var textpositionsList by list(key = "textposition".asName())
 
     /**
      * Sets the text font.

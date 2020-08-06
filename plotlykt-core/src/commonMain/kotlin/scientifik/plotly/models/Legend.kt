@@ -3,6 +3,7 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.numberGreaterThan
 import scientifik.plotly.numberInRange
 import kotlin.js.JsName
 
@@ -49,7 +50,7 @@ class Legend : Scheme() {
      * Sets the width (in px) of the border enclosing the legend.
      * Default: 0.
      */
-    var borderwidth by intGreaterThan(0)
+    var borderwidth by numberGreaterThan(0)
 
     /**
      * Number between or equal -2 and 3.

@@ -22,7 +22,7 @@ fun main() {
         pie {
             labels(labels)
             values(values)
-            pull = pullSectors
+            pullList = pullSectors
             rotation = -45
             textposition = TextPosition.outside
             textinfo = TextInfo.`label+percent`

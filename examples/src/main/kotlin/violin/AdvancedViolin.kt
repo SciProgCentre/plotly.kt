@@ -8,7 +8,7 @@ import scientifik.plotly.models.*
 
 fun main() {
     val trace1 = Violin {
-        text = listOf("sample length: 32")
+        textsList = listOf("sample length: 32")
         marker {
             line {
                 width = 2
@@ -45,7 +45,7 @@ fun main() {
     }
 
     val trace2 = Violin {
-        text = listOf("sample length: 32")
+        textsList = listOf("sample length: 32")
         marker {
             line {
                 width = 2

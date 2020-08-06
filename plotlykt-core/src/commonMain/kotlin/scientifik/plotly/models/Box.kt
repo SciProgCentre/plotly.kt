@@ -5,6 +5,7 @@ import hep.dataforge.values.Value
 import scientifik.plotly.doubleInRange
 import scientifik.plotly.intGreaterThan
 import scientifik.plotly.list
+import scientifik.plotly.numberGreaterThan
 import kotlin.js.JsName
 
 enum class BoxMean {
@@ -42,7 +43,7 @@ class Box(): Trace(), SelectedPoints {
      * Sets the width of the box in data coordinate If "0" (default value) the width is
      * automatically selected based on the positions of other box traces in the same subplot.
      */
-    var width by intGreaterThan(0)
+    var width by numberGreaterThan(0)
 
     /**
      * If "true", the mean of the box(es)' underlying distribution is drawn as a dashed line
