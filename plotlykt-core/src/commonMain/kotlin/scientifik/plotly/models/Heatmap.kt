@@ -1,6 +1,7 @@
 package scientifik.plotly.models
-import hep.dataforge.meta.*
-import scientifik.plotly.intGreaterThan
+
+import hep.dataforge.meta.SchemeSpec
+import hep.dataforge.meta.enum
 import scientifik.plotly.numberGreaterThan
 
 open class Heatmap(): Trace(), Table2D, HeatmapContour {
@@ -27,7 +28,7 @@ open class Heatmap(): Trace(), Table2D, HeatmapContour {
      * If "array", the heatmap's x coordinates are given by "x" (the default behavior when `x` is provided).
      * If "scaled", the heatmap's x coordinates are given by "x0" and "dx" (the default behavior when `x` is not provided).
      */
-    override  var xtype by enum(DataType.array)
+    override var xtype by enum(DataType.array)
 
     /**
      * If "array", the heatmap's y coordinates are given by "y" (the default behavior when `y` is provided)

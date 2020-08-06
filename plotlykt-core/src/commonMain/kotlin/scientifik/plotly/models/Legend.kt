@@ -1,8 +1,10 @@
 package scientifik.plotly.models
 
-import hep.dataforge.meta.*
+import hep.dataforge.meta.Scheme
+import hep.dataforge.meta.SchemeSpec
+import hep.dataforge.meta.enum
+import hep.dataforge.meta.spec
 import hep.dataforge.names.asName
-import scientifik.plotly.intGreaterThan
 import scientifik.plotly.numberGreaterThan
 import scientifik.plotly.numberInRange
 import kotlin.js.JsName

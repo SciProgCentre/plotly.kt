@@ -2,7 +2,10 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
-import scientifik.plotly.*
+import scientifik.plotly.lazySpec
+import scientifik.plotly.list
+import scientifik.plotly.numberGreaterThan
+import scientifik.plotly.numberInRange
 import kotlin.js.JsName
 
 
@@ -58,8 +61,10 @@ enum class HoverMode {
     y,
     closest,
     `false`,
+
     @JsName("xUnified")
     `x unified`,
+
     @JsName("yUnified")
     `y unified`
 }
@@ -67,6 +72,7 @@ enum class HoverMode {
 enum class BarNorm {
     fraction,
     percent,
+
     @JsName("empty")
     `""`
 }
@@ -256,7 +262,7 @@ class Layout : Scheme() {
 
     fun title(block: Title.() -> Unit) {
         val spec = config["title"].node?.let { Title.wrap(it) }
-            ?: Title.empty().also { config["title"] = it.config }
+                ?: Title.empty().also { config["title"] = it.config }
         spec.apply(block)
     }
 

@@ -6,7 +6,10 @@ import hep.dataforge.values.ListValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
-import scientifik.plotly.*
+import scientifik.plotly.lazySpec
+import scientifik.plotly.list
+import scientifik.plotly.numberGreaterThan
+import scientifik.plotly.numberInRange
 import kotlin.js.JsName
 
 
@@ -232,7 +235,7 @@ class Axis : Scheme() {
 
     fun title(block: Title.() -> Unit) {
         val spec = config["title"].node?.let { Title.wrap(it) }
-            ?: Title.empty().also { config["title"] = it.config }
+                ?: Title.empty().also { config["title"] = it.config }
         spec.apply(block)
     }
 

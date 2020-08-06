@@ -1,6 +1,9 @@
 package scientifik.plotly.models
 
-import hep.dataforge.meta.*
+import hep.dataforge.meta.SchemeSpec
+import hep.dataforge.meta.enum
+import hep.dataforge.meta.numberList
+import hep.dataforge.meta.spec
 
 class Bar() : Trace(), SelectedPoints {
     init {

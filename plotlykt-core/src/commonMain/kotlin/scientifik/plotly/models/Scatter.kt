@@ -42,6 +42,7 @@ enum class FillType {
 enum class ScatterHoveron {
     points,
     fills,
+
     @JsName("pointsAndFills")
     `points+fills`
 }

@@ -57,15 +57,20 @@ enum class Visible {
 
 enum class Symbol {
     circle,
+
     @JsName("triangleUp")
     `triangle-up`,
+
     @JsName("triangleDown")
     `triangle-down`,
+
     @JsName("squareCross")
     `square-cross`,
+
     @JsName("crossThin")
     `cross-thin`,
     cross,
+
     @JsName("lineNs")
     `line-ns`
 }
@@ -185,20 +190,28 @@ class MarkerLine : Scheme(), Line {
 enum class TextPosition {
     @JsName("topLeft")
     `top left`,
+
     @JsName("topCenter")
     `top center`,
+
     @JsName("topRight")
     `top right`,
+
     @JsName("middleLeft")
     `middle left`,
+
     @JsName("middleCenter")
     `middle center`,
+
     @JsName("middleRight")
     `middle right`,
+
     @JsName("bottomLeft")
     `bottom left`,
+
     @JsName("bottomCenter")
     `bottom center`,
+
     @JsName("bottomRight")
     `bottom right`,
 
@@ -893,10 +906,10 @@ open class Trace() : Scheme() {
 }
 
 operator fun <T : Trace> SchemeSpec<T>.invoke(
-    xs: Any,
-    ys: Any? = null,
-    zs: Any? = null,
-    block: Trace.() -> Unit
+        xs: Any,
+        ys: Any? = null,
+        zs: Any? = null,
+        block: Trace.() -> Unit
 ) = invoke {
     x.set(xs)
     if (ys != null) y.set(ys)

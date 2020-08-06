@@ -5,7 +5,6 @@ import hep.dataforge.meta.SchemeSpec
 import hep.dataforge.meta.enum
 import hep.dataforge.meta.numberList
 import hep.dataforge.names.asName
-import scientifik.plotly.intGreaterThan
 import scientifik.plotly.numberGreaterThan
 import scientifik.plotly.numberInRange
 
