@@ -46,6 +46,12 @@ class Marker : Scheme() {
     var size by intGreaterThan(0)
 
     /**
+     * Array of numbers greater than or equal to 0.
+     * Sets the markers size. Default: 6.
+     */
+    var sizes by numberList(key = "size".asName())
+
+    /**
      * Sets the marker opacity.
      */
     var opacity by numberInRange(0.0..1.0)
