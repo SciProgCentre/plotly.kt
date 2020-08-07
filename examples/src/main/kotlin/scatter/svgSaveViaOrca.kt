@@ -84,9 +84,8 @@ fun main() {
     val json = plot.toJson().toString()
     val file = "quarterGrowth.svg"
     val format = file.substring(file.indexOf('.') + 1)
-    val directory = "/home/katsam/plotly.kt/examples/src/main/kotlin/scatter"
 
-    val processBuilder = ProcessBuilder("orca", "graph", json, "-f", format, "-o", file, "-d", directory, "--verbose")
+    val processBuilder = ProcessBuilder("orca", "graph", json, "-f", format, "-o", file, "--verbose")
     processBuilder.redirectErrorStream(true)
     val process = processBuilder.start()
     process.outputStream.close()
