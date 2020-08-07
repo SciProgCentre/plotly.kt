@@ -2,7 +2,6 @@ package scatter
 
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
-import scientifik.plotly.imageExport
 import scientifik.plotly.models.Scatter
 import scientifik.plotly.models.ScatterMode
 
@@ -82,8 +81,15 @@ fun main() {
         }
     }
 
-    val jsonString = plot.toJson().toString()
-    val fileName = "quarterGrowth.svg"
-    val directoryName = "examples/src/main/kotlin/scatter"
-    imageExport(jsonString, fileName, directoryName)
+    val json = plot.toJson().toString()
+    val file = "quarterGrowth.svg"
+    val format = file.substring(file.indexOf('.') + 1)
+    val directory = "/home/katsam/plotly.kt/examples/src/main/kotlin/scatter"
+
+    val processBuilder = ProcessBuilder("orca", "graph", json, "-f", format, "-o", file, "-d", directory, "--verbose")
+    processBuilder.redirectErrorStream(true)
+    val process = processBuilder.start()
+    process.outputStream.close()
+    println(String(process.inputStream.readAllBytes()))
+    println(process.waitFor())
 }
