@@ -89,6 +89,7 @@ fun main() {
     processBuilder.redirectErrorStream(true)
     val process = processBuilder.start()
     process.outputStream.close()
-    println(String(process.inputStream.readAllBytes()))
+    val output = process.inputStream.bufferedReader().use { it.readText() }
+    println(output)
     println(process.waitFor())
 }
