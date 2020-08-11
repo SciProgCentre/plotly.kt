@@ -89,15 +89,25 @@ private class PlotlyJupyterServer(
                 unsafe {
                     //language=JavaScript
                     +"""
-                        window.plotlyCall(function (){                    
-                            makePlot(
-                                '$plotId',
-                                ${plot.data.toJsonString()},
-                                ${plot.layout.toJsonString()},
-                                $config
-                            );
-                        });
-                    
+                        (function (){
+                            let theCall = function(){
+                                makePlot(
+                                    '$plotId',
+                                    ${plot.data.toJsonString()},
+                                    ${plot.layout.toJsonString()},
+                                    $config
+                                );                        
+                            };
+    
+                            if(typeof Plotly === 'undefined'){
+                                if(!window.plotlyCallQueue) {
+                                    window.plotlyCallQueue = [];
+                                }                            
+                                window.plotlyCallQueue.push(theCall)
+                            } else {
+                                theCall();
+                            }
+                        }());
                     """.trimIndent()
                 }
             }
@@ -113,9 +123,8 @@ private class PlotlyJupyterServer(
                     unsafe {
                         //language=JavaScript
                         +"""
-                            window.plotlyCall(function (){        
-                                startPush('$plotId', '$wsUrl');
-                            });    
+       
+                            startPush('$plotId', '$wsUrl');
                             
                         """
                     }
@@ -146,28 +155,22 @@ object JupyterPlotly {
                 +"""
                 (function() {
                     console.log("Starting up plotly script loader");
-                    if (window.MathJax){ 
-                        MathJax.Hub.Config({
-                            SVG: {
-                                font: "STIX-Web"
-                            }
-                        });
-                        window.PlotlyConfig = {MathJaxConfig: 'local'};
-                    }
-                    
-                    if(!window.plotlyCallQueue) {
-                        window.plotlyCallQueue = [];
-                    }
-                    
-                    window.plotlyCall = function(f) {
-                        window.plotlyCallQueue.push(f);
-                    };
-                    
+                    //initialize LaTeX for Jupyter
+                    window.PlotlyConfig = {MathJaxConfig: 'local'};
+
                     window.startupPlotly = function (){
-                        console.info("Starting up plotly and calling deferred operations queue.")
-                        window.plotlyCall = function(f) {f();};
-                        window.plotlyCallQueue.forEach(function(f) {f();});
-                        window.plotlyCallQueue = [];    
+                        if (window.MathJax){ 
+                            MathJax.Hub.Config({
+                                SVG: {
+                                    font: "STIX-Web"
+                                }
+                            });
+                        }                    
+                        console.info("Calling deferred operations in Plotly queue.")
+                        if(window.plotlyCallQueue){
+                            window.plotlyCallQueue.forEach(function(theCall) {theCall();});
+                            window.plotlyCallQueue = [];
+                        }
                     }
                 })();
                 """.trimIndent()
@@ -187,9 +190,7 @@ object JupyterPlotly {
             }
             unsafe {
                 //language=JavaScript
-                +"""
-                    window.startupPlotly()
-                """.trimIndent()
+                +"window.startupPlotly()"
             }
         }
     }
@@ -200,16 +201,17 @@ object JupyterPlotly {
      * Start a dynamic update server
      */
     fun start(port: Int = 8882): HtmlFragment {
-        if (jupyterPlotlyServer.isRunning) {
-            return HtmlFragment {
+        return if (jupyterPlotlyServer.isRunning) {
+            loadJs("//localhost:$port") + HtmlFragment {
                 div {
                     style = "color: blue;"
                     +"The server is already running on ${jupyterPlotlyServer.port}. It must be shut down first to be restarted."
                 }
             }
+        } else {
+            runBlocking { jupyterPlotlyServer.start(port) }
+            loadJs("//localhost:$port")
         }
-        runBlocking { jupyterPlotlyServer.start(port) }
-        return loadJs("//localhost:$port")
     }
 
     /**

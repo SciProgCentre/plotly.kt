@@ -1,5 +1,5 @@
 /**
- * Use requireJS to resolve plotly if it is available
+ * Use existing plotly or load it from the CDN if it is not available
  * @param action
  */
 function withPlotly(action) {
@@ -8,19 +8,19 @@ function withPlotly(action) {
     } else if (typeof window.promiseOfPlotly !== "undefined") {
         window.promiseOfPlotly.then(plotly => action(plotly));
     } else {
+        console.warn("Plotly not defined. Loading the script from CDN")
         window.promiseOfPlotly = new Promise((accept, reject) => {
             let plotlyLoaderScript = document.createElement("script");
             plotlyLoaderScript.src = "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.54.6/plotly.min.js";
             plotlyLoaderScript.type = 'text/javascript';
-            // plotlyLoaderScript.integrity = "sha512-nImrVUd2OlM2T1PrCuXXMDsIyXD5zlpjpRRYicksbmLwn8uZhYFfSGLGeRIhnKJBsCdXY+ecvOiCFJnokwfEvg==";
-            // plotlyLoaderScript.crossorigin = "anonymous";
             plotlyLoaderScript.onload = () => {
                 accept(Plotly);
             }
             plotlyLoaderScript.onerror = (error) => {
-                console.error(error)
+                console.error(error);
+                reject(error)
             }
-            document.head.appendChild(plotlyLoaderScript)
+            document.head.appendChild(plotlyLoaderScript);
         });
     }
 }

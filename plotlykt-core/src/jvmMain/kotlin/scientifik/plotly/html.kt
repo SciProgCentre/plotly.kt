@@ -12,6 +12,11 @@ class HtmlFragment(val visit: TagConsumer<*>.() -> Unit) {
     }
 }
 
+operator fun HtmlFragment.plus(other: HtmlFragment) = HtmlFragment {
+    this@plus.run { visit() }
+    other.run { visit() }
+}
+
 /**
  * Create a html (including headers) string from plot
  */
