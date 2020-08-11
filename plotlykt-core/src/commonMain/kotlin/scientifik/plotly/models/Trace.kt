@@ -184,6 +184,10 @@ class MarkerLine : Scheme(), Line {
      */
     var outlierwidth by numberGreaterThan(0)
 
+    fun colors(colors: Iterable<Any>) {
+        color.value = colors.map { Value.of(it) }.asValue()
+    }
+
     companion object : SchemeSpec<MarkerLine>(::MarkerLine)
 }
 
@@ -239,7 +243,14 @@ class Font : Scheme() {
      */
     var family by string()
 
-    var size by intGreaterThan(1)
+    /**
+     * HTML font family
+     */
+    var familiesList by stringList(key = "family".asName())
+
+    var size by numberGreaterThan(1)
+
+    var sizesList by numberList(key = "size".asName())
 
     val color = Color(this, "color".asName())
 

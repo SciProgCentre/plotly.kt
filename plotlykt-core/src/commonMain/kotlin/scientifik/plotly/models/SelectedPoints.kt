@@ -2,9 +2,11 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.Scheme
 import hep.dataforge.meta.SchemeSpec
+import hep.dataforge.meta.numberList
 import hep.dataforge.meta.spec
 import hep.dataforge.names.asName
 import scientifik.plotly.intGreaterThan
+import scientifik.plotly.numberGreaterThan
 import scientifik.plotly.numberInRange
 
 class SelectMarker : Scheme() {
@@ -21,7 +23,7 @@ class SelectMarker : Scheme() {
     /**
      * Sets the marker size of selected points.
      */
-    var size by intGreaterThan(0)
+    var size by numberGreaterThan(0)
 
     companion object : SchemeSpec<SelectMarker>(::SelectMarker)
 }

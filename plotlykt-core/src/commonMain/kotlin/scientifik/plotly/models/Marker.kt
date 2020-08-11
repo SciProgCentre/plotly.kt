@@ -77,7 +77,7 @@ class Marker : Scheme() {
     /**
      * Sets the markers opacity.
      */
-    var opacitiesList by numberList()
+    var opacitiesList by numberList(key = "opacity".asName())
 
     /**
      * Sets a maximum number of points to be drawn on the graph.
