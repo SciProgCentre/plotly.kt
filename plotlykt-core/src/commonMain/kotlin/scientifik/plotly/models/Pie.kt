@@ -51,7 +51,7 @@ enum class TextInfo {
     `label+text+value+percent`
 }
 
-class Pie() : Trace() {
+class Pie : Trace() {
     init {
         type = TraceType.pie
     }

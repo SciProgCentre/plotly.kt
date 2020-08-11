@@ -624,7 +624,7 @@ class Domain : Scheme() {
 }
 
 
-open class Trace() : Scheme() {
+open class Trace : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
 
     /**

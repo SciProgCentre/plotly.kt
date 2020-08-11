@@ -4,7 +4,7 @@ import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import scientifik.plotly.numberGreaterThan
 
-class Bar() : Trace(), SelectedPoints {
+class Bar : Trace(), SelectedPoints {
     init {
         type = TraceType.bar
     }

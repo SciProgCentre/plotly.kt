@@ -34,7 +34,7 @@ enum class BoxHoveron {
     `boxes+points`
 }
 
-class Box(): Trace(), SelectedPoints {
+class Box : Trace(), SelectedPoints {
     init {
         type = TraceType.box
     }

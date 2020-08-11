@@ -4,7 +4,7 @@ import hep.dataforge.meta.SchemeSpec
 import hep.dataforge.meta.enum
 import scientifik.plotly.numberGreaterThan
 
-open class Heatmap(): Trace(), Table2D, HeatmapContour {
+open class Heatmap : Trace(), Table2D, HeatmapContour {
     init {
         type = TraceType.heatmap
     }
@@ -39,7 +39,7 @@ open class Heatmap(): Trace(), Table2D, HeatmapContour {
     companion object : SchemeSpec<Heatmap>(::Heatmap)
 }
 
-class HeatmapGL(): Heatmap() {
+class HeatmapGL : Heatmap() {
     init {
         type = TraceType.heatmapgl
     }

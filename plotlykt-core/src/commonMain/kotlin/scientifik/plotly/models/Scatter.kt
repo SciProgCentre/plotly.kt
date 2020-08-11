@@ -53,7 +53,7 @@ enum class StackGaps {
     interpolate
 }
 
-open class Scatter() : Trace(), SelectedPoints {
+open class Scatter : Trace(), SelectedPoints {
     init {
         type = TraceType.scatter
     }
@@ -143,7 +143,7 @@ open class Scatter() : Trace(), SelectedPoints {
     companion object : SchemeSpec<Scatter>(::Scatter)
 }
 
-class ScatterGL() : Scatter() {
+class ScatterGL : Scatter() {
     init {
         type = TraceType.scattergl
     }

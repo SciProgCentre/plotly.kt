@@ -94,7 +94,7 @@ class ViolinBox : Scheme() {
     companion object : SchemeSpec<ViolinBox>(::ViolinBox)
 }
 
-class Violin() : Trace() {
+class Violin : Trace() {
     init {
         type = TraceType.violin
     }

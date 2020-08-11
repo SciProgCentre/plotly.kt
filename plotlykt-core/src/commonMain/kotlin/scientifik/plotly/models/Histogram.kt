@@ -109,7 +109,7 @@ class Cumulative : Scheme() {
 }
 
 
-open class Histogram() : Trace() {
+open class Histogram : Trace() {
     init {
         type = TraceType.histogram
     }
@@ -212,7 +212,7 @@ open class Histogram() : Trace() {
     companion object : SchemeSpec<Histogram>(::Histogram)
 }
 
-class Histogram2D() : Histogram(), Table2D {
+class Histogram2D : Histogram(), Table2D {
     init {
         type = TraceType.histogram2d
     }
