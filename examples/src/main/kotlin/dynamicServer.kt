@@ -31,7 +31,7 @@ fun main() {
         page { plotly ->
             h1 { +"This is the plot page" }
             a("/other") { +"The other page" }
-            plot(container = plotly) {
+            plot(renderer = plotly) {
                 traces(trace)
                 layout {
                     title = "Other dynamic plot"
@@ -44,7 +44,7 @@ fun main() {
         page("other") { plotly ->
             h1 { +"This is the other plot page" }
             a("/") { +"Back to the main page" }
-            plot(container = plotly) {
+            plot(renderer = plotly) {
                 traces(trace)
                 layout {
                     title = "Dynamic plot"

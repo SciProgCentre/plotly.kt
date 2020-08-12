@@ -17,34 +17,24 @@ import io.ktor.util.url
 import io.ktor.websocket.WebSockets
 import io.ktor.websocket.application
 import io.ktor.websocket.webSocket
-import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.runBlocking
 import kotlinx.html.*
 import kotlinx.html.stream.createHTML
 import kscience.plotly.*
 
-private class PlotlyJupyterServer(
+class JupyterPlotlyServer(
+    val port: Int = 8882,
     val updateInterval: Long = 50,
     val parentScope: CoroutineScope = GlobalScope
-) : PlotlyContainer {
-
-    var port: Int = 8882
-        private set
-
-    var isRunning: Boolean = false
-        private set
-
+) : PlotlyRenderer {
 
     private var server: ApplicationEngine? = null
 
     private val plots = HashMap<String, Plot>()
 
     @OptIn(KtorExperimentalAPI::class)
-    suspend fun start(port: Int = 8882) {
-        this.port = port
+    suspend fun start() {
         server = parentScope.embeddedServer(io.ktor.server.cio.CIO, port) {
             install(CORS) {
                 anyHost()
@@ -78,7 +68,6 @@ private class PlotlyJupyterServer(
             }
             deferred.join()
         }
-        isRunning = true
     }
 
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
@@ -111,12 +100,12 @@ private class PlotlyJupyterServer(
                     """.trimIndent()
                 }
             }
-            if (isRunning) {
+            if (server?.application?.isActive == true) {
                 script {
                     attributes["id"] = "$plotId-push"
                     val wsUrl = url {
                         host = "localhost"
-                        port = this@PlotlyJupyterServer.port
+                        port = this@JupyterPlotlyServer.port
                         protocol = URLProtocol.WS
                         encodedPath = "/ws/$plotId"
                     }
@@ -135,24 +124,17 @@ private class PlotlyJupyterServer(
     }
 
     fun stop() {
-        isRunning = false
         server?.stop(1000, 5000)
     }
-}
 
-@UnstablePlotlyAPI
-object JupyterPlotly {
-    private const val JUPYTER_ASSETS_PATH = ".jupyter_kotlin/assets/"
+    companion object {
+        private fun loadJs(serverUrl: String) = HtmlFragment {
 
-    private fun loadJs(serverUrl: String) = HtmlFragment {
-        div {
-            id = "plotly-load-scripts"
-        }
-        script {
-            type = "text/javascript"
-            unsafe {
-                //language=JavaScript
-                +"""
+            script {
+                type = "text/javascript"
+                unsafe {
+                    //language=JavaScript
+                    +"""
                 (function() {
                     console.log("Starting up plotly script loader");
                     //initialize LaTeX for Jupyter
@@ -174,76 +156,83 @@ object JupyterPlotly {
                     }
                 })();
                 """.trimIndent()
-            }
-        }
-
-        script {
-            type = "text/javascript"
-            src = "$serverUrl/js/plotly.min.js"
-        }
-
-        script {
-            type = "text/javascript"
-            val connectorScript = javaClass.getResource("/js/plotlyConnect.js")!!.readText()
-            unsafe {
-                +connectorScript
-            }
-            unsafe {
-                //language=JavaScript
-                +"window.startupPlotly()"
-            }
-        }
-    }
-
-    private var jupyterPlotlyServer: PlotlyJupyterServer = PlotlyJupyterServer()
-
-    /**
-     * Start a dynamic update server
-     */
-    fun start(port: Int = 8882): HtmlFragment {
-        return if (jupyterPlotlyServer.isRunning) {
-            loadJs("//localhost:$port") + HtmlFragment {
-                div {
-                    style = "color: blue;"
-                    +"The server is already running on ${jupyterPlotlyServer.port}. It must be shut down first to be restarted."
                 }
             }
-        } else {
-            runBlocking { jupyterPlotlyServer.start(port) }
-            loadJs("//localhost:$port")
-        }
-    }
 
-    /**
-     * Stop dynamic update server
-     */
-    fun stop(): HtmlFragment {
-        if (!jupyterPlotlyServer.isRunning) {
+            script {
+                type = "text/javascript"
+                src = "$serverUrl/js/plotly.min.js"
+            }
+
+            script {
+                type = "text/javascript"
+                val connectorScript = javaClass.getResource("/js/plotlyConnect.js")!!.readText()
+                unsafe {
+                    +connectorScript
+                }
+                unsafe {
+                    //language=JavaScript
+                    +"window.startupPlotly()"
+                }
+            }
+        }
+
+        private var jupyterPlotlyServer: JupyterPlotlyServer? = null
+
+        /**
+         * Start a dynamic update server
+         */
+        fun start(port: Int = 8882, updateInterval: Long = 50): HtmlFragment {
+            return if (jupyterPlotlyServer!= null) {
+                loadJs("//localhost:$port") + HtmlFragment {
+                    div {
+                        style = "color: blue;"
+                        +"The server is already running on ${jupyterPlotlyServer?.port}. It must be shut down first to be restarted."
+                    }
+                }
+            } else {
+                runBlocking {
+                    jupyterPlotlyServer = JupyterPlotlyServer(port, updateInterval).apply { start() }
+                }
+                loadJs("//localhost:$port")
+            }
+        }
+
+        /**
+         * Stop dynamic update server
+         */
+        fun stop(): HtmlFragment {
+            if (jupyterPlotlyServer == null) {
+                return HtmlFragment {
+                    div {
+                        +"Update server is not running"
+                    }
+                }
+            }
+            runBlocking {
+                jupyterPlotlyServer?.stop()
+                jupyterPlotlyServer = null
+            }
             return HtmlFragment {
                 div {
-                    +"Update server is not running"
+                    +"Update server is stopped"
                 }
             }
         }
-        runBlocking { jupyterPlotlyServer.stop() }
-        return HtmlFragment {
-            div {
-                +"Update server is stopped"
+
+        fun renderPlot(plot: Plot): String = createHTML().div {
+            plot(plot, config = PlotlyConfig {
+                responsive = true
+            }, renderer = jupyterPlotlyServer ?: StaticPlotlyRenderer)
+        }
+
+        fun renderFragment(fragment: PlotlyFragment): String = createHTML().div {
+            with(fragment) {
+                render(jupyterPlotlyServer ?: StaticPlotlyRenderer)
             }
         }
-    }
 
-    fun renderPlot(plot: Plot): String = createHTML().div {
-        plot(plot, config = PlotlyConfig {
-            responsive = true
-        }, container = jupyterPlotlyServer)
+        fun renderPage(page: PlotlyPage): String =
+            page.copy(renderer = jupyterPlotlyServer ?: StaticPlotlyRenderer).render()
     }
-
-    fun renderFragment(fragment: PlotlyFragment): String = createHTML().div {
-        with(fragment) {
-            render(jupyterPlotlyServer)
-        }
-    }
-
-    fun renderPage(page: PlotlyPage): String = page.copy(container = jupyterPlotlyServer).render()
 }

@@ -45,7 +45,7 @@ fun serve(scale: ObservableIntegerValue) = Plotly.serve {
 
         val trace = Trace(x, y) { name = "sin" }
 
-        plot("dynamic", container = container) {
+        plot("dynamic", renderer = container) {
             traces(trace)
             layout {
                 title = "Dynamic plot"

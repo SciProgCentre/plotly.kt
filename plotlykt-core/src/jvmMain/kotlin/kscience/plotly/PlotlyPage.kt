@@ -6,7 +6,7 @@ import kotlinx.html.stream.createHTML
 /**
  * A custom HTML fragment including plotly container reference
  */
-class PlotlyFragment(val render: FlowContent.(container: PlotlyContainer) -> Unit)
+class PlotlyFragment(val render: FlowContent.(renderer: PlotlyRenderer) -> Unit)
 
 /**
  * A complete page including headers and title
@@ -15,7 +15,7 @@ data class PlotlyPage(
     val headers: Collection<HtmlFragment>,
     val fragment: PlotlyFragment,
     val title: String = "Plotly.kt",
-    val container: PlotlyContainer = StaticPlotlyContainer
+    val renderer: PlotlyRenderer = StaticPlotlyRenderer
 ) {
     fun render(): String = createHTML().html {
         head {
@@ -26,12 +26,12 @@ data class PlotlyPage(
             headers.distinct().forEach { it.visit(consumer) }
         }
         body {
-            fragment.render(this, container)
+            fragment.render(this, renderer)
         }
     }
 }
 
-fun Plotly.fragment(content: FlowContent.(container: PlotlyContainer) -> Unit): PlotlyFragment = PlotlyFragment(content)
+fun Plotly.fragment(content: FlowContent.(renderer: PlotlyRenderer) -> Unit): PlotlyFragment = PlotlyFragment(content)
 
 /**
  * Create a complete page including plots
@@ -39,9 +39,9 @@ fun Plotly.fragment(content: FlowContent.(container: PlotlyContainer) -> Unit): 
 fun Plotly.page(
     vararg headers: HtmlFragment = arrayOf(cdnPlotlyHeader),
     title: String = "Plotly.kt",
-    container: PlotlyContainer = StaticPlotlyContainer,
-    content: FlowContent.(container: PlotlyContainer) -> Unit
-) = PlotlyPage(headers.toList(), fragment(content), title, container)
+    renderer: PlotlyRenderer = StaticPlotlyRenderer,
+    content: FlowContent.(renderer: PlotlyRenderer) -> Unit
+) = PlotlyPage(headers.toList(), fragment(content), title, renderer)
 
 /**
  * Convert an html plot fragment to page
@@ -49,8 +49,8 @@ fun Plotly.page(
 fun PlotlyFragment.toPage(
     vararg headers: HtmlFragment = arrayOf(cdnPlotlyHeader),
     title: String = "Plotly.kt",
-    container: PlotlyContainer = StaticPlotlyContainer
-) = PlotlyPage(headers.toList(), this, title, container)
+    renderer: PlotlyRenderer = StaticPlotlyRenderer
+) = PlotlyPage(headers.toList(), this, title, renderer)
 
 /**
  * Convert a plot to the sigle-plot page
@@ -59,7 +59,7 @@ fun Plot.toPage(
     vararg headers: HtmlFragment = arrayOf(cdnPlotlyHeader),
     config: PlotlyConfig = PlotlyConfig.empty(),
     title: String = "Plotly.kt",
-    container: PlotlyContainer = StaticPlotlyContainer
+    renderer: PlotlyRenderer = StaticPlotlyRenderer
 ): PlotlyPage = PlotlyFragment {
-    plot(this@toPage, config = config, container = container)
+    plot(this@toPage, config = config, renderer = renderer)
 }.toPage(*headers, title = title)

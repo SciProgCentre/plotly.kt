@@ -2,7 +2,7 @@ package kscience.plotly
 
 import kotlinx.html.*
 
-interface PlotlyContainer {
+interface PlotlyRenderer {
     fun FlowContent.renderPlot(
         plot: Plot,
         plotId: String = plot.toString(),
@@ -10,7 +10,7 @@ interface PlotlyContainer {
     ): Plot
 }
 
-object StaticPlotlyContainer : PlotlyContainer {
+object StaticPlotlyRenderer : PlotlyRenderer {
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         div {
             id = plotId
@@ -38,17 +38,17 @@ fun FlowContent.plot(
     plot: Plot,
     plotId: String = plot.toString(),
     config: PlotlyConfig = PlotlyConfig(),
-    container: PlotlyContainer = StaticPlotlyContainer
-): Plot = with(container) {
+    renderer: PlotlyRenderer = StaticPlotlyRenderer
+): Plot = with(renderer) {
     renderPlot(plot, plotId, config)
 }
 
 fun FlowContent.plot(
     plotId: String? = null,
     config: PlotlyConfig = PlotlyConfig(),
-    container: PlotlyContainer = StaticPlotlyContainer,
+    renderer: PlotlyRenderer = StaticPlotlyRenderer,
     builder: Plot.() -> Unit
 ): Plot {
     val plot = Plot().apply(builder)
-    return plot(plot, plotId ?: plot.toString(), config, container)
+    return plot(plot, plotId ?: plot.toString(), config, renderer)
 }

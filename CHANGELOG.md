@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Added
+- Experimental Jupyter support
 - Color palettes (T10 and XKCD)
 - New parameters and classes in Trace, Legend, Layout
 - Parameters description
@@ -24,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Migrated from `scientifik` to `kscience`
 - Refactored packages to better suit star import style
 - Removed bootstrap dependency
 - Examples colors changed and more cases for each example added

@@ -69,7 +69,7 @@ fun main() {
         val sinCosFlow = sinFlow.zip(cosFlow) { sin, cos ->
             sin to cos
         }
-        page { container ->
+        page { renderer ->
             link {
                 rel = "stylesheet"
                 href = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -78,7 +78,7 @@ fun main() {
             }
             div("row") {
                 div("col-6") {
-                    plot(container = container) {
+                    plot(renderer = renderer) {
                         layout {
                             title = "sin property"
                             xaxis.title = "point index"
@@ -93,7 +93,7 @@ fun main() {
                     }
                 }
                 div("col-6") {
-                    plot(container = container) {
+                    plot(renderer = renderer) {
                         layout {
                             title = "cos property"
                             xaxis.title = "point index"
@@ -110,7 +110,7 @@ fun main() {
             }
             div("row") {
                 div("col-12") {
-                    plot(container = container) {
+                    plot(renderer = renderer) {
                         layout {
                             title = "cos vs sin"
                             xaxis.title = "sin"

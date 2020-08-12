@@ -35,13 +35,13 @@ enum class PlotlyUpdateMode {
     PULL
 }
 
-private class PlotServerContainer(
+private class ServerPlotlyRenderer(
     val baseUrl: Url,
     val updateMode: PlotlyUpdateMode,
     val updateInterval: Long,
     val embedData: Boolean,
     val plotCallback: (plotId: String, plot: Plot) -> Unit
-) : PlotlyContainer {
+) : PlotlyRenderer {
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         plotCallback(plotId, plot)
         div {
@@ -193,7 +193,7 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
                             title(title)
                         }
                         body {
-                            val container = PlotServerContainer(url, updateMode, updateInterval, embedData) { plotId, plot ->
+                            val container = ServerPlotlyRenderer(url, updateMode, updateInterval, embedData) { plotId, plot ->
                                 plots[plotId] = plot
                             }
                             with(plotlyFragment) {
@@ -210,7 +210,7 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
         headers: List<HtmlFragment> = emptyList(),
-        content: FlowContent.(container: PlotlyContainer) -> Unit
+        content: FlowContent.(renderer: PlotlyRenderer) -> Unit
     ) {
         page(PlotlyFragment(content), route, title, headers)
     }

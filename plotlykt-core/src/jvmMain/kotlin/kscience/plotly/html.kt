@@ -35,7 +35,7 @@ fun Plot.toHTML(
             }
         }
         body {
-            StaticPlotlyContainer.run {
+            StaticPlotlyRenderer.run {
                 renderPlot(this@toHTML, "plot", config)
             }
         }

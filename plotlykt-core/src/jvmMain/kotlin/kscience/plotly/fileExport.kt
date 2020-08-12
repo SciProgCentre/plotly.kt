@@ -73,7 +73,7 @@ fun PlotlyFragment.makeFile(
 }
 
 fun Plotly.display(
-    pageBuilder: FlowContent.(container: PlotlyContainer) -> Unit
+    pageBuilder: FlowContent.(renderer: PlotlyRenderer) -> Unit
 ) = fragment(pageBuilder).makeFile(null, true)
 
 /**
