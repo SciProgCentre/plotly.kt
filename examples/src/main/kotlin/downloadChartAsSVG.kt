@@ -1,4 +1,3 @@
-import hep.dataforge.meta.set
 import kscience.plotly.*
 import kscience.plotly.models.ScatterMode
 
@@ -10,7 +9,7 @@ import kscience.plotly.models.ScatterMode
 fun main() {
     val fragment = Plotly.fragment {
         val plotConfig = PlotlyConfig {
-            config["toImageButtonOptions.format"] = "svg"
+            saveAsSvg()
         }
 
         plot(config = plotConfig) {

@@ -1,6 +1,7 @@
 package kscience.plotly
 
 import hep.dataforge.meta.*
+import hep.dataforge.names.toName
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonArray
@@ -44,10 +45,15 @@ class PlotlyConfig : Scheme() {
     var showEditInChartStudio by boolean()
     var plotlyServerURL by string()
     var responsive by boolean()
+    var imageFormat by string("toImageButtonOptions.format".toName())
 
     fun withEditorButton() {
         showEditInChartStudio = true
         plotlyServerURL = "https://chart-studio.plotly.com"
+    }
+
+    fun saveAsSvg(){
+        imageFormat = "svg"
     }
 
     override fun toString(): String = toJsonString()
