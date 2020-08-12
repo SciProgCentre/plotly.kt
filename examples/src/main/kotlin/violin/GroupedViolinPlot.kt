@@ -5,11 +5,11 @@ import io.readResourceAsCsv
 import krangl.DataCol
 import krangl.DataFrame
 import krangl.eq
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.TraceValues
-import scientifik.plotly.models.Violin
-import scientifik.plotly.models.ViolinMode
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.TraceValues
+import kscience.plotly.models.Violin
+import kscience.plotly.models.ViolinMode
 
 
 /**

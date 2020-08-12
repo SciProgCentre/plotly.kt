@@ -1,11 +1,11 @@
 package box
 
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.Box
-import scientifik.plotly.models.BoxMean
-import scientifik.plotly.palettes.XKCD
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.Box
+import kscience.plotly.models.BoxMean
+import kscience.plotly.palettes.XKCD
 
 fun main() {
     val y1 = listOf(2.37, 2.16, 4.82, 1.73, 1.04, 0.23, 1.32, 2.91, 0.11, 4.51, 0.51,

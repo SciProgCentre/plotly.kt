@@ -1,4 +1,4 @@
-import scientifik.plotly.*
+import kscience.plotly.*
 import kotlin.math.PI
 import kotlin.math.sin
 

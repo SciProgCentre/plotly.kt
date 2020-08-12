@@ -2,7 +2,7 @@ package io
 
 import krangl.DataFrame
 import krangl.readCSV
-import scientifik.plotly.Plotly
+import kscience.plotly.Plotly
 
 @OptIn(ExperimentalStdlibApi::class)
 fun readResourceAsString(resource: String): String =

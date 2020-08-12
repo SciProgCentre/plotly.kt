@@ -4,9 +4,9 @@ import hep.dataforge.meta.invoke
 import krangl.DataFrame
 import krangl.eq
 import krangl.readCSV
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.violin
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.violin
 
 
 /**

@@ -2,11 +2,11 @@ package contour
 
 import hep.dataforge.meta.invoke
 import hep.dataforge.values.Value
-import scientifik.plotly.Plotly
-import scientifik.plotly.contour
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.ContoursColoring
-import scientifik.plotly.models.Dash
+import kscience.plotly.Plotly
+import kscience.plotly.contour
+import kscience.plotly.makeFile
+import kscience.plotly.models.ContoursColoring
+import kscience.plotly.models.Dash
 import kotlin.math.exp
 import kotlin.math.pow
 

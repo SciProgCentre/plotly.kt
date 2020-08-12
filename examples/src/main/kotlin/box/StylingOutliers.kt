@@ -1,10 +1,10 @@
 package box
 
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.Box
-import scientifik.plotly.models.BoxPoints
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.Box
+import kscience.plotly.models.BoxPoints
 
 fun main() {
     val y1 = listOf<Number>(0.75, 5.25, 5.5, 6, 6.2, 6.6, 6.80, 7.0, 7.2, 7.5, 7.5, 7.75, 8.15, 8.15,

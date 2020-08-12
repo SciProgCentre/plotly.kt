@@ -2,10 +2,10 @@ package heatmap
 
 import hep.dataforge.meta.invoke
 import hep.dataforge.values.Value
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.Heatmap
-import scientifik.plotly.palettes.XKCD
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.Heatmap
+import kscience.plotly.palettes.XKCD
 
 
 /**

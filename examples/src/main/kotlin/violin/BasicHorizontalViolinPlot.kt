@@ -3,10 +3,10 @@ package violin
 import hep.dataforge.meta.invoke
 import hep.dataforge.values.Value
 import io.readResourceAsCsv
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.ViolinPoints
-import scientifik.plotly.violin
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.ViolinPoints
+import kscience.plotly.violin
 
 
 /**

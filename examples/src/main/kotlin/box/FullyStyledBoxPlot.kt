@@ -1,11 +1,11 @@
 package box
 
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.Box
-import scientifik.plotly.models.BoxPoints
-import scientifik.plotly.models.Trace
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.Box
+import kscience.plotly.models.BoxPoints
+import kscience.plotly.models.Trace
 import kotlin.random.Random
 
 

@@ -2,11 +2,11 @@ package heatmap
 
 import hep.dataforge.meta.invoke
 import hep.dataforge.values.Value
-import scientifik.plotly.Plotly
-import scientifik.plotly.heatmap
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.Font
-import scientifik.plotly.models.Text
+import kscience.plotly.Plotly
+import kscience.plotly.heatmap
+import kscience.plotly.makeFile
+import kscience.plotly.models.Font
+import kscience.plotly.models.Text
 
 /**
  * - Simple heatmap with annotations

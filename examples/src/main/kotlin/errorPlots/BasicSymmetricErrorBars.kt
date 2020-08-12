@@ -1,10 +1,10 @@
 package errorPlots
 
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.ErrorType
-import scientifik.plotly.trace
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.ErrorType
+import kscience.plotly.trace
 
 /**
  * - basic symmetric error bars

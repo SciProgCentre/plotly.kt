@@ -1,11 +1,11 @@
 package histogram
 
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.BarMode
-import scientifik.plotly.models.Histogram
-import scientifik.plotly.palettes.T10
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.BarMode
+import kscience.plotly.models.Histogram
+import kscience.plotly.palettes.T10
 import java.util.*
 
 /**

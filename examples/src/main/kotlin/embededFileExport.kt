@@ -1,8 +1,8 @@
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.ResourceLocation
-import scientifik.plotly.makeFile
-import scientifik.plotly.trace
+import kscience.plotly.Plotly
+import kscience.plotly.ResourceLocation
+import kscience.plotly.makeFile
+import kscience.plotly.trace
 import kotlin.math.PI
 import kotlin.math.sin
 

@@ -1,8 +1,8 @@
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.models.ScatterMode
-import scientifik.plotly.scatter
-import scientifik.plotly.toHTML
+import kscience.plotly.Plotly
+import kscience.plotly.models.ScatterMode
+import kscience.plotly.scatter
+import kscience.plotly.toHTML
 
 Plotly.plot {
     scatter {

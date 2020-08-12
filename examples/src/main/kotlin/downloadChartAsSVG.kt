@@ -1,6 +1,6 @@
 import hep.dataforge.meta.set
-import scientifik.plotly.*
-import scientifik.plotly.models.ScatterMode
+import kscience.plotly.*
+import kscience.plotly.models.ScatterMode
 
 
 /**

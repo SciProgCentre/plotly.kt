@@ -1,10 +1,10 @@
 package histogram
 
-import scientifik.plotly.Plotly
-import scientifik.plotly.histogram
-import scientifik.plotly.layout
-import scientifik.plotly.makeFile
-import scientifik.plotly.palettes.T10
+import kscience.plotly.Plotly
+import kscience.plotly.histogram
+import kscience.plotly.layout
+import kscience.plotly.makeFile
+import kscience.plotly.palettes.T10
 import java.util.*
 
 

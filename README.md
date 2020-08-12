@@ -2,6 +2,8 @@
 [![DOI](https://zenodo.org/badge/186020000.svg)](https://zenodo.org/badge/latestdoi/186020000)
 ![Gradle build](https://github.com/mipt-npm/plotly.kt/workflows/Gradle%20build/badge.svg)
 
+![Plotlykt logo](./docs/logo_text.svg)
+
 ## Release version
 
 Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/scientifik/plotlykt-core/_latestVersion)
@@ -26,7 +28,7 @@ The work with plotly graphs could be done in following modes:
 uses CDN based plotly distribution. This mode does not support updates.
 
 See [staticPlot](./examples/src/main/kotlin/staticPlot.kt) and  
-[staticPage](./examples/src/main/kotlin/staticPage.kt) for examples.
+[customPage](./examples/src/main/kotlin/customPage.kt) for examples.
 
 ## Ktor-based server with dynamic updates
 (JVM only) A Ktor CIO server with full multi-page and update capabilites.
@@ -58,7 +60,7 @@ repositories {
 }
 
 dependencies {
-    implementation("scientifik:plotlykt-server:0.1.2")
+    implementation("scientifik:plotlykt-server:0.2.0")
 }
 ```
 

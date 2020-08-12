@@ -1,9 +1,9 @@
 package tutorials
 
 import hep.dataforge.values.Value
-import scientifik.plotly.*
-import scientifik.plotly.models.*
-import scientifik.plotly.palettes.XKCD
+import kscience.plotly.*
+import kscience.plotly.models.*
+import kscience.plotly.palettes.XKCD
 import kotlin.math.PI
 import kotlin.math.sin
 

@@ -1,10 +1,10 @@
 package pie
 
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.fragment
-import scientifik.plotly.models.Pie
-import scientifik.plotly.plot
+import kscience.plotly.Plotly
+import kscience.plotly.fragment
+import kscience.plotly.models.Pie
+import kscience.plotly.plot
 
 
 fun main() {

@@ -4,15 +4,15 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.html.a
 import kotlinx.html.h1
-import scientifik.plotly.Plotly
-import scientifik.plotly.layout
-import scientifik.plotly.models.Trace
-import scientifik.plotly.models.invoke
-import scientifik.plotly.plot
-import scientifik.plotly.server.close
-import scientifik.plotly.server.pushUpdates
-import scientifik.plotly.server.serve
-import scientifik.plotly.server.show
+import kscience.plotly.Plotly
+import kscience.plotly.layout
+import kscience.plotly.models.Trace
+import kscience.plotly.models.invoke
+import kscience.plotly.plot
+import kscience.plotly.server.close
+import kscience.plotly.server.pushUpdates
+import kscience.plotly.server.serve
+import kscience.plotly.server.show
 import kotlin.math.PI
 import kotlin.math.sin
 

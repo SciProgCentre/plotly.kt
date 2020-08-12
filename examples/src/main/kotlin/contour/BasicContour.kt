@@ -1,10 +1,10 @@
 package contour
 
-import scientifik.plotly.Plotly
-import scientifik.plotly.layout
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.Contour
-import scientifik.plotly.models.MeasureMode
+import kscience.plotly.Plotly
+import kscience.plotly.layout
+import kscience.plotly.makeFile
+import kscience.plotly.models.Contour
+import kscience.plotly.models.MeasureMode
 
 
 /**

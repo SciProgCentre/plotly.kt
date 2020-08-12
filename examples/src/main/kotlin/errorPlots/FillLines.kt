@@ -1,12 +1,12 @@
 package errorPlots
 
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.FillType
-import scientifik.plotly.models.Scatter
-import scientifik.plotly.models.ScatterMode
-import scientifik.plotly.models.Ticks
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.FillType
+import kscience.plotly.models.Scatter
+import kscience.plotly.models.ScatterMode
+import kscience.plotly.models.Ticks
 
 
 /**

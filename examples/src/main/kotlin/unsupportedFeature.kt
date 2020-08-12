@@ -1,10 +1,10 @@
 import hep.dataforge.meta.configure
 import hep.dataforge.meta.invoke
 import hep.dataforge.meta.set
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.Trace
-import scientifik.plotly.models.invoke
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.Trace
+import kscience.plotly.models.invoke
 
 fun main() {
 

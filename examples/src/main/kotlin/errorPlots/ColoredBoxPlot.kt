@@ -1,10 +1,10 @@
 package errorPlots
 
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.box
-import scientifik.plotly.makeFile
-import scientifik.plotly.palettes.T10
+import kscience.plotly.Plotly
+import kscience.plotly.box
+import kscience.plotly.makeFile
+import kscience.plotly.palettes.T10
 import java.util.*
 
 

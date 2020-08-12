@@ -1,6 +1,6 @@
 import kotlinx.html.script
 import kotlinx.html.unsafe
-import scientifik.plotly.*
+import kscience.plotly.*
 
 val customMathJaxHeader = HtmlFragment {
     script {

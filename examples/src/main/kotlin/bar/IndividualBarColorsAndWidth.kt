@@ -1,9 +1,9 @@
 package bar
 
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.bar
-import scientifik.plotly.makeFile
+import kscience.plotly.Plotly
+import kscience.plotly.bar
+import kscience.plotly.makeFile
 
 
 /**

@@ -2,9 +2,9 @@ package contour
 
 import hep.dataforge.meta.invoke
 import hep.dataforge.values.asValue
-import scientifik.plotly.Plotly
-import scientifik.plotly.contour
-import scientifik.plotly.makeFile
+import kscience.plotly.Plotly
+import kscience.plotly.contour
+import kscience.plotly.makeFile
 import kotlin.math.cos
 import kotlin.math.ln
 import kotlin.math.sin

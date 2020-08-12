@@ -1,10 +1,10 @@
 package heatmap
 
-import scientifik.plotly.Plotly
-import scientifik.plotly.fragment
-import scientifik.plotly.layout
-import scientifik.plotly.models.Heatmap
-import scientifik.plotly.plot
+import kscience.plotly.Plotly
+import kscience.plotly.fragment
+import kscience.plotly.layout
+import kscience.plotly.models.Heatmap
+import kscience.plotly.plot
 
 
 /**

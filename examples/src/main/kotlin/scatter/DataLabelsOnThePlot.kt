@@ -1,11 +1,11 @@
 package scatter
 
 import hep.dataforge.meta.invoke
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.ScatterMode
-import scientifik.plotly.models.TextPosition
-import scientifik.plotly.scatter
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.models.ScatterMode
+import kscience.plotly.models.TextPosition
+import kscience.plotly.scatter
 
 
 fun main() {

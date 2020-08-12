@@ -1,7 +1,7 @@
 package annotation
 
-import scientifik.plotly.*
-import scientifik.plotly.models.ScatterMode
+import kscience.plotly.*
+import kscience.plotly.models.ScatterMode
 
 fun main() {
     val plot = Plotly.plot {

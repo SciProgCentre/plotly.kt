@@ -13,6 +13,6 @@ val bintrayRepo by extra("scientifik")
 val githubProject by extra("plotly.kt")
 
 allprojects {
-    group = "scientifik"
-    version = "0.2.0-dev-15"
+    group = "kscience"
+    version = "0.2.0-dev-16"
 }

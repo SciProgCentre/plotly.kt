@@ -1,12 +1,12 @@
 package histogram
 
 import hep.dataforge.values.Value
-import scientifik.plotly.Plotly
-import scientifik.plotly.layout
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.ContoursColoring
-import scientifik.plotly.models.Histogram2DContour
-import scientifik.plotly.models.MeasureMode
+import kscience.plotly.Plotly
+import kscience.plotly.layout
+import kscience.plotly.makeFile
+import kscience.plotly.models.ContoursColoring
+import kscience.plotly.models.Histogram2DContour
+import kscience.plotly.models.MeasureMode
 
 
 /**
