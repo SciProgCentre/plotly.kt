@@ -29,6 +29,19 @@ class Gradient : Scheme() {
      */
     var type by enum(GradientType.none)
 
+    /**
+     * Sets the type of gradient used to fill the markers
+     */
+    var typesList by list()
+
+    fun colors(colors: Iterable<Any>) {
+        color.value = colors.map { Value.of(it) }.asValue()
+    }
+
+    fun typesList(array: Iterable<Any>) {
+        typesList = array.map { Value.of(it) }
+    }
+
     companion object : SchemeSpec<Gradient>(::Gradient)
 }
 
@@ -40,15 +53,31 @@ class Marker : Scheme() {
     var symbol: Symbol by enum(Symbol.circle)
 
     /**
+     * Array of enumerateds. Sets the marker symbol type.
+     */
+    var symbolsList by list(key = "symbol".asName())
+
+    /**
      * Sets the marker size (in px).
      * Default: 6.
      */
-    var size by intGreaterThan(0)
+    var size by numberGreaterThan(0)
+
+    /**
+     * Array of numbers greater than or equal to 0.
+     * Sets the markers size. Default: 6.
+     */
+    var sizesList by numberList(key = "size".asName())
 
     /**
      * Sets the marker opacity.
      */
     var opacity by numberInRange(0.0..1.0)
+
+    /**
+     * Sets the markers opacity.
+     */
+    var opacitiesList by numberList(key = "opacity".asName())
 
     /**
      * Sets a maximum number of points to be drawn on the graph.
@@ -88,7 +117,10 @@ class Marker : Scheme() {
      */
     val color = Color(this, "color".asName())
 
-    var colors by list()
+    /**
+     * Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+     */
+    var pieColors by list(key = "colors".asName())
 
     var colorbar by spec(ColorBar)
 

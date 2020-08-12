@@ -2,8 +2,8 @@ package heatmap
 
 import hep.dataforge.meta.invoke
 import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
 import scientifik.plotly.heatmap
+import scientifik.plotly.makeFile
 
 
 /**

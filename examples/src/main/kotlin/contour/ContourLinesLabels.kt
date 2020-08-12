@@ -3,11 +3,11 @@ package contour
 import hep.dataforge.meta.invoke
 import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
 import scientifik.plotly.contour
+import scientifik.plotly.makeFile
 import scientifik.plotly.models.ContoursColoring
-import kotlin.math.pow
 import kotlin.math.exp
+import kotlin.math.pow
 
 /**
  * - colored contour plot lines
@@ -17,12 +17,12 @@ import kotlin.math.exp
 fun main() {
     val range = -300..300
     val rangeSize = range.last - range.first + 1
-    val x1 = range.map{ it.toDouble() / 100 }
-    val y1 = range.map{ it.toDouble() / 100 }
+    val x1 = range.map { it.toDouble() / 100 }
+    val y1 = range.map { it.toDouble() / 100 }
     val values = mutableListOf<MutableList<Double>>()
 
     for (i in y1.indices) {
-        values.add(MutableList(rangeSize){0.0})
+        values.add(MutableList(rangeSize) { 0.0 })
     }
 
     for (i in x1.indices) {

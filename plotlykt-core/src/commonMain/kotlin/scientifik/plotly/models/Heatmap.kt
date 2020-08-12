@@ -1,8 +1,10 @@
 package scientifik.plotly.models
-import hep.dataforge.meta.*
-import scientifik.plotly.intGreaterThan
 
-open class Heatmap(): Trace(), Table2D, HeatmapContour {
+import hep.dataforge.meta.SchemeSpec
+import hep.dataforge.meta.enum
+import scientifik.plotly.numberGreaterThan
+
+open class Heatmap : Trace(), Table2D, HeatmapContour {
     init {
         type = TraceType.heatmap
     }
@@ -10,12 +12,12 @@ open class Heatmap(): Trace(), Table2D, HeatmapContour {
     /**
      * Sets the horizontal gap (in pixels) between bricks.
      */
-    override var xgap by intGreaterThan(0)
+    override var xgap by numberGreaterThan(0)
 
     /**
      * Sets the vertical gap (in pixels) between bricks.
      */
-    override var ygap by intGreaterThan(0)
+    override var ygap by numberGreaterThan(0)
 
     /**
      * Picks a smoothing algorithm use to smooth `z` data.
@@ -26,7 +28,7 @@ open class Heatmap(): Trace(), Table2D, HeatmapContour {
      * If "array", the heatmap's x coordinates are given by "x" (the default behavior when `x` is provided).
      * If "scaled", the heatmap's x coordinates are given by "x0" and "dx" (the default behavior when `x` is not provided).
      */
-    override  var xtype by enum(DataType.array)
+    override var xtype by enum(DataType.array)
 
     /**
      * If "array", the heatmap's y coordinates are given by "y" (the default behavior when `y` is provided)
@@ -37,7 +39,7 @@ open class Heatmap(): Trace(), Table2D, HeatmapContour {
     companion object : SchemeSpec<Heatmap>(::Heatmap)
 }
 
-class HeatmapGL(): Heatmap() {
+class HeatmapGL : Heatmap() {
     init {
         type = TraceType.heatmapgl
     }

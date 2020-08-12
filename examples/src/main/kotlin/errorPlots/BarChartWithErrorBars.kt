@@ -45,7 +45,7 @@ fun main() {
 
         layout {
             barmode = BarMode.group
-            title  = "Bar Chart with Error Bars"
+            title = "Bar Chart with Error Bars"
             legend {
                 x = 1
                 y = 1

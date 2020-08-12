@@ -2,7 +2,10 @@ package scientifik.plotly.models
 
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
-import scientifik.plotly.*
+import scientifik.plotly.lazySpec
+import scientifik.plotly.list
+import scientifik.plotly.numberGreaterThan
+import scientifik.plotly.numberInRange
 import kotlin.js.JsName
 
 
@@ -23,27 +26,27 @@ class Margin : Scheme() {
     /**
      * Sets the amount of padding (in px) between the plotting area and the axis lines
      */
-    var pad by intGreaterThan(0)
+    var pad by numberGreaterThan(0)
 
     /**
      * Sets the left margin (in px). Default: 80.
      */
-    var l by intGreaterThan(0)
+    var l by numberGreaterThan(0)
 
     /**
      * Sets the right margin (in px). Default: 80.
      */
-    var r by intGreaterThan(0)
+    var r by numberGreaterThan(0)
 
     /**
      * Sets the top margin (in px). Default: 100.
      */
-    var t by intGreaterThan(0)
+    var t by numberGreaterThan(0)
 
     /**
      * Sets the bottom margin (in px). Default: 80.
      */
-    var b by intGreaterThan(0)
+    var b by numberGreaterThan(0)
 
     companion object : SchemeSpec<Margin>(::Margin)
 }
@@ -58,8 +61,10 @@ enum class HoverMode {
     y,
     closest,
     `false`,
+
     @JsName("xUnified")
     `x unified`,
+
     @JsName("yUnified")
     `y unified`
 }
@@ -67,6 +72,7 @@ enum class HoverMode {
 enum class BarNorm {
     fraction,
     percent,
+
     @JsName("empty")
     `""`
 }
@@ -81,13 +87,13 @@ class Layout : Scheme() {
      * Sets the plot's width (in px).
      * Number greater than or equal to 10, default: 700.
      */
-    var width by intGreaterThan(10)
+    var width by numberGreaterThan(10)
 
     /**
      * Sets the plot's height (in px).
      * Number greater than or equal to 10, default: 450.
      */
-    var height by intGreaterThan(10)
+    var height by numberGreaterThan(10)
 
     /**
      * Determines whether or not a layout width or height that has been left undefined
@@ -243,7 +249,7 @@ class Layout : Scheme() {
      * but these objects will not supersede hover on point-like objects in case of conflict.
      * Default: 20.
      */
-    var hoverdistance by intGreaterThan(-1)
+    var hoverdistance by numberGreaterThan(-1)
 
     /**
      * Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
@@ -256,7 +262,7 @@ class Layout : Scheme() {
 
     fun title(block: Title.() -> Unit) {
         val spec = config["title"].node?.let { Title.wrap(it) }
-            ?: Title.empty().also { config["title"] = it.config }
+                ?: Title.empty().also { config["title"] = it.config }
         spec.apply(block)
     }
 

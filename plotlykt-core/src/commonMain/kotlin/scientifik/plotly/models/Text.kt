@@ -36,7 +36,7 @@ class Text : Scheme() {
      * hyperlinks (<a href='...'></a>). Tags <em>, <sup>,
      * <sub> <span> are also supported.
      */
-    var text by string("")
+    var text by string()
 
     /**
      * Sets the annotation text font.

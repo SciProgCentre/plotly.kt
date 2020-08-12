@@ -14,7 +14,7 @@ fun main() {
     val trace1 = Bar {
         x("2016", "2017", "2018")
         y(500, 600, 700)
-        base = listOf(-500,-600,-700)
+        base = listOf(-500, -600, -700)
         marker {
             color("red")
         }

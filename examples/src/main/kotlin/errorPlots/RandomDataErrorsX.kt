@@ -15,8 +15,8 @@ import java.util.*
  */
 fun main() {
     val rnd = Random()
-    val xValues = (0..100 step 4).toList().map{ it / 20.0}
-    val err = List(26){rnd.nextDouble() / 2}
+    val xValues = (0..100 step 4).toList().map { it / 20.0 }
+    val err = List(26) { rnd.nextDouble() / 2 }
 
     val plot = Plotly.plot {
         trace {
@@ -30,7 +30,7 @@ fun main() {
             }
         }
         layout {
-            title  = "Random Data Error"
+            title = "Random Data Error"
         }
     }
 

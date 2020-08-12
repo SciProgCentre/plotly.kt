@@ -3,8 +3,8 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.values.Value
 import scientifik.plotly.doubleInRange
-import scientifik.plotly.intGreaterThan
 import scientifik.plotly.list
+import scientifik.plotly.numberGreaterThan
 import kotlin.js.JsName
 
 enum class BoxMean {
@@ -29,11 +29,12 @@ enum class QuartileMethod {
 enum class BoxHoveron {
     boxes,
     points,
+
     @JsName("boxesAndPoints")
     `boxes+points`
 }
 
-class Box(): Trace(), SelectedPoints {
+class Box : Trace(), SelectedPoints {
     init {
         type = TraceType.box
     }
@@ -42,7 +43,7 @@ class Box(): Trace(), SelectedPoints {
      * Sets the width of the box in data coordinate If "0" (default value) the width is
      * automatically selected based on the positions of other box traces in the same subplot.
      */
-    var width by intGreaterThan(0)
+    var width by numberGreaterThan(0)
 
     /**
      * If "true", the mean of the box(es)' underlying distribution is drawn as a dashed line
@@ -182,35 +183,35 @@ class Box(): Trace(), SelectedPoints {
     var hoveron by enum(BoxHoveron.`boxes+points`)
 
     fun q1(array: Iterable<Any>) {
-        q1 = array.map{ Value.of(it) }
+        q1 = array.map { Value.of(it) }
     }
 
     fun q3(array: Iterable<Any>) {
-        q3 = array.map{ Value.of(it) }
+        q3 = array.map { Value.of(it) }
     }
 
     fun median(array: Iterable<Any>) {
-        median = array.map{ Value.of(it) }
+        median = array.map { Value.of(it) }
     }
 
     fun lowerfence(array: Iterable<Any>) {
-        lowerfence = array.map{ Value.of(it) }
+        lowerfence = array.map { Value.of(it) }
     }
 
     fun upperfence(array: Iterable<Any>) {
-        upperfence = array.map{ Value.of(it) }
+        upperfence = array.map { Value.of(it) }
     }
 
     fun notchspan(array: Iterable<Any>) {
-        notchspan = array.map{ Value.of(it) }
+        notchspan = array.map { Value.of(it) }
     }
 
     fun mean(array: Iterable<Any>) {
-        mean = array.map{ Value.of(it) }
+        mean = array.map { Value.of(it) }
     }
 
     fun sd(array: Iterable<Any>) {
-        sd = array.map{ Value.of(it) }
+        sd = array.map { Value.of(it) }
     }
 
     fun selected(block: SelectPoints.() -> Unit) {

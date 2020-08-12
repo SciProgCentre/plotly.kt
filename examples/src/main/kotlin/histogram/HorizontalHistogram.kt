@@ -29,7 +29,7 @@ fun main() {
         }
 
         layout {
-            title= "Horizontal Histogram"
+            title = "Horizontal Histogram"
             bargap = 0.1
             xaxis {
                 title = "Count"

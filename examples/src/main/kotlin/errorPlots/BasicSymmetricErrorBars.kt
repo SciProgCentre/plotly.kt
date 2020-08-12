@@ -29,7 +29,7 @@ fun main() {
         }
 
         layout {
-            title  = "Basic Symmetric Error Bars"
+            title = "Basic Symmetric Error Bars"
         }
     }
 

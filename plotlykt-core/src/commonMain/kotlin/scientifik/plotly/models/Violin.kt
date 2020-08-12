@@ -3,9 +3,9 @@ package scientifik.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
-import scientifik.plotly.numberInRange
-import scientifik.plotly.numberGreaterThan
 import scientifik.plotly.list
+import scientifik.plotly.numberGreaterThan
+import scientifik.plotly.numberInRange
 import kotlin.js.JsName
 
 enum class ViolinScaleMode {
@@ -30,12 +30,16 @@ enum class ViolinHoveron {
     violins,
     points,
     kde,
+
     @JsName("violinsAndPoints")
     `violins+points`,
+
     @JsName("violinsAndKde")
     `violins+kde`,
+
     @JsName("pointsAndKde")
     `points+kde`,
+
     @JsName("violinsAndPointsAndKde")
     `violins+points+kde`,
     all
@@ -90,7 +94,7 @@ class ViolinBox : Scheme() {
     companion object : SchemeSpec<ViolinBox>(::ViolinBox)
 }
 
-class Violin() : Trace() {
+class Violin : Trace() {
     init {
         type = TraceType.violin
     }
@@ -118,6 +122,7 @@ class Violin() : Trace() {
     var hoveron by enum(ViolinHoveron.`violins+points+kde`)
 
     var meanline by spec(MeanLine)
+
     /**
      * If "outliers", only the sample points lying outside the whiskers
      * are shown If "suspectedoutliers", the outlier points are shown
@@ -168,7 +173,7 @@ class Violin() : Trace() {
     }
 
     fun span(array: Iterable<Any>) {
-        span = array.map{ Value.of(it) }
+        span = array.map { Value.of(it) }
     }
 
     companion object : SchemeSpec<Violin>(::Violin)

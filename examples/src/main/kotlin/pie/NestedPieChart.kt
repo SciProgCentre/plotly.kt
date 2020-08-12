@@ -29,7 +29,7 @@ fun main() {
             y = listOf<Number>(0.1, 0.9)
         }
         marker {
-            colors = colorsPie
+            pieColors = colorsPie
             line {
                 color("white")
                 width = 2
@@ -50,7 +50,7 @@ fun main() {
             y = listOf<Number>(0, 1)
         }
         marker {
-            colors = colorsPie
+            pieColors = colorsPie
             line {
                 color("white")
                 width = 2

@@ -21,7 +21,7 @@ import kotlin.math.sin
 fun main() {
     val div = 200 / PI
     val sub = PI / 6
-    val xValues = (-410..410).map{ it / div }
+    val xValues = (-410..410).map { it / div }
     val yValues = mutableListOf<Double>()
     val yText = mutableListOf<String>()
 
@@ -32,7 +32,7 @@ fun main() {
     }
 
     val shapesList = mutableListOf<Shape>()
-    val xElems = listOf(-2*PI + sub, -PI - sub, sub, PI - sub)
+    val xElems = listOf(-2 * PI + sub, -PI - sub, sub, PI - sub)
     for (elem in xElems) {
         val newShape = Shape {
             x0 = Value.of(elem)
@@ -50,13 +50,13 @@ fun main() {
                 x.set(xValues)
                 y.set(yValues)
                 name = "\$\\Large{y = \\mathrm{sin}\\,x}\$"
-                text = yText
+                textsList = yText
                 hoverinfo = "text"
                 line { color(XKCD.CERULEAN) }
             }
             scatter { // sin(x) = 0
                 mode = ScatterMode.markers
-                x(-2* PI, -PI, PI, 2* PI)
+                x(-2 * PI, -PI, PI, 2 * PI)
                 y(0, 0, 0, 0)
                 line { color(XKCD.CERULEAN_BLUE) }
                 marker { size = 8 }
@@ -76,7 +76,7 @@ fun main() {
                 mode = ScatterMode.text
                 x(-0.35, 0.28, PI * 2 + 0.4)
                 y(0.56, 1.3, 0.1)
-                text = listOf("\$\\Large{1/2}\$", "\$\\huge{y}\$", "\$\\huge{x}\$")
+                textsList = listOf("\$\\Large{1/2}\$", "\$\\huge{y}\$", "\$\\huge{x}\$")
                 textfont {
                     colors(listOf("red", "black", "black"))
                 }
@@ -104,15 +104,15 @@ fun main() {
                 }
 
                 shape { // y = 1
-                    x0 = Value.of(-2*PI)
-                    x1 = Value.of(2*PI)
+                    x0 = Value.of(-2 * PI)
+                    x1 = Value.of(2 * PI)
                     y0 = Value.of(1)
                     y1 = Value.of(1)
                     line { dash = Dash.dash }
                 }
                 shape { // y = 1/2
-                    x0 = Value.of(-2*PI)
-                    x1 = Value.of(2*PI)
+                    x0 = Value.of(-2 * PI)
+                    x1 = Value.of(2 * PI)
                     y0 = Value.of(0.5)
                     y1 = Value.of(0.5)
                     line {
@@ -121,8 +121,8 @@ fun main() {
                     }
                 }
                 shape { // y = -1
-                    x0 = Value.of(-2*PI)
-                    x1 = Value.of(2*PI)
+                    x0 = Value.of(-2 * PI)
+                    x1 = Value.of(2 * PI)
                     y0 = Value.of(-1)
                     y1 = Value.of(-1)
                     line { dash = Dash.dash }
@@ -133,7 +133,7 @@ fun main() {
                     showgrid = false
                     anchor = "free"
                     position = 0.43
-                    tickvals(listOf(-2 * PI-0.05, -PI - 0.15, PI - 0.05, 2 * PI + 0.1))
+                    tickvals(listOf(-2 * PI - 0.05, -PI - 0.15, PI - 0.05, 2 * PI + 0.1))
                     ticktext(listOf("\$\\huge{-2\\pi}\$", "\$\\huge{-\\pi}\$", "\$\\huge{\\pi}\$", "\$\\huge{2\\pi}\$"))
                 }
                 yaxis {

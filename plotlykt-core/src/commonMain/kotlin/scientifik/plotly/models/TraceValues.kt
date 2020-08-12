@@ -39,7 +39,7 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
         value = when (values) {
             null -> null
             is DoubleArray -> values.asValue()
-            is IntArray ->  values.map { it.asValue() }.asValue()
+            is IntArray -> values.map { it.asValue() }.asValue()
             is Array<*> -> values.map { Value.of(it) }.asValue()
             is Iterable<*> -> values.map { Value.of(it) }.asValue()
             else -> error("Unrecognized values type ${values::class}")
@@ -54,8 +54,8 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
         this.strings = strings.asList()
     }
 
-    operator fun invoke(lists: List<List<Number>>){
-        this.value = lists.map{ row -> row.map{it.asValue()}.asValue()}.asValue()
+    operator fun invoke(lists: List<List<Number>>) {
+        this.value = lists.map { row -> row.map { it.asValue() }.asValue() }.asValue()
     }
 
 }

@@ -16,7 +16,7 @@ import scientifik.plotly.models.Orientation
  */
 fun main() {
     val y0 = listOf("day 1", "day 1", "day 1", "day 1", "day 1", "day 1",
-        "day 2", "day 2", "day 2", "day 2", "day 2", "day 2")
+            "day 2", "day 2", "day 2", "day 2", "day 2", "day 2")
 
     val trace1 = Box {
         x(0.2, 0.2, 0.6, 1.0, 0.5, 0.4, 0.2, 0.7, 0.9, 0.1, 0.5, 0.3)

@@ -12,7 +12,7 @@ fun main() {
     val rnd = Random()
     val k = List(500) { rnd.nextDouble() }
     val x1 = k.map { it }.toList()
-    val x2 = k.map { it/2 }.toList()
+    val x2 = k.map { it / 2 }.toList()
 
     val trace1 = Histogram {
         x.set(x1)

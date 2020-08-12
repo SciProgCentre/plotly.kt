@@ -23,7 +23,7 @@ fun main() {
             listOf<Number>(118, 126, 150, 180, 196, 188, 233, 277, 301, 318, 342, 391), /* February */
             listOf<Number>(132, 141, 178, 193, 236, 235, 267, 317, 356, 362, 406, 419), /* March */
             listOf<Number>(129, 135, 163, 181, 235, 227, 269, 313, 348, 348, 396, 461), /* April */
-            listOf<Number>(121,	125, 172, 183, 229, 234, 270, 318, 355, 363, 420, 472), /* May */
+            listOf<Number>(121, 125, 172, 183, 229, 234, 270, 318, 355, 363, 420, 472), /* May */
             listOf<Number>(135, 149, 178, 218, 243, 264, 315, 374, 422, 435, 472, 535), /* June */
             listOf<Number>(148, 170, 199, 230, 264, 302, 364, 413, 465, 491, 548, 622), /* July */
             listOf<Number>(148, 170, 199, 242, 272, 293, 347, 405, 467, 505, 559, 606), /* August */
@@ -49,7 +49,7 @@ fun main() {
             xaxis {
                 title = "Years"
             }
-            title  = "Heatmap of Flight Density from 1949 to 1961"
+            title = "Heatmap of Flight Density from 1949 to 1961"
         }
     }
 

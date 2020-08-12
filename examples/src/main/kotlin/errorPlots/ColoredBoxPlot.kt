@@ -15,8 +15,8 @@ import java.util.*
  */
 fun main() {
     val rnd = Random()
-    val y1 = List(50){ rnd.nextDouble() }
-    val y2 = List(50){ rnd.nextDouble() + 1}
+    val y1 = List(50) { rnd.nextDouble() }
+    val y2 = List(50) { rnd.nextDouble() + 1 }
 
     val plot = Plotly.plot {
         box {

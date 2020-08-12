@@ -5,9 +5,9 @@ import hep.dataforge.values.Value
 import scientifik.plotly.Plotly
 import scientifik.plotly.makeFile
 import scientifik.plotly.models.Contour
+import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.sin
-import kotlin.math.cos
 
 /**
  * - simple contour plot without level lines
@@ -22,7 +22,7 @@ fun main() {
     val z = mutableListOf<MutableList<Double>>()
 
     for (i in y1.indices) {
-        z.add(MutableList(size+1){0.0})
+        z.add(MutableList(size + 1) { 0.0 })
     }
 
     for (i in x1.indices) {
@@ -51,7 +51,7 @@ fun main() {
         layout {
             width = 1000
             height = 500
-            title  = "Colored Contour Plot"
+            title = "Colored Contour Plot"
         }
     }
 

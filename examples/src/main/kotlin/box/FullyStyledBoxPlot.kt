@@ -53,7 +53,7 @@ fun main() {
                 size = 2
             }
             line {
-               width = 1
+                width = 1
             }
             showlegend = false
         }

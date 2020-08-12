@@ -21,6 +21,7 @@ enum class HistNorm {
     percent,
     probability,
     density,
+
     @JsName("probabilityDensity")
     `probability density`
 }
@@ -108,7 +109,7 @@ class Cumulative : Scheme() {
 }
 
 
-open class Histogram() : Trace() {
+open class Histogram : Trace() {
     init {
         type = TraceType.histogram
     }
@@ -211,7 +212,7 @@ open class Histogram() : Trace() {
     companion object : SchemeSpec<Histogram>(::Histogram)
 }
 
-class Histogram2D() : Histogram(), Table2D {
+class Histogram2D : Histogram(), Table2D {
     init {
         type = TraceType.histogram2d
     }
@@ -219,12 +220,12 @@ class Histogram2D() : Histogram(), Table2D {
     /**
      * Sets the horizontal gap (in pixels) between bricks.
      */
-    override var xgap by intGreaterThan(0)
+    override var xgap by numberGreaterThan(0)
 
     /**
      * Sets the vertical gap (in pixels) between bricks.
      */
-    override var ygap by intGreaterThan(0)
+    override var ygap by numberGreaterThan(0)
 
     /**
      * Picks a smoothing algorithm use to smooth `z` data.

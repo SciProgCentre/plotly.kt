@@ -36,7 +36,7 @@ fun main() {
 
         scatter {
             x.set(x1)
-            y.set(y1.map{it + 4}.toList())
+            y.set(y1.map { it + 4 }.toList())
             name = "positive err"
             error_y {
                 type = ErrorType.data
@@ -48,7 +48,7 @@ fun main() {
 
         scatter {
             x.set(x1)
-            y.set(y1.map{it + 8}.toList())
+            y.set(y1.map { it + 8 }.toList())
             name = "negative err"
             error_y {
                 type = ErrorType.data
@@ -58,8 +58,8 @@ fun main() {
             }
         }
 
-        layout{
-            title  = "Asymmetric Error Bars"
+        layout {
+            title = "Asymmetric Error Bars"
             legend {
                 x = 0.05
                 borderwidth = 1

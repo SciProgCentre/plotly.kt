@@ -15,7 +15,7 @@ import java.util.*
  */
 fun main() {
     val rnd = Random()
-    val values = List(500){rnd.nextDouble()}
+    val values = List(500) { rnd.nextDouble() }
 
     val plot = Plotly.plot {
         histogram {
@@ -23,7 +23,7 @@ fun main() {
             name = "Random data"
         }
 
-        layout{
+        layout {
             bargap = 0.1
             title {
                 text = "Basic Histogram"

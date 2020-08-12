@@ -1,8 +1,10 @@
 package scientifik.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.names.asName
+import scientifik.plotly.numberGreaterThan
 
-class Bar() : Trace(), SelectedPoints {
+class Bar : Trace(), SelectedPoints {
     init {
         type = TraceType.bar
     }
@@ -25,9 +27,27 @@ class Bar() : Trace(), SelectedPoints {
     var base by numberList()
 
     /**
+     * Sets the bar width (in position axis units).
+     */
+    var width by numberGreaterThan(0)
+
+    /**
      * Array of numbers greater than or equal to 0. Sets the bar width (in position axis units).
      */
-    var width by numberList()
+    var widthList by numberList(key = "width".asName())
+
+    /**
+     * Shifts the position where the bar is drawn (in position axis units). In "group" barmode,
+     * traces that set "offset" will be excluded and drawn in "overlay" mode instead.
+     */
+    var offset by number()
+
+    /**
+     * Shifts the position where the bar is drawn (in position axis units). In "group" barmode,
+     * traces that set "offset" will be excluded and drawn in "overlay" mode instead.
+     */
+    var offsetsList by numberList(key = "offset".asName())
+
 
     /**
      * Constrain the size of text inside or outside a bar to be no larger than the bar itself.
