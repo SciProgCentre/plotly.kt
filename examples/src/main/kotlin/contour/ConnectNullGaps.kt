@@ -1,10 +1,7 @@
 package contour
 
-import kscience.plotly.Plotly
-import kscience.plotly.fragment
-import kscience.plotly.layout
+import kscience.plotly.*
 import kscience.plotly.models.Contour
-import kscience.plotly.plot
 
 
 /**
@@ -58,5 +55,5 @@ fun main() {
                 title = "Connected Gaps"
             }
         }
-    }
+    }.makeFile()
 }

@@ -16,7 +16,7 @@ import kscience.plotly.palettes.XKCD
  */
 fun main() {
     val months = listOf("January", "February", "March", "April", "May", "June", "July", "August",
-            "September", "October", "Novermber", "December")
+            "September", "October", "November", "December")
     val years = 1949..1961
     val flights = listOf(
             listOf<Number>(112, 115, 145, 171, 196, 204, 242, 284, 315, 340, 360, 417), /* January */

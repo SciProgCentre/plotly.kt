@@ -6,6 +6,10 @@ import kscience.plotly.Plotly
 import kscience.plotly.makeFile
 import kscience.plotly.models.*
 
+
+/**
+ * - Styled violin plot
+ */
 fun main() {
     val trace1 = Violin {
         textsList = listOf("sample length: 32")
@@ -36,7 +40,6 @@ fun main() {
         line {
             color("#bebada")
         }
-
         name = "F"
 
         x(10.07, 34.83, 10.65, 12.43, 24.08, 13.42, 12.48, 29.8, 14.52, 11.38,

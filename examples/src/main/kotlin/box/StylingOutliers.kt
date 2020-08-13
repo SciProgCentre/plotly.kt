@@ -25,7 +25,7 @@ fun main() {
         y.set(y1)
         name = "Only Wiskers"
         marker {
-            color("rgb(9,56,125)")
+            color("rgb(9, 56, 125)")
         }
         boxpoints = BoxPoints.`false`
     }
@@ -34,7 +34,7 @@ fun main() {
         y.set(y1)
         name = "Suspected Outlier"
         marker {
-            color("rgb(8,81,156)")
+            color("rgb(8, 81, 156)")
             outliercolor("rgba(219, 64, 82, 0.6)")
             line {
                 outliercolor("rgba(219, 64, 82, 1.0)")
@@ -48,7 +48,7 @@ fun main() {
         y.set(y1)
         name = "Wiskers and Outliers"
         marker {
-            color("rgb(107,174,214)")
+            color("rgb(107, 174, 214)")
         }
         boxpoints = BoxPoints.outliers
     }

@@ -2,6 +2,7 @@ package scatter
 
 import hep.dataforge.meta.invoke
 import kscience.plotly.Plotly
+import kscience.plotly.makeFile
 import kscience.plotly.models.Scatter
 import kscience.plotly.models.ScatterMode
 
@@ -80,6 +81,7 @@ fun main() {
             }
         }
     }
+    plot.makeFile()
 
     val json = plot.toJson().toString()
     val file = "quarterGrowth.svg"

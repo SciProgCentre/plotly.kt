@@ -3,6 +3,7 @@ package pie
 import hep.dataforge.meta.invoke
 import kscience.plotly.Plotly
 import kscience.plotly.fragment
+import kscience.plotly.makeFile
 import kscience.plotly.models.Pie
 import kscience.plotly.plot
 
@@ -40,5 +41,5 @@ fun main() {
                 title = "CO2"
             }
         }
-    }
+    }.makeFile()
 }

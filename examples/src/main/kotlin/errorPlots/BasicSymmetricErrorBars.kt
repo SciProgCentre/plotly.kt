@@ -9,7 +9,7 @@ import kscience.plotly.trace
 /**
  * - basic symmetric error bars
  * - use numeric array as error length
- * - change color or error bars
+ * - change color of error bars
  */
 fun main() {
     val xValues = listOf(0, 1, 2)

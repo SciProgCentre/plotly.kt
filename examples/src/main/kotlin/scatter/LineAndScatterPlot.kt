@@ -7,6 +7,9 @@ import kscience.plotly.models.ScatterMode
 import kscience.plotly.scatter
 
 
+/**
+ * - Scatter plot with different scatter modes (markers, lines, markers+lines)
+ */
 fun main() {
     val plot = Plotly.plot {
         scatter {
@@ -31,6 +34,5 @@ fun main() {
             title = "Line and Scatter Plot"
         }
     }
-
     plot.makeFile()
 }

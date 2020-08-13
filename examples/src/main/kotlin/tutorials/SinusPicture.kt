@@ -9,12 +9,11 @@ import kotlin.math.sin
 
 
 /**
- * - Draw Math Graph with annotations
+ * - Draw Math Graph with LaTeX annotations
  * - Custom zeroline
  * - Dashed and colored lines
  * - Draw vertical lines
  * - Use XKCD color palette
- * - Use LaTeX annotations
  * - Change margins on the plot edges
  * - Add shapes (vertical lines)
  */

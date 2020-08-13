@@ -8,6 +8,11 @@ import kscience.plotly.models.TextPosition
 import kscience.plotly.scatter
 
 
+/**
+ * - Scatter plot only with markers
+ * - Data labels on the plot
+ * - Change textfont family
+ */
 fun main() {
     val plot = Plotly.plot {
         scatter {

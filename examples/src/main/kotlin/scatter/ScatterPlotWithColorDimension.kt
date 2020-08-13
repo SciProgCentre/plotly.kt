@@ -7,6 +7,11 @@ import kscience.plotly.makeFile
 import kscience.plotly.models.Scatter
 import kscience.plotly.models.ScatterMode
 
+
+/**
+ * - Scatter plot only with markers
+ * - Use numbers as color list
+ */
 fun main() {
     val scatter = Scatter {
         y.set(List(40) { 5.0 })
@@ -24,6 +29,5 @@ fun main() {
             title = "Scatter plot with color dimension"
         }
     }
-
     plot.makeFile()
 }
