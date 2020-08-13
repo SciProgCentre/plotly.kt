@@ -21,10 +21,10 @@
         "kscience:plotlykt-server:$v"
     ],
     "init": [
-        "DISPLAY(HTML(PlotlyJupyterServer.start($port).toString()))"
+        "DISPLAY(HTML(JupyterPlotlyServer.start($port).toString()))"
     ],
     "shutdown":[
-        "DISPLAY(HTML(PlotlyJupyterServer.stop().toString()))"
+        "DISPLAY(HTML(JupyterPlotlyServer.stop().toString()))"
     ],
     "renderers": {
         "kscience.plotly.HtmlFragment": "HTML($it.toString())",
