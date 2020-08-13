@@ -5,6 +5,7 @@ import java.awt.Desktop
 import java.nio.file.Files
 import java.nio.file.Path
 import javax.swing.JFileChooser
+import javax.swing.filechooser.FileNameExtensionFilter
 
 
 internal const val assetsDirectory = "assets"
@@ -80,9 +81,12 @@ fun Plotly.display(
  * Select file to save plot to
  */
 @UnstablePlotlyAPI
-fun selectFile(): Path? {
+fun selectFile(filter: FileNameExtensionFilter? = null): Path? {
     val fileChooser = JFileChooser()
     fileChooser.dialogTitle = "Specify a file to save"
+    if (filter != null) {
+        fileChooser.fileFilter = filter
+    }
 
     val userSelection = fileChooser.showSaveDialog(null)
 
@@ -92,4 +96,38 @@ fun selectFile(): Path? {
     } else {
         null
     }
+}
+
+enum class OrcaFormat {
+    png, jpeg, webp, svg, pdf
+}
+
+/**
+ * Use external [plotly-orca] (https://github.com/plotly/orca) tool to export static image.
+ * The tool must be installed externally (for example via conda) and usage patterns could differ for different systems.
+ */
+@UnstablePlotlyAPI
+fun Plot.export(path: Path, format: OrcaFormat = OrcaFormat.svg) {
+    val json = toJson().toString()
+
+    val tempFile = Files.createTempFile("plotly-orca-export", ".json")
+    Files.writeString(tempFile, json)
+
+    val command = if (System.getProperty("os.name").contains("Windows")) {
+        "powershell"
+    } else {
+        "bash"
+    }
+
+    val process = ProcessBuilder(
+        "powershell", "orca", "graph", tempFile.toAbsolutePath().toString(),
+        "-f", format.toString(),
+        "-d", path.parent.toString(),
+        "-o", path.fileName.toString(),
+        "--verbose"
+    ).redirectErrorStream(true).start()
+    process.outputStream.close()
+    val output = process.inputStream.bufferedReader().use { it.readText() }
+    println(output)
+    println("Orca finished with code: ${process.waitFor()}")
 }

@@ -1,9 +1,10 @@
-package scatter
-
 import hep.dataforge.meta.invoke
 import kscience.plotly.Plotly
+import kscience.plotly.export
 import kscience.plotly.models.Scatter
 import kscience.plotly.models.ScatterMode
+import kscience.plotly.selectFile
+import javax.swing.filechooser.FileNameExtensionFilter
 
 
 /**
@@ -45,7 +46,8 @@ fun main() {
         y(23, 42, 54, 89, 14, 99, 93, 70)
         mode = ScatterMode.markers
         name = "Asia/Pacific"
-        textsList = listOf("Australia", "Japan", "South Korea", "Malaysia", "China", "Indonesia", "Philippines", "India")
+        textsList =
+            listOf("Australia", "Japan", "South Korea", "Malaysia", "China", "Indonesia", "Philippines", "India")
         marker {
             color("rgb(234, 153, 153)")
             size = 12
@@ -81,15 +83,5 @@ fun main() {
         }
     }
 
-    val json = plot.toJson().toString()
-    val file = "quarterGrowth.svg"
-    val format = file.substring(file.indexOf('.') + 1)
-
-    val processBuilder = ProcessBuilder("orca", "graph", json, "-f", format, "-o", file, "--verbose")
-    processBuilder.redirectErrorStream(true)
-    val process = processBuilder.start()
-    process.outputStream.close()
-    val output = process.inputStream.bufferedReader().use { it.readText() }
-    println(output)
-    println(process.waitFor())
+    plot.export(selectFile(FileNameExtensionFilter("SVG","svg")) ?: error("File not selected"))
 }
