@@ -2,7 +2,7 @@
     "imports": [
         "kscience.plotly.*",
         "kscience.plotly.models.*",
-        "kscience.plotly.server.PlotlyJupyterServer",
+        "kscience.plotly.server.JupyterPlotlyServer",
         "hep.dataforge.meta.*",
         "kotlinx.html.*"
     ],
@@ -28,8 +28,8 @@
     ],
     "renderers": {
         "kscience.plotly.HtmlFragment": "HTML($it.toString())",
-        "kscience.plotly.Plot": "HTML(PlotlyJupyterServer.renderPlot($it))",
-        "kscience.plotly.PlotlyFragment": "HTML(PlotlyJupyterServer.renderFragment($it))",
-        "kscience.plotly.PlotlyPage": "HTML(PlotlyJupyterServer.renderPage($it), true)"
+        "kscience.plotly.Plot": "HTML(JupyterPlotlyServer.renderPlot($it))",
+        "kscience.plotly.PlotlyFragment": "HTML(JupyterPlotlyServer.renderFragment($it))",
+        "kscience.plotly.PlotlyPage": "HTML(JupyterPlotlyServer.renderPage($it), true)"
     }
 }
