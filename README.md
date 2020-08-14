@@ -16,6 +16,10 @@ Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-np
 
 Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/dev/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/dev/plotlykt-server/_latestVersion)
 
+# TL;DR
+See [examples](./examples/src/main/kotlin).
+See [original library samples](https://plotly.com/javascript/) to understand capabilities.
+
 # Description
 
 This project is developed to allow simple access to plotly functionality from kotlin-multiplatform. The API allows to create plotly configuration and render it as a plotly chart.
@@ -49,7 +53,7 @@ Plotly.kt could be run in a JavaFX browser. An example project is presented in [
 ## Kotlin jupyter kernel (experimental)
 Plotly.kt comes with (for now experimental) support for integration with [Kotlin Jupyter kernel](https://github.com/Kotlin/kotlin-jupyter).
 
-The examples of the notebooks are shown in [notebooks](./notebooks) directory. There are two module descriptor `plotly.json` and `plotly-server.json` in the same directory. They should be loaded according to Kotlin kernel documentation (either copied to `~/kotlin-jypyter/libraries` or loaded directly).
+The examples of the notebooks are shown in [notebooks](./notebooks) directory. There are two module descriptor `plotly.json` and `plotly-server.json` in the same directory. They should be loaded according to Kotlin kernel documentation (either copied to `~/jypyter_kotlin/libraries` or loaded directly).
 
 The module `plotly` allows to render static plots in Jupyter. Jupyter lab is currently supported. Jupyter notebook (classic) is able to render only `PlotlyPage` objects, so one must convert plots to pages to be able to use notebook (see [demo notebook](./notebooks/plotlykt-demo-classic.ipynb)).
 
