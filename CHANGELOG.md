@@ -6,9 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.2.0]
 
 
 ### Added
+- Experimental scripting support
+- Static export via Orca
 - Experimental Jupyter support
 - Color palettes (T10 and XKCD)
 - New parameters and classes in Trace, Legend, Layout
@@ -21,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Z axis
 - Tutorial about drawing sinus
 - Loading resources using krangl
-- TraceValues extension about krangl columns
+- TraceValues extension for krangl columns
 
 ### Changed
 
@@ -35,5 +49,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Project structure updated
 - Removed other Plot functions
 - Plot2D renamed to Plot
-
-## [0.2.0]

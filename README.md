@@ -116,3 +116,10 @@ Keeping the original naming sometimes causes clashes with Kotlin code style. For
 * Dynamic data
 * Mathjax and latex support
 
+# Contributions and thanks
+* [Vasily Chernov](https://research.jetbrains.org/researchers/vchernov) - initial project foundation
+* [Alexander Nozik](https://research.jetbrains.org/researchers/altavir) - dynamic core and server
+* [Mikhail Zeleniy](https://research.jetbrains.org/researchers/gama_sennin) - basic models
+* [Ekaterina Samorodova](https://github.com/ebsamorodova) (JBR-2020 summer internship) - Model refactoring, tutorials and `0.2` release.
+
+The project was partially founded by JetBrains Research grant.

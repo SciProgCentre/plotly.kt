@@ -3,6 +3,7 @@ plugins {
     id("scientifik.mpp") version toolsVersion apply false
     id("scientifik.jvm") version toolsVersion apply false
     id("scientifik.publish") version toolsVersion apply false
+    id("org.jetbrains.changelog") version "0.4.0"
 }
 
 val ktorVersion by extra("1.3.2")
