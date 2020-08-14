@@ -5,7 +5,7 @@ import hep.dataforge.values.Value
 import kscience.plotly.Plotly
 import kscience.plotly.makeFile
 import kscience.plotly.models.Heatmap
-import kscience.plotly.palettes.XKCD
+import kscience.plotly.palettes.Xkcd
 
 
 /**
@@ -31,7 +31,7 @@ fun main() {
             listOf<Number>(119, 133, 162, 191, 211, 229, 274, 306, 347, 359, 407, 461), /* October */
             listOf<Number>(104, 114, 146, 172, 180, 203, 237, 271, 305, 310, 362, 390), /* November */
             listOf<Number>(118, 140, 166, 194, 201, 229, 278, 306, 336, 337, 405, 432)  /* December */)
-    val customColorscale = listOf(listOf(0, XKCD.POWDER_BLUE), listOf(1, XKCD.PURPLE))
+    val customColorscale = listOf(listOf(0, Xkcd.POWDER_BLUE), listOf(1, Xkcd.PURPLE))
 
     val flightsHeatmap = Heatmap {
         x.set(years)

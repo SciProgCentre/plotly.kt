@@ -4,7 +4,7 @@ package kscience.plotly.palettes
  * Color names from xkcd color survey
  */
 
-object XKCD {
+object Xkcd {
     const val CLOUDY_BLUE = "#ACC2D9"
     const val DARK_PASTEL_GREEN = "#56AE57"
     const val DUST = "#B2996E"

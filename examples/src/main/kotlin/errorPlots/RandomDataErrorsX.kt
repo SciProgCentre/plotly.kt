@@ -3,7 +3,7 @@ package errorPlots
 import hep.dataforge.meta.invoke
 import kscience.plotly.Plotly
 import kscience.plotly.makeFile
-import kscience.plotly.palettes.XKCD
+import kscience.plotly.palettes.Xkcd
 import kscience.plotly.trace
 import java.util.*
 
@@ -22,11 +22,11 @@ fun main() {
         trace {
             x.numbers = xValues
             marker {
-                color(XKCD.PURPLE)
+                color(Xkcd.PURPLE)
             }
             error_x {
                 array = err
-                color(XKCD.PALE_PURPLE)
+                color(Xkcd.PALE_PURPLE)
             }
         }
         layout {

@@ -18,7 +18,6 @@ dependencies {
     implementation(kotlin("script-runtime"))
     implementation("de.mpicbg.scicomp:krangl:0.13")
     implementation("org.apache.commons:commons-csv:1.8")
-    implementation("de.mpicbg.scicomp:krangl:0.13")
 }
 
 val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks

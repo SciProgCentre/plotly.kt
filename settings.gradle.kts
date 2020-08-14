@@ -24,6 +24,7 @@ rootProject.name = "plotlykt"
 include(
     ":plotlykt-core",
     ":plotlykt-server",
+    ":plotlykt-script",
     ":examples",
     ":fx-demo",
     ":js-demo"

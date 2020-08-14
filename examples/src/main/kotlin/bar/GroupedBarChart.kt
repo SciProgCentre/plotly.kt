@@ -5,7 +5,7 @@ import kscience.plotly.Plotly
 import kscience.plotly.makeFile
 import kscience.plotly.models.Bar
 import kscience.plotly.models.BarMode
-import kscience.plotly.palettes.XKCD
+import kscience.plotly.palettes.Xkcd
 
 
 /**
@@ -18,7 +18,7 @@ fun main() {
         y(20, 14, 23)
         name = "SF Zoo"
         marker {
-            color(XKCD.GREEN)
+            color(Xkcd.GREEN)
         }
     }
 
@@ -27,7 +27,7 @@ fun main() {
         y(12, 18, 29)
         name = "LA Zoo"
         marker {
-            color(XKCD.BLUE)
+            color(Xkcd.BLUE)
         }
     }
 

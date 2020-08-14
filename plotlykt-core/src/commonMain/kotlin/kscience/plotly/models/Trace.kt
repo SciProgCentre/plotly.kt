@@ -623,7 +623,9 @@ class Domain : Scheme() {
     companion object : SchemeSpec<Domain>(::Domain)
 }
 
-
+/**
+ * A base class for Plotly traces
+ */
 open class Trace : Scheme() {
     fun axis(axisName: String) = TraceValues(this, axisName)
 

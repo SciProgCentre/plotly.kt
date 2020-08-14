@@ -5,7 +5,7 @@ import kscience.plotly.Plotly
 import kscience.plotly.makeFile
 import kscience.plotly.models.Box
 import kscience.plotly.models.BoxMean
-import kscience.plotly.palettes.XKCD
+import kscience.plotly.palettes.Xkcd
 
 fun main() {
     val y1 = listOf(2.37, 2.16, 4.82, 1.73, 1.04, 0.23, 1.32, 2.91, 0.11, 4.51, 0.51,
@@ -15,7 +15,7 @@ fun main() {
         y.numbers = y1
         name = "Only Mean"
         marker {
-            color(XKCD.CERULEAN)
+            color(Xkcd.CERULEAN)
         }
         boxmean = BoxMean.`true`
     }
@@ -24,7 +24,7 @@ fun main() {
         y.numbers = y1
         name = "Mean and Standard Deviation"
         marker {
-            color(XKCD.BLUE_VIOLET)
+            color(Xkcd.BLUE_VIOLET)
         }
         boxmean = BoxMean.sd
     }
