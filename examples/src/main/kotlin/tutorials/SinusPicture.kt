@@ -3,7 +3,7 @@ package tutorials
 import hep.dataforge.values.Value
 import kscience.plotly.*
 import kscience.plotly.models.*
-import kscience.plotly.palettes.XKCD
+import kscience.plotly.palettes.Xkcd
 import kotlin.math.PI
 import kotlin.math.sin
 
@@ -52,13 +52,13 @@ fun main() {
                 name = "\$\\Large{y = \\mathrm{sin}\\,x}\$"
                 textsList = yText
                 hoverinfo = "text"
-                line { color(XKCD.CERULEAN) }
+                line { color(Xkcd.CERULEAN) }
             }
             scatter { // sin(x) = 0
                 mode = ScatterMode.markers
                 x(-2 * PI, -PI, PI, 2 * PI)
                 y(0, 0, 0, 0)
-                line { color(XKCD.CERULEAN_BLUE) }
+                line { color(Xkcd.CERULEAN_BLUE) }
                 marker { size = 8 }
                 showlegend = false
                 hoverinfo = "none"

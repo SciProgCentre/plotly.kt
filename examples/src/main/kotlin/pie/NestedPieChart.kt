@@ -5,7 +5,7 @@ import hep.dataforge.values.Value
 import kscience.plotly.Plotly
 import kscience.plotly.makeFile
 import kscience.plotly.models.Pie
-import kscience.plotly.palettes.XKCD
+import kscience.plotly.palettes.Xkcd
 
 
 /**
@@ -15,7 +15,7 @@ import kscience.plotly.palettes.XKCD
  */
 fun main() {
     val labels = listOf("party A", "party B", "party C", "party D")
-    val colorsPie = listOf(XKCD.RED, XKCD.GREEN, XKCD.ORANGE, XKCD.BLUE).map { Value.of(it) }
+    val colorsPie = listOf(Xkcd.RED, Xkcd.GREEN, Xkcd.ORANGE, Xkcd.BLUE).map { Value.of(it) }
 
     val firstPie = Pie {
         name = "First day"

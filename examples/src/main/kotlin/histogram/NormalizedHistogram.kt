@@ -5,7 +5,7 @@ import kscience.plotly.Plotly
 import kscience.plotly.histogram
 import kscience.plotly.makeFile
 import kscience.plotly.models.HistNorm
-import kscience.plotly.palettes.XKCD
+import kscience.plotly.palettes.Xkcd
 import java.util.*
 
 /**
@@ -24,7 +24,7 @@ fun main() {
             name = "Random data"
             histnorm = HistNorm.probability
             marker {
-                color(XKCD.BLUE_GREEN)
+                color(Xkcd.BLUE_GREEN)
             }
         }
 

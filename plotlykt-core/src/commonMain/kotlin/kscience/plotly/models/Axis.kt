@@ -36,6 +36,9 @@ enum class Ticks {
     outside
 }
 
+/**
+ * Axis scheme
+ */
 class Axis : Scheme() {
     /**
      * Sets the title of this axis.

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>kscience.plotly.models</OriginalElement>
+  <nodes>
+    <node x="1679.0" y="1764.0">kscience.plotly.models.Contours</node>
+    <node x="294.0" y="2467.0">kscience.plotly.models.ShapeType</node>
+    <node x="840.0" y="2393.0">kscience.plotly.models.TextPosition</node>
+    <node x="1645.0" y="2393.0">kscience.plotly.models.MeasureMode</node>
+    <node x="0.0" y="2541.0">kscience.plotly.models.BoxMode</node>
+    <node x="1127.0" y="2541.0">kscience.plotly.models.Ticks</node>
+    <node x="868.0" y="2251.0">kscience.plotly.models.Cumulative</node>
+    <node x="1591.0" y="2251.0">kscience.plotly.models.LegendOrientation</node>
+    <node x="1001.0" y="2393.0">kscience.plotly.models.ViolinPoints</node>
+    <node x="1896.0" y="1764.0">kscience.plotly.models.Margin</node>
+    <node x="242.0" y="2251.0">kscience.plotly.models.SelectMarker</node>
+    <node x="0.0" y="2393.0">kscience.plotly.models.VerticalAlign</node>
+    <node x="168.0" y="2393.0">kscience.plotly.models.ShapeSizeMode</node>
+    <node x="126.0" y="2541.0">kscience.plotly.models.BoxMean</node>
+    <node x="1510.0" y="1764.0">kscience.plotly.models.Title</node>
+    <node x="117.0" y="1764.0">kscience.plotly.models.Line</node>
+    <node x="1578.75" y="1211.0">kscience.plotly.models.Heatmap</node>
+    <node x="1060.0" y="2251.0">kscience.plotly.models.SelectPoints</node>
+    <node x="1414.0" y="2467.0">kscience.plotly.models.AxisType</node>
+    <node x="1341.1291666666666" y="440.0">kscience.plotly.models.HeatmapContour</node>
+    <node x="434.0" y="2467.0">kscience.plotly.models.GroupNorm</node>
+    <node x="712.1125" y="0.0">kscience.plotly.models.Trace</node>
+    <node x="1547.0" y="2467.0">kscience.plotly.models.FillType</node>
+    <node x="574.0" y="2467.0">kscience.plotly.models.StackGaps</node>
+    <node x="2261.0" y="2393.0">kscience.plotly.models.ShapeLayer</node>
+    <node x="1273.0" y="1764.0">kscience.plotly.models.Legend</node>
+    <node x="2408.0" y="2393.0">kscience.plotly.models.BoxHoveron</node>
+    <node x="2621.25" y="0.0">kscience.plotly.models.Shape</node>
+    <node x="336.0" y="2393.0">kscience.plotly.models.ShapeFillRule</node>
+    <node x="1680.0" y="2467.0">kscience.plotly.models.TickMode</node>
+    <node x="252.0" y="2541.0">kscience.plotly.models.YAnchor</node>
+    <node x="520.0" y="1167.0">kscience.plotly.models.Bar</node>
+    <node x="1207.3625" y="1233.0">kscience.plotly.models.ContourSpec</node>
+    <node x="1162.0" y="2393.0">kscience.plotly.models.GradientType</node>
+    <node x="332.5" y="1634.0">kscience.plotly.models.ScatterGL</node>
+    <node x="1388.0" y="2251.0">kscience.plotly.models.HistogramDirection</node>
+    <node x="1084.4208333333333" y="1578.0">kscience.plotly.models.Contour</node>
+    <node x="1323.0" y="2393.0">kscience.plotly.models.PieDirection</node>
+    <node x="1246.0" y="2251.0">kscience.plotly.models.Color</node>
+    <node x="1484.0" y="2393.0">kscience.plotly.models.ContoursType</node>
+    <node x="2555.0" y="2393.0">kscience.plotly.models.CurrentBin</node>
+    <node x="2225.25" y="0.0">kscience.plotly.models.Layout</node>
+    <node x="2083.0" y="1764.0">kscience.plotly.models.TraceValues</node>
+    <node x="260.0" y="1167.0">kscience.plotly.models.Scatter</node>
+    <node x="234.0" y="1977.0">kscience.plotly.models.LayoutLine</node>
+    <node x="2340.0" y="2251.0">kscience.plotly.models.ScatterHoveron</node>
+    <node x="202.36249999999995" y="429.0">kscience.plotly.models.SelectedPoints</node>
+    <node x="714.0" y="2467.0">kscience.plotly.models.ErrorType</node>
+    <node x="854.0" y="2467.0">kscience.plotly.models.HoverMode</node>
+    <node x="2702.0" y="2393.0">kscience.plotly.models.ViolinSide</node>
+    <node x="493.0" y="1764.0">kscience.plotly.models.ColorBar</node>
+    <node x="378.0" y="2541.0">kscience.plotly.models.BarNorm</node>
+    <node x="2614.0" y="1764.0">kscience.plotly.models.Domain</node>
+    <node x="0.0" y="1035.0">kscience.plotly.models.Box</node>
+    <node x="0.0" y="1911.0">kscience.plotly.models.MarkerLine</node>
+    <node x="504.0" y="2393.0">kscience.plotly.models.ConstrainText</node>
+    <node x="1285.7375" y="1600.0">kscience.plotly.models.Histogram2DContour</node>
+    <node x="405.0" y="2251.0">kscience.plotly.models.ViolinBox</node>
+    <node x="0.0" y="2467.0">kscience.plotly.models.TraceOrder</node>
+    <node x="1677.0875" y="1600.0">kscience.plotly.models.Histogram2D</node>
+    <node x="1799.0" y="2393.0">kscience.plotly.models.Orientation</node>
+    <node x="1919.25" y="0.0">kscience.plotly.models.Axis</node>
+    <node x="504.0" y="2541.0">kscience.plotly.models.TraceKt</node>
+    <node x="1002.0" y="1764.0">kscience.plotly.models.Error</node>
+    <node x="1953.0" y="2393.0">kscience.plotly.models.ZsmoothType</node>
+    <node x="630.0" y="2541.0">kscience.plotly.models.XAnchor</node>
+    <node x="727.0" y="1764.0">kscience.plotly.models.Marker</node>
+    <node x="1239.0" y="2541.0">kscience.plotly.models.Dash</node>
+    <node x="756.0" y="2541.0">kscience.plotly.models.BarMode</node>
+    <node x="1005.0" y="1156.0">kscience.plotly.models.Violin</node>
+    <node x="1976.0" y="2251.0">kscience.plotly.models.ViolinScaleMode</node>
+    <node x="994.0" y="2467.0">kscience.plotly.models.TraceType</node>
+    <node x="1787.0" y="2251.0">kscience.plotly.models.ContoursColoring</node>
+    <node x="1008.0" y="2541.0">kscience.plotly.models.Symbol</node>
+    <node x="1813.0" y="2467.0">kscience.plotly.models.Calendar</node>
+    <node x="781.0" y="1167.0">kscience.plotly.models.Pie</node>
+    <node x="1134.0" y="2467.0">kscience.plotly.models.BoxPoints</node>
+    <node x="1344.0" y="2541.0">kscience.plotly.models.Ref</node>
+    <node x="147.0" y="2467.0">kscience.plotly.models.ViolinMode</node>
+    <node x="882.0" y="2541.0">kscience.plotly.models.Visible</node>
+    <node x="0.0" y="2251.0">kscience.plotly.models.Gradient</node>
+    <node x="562.0" y="2251.0">kscience.plotly.models.MeanLine</node>
+    <node x="2430.25" y="0.0">kscience.plotly.models.Text</node>
+    <node x="1562.0875" y="1634.0">kscience.plotly.models.HeatmapGL</node>
+    <node x="1722.25" y="429.0">kscience.plotly.models.Table2D</node>
+    <node x="1373.75" y="1145.0">kscience.plotly.models.Histogram</node>
+    <node x="1946.0" y="2467.0">kscience.plotly.models.SizeMode</node>
+    <node x="2515.0" y="2251.0">kscience.plotly.models.QuartileMethod</node>
+    <node x="1274.0" y="2467.0">kscience.plotly.models.LineShape</node>
+    <node x="2158.0" y="2251.0">kscience.plotly.models.HorizontalAlign</node>
+    <node x="2361.0" y="1764.0">kscience.plotly.models.Font</node>
+    <node x="2079.0" y="2467.0">kscience.plotly.models.HistFunc</node>
+    <node x="2107.0" y="2393.0">kscience.plotly.models.ScatterMode</node>
+    <node x="719.0" y="2251.0">kscience.plotly.models.Bins</node>
+    <node x="672.0" y="2393.0">kscience.plotly.models.ViolinHoveron</node>
+    <node x="2212.0" y="2467.0">kscience.plotly.models.HistNorm</node>
+    <node x="2345.0" y="2467.0">kscience.plotly.models.TextInfo</node>
+    <node x="2478.0" y="2467.0">kscience.plotly.models.DataType</node>
+    <node x="2611.0" y="2467.0">kscience.plotly.models.SpanMode</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="kscience.plotly.models.LayoutLine" target="kscience.plotly.models.Line">
+      <point x="0.0" y="-81.5" />
+      <point x="341.0" y="1886.0" />
+      <point x="277.5" y="1886.0" />
+      <point x="53.5" y="48.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Contour" target="kscience.plotly.models.Trace">
+      <point x="-47.33333333333337" y="-70.5" />
+      <point x="1108.0875" y="1558.0" />
+      <point x="770.5" y="1558.0" />
+      <point x="770.5" y="1015.0" />
+      <point x="814.4875" y="1015.0" />
+      <point x="-14.625" y="477.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Histogram" target="kscience.plotly.models.Trace">
+      <point x="0.0" y="-136.5" />
+      <point x="1466.25" y="995.0" />
+      <point x="902.2375000000002" y="995.0" />
+      <point x="73.12500000000011" y="477.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Scatter" target="kscience.plotly.models.Trace">
+      <point x="60.0" y="-114.5" />
+      <point x="440.0" y="995.0" />
+      <point x="755.9875" y="995.0" />
+      <point x="-73.125" y="477.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Contour" target="kscience.plotly.models.HeatmapContour">
+      <point x="0.0" y="-70.5" />
+      <point x="1155.4208333333333" y="1558.0" />
+      <point x="1194.5" y="1558.0" />
+      <point x="1194.5" y="1015.0" />
+      <point x="1373.6291666666666" y="1015.0" />
+      <point x="-32.5" y="37.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Histogram2D" target="kscience.plotly.models.Histogram">
+      <point x="-38.0" y="-48.5" />
+      <point x="1715.0875" y="1548.0" />
+      <point x="1512.5" y="1548.0" />
+      <point x="46.25" y="136.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Pie" target="kscience.plotly.models.Trace">
+      <point x="0.0" y="-114.5" />
+      <point x="883.0" y="1015.0" />
+      <point x="843.7375" y="1015.0" />
+      <point x="14.625" y="477.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Bar" target="kscience.plotly.models.Trace">
+      <point x="60.0" y="-114.5" />
+      <point x="700.0" y="1005.0" />
+      <point x="785.2375" y="1005.0" />
+      <point x="-43.875" y="477.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Histogram2DContour" target="kscience.plotly.models.ContourSpec">
+      <point x="-39.5" y="-48.5" />
+      <point x="1325.2375" y="1558.0" />
+      <point x="1313.8625" y="1558.0" />
+      <point x="35.5" y="48.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Histogram2DContour" target="kscience.plotly.models.Histogram">
+      <point x="39.5" y="-48.5" />
+      <point x="1404.2375" y="1558.0" />
+      <point x="1420.0" y="1558.0" />
+      <point x="-46.25" y="136.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Box" target="kscience.plotly.models.SelectedPoints">
+      <point x="-60.0" y="-246.5" />
+      <point x="60.0" y="975.0" />
+      <point x="242.36249999999995" y="975.0" />
+      <point x="-80.0" y="48.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Heatmap" target="kscience.plotly.models.HeatmapContour">
+      <point x="0.0" y="-70.5" />
+      <point x="1654.75" y="975.0" />
+      <point x="1438.6291666666666" y="975.0" />
+      <point x="32.5" y="37.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Histogram2D" target="kscience.plotly.models.Table2D">
+      <point x="38.0" y="-48.5" />
+      <point x="1791.0875" y="1558.0" />
+      <point x="1832.9875" y="1558.0" />
+      <point x="1832.9875" y="1015.0" />
+      <point x="1836.25" y="1015.0" />
+      <point x="38.0" y="48.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Scatter" target="kscience.plotly.models.SelectedPoints">
+      <point x="-60.0" y="-114.5" />
+      <point x="320.0" y="975.0" />
+      <point x="322.36249999999995" y="975.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Box" target="kscience.plotly.models.Trace">
+      <point x="60.0" y="-246.5" />
+      <point x="180.0" y="985.0" />
+      <point x="726.7375" y="985.0" />
+      <point x="-102.375" y="477.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Contour" target="kscience.plotly.models.ContourSpec">
+      <point x="47.33333333333337" y="-70.5" />
+      <point x="1202.7541666666666" y="1558.0" />
+      <point x="1242.8625" y="1558.0" />
+      <point x="-35.5" y="48.5" />
+    </edge>
+    <edge source="kscience.plotly.models.MarkerLine" target="kscience.plotly.models.Line">
+      <point x="0.0" y="-147.5" />
+      <point x="107.0" y="1886.0" />
+      <point x="170.5" y="1886.0" />
+      <point x="-53.5" y="48.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Bar" target="kscience.plotly.models.SelectedPoints">
+      <point x="-60.0" y="-114.5" />
+      <point x="580.0" y="975.0" />
+      <point x="402.36249999999995" y="975.0" />
+      <point x="80.0" y="48.5" />
+    </edge>
+    <edge source="kscience.plotly.models.ScatterGL" target="kscience.plotly.models.Scatter">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="114.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Heatmap" target="kscience.plotly.models.Table2D">
+      <point x="50.666666666666686" y="-70.5" />
+      <point x="1705.4166666666667" y="1015.0" />
+      <point x="1760.25" y="1015.0" />
+      <point x="-38.0" y="48.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Violin" target="kscience.plotly.models.Trace">
+      <point x="1.1368683772161603E-13" y="-125.5" />
+      <point x="1094.5" y="1005.0" />
+      <point x="872.9875" y="1005.0" />
+      <point x="43.875" y="477.5" />
+    </edge>
+    <edge source="kscience.plotly.models.Heatmap" target="kscience.plotly.models.Trace">
+      <point x="-50.66666666666666" y="-70.5" />
+      <point x="1604.0833333333335" y="985.0" />
+      <point x="931.4875000000002" y="985.0" />
+      <point x="102.37500000000011" y="477.5" />
+    </edge>
+    <edge source="kscience.plotly.models.HeatmapGL" target="kscience.plotly.models.Heatmap">
+      <point x="0.0" y="-14.5" />
+      <point x="1609.5875" y="1558.0" />
+      <point x="1654.75" y="1558.0" />
+      <point x="0.0" y="70.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8575289575289575" x="848.7753264295362" y="519.9234579018461" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
