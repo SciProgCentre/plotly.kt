@@ -6,9 +6,9 @@
 
 ## Release version
 
-Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/scientifik/plotlykt-core/_latestVersion)
+Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/kscience/plotlykt-core/_latestVersion)
 
-Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/scientifik/plotlykt-server/_latestVersion)
+Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/kscience/plotlykt-server/_latestVersion)
 
 ## Development version
 
@@ -86,8 +86,7 @@ plugins {
 repositories {
     jcenter()
     maven("https://dl.bintray.com/mipt-npm/dataforge")
-    maven("https://dl.bintray.com/mipt-npm/scientifik")
-    maven("https://dl.bintray.com/kotlin/ktor/")
+    maven("https://dl.bintray.com/mipt-npm/kscience")
 }
 
 dependencies {

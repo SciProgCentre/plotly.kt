@@ -9,7 +9,7 @@
     "repositories": [
         "*mavenLocal",
         "https://dl.bintray.com/mipt-npm/dataforge",
-        "https://dl.bintray.com/mipt-npm/scientifik",
+        "https://dl.bintray.com/mipt-npm/kscience",
         "https://dl.bintray.com/mipt-npm/dev"
     ],
     "properties": {
@@ -18,7 +18,7 @@
     },
     "link": "https://github.com/mipt-npm/plotly.kt",
     "dependencies": [
-        "kscience:plotlykt-server:$v"
+        "kscience.plotlykt:plotlykt-server:$v"
     ],
     "init": [
         "DISPLAY(HTML(JupyterPlotlyServer.start($port).toString()))"

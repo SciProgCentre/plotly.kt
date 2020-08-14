@@ -10,10 +10,10 @@ val ktorVersion by extra("1.3.2")
 val dataforgeVersion by extra("0.1.8")
 val htmlVersion by extra("0.7.1")
 
-val bintrayRepo by extra("scientifik")
+val bintrayRepo by extra("kscience")
 val githubProject by extra("plotly.kt")
 
 allprojects {
-    group = "kscience"
+    group = "kscience.plotlykt"
     version = "0.2.0"
 }
