@@ -13,7 +13,7 @@
         "https://dl.bintray.com/mipt-npm/dev"
     ],
     "properties": {
-        "v": "0.2.0-dev-16",
+        "v": "0.2.0",
         "port": 8882
     },
     "link": "https://github.com/mipt-npm/plotly.kt",

@@ -10,6 +10,9 @@ import javax.swing.filechooser.FileNameExtensionFilter
 
 internal const val assetsDirectory = "assets"
 
+/**
+ * The location of resources for plot.
+ */
 enum class ResourceLocation {
     /**
      * Use cdn or other remote source for assets
@@ -22,7 +25,7 @@ enum class ResourceLocation {
     LOCAL,
 
     /**
-     * Store assets in a system-widw `~/.plotly/plotly-assets` folder
+     * Store assets in a system-window `~/.plotly/plotly-assets` folder
      */
     SYSTEM,
 
@@ -35,7 +38,9 @@ enum class ResourceLocation {
 /**
  * Create a standalone html with the plot
  * @param path the reference to html file. If null, create a temporary file
+ * @param resourceLocation specifies where to store resources for page display
  * @param show if true, start the browser after file is created
+ * @param config represents plotly frame configuration
  */
 fun Plot.makeFile(
     path: Path? = null,
@@ -51,15 +56,9 @@ fun Plot.makeFile(
     }
 }
 
-fun PlotlyPage.makeFile(path: Path? = null, show: Boolean = true) {
-    val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
-    Files.createDirectories(actualFile.parent)
-    Files.writeString(actualFile, render())
-    if (show) {
-        Desktop.getDesktop().browse(actualFile.toFile().toURI())
-    }
-}
-
+/**
+ * The same as [Plot.makeFile].
+ */
 fun PlotlyFragment.makeFile(
     path: Path? = null,
     show: Boolean = true,
@@ -73,12 +72,25 @@ fun PlotlyFragment.makeFile(
     ).makeFile(path, show)
 }
 
+
+/**
+ * Export a page html to a file.
+ */
+fun PlotlyPage.makeFile(path: Path? = null, show: Boolean = true) {
+    val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
+    Files.createDirectories(actualFile.parent)
+    Files.writeString(actualFile, render())
+    if (show) {
+        Desktop.getDesktop().browse(actualFile.toFile().toURI())
+    }
+}
+
 fun Plotly.display(
     pageBuilder: FlowContent.(renderer: PlotlyRenderer) -> Unit
 ) = fragment(pageBuilder).makeFile(null, true)
 
 /**
- * Select file to save plot to
+ * Select a file to save plot to using Swing form.
  */
 @UnstablePlotlyAPI
 fun selectFile(filter: FileNameExtensionFilter? = null): Path? {
@@ -98,6 +110,9 @@ fun selectFile(filter: FileNameExtensionFilter? = null): Path? {
     }
 }
 
+/**
+ * Output format for Orca export
+ */
 enum class OrcaFormat {
     png, jpeg, webp, svg, pdf
 }
