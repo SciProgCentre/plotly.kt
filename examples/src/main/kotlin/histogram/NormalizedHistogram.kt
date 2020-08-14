@@ -1,28 +1,46 @@
 package histogram
 
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.HistNorm
-import scientifik.plotly.models.Type
-import scientifik.plotly.trace
+import hep.dataforge.meta.invoke
+import kscience.plotly.Plotly
+import kscience.plotly.histogram
+import kscience.plotly.makeFile
+import kscience.plotly.models.HistNorm
+import kscience.plotly.palettes.Xkcd
 import java.util.*
 
-
+/**
+ * - normalized histogram: the counts normalized to form a probability density,
+ * i.e., the area (or integral) under the histogram will sum to 1.
+ * - change size of gap between bins
+ * - change font size of tick labels
+ */
 fun main() {
     val rnd = Random()
-    val x = List(500){rnd.nextDouble()}
+    val x1 = List(500) { rnd.nextDouble() }
 
-    val plot = Plotly.plot2D{
-        trace(x){
+    val plot = Plotly.plot {
+        histogram {
+            x.numbers = x1
             name = "Random data"
-            type = Type.histogram
             histnorm = HistNorm.probability
-            marker{
-                color = "rgb(255,255,100)"
+            marker {
+                color(Xkcd.BLUE_GREEN)
             }
         }
+
         layout {
             title = "Normalized Histogram"
+            bargap = 0.1
+            xaxis {
+                tickfont {
+                    size = 16
+                }
+            }
+            yaxis {
+                tickfont {
+                    size = 16
+                }
+            }
         }
     }
 

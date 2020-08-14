@@ -1,36 +1,46 @@
 package histogram
 
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.Type
-import scientifik.plotly.trace
-import java.util.*
+import hep.dataforge.meta.invoke
+import kscience.plotly.Plotly
+import kscience.plotly.histogram
+import kscience.plotly.makeFile
+import kscience.plotly.palettes.T10
 
 
+/**
+ * - horizontal histogram: count entries of each value
+ * ([1, 2, 2, 3, 2, 1, 4, 4] -> [1: 2, 2: 3, 3: 1, 4: 2])
+ * - use T10 as color palette (default color circle)
+ * - use color array
+ * - white ticks as space between axis and labels
+ * - change ticklen, tickcolor parameters
+ */
 fun main() {
-    val rnd = Random()
-    val x = List(500){rnd.nextDouble()}
+    val values = listOf(1, 2, 2, 3, 2, 1, 4, 4)
+    val colors = listOf(T10.RED, T10.GREEN, T10.ORANGE, T10.BLUE)
 
-    val plot = Plotly.plot2D{
-        trace{
+    val plot = Plotly.plot {
+        histogram {
             name = "Random data"
-            type = Type.histogram
-            this.y = x
+            y.set(values)
             marker {
-                color = "pink"
+                colors(colors)
             }
         }
+
         layout {
             title = "Horizontal Histogram"
+            bargap = 0.1
             xaxis {
-                title = "Height"
+                title = "Count"
             }
             yaxis {
-                title = "Bins"
+                title = "Value"
+                ticklen = 3
+                tickcolor("#FFF")
             }
         }
     }
-
 
     plot.makeFile()
 }

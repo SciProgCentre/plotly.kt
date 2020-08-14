@@ -3,4 +3,5 @@ build/
 .idea/
 out/
 
-gradle.properties
+#gradle.properties
+/notebooks/.ipynb_checkpoints/

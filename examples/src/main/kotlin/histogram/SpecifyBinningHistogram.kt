@@ -1,34 +1,46 @@
 package histogram
 
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.models.HisFunc
-import scientifik.plotly.models.Type
-import scientifik.plotly.trace
-import java.util.*
+import hep.dataforge.meta.invoke
+import kscience.plotly.Plotly
+import kscience.plotly.histogram
+import kscience.plotly.makeFile
+import kscience.plotly.models.HistFunc
+import kscience.plotly.models.XAnchor
 
 
+/**
+ * - defferent binning functions
+ * - default color cycle
+ * - change legend border width
+ */
 fun main() {
-    val x = listOf("Apples","Apples","Apples","Organges", "Bananas")
-    val y = listOf("5","10","3","10","5")
+    val categories = listOf("Apples", "Apples", "Apples", "Oranges", "Bananas")
+    val values = listOf("5", "10", "3", "10", "5")
 
-    val plot = Plotly.plot2D{
-        trace{
+    val plot = Plotly.plot {
+        histogram {
             name = "count"
-            type = Type.histogram
-            this.x = x
-            this.y = y
-            histfunc = HisFunc.count
+            x.strings = categories
+            y.strings = values
+            histfunc = HistFunc.count
         }
-        trace{
+
+        histogram {
             name = "sum"
-            type = Type.histogram
-            this.x = x
-            this.y = y
-            histfunc = HisFunc.sum
+            x.strings = categories
+            y.strings = values
+            histfunc = HistFunc.sum
         }
+
         layout {
+            width = 750
             title = "Specify Binning Function"
+            legend {
+                x = 1
+                y = 1
+                xanchor = XAnchor.auto
+                borderwidth = 1
+            }
         }
     }
 

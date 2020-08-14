@@ -5,6 +5,7 @@ pluginManagement {
         gradlePluginPortal()
         maven("https://dl.bintray.com/kotlin/kotlin-eap")
         maven("https://dl.bintray.com/kotlin/kotlinx")
+        maven("https://dl.bintray.com/mipt-npm/dataforge")
         maven("https://dl.bintray.com/mipt-npm/scientifik")
         maven("https://dl.bintray.com/mipt-npm/dev")
     }
@@ -18,12 +19,13 @@ pluginManagement {
     }
 }
 
-enableFeaturePreview("GRADLE_METADATA")
-
-//rootProject.name = "plot"
+rootProject.name = "plotlykt"
 
 include(
     ":plotlykt-core",
     ":plotlykt-server",
-    ":examples"
+    ":plotlykt-script",
+    ":examples",
+    ":fx-demo",
+    ":js-demo"
 )

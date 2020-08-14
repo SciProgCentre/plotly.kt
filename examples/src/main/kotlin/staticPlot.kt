@@ -1,17 +1,21 @@
-import scientifik.plotly.Plotly
-import scientifik.plotly.makeFile
-import scientifik.plotly.trace
+import hep.dataforge.meta.invoke
+import kscience.plotly.Plotly
+import kscience.plotly.makeFile
+import kscience.plotly.trace
 import kotlin.math.PI
 import kotlin.math.sin
 
 fun main() {
-    val x = (0..100).map { it.toDouble() / 100.0 }
-    val y = x.map { sin(2.0 * PI * it) }
+    val xValues = (0..100).map { it.toDouble() / 100.0 }
+    val yValues = xValues.map { sin(2.0 * PI * it) }
 
-    val plot = Plotly.plot2D {
-        trace(x, y) {
+    val plot = Plotly.plot {
+        trace {
+            x.set(xValues)
+            y.set(yValues)
             name = "for a single trace in graph its name would be hidden"
         }
+
         layout {
             title = "Graph name"
             xaxis {

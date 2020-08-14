@@ -1,8 +1,18 @@
+import hep.dataforge.meta.invoke
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import scientifik.plotly.Plotly
-import scientifik.plotly.models.Trace
-import scientifik.plotly.server.serve
+import kotlinx.html.a
+import kotlinx.html.div
+import kotlinx.html.h1
+import kotlinx.html.style
+import kscience.plotly.Plot
+import kscience.plotly.Plotly
+import kscience.plotly.models.Trace
+import kscience.plotly.models.invoke
+import kscience.plotly.plot
+import kscience.plotly.server.close
+import kscience.plotly.server.serve
+import kscience.plotly.server.show
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -15,49 +25,68 @@ fun main() {
         val y1 = x.map { sin(2.0 * PI * it) }.toDoubleArray()
         val y2 = x.map { cos(2.0 * PI * it) }.toDoubleArray()
 
-        val trace1 = Trace.build(x = x, y = y1) { name = "sin" }
-        val trace2 = Trace.build(x = x, y = y2) { name = "cos" }
+        val trace1 = Trace(x, y1) { name = "sin" }
+        val trace2 = Trace(x, y2) { name = "cos" }
 
+        lateinit var plot1: Plot
 
         //root level plots go to default page
-
-        plot(1, 8) {
-            trace(trace1, trace2)
-            layout {
-                title = "First graph, row: 1, size: 8/12"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+        page {
+            h1 { +"This is the plot page" }
+            a("/other") { +"The other page" }
+            div {
+                style = "display: flex;   align-items: stretch; "
+                div {
+                    style = "width: 64%;"
+                    plot1 = plot {
+                        traces(trace1, trace2)
+                        layout {
+                            title = "First graph, row: 1, size: 8/12"
+                            xaxis { title = "x axis name" }
+                            yaxis { title = "y axis name" }
+                        }
+                    }
+                }
+                div {
+                    style = "width: 32%;"
+                    plot {
+                        traces(trace1, trace2)
+                        layout {
+                            title = "Second graph, row: 1, size: 4/12"
+                            xaxis { title = "x axis name" }
+                            yaxis { title = "y axis name" }
+                        }
+                    }
+                }
             }
-        }
 
-        val plot1 = plot(1, 4) {
-            trace(trace1, trace2)
-            layout {
-                title = "Second graph, row: 1, size: 4/12"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
-            }
-        }
 
-        plot(2, 12) {
-            trace(trace1, trace2)
-            layout {
-                title = "Third graph, row: 2, size: 12/12"
-                xaxis { title = "x axis name" }
-                yaxis { title = "y axis name" }
+
+            div {
+                plot {
+                    traces(trace1, trace2)
+                    layout {
+                        title = "Third graph, row: 2, size: 12/12"
+                        xaxis { title = "x axis name" }
+                        yaxis { title = "y axis name" }
+                    }
+                }
             }
         }
 
         page("other") {
-            title = "Other page"
-            plot(plot1, id = "plot1")
+            h1 { +"This is the other plot page" }
+            a("/") { +"Back to the main page" }
+            plot(plot1)
         }
 
     }
 
+    server.show()
+
     println("Press Enter to close server")
     readLine()
 
-    server.stop()
+    server.close()
 
 }
