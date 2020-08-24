@@ -1,0 +1,467 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Made with Remarkable!
+  </title>
+  <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_SVG"></script>
+  <script type="text/javascript" src="https://cdn.plot.ly/plotly-1.54.6.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css" rel="stylesheet"/>
+  <style type="text/css">
+   ::selection,a::selection{background:rgba(255,255,0,.3)}a,a::selection{color:#0645ad}hr,img{border:0}a,ins{text-decoration:none}::selection,ins,mark{color:#000}dfn,mark{font-style:italic}hr,ol,p,ul{margin:1em 0}table tr td,table tr th{border:1px solid #ccc;text-align:left;padding:6px 13px;margin:0}hr,pre code,table,table tr{padding:0}pre,pre code{white-space:pre}html{font-size:100%;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{color:#444;font-family:Georgia,Palatino,"Palatino Linotype",Times,"Times New Roman",serif;font-size:12px;line-height:1.5em;padding:1em;margin:auto;max-width:42em;background:#fefefe}a:visited{color:#0b0080}a:hover{color:#06e}a:active{color:#faa700}a:focus{outline:dotted thin}a:active,a:hover{outline:0}::-moz-selection{background:rgba(255,255,0,.3);color:#000}a::-moz-selection{background:rgba(255,255,0,.3);color:#0645ad}img{max-width:100%;-ms-interpolation-mode:bicubic;vertical-align:middle}h1,h2,h3,h4,h5,h6{font-weight:400;color:#111;line-height:1em}b,h4,h5,h6,mark,strong,table tr th{font-weight:700}h1{font-size:2.5em}h2{font-size:2em}h3{font-size:1.5em}h4{font-size:1.2em}h5{font-size:1em}h6{font-size:.9em}blockquote{color:#666;margin:0;padding-left:3em;border-left:.5em #EEE solid}hr{display:block;height:2px;border-top:1px solid #aaa;border-bottom:1px solid #eee}code,kbd,pre,samp{color:#000;font-family:monospace,monospace;font-size:.98em}pre{white-space:pre-wrap;word-wrap:break-word}ins{background:#ff9}mark{background:#ff0}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}ol,ul{padding:0 0 0 2em}li p:last-child{margin:0}dd{margin:0 0 0 2em}table{border-collapse:collapse;border-spacing:0}td{vertical-align:top}@media only screen and (min-width:480px){body{font-size:14px}}@media only screen and (min-width:768px){body{font-size:16px}}@media print{blockquote,img,pre,tr{page-break-inside:avoid}*{background:0 0!important;color:#000!important;filter:none!important;-ms-filter:none!important}body{font-size:12pt;max-width:100%}a,a:visited{text-decoration:underline}hr{height:1px;border:0;border-bottom:1px solid #000}a[href]:after{content:" (" attr(href) ")"}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}blockquote,pre{border:1px solid #999;padding-right:1em}img{max-width:100%!important}@page :left{margin:15mm 20mm 15mm 10mm}@page :right{margin:15mm 10mm 15mm 20mm}h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}}table tr{border-top:1px solid #ccc;background-color:#fff;margin:0}table tr:nth-child(2n){background-color:#aaa}table tr td :first-child,table tr th :first-child{margin-top:0}table tr td:last-child,table tr th :last-child{margin-bottom:0}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px}pre code{margin:0;border:none;background:0 0}.highlight pre,pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}
+  </style>
+ </head>
+ <body>
+  <h1 id="plotlykt-v020">
+   Plotly.kt: v0.2.0
+  </h1>
+  <hr/>
+  <p>
+   <img alt="logo" src="https://raw.githubusercontent.com/mipt-npm/plotly.kt/master/docs/logo_text.svg"/>
+  </p>
+  <h3 id="intro">
+   Intro
+  </h3>
+  <p>
+   Data visualization tasks are closely related to educational, scientific and business issues. There is a great number of graphic libraries, usually written and available from languages, designed for data science issues. But few of them could be used from Kotlin, that prevents many people from using it for statistical computing and graphics. One of the most popular browser graphic libraries is
+   <a href="https://plotly.com/">
+    Plotly
+   </a>
+   available from most languages (JavaScript itslef, Python, R, etc). That’s why it was decided to create Kotlin wrapper for Plotly, which uses JVM backend for drawing in browser some static HTML-page or starting its own web-server. The original Plotly API was preserved as much as possible and some new features and abilites were added.
+   <br/>
+   New Plotly.kt logo symbolizes the relationship between the Kotlin language and initial Plotly library. Therefore, gradient colors and the shape of the letter “K” have been taken from Kotlin
+   <a href="https://commons.wikimedia.org/wiki/File:Kotlin-logo.svg">
+    logo
+   </a>
+   , while white histogram and cerulean dots are borrowed from Plotly
+   <a href="https://en.wikipedia.org/wiki/Plotly#/media/File:Plotly-logo-01-square.png">
+    logo
+   </a>
+   to illustrate that a greate variety of types of fully styled plots can be created with
+   <a href="https://github.com/mipt-npm/plotly.kt/">
+    Plotly.kt
+   </a>
+   !
+  </p>
+  <h3 id="plotlykt-content">
+   Plotly.kt content
+  </h3>
+  <p>
+   Our version of Plotly.kt library contains different classes for each supported type of plot, such as Histogram, Heatmap or Pie Chart, inherited from Trace, which is the main class containing all nonspecific methods and parameters. It was made in this way to flatten library model structure and to avoid duplication of large chunks of code, which is one of the problems of Plotly library itself, in which it is nearly impossible even to download all the
+   <a href="https://plotly.com/javascript/reference/">
+    documentation
+   </a>
+   . Each class contains an
+   <code>
+    init
+   </code>
+   block where the trace type is set:
+  </p>
+  <pre><code>class Pie : Trace() {
+    init {
+        type = TraceType.pie
+    }
+}
+</code></pre>
+  <p>
+   At present Plotly.kt supports all major trace types which could be combined in one plot:
+  </p>
+  <pre><code>enum class TraceType {
+    bar,
+    box,
+    contour,
+    heatmap,
+    heatmapgl,
+    histogram,
+    histogram2d,
+    histogram2dcontour,
+    pie,
+    scatter,
+    scattergl,
+    violin
+}
+</code></pre>
+  <p>
+   Many other trace types will be supported in the future, such as 3D graphics, polar plots and geo maps. Calling one of the not supported types will cause an error.
+  </p>
+  <p>
+   All traces subclasses (Bar, Box, etc), Trace itself and additional layout and trace classes (Font, Title, Line, etc) contain a big number of different methods and parameters, and all of them are, in fact, delegates:
+  </p>
+  <pre><code>class Domain : Scheme() {
+    /**
+     * Sets the horizontal domain of this pie trace (in plot fraction).
+     * Default: [0, 1]
+     */
+    var x by numberList()
+
+    /**
+     * Sets the vertical domain of this pie trace (in plot fraction).
+     * Default: [0, 1]
+     */
+    var y by numberList()
+}
+</code></pre>
+  <p>
+   These classes are inherited from
+   <code>
+    Scheme
+   </code>
+   , which allows to store the values of all parameters as a dynamic tree. It is important for a dynamic update of the plot, therefore now real-time updates are available.
+   <br/>
+   Moreover, if you need one of the unsupported methods, you can change the trace configuration, which is similarly available owing to the dynamic tree structure:
+  </p>
+  <pre><code>val trace = Trace.invoke(x, y) {
+    name = "sin"
+    /** The hover text definition is currently not supported.
+     *  We are applying it directly to configuration.
+     *  It is still observable in the same way as other properties but is not type safe.
+     */
+    configure {
+        set("text", x.map { "label for  $it" })
+    }
+}
+</code></pre>
+  <p>
+   Plot description is divided into two parts as in the original Plotly library:
+   <br/>
+   -
+   <strong>
+    traces
+   </strong>
+   : data values, type of the plot, common parameters and specific parameters (e.g. bins width and color for Bar chart), text
+   <br/>
+   -
+   <strong>
+    layout
+   </strong>
+   : frame settings including axes, annotations, legend and shapes
+  </p>
+  <p>
+   Unfortunately, sometimes it’s not easy to make out what type the object is (a trace or a layout) and it is the next problem of the original Plotly API. If you have any problems with that, please check Plotly
+   <a href="https://plotly.com/javascript/reference/">
+    documentation
+   </a>
+   <br/>
+   But let’s start with creating a simple scatter plot:
+  </p>
+  <pre><code>Plotly.plot {
+    scatter {
+        x(1, 2, 3, 4)
+        y(12, 5, 2, 12)
+        mode = ScatterMode.`lines+markers`
+    }
+    layout {
+        title = "Line and Scatter Plot"
+    }
+}.makeFile()
+</code></pre>
+  <h3 id="features">
+   Features
+  </h3>
+  <p>
+   This version of Plotly.kt library contains several modules, which are necessary for supporting some important features:
+   <br/>
+   1.
+   <strong>
+    Static page
+   </strong>
+   is an isolated whole HTML page, which can contain custom headers, separators and any other Kotlin-html elements. Plot description is built in the created page in JSON format. After calling
+   <code>
+    plot.makeFile()
+   </code>
+   function corresponding HTML file saves to a temporary file, which can be customized.
+   <br/>
+   For example, support of LaTeX rendering with
+   <a href="https://www.mathjax.org/">
+    MathJax
+   </a>
+   can be added by using custom headers. But you need to remember that some font properties have no effect while using LaTeX, that is why you need to change font size or width by means of LaTeX itself:
+  </p>
+  <pre><code>Plotly.page(mathJaxHeader) {
+    plot {
+        scatter { 
+            x.set(xValues)
+            y.set(yValues)
+            name = "\$\\Large{y = \\mathrm{sin}\\,x}\$"  // increasing fontsize
+        }
+    }
+}.makeFile()
+</code></pre>
+  <p>
+   The resulting graph looks as follows.
+  </p>
+  <div id="kscience.plotly.Plot@6c40365c">
+  </div>
+  <script>
+   Plotly.react('kscience.plotly.Plot@6c40365c',
+        [{"line":{"color":"#0485D1"},"x":[-6.440264939859076,-6.283185307179586,-6.126105674500097,-5.969026041820608,-5.811946409141118,-5.654866776461628,-5.497787143782138,-5.340707511102648,-5.1836278784231595,-5.026548245743669,-4.869468613064179,-4.71238898038469,-4.5553093477052,-4.39822971502571,-4.241150082346222,-4.084070449666731,-3.9269908169872414,-3.769911184307752,-3.612831551628262,-3.455751918948773,-3.2986722862692828,-3.141592653589793,-2.984513020910304,-2.827433388230814,-2.670353755551324,-2.5132741228718345,-2.356194490192345,-2.199114857512855,-2.0420352248333655,-1.884955592153876,-1.7278759594743864,-1.5707963267948966,-1.413716694115407,-1.2566370614359172,-1.0995574287564276,-0.942477796076938,-0.7853981633974483,-0.6283185307179586,-0.471238898038469,-0.3141592653589793,-0.15707963267948966,0.0,0.15707963267948966,0.3141592653589793,0.471238898038469,0.6283185307179586,0.7853981633974483,0.942477796076938,1.0995574287564276,1.2566370614359172,1.413716694115407,1.5707963267948966,1.7278759594743864,1.884955592153876,2.0420352248333655,2.199114857512855,2.356194490192345,2.5132741228718345,2.670353755551324,2.827433388230814,2.984513020910304,3.141592653589793,3.2986722862692828,3.455751918948773,3.612831551628262,3.769911184307752,3.9269908169872414,4.084070449666731,4.241150082346222,4.39822971502571,4.5553093477052,4.71238898038469,4.869468613064179,5.026548245743669,5.1836278784231595,5.340707511102648,5.497787143782138,5.654866776461628,5.811946409141118,5.969026041820608,6.126105674500097,6.283185307179586,6.440264939859076],"name":"$\\Large{y = \\mathrm{sin}\\,x}$","y":[-0.15643446504023062,2.4492935982947064E-16,0.15643446504023112,0.3090169943749468,0.4539904997395462,0.5877852522924734,0.7071067811865477,0.8090169943749476,0.8910065241883676,0.9510565162951536,0.9876883405951378,1.0,0.9876883405951377,0.9510565162951535,0.8910065241883682,0.8090169943749473,0.7071067811865475,0.5877852522924734,0.4539904997395467,0.30901699437494773,0.15643446504023073,-1.2246467991473532E-16,-0.15643446504023054,-0.3090169943749475,-0.45399049973954686,-0.5877852522924732,-0.7071067811865476,-0.8090169943749475,-0.8910065241883679,-0.9510565162951535,-0.9876883405951377,-1.0,-0.9876883405951378,-0.9510565162951535,-0.8910065241883678,-0.8090169943749475,-0.7071067811865475,-0.5877852522924731,-0.4539904997395468,-0.3090169943749474,-0.15643446504023087,0.0,0.15643446504023087,0.3090169943749474,0.4539904997395468,0.5877852522924731,0.7071067811865475,0.8090169943749475,0.8910065241883678,0.9510565162951535,0.9876883405951378,1.0,0.9876883405951377,0.9510565162951535,0.8910065241883679,0.8090169943749475,0.7071067811865476,0.5877852522924732,0.45399049973954686,0.3090169943749475,0.15643446504023054,1.2246467991473532E-16,-0.15643446504023073,-0.30901699437494773,-0.4539904997395467,-0.5877852522924734,-0.7071067811865475,-0.8090169943749473,-0.8910065241883682,-0.9510565162951535,-0.9876883405951377,-1.0,-0.9876883405951378,-0.9510565162951536,-0.8910065241883676,-0.8090169943749476,-0.7071067811865477,-0.5877852522924734,-0.4539904997395462,-0.3090169943749468,-0.15643446504023112,-2.4492935982947064E-16,0.15643446504023062],"hoverinfo":"text","text":["sin = -0.15643446504023062","sin = 2.4492935982947064E-16","sin = 0.15643446504023112","sin = 0.3090169943749468","sin = 0.4539904997395462","sin = 0.5877852522924734","sin = 0.7071067811865477","sin = 0.8090169943749476","sin = 0.8910065241883676","sin = 0.9510565162951536","sin = 0.9876883405951378","sin = 1.0","sin = 0.9876883405951377","sin = 0.9510565162951535","sin = 0.8910065241883682","sin = 0.8090169943749473","sin = 0.7071067811865475","sin = 0.5877852522924734","sin = 0.4539904997395467","sin = 0.30901699437494773","sin = 0.15643446504023073","sin = -1.2246467991473532E-16","sin = -0.15643446504023054","sin = -0.3090169943749475","sin = -0.45399049973954686","sin = -0.5877852522924732","sin = -0.7071067811865476","sin = -0.8090169943749475","sin = -0.8910065241883679","sin = -0.9510565162951535","sin = -0.9876883405951377","sin = -1.0","sin = -0.9876883405951378","sin = -0.9510565162951535","sin = -0.8910065241883678","sin = -0.8090169943749475","sin = -0.7071067811865475","sin = -0.5877852522924731","sin = -0.4539904997395468","sin = -0.3090169943749474","sin = -0.15643446504023087","sin = 0.0","sin = 0.15643446504023087","sin = 0.3090169943749474","sin = 0.4539904997395468","sin = 0.5877852522924731","sin = 0.7071067811865475","sin = 0.8090169943749475","sin = 0.8910065241883678","sin = 0.9510565162951535","sin = 0.9876883405951378","sin = 1.0","sin = 0.9876883405951377","sin = 0.9510565162951535","sin = 0.8910065241883679","sin = 0.8090169943749475","sin = 0.7071067811865476","sin = 0.5877852522924732","sin = 0.45399049973954686","sin = 0.3090169943749475","sin = 0.15643446504023054","sin = 1.2246467991473532E-16","sin = -0.15643446504023073","sin = -0.30901699437494773","sin = -0.4539904997395467","sin = -0.5877852522924734","sin = -0.7071067811865475","sin = -0.8090169943749473","sin = -0.8910065241883682","sin = -0.9510565162951535","sin = -0.9876883405951377","sin = -1.0","sin = -0.9876883405951378","sin = -0.9510565162951536","sin = -0.8910065241883676","sin = -0.8090169943749476","sin = -0.7071067811865477","sin = -0.5877852522924734","sin = -0.4539904997395462","sin = -0.3090169943749468","sin = -0.15643446504023112","sin = -2.4492935982947064E-16","sin = 0.15643446504023062"],"type":"scatter"},{"mode":"markers","line":{"color":"#056EEE"},"marker":{"size":8},"showlegend":false,"x":[-6.283185307179586,-3.141592653589793,3.141592653589793,6.283185307179586],"y":[0,0,0,0],"hoverinfo":"none","type":"scatter"},{"mode":"markers","line":{"color":"red"},"marker":{"size":8},"showlegend":false,"x":[-5.759586531581287,-3.665191429188092,0.5235987755982988,2.6179938779914944,-5.759586531581287,-3.665191429188092,0.5235987755982988,2.6179938779914944],"y":[0.5,0.5,0.5,0.5,0,0,0,0],"hoverinfo":"none","type":"scatter"},{"mode":"text","showlegend":false,"x":[-0.35,0.28,6.683185307179587],"y":[0.56,1.3,0.1],"textfont":{"color":["red","black","black"]},"hoverinfo":"none","text":["$\\Large{1/2}$","$\\huge{y}$","$\\huge{x}$"],"type":"scatter"}],
+        {"xaxis":{"zeroline":false,"showgrid":false,"anchor":"free","ticktext":["$\\huge{-2\\pi}$","$\\huge{-\\pi}$","$\\huge{\\pi}$","$\\huge{2\\pi}$"],"position":0.43,"tickvals":[-6.333185307179586,-3.291592653589793,3.0915926535897933,6.383185307179586]},"margin":{"r":20,"b":20,"t":50,"l":20},"shapes":[{"@index":"0","line":{"color":"red"},"y0":0,"x0":-5.759586531581287,"y1":0.5,"x1":-5.759586531581287},{"@index":"1","line":{"color":"red"},"y0":0,"x0":-3.665191429188092,"y1":0.5,"x1":-3.665191429188092},{"@index":"2","line":{"color":"red"},"y0":0,"x0":0.5235987755982988,"y1":0.5,"x1":0.5235987755982988},{"@index":"3","line":{"color":"red"},"y0":0,"x0":2.6179938779914944,"y1":0.5,"x1":2.6179938779914944},{"@index":"4","line":{"dash":"dash"},"y0":1,"x0":-6.283185307179586,"y1":1,"x1":6.283185307179586},{"@index":"5","line":{"color":"red","dash":"dash"},"y0":0.5,"x0":-6.283185307179586,"y1":0.5,"x1":6.283185307179586},{"@index":"6","line":{"dash":"dash"},"y0":-1,"x0":-6.283185307179586,"y1":-1,"x1":6.283185307179586}],"legend":{"xanchor":"right","borderwidth":1,"x":0.97,"y":1,"yanchor":"top","font":{"size":32}},"annotations":[{"@index":"0","ax":-800,"x":6.5973445725385655,"ay":0,"y":0},{"@index":"1","ax":0,"x":0,"ay":430,"y":1.3141592653589793}],"yaxis":{"zeroline":false,"showgrid":false,"anchor":"free","ticktext":["$\\Large{-1}$","$\\Large{0}$","$\\Large{1}$"],"position":0.485,"tickvals":[-0.91,0.09,1.09]}},
+        {}
+    );
+  </script>
+  <p>
+   Full tutorial of drawing the sinus picture is available
+   <a href="https://github.com/mipt-npm/plotly.kt/blob/master/docs/tutorials/HowToDrawASinus.md">
+    here
+   </a>
+   , while the source code can be found
+   <a href="https://github.com/mipt-npm/plotly.kt/blob/master/examples/src/main/kotlin/tutorials/SinusPicture.kt">
+    here
+   </a>
+   <br/>
+   2.
+   <strong>
+    HtmlFragment
+   </strong>
+   is a fragment of Kotlin-html page, which also can be displayed in the browser after calling
+   <code>
+    .makefile()
+   </code>
+   .
+   <br/>
+   For example, if you need to download plot in SVG format instead of PNG, you can directly change configuration of the plot and change Plotly browser button from “download png” to “download svg”:
+  </p>
+  <pre><code>Plotly.fragment {
+    val plotConfig = PlotlyConfig {
+        saveAsSvg()
+    }
+    plot(config = plotConfig) {...}
+}.makeFile()
+
+</code></pre>
+  <p>
+   After applying this configuration the result will be as follows.
+  </p>
+  <div id="kscience.plotly.Plot@43bc63a3">
+  </div>
+  <script>
+   Plotly.react('kscience.plotly.Plot@43bc63a3',
+        [{"mode":"markers","marker":{"color":["rgb(93, 164, 214)","rgb(255, 144, 14)","rgb(44, 160, 101)","rgb(255, 65, 54)"],"size":[40,60,80,100]},"x":[1,2,3,4],"y":[10,11,12,13],"text":["A<br>size: 40","B<br>size: 60","C<br>size: 80","D<br>size: 100"],"type":"scatter"}],
+        {"showlegend":false,"width":600,"title":{"text":"Download Chart as SVG instead of PNG"},"height":600},
+        {"toImageButtonOptions":{"format":"svg"}}
+    );
+  </script>
+  <p>
+   Example code is available
+   <a href="https://github.com/mipt-npm/plotly.kt/blob/master/examples/src/main/kotlin/downloadChartAsSVG.kt">
+    here
+   </a>
+   <br/>
+   3.
+   <strong>
+    Static plot
+   </strong>
+   is created after inserting resulting JSON with the plot description into a template HTML page. If you don’t need any specific settings using static plots is the easiest way to get an image.
+  </p>
+  <div id="kscience.plotly.Plot@40a4337a">
+  </div>
+  <script>
+   Plotly.react('kscience.plotly.Plot@40a4337a',
+        [{"marker":{"colors":["rgb(56, 75, 126)","rgb(18, 36, 37)","rgb(34, 53, 101)","rgb(36, 55, 57)","rgb(6, 4, 4)"]},"values":[38,27,18,10,7],"domain":{"x":[0,0.48],"y":[0,0.48]},"name":"Starry Night","hoverinfo":"label+percent+name","type":"pie","textinfo":"none","labels":["1st","2nd","3rd","4th","5th"]},{"marker":{"colors":["rgb(177, 127, 38)","rgb(205, 152, 36)","rgb(99, 79, 37)","rgb(129, 180, 179)","rgb(124, 103, 37)"]},"values":[28,26,21,15,10],"domain":{"x":[0,0.48],"y":[0.52,1]},"name":"Sunflowers","hoverinfo":"label+percent+name","type":"pie","textinfo":"none","labels":["1st","2nd","3rd","4th","5th"]},{"marker":{"colors":["rgb(33, 75, 99)","rgb(79, 129, 102)","rgb(151, 179, 100)","rgb(175, 49, 35)","rgb(36, 73, 147)"]},"values":[38,19,16,14,13],"domain":{"x":[0.52,1],"y":[0,0.48]},"name":"Irises","hoverinfo":"label+percent+name","type":"pie","textinfo":"none","labels":["1st","2nd","3rd","4th","5th"]},{"marker":{"colors":["rgb(146, 123, 21)","rgb(177, 180, 34)","rgb(206, 206, 40)","rgb(175, 51, 21)","rgb(35, 36, 21)"]},"values":[31,24,19,18,8],"domain":{"x":[0.52,1],"y":[0.52,1]},"name":"The Night Cafe","hoverinfo":"label+percent+name","type":"pie","textinfo":"none","labels":["1st","2nd","3rd","4th","5th"]}],
+        {"showlegend":false,"width":500,"title":{"text":"Pie Chart With Many Traces"},"height":500},
+        {}
+    );
+  </script>
+  <p>
+   Full source code is available
+   <a href="https://github.com/mipt-npm/plotly.kt/blob/master/examples/src/main/kotlin/pie/ManyTracesChart.kt">
+    here
+   </a>
+   <br/>
+   4.
+   <strong>
+    Dynamic plot
+   </strong>
+   collects updates in the Collector, which flushes updates once in a while (50 ms by default). After flushing takes place only modified parts of the plot are updated.
+   <br/>
+   5.
+   <strong>
+    Jupyter
+   </strong>
+   is now supported in an experimental mode. There are two modules in Plotly.kt repository for Kotlin-Jupyter: static (call
+   <code>
+    %use plotly
+   </code>
+   ) and server (call
+   <code>
+    %use plotly-server
+   </code>
+   ). The server is needed to make dynamic charts with real-time updates. For the time being integration with JupyterLab works stably, but there are some problems with Jupyter Classic because of the properties, connected with files and scripts loading.
+  </p>
+  <pre><code>%use plotly
+import kotlin.math.*
+
+Plotly.plot {
+    scatter {
+        x.set((0..100).map { it.toDouble() / 100.0 })
+        y.set((0..100).map { sin(2.0 * PI * (it.toDouble() / 100.0)) })
+    }
+
+    layout {
+        title = "$\\text{TeX is Number} \\displaystyle\\sum_{n=1}^\\infty \\frac{-e^{i\\pi}}{2^n}!$"
+    }
+}
+</code></pre>
+  <p>
+   <img alt="static" src="https://i.ibb.co/R3r5FXh/newplot-9.png"/>
+  </p>
+  <p>
+   MathJax is loaded automatically, so LaTeX rendering works without any custom headers. More examples with Jupyter notebooks,
+   <a href="https://github.com/mipt-npm/plotly.kt/blob/master/notebooks/plotly.json">
+    plotly.json
+   </a>
+   and
+   <a href="https://github.com/mipt-npm/plotly.kt/blob/master/notebooks/plotly-server.json">
+    plotly-server.json
+   </a>
+   are available
+   <a href="https://github.com/mipt-npm/plotly.kt/tree/master/notebooks">
+    here
+   </a>
+  </p>
+  <h3 id="examples">
+   Examples
+  </h3>
+  <p>
+   A plot object contains flexible
+   <code>
+    traces
+   </code>
+   and
+   <code>
+    layout
+   </code>
+   sections and you need to specify at least one of them to make an image. Don’t forget to call
+   <code>
+    makeFile()
+   </code>
+   !
+  </p>
+  <pre><code>val plot = Plotly.plot {
+    scatter {
+        x(1, 2, 3, 4, 5)
+        y("a", "b", "c", "d")
+    }
+    layout {
+        title = "Graph name"
+    }
+}
+plot.makeFile()
+</code></pre>
+  <p>
+   There is a great number of customizable parameters and methods.
+   <br/>
+   Let’s have a look at some cases:
+  </p>
+  <ul>
+   <li>
+    <strong>
+     Logarithmic axis
+    </strong>
+    <br/>
+    Axis type can be set by changing the
+    <code>
+     axis.type
+    </code>
+    parameter to one of the available values (linear, log, date, category or multicategory).
+   </li>
+  </ul>
+  <pre><code>layout {
+    xaxis {
+        type = AxisType.log
+        autorange = true
+    }
+    yaxis {
+        type = AxisType.log
+        autorange = true
+    }
+}
+</code></pre>
+  <div id="kscience.plotly.Plot@702657cc">
+  </div>
+  <script>
+   Plotly.react('kscience.plotly.Plot@702657cc',
+        [{"x":[0,1,2,3,4,5,6,7,8],"y":[8,7,6,5,4,3,2,1,0],"type":"scatter"},{"x":[0,1,2,3,4,5,6,7,8],"y":[0,1,2,3,4,5,6,7,8],"type":"scatter"}],
+        {"xaxis":{"autorange":true,"type":"log"},"title":{"text":"Log scale axis"},"yaxis":{"autorange":true,"type":"log"}},
+        {}
+    );
+  </script>
+  <ul>
+   <li>
+    <strong>
+     Custom colorscale
+    </strong>
+    <br/>
+    The colorscale is an array containing arrays mapping a normalized value to some color. The lowest (0) and the highest (1) values are required.
+   </li>
+  </ul>
+  <pre><code>plot {
+    heatmap {
+        colorscale = Value.of(listOf(listOf(0, "#B1D1FC"), listOf(1, "#7E1E9C"))
+    }
+}
+</code></pre>
+  <div id="kscience.plotly.Plot@776aec5c">
+  </div>
+  <script>
+   Plotly.react('kscience.plotly.Plot@776aec5c',
+        [{"colorscale":[[0,"#B1D1FC"],[1,"#7E1E9C"]],"x":[1949,1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961],"y":["January","February","March","April","May","June","July","August","September","October","November","December"],"z":[[112,115,145,171,196,204,242,284,315,340,360,417],[118,126,150,180,196,188,233,277,301,318,342,391],[132,141,178,193,236,235,267,317,356,362,406,419],[129,135,163,181,235,227,269,313,348,348,396,461],[121,125,172,183,229,234,270,318,355,363,420,472],[135,149,178,218,243,264,315,374,422,435,472,535],[148,170,199,230,264,302,364,413,465,491,548,622],[148,170,199,242,272,293,347,405,467,505,559,606],[136,158,184,209,237,259,312,355,404,404,463,508],[119,133,162,191,211,229,274,306,347,359,407,461],[104,114,146,172,180,203,237,271,305,310,362,390],[118,140,166,194,201,229,278,306,336,337,405,432]],"type":"heatmap"}],
+        {"xaxis":{"title":"Years"},"title":{"text":"Heatmap of Flight Density from 1949 to 1961"},"height":700},
+        {}
+    );
+  </script>
+  <ul>
+   <li>
+    <strong>
+     Horizontal Bar chart
+    </strong>
+    <br/>
+    If you need to rotate a bar chart, it could be easily done by changing the
+    <code>
+     bar.orientation
+    </code>
+    parameter.
+   </li>
+  </ul>
+  <pre><code>plot {
+    bar {
+        orientation = Orientation.h
+    }
+}
+</code></pre>
+  <div id="kscience.plotly.Plot@f5958c9">
+  </div>
+  <script>
+   Plotly.react('kscience.plotly.Plot@f5958c9',
+        [{"orientation":"h","marker":{"color":["DarkOliveGreen","OliveDrab","YellowGreen","GreenYellow","Yellow","PeachPuff","Pink","HotPink","DeepPink","MediumVioletRed","Purple","RebeccaPurple","MediumBlue","Blue","DodgerBlue","SteelBlue","LightSlateGrey","SlateGrey","DarkSlateGrey","Black"]},"x":[0.5131163603362248,0.44767136907411076,0.9640670580072369,0.631883983326478,0.05461331967764027,0.9442631202286849,0.3004160799594585,0.6945046208595288,0.8631974261192648,0.9013546172414435,0.41774793535685273,0.813687314831026,0.2362554840967328,0.3132872728210513,0.2740367726497458,0.09783899620817738,0.5878780378894908,0.558316756325937,0.8900888299914169,0.13980040551909856],"y":["DarkOliveGreen","OliveDrab","YellowGreen","GreenYellow","Yellow","PeachPuff","Pink","HotPink","DeepPink","MediumVioletRed","Purple","RebeccaPurple","MediumBlue","Blue","DodgerBlue","SteelBlue","LightSlateGrey","SlateGrey","DarkSlateGrey","Black"],"type":"bar"}],
+        {"xaxis":{"tickfont":{"size":14}},"margin":{"l":160},"title":{"text":"What an Awesome Plot!"},"yaxis":{"tickcolor":"white","tickfont":{"size":16},"ticklen":4},"height":700},
+        {}
+    );
+  </script>
+  <p>
+   Vertical axes labels show some
+   <a href="https://www.w3schools.com/colors/colors_names.asp">
+    css named
+   </a>
+   colors.
+  </p>
+  <p>
+   For more examples please check our
+   <a href="https://github.com/mipt-npm/plotly.kt/tree/master/examples/src/main/kotlin">
+    GitHub
+   </a>
+   page. Thank you for your attention!
+  </p>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js">
+  </script>
+  <script>
+   hljs.initHighlightingOnLoad();
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   MathJax.Hub.Config({"showProcessingMessages" : false,"messageStyle" : "none","tex2jax": { inlineMath: [ [ "$", "$" ] ] }});
+  </script>
+ </body>
+</html>
