@@ -17,7 +17,7 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 fun serve(scale: ObservableIntegerValue) = Plotly.serve {
-    embedData = true //Should be set this way to avid FX browser bug
+    embedData = true //Should be set this way to avoid FX browser bug
 
     page("Static") {
         val x = (0..100).map { it.toDouble() / 100.0 }.toDoubleArray()
