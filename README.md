@@ -16,6 +16,9 @@ Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-np
 
 Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/dev/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/dev/plotlykt-server/_latestVersion)
 
+## Compatibility note
+The current `0.2.0` version of the library is compatible with kotlin 1.3 and kotlinx-serialization 0.20.0. It is not guaranteed to work with kotlin 1.4. The next major version (`0.3.x`) will rely on Kotlin 1.4 and will partially break compatibility with kotliin 1.3 (it will use IR for JS target).
+
 # TL;DR
 See [examples](./examples/src/main/kotlin).
 See [original library samples](https://plotly.com/javascript/) to understand capabilities.
