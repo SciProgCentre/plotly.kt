@@ -1,13 +1,13 @@
 package kscience.plotly
 
+import kotlinx.browser.document
+import kotlinx.browser.window
 import org.w3c.dom.CloseEvent
 import org.w3c.dom.ErrorEvent
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.WebSocket
 import org.w3c.dom.url.URL
 import org.w3c.fetch.RequestInit
-import kotlin.browser.document
-import kotlin.browser.window
 import kotlin.js.json
 
 
@@ -56,7 +56,7 @@ private fun getJSON(url: URL, callback: (dynamic) -> Unit) {
  * @return {JSON}
  */
 @JsExport
-fun createPlotFrom(id: String, from: URL, config: dynamic = {}) {
+public fun createPlotFrom(id: String, from: URL, config: dynamic = {}) {
     getJSON(from) { json ->
         val element = document.getElementById(id) as HTMLElement
         withPlotly { newPlot(element, json.data, json.layout, config) }
@@ -70,7 +70,7 @@ fun createPlotFrom(id: String, from: URL, config: dynamic = {}) {
  * @return {JSON}
  */
 @JsExport
-fun updatePlotFrom(id: String, from: URL) {
+public fun updatePlotFrom(id: String, from: URL) {
     getJSON(from) { json ->
         val element = document.getElementById(id) as HTMLElement
         withPlotly { react(element, json.data, json.layout) }
@@ -84,7 +84,7 @@ fun updatePlotFrom(id: String, from: URL) {
  * @param millis
  */
 @JsExport
-fun startPull(id: String, from: URL, millis: Int) {
+public fun startPull(id: String, from: URL, millis: Int) {
     window.setInterval({ updatePlotFrom(id, from) }, millis)
 }
 
@@ -94,29 +94,29 @@ fun startPull(id: String, from: URL, millis: Int) {
  * @param ws {URL} a websocket address
  */
 @JsExport
-fun startPush(id: String, ws: String) {
+public fun startPush(id: String, ws: String) {
     val element = document.getElementById(id) as HTMLElement
     val socket = WebSocket(ws)
 
     socket.onopen = {
-        console.log("[Plotly.kt] A connection for plot with id = $id with server established on $ws");
-    };
+        console.log("[Plotly.kt] A connection for plot with id = $id with server established on $ws")
+    }
 
     socket.onclose = { event ->
         event as CloseEvent
         if (event.wasClean) {
-            console.log("The connection with server is closed");
+            console.log("The connection with server is closed")
         } else {
-            console.log("The connection with server is broken"); // Server process is dead
+            console.log("The connection with server is broken") // Server process is dead
         }
-        console.log("Code: ${event.code} case: ${event.reason}");
-    };
+        console.log("Code: ${event.code} case: ${event.reason}")
+    }
 
     socket.onerror = { error ->
         error as ErrorEvent
-        console.error("Plotly push update error: " + error.message);
+        console.error("Plotly push update error: " + error.message)
         socket.close()
-    };
+    }
 
     socket.onmessage = { event ->
         val json: dynamic = JSON.parse(event.data.toString())
@@ -138,11 +138,11 @@ fun startPush(id: String, ws: String) {
                 withPlotly { restyle(element, content, json.trace) }
             }
         }
-    };
+    }
 
     //gracefully close socket just in case
     window.onbeforeunload = {
-        console.log("Gracefully closing socket");
+        console.log("Gracefully closing socket")
         socket.close()
         null
     }

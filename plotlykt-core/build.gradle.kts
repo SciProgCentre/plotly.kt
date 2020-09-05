@@ -1,34 +1,35 @@
 plugins {
-    id("scientifik.mpp")
-    id("scientifik.publish")
-    id("org.jetbrains.dokka")
+    id("ru.mipt.npm.mpp")
 }
 
+kscience {
+    useDokka()
+    publish()
+}
 
 val dataforgeVersion: String by rootProject.extra
 val htmlVersion: String by rootProject.extra
 
 kotlin {
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-html-common:$htmlVersion")
-                api("org.jetbrains:kotlin-css:1.0.0-pre.109-kotlin-1.3.72")
                 api("hep.dataforge:dataforge-meta:$dataforgeVersion")
+//                api("hep.dataforge:dataforge-meta-metadata:$dataforgeVersion")
+
+                api("org.jetbrains.kotlinx:kotlinx-html:$htmlVersion")
+                api("org.jetbrains:kotlin-css:1.0.0-pre.112-kotlin-1.4.0")
             }
         }
 
-        val jvmMain by getting {
+        jvmMain {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-html-jvm:$htmlVersion")
-                api("org.jetbrains:kotlin-css-jvm:1.0.0-pre.109-kotlin-1.3.72")
+                api("hep.dataforge:dataforge-meta-jvm:$dataforgeVersion")
             }
         }
 
-        val jsMain by getting {
+        jsMain {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-html-js:${htmlVersion}")
-                api("org.jetbrains:kotlin-css-js:1.0.0-pre.109-kotlin-1.3.72")
                 api(npm("plotly.js", "1.54.6"))
             }
         }

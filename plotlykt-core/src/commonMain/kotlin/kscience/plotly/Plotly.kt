@@ -4,7 +4,7 @@ import hep.dataforge.meta.*
 import hep.dataforge.names.toName
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.buildJsonArray
 import kotlin.js.JsName
 
 /**
@@ -24,8 +24,8 @@ fun Scheme.toJson(): JsonObject = config.toJson()
 fun Scheme.toJsonString(): String = toJson().toString()
 
 
-fun List<Scheme>.toJson(): JsonArray = jsonArray {
-    forEach { +it.toJson() }
+fun List<Scheme>.toJson(): JsonArray = buildJsonArray {
+    forEach { add(it.toJson()) }
 }
 
 /**
