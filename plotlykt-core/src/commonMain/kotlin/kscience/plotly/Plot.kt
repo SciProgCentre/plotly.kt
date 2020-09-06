@@ -78,19 +78,21 @@ class Plot : Configurable, MetaRepr {
     }
 
     override fun toMeta(): Meta = config
+}
 
-    /**
-     * Convert a plot to Json representation specified by Plotly `newPlot` command.
-     */
-    fun toJson(): JsonObject = json {
-        "layout" to layout.config.toJson()
-        "data" to jsonArray {
-            data.forEach {
-                +it.config.toJson()
-            }
+private fun Plot.toJson(): JsonObject = json {
+    "layout" to layout.config.toJson()
+    "data" to jsonArray {
+        data.forEach {
+            +it.config.toJson()
         }
     }
 }
+
+/**
+ * Convert a plot to Json representation specified by Plotly `newPlot` command.
+ */
+fun Plot.toJsonString(): String = toJson().toString()
 
 /**
  * Configure the layout

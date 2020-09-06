@@ -3,6 +3,7 @@ package kscience.plotly.server
 import hep.dataforge.meta.*
 import hep.dataforge.names.Name
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapMerge
@@ -63,6 +64,7 @@ private fun Config.flowChanges(scope: CoroutineScope, updateInterval: Long): Flo
     }
 }
 
+@OptIn(FlowPreview::class)
 fun Plot.collectUpdates(plotId: String, scope: CoroutineScope, updateInterval: Long): Flow<Update> {
     return config.flowChanges(scope, updateInterval).flatMapMerge { change ->
         flow<Update> {
@@ -72,9 +74,4 @@ fun Plot.collectUpdates(plotId: String, scope: CoroutineScope, updateInterval: L
             }
         }
     }
-//    val layoutChangeFlow = layout.config.flowChanges(scope, updateInterval).map { Update.Layout(plotId, it) }
-//    val traceFlows = data.mapIndexed { index, trace ->
-//        trace.config.flowChanges(scope, updateInterval).map { Update.Trace(plotId, index, it) }
-//    }
-//    return flowOf(layoutChangeFlow, *traceFlows.toTypedArray()).flattenMerge()
 }

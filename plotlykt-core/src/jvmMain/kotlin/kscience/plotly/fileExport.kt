@@ -123,7 +123,7 @@ enum class OrcaFormat {
  */
 @UnstablePlotlyAPI
 fun Plot.export(path: Path, format: OrcaFormat = OrcaFormat.svg) {
-    val json = toJson().toString()
+    val json = toJsonString()
 
     val tempFile = Files.createTempFile("plotly-orca-export", ".json")
     Files.writeString(tempFile, json)

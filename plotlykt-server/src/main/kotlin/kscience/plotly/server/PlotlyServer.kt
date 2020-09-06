@@ -147,12 +147,12 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
                 get("data/{id}") {
                     val id: String? = call.parameters["id"] ?: error("Plot id not defined")
 
-                    val plot = plots[id]
+                    val plot: Plot? = plots[id]
                     if (plot == null) {
                         call.respond(HttpStatusCode.NotFound, "Plot with id = $id not found")
                     } else {
                         call.respondText(
-                            plot.toJson().toString(),
+                            plot.toJsonString(),
                             contentType = ContentType.Application.Json,
                             status = HttpStatusCode.OK
                         )

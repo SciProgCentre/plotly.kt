@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- Serialization API is encapsulated (not longer exposed) in order to provide compatibility with new serialization.
 
 ### Deprecated
 

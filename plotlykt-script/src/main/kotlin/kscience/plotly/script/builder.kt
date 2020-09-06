@@ -66,6 +66,7 @@ fun Plotly.page(
 ): PlotlyPage = page(file.toScriptSource(), title, headers, logger)
 
 
+@UnstablePlotlyAPI
 fun Plotly.page(
     string: String,
     title: String = "Plotly.kt",

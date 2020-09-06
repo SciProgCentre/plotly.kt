@@ -15,5 +15,5 @@ val githubProject by extra("plotly.kt")
 
 allprojects {
     group = "kscience.plotlykt"
-    version = "0.2.0"
+    version = "0.2.1"
 }

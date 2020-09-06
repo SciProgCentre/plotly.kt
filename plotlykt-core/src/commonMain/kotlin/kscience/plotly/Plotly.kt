@@ -16,7 +16,7 @@ object Plotly {
     fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
 }
 
-fun Scheme.toJson(): JsonObject = config.toJson()
+private fun Scheme.toJson(): JsonObject = config.toJson()
 
 /**
  * Convert any type-safe configurator to json string
@@ -24,7 +24,7 @@ fun Scheme.toJson(): JsonObject = config.toJson()
 fun Scheme.toJsonString(): String = toJson().toString()
 
 
-fun List<Scheme>.toJson(): JsonArray = jsonArray {
+private fun List<Scheme>.toJson(): JsonArray = jsonArray {
     forEach { +it.toJson() }
 }
 
