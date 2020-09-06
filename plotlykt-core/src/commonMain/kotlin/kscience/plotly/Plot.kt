@@ -54,19 +54,21 @@ public class Plot : Configurable, MetaRepr {
     }
 
     override fun toMeta(): Meta = config
-
-    /**
-     * Convert a plot to Json representation specified by Plotly `newPlot` command.
-     */
-    public fun toJson(): JsonObject = buildJsonObject {
-        put("layout", layout.config.toJson())
-        put("data", buildJsonArray {
-            data.forEach {
-                add(it.config.toJson())
-            }
-        })
-    }
 }
+
+private fun Plot.toJson(): JsonObject = buildJsonObject {
+    put("layout", layout.config.toJson())
+    put("data", buildJsonArray {
+        data.forEach {
+            add(it.config.toJson())
+        }
+    })
+}
+
+/**
+ * Convert a plot to Json representation specified by Plotly `newPlot` command.
+ */
+public fun Plot.toJsonString(): String = toJson().toString()
 
 /**
  * Configure the layout

@@ -122,10 +122,8 @@ public enum class OrcaFormat {
  */
 @UnstablePlotlyAPI
 public fun Plot.export(path: Path, format: OrcaFormat = OrcaFormat.svg) {
-    val json = toJson().toString()
-
     val tempFile = Files.createTempFile("plotly-orca-export", ".json")
-    Files.writeString(tempFile, json)
+    Files.writeString(tempFile, toJsonString())
 
     val command = if (System.getProperty("os.name").contains("Windows")) {
         "powershell"
@@ -134,7 +132,7 @@ public fun Plot.export(path: Path, format: OrcaFormat = OrcaFormat.svg) {
     }
 
     val process = ProcessBuilder(
-        "powershell", "orca", "graph", tempFile.toAbsolutePath().toString(),
+        command, "orca", "graph", tempFile.toAbsolutePath().toString(),
         "-f", format.toString(),
         "-d", path.parent.toString(),
         "-o", path.fileName.toString(),

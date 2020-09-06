@@ -152,7 +152,7 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
                         call.respond(HttpStatusCode.NotFound, "Plot with id = $id not found")
                     } else {
                         call.respondText(
-                            plot.toJson().toString(),
+                            plot.toJsonString(),
                             contentType = ContentType.Application.Json,
                             status = HttpStatusCode.OK
                         )

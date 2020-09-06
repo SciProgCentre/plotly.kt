@@ -3,7 +3,7 @@ package kscience.plotly.models
 import hep.dataforge.meta.*
 import kotlin.js.JsName
 
-enum class ScatterMode {
+public enum class ScatterMode {
     lines,
     markers,
     text,
@@ -22,14 +22,14 @@ enum class ScatterMode {
     `lines+markers+text`
 }
 
-enum class GroupNorm {
+public enum class GroupNorm {
     @JsName("empty")
     ` `,
     fraction,
     percent
 }
 
-enum class FillType {
+public enum class FillType {
     none,
     tozeroy,
     tozerox,
@@ -39,7 +39,7 @@ enum class FillType {
     tonext
 }
 
-enum class ScatterHoveron {
+public enum class ScatterHoveron {
     points,
     fills,
 
@@ -47,13 +47,13 @@ enum class ScatterHoveron {
     `points+fills`
 }
 
-enum class StackGaps {
+public enum class StackGaps {
     @JsName("inferZero")
     `infer zero`,
     interpolate
 }
 
-open class Scatter : Trace(), SelectedPoints {
+public open class Scatter : Trace(), SelectedPoints {
     init {
         type = TraceType.scatter
     }
@@ -66,7 +66,7 @@ open class Scatter : Trace(), SelectedPoints {
      * the `text` elements appear on hover.
      * Default: lines.
      */
-    var mode by enum(ScatterMode.lines)
+    public var mode: ScatterMode by enum(ScatterMode.lines)
 
     /**
      * Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used -
@@ -75,7 +75,7 @@ open class Scatter : Trace(), SelectedPoints {
      * trace values at that location. "percent" is the same but multiplied by 100 to show percentages. If there are
      * multiple subplots, or multiple `stackgroup`s on one subplot, each will be normalized within its own set.
      */
-    var groupnorm by enum(GroupNorm.` `)
+    public var groupnorm: GroupNorm by enum(GroupNorm.` `)
 
     /**
      * Set several scatter traces (on the same subplot) to the same stackgroup in order to add their
@@ -87,18 +87,18 @@ open class Scatter : Trace(), SelectedPoints {
      * not already consecutive, the later ones will be pushed down in the drawing order.
      * Default: "".
      */
-    var stackgroup by string()
+    public var stackgroup: String? by string()
 
     /**
      * Array containing integer indices of selected points. Has an effect only for traces that support selections.
      * Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas,
      * any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
      */
-    override var selectedpoints by numberList()
+    override var selectedpoints: List<Number> by numberList()
 
-    override var selected by spec(SelectPoints)
+    override var selected: SelectPoints? by spec(SelectPoints)
 
-    override var unselected by spec(SelectPoints)
+    override var unselected: SelectPoints? by spec(SelectPoints)
 
     /**
      * Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then
@@ -114,14 +114,14 @@ open class Scatter : Trace(), SelectedPoints {
      * With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces
      * are not already consecutive, the later ones will be pushed down in the drawing order.
      */
-    var fill by enum(FillType.none)
+    public var fill: FillType by enum(FillType.none)
 
     /**
      * Do the hover effects highlight individual points (markers or line points) or do they
      * highlight filled regions? If the fill is "toself" or "tonext" and there are no markers or text,
      * then the default is "fills", otherwise it is "points".
      */
-    var hoveron by enum(ScatterHoveron.points)
+    public var hoveron: ScatterHoveron by enum(ScatterHoveron.points)
 
     /**
      * Only relevant when `stackgroup` is used, and only the first `stackgaps` found in the `stackgroup`
@@ -130,23 +130,23 @@ open class Scatter : Trace(), SelectedPoints {
      * With "infer zero" we insert a zero at these locations. With "interpolate" we linearly interpolate
      * between existing values, and extrapolate a constant beyond the existing values.
      */
-    var stackgaps by enum(StackGaps.`infer zero`)
+    public var stackgaps: StackGaps by enum(StackGaps.`infer zero`)
 
-    fun selected(block: SelectPoints.() -> Unit) {
+    public fun selected(block: SelectPoints.() -> Unit) {
         selected = SelectPoints(block)
     }
 
-    fun unselected(block: SelectPoints.() -> Unit) {
+    public fun unselected(block: SelectPoints.() -> Unit) {
         unselected = SelectPoints(block)
     }
 
-    companion object : SchemeSpec<Scatter>(::Scatter)
+    public companion object : SchemeSpec<Scatter>(::Scatter)
 }
 
-class ScatterGL : Scatter() {
+public class ScatterGL : Scatter() {
     init {
         type = TraceType.scattergl
     }
 
-    companion object : SchemeSpec<ScatterGL>(::ScatterGL)
+    public companion object : SchemeSpec<ScatterGL>(::ScatterGL)
 }

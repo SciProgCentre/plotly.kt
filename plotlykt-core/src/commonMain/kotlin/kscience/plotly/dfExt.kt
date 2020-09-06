@@ -19,7 +19,7 @@ import kotlin.time.toDuration
  * A delegate for list of objects with specification
  * TODO move to DataForge core
  */
-fun <T : Configurable> Configurable.list(
+internal fun <T : Configurable> Configurable.list(
     spec: Specification<T>, key: Name? = null
 ): ReadWriteProperty<Any?, List<T>> = object : ReadWriteProperty<Any?, List<T>> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): List<T> {
@@ -36,7 +36,7 @@ fun <T : Configurable> Configurable.list(
 /**
  * List of values delegate
  */
-fun Configurable.list(
+internal fun Configurable.list(
     key: Name? = null
 ): ReadWriteProperty<Any?, List<Value>> = object : ReadWriteProperty<Any?, List<Value>> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): List<Value> {
@@ -53,7 +53,7 @@ fun Configurable.list(
 /**
  * A variation of [spec] extension with lazy initialization of empty specified nod in case it is missing
  */
-fun <T : Configurable> Configurable.lazySpec(
+internal fun <T : Configurable> Configurable.lazySpec(
     spec: Specification<T>, key: Name? = null
 ): ReadWriteProperty<Any?, T> = object : ReadWriteProperty<Any?, T> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {
@@ -71,7 +71,7 @@ fun <T : Configurable> Configurable.lazySpec(
 /**
  * A safe [Double] range
  */
-fun Configurable.doubleInRange(
+internal fun Configurable.doubleInRange(
     range: ClosedFloatingPointRange<Double>,
     key: Name? = null
 ): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
@@ -93,7 +93,7 @@ fun Configurable.doubleInRange(
 /**
  * A safe [Double] ray
  */
-fun Configurable.doubleGreaterThan(
+internal fun Configurable.doubleGreaterThan(
         minValue: Double,
         key: Name? = null
 ): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
@@ -116,7 +116,7 @@ fun Configurable.doubleGreaterThan(
 /**
  * A safe [Int] ray
  */
-fun Configurable.intGreaterThan(
+internal fun Configurable.intGreaterThan(
         minValue: Int,
         key: Name? = null
 ): ReadWriteProperty<Any?, Int> = object : ReadWriteProperty<Any?, Int> {
@@ -138,7 +138,7 @@ fun Configurable.intGreaterThan(
 /**
  * A safe [Int] range
  */
-fun Configurable.intInRange(
+internal fun Configurable.intInRange(
         range: ClosedRange<Int>,
         key: Name? = null
 ): ReadWriteProperty<Any?, Int> = object : ReadWriteProperty<Any?, Int> {
@@ -160,7 +160,7 @@ fun Configurable.intInRange(
 /**
  * A safe [Number] ray
  */
-fun Configurable.numberGreaterThan(
+internal fun Configurable.numberGreaterThan(
         minValue: Number,
         key: Name? = null
 ): ReadWriteProperty<Any?, Number> = object : ReadWriteProperty<Any?, Number> {
@@ -182,7 +182,7 @@ fun Configurable.numberGreaterThan(
 /**
  * A safe [Number] range
  */
-fun Configurable.numberInRange(
+internal fun Configurable.numberInRange(
         range: ClosedRange<Double>,
         key: Name? = null
 ): ReadWriteProperty<Any?, Number> = object : ReadWriteProperty<Any?, Number> {
@@ -202,7 +202,7 @@ fun Configurable.numberInRange(
 }
 
 @OptIn(DFExperimental::class)
-fun Configurable.duration(
+internal fun Configurable.duration(
     default: Duration? = null,
     key: Name? = null
 ): ReadWriteProperty<Any?, Duration?> = object : ReadWriteProperty<Any?, Duration?> {

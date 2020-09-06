@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-
+- Migration to Kotlin 1.4
+- Minor breaking change in Plot to encapsulate serialization usage
 ### Deprecated
 
 ### Removed

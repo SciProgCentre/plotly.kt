@@ -17,8 +17,9 @@ import kotlin.js.json
 private fun withPlotly(block: PlotlyJs.() -> Unit) {
     if (jsTypeOf(PlotlyJs) != "undefined"){ //if already defined, use it
         PlotlyJs.block()
-    } else if(js("typeof require !== 'undefined'")){
-
+    } else {
+        //TODO add fetch
+        error("Plotly is not defined")
     }
 }
 

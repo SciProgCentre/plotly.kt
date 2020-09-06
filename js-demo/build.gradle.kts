@@ -13,7 +13,8 @@ repositories {
 kotlin {
     js(IR) {
         browser()
-        binaries.executable()
+        //TODO to be released after 1.4.20
+        //binaries.executable()
     }
 }
 
