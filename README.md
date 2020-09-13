@@ -6,9 +6,9 @@
 
 ## Release version
 
-Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/kscience/plotlykt-core/_latestVersion)
+Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/kscience/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/kscience/plotlykt-core/_latestVersion)
 
-Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/scientifik/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/kscience/plotlykt-server/_latestVersion)
+Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/kscience/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/kscience/plotlykt-server/_latestVersion)
 
 ## Development version
 
@@ -93,7 +93,7 @@ repositories {
 }
 
 dependencies {
-    implementation("scientifik:plotlykt-server:0.2.0")
+    implementation("kscience.plotlykt:plotlykt-server:0.2.0")
 }
 ```
 
