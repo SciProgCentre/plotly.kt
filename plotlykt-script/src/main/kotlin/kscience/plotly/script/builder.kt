@@ -32,11 +32,12 @@ fun Plotly.page(
         )
         jvm {
             dependenciesFromCurrentContext(wholeClasspath = true)
+            compilerOptions.append("-jvm-target", Runtime.version().feature().toString())
         }
         hostConfiguration(defaultJvmScriptingHostConfiguration)
     }
 
-    return page(title = title, headers = *headers) {
+    return page(title = title, headers = headers) {
         val flow = this
         val evaluationConfiguration = ScriptEvaluationConfiguration {
             implicitReceivers(flow)
@@ -66,7 +67,7 @@ fun Plotly.page(
 ): PlotlyPage = page(file.toScriptSource(), title, headers, logger)
 
 
-@UnstablePlotlyAPI
+@OptIn(UnstablePlotlyAPI::class)
 fun Plotly.page(
     string: String,
     title: String = "Plotly.kt",

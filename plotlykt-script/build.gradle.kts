@@ -1,8 +1,12 @@
 plugins {
-    id("scientifik.jvm")
-    id("scientifik.publish")
-    id("org.jetbrains.dokka")
+    id("ru.mipt.npm.jvm")
     application
+}
+
+kscience{
+    useDokka()
+    publish()
+    application()
 }
 
 repositories {

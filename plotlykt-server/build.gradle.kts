@@ -1,12 +1,15 @@
 plugins {
-    id("scientifik.jvm")
-    id("scientifik.publish")
-    id("org.jetbrains.dokka")
+    id("ru.mipt.npm.jvm")
 }
 
-repositories {
-    maven("https://dl.bintray.com/kotlin/ktor/")
+kscience{
+    useDokka()
+    publish()
 }
+
+//repositories {
+//    maven("https://dl.bintray.com/kotlin/ktor/")
+//}
 
 val ktorVersion: String by rootProject.extra
 val dataforgeVersion: String by rootProject.extra
@@ -17,5 +20,5 @@ dependencies {
     //api("io.ktor:ktor-server-netty:$ktorVersion")
     api("io.ktor:ktor-html-builder:$ktorVersion")
     api("io.ktor:ktor-websockets:$ktorVersion")
-    api("hep.dataforge:dataforge-output-jvm:$dataforgeVersion")
+    api("hep.dataforge:dataforge-output:$dataforgeVersion")
 }

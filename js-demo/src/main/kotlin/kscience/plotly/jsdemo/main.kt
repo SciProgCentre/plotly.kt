@@ -16,8 +16,8 @@ import kotlin.random.Random
 
 fun main() {
     document.addEventListener("DOMContentLoaded", {
-        val element =
-            document.getElementById("canvas") as? HTMLElement ?: error("Element with id 'app' not found on page")
+        val element = document.getElementById("canvas") as? HTMLElement
+            ?: error("Element with id 'app' not found on page")
 
         console.log("element loaded")
         element.plot {
@@ -36,7 +36,7 @@ fun main() {
                     GlobalScope.launch {
                         while (isActive) {
                             delay(500)
-                            if(Random.nextBoolean()){
+                            if (Random.nextBoolean()) {
                                 color("magenta")
                             } else {
                                 color("blue")

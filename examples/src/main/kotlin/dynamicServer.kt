@@ -1,3 +1,4 @@
+import hep.dataforge.meta.invoke
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -5,7 +6,6 @@ import kotlinx.coroutines.launch
 import kotlinx.html.a
 import kotlinx.html.h1
 import kscience.plotly.Plotly
-import kscience.plotly.layout
 import kscience.plotly.models.Trace
 import kscience.plotly.models.invoke
 import kscience.plotly.plot

@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
     kotlin("jvm")
     application
     id("org.openjfx.javafxplugin") version "0.0.9"
@@ -11,11 +10,8 @@ repositories {
     mavenLocal()
     jcenter()
     maven("https://dl.bintray.com/mipt-npm/dataforge")
-    maven("https://dl.bintray.com/mipt-npm/scientifik")
+    maven("https://dl.bintray.com/mipt-npm/kscience")
     maven("https://dl.bintray.com/mipt-npm/dev")
-    maven("https://dl.bintray.com/kotlin/ktor/")
-    maven("https://dl.bintray.com/kotlin/kotlin-eap")
-    maven("https://kotlin.bintray.com/kotlinx")
 }
 
 dependencies {

@@ -24,11 +24,12 @@ class PlotlyScriptCompilationConfiguration: ScriptCompilationConfiguration({
         "hep.dataforge.meta.*",
         "kotlinx.html.*"
     )
+    jvm {
+        dependenciesFromCurrentContext(wholeClasspath = true)
+        compilerOptions.append("-jvm-target", Runtime.version().feature().toString())
+    }
+    hostConfiguration(defaultJvmScriptingHostConfiguration)
     ide {
         acceptedLocations(ScriptAcceptedLocation.Everywhere)
     }
-    jvm {
-        dependenciesFromCurrentContext(wholeClasspath = true)
-    }
-    hostConfiguration(defaultJvmScriptingHostConfiguration)
 })

@@ -6,16 +6,14 @@ repositories {
     mavenLocal()
     jcenter()
     maven("https://dl.bintray.com/mipt-npm/dataforge")
-    maven("https://dl.bintray.com/mipt-npm/scientifik")
+    maven("https://dl.bintray.com/mipt-npm/kscience")
     maven("https://dl.bintray.com/mipt-npm/dev")
-    maven("https://dl.bintray.com/kotlin/ktor/")
-    maven("https://dl.bintray.com/kotlin/kotlin-eap")
-    maven("https://kotlin.bintray.com/kotlinx")
 }
 
 dependencies {
     implementation(project(":plotlykt-server"))
     implementation(kotlin("script-runtime"))
+    implementation(project(":plotlykt-script"))
     implementation("de.mpicbg.scicomp:krangl:0.13")
     implementation("org.apache.commons:commons-csv:1.8")
 }
