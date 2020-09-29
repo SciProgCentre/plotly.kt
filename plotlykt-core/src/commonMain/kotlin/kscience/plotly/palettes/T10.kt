@@ -4,15 +4,15 @@ package kscience.plotly.palettes
  * Tableau Colors - the 'T10' categorical palette (the default color cycle)
  */
 
-object T10 {
-    const val BLUE = "#1f77b4"
-    const val ORANGE = "#ff7f0e"
-    const val GREEN = "#2ca02c"
-    const val RED = "#d62728"
-    const val PURPLE = "#9467bd"
-    const val BROWN = "#8c564b"
-    const val PINK = "#e377c2"
-    const val GRAY = "#7f7f7f"
-    const val OLIVE = "#bcbd22"
-    const val CYAN = "#17becf"
+public object T10 {
+    public const val BLUE: String = "#1f77b4"
+    public const val ORANGE: String = "#ff7f0e"
+    public const val GREEN: String = "#2ca02c"
+    public const val RED: String = "#d62728"
+    public const val PURPLE: String = "#9467bd"
+    public const val BROWN: String = "#8c564b"
+    public const val PINK: String = "#e377c2"
+    public const val GRAY: String = "#7f7f7f"
+    public const val OLIVE: String = "#bcbd22"
+    public const val CYAN: String = "#17becf"
 }

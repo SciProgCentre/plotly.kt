@@ -1,11 +1,11 @@
 plugins {
     id("ru.mipt.npm.jvm")
+    id("ru.mipt.npm.publish")
     application
 }
 
 kscience{
     useDokka()
-    publish()
     application()
 }
 
@@ -22,7 +22,7 @@ dependencies {
     api(kotlin("scripting-jvm"))
     api("io.github.microutils:kotlin-logging:1.8.3")
     implementation("ch.qos.logback:logback-classic:1.2.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.2.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3")
 }
 
 application{

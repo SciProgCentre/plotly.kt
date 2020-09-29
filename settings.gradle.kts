@@ -1,6 +1,6 @@
 pluginManagement {
-    val kotlinVersion = "1.4.10"
-    val toolsVersion = "0.6.0"
+    val kotlinVersion = "1.4.20-M1"
+    val toolsVersion = "0.6.1-dev-1.4.20-M1"
 
     repositories {
         mavenLocal()
@@ -14,6 +14,7 @@ pluginManagement {
     }
 
     plugins {
+        id("ru.mipt.npm.project") version toolsVersion
         id("ru.mipt.npm.mpp") version toolsVersion
         id("ru.mipt.npm.jvm") version toolsVersion
         id("ru.mipt.npm.js") version toolsVersion

@@ -2,6 +2,7 @@ package kscience.plotly.jsdemo
 
 
 import hep.dataforge.meta.invoke
+import kotlinx.browser.document
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -11,7 +12,6 @@ import kscience.plotly.models.TraceType
 import kscience.plotly.plot
 import kscience.plotly.scatter
 import org.w3c.dom.HTMLElement
-import kotlin.browser.document
 import kotlin.random.Random
 
 fun main() {

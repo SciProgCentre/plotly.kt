@@ -1,7 +1,7 @@
 package scatter
 
-import hep.dataforge.meta.invoke
 import kscience.plotly.Plotly
+import kscience.plotly.layout
 import kscience.plotly.makeFile
 import kscience.plotly.models.AxisType
 import kscience.plotly.models.Scatter

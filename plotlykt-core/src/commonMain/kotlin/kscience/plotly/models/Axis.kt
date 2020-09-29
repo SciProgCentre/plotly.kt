@@ -13,7 +13,7 @@ import kscience.plotly.numberInRange
 import kotlin.js.JsName
 
 
-enum class AxisType {
+public enum class AxisType {
     @JsName("default")
     `-`,
     linear,
@@ -23,13 +23,13 @@ enum class AxisType {
     multicategory;
 }
 
-enum class TickMode {
+public enum class TickMode {
     array,
     auto,
     linear
 }
 
-enum class Ticks {
+public enum class Ticks {
     @JsName("empty")
     `""`,
     inside,
@@ -39,11 +39,11 @@ enum class Ticks {
 /**
  * Axis scheme
  */
-class Axis : Scheme() {
+public class Axis : Scheme() {
     /**
      * Sets the title of this axis.
      */
-    var title: String?
+    public var title: String?
         get() = config["title.text"].string ?: config["title"].string
         set(value) {
             config["title"] = value
@@ -56,49 +56,49 @@ class Axis : Scheme() {
      * that referenced the axis in question.
      * Default: "-"
      */
-    var type by enum(AxisType.`-`)
+    public var type: AxisType by enum(AxisType.`-`)
 
     /**
      * A single toggle to hide the axis while preserving interaction
      * like dragging. Default is true when a cheater plot
      * is present on the axis, otherwise false
      */
-    var visible by boolean()
+    public var visible: Boolean? by boolean()
 
     /**
      * Sets the tick length (in px).
      * Default: 5.
      */
-    var ticklen by numberGreaterThan(0)
+    public var ticklen: Number by numberGreaterThan(0)
 
     /**
      * Sets the tick width (in px).
      * Default: 1.
      */
-    var tickwidth by numberGreaterThan(0)
+    public var tickwidth: Number by numberGreaterThan(0)
 
     /**
      * Sets the tick color.
      * Default: #444.
      */
-    var tickcolor = Color(this, "tickcolor".asName())
+    public var tickcolor: Color = Color(this, "tickcolor".asName())
 
     /**
      * Sets the angle of the tick labels with respect to the horizontal.
      * For example, a `tickangle` of -90 draws the tick labels vertically.
      */
-    var tickangle by numberInRange(-360.0..360.0)
+    public var tickangle: Number by numberInRange(-360.0..360.0)
 
     /**
      * Sets the tick font.
      */
-    var tickfont by lazySpec(Font)
+    public var tickfont: Font by lazySpec(Font)
 
     /**
      * Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn.
      * If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.
      */
-    var ticks by enum(Ticks.inside)
+    public var ticks: Ticks by enum(Ticks.inside)
 
     /**
      * Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
@@ -114,7 +114,7 @@ class Axis : Scheme() {
      * `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to "2000-01-15"
      * and `dtick` to "M3". To set ticks every 4 years, set `dtick` to "M48"
      */
-    var dtick by value()
+    public var dtick: Value? by value()
 
     /**
      * Determines whether or not the range of this axis is computed
@@ -122,7 +122,7 @@ class Axis : Scheme() {
      * If `range` is provided, then `autorange` is set to "false".
      * Default: true.
      */
-    var autorange by boolean(true)
+    public var autorange: Boolean by boolean(true)
 
     /**
      * Sets the range of this axis. If the axis `type` is "log",
@@ -134,7 +134,7 @@ class Axis : Scheme() {
      * numbers, using the scale where each category is assigned
      * a serial number from zero in the order it appears.
      */
-    var range: ClosedFloatingPointRange<Double>?
+    public var range: ClosedFloatingPointRange<Double>?
         get() = config["range"]?.value?.doubleArray?.let { it[0]..it[1] }
         set(value) {
             config["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
@@ -146,54 +146,54 @@ class Axis : Scheme() {
      * by blending this with the plot background Individual pieces can override this.
      * Default: #444.
      */
-    val color = Color(this, "color".asName())
+    public val color: Color = Color(this, "color".asName())
 
     /**
      * Determines whether or not a line bounding this axis is drawn.
      */
-    var showline by boolean()
+    public var showline: Boolean? by boolean()
 
     /**
      * Sets the axis line color. Default: #444.
      */
-    var linecolor = Color(this, "linecolor".asName())
+    public var linecolor: Color = Color(this, "linecolor".asName())
 
     /**
      * Sets the width (in px) of the axis line. Default: 1.
      */
-    var linewidth by numberGreaterThan(0)
+    public var linewidth: Number by numberGreaterThan(0)
 
     /**
      * Determines whether or not grid lines are drawn. If "true",
      * the grid lines are drawn at every tick mark.
      */
-    var showgrid by boolean()
+    public var showgrid: Boolean? by boolean()
 
     /**
      * Sets the color of the grid lines. Default: #eee
      */
-    var gridcolor = Color(this, "gridcolor".asName())
+    public var gridcolor: Color = Color(this, "gridcolor".asName())
 
     /**
      * Sets the width (in px) of the grid lines. Default: 1.
      */
-    var gridwidth by numberGreaterThan(0)
+    public var gridwidth: Number by numberGreaterThan(0)
 
     /**
      * Determines whether or not a line is drawn at along the 0 value of this axis.
      * If "true", the zero line is drawn on top of the grid lines.
      */
-    var zeroline by boolean()
+    public var zeroline: Boolean? by boolean()
 
     /**
      * Sets the line color of the zero line. Default: #444
      */
-    var zerolinecolor = Color(this, "zerolinecolor".asName())
+    public var zerolinecolor: Color = Color(this, "zerolinecolor".asName())
 
     /**
      * Sets the width (in px) of the zero line. Default: 1.
      */
-    var zerolinewidth by numberGreaterThan(0)
+    public var zerolinewidth: Number by numberGreaterThan(0)
 
     /**
      * Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`.
@@ -202,57 +202,57 @@ class Axis : Scheme() {
      * If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
      * ("array" is the default value if `tickvals` is provided).
      */
-    var tickmode by enum(TickMode.auto)
+    public var tickmode: TickMode by enum(TickMode.auto)
 
     /**
      * Sets the values at which ticks on this axis appear.
      * Only has an effect if `tickmode` is set to "array". Used with `ticktext`.
      */
-    var tickvals by list()
+    public var tickvals: List<Value> by list()
 
     /**
      *Sets the text displayed at the ticks position via `tickvals`.
      * Only has an effect if `tickmode` is set to "array". Used with `tickvals`.
      */
-    var ticktext by list()
+    public var ticktext: List<Value> by list()
 
     /**
      * Determines whether or not the tick labels are drawn.
      */
-    var showticklabels by boolean()
+    public var showticklabels: Boolean? by boolean()
 
-    var autotick by boolean()
+    public var autotick: Boolean? by boolean()
 
     /**
      * Enumerated, one of ( "free" | "/^x([2-9]|[1-9][0-9]+)?$/" | "/^y([2-9]|[1-9][0-9]+)?$/" )
      * If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding
      * opposite-letter axis. If set to "free", this axis' position is determined by `position`.
      */
-    var anchor by string()
+    public var anchor: String? by string()
 
     /**
      * Sets the position of this axis in the plotting space (in normalized coordinates).
      * Only has an effect if `anchor` is set to "free". Default: 0.
      */
-    var position by numberInRange(0.0..1.0)
+    public var position: Number by numberInRange(0.0..1.0)
 
-    fun title(block: Title.() -> Unit) {
+    public fun title(block: Title.() -> Unit) {
         val spec = config["title"].node?.let { Title.wrap(it) }
                 ?: Title.empty().also { config["title"] = it.config }
         spec.apply(block)
     }
 
-    fun tickfont(block: Font.() -> Unit) {
+    public fun tickfont(block: Font.() -> Unit) {
         tickfont = Font(block)
     }
 
-    fun tickvals(array: Iterable<Any>) {
+    public fun tickvals(array: Iterable<Any>) {
         tickvals = array.map { Value.of(it) }
     }
 
-    fun ticktext(array: Iterable<Any>) {
+    public fun ticktext(array: Iterable<Any>) {
         ticktext = array.map { Value.of(it) }
     }
 
-    companion object : SchemeSpec<Axis>(::Axis)
+    public companion object : SchemeSpec<Axis>(::Axis)
 }
