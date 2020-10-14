@@ -15,16 +15,8 @@ kotlin {
         commonMain {
             dependencies {
                 api("hep.dataforge:dataforge-meta:$dataforgeVersion")
-//                api("hep.dataforge:dataforge-meta-metadata:$dataforgeVersion")
-
                 api("org.jetbrains.kotlinx:kotlinx-html:$htmlVersion")
                 api("org.jetbrains:kotlin-css:1.0.0-pre.122-kotlin-1.4.10")
-            }
-        }
-
-        jvmMain {
-            dependencies {
-                api("hep.dataforge:dataforge-meta-jvm:$dataforgeVersion")
             }
         }
 
