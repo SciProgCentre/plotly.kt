@@ -8,7 +8,6 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-@UnstablePlotlyAPI
 fun main() {
 
     val x1 = (0..100).map { it.toDouble() / 100.0 }
