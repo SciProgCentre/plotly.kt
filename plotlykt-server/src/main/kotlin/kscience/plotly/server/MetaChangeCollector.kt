@@ -65,7 +65,7 @@ private fun Config.flowChanges(scope: CoroutineScope, updateInterval: Long): Flo
 }
 
 @OptIn(FlowPreview::class)
-fun Plot.collectUpdates(plotId: String, scope: CoroutineScope, updateInterval: Long): Flow<Update> {
+public fun Plot.collectUpdates(plotId: String, scope: CoroutineScope, updateInterval: Long): Flow<Update> {
     return config.flowChanges(scope, updateInterval).flatMapMerge { change ->
         flow<Update> {
             change["layout"].node?.let { emit(Update.Layout(plotId, it)) }
