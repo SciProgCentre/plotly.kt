@@ -222,7 +222,7 @@ public class JupyterPlotlyServer(
         }
 
         public fun renderPlot(plot: Plot): String = createHTML().div {
-            plot(plot, config = PlotlyConfig {
+            plot(plot, config = PlotlyConfig{
                 responsive = true
             }, renderer = jupyterPlotlyServer ?: StaticPlotlyRenderer)
         }

@@ -81,7 +81,7 @@ public inline fun Plot.layout(block: Layout.() -> Unit) {
  * Add a generic trace
  */
 public inline fun Plot.trace(block: Trace.() -> Unit): Trace {
-    val trace = Trace.invoke(block)
+    val trace = Trace(block)
     traces(trace)
     return trace
 }

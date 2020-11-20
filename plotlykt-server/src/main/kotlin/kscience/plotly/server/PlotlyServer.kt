@@ -105,9 +105,9 @@ private class ServerPlotlyRenderer(
 
 public class PlotlyServer internal constructor(private val routing: Routing, private val rootRoute: String) : Configurable {
     override val config: Config = Config()
-    public var updateMode: PlotlyUpdateMode by enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
-    public var updateInterval: Long by long(300, key = UPDATE_INTERVAL_KEY)
-    public var embedData: Boolean by boolean(false)
+    public var updateMode: PlotlyUpdateMode by config.enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
+    public var updateInterval: Long by config.long(300, key = UPDATE_INTERVAL_KEY)
+    public var embedData: Boolean by config.boolean(false)
 
     /**
      * a list of headers that should be applied to all pages

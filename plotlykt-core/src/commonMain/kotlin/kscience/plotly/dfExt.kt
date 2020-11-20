@@ -19,7 +19,7 @@ import kotlin.time.toDuration
  * A delegate for list of objects with specification
  * TODO move to DataForge core
  */
-internal fun <T : Configurable> Configurable.list(
+internal fun <T : Scheme> Configurable.list(
     spec: Specification<T>, key: Name? = null
 ): ReadWriteProperty<Any?, List<T>> = object : ReadWriteProperty<Any?, List<T>> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): List<T> {
@@ -53,7 +53,7 @@ internal fun Configurable.list(
 /**
  * A variation of [spec] extension with lazy initialization of empty specified nod in case it is missing
  */
-internal fun <T : Configurable> Configurable.lazySpec(
+internal fun <T : Scheme> Configurable.lazySpec(
     spec: Specification<T>, key: Name? = null
 ): ReadWriteProperty<Any?, T> = object : ReadWriteProperty<Any?, T> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {

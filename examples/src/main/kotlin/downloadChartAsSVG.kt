@@ -8,7 +8,7 @@ import kscience.plotly.models.ScatterMode
  */
 fun main() {
     val fragment = Plotly.fragment {
-        val plotConfig = PlotlyConfig {
+        val plotConfig = PlotlyConfig{
             saveAsSvg()
         }
 

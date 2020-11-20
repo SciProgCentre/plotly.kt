@@ -22,7 +22,7 @@ fun main() {
             listOf<Number?>(null, null, null, 27, null, null, null, 21),
             listOf<Number?>(null, null, null, 26, 25, 24, 23, 22))
 
-    val contour1 = Contour {
+    val contour1 = Contour{
         x.set(x1)
         y.set(y2)
         z.set(z1)
