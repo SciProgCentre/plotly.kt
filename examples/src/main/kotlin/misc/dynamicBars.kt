@@ -51,7 +51,7 @@ fun main() {
         while (isActive) {
             repeat(10) { columnIndex ->
                 repeat(3) { seriesIndex ->
-                    delay(100)
+                    delay(200)
                     traces["Series $seriesIndex"]?.let {bar->
                         println("Updating ${bar.name}, Column $columnIndex")
                         //TODO replace with dynamic data API
