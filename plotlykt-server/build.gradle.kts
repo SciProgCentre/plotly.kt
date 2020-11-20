@@ -20,5 +20,7 @@ dependencies {
     //api("io.ktor:ktor-server-netty:$ktorVersion")
     api("io.ktor:ktor-html-builder:$ktorVersion")
     api("io.ktor:ktor-websockets:$ktorVersion")
-    api("hep.dataforge:dataforge-output:$dataforgeVersion")
+    api("hep.dataforge:dataforge-output:$dataforgeVersion"){
+        exclude(module = "kotlinx-io")
+    }
 }

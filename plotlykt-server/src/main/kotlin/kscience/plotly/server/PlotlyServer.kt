@@ -1,6 +1,7 @@
 package kscience.plotly.server
 
 import hep.dataforge.meta.*
+import hep.dataforge.names.Name
 import hep.dataforge.names.toName
 import io.ktor.application.*
 import io.ktor.features.CORS
@@ -29,7 +30,7 @@ import java.awt.Desktop
 import java.net.URI
 import kotlin.collections.set
 
-enum class PlotlyUpdateMode {
+public enum class PlotlyUpdateMode {
     NONE,
     PUSH,
     PULL
@@ -102,22 +103,22 @@ private class ServerPlotlyRenderer(
 
 }
 
-class PlotlyServer internal constructor(private val routing: Routing, private val rootRoute: String) : Configurable {
-    override val config = Config()
-    var updateMode by enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
-    var updateInterval by long(300, key = UPDATE_INTERVAL_KEY)
-    var embedData by boolean(false)
+public class PlotlyServer internal constructor(private val routing: Routing, private val rootRoute: String) : Configurable {
+    override val config: Config = Config()
+    public var updateMode: PlotlyUpdateMode by enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
+    public var updateInterval: Long by long(300, key = UPDATE_INTERVAL_KEY)
+    public var embedData: Boolean by boolean(false)
 
     /**
      * a list of headers that should be applied to all pages
      */
-    val globalHeaders = ArrayList<HtmlFragment>()
+    private val globalHeaders: ArrayList<HtmlFragment> = ArrayList<HtmlFragment>()
 
-    fun header(block: TagConsumer<*>.() -> Unit) {
+    public fun header(block: TagConsumer<*>.() -> Unit) {
         globalHeaders.add(HtmlFragment(block))
     }
 
-    fun page(
+    public fun page(
         plotlyFragment: PlotlyFragment,
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
@@ -145,7 +146,7 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
                 }
                 //Plots in their json representation
                 get("data/{id}") {
-                    val id: String? = call.parameters["id"] ?: error("Plot id not defined")
+                    val id: String = call.parameters["id"] ?: error("Plot id not defined")
 
                     val plot: Plot? = plots[id]
                     if (plot == null) {
@@ -206,7 +207,7 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
         }
     }
 
-    fun page(
+    public fun page(
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
         headers: List<HtmlFragment> = emptyList(),
@@ -215,11 +216,15 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
         page(PlotlyFragment(content), route, title, headers)
     }
 
+    /**
+     * Exposes the Ktor application environment to internal logic
+     */
+    public val application: Application get() = routing.application
 
-    companion object {
-        const val DEFAULT_PAGE = "/"
-        val UPDATE_MODE_KEY = "update.mode".toName()
-        val UPDATE_INTERVAL_KEY = "update.interval".toName()
+    public companion object {
+        public const val DEFAULT_PAGE: String = "/"
+        public val UPDATE_MODE_KEY: Name = "update.mode".toName()
+        public val UPDATE_INTERVAL_KEY: Name = "update.interval".toName()
     }
 }
 
@@ -227,7 +232,7 @@ class PlotlyServer internal constructor(private val routing: Routing, private va
 /**
  * Attach plotly application to given server
  */
-fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer {
+public fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer {
     if (featureOrNull(WebSockets) == null) {
         install(WebSockets)
     }
@@ -255,7 +260,7 @@ fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer {
 /**
  * Configure server to start sending updates in push mode. Does not affect loaded pages
  */
-fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply {
+public fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply {
     updateMode = PlotlyUpdateMode.PUSH
     updateInterval = interval
 }
@@ -264,7 +269,7 @@ fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply {
  * Configure client to request regular updates from server. Pull updates are more expensive than push updates since
  * they contain the full plot data and server can't decide what to send.
  */
-fun PlotlyServer.pullUpdates(interval: Long = 1000): PlotlyServer = apply {
+public fun PlotlyServer.pullUpdates(interval: Long = 1000): PlotlyServer = apply {
     updateMode = PlotlyUpdateMode.PULL
     updateInterval = interval
 }
@@ -273,7 +278,7 @@ fun PlotlyServer.pullUpdates(interval: Long = 1000): PlotlyServer = apply {
  * Start static server (updates via reload)
  */
 @OptIn(KtorExperimentalAPI::class)
-fun Plotly.serve(
+public fun Plotly.serve(
     scope: CoroutineScope = GlobalScope,
     host: String = "localhost",
     port: Int = 7777,
@@ -283,10 +288,10 @@ fun Plotly.serve(
 }.start()
 
 
-fun ApplicationEngine.show() {
+public fun ApplicationEngine.show() {
     val connector = environment.connectors.first()
     val uri = URI("http", null, connector.host, connector.port, null, null, null)
     Desktop.getDesktop().browse(uri)
 }
 
-fun ApplicationEngine.close() = stop(1000, 5000)
+public fun ApplicationEngine.close(): Unit = stop(1000, 5000)

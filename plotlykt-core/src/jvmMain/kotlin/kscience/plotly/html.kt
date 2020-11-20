@@ -6,13 +6,13 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardOpenOption
 
-class HtmlFragment(val visit: TagConsumer<*>.() -> Unit) {
+public class HtmlFragment(public val visit: TagConsumer<*>.() -> Unit) {
     override fun toString(): String {
         return createHTML().also(visit).finalize()
     }
 }
 
-operator fun HtmlFragment.plus(other: HtmlFragment) = HtmlFragment {
+public operator fun HtmlFragment.plus(other: HtmlFragment): HtmlFragment = HtmlFragment {
     this@plus.run { visit() }
     other.run { visit() }
 }
@@ -20,7 +20,7 @@ operator fun HtmlFragment.plus(other: HtmlFragment) = HtmlFragment {
 /**
  * Create a html (including headers) string from plot
  */
-fun Plot.toHTML(
+public fun Plot.toHTML(
     vararg headers: HtmlFragment = arrayOf(cdnPlotlyHeader),
     config: PlotlyConfig = PlotlyConfig()
 ): String {
@@ -68,11 +68,11 @@ internal fun checkOrStoreFile(basePath: Path, filePath: Path, resource: String):
 /**
  * A header that automatically copies relevant scripts to given path
  */
-fun localScriptHeader(
+public fun localScriptHeader(
     basePath: Path,
     scriptPath: Path,
     resource: String
-) = HtmlFragment {
+): HtmlFragment = HtmlFragment {
     val relativePath = checkOrStoreFile(basePath, scriptPath, resource)
     script {
         type = "text/javascript"
@@ -82,11 +82,11 @@ fun localScriptHeader(
     }
 }
 
-fun localCssHeader(
+public fun localCssHeader(
     basePath: Path,
     cssPath: Path,
     resource: String
-) = HtmlFragment {
+): HtmlFragment = HtmlFragment {
     val relativePath = checkOrStoreFile(basePath, cssPath, resource)
     link {
         rel = "stylesheet"
@@ -95,7 +95,7 @@ fun localCssHeader(
 }
 
 @UnstablePlotlyAPI
-val mathJaxHeader = HtmlFragment {
+public val mathJaxHeader: HtmlFragment = HtmlFragment {
     script {
         type = "text/x-mathjax-config"
         unsafe {

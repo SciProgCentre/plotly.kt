@@ -10,22 +10,22 @@ import hep.dataforge.values.doubleArray
 /**
  * Type-safe accessor class for values in the trace
  */
-class TraceValues internal constructor(val trace: Trace, axis: String) {
-    var value by trace.value(key = axis.asName())
+public class TraceValues internal constructor(public val trace: Trace, axis: String) {
+    public var value: Value? by trace.value(key = axis.asName())
 
-    var doubles: DoubleArray
+    public var doubles: DoubleArray
         get() = value?.doubleArray ?: doubleArrayOf()
         set(value) {
             this.value = DoubleArrayValue(value)
         }
 
-    var numbers: Iterable<Number>
+    public var numbers: Iterable<Number>
         get() = value?.list?.map { it.number } ?: emptyList()
         set(value) {
             this.value = value.map { it.asValue() }.asValue()
         }
 
-    var strings: Iterable<String>
+    public var strings: Iterable<String>
         get() = value?.list?.map { it.string } ?: emptyList()
         set(value) {
             this.value = value.map { it.asValue() }.asValue()
@@ -35,7 +35,7 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
      * Smart fill for trace values. The following types are accepted: [DoubleArray], [IntArray], [Array] of primitive or string,
      * [Iterable] of primitive or string.
      */
-    fun set(values: Any?) {
+    public fun set(values: Any?) {
         value = when (values) {
             null -> null
             is DoubleArray -> values.asValue()
@@ -46,15 +46,15 @@ class TraceValues internal constructor(val trace: Trace, axis: String) {
         }
     }
 
-    operator fun invoke(vararg numbers: Number) {
+    public operator fun invoke(vararg numbers: Number) {
         this.numbers = numbers.asList()
     }
 
-    operator fun invoke(vararg strings: String) {
+    public operator fun invoke(vararg strings: String) {
         this.strings = strings.asList()
     }
 
-    operator fun invoke(lists: List<List<Number>>) {
+    public operator fun invoke(lists: List<List<Number>>) {
         this.value = lists.map { row -> row.map { it.asValue() }.asValue() }.asValue()
     }
 
