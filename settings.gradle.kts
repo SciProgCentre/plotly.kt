@@ -14,6 +14,7 @@ pluginManagement {
     }
 
     plugins {
+        id("ru.mipt.npm.kscience") version toolsVersion
         id("ru.mipt.npm.project") version toolsVersion
         id("ru.mipt.npm.mpp") version toolsVersion
         id("ru.mipt.npm.jvm") version toolsVersion

@@ -1,12 +1,11 @@
 plugins {
     id("ru.mipt.npm.jvm")
-    id("ru.mipt.npm.publish")
     application
 }
 
 kscience{
-    useDokka()
     application()
+    publish()
 }
 
 repositories {

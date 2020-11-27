@@ -1,10 +1,9 @@
 plugins {
     id("ru.mipt.npm.mpp")
-    id("ru.mipt.npm.publish")
 }
 
 kscience {
-    useDokka()
+    publish()
 }
 
 val dataforgeVersion: String by rootProject.extra
