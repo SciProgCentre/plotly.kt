@@ -3,29 +3,30 @@ package kscience.plotly.server
 import hep.dataforge.meta.Meta
 import hep.dataforge.meta.toJson
 import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.json
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 
 /**
  * An update message for both data and layout
  */
-sealed class Update(val id: String) {
-    abstract fun toJson(): JsonObject
+public sealed class Update(public val id: String) {
+    public abstract fun toJson(): JsonObject
 
-    class Trace(id: String, val trace: Int, val content: Meta) : Update(id) {
-        override fun toJson(): JsonObject = json {
-            "plotId" to id
-            "contentType" to "trace"
-            "trace" to trace
-            "content" to content.toJson()
+    public class Trace(id: String, private val trace: Int, private val content: Meta) : Update(id) {
+        override fun toJson(): JsonObject = buildJsonObject {
+            put("plotId", id)
+            put("contentType", "trace")
+            put("trace", trace)
+            put("content", content.toJson())
         }
 
     }
 
-    class Layout(id: String, val content: Meta) : Update(id) {
-        override fun toJson(): JsonObject = json {
-            "plotId" to id
-            "contentType" to "layout"
-            "content" to content.toJson()
+    public class Layout(id: String, private val content: Meta) : Update(id) {
+        override fun toJson(): JsonObject = buildJsonObject {
+            put("plotId", id)
+            put("contentType", "layout")
+            put("content", content.toJson())
         }
     }
 }

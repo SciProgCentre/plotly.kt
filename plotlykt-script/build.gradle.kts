@@ -1,8 +1,11 @@
 plugins {
-    id("scientifik.jvm")
-    id("scientifik.publish")
-    id("org.jetbrains.dokka")
+    id("ru.mipt.npm.jvm")
     application
+}
+
+kscience{
+    application()
+    publish()
 }
 
 repositories {
@@ -18,7 +21,7 @@ dependencies {
     api(kotlin("scripting-jvm"))
     api("io.github.microutils:kotlin-logging:1.8.3")
     implementation("ch.qos.logback:logback-classic:1.2.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.2.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3")
 }
 
 application{

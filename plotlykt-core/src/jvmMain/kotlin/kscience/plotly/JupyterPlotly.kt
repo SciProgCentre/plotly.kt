@@ -84,7 +84,7 @@ object JupyterPlotly: PlotlyRenderer {
     }
 
     fun renderPlot(plot: Plot): String = createHTML().div {
-        plot(plot, config = PlotlyConfig {
+        plot(plot, config = PlotlyConfig{
             responsive = true
         }, renderer = this@JupyterPlotly)
     }

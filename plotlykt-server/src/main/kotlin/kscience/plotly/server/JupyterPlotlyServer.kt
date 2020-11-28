@@ -23,10 +23,11 @@ import kotlinx.html.*
 import kotlinx.html.stream.createHTML
 import kscience.plotly.*
 
-class JupyterPlotlyServer(
-    val port: Int = 8882,
-    val updateInterval: Long = 50,
-    val parentScope: CoroutineScope = GlobalScope
+@UnstablePlotlyAPI
+public class JupyterPlotlyServer(
+    private val port: Int = 8882,
+    private val updateInterval: Long = 50,
+    private val parentScope: CoroutineScope = GlobalScope
 ) : PlotlyRenderer {
 
     private var server: ApplicationEngine? = null
@@ -34,7 +35,7 @@ class JupyterPlotlyServer(
     private val plots = HashMap<String, Plot>()
 
     @OptIn(KtorExperimentalAPI::class)
-    suspend fun start() {
+    public suspend fun start() {
         server = parentScope.embeddedServer(io.ktor.server.cio.CIO, port) {
             install(CORS) {
                 anyHost()
@@ -123,11 +124,11 @@ class JupyterPlotlyServer(
         return plot
     }
 
-    fun stop() {
+    public fun stop() {
         server?.stop(1000, 5000)
     }
 
-    companion object {
+    public companion object {
         private fun loadJs(serverUrl: String) = HtmlFragment {
 
             script {
@@ -182,7 +183,7 @@ class JupyterPlotlyServer(
         /**
          * Start a dynamic update server
          */
-        fun start(port: Int = 8882, updateInterval: Long = 50): HtmlFragment {
+        public fun start(port: Int = 8882, updateInterval: Long = 50): HtmlFragment {
             return if (jupyterPlotlyServer!= null) {
                 loadJs("//localhost:$port") + HtmlFragment {
                     div {
@@ -201,7 +202,7 @@ class JupyterPlotlyServer(
         /**
          * Stop dynamic update server
          */
-        fun stop(): HtmlFragment {
+        public fun stop(): HtmlFragment {
             if (jupyterPlotlyServer == null) {
                 return HtmlFragment {
                     div {
@@ -220,19 +221,19 @@ class JupyterPlotlyServer(
             }
         }
 
-        fun renderPlot(plot: Plot): String = createHTML().div {
-            plot(plot, config = PlotlyConfig {
+        public fun renderPlot(plot: Plot): String = createHTML().div {
+            plot(plot, config = PlotlyConfig{
                 responsive = true
             }, renderer = jupyterPlotlyServer ?: StaticPlotlyRenderer)
         }
 
-        fun renderFragment(fragment: PlotlyFragment): String = createHTML().div {
+        public fun renderFragment(fragment: PlotlyFragment): String = createHTML().div {
             with(fragment) {
                 render(jupyterPlotlyServer ?: StaticPlotlyRenderer)
             }
         }
 
-        fun renderPage(page: PlotlyPage): String =
+        public fun renderPage(page: PlotlyPage): String =
             page.copy(renderer = jupyterPlotlyServer ?: StaticPlotlyRenderer).render()
     }
 }

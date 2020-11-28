@@ -1,19 +1,26 @@
 plugins {
-    val toolsVersion = "0.5.2"
-    id("scientifik.mpp") version toolsVersion apply false
-    id("scientifik.jvm") version toolsVersion apply false
-    id("scientifik.publish") version toolsVersion apply false
-    id("org.jetbrains.changelog") version "0.4.0"
+    kotlin("js") apply false
+    id("ru.mipt.npm.project")
 }
 
-val ktorVersion by extra("1.3.2")
-val dataforgeVersion by extra("0.1.8")
-val htmlVersion by extra("0.7.1")
+val ktorVersion by extra("1.4.1")
+val dataforgeVersion by extra("0.2.0")
+val htmlVersion by extra("0.7.2")
 
 val bintrayRepo by extra("kscience")
 val githubProject by extra("plotly.kt")
 
 allprojects {
     group = "kscience.plotlykt"
-    version = "0.2.0"
+    version = "0.3.0"
+
+    repositories {
+        mavenLocal()
+        maven("https://dl.bintray.com/kotlin/kotlin-eap")
+        maven("https://kotlin.bintray.com/kotlinx")
+    }
+}
+
+apiValidation {
+    ignoredProjects.addAll(listOf("examples", "fx-demo", "js-demo"))
 }

@@ -24,7 +24,7 @@ fun main() {
     val x1 = listOf(-9, -6, -5, -3, -1)
     val y1 = listOf(0, 1, 4, 5, 7)
 
-    val contour = Contour {
+    val contour = Contour{
         x.numbers = x1
         y.numbers = y1
         z(values)

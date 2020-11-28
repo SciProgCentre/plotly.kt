@@ -17,6 +17,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [0.3.0]
+### Added
+-Support for `plotly.kts` in IDEA
+
+### Changed
+- Serialization API is encapsulated (not longer exposed) in order to provide compatibility with new serialization.
+- Migration to Kotlin 1.4
+- Minor breaking change in Plot to encapsulate serialization usage
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
 ## [0.2.0]
 
 

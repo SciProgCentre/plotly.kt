@@ -4,60 +4,60 @@ import hep.dataforge.meta.*
 import hep.dataforge.names.toName
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.buildJsonArray
 import kotlin.js.JsName
 
 /**
  * A namespace for utility functions
  */
 @JsName("PlotlyKt")
-object Plotly {
-    const val VERSION = "1.54.6"
-    fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
+public object Plotly {
+    public const val VERSION: String = "1.54.6"
+    public fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
 }
 
-fun Scheme.toJson(): JsonObject = config.toJson()
+private fun Scheme.toJson(): JsonObject = config.toJson()
 
 /**
  * Convert any type-safe configurator to json string
  */
-fun Scheme.toJsonString(): String = toJson().toString()
+public fun Scheme.toJsonString(): String = toJson().toString()
 
 
-fun List<Scheme>.toJson(): JsonArray = jsonArray {
-    forEach { +it.toJson() }
+private fun List<Scheme>.toJson(): JsonArray = buildJsonArray {
+    forEach { add(it.toJson()) }
 }
 
 /**
  * Convert list of type-safe configurators to json array string
  */
-fun List<Scheme>.toJsonString(): String = toJson().toString()
+public fun List<Scheme>.toJsonString(): String = toJson().toString()
 
 
 @RequiresOptIn("Unstable API subjected to change in future releases", RequiresOptIn.Level.WARNING)
-annotation class UnstablePlotlyAPI
+public annotation class UnstablePlotlyAPI
 
 @RequiresOptIn("This Plotly API is not fully supported. Use it at your own risk.", RequiresOptIn.Level.ERROR)
-annotation class UnsupportedPlotlyAPI
+public annotation class UnsupportedPlotlyAPI
 
-class PlotlyConfig : Scheme() {
-    var editable by boolean()
-    var showEditInChartStudio by boolean()
-    var plotlyServerURL by string()
-    var responsive by boolean()
-    var imageFormat by string("toImageButtonOptions.format".toName())
+public class PlotlyConfig : Scheme() {
+    public var editable: Boolean? by boolean()
+    public var showEditInChartStudio: Boolean? by boolean()
+    public var plotlyServerURL: String? by string()
+    public var responsive: Boolean? by boolean()
+    public var imageFormat: String? by string("toImageButtonOptions.format".toName())
 
-    fun withEditorButton() {
+    public fun withEditorButton() {
         showEditInChartStudio = true
         plotlyServerURL = "https://chart-studio.plotly.com"
     }
 
-    fun saveAsSvg(){
+    public fun saveAsSvg(){
         imageFormat = "svg"
     }
 
     override fun toString(): String = toJsonString()
 
-    companion object : SchemeSpec<PlotlyConfig>(::PlotlyConfig)
+    public companion object : SchemeSpec<PlotlyConfig>(::PlotlyConfig)
 }
 

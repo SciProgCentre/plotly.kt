@@ -13,7 +13,7 @@ internal const val assetsDirectory = "assets"
 /**
  * The location of resources for plot.
  */
-enum class ResourceLocation {
+public enum class ResourceLocation {
     /**
      * Use cdn or other remote source for assets
      */
@@ -42,11 +42,11 @@ enum class ResourceLocation {
  * @param show if true, start the browser after file is created
  * @param config represents plotly frame configuration
  */
-fun Plot.makeFile(
+public fun Plot.makeFile(
     path: Path? = null,
     show: Boolean = true,
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
-    config: PlotlyConfig = PlotlyConfig()
+    config: PlotlyConfig = PlotlyConfig(),
 ) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
     Files.createDirectories(actualFile.parent)
@@ -59,16 +59,16 @@ fun Plot.makeFile(
 /**
  * The same as [Plot.makeFile].
  */
-fun PlotlyFragment.makeFile(
+public fun PlotlyFragment.makeFile(
     path: Path? = null,
     show: Boolean = true,
     title: String = "Plotly.kt",
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
-    additionalHeaders: List<HtmlFragment> = emptyList()
+    additionalHeaders: List<HtmlFragment> = emptyList(),
 ) {
     toPage(
         title = title,
-        headers = *(additionalHeaders + inferPlotlyHeader(path, resourceLocation)).toTypedArray()
+        headers = (additionalHeaders + inferPlotlyHeader(path, resourceLocation)).toTypedArray()
     ).makeFile(path, show)
 }
 
@@ -76,7 +76,7 @@ fun PlotlyFragment.makeFile(
 /**
  * Export a page html to a file.
  */
-fun PlotlyPage.makeFile(path: Path? = null, show: Boolean = true) {
+public fun PlotlyPage.makeFile(path: Path? = null, show: Boolean = true) {
     val actualFile = path ?: Files.createTempFile("tempPlot", ".html")
     Files.createDirectories(actualFile.parent)
     Files.writeString(actualFile, render())
@@ -85,15 +85,14 @@ fun PlotlyPage.makeFile(path: Path? = null, show: Boolean = true) {
     }
 }
 
-fun Plotly.display(
-    pageBuilder: FlowContent.(renderer: PlotlyRenderer) -> Unit
-) = fragment(pageBuilder).makeFile(null, true)
+public fun Plotly.display(pageBuilder: FlowContent.(renderer: PlotlyRenderer) -> Unit): Unit =
+    fragment(pageBuilder).makeFile(null, true)
 
 /**
  * Select a file to save plot to using Swing form.
  */
 @UnstablePlotlyAPI
-fun selectFile(filter: FileNameExtensionFilter? = null): Path? {
+public fun selectFile(filter: FileNameExtensionFilter? = null): Path? {
     val fileChooser = JFileChooser()
     fileChooser.dialogTitle = "Specify a file to save"
     if (filter != null) {
@@ -113,7 +112,7 @@ fun selectFile(filter: FileNameExtensionFilter? = null): Path? {
 /**
  * Output format for Orca export
  */
-enum class OrcaFormat {
+public enum class OrcaFormat {
     png, jpeg, webp, svg, pdf
 }
 
@@ -122,11 +121,9 @@ enum class OrcaFormat {
  * The tool must be installed externally (for example via conda) and usage patterns could differ for different systems.
  */
 @UnstablePlotlyAPI
-fun Plot.export(path: Path, format: OrcaFormat = OrcaFormat.svg) {
-    val json = toJson().toString()
-
+public fun Plot.export(path: Path, format: OrcaFormat = OrcaFormat.svg) {
     val tempFile = Files.createTempFile("plotly-orca-export", ".json")
-    Files.writeString(tempFile, json)
+    Files.writeString(tempFile, toJsonString())
 
     val command = if (System.getProperty("os.name").contains("Windows")) {
         "powershell"
@@ -135,7 +132,7 @@ fun Plot.export(path: Path, format: OrcaFormat = OrcaFormat.svg) {
     }
 
     val process = ProcessBuilder(
-        "powershell", "orca", "graph", tempFile.toAbsolutePath().toString(),
+        command, "orca", "graph", tempFile.toAbsolutePath().toString(),
         "-f", format.toString(),
         "-d", path.parent.toString(),
         "-o", path.fileName.toString(),

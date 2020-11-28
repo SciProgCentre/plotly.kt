@@ -2,6 +2,7 @@ package kscience.plotly.jsdemo
 
 
 import hep.dataforge.meta.invoke
+import kotlinx.browser.document
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -11,13 +12,12 @@ import kscience.plotly.models.TraceType
 import kscience.plotly.plot
 import kscience.plotly.scatter
 import org.w3c.dom.HTMLElement
-import kotlin.browser.document
 import kotlin.random.Random
 
 fun main() {
     document.addEventListener("DOMContentLoaded", {
-        val element =
-            document.getElementById("canvas") as? HTMLElement ?: error("Element with id 'app' not found on page")
+        val element = document.getElementById("canvas") as? HTMLElement
+            ?: error("Element with id 'app' not found on page")
 
         console.log("element loaded")
         element.plot {
@@ -36,7 +36,7 @@ fun main() {
                     GlobalScope.launch {
                         while (isActive) {
                             delay(500)
-                            if(Random.nextBoolean()){
+                            if (Random.nextBoolean()) {
                                 color("magenta")
                             } else {
                                 color("blue")
