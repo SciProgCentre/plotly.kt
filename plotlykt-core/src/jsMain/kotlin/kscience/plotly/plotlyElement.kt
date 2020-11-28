@@ -31,6 +31,10 @@ fun HTMLElement.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig()) {
                 traceData.z = arrayOf(traceData.z)
             }
 
+            if (trace.text.value != null) {
+                traceData.text = arrayOf(traceData.text)
+            }
+
             PlotlyJs.restyle(this, traceData, arrayOf(index))
         }
     }

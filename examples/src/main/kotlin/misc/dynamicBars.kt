@@ -22,6 +22,7 @@ fun main() {
         name to Bar {
             x.strings = initialValue.map { "Column: $it" }
             y.numbers = initialValue
+            textsList = initialValue.map { "Initial value of this datapoint is: ${it}"}
             this.name = name
         }
     }
@@ -58,6 +59,7 @@ fun main() {
                         val yValues = bar.y.doubles
                         yValues[columnIndex] = Random.nextInt(0,100).toDouble()
                         bar.y.doubles = yValues
+                        bar.textsList = yValues.map { "Updated value of this datapoint is: ${it}"}
                     }
                 }
             }
