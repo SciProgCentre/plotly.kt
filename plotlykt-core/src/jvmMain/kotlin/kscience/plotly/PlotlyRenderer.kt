@@ -2,15 +2,15 @@ package kscience.plotly
 
 import kotlinx.html.*
 
-interface PlotlyRenderer {
-    fun FlowContent.renderPlot(
+public interface PlotlyRenderer {
+    public fun FlowContent.renderPlot(
         plot: Plot,
         plotId: String = plot.toString(),
         config: PlotlyConfig = PlotlyConfig()
     ): Plot
 }
 
-object StaticPlotlyRenderer : PlotlyRenderer {
+public object StaticPlotlyRenderer : PlotlyRenderer {
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         div {
             id = plotId
@@ -34,7 +34,7 @@ object StaticPlotlyRenderer : PlotlyRenderer {
     }
 }
 
-fun FlowContent.plot(
+public fun FlowContent.plot(
     plot: Plot,
     plotId: String = plot.toString(),
     config: PlotlyConfig = PlotlyConfig(),
@@ -43,7 +43,7 @@ fun FlowContent.plot(
     renderPlot(plot, plotId, config)
 }
 
-fun FlowContent.plot(
+public fun FlowContent.plot(
     plotId: String? = null,
     config: PlotlyConfig = PlotlyConfig(),
     renderer: PlotlyRenderer = StaticPlotlyRenderer,
