@@ -33,11 +33,10 @@ private fun List<Scheme>.toJson(): JsonArray = buildJsonArray {
  */
 public fun List<Scheme>.toJsonString(): String = toJson().toString()
 
-
 @RequiresOptIn("Unstable API subjected to change in future releases", RequiresOptIn.Level.WARNING)
 public annotation class UnstablePlotlyAPI
 
-@RequiresOptIn("This Plotly API is not fully supported. Use it at your own risk.", RequiresOptIn.Level.ERROR)
+@RequiresOptIn("This Plotly JS API is not fully supported. Use it at your own risk.", RequiresOptIn.Level.ERROR)
 public annotation class UnsupportedPlotlyAPI
 
 public class PlotlyConfig : Scheme() {
