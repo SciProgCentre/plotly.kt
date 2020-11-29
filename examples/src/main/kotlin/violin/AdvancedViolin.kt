@@ -12,7 +12,7 @@ import kscience.plotly.models.*
  */
 fun main() {
     val trace1 = Violin {
-        textsList = listOf("sample length: 32")
+        text("sample length: 32")
         marker {
             line {
                 width = 2
@@ -48,7 +48,7 @@ fun main() {
     }
 
     val trace2 = Violin {
-        textsList = listOf("sample length: 32")
+        text("sample length: 32")
         marker {
             line {
                 width = 2

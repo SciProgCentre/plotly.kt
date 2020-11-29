@@ -19,7 +19,7 @@ fun main() {
     val trace1 = Scatter {
         x(2, 3.5, 6)
         y(1, 1.5, 1)
-        textsList = listOf("Vertical Line", "Horizontal Dashed Line", "Diagonal dotted Line")
+        text("Vertical Line", "Horizontal Dashed Line", "Diagonal dotted Line")
         mode = ScatterMode.text
     }
 

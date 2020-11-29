@@ -49,7 +49,7 @@ fun main() {
                 x.set(xValues)
                 y.set(yValues)
                 name = "\$\\Large{y = \\mathrm{sin}\\,x}\$"
-                textsList = yText
+                text.strings = yText
                 hoverinfo = "text"
                 line { color(Xkcd.CERULEAN) }
             }
@@ -75,7 +75,7 @@ fun main() {
                 mode = ScatterMode.text
                 x(-0.35, 0.28, PI * 2 + 0.4)
                 y(0.56, 1.3, 0.1)
-                textsList = listOf("\$\\Large{1/2}\$", "\$\\huge{y}\$", "\$\\huge{x}\$")
+                text.strings = listOf("\$\\Large{1/2}\$", "\$\\huge{y}\$", "\$\\huge{x}\$")
                 textfont {
                     colors(listOf("red", "black", "black"))
                 }

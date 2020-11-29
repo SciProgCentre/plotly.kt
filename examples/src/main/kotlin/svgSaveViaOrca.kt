@@ -1,5 +1,6 @@
 import hep.dataforge.meta.invoke
 import kscience.plotly.Plotly
+import kscience.plotly.UnstablePlotlyAPI
 import kscience.plotly.export
 import kscience.plotly.models.Scatter
 import kscience.plotly.models.ScatterMode
@@ -12,13 +13,14 @@ import javax.swing.filechooser.FileNameExtensionFilter
  * - Hide axis & grid lines
  * - Export picture as svg using orca
  */
+@OptIn(UnstablePlotlyAPI::class)
 fun main() {
     val trace1 = Scatter {
         x(52698, 43117)
         y(53, 31)
         mode = ScatterMode.markers
         name = "North America"
-        textsList = listOf("United States", "Canada")
+        text("United States", "Canada")
         marker {
             color("rgb(164, 194, 244)")
             size = 12
@@ -34,7 +36,7 @@ fun main() {
         y(33, 20, 13, 19, 27, 19, 49, 44, 38)
         mode = ScatterMode.markers
         name = "Europe"
-        textsList = listOf("Germany", "Britain", "France", "Spain", "Italy", "Czech Rep.", "Greece", "Poland")
+        text("Germany", "Britain", "France", "Spain", "Italy", "Czech Rep.", "Greece", "Poland")
         marker {
             color("rgb(255, 217, 102)")
             size = 12
@@ -46,8 +48,7 @@ fun main() {
         y(23, 42, 54, 89, 14, 99, 93, 70)
         mode = ScatterMode.markers
         name = "Asia/Pacific"
-        textsList =
-            listOf("Australia", "Japan", "South Korea", "Malaysia", "China", "Indonesia", "Philippines", "India")
+        text("Australia", "Japan", "South Korea", "Malaysia", "China", "Indonesia", "Philippines", "India")
         marker {
             color("rgb(234, 153, 153)")
             size = 12
@@ -59,7 +60,7 @@ fun main() {
         y(43, 47, 56, 80, 86, 93, 80)
         mode = ScatterMode.markers
         name = "Latin America"
-        textsList = listOf("Chile", "Argentina", "Mexico", "Venezuela", "Venezuela", "El Salvador", "Bolivia")
+        text("Chile", "Argentina", "Mexico", "Venezuela", "Venezuela", "El Salvador", "Bolivia")
         marker {
             color("rgb(142, 124, 195)")
             size = 12

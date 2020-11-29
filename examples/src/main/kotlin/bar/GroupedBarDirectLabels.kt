@@ -21,7 +21,7 @@ fun main() {
     val trace1 = Bar {
         x.strings = xValues
         y.numbers = yValues
-        textsList = yValues.map { it.toString() }
+        text.strings = yValues.map { it.toString() }
         textposition = TextPosition.auto
         hoverinfo = "none"
         opacity = 0.5
@@ -38,7 +38,7 @@ fun main() {
     val trace2 = Bar {
         x.strings = xValues
         y.numbers = yValues2
-        textsList = yValues2.map { it.toString() }
+        text.strings = yValues2.map { it.toString() }
         textposition = TextPosition.auto
         hoverinfo = "none"
         showlegend = false
