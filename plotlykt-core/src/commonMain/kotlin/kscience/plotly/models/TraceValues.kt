@@ -1,7 +1,8 @@
 package kscience.plotly.models
 
+import hep.dataforge.meta.Scheme
 import hep.dataforge.meta.value
-import hep.dataforge.names.asName
+import hep.dataforge.names.Name
 import hep.dataforge.values.DoubleArrayValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
@@ -10,8 +11,8 @@ import hep.dataforge.values.doubleArray
 /**
  * Type-safe accessor class for values in the trace
  */
-public class TraceValues internal constructor(public val trace: Trace, axis: String) {
-    public var value: Value? by trace.value(key = axis.asName())
+public class TraceValues internal constructor(public val owner: Scheme, name: Name) {
+    public var value: Value? by owner.value(key = name)
 
     public var doubles: DoubleArray
         get() = value?.doubleArray ?: doubleArrayOf()

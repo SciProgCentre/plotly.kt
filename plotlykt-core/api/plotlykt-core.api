@@ -1619,11 +1619,10 @@ public class kscience/plotly/models/Trace : hep/dataforge/meta/Scheme {
 	public final fun getScalegroup ()Ljava/lang/String;
 	public final fun getShowlegend ()Ljava/lang/Boolean;
 	public final fun getShowscale ()Ljava/lang/Boolean;
-	public final fun getText ()Ljava/lang/String;
+	public final fun getText ()Lkscience/plotly/models/TraceValues;
 	public final fun getTextfont ()Lkscience/plotly/models/Font;
 	public final fun getTextposition ()Lkscience/plotly/models/TextPosition;
 	public final fun getTextpositionsList ()Ljava/util/List;
-	public final fun getTextsList ()Ljava/util/List;
 	public final fun getTranspose ()Ljava/lang/Boolean;
 	public final fun getType ()Lkscience/plotly/models/TraceType;
 	public final fun getValues ()Ljava/util/List;
@@ -1664,11 +1663,10 @@ public class kscience/plotly/models/Trace : hep/dataforge/meta/Scheme {
 	public final fun setScalegroup (Ljava/lang/String;)V
 	public final fun setShowlegend (Ljava/lang/Boolean;)V
 	public final fun setShowscale (Ljava/lang/Boolean;)V
-	public final fun setText (Ljava/lang/String;)V
+	public final fun setText (Lkscience/plotly/models/TraceValues;)V
 	public final fun setTextfont (Lkscience/plotly/models/Font;)V
 	public final fun setTextposition (Lkscience/plotly/models/TextPosition;)V
 	public final fun setTextpositionsList (Ljava/util/List;)V
-	public final fun setTextsList (Ljava/util/List;)V
 	public final fun setTranspose (Ljava/lang/Boolean;)V
 	public final fun setType (Lkscience/plotly/models/TraceType;)V
 	public final fun setValues (Ljava/util/List;)V
@@ -1723,8 +1721,8 @@ public final class kscience/plotly/models/TraceType : java/lang/Enum {
 public final class kscience/plotly/models/TraceValues {
 	public final fun getDoubles ()[D
 	public final fun getNumbers ()Ljava/lang/Iterable;
+	public final fun getOwner ()Lhep/dataforge/meta/Scheme;
 	public final fun getStrings ()Ljava/lang/Iterable;
-	public final fun getTrace ()Lkscience/plotly/models/Trace;
 	public final fun getValue ()Lhep/dataforge/values/Value;
 	public final fun invoke (Ljava/util/List;)V
 	public final fun invoke ([Ljava/lang/Number;)V

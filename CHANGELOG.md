@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- **Breaking API change!** Trace `text` replaced by `TraceValues`
 
 ### Deprecated
 

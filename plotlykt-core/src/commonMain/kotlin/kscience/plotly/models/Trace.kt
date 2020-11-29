@@ -4,6 +4,7 @@ package kscience.plotly.models
 
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
+import hep.dataforge.names.toName
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import kscience.plotly.*
@@ -629,7 +630,7 @@ public class Domain : Scheme() {
  * A base class for Plotly traces
  */
 public open class Trace : Scheme() {
-    public fun axis(axisName: String): TraceValues = TraceValues(this, axisName)
+    public fun axis(axisName: String): TraceValues = TraceValues(this, axisName.toName())
 
     /**
      * Sets the x coordinates.
