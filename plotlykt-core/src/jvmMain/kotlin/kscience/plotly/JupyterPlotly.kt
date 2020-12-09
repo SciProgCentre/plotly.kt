@@ -4,7 +4,7 @@ import kotlinx.html.*
 import kotlinx.html.stream.createHTML
 
 @UnstablePlotlyAPI
-object JupyterPlotly: PlotlyRenderer {
+public object JupyterPlotly: PlotlyRenderer {
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         div {
             id = plotId
@@ -38,7 +38,7 @@ object JupyterPlotly: PlotlyRenderer {
         return plot
     }
 
-    fun loadJs() = HtmlFragment {
+    public fun loadJs(): HtmlFragment = HtmlFragment {
         script {
             type = "text/javascript"
             unsafe {
@@ -83,17 +83,17 @@ object JupyterPlotly: PlotlyRenderer {
         }
     }
 
-    fun renderPlot(plot: Plot): String = createHTML().div {
+    public fun renderPlot(plot: Plot): String = createHTML().div {
         plot(plot, config = PlotlyConfig{
             responsive = true
         }, renderer = this@JupyterPlotly)
     }
 
-    fun renderFragment(fragment: PlotlyFragment): String = createHTML().div {
+    public fun renderFragment(fragment: PlotlyFragment): String = createHTML().div {
         with(fragment) {
             render(this@JupyterPlotly)
         }
     }
 
-    fun renderPage(page: PlotlyPage): String = page.copy(renderer = this@JupyterPlotly).render()
+    public fun renderPage(page: PlotlyPage): String = page.copy(renderer = this@JupyterPlotly).render()
 }

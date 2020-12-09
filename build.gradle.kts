@@ -4,7 +4,7 @@ plugins {
 }
 
 val ktorVersion by extra("1.4.1")
-val dataforgeVersion by extra("0.2.1-dev-1")
+val dataforgeVersion by extra("0.2.1-dev-4")
 val htmlVersion by extra("0.7.2")
 
 val bintrayRepo by extra("kscience")

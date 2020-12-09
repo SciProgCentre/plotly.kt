@@ -3,10 +3,7 @@ package kscience.plotly.models
 import hep.dataforge.meta.Scheme
 import hep.dataforge.meta.value
 import hep.dataforge.names.Name
-import hep.dataforge.values.DoubleArrayValue
-import hep.dataforge.values.Value
-import hep.dataforge.values.asValue
-import hep.dataforge.values.doubleArray
+import hep.dataforge.values.*
 
 /**
  * Type-safe accessor class for values in the trace
@@ -21,7 +18,7 @@ public class TraceValues internal constructor(public val owner: Scheme, name: Na
         }
 
     public var numbers: Iterable<Number>
-        get() = value?.list?.map { it.number } ?: emptyList()
+        get() = value?.list?.map { it.numberOrNull ?: Double.NaN } ?: emptyList()
         set(value) {
             this.value = value.map { it.asValue() }.asValue()
         }
