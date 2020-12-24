@@ -710,7 +710,7 @@ public open class Trace : Scheme() {
      * Data array. Sets the values of the sectors.
      * If omitted, we count occurrences of each label.
      */
-    public var values: List<Value> by list()
+    public var values: List<Value> by listOfValues()
 
     /**
      * Data array. Sets the sector labels. If `labels` entries
@@ -719,7 +719,7 @@ public open class Trace : Scheme() {
      * For other array attributes (including color) we use the first
      * non-empty entry among all occurrences of the label.
      */
-    public var labels: List<Value> by list()
+    public var labels: List<Value> by listOfValues()
 
     public var line: LayoutLine? by spec(LayoutLine)
 
@@ -798,7 +798,7 @@ public open class Trace : Scheme() {
      * Default: "middle center".
      */
     @UnstablePlotlyAPI
-    public var textpositionsList: List<Value> by list(key = "textposition".asName())
+    public var textpositionsList: List<Value> by listOfValues(key = "textposition".asName())
 
     /**
      * Sets the text font.

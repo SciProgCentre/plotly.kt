@@ -20,15 +20,15 @@ public class Plot : Configurable, MetaRepr {
     /**
      * Ordered list ot traces in the plot
      */
-    public val data: List<Trace> by list(Trace)
+    public val data: List<Trace> by config.list(Trace)
 
     /**
      * Layout specification for th plot
      */
-    public val layout: Layout by lazySpec(Layout)
+    public val layout: Layout by config.lazySpec(Layout)
 
     private fun appendTrace(trace: Trace) {
-        config.append("data", trace.config)
+        config.append("data", trace.rootNode)
     }
 
     /**
@@ -57,10 +57,10 @@ public class Plot : Configurable, MetaRepr {
 }
 
 private fun Plot.toJson(): JsonObject = buildJsonObject {
-    put("layout", layout.config.toJson())
+    layout.rootNode?.let { put("layout", it.toJson()) }
     put("data", buildJsonArray {
-        data.forEach {
-            add(it.config.toJson())
+        data.forEach {traceData->
+            traceData.rootNode?.let { add(it.toJson())}
         }
     })
 }

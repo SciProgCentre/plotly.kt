@@ -3,7 +3,7 @@ package kscience.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.values.Value
 import kscience.plotly.doubleInRange
-import kscience.plotly.list
+import kscience.plotly.listOfValues
 import kscience.plotly.numberGreaterThan
 import kotlin.js.JsName
 
@@ -86,7 +86,7 @@ public class Box : Trace(), SelectedPoints {
      * If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it
      * as 1.57 " IQR / sqrt(N), where N is the sample size.
      */
-    public var notchspan: List<Value> by list()
+    public var notchspan: List<Value> by listOfValues()
 
     /**
      * Sets the width of the whiskers relative to the box' width. For example, with 1,
@@ -97,45 +97,45 @@ public class Box : Trace(), SelectedPoints {
     /**
      * Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
      */
-    public var q1: List<Value> by list()
+    public var q1: List<Value> by listOfValues()
 
     /**
      * Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
      */
-    public var q3: List<Value> by list()
+    public var q3: List<Value> by listOfValues()
 
     /**
      * Sets the median values. There should be as many items as the number of boxes desired.
      */
-    public var median: List<Value> by list()
+    public var median: List<Value> by listOfValues()
 
     /**
      * Sets the mean values. There should be as many items as the number of boxes desired.
      * This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided
      * but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
      */
-    public var mean: List<Value> by list()
+    public var mean: List<Value> by listOfValues()
 
     /**
      * Sets the standard deviation values. There should be as many items as the number of boxes desired.
      * This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided
      * but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
      */
-    public var sd: List<Value> by list()
+    public var sd: List<Value> by listOfValues()
 
     /**
      * Sets the lower fence values. There should be as many items as the number of boxes desired.
      * This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided
      * but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
      */
-    public var lowerfence: List<Value> by list()
+    public var lowerfence: List<Value> by listOfValues()
 
     /**
      * Sets the upper fence values. There should be as many items as the number of boxes desired.
      * This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided
      * but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
      */
-    public var upperfence: List<Value> by list()
+    public var upperfence: List<Value> by listOfValues()
 
     /**
      * Sets the method used to compute the sample's Q1 and Q3 quartiles. The "linear" method uses

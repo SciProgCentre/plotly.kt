@@ -1,45 +1,50 @@
 package kscience.plotly
 
-import hep.dataforge.meta.Scheme
-import hep.dataforge.meta.toDynamic
+import hep.dataforge.meta.*
+import hep.dataforge.names.asName
+import hep.dataforge.names.firstOrNull
+import hep.dataforge.names.startsWith
 import org.w3c.dom.HTMLElement
-
-private fun Scheme.toDynamic() = config.toDynamic()
 
 /**
  * Attach a plot to this element or update existing plot
  */
-fun HTMLElement.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig()) {
-    val traces = plot.data.map { it.toDynamic() }.toTypedArray()
-    PlotlyJs.react(this, traces, plot.layout.toDynamic(), plotlyConfig.toDynamic())
-    plot.layout.config.onChange(this) { _, _, _ ->
-        PlotlyJs.relayout(this, plot.layout.toDynamic())
-    }
-    plot.data.forEachIndexed { index, trace ->
-        trace.config.onChange(this) { _, _, _ ->
-            val traceData = trace.toDynamic()
+public fun HTMLElement.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig()) {
+    val tracesData = plot.config.getIndexed(Plot::data.name).values.map {
+        it.node?.toDynamic()
+    }.toTypedArray()
 
-            if (trace.x.value != null) {
+    PlotlyJs.react(this, tracesData, plot.layout.rootNode?.toDynamic(), plotlyConfig.rootNode?.toDynamic())
+
+    plot.config.onChange(this){ name, _, _ ->
+        if(name.startsWith(plot::layout.name.asName())){
+            PlotlyJs.relayout(this, plot.layout.rootNode?.toDynamic())
+        } else if (name.startsWith(plot::data.name.asName())){
+            val traceName = name.firstOrNull()!!
+            val traceIndex = traceName.index?.toInt() ?: 0
+            val traceData = plot.config[traceName].node?.toDynamic()
+
+            if (traceData.x != null) {
                 traceData.x = arrayOf(traceData.x)
             }
 
-            if (trace.y.value != null) {
+            if (traceData.y != null) {
                 traceData.y = arrayOf(traceData.y)
             }
 
-            if (trace.z.value != null) {
+            if (traceData.z != null) {
                 traceData.z = arrayOf(traceData.z)
             }
 
-            if (trace.text.value != null) {
+            if (traceData.text != null) {
                 traceData.text = arrayOf(traceData.text)
             }
 
-            PlotlyJs.restyle(this, traceData, arrayOf(index))
+            PlotlyJs.restyle(this, traceData, arrayOf(traceIndex))
         }
     }
 }
 
-fun HTMLElement.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plotBuilder: Plot.() -> Unit) {
+public fun HTMLElement.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plotBuilder: Plot.() -> Unit) {
     plot(Plot().apply(plotBuilder), plotlyConfig)
 }

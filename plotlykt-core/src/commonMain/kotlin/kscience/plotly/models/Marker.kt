@@ -7,7 +7,7 @@ import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.string
 import kscience.plotly.intGreaterThan
-import kscience.plotly.list
+import kscience.plotly.listOfValues
 import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
 
@@ -33,7 +33,7 @@ public class Gradient : Scheme() {
     /**
      * Sets the type of gradient used to fill the markers
      */
-    public var typesList: List<Value> by list()
+    public var typesList: List<Value> by listOfValues()
 
     public fun colors(colors: Iterable<Any>) {
         color.value = colors.map { Value.of(it) }.asValue()
@@ -56,7 +56,7 @@ public class Marker : Scheme() {
     /**
      * Array of enumerateds. Sets the marker symbol type.
      */
-    public var symbolsList: List<Value> by list(key = "symbol".asName())
+    public var symbolsList: List<Value> by listOfValues(key = "symbol".asName())
 
     /**
      * Sets the marker size (in px).
@@ -121,7 +121,7 @@ public class Marker : Scheme() {
     /**
      * Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
      */
-    public var pieColors: List<Value> by list(key = "colors".asName())
+    public var pieColors: List<Value> by listOfValues(key = "colors".asName())
 
     public var colorbar: ColorBar? by spec(ColorBar)
 

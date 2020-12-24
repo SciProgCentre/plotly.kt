@@ -16,7 +16,7 @@ public object Plotly {
     public fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
 }
 
-private fun Scheme.toJson(): JsonObject = config.toJson()
+private fun Scheme.toJson(): JsonObject = rootNode?.toJson() ?: JsonObject(emptyMap())
 
 /**
  * Convert any type-safe configurator to json string
@@ -51,7 +51,7 @@ public class PlotlyConfig : Scheme() {
         plotlyServerURL = "https://chart-studio.plotly.com"
     }
 
-    public fun saveAsSvg(){
+    public fun saveAsSvg() {
         imageFormat = "svg"
     }
 

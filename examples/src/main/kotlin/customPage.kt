@@ -18,7 +18,7 @@ fun main() {
     val trace2 = Trace(x1, y2) { name = "cos" }
 
     Plotly.fragment { container ->
-        plot(renderer = container) {
+        val plot = plot(renderer = container) {
             traces(trace1, trace2)
             layout {
                 title = "The plot above"

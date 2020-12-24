@@ -7,7 +7,7 @@ import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
 import kscience.plotly.lazySpec
-import kscience.plotly.list
+import kscience.plotly.listOfValues
 import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
 import kotlin.js.JsName
@@ -44,9 +44,9 @@ public class Axis : Scheme() {
      * Sets the title of this axis.
      */
     public var title: String?
-        get() = config["title.text"].string ?: config["title"].string
+        get() = this["title.text"].string ?: this["title"].string
         set(value) {
-            config["title"] = value
+            this["title"] = value
         }
 
     /**
@@ -135,9 +135,9 @@ public class Axis : Scheme() {
      * a serial number from zero in the order it appears.
      */
     public var range: ClosedFloatingPointRange<Double>?
-        get() = config["range"]?.value?.doubleArray?.let { it[0]..it[1] }
+        get() = this["range"]?.value?.doubleArray?.let { it[0]..it[1] }
         set(value) {
-            config["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
+            this["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
         }
 
     /**
@@ -208,13 +208,13 @@ public class Axis : Scheme() {
      * Sets the values at which ticks on this axis appear.
      * Only has an effect if `tickmode` is set to "array". Used with `ticktext`.
      */
-    public var tickvals: List<Value> by list()
+    public var tickvals: List<Value> by listOfValues()
 
     /**
      *Sets the text displayed at the ticks position via `tickvals`.
      * Only has an effect if `tickmode` is set to "array". Used with `tickvals`.
      */
-    public var ticktext: List<Value> by list()
+    public var ticktext: List<Value> by listOfValues()
 
     /**
      * Determines whether or not the tick labels are drawn.
@@ -237,8 +237,7 @@ public class Axis : Scheme() {
     public var position: Number by numberInRange(0.0..1.0)
 
     public fun title(block: Title.() -> Unit) {
-        val spec = config["title"].node?.let { Title.wrap(it) }
-                ?: Title.empty().also { config["title"] = it.config }
+        val spec = Title.write(getChild("title"))
         spec.apply(block)
     }
 

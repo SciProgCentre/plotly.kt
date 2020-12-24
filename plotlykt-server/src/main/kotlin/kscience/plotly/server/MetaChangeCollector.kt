@@ -21,7 +21,7 @@ public class MetaChangeCollector {
     private val mutex = Mutex()
     private var state = Config()
 
-    public suspend fun collect(name: Name, newItem: MetaItem<*>?) {
+    public suspend fun collect(name: Name, newItem: MetaItem?) {
         mutex.withLock {
             state[name] = newItem
         }
@@ -63,13 +63,15 @@ private fun Config.flowChanges(scope: CoroutineScope, updateInterval: Long): Flo
     }
 }
 
-public fun Plot.collectUpdates(plotId: String, scope: CoroutineScope, updateInterval: Long): Flow<Update> {
-    return config.flowChanges(scope, updateInterval).transform { change ->
-        change["layout"].node?.let { emit(Update.Layout(plotId, it)) }
-        change.getIndexed("data").forEach { (index, metaItem) ->
-            if (metaItem is MetaItem.NodeItem) {
-                emit(Update.Trace(plotId, index?.toInt() ?: 0, metaItem.node))
-            }
+public fun Plot.collectUpdates(
+    plotId: String,
+    scope: CoroutineScope,
+    updateInterval: Long,
+): Flow<Update> = config.flowChanges(scope, updateInterval).transform { change ->
+    change["layout"].node?.let { emit(Update.Layout(plotId, it)) }
+    change.getIndexed("data").forEach { (index, metaItem) ->
+        if (metaItem is NodeItem) {
+            emit(Update.Trace(plotId, index?.toInt() ?: 0, metaItem.node))
         }
     }
 }

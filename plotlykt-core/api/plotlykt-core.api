@@ -149,14 +149,7 @@ public final class kscience/plotly/PlotlyFragment {
 }
 
 public final class kscience/plotly/PlotlyHeadersKt {
-	public static final field PLOTLY_CDN Ljava/lang/String;
-	public static final field PLOTLY_PROMISE_NAME Ljava/lang/String;
-	public static final field PLOTLY_SCRIPT_PATH Ljava/lang/String;
 	public static final fun getCdnPlotlyHeader ()Lkscience/plotly/HtmlFragment;
-	public static final fun getEmbededPlotlyHeader ()Lkscience/plotly/HtmlFragment;
-	public static final fun getSystemPlotlyHeader ()Lkscience/plotly/HtmlFragment;
-	public static final fun localPlotlyHeader (Ljava/nio/file/Path;Ljava/lang/String;)Lkscience/plotly/HtmlFragment;
-	public static synthetic fun localPlotlyHeader$default (Ljava/nio/file/Path;Ljava/lang/String;ILjava/lang/Object;)Lkscience/plotly/HtmlFragment;
 }
 
 public final class kscience/plotly/PlotlyKt {

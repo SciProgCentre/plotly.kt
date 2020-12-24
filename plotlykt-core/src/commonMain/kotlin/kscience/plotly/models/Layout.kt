@@ -106,9 +106,9 @@ class Layout : Scheme() {
      * Sets the plot's title.
      */
     var title: String?
-        get() = config["title.text"].string ?: config["title"].string
+        get() = this["title.text"].string ?: this["title"].string
         set(value) {
-            config["title.text"] = value
+            this["title.text"] = value
         }
 
     var xaxis by lazySpec(Axis)
@@ -261,9 +261,7 @@ class Layout : Scheme() {
     }
 
     fun title(block: Title.() -> Unit) {
-        val spec = config["title"].node?.let { Title.wrap(it) }
-                ?: Title.empty().also { config["title"] = it.config }
-        spec.apply(block)
+        Title.write(getChild("title")).apply(block)
     }
 
     //TODO moe title to parameter block
@@ -276,7 +274,7 @@ class Layout : Scheme() {
     }
 
     fun annotation(an: Text) {
-        config.append("annotations", an)
+        append("annotations", an)
     }
 
     fun annotation(anBuilder: Text.() -> Unit) {
@@ -284,7 +282,7 @@ class Layout : Scheme() {
     }
 
     fun figure(sh: Shape) {
-        config.append("shapes", sh)
+        append("shapes", sh)
     }
 
     fun figure(shBuilder: Shape.() -> Unit) {

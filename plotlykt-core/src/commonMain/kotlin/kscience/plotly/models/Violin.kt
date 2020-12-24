@@ -3,7 +3,7 @@ package kscience.plotly.models
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
-import kscience.plotly.list
+import kscience.plotly.listOfValues
 import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
 import kotlin.js.JsName
@@ -144,7 +144,7 @@ class Violin : Trace() {
      * Sets the span in data space for which the density function will be computed.
      * Has an effect only when `spanmode` is set to "manual".
      */
-    var span by list()
+    var span by listOfValues()
 
     var box by spec(ViolinBox)
 
