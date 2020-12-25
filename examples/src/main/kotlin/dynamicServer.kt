@@ -78,7 +78,9 @@ fun main() {
     }
 
     println("Press Enter to close server")
-    readLine()
+    while (readLine()?.trim() != "exit"){
+        //wait
+    }
 
     server.close()
 }

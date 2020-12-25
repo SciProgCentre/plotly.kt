@@ -22,7 +22,15 @@ val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
 compileKotlin.kotlinOptions {
     jvmTarget = "11"
 }
+
+
 val compileTestKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
 compileTestKotlin.kotlinOptions {
     jvmTarget = "11"
+}
+
+val runDynamicServer by tasks.creating(JavaExec::class){
+    group = "run"
+    classpath = sourceSets["main"].runtimeClasspath
+    main = "DynamicServerKt"
 }
