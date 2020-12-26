@@ -775,7 +775,7 @@ public open class Trace : Scheme() {
 
     //var line by spec(Line)
 
-    public var marker: Marker by lazySpec(Marker)
+    public var marker: Marker by spec(Marker)
 
     /**
      * Sets text elements associated with each (x,y) pair.
