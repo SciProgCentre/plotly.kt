@@ -110,7 +110,7 @@ public class Marker : Scheme() {
      */
     public var sizemode: SizeMode by enum(SizeMode.diameter)
 
-    public var line: MarkerLine? by spec(MarkerLine)
+    public var line: MarkerLine by spec(MarkerLine)
 
     /**
      * Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale
@@ -123,9 +123,9 @@ public class Marker : Scheme() {
      */
     public var pieColors: List<Value> by listOfValues(key = "colors".asName())
 
-    public var colorbar: ColorBar? by spec(ColorBar)
+    public var colorbar: ColorBar by spec(ColorBar)
 
-    public var gradient: Gradient? by spec(Gradient)
+    public var gradient: Gradient by spec(Gradient)
 
     /**
      * Sets the color of the outlier sample points. Default: rgba(0, 0, 0, 0).

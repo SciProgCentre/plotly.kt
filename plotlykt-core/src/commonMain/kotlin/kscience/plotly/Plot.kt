@@ -25,7 +25,7 @@ public class Plot : Configurable, MetaRepr {
     /**
      * Layout specification for th plot
      */
-    public val layout: Layout by config.lazySpec(Layout)
+    public val layout: Layout by config.spec(Layout)
 
     private fun appendTrace(trace: Trace) {
         config.append("data", trace.rootNode)

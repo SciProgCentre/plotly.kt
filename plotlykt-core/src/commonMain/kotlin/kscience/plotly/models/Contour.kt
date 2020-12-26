@@ -31,7 +31,7 @@ public class Contour : Trace(), HeatmapContour, ContourSpec {
      */
     override var ncontours: Int by intGreaterThan(1)
 
-    override var contours: Contours? by spec(Contours)
+    override var contours: Contours by spec(Contours)
 
     /**
      * Determines whether or not the contour level attributes are picked by an algorithm.

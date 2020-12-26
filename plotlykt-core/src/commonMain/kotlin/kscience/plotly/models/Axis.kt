@@ -6,7 +6,6 @@ import hep.dataforge.values.ListValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
-import kscience.plotly.lazySpec
 import kscience.plotly.listOfValues
 import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
@@ -92,7 +91,7 @@ public class Axis : Scheme() {
     /**
      * Sets the tick font.
      */
-    public var tickfont: Font by lazySpec(Font)
+    public var tickfont: Font by spec(Font)
 
     /**
      * Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn.

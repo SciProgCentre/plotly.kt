@@ -62,7 +62,7 @@ class Contours : Scheme() {
 interface ContourSpec {
     var ncontours: Int
 
-    var contours: Contours?
+    var contours: Contours
 
     var autocontour: Boolean?
 }

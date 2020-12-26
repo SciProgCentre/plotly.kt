@@ -50,7 +50,7 @@ interface SelectedPoints {
      */
     var selectedpoints: List<Number>
 
-    var selected: SelectPoints?
+    var selected: SelectPoints
 
-    var unselected: SelectPoints?
+    var unselected: SelectPoints
 }

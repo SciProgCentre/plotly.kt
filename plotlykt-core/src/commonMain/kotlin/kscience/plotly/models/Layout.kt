@@ -2,7 +2,6 @@ package kscience.plotly.models
 
 import hep.dataforge.meta.*
 import hep.dataforge.names.asName
-import kscience.plotly.lazySpec
 import kscience.plotly.list
 import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
@@ -111,9 +110,9 @@ class Layout : Scheme() {
             this["title.text"] = value
         }
 
-    var xaxis by lazySpec(Axis)
+    var xaxis by spec(Axis)
 
-    var yaxis by lazySpec(Axis)
+    var yaxis by spec(Axis)
 
     /**
      * Enumerated, one of ( "stack" | "group" | "overlay" | "relative" )
@@ -168,7 +167,7 @@ class Layout : Scheme() {
      */
     var violingroupgap by numberInRange(0.0..1.0)
 
-    var legend by lazySpec(Legend)
+    var legend by spec(Legend)
 
     /**
      * An annotation is a text element that can be placed anywhere in the plot.

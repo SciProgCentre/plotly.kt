@@ -156,9 +156,9 @@ public class Box : Trace(), SelectedPoints {
      */
     override var selectedpoints: List<Number> by numberList()
 
-    override var selected: SelectPoints? by spec(SelectPoints)
+    override var selected: SelectPoints by spec(SelectPoints)
 
-    override var unselected: SelectPoints? by spec(SelectPoints)
+    override var unselected: SelectPoints by spec(SelectPoints)
 
     /**
      * Sets the amount of jitter in the sample points drawn.

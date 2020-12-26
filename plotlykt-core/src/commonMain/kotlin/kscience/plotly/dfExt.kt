@@ -61,25 +61,25 @@ internal fun MutableItemProvider.listOfValues(
     }
 }
 
-/**
- * A variation of [spec] extension with lazy initialization of empty specified nod in case it is missing
- */
-internal fun <T : Scheme> MutableItemProvider.lazySpec(
-    spec: Specification<T>, key: Name? = null,
-): ReadWriteProperty<Any?, T> = object : ReadWriteProperty<Any?, T> {
-    override fun getValue(thisRef: Any?, property: KProperty<*>): T {
-        val name = key ?: property.name.asName()
-        return spec.write(getChild(name))
-//        return (getItem(name).node as? MutableItemProvider)?.let {
-//            spec.write(it)
-//        } ?: spec.empty().also { setItem(name, it[Name.EMPTY]) }
-    }
-
-    override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        val name = key ?: property.name.asName()
-        set(name, value.rootNode)
-    }
-}
+///**
+// * A variation of [spec] extension with lazy initialization of empty specified nod in case it is missing
+// */
+//internal fun <T : Scheme> MutableItemProvider.lazySpec(
+//    spec: Specification<T>, key: Name? = null,
+//): ReadWriteProperty<Any?, T> = object : ReadWriteProperty<Any?, T> {
+//    override fun getValue(thisRef: Any?, property: KProperty<*>): T {
+//        val name = key ?: property.name.asName()
+//        return spec.write(getChild(name))
+////        return (getItem(name).node as? MutableItemProvider)?.let {
+////            spec.write(it)
+////        } ?: spec.empty().also { setItem(name, it[Name.EMPTY]) }
+//    }
+//
+//    override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+//        val name = key ?: property.name.asName()
+//        set(name, value.rootNode)
+//    }
+//}
 
 /**
  * A safe [Double] range
