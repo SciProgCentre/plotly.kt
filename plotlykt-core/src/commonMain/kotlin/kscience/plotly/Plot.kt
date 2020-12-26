@@ -28,7 +28,9 @@ public class Plot : Configurable, MetaRepr {
     public val layout: Layout by config.spec(Layout)
 
     private fun appendTrace(trace: Trace) {
-        config.append("data", trace.rootNode)
+        val traceConfig = Config()
+        trace.retarget(traceConfig)
+        config.append("data", traceConfig)
     }
 
     /**
