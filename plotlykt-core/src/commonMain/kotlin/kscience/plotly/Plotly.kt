@@ -13,7 +13,7 @@ import kotlin.js.JsName
 @JsName("PlotlyKt")
 public object Plotly {
     public const val VERSION: String = "1.54.6"
-    public fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
+    public inline fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
 }
 
 private fun Scheme.toJson(): JsonObject = rootNode?.toJson() ?: JsonObject(emptyMap())
