@@ -111,7 +111,7 @@ public class Marker : Scheme() {
     public var line: MarkerLine by spec(MarkerLine)
 
     /**
-     * Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale
+     * Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale
      * relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
      */
     public val color: Color by color()

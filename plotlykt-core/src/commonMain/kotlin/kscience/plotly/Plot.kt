@@ -12,7 +12,7 @@ import kscience.plotly.models.Trace
  */
 @DFBuilder
 public class Plot(
-    override val config: Config = Config()
+    override val config: Config = Config(),
 ) : Configurable, MetaRepr {
 
     /**
@@ -26,10 +26,15 @@ public class Plot(
     public val layout: Layout by config.spec(Layout)
 
     private fun appendTrace(trace: Trace) {
-        val traceConfig = Config()
-        trace.rootNode?.let { traceConfig.update(it)}
-        trace.retarget(traceConfig)
-        config.append("data", traceConfig)
+        val traceRoot = trace.rootNode
+        if (traceRoot is Config) {
+            config.append("data", traceRoot)
+        } else {
+            val traceConfig = Config()
+            trace.rootNode?.let { traceConfig.update(it) }
+            trace.retarget(traceConfig)
+            config.append("data", traceConfig)
+        }
     }
 
     /**
@@ -60,8 +65,8 @@ public class Plot(
 private fun Plot.toJson(): JsonObject = buildJsonObject {
     layout.rootNode?.let { put("layout", it.toJson()) }
     put("data", buildJsonArray {
-        data.forEach {traceData->
-            traceData.rootNode?.let { add(it.toJson())}
+        data.forEach { traceData ->
+            traceData.rootNode?.let { add(it.toJson()) }
         }
     })
 }

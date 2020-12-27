@@ -16,10 +16,10 @@ public fun HTMLElement.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfi
 
     PlotlyJs.react(this, tracesData, plot.layout.rootNode?.toDynamic(), plotlyConfig.rootNode?.toDynamic())
 
-    plot.config.onChange(this){ name, _, _ ->
-        if(name.startsWith(plot::layout.name.asName())){
+    plot.config.onChange(this) { name, _, _ ->
+        if (name.startsWith(plot::layout.name.asName())) {
             PlotlyJs.relayout(this, plot.layout.rootNode?.toDynamic())
-        } else if (name.startsWith(plot::data.name.asName())){
+        } else if (name.firstOrNull()?.body == "data") {
             val traceName = name.firstOrNull()!!
             val traceIndex = traceName.index?.toInt() ?: 0
             val traceData = plot.config[traceName].node?.toDynamic()
@@ -39,7 +39,6 @@ public fun HTMLElement.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfi
             if (traceData.text != null) {
                 traceData.text = arrayOf(traceData.text)
             }
-
             PlotlyJs.restyle(this, traceData, arrayOf(traceIndex))
         }
     }
