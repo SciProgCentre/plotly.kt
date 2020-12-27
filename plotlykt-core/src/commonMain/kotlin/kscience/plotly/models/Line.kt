@@ -1,9 +1,9 @@
 package kscience.plotly.models
 
-interface Line {
-    val color: Color?
+public interface Line {
+    public val color: Color?
 
-    var width: Number
+    public var width: Number
 
-    var widthList: List<Number>
+    public var widthList: List<Number>
 }

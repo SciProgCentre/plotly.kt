@@ -8,7 +8,7 @@ import hep.dataforge.names.asName
 import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
 
-enum class LineShape {
+public enum class LineShape {
     hv,
     vh,
     hvh,
@@ -17,7 +17,7 @@ enum class LineShape {
     linear
 }
 
-enum class Dash {
+public enum class Dash {
     solid,
     dot,
     dash,
@@ -26,16 +26,16 @@ enum class Dash {
     longdashdot
 }
 
-class LayoutLine : Scheme(), Line {
+public class LayoutLine : Scheme(), Line {
     /**
      * Sets the line color.
      */
-    override val color = Color(this, "color".asName())
+    override val color: Color by color()
 
     /**
      * Sets the line width (in px). Default: 2.
      */
-    override var width by numberGreaterThan(0)
+    override var width: Number by numberGreaterThan(0)
 
     /**
      * Sets the width (in px) of the lines bounding the marker points.

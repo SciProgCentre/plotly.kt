@@ -1,12 +1,12 @@
 package kscience.plotly.models
 
-enum class DataType {
+public enum class DataType {
     array,
     scaled
 }
 
-interface HeatmapContour {
-    var xtype: DataType
+public interface HeatmapContour {
+    public var xtype: DataType
 
-    var ytype: DataType
+    public var ytype: DataType
 }

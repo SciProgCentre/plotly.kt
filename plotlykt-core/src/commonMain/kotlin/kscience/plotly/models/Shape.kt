@@ -1,7 +1,6 @@
 package kscience.plotly.models
 
 import hep.dataforge.meta.*
-import hep.dataforge.names.asName
 import kscience.plotly.numberInRange
 
 enum class ShapeType {
@@ -140,7 +139,7 @@ class Shape : Scheme() {
     /**
      * Sets the color filling the shape's interior. Only applies to closed shapes. Default: rgba(0, 0, 0, 0)
      */
-    var fillcolor = Color(this, "fillcolor".asName())
+    val fillcolor by color()
 
     /**
      * Determines which regions of complex paths constitute the interior. Default: evenodd.

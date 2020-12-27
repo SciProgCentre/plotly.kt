@@ -1,61 +1,60 @@
 package kscience.plotly.models
 
 import hep.dataforge.meta.*
-import hep.dataforge.names.asName
 import kscience.plotly.list
 import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
 import kotlin.js.JsName
 
 
-enum class BarMode {
+public enum class BarMode {
     stack,
     group,
     overlay,
     relative
 }
 
-class Margin : Scheme() {
+public class Margin : Scheme() {
     /**
      * Turns on/off margin expansion computations. Legends, colorbars, updatemenus, sliders,
      * axis rangeselector and rangeslider are allowed to push the margins by defaults.
      */
-    var autoexpand by boolean()
+    public var autoexpand: Boolean? by boolean()
 
     /**
      * Sets the amount of padding (in px) between the plotting area and the axis lines
      */
-    var pad by numberGreaterThan(0)
+    public var pad: Number by numberGreaterThan(0)
 
     /**
      * Sets the left margin (in px). Default: 80.
      */
-    var l by numberGreaterThan(0)
+    public var l: Number by numberGreaterThan(0)
 
     /**
      * Sets the right margin (in px). Default: 80.
      */
-    var r by numberGreaterThan(0)
+    public var r: Number by numberGreaterThan(0)
 
     /**
      * Sets the top margin (in px). Default: 100.
      */
-    var t by numberGreaterThan(0)
+    public var t: Number by numberGreaterThan(0)
 
     /**
      * Sets the bottom margin (in px). Default: 80.
      */
-    var b by numberGreaterThan(0)
+    public var b: Number by numberGreaterThan(0)
 
-    companion object : SchemeSpec<Margin>(::Margin)
+    public companion object : SchemeSpec<Margin>(::Margin)
 }
 
-enum class BoxMode {
+public enum class BoxMode {
     overlay,
     group
 }
 
-enum class HoverMode {
+public enum class HoverMode {
     x,
     y,
     closest,
@@ -68,7 +67,7 @@ enum class HoverMode {
     `y unified`
 }
 
-enum class BarNorm {
+public enum class BarNorm {
     fraction,
     percent,
 
@@ -76,43 +75,43 @@ enum class BarNorm {
     `""`
 }
 
-enum class ViolinMode {
+public enum class ViolinMode {
     group,
     overlay
 }
 
-class Layout : Scheme() {
+public class Layout : Scheme() {
     /**
      * Sets the plot's width (in px).
      * Number greater than or equal to 10, default: 700.
      */
-    var width by numberGreaterThan(10)
+    public var width: Number by numberGreaterThan(10)
 
     /**
      * Sets the plot's height (in px).
      * Number greater than or equal to 10, default: 450.
      */
-    var height by numberGreaterThan(10)
+    public var height: Number by numberGreaterThan(10)
 
     /**
      * Determines whether or not a layout width or height that has been left undefined
      * by the user is initialized on each relayout. Note that, regardless of this attribute, an undefined layout
      * width or height is always initialized on the first call to plot.
      */
-    var autosize by boolean()
+    public var autosize: Boolean? by boolean()
 
     /**
      * Sets the plot's title.
      */
-    var title: String?
+    public var title: String?
         get() = this["title.text"].string ?: this["title"].string
         set(value) {
             this["title.text"] = value
         }
 
-    var xaxis by spec(Axis)
+    public var xaxis: Axis by spec(Axis)
 
-    var yaxis by spec(Axis)
+    public var yaxis: Axis by spec(Axis)
 
     /**
      * Enumerated, one of ( "stack" | "group" | "overlay" | "relative" )
@@ -126,26 +125,26 @@ class Layout : Scheme() {
      * need to an "opacity" to see multiple bars.
      * Default: "group".
      */
-    var barmode by enum(BarMode.group)
+    public var barmode: BarMode by enum(BarMode.group)
 
     /**
      * Sets the normalization for bar traces on the graph. With "fraction", the value of each bar
      * is divided by the sum of all values at that location coordinate. "percent" is the same but multiplied
      * by 100 to show percentages. Default: "".
      */
-    var barnorm by enum(BarNorm.`""`)
+    public var barnorm: BarNorm by enum(BarNorm.`""`)
 
     /**
      * Sets the gap (in plot fraction) between bars
      * of adjacent location coordinates.
      */
-    var bargap by numberInRange(0.0..1.0)
+    public var bargap: Number by numberInRange(0.0..1.0)
 
     /**
      * Sets the gap (in plot fraction) between bars of the same location coordinate.
      * Default: 0.
      */
-    var bargroupgap by numberInRange(0.0..1.0)
+    public var bargroupgap: Number by numberInRange(0.0..1.0)
 
     /**
      * Determines how violins at the same location coordinate are displayed on the graph. If "group",
@@ -153,21 +152,21 @@ class Layout : Scheme() {
      * the violins are plotted over one another, you might need to set "opacity" to see them multiple violins.
      * Has no effect on traces that have "width" set.
      */
-    var violinmode by enum(ViolinMode.overlay)
+    public var violinmode: ViolinMode by enum(ViolinMode.overlay)
 
     /**
      * Sets the gap (in plot fraction) between violins of adjacent location coordinates.
      * Has no effect on traces that have "width" set. Default: 0.3
      */
-    var violingap by numberInRange(0.0..1.0)
+    public var violingap: Number by numberInRange(0.0..1.0)
 
     /**
      * Sets the gap (in plot fraction) between violins of the same location coordinate.
      * Has no effect on traces that have "width" set. Default: 0.3
      */
-    var violingroupgap by numberInRange(0.0..1.0)
+    public var violingroupgap: Number by numberInRange(0.0..1.0)
 
-    var legend by spec(Legend)
+    public var legend: Legend by spec(Legend)
 
     /**
      * An annotation is a text element that can be placed anywhere in the plot.
@@ -175,23 +174,23 @@ class Layout : Scheme() {
      * or with respect to the actual data coordinates of the graph.
      * Annotations can be shown with or without an arrow.
      */
-    var annotations by list(Text)
+    public var annotations: List<Text> by list(Text)
 
-    var shapes by list(Shape)
+    public var shapes: List<Shape> by list(Shape)
 
     /**
      * Sets the background color of the paper where the graph is drawn.
      * Default: #fff.
      */
-    var paper_bgcolor = Color(this, "paper_bgcolor".asName())
+    public val paper_bgcolor: Color by color()
 
     /**
      * Sets the background color of the plotting area in-between x and y axes.
      * Default: #fff.
      */
-    var plot_bgcolor = Color(this, "plot_bgcolor".asName())
+    public val plot_bgcolor: Color by color()
 
-    var margin by spec(Margin)
+    public var margin: Margin by spec(Margin)
 
     /**
      * Determines how boxes at the same location coordinate are displayed on the graph. If "group",
@@ -199,19 +198,19 @@ class Layout : Scheme() {
      * the boxes are plotted over one another, you might need to set "opacity" to see them multiple boxes.
      * Has no effect on traces that have "width" set.
      */
-    var boxmode by enum(BoxMode.overlay)
+    public var boxmode: BoxMode by enum(BoxMode.overlay)
 
     /**
      * Sets the gap (in plot fraction) between boxes of adjacent location coordinates.
      * Has no effect on traces that have "width" set. Default: 0.3
      */
-    var boxgap by numberInRange(0.0..1.0)
+    public var boxgap: Number by numberInRange(0.0..1.0)
 
     /**
      * Sets the gap (in plot fraction) between boxes of the same location coordinate.
      * Has no effect on traces that have "width" set. Default: 0.3
      */
-    var boxgroupgap by numberInRange(0.0..1.0)
+    public var boxgroupgap: Number by numberInRange(0.0..1.0)
 
     /**
      * Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these:
@@ -219,7 +218,7 @@ class Layout : Scheme() {
      * b) One pie trace is shown in the legend.
      * c) One trace is explicitly given with `showlegend: true`.
      */
-    var showlegend by boolean()
+    public var showlegend: Boolean? by boolean()
 
     /**
      * Determines the mode of hover interactions. If "closest", a single hoverlabel will appear for the "closest"
@@ -233,13 +232,13 @@ class Layout : Scheme() {
      * to "x" or "y" (depending on the trace's `orientation` value) for plots based on cartesian coordinates.
      * For anything else the default value is "closest".
      */
-    var hovermode by enum(HoverMode.closest)
+    public var hovermode: HoverMode by enum(HoverMode.closest)
 
     /**
      * Sets the decimal and thousand separators. For example, ". " puts a '.' before decimals and a space
      * between thousands. In English locales, dflt is ".," but other locales may alter this default.
      */
-    var separators by string()
+    public var separators: String? by string()
 
     /**
      * Sets the default distance (in pixels) to look for data to add hover labels (-1 means no cutoff,
@@ -248,50 +247,50 @@ class Layout : Scheme() {
      * but these objects will not supersede hover on point-like objects in case of conflict.
      * Default: 20.
      */
-    var hoverdistance by numberGreaterThan(-1)
+    public var hoverdistance: Number by numberGreaterThan(-1)
 
     /**
      * Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
      */
-    var calendar by enum(Calendar.gregorian)
+    public var calendar: Calendar by enum(Calendar.gregorian)
 
-    fun legend(block: Legend.() -> Unit) {
+    public fun legend(block: Legend.() -> Unit) {
         legend.apply(block)
     }
 
-    fun title(block: Title.() -> Unit) {
+    public fun title(block: Title.() -> Unit) {
         Title.write(getChild("title")).apply(block)
     }
 
     //TODO moe title to parameter block
-    fun xaxis(block: Axis.() -> Unit) {
+    public fun xaxis(block: Axis.() -> Unit) {
         xaxis.apply(block)
     }
 
-    fun yaxis(block: Axis.() -> Unit) {
+    public fun yaxis(block: Axis.() -> Unit) {
         yaxis.apply(block)
     }
 
-    fun annotation(an: Text) {
+    public fun annotation(an: Text) {
         append("annotations", an)
     }
 
-    fun annotation(anBuilder: Text.() -> Unit) {
+    public fun annotation(anBuilder: Text.() -> Unit) {
         annotation(Text(anBuilder))
     }
 
-    fun figure(sh: Shape) {
+    public fun figure(sh: Shape) {
         append("shapes", sh)
     }
 
-    fun figure(shBuilder: Shape.() -> Unit) {
+    public fun figure(shBuilder: Shape.() -> Unit) {
         figure(Shape(shBuilder))
     }
 
-    fun margin(block: Margin.() -> Unit) {
+    public fun margin(block: Margin.() -> Unit) {
         margin = Margin(block)
     }
 
-    companion object : SchemeSpec<Layout>(::Layout)
+    public companion object : SchemeSpec<Layout>(::Layout)
 }
 

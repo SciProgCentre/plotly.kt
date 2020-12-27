@@ -1,7 +1,6 @@
 package kscience.plotly.models
 
 import hep.dataforge.meta.*
-import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import kscience.plotly.numberGreaterThan
@@ -86,13 +85,13 @@ public class Text : Scheme() {
      * Sets the background color of the annotation.
      * Default: "rgba(0, 0, 0, 0)"
      */
-    public var bgcolor: Color = Color(this, "bgcolor".asName())
+    public val bgcolor: Color by color()
 
     /**
      * Sets the background color of the annotation.
      * Default: "rgba(0, 0, 0, 0)"
      */
-    public var bordercolor: Color = Color(this, "bordercolor".asName())
+    public val bordercolor: Color by color()
 
     /**
      * Determines whether or not the annotation is drawn with an arrow. If "true", `text`
@@ -103,7 +102,7 @@ public class Text : Scheme() {
     /**
      * Sets the color of the annotation arrow.
      */
-    public var arrowcolor: Color = Color(this, "arrowcolor".asName())
+    public val arrowcolor: Color by color()
 
     /**
      * Sets the angle at which the `text` is drawn with respect to the horizontal.

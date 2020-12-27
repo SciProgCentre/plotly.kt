@@ -1,7 +1,6 @@
 package kscience.plotly.models
 
 import hep.dataforge.meta.*
-import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import kscience.plotly.listOfValues
 import kscience.plotly.numberGreaterThan
@@ -54,7 +53,7 @@ class MeanLine : Scheme() {
     /**
      * Sets the mean line color.
      */
-    var color = Color(this, "color".asName())
+    val color by color()
 
     /**
      * Determines if a line corresponding to the sample's
@@ -89,7 +88,7 @@ class ViolinBox : Scheme() {
     /**
      * Sets the inner box plot fill color.
      */
-    var fillcolor = Color(this, "fillcolor".asName())
+    val fillcolor by color()
 
     companion object : SchemeSpec<ViolinBox>(::ViolinBox)
 }

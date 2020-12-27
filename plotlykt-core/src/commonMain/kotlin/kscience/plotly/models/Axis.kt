@@ -1,7 +1,6 @@
 package kscience.plotly.models
 
 import hep.dataforge.meta.*
-import hep.dataforge.names.asName
 import hep.dataforge.values.ListValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
@@ -80,7 +79,7 @@ public class Axis : Scheme() {
      * Sets the tick color.
      * Default: #444.
      */
-    public var tickcolor: Color = Color(this, "tickcolor".asName())
+    public val tickcolor: Color by color()
 
     /**
      * Sets the angle of the tick labels with respect to the horizontal.
@@ -145,7 +144,7 @@ public class Axis : Scheme() {
      * by blending this with the plot background Individual pieces can override this.
      * Default: #444.
      */
-    public val color: Color = Color(this, "color".asName())
+    public val color: Color by color()
 
     /**
      * Determines whether or not a line bounding this axis is drawn.
@@ -155,7 +154,7 @@ public class Axis : Scheme() {
     /**
      * Sets the axis line color. Default: #444.
      */
-    public var linecolor: Color = Color(this, "linecolor".asName())
+    public val linecolor: Color by color()
 
     /**
      * Sets the width (in px) of the axis line. Default: 1.
@@ -171,7 +170,7 @@ public class Axis : Scheme() {
     /**
      * Sets the color of the grid lines. Default: #eee
      */
-    public var gridcolor: Color = Color(this, "gridcolor".asName())
+    public val gridcolor: Color by color()
 
     /**
      * Sets the width (in px) of the grid lines. Default: 1.
@@ -187,7 +186,7 @@ public class Axis : Scheme() {
     /**
      * Sets the line color of the zero line. Default: #444
      */
-    public var zerolinecolor: Color = Color(this, "zerolinecolor".asName())
+    public val zerolinecolor: Color by color()
 
     /**
      * Sets the width (in px) of the zero line. Default: 1.

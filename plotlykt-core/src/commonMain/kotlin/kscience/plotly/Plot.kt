@@ -11,11 +11,9 @@ import kscience.plotly.models.Trace
  * The main plot class. The changes to plot could be observed by attaching listener to root [config] property.
  */
 @DFBuilder
-public class Plot : Configurable, MetaRepr {
-    /**
-     *
-     */
+public class Plot(
     override val config: Config = Config()
+) : Configurable, MetaRepr {
 
     /**
      * Ordered list ot traces in the plot

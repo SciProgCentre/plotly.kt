@@ -6,7 +6,7 @@ import kscience.plotly.numberGreaterThan
 import kotlin.js.JsName
 
 
-enum class HistFunc {
+public enum class HistFunc {
     count,
     sum,
 
@@ -16,7 +16,7 @@ enum class HistFunc {
     max
 }
 
-enum class HistNorm {
+public enum class HistNorm {
     empty,
     percent,
     probability,
@@ -26,7 +26,7 @@ enum class HistNorm {
     `probability density`
 }
 
-class Bins : Scheme() {
+public class Bins : Scheme() {
     //FIXME("add categorical coordinate string")
 
     /**
@@ -42,7 +42,7 @@ class Bins : Scheme() {
      * For category data, `start` is based on the category
      * serial numbers, and defaults to -0.5.
      */
-    var start by number()
+    public var start: Number? by number()
 
     /**
      * Sets the end value for the x axis bins. The last bin may
@@ -52,7 +52,7 @@ class Bins : Scheme() {
      * dates use a date string, and for category data `end`
      * is based on the category serial numbers.
      */
-    var end by number()
+    public var end: Number? by number()
 
     /**
      * Sets the size of each x axis bin. Default behavior:
@@ -65,23 +65,23 @@ class Bins : Scheme() {
      * For category data, the number of categories to bin together
      * (always defaults to 1).
      */
-    var size by numberGreaterThan(0)
+    public var size: Number by numberGreaterThan(0)
 
-    companion object : SchemeSpec<Bins>(::Bins)
+    public companion object : SchemeSpec<Bins>(::Bins)
 }
 
-enum class HistogramDirection {
+public enum class HistogramDirection {
     increasing,
     decreasing
 }
 
-enum class CurrentBin {
+public enum class CurrentBin {
     include,
     exclude,
     half
 }
 
-class Cumulative : Scheme() {
+public class Cumulative : Scheme() {
     /**
      * If true, display the cumulative distribution by summing
      * the binned values. Use the `direction` and `centralbin`
@@ -91,7 +91,7 @@ class Cumulative : Scheme() {
      * both rise to the number of data points, and "probability"
      * and "probability density" both rise to the number of sample points.
      */
-    var enabled by boolean()
+    public var enabled: Boolean? by boolean()
 
     /**
      * Enumerated , one of ( "include" | "exclude" | "half" )
@@ -103,13 +103,13 @@ class Cumulative : Scheme() {
      * half-bin bias, and "half" removes it.
      * Default: include.
      */
-    var currentbin by enum(CurrentBin.include)
+    public var currentbin: CurrentBin by enum(CurrentBin.include)
 
-    companion object : SchemeSpec<Cumulative>(::Cumulative)
+    public companion object : SchemeSpec<Cumulative>(::Cumulative)
 }
 
 
-open class Histogram : Trace() {
+public open class Histogram : Trace() {
     init {
         type = TraceType.histogram
     }
@@ -128,7 +128,7 @@ open class Histogram : Trace() {
      * that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).
      * Default: "empty".
      */
-    var histnorm by enum(HistNorm.empty)
+    public var histnorm: HistNorm by enum(HistNorm.empty)
 
     /**
      * Enumerated , one of ( "count" | "sum" | "avg" | "min" | "max" )
@@ -139,7 +139,7 @@ open class Histogram : Trace() {
      * the minimum or the maximum of the values lying inside each bin respectively.
      * Default: "count"
      */
-    var histfunc by enum(HistFunc.count)
+    public var histfunc: HistFunc by enum(HistFunc.count)
 
     /**
      * Enumerated , one of ( "increasing" | "decreasing" )
@@ -148,27 +148,27 @@ open class Histogram : Trace() {
      * If "decreasing" we sum later bins so the result decreases from left to right.
      * Default: increasing.
      */
-    var direction by enum(HistogramDirection.increasing)
+    public var direction: HistogramDirection by enum(HistogramDirection.increasing)
 
-    var cumulative by spec(Cumulative)
+    public var cumulative: Cumulative by spec(Cumulative)
 
-    var xbins by spec(Bins)
+    public var xbins: Bins by spec(Bins)
 
-    var ybins by spec(Bins)
+    public var ybins: Bins by spec(Bins)
 
     /**
      * Specifies the maximum number of desired bins. This value will be used in an algorithm
      * that will decide the optimal bin size such that the histogram best visualizes the
      * distribution of the data. Ignored if `xbins.size` is provided.
      */
-    var nbinsx by intGreaterThan(0)
+    public var nbinsx: Int by intGreaterThan(0)
 
     /**
      * Specifies the maximum number of desired bins. This value will be used in an algorithm
      * that will decide the optimal bin size such that the histogram best visualizes the
      * distribution of the data. Ignored if `ybins.size` is provided.
      */
-    var nbinsy by intGreaterThan(0)
+    public var nbinsy: Int by intGreaterThan(0)
 
     /**
      * Set a group of histogram traces which will have compatible bin settings.
@@ -179,7 +179,7 @@ open class Histogram : Trace() {
      * and histogram2d" trace can share the same `bingroup`.
      * Default: "".
      */
-    var bingroup by string()
+    public var bingroup: String? by string()
 
     /**
      * Set a group of histogram traces which will have compatible x-bin settings.
@@ -187,7 +187,7 @@ open class Histogram : Trace() {
      * can have compatible x-bin settings. Note that the same `xbingroup` value
      * can be used to set (1D) histogram `bingroup`
      */
-    var xbingroup by string()
+    public var xbingroup: String? by string()
 
     /**
      * Set a group of histogram traces which will have compatible x-bin settings.
@@ -195,24 +195,24 @@ open class Histogram : Trace() {
      * can have compatible x-bin settings. Note that the same `ybingroup` value
      * can be used to set (1D) histogram `bingroup`
      */
-    var ybingroup by string()
+    public var ybingroup: String? by string()
 
-    fun cumulative(block: Cumulative.() -> Unit) {
+    public fun cumulative(block: Cumulative.() -> Unit) {
         cumulative = Cumulative(block)
     }
 
-    fun xbins(block: Bins.() -> Unit) {
+    public fun xbins(block: Bins.() -> Unit) {
         xbins = Bins(block)
     }
 
-    fun ybins(block: Bins.() -> Unit) {
+    public fun ybins(block: Bins.() -> Unit) {
         ybins = Bins(block)
     }
 
-    companion object : SchemeSpec<Histogram>(::Histogram)
+    public companion object : SchemeSpec<Histogram>(::Histogram)
 }
 
-class Histogram2D : Histogram(), Table2D {
+public class Histogram2D : Histogram(), Table2D {
     init {
         type = TraceType.histogram2d
     }
@@ -220,22 +220,22 @@ class Histogram2D : Histogram(), Table2D {
     /**
      * Sets the horizontal gap (in pixels) between bricks.
      */
-    override var xgap by numberGreaterThan(0)
+    override var xgap: Number by numberGreaterThan(0)
 
     /**
      * Sets the vertical gap (in pixels) between bricks.
      */
-    override var ygap by numberGreaterThan(0)
+    override var ygap: Number by numberGreaterThan(0)
 
     /**
      * Picks a smoothing algorithm use to smooth `z` data.
      */
-    override var zsmooth by enum(ZsmoothType.best)
+    override var zsmooth: ZsmoothType by enum(ZsmoothType.best)
 
-    companion object : SchemeSpec<Histogram2D>(::Histogram2D)
+    public companion object : SchemeSpec<Histogram2D>(::Histogram2D)
 }
 
-class Histogram2DContour : Histogram(), ContourSpec {
+public class Histogram2DContour : Histogram(), ContourSpec {
     init {
         type = TraceType.histogram2dcontour
     }
@@ -246,20 +246,20 @@ class Histogram2DContour : Histogram(), ContourSpec {
      * Has an effect only if `autocontour` is "true" or if `contours.size` is missing.
      * Default: 15.
      */
-    override var ncontours by intGreaterThan(1)
+    override var ncontours: Int by intGreaterThan(1)
 
-    override var contours by spec(Contours)
+    override var contours: Contours by spec(Contours)
 
     /**
      * Determines whether or not the contour level attributes are picked by an algorithm.
      * If "true" (default), the number of contour levels can be set in `ncontours`.
      * If "false", set the contour level attributes in `contours`.
      */
-    override var autocontour by boolean()
+    override var autocontour: Boolean? by boolean()
 
-    fun contours(block: Contours.() -> Unit) {
+    public fun contours(block: Contours.() -> Unit) {
         contours = Contours(block)
     }
 
-    companion object : SchemeSpec<Histogram2DContour>(::Histogram2DContour)
+    public companion object : SchemeSpec<Histogram2DContour>(::Histogram2DContour)
 }
