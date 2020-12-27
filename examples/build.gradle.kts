@@ -34,3 +34,9 @@ val runDynamicServer by tasks.creating(JavaExec::class){
     classpath = sourceSets["main"].runtimeClasspath
     main = "DynamicServerKt"
 }
+
+val runCustomPage by tasks.creating(JavaExec::class){
+    group = "run"
+    classpath = sourceSets["main"].runtimeClasspath
+    main = "CustomPageKt"
+}

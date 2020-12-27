@@ -19,5 +19,5 @@ kotlin {
 
 dependencies {
     implementation(project(":plotlykt-core"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.3.9")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.4.2")
 }

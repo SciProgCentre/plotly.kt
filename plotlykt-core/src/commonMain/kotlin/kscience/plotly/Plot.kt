@@ -27,6 +27,7 @@ public class Plot(
 
     private fun appendTrace(trace: Trace) {
         val traceConfig = Config()
+        trace.rootNode?.let { traceConfig.update(it)}
         trace.retarget(traceConfig)
         config.append("data", traceConfig)
     }
