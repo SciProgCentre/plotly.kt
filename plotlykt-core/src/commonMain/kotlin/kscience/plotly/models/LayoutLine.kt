@@ -40,7 +40,7 @@ public class LayoutLine : Scheme(), Line {
     /**
      * Sets the width (in px) of the lines bounding the marker points.
      */
-    override var widthList by numberList(key = "width".asName())
+    override var widthList: List<Number> by numberList(key = "width".asName())
 
     /**
      * Determines the line shape. With "spline" the lines
@@ -48,18 +48,18 @@ public class LayoutLine : Scheme(), Line {
      * available values correspond to step-wise line shapes.
      * Default: "linear"
      */
-    var shape by enum(LineShape.linear)
+    public var shape: LineShape by enum(LineShape.linear)
 
     /**
      * Sets the style of the lines.
      */
-    var dash by enum(Dash.solid)
+    public var dash: Dash by enum(Dash.solid)
 
     /**
      * Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.
      * Default: 1.
      */
-    var smoothing by numberInRange(0.0..1.3)
+    public var smoothing: Number by numberInRange(0.0..1.3)
 
-    companion object : SchemeSpec<LayoutLine>(::LayoutLine)
+    public companion object : SchemeSpec<LayoutLine>(::LayoutLine)
 }

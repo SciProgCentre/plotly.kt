@@ -7,25 +7,25 @@ import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
 import kotlin.js.JsName
 
-enum class ViolinScaleMode {
+public enum class ViolinScaleMode {
     count,
     width
 }
 
-enum class ViolinPoints {
+public enum class ViolinPoints {
     all,
     outliers,
     suspectedoutliers,
     `false`
 }
 
-enum class ViolinSide {
+public enum class ViolinSide {
     positive,
     negative,
     both
 }
 
-enum class ViolinHoveron {
+public enum class ViolinHoveron {
     violins,
     points,
     kde,
@@ -44,16 +44,16 @@ enum class ViolinHoveron {
     all
 }
 
-class MeanLine : Scheme() {
+public class MeanLine : Scheme() {
     /**
      * Sets the mean line width.
      */
-    var width by numberGreaterThan(0)
+    public var width: Number by numberGreaterThan(0)
 
     /**
      * Sets the mean line color.
      */
-    val color by color()
+    public val color: Color by color()
 
     /**
      * Determines if a line corresponding to the sample's
@@ -61,39 +61,39 @@ class MeanLine : Scheme() {
      * turned on, the mean line is drawn inside the inner box.
      * Otherwise, the mean line is drawn from one side of the violin to other.
      */
-    var visible by boolean()
+    public var visible: Boolean? by boolean()
 
-    companion object : SchemeSpec<MeanLine>(::MeanLine)
+    public companion object : SchemeSpec<MeanLine>(::MeanLine)
 }
 
-enum class SpanMode {
+public enum class SpanMode {
     soft,
     hard,
     manual
 }
 
-class ViolinBox : Scheme() {
+public class ViolinBox : Scheme() {
     /**
      * Sets the width of the inner box plots relative to the violins' width.
      * For example, with 1, the inner box plots are as wide as the violins.
      * Default: 0.25.
      */
-    var width by numberInRange(0.0..1.0)
+    public var width: Number by numberInRange(0.0..1.0)
 
     /**
      * Determines if an miniature box plot is drawn inside the violins.
      */
-    var visible by boolean()
+    public var visible: Boolean? by boolean()
 
     /**
      * Sets the inner box plot fill color.
      */
-    val fillcolor by color()
+    public val fillcolor: Color by color()
 
-    companion object : SchemeSpec<ViolinBox>(::ViolinBox)
+    public companion object : SchemeSpec<ViolinBox>(::ViolinBox)
 }
 
-class Violin : Trace() {
+public class Violin : Trace() {
     init {
         type = TraceType.violin
     }
@@ -104,7 +104,7 @@ class Violin : Trace() {
      * "count" means the violins are scaled by the number
      * of sample points making up each violin.
      */
-    var scalemode by enum(ViolinScaleMode.width)
+    public var scalemode: ViolinScaleMode by enum(ViolinScaleMode.width)
 
     /**
      * Determines on which side of the position value the density
@@ -112,15 +112,15 @@ class Violin : Trace() {
      * Useful when comparing two violin traces under "overlay" mode,
      * where one trace has `side` set to "positive" and the other to "negative".
      */
-    var side by enum(ViolinSide.both)
+    public var side: ViolinSide by enum(ViolinSide.both)
 
     /**
      * Do the hover effects highlight individual violins or sample
      * points or the kernel density estimate or any combination of them?
      */
-    var hoveron by enum(ViolinHoveron.`violins+points+kde`)
+    public var hoveron: ViolinHoveron by enum(ViolinHoveron.`violins+points+kde`)
 
-    var meanline by spec(MeanLine)
+    public var meanline: MeanLine by spec(MeanLine)
 
     /**
      * If "outliers", only the sample points lying outside the whiskers
@@ -129,7 +129,7 @@ class Violin : Trace() {
      * are highlighted (see `outliercolor`) If "all", all sample points
      * are shown If "false", only the violins are shown with no sample points.
      */
-    var points by enum(ViolinPoints.`false`)
+    public var points: ViolinPoints by enum(ViolinPoints.`false`)
 
     /**
      * Sets the method by which the span in data space where the density function will be computed.
@@ -137,15 +137,15 @@ class Violin : Trace() {
      * maximum value plus two bandwidths. "hard" means the span goes from the sample's minimum to its maximum value.
      * For custom span settings, use mode "manual" and fill in the `span` attribute.
      */
-    var spanmode by enum(SpanMode.soft)
+    public var spanmode: SpanMode by enum(SpanMode.soft)
 
     /**
      * Sets the span in data space for which the density function will be computed.
      * Has an effect only when `spanmode` is set to "manual".
      */
-    var span by listOfValues()
+    public var span: List<Value> by listOfValues()
 
-    var box by spec(ViolinBox)
+    public var box: ViolinBox by spec(ViolinBox)
 
     /**
      * Sets the amount of jitter in the sample points drawn.
@@ -153,7 +153,7 @@ class Violin : Trace() {
      * If "1", the sample points are drawn in a random jitter
      * of width equal to the width of the violins.
      */
-    var jitter by numberInRange(0.0..1.0)
+    public var jitter: Number by numberInRange(0.0..1.0)
 
     /**
      * Sets the position of the sample points in relation to the violins.
@@ -161,19 +161,19 @@ class Violin : Trace() {
      * Positive (negative) values correspond to positions to the right (left)
      * for vertical violins and above (below) for horizontal violins.
      */
-    var pointpos by numberInRange(-2.0..2.0)
+    public var pointpos: Number by numberInRange(-2.0..2.0)
 
-    fun meanline(block: MeanLine.() -> Unit) {
+    public fun meanline(block: MeanLine.() -> Unit) {
         meanline = MeanLine(block)
     }
 
-    fun box(block: ViolinBox.() -> Unit) {
+    public fun box(block: ViolinBox.() -> Unit) {
         box = ViolinBox(block)
     }
 
-    fun span(array: Iterable<Any>) {
+    public fun span(array: Iterable<Any>) {
         span = array.map { Value.of(it) }
     }
 
-    companion object : SchemeSpec<Violin>(::Violin)
+    public companion object : SchemeSpec<Violin>(::Violin)
 }

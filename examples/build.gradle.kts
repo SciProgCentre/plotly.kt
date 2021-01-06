@@ -29,14 +29,24 @@ compileTestKotlin.kotlinOptions {
     jvmTarget = "11"
 }
 
-val runDynamicServer by tasks.creating(JavaExec::class){
-    group = "run"
-    classpath = sourceSets["main"].runtimeClasspath
-    main = "DynamicServerKt"
+// A workaround for https://youtrack.jetbrains.com/issue/KT-44101
+
+val copyPlotlyResources by tasks.creating(Copy::class){
+    dependsOn(":plotlykt-core:jvmProcessResources")
+    from(project(":plotlykt-core").buildDir.resolve("processedResources/jvm"))
+    into(buildDir.resolve("resources"))
 }
 
-val runCustomPage by tasks.creating(JavaExec::class){
-    group = "run"
-    classpath = sourceSets["main"].runtimeClasspath
-    main = "CustomPageKt"
-}
+tasks.getByName("classes").dependsOn(copyPlotlyResources)
+
+//val runDynamicServer by tasks.creating(JavaExec::class){
+//    group = "run"
+//    classpath = sourceSets["main"].runtimeClasspath
+//    main = "DynamicServerKt"
+//}
+//
+//val runCustomPage by tasks.creating(JavaExec::class){
+//    group = "run"
+//    classpath = sourceSets["main"].runtimeClasspath
+//    main = "CustomPageKt"
+//}
