@@ -626,6 +626,47 @@ public class Domain : Scheme() {
     public companion object : SchemeSpec<Domain>(::Domain)
 }
 
+public class Hoverlabel : Scheme() {
+
+    public var bgcolor: Color = Color(this, "bgcolor".asName())
+
+    public var bordercolor: Color = Color(this, "bordercolor".asName())
+
+    public var font: Font? by spec(Font)
+
+    public var align: TraceValues = TraceValues(this, "align".asName())
+
+    public var namelength: Number by numberGreaterThan(-1)
+
+    public var namelengths: List<Number> by numberList(-1, key = "namelength".asName())
+
+    public fun bgcolors(array: Iterable<Any>) {
+        bgcolor.value = array.map { Value.of(it) }.asValue()
+    }
+
+    public fun bordercolors(array: Iterable<Any>) {
+        bordercolor.value = array.map { Value.of(it) }.asValue()
+    }
+
+    public fun font(block: Font.() -> Unit) {
+        font = Font(block)
+    }
+
+    public fun align(align: HorizontalAlign) {
+        align(listOf(align))
+    }
+
+    public fun align(alignments: List<HorizontalAlign>) {
+        this.align.set(alignments)
+    }
+
+    public fun align(vararg alignments: HorizontalAlign) {
+        this.align.set(alignments.toList())
+    }
+
+    public companion object : SchemeSpec<Hoverlabel>(::Hoverlabel)
+}
+
 /**
  * A base class for Plotly traces
  */
@@ -869,6 +910,8 @@ public open class Trace : Scheme() {
 
     public var domain: Domain by spec(Domain)
 
+    public var hoverlabel: Hoverlabel? by spec(Hoverlabel)
+
     public fun values(array: Iterable<Any>) {
         values = array.map { Value.of(it) }
     }
@@ -903,6 +946,10 @@ public open class Trace : Scheme() {
 
     public fun domain(block: Domain.() -> Unit) {
         domain = Domain(block)
+    }
+
+    public fun hoverlabel(block: Hoverlabel.() -> Unit) {
+        hoverlabel = Hoverlabel(block)
     }
 
     public companion object : SchemeSpec<Trace>(::Trace) {

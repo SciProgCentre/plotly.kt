@@ -8,46 +8,6 @@ import kscience.plotly.UnsupportedPlotlyAPI
 import kscience.plotly.lazySpec
 import kscience.plotly.numberGreaterThan
 
-public class Hoverlabel : Scheme() {
-
-    public var bgcolor: Color = Color(this, "bgcolor".asName())
-
-    public var bordercolor: Color = Color(this, "bordercolor".asName())
-
-    public var font: Font? by spec(Font)
-
-    public var align: TraceValues = TraceValues(this, "align".asName())
-
-    public var namelength: Number by numberGreaterThan(-1)
-
-    public var namelengths: List<Number> by numberList(-1, key = "namelength".asName())
-
-    public fun bgcolors(array: Iterable<Any>) {
-        bgcolor.value = array.map { Value.of(it) }.asValue()
-    }
-
-    public fun bordercolors(array: Iterable<Any>) {
-        bordercolor.value = array.map { Value.of(it) }.asValue()
-    }
-
-    public fun font(block: Font.() -> Unit) {
-        font = Font(block)
-    }
-
-    public fun align(align: HorizontalAlign) {
-        align(listOf(align))
-    }
-
-    public fun align(alignments: List<HorizontalAlign>) {
-        this.align.set(alignments)
-    }
-
-    public fun align(vararg alignments: HorizontalAlign) {
-        this.align.set(alignments.toList())
-    }
-
-    public companion object : SchemeSpec<Hoverlabel>(::Hoverlabel)
-}
 
 public class Fill : Scheme() {
 
@@ -162,18 +122,12 @@ public class Table : Trace() {
 
     public var cells: Cells by lazySpec(Cells)
 
-    public var hoverlabel: Hoverlabel? by spec(Hoverlabel)
-
     public fun header(block: Header.() -> Unit) {
         header = Header(block)
     }
 
     public fun cells(block: Cells.() -> Unit) {
         cells = Cells(block)
-    }
-
-    public fun hoverlabel(block: Hoverlabel.() -> Unit) {
-        hoverlabel = Hoverlabel(block)
     }
 
     public companion object : SchemeSpec<Table>(::Table)
