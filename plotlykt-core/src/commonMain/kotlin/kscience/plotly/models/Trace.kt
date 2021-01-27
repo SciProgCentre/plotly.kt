@@ -21,7 +21,6 @@ public enum class TraceType {
     heatmapgl,
     contour,
 
-    @UnsupportedPlotlyAPI
     table,
 
     @UnsupportedPlotlyAPI

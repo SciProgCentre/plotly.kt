@@ -6,7 +6,6 @@ import hep.dataforge.meta.spec
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
-import kscience.plotly.UnsupportedPlotlyAPI
 import kscience.plotly.lazySpec
 import kscience.plotly.numberGreaterThan
 
@@ -171,7 +170,6 @@ public class Cells : Scheme() {
  * be specified for columns, rows or individual cells. Table is using a column-major order, ie. the
  * grid is represented as a vector of column vectors.
  * */
-@UnsupportedPlotlyAPI
 public class Table : Trace() {
     init {
         type = TraceType.table
