@@ -169,6 +169,8 @@ public class Cells : Scheme() {
  * Table view for detailed data viewing. The data are arranged in a grid of rows and columns. Most styling can
  * be specified for columns, rows or individual cells. Table is using a column-major order, ie. the
  * grid is represented as a vector of column vectors.
+ *
+ * For docs, see: [Plotly JS Table Reference](https://plotly.com/javascript/reference/table/#table)
  * */
 public class Table : Trace() {
     init {
