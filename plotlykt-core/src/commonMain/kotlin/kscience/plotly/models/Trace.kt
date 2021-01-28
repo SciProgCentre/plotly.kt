@@ -21,7 +21,6 @@ public enum class TraceType {
     heatmapgl,
     contour,
 
-    @UnsupportedPlotlyAPI
     table,
 
     @UnsupportedPlotlyAPI
@@ -626,6 +625,71 @@ public class Domain : Scheme() {
     public companion object : SchemeSpec<Domain>(::Domain)
 }
 
+public class Hoverlabel : Scheme() {
+
+    /**
+     * Sets the background color of the hover labels for this trace.
+     * */
+    public var bgcolor: Color = Color(this, "bgcolor".asName())
+
+    /**
+     * Sets the border color of the hover labels for this trace.
+     * */
+    public var bordercolor: Color = Color(this, "bordercolor".asName())
+
+    /**
+     * Sets the font used in hover labels.
+     * */
+    public var font: Font? by spec(Font)
+
+    /**
+     * Sets the horizontal alignment of the text content within hover label box. Has an effect
+     * only if the hover label text spans more two or more lines.
+     *
+     * Defaults to `'auto'`.
+     * */
+    public var align: TraceValues = TraceValues(this, "align".asName())
+
+    /**
+     * Sets the default length (in number of characters) of the trace name in the hover labels for all traces.
+     * -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will
+     * show the whole name if it is less than that many characters, but if it is longer, will truncate to
+     * `namelength - 3` characters and add an ellipsis.
+     * */
+    public var namelength: Number by numberGreaterThan(-1)
+
+    /**
+     * Complementary property to [namelength] to allow passing a list of lengths.
+     * */
+    public var namelengths: List<Number> by numberList(-1, key = "namelength".asName())
+
+    public fun bgcolors(array: Iterable<Any>) {
+        bgcolor.value = array.map { Value.of(it) }.asValue()
+    }
+
+    public fun bordercolors(array: Iterable<Any>) {
+        bordercolor.value = array.map { Value.of(it) }.asValue()
+    }
+
+    public fun font(block: Font.() -> Unit) {
+        font = Font(block)
+    }
+
+    public fun align(align: HorizontalAlign) {
+        align(listOf(align))
+    }
+
+    public fun align(alignments: List<HorizontalAlign>) {
+        this.align.set(alignments)
+    }
+
+    public fun align(vararg alignments: HorizontalAlign) {
+        this.align.set(alignments.toList())
+    }
+
+    public companion object : SchemeSpec<Hoverlabel>(::Hoverlabel)
+}
+
 /**
  * A base class for Plotly traces
  */
@@ -869,6 +933,8 @@ public open class Trace : Scheme() {
 
     public var domain: Domain by spec(Domain)
 
+    public var hoverlabel: Hoverlabel? by spec(Hoverlabel)
+
     public fun values(array: Iterable<Any>) {
         values = array.map { Value.of(it) }
     }
@@ -903,6 +969,10 @@ public open class Trace : Scheme() {
 
     public fun domain(block: Domain.() -> Unit) {
         domain = Domain(block)
+    }
+
+    public fun hoverlabel(block: Hoverlabel.() -> Unit) {
+        hoverlabel = Hoverlabel(block)
     }
 
     public companion object : SchemeSpec<Trace>(::Trace) {
