@@ -4,10 +4,12 @@ import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.optional
 import kscience.plotly.Plotly
+import kscience.plotly.UnstablePlotlyAPI
 import kscience.plotly.makeFile
 import java.io.File
 import java.nio.file.Path
 
+@OptIn(UnstablePlotlyAPI::class)
 fun main(args: Array<String>) {
     val parser = ArgParser("plotlykt-script")
     val input by parser.argument(ArgType.String, description ="Input file path")

@@ -1,12 +1,11 @@
 package kscience.plotly.models
 
 import hep.dataforge.meta.*
-import hep.dataforge.names.Name
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import kscience.plotly.intGreaterThan
-import kscience.plotly.list
+import kscience.plotly.listOfValues
 import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
 
@@ -22,7 +21,7 @@ public class Gradient : Scheme() {
      * Sets the final color of the gradient fill: the center color for radial,
      * the right for horizontal, or the bottom for vertical.
      */
-    public var color: Color = Color(this, "color".asName())
+    public val color: Color by color()
 
     /**
      * Sets the type of gradient used to fill the markers
@@ -32,7 +31,7 @@ public class Gradient : Scheme() {
     /**
      * Sets the type of gradient used to fill the markers
      */
-    public var typesList: List<Value> by list()
+    public var typesList: List<Value> by listOfValues()
 
     public fun colors(colors: Iterable<Any>) {
         color.value = colors.map { Value.of(it) }.asValue()
@@ -55,7 +54,7 @@ public class Marker : Scheme() {
     /**
      * Array of enumerateds. Sets the marker symbol type.
      */
-    public var symbolsList: List<Value> by list(key = "symbol".asName())
+    public var symbolsList: List<Value> by listOfValues(key = "symbol".asName())
 
     /**
      * Sets the marker size (in px).
@@ -109,27 +108,27 @@ public class Marker : Scheme() {
      */
     public var sizemode: SizeMode by enum(SizeMode.diameter)
 
-    public var line: MarkerLine? by spec(MarkerLine)
+    public var line: MarkerLine by spec(MarkerLine)
 
     /**
-     * Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale
+     * Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale
      * relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
      */
-    public val color: Color = Color(this, "color".asName())
+    public val color: Color by color()
 
     /**
      * Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
      */
-    public var pieColors: List<Value> by list(key = "colors".asName())
+    public var pieColors: List<Value> by listOfValues(key = "colors".asName())
 
-    public var colorbar: ColorBar? by spec(ColorBar)
+    public var colorbar: ColorBar by spec(ColorBar)
 
-    public var gradient: Gradient? by spec(Gradient)
+    public var gradient: Gradient by spec(Gradient)
 
     /**
      * Sets the color of the outlier sample points. Default: rgba(0, 0, 0, 0).
      */
-    public var outliercolor: Color = Color(this, "outliercolor".asName())
+    public val outliercolor: Color by color()
 
     public fun colors(colors: Iterable<Any>) {
         color.value = colors.map { Value.of(it) }.asValue()
@@ -150,32 +149,3 @@ public class Marker : Scheme() {
     public companion object : SchemeSpec<Marker>(::Marker)
 }
 
-/**
- * A color value customizer
- * TODO add a hook for descriptor generation
- */
-public class Color internal constructor(parent: Scheme, key: Name) {
-    public var value: Value? by parent.value(key = key)
-
-    public var string: String?
-        get() = value?.string
-        set(value) {
-            this.value = value?.asValue()
-        }
-
-    public operator fun invoke(value: String): Unit {
-        this.value = value.asValue()
-    }
-
-    public operator fun invoke(value: Number): Unit {
-        this.value = value.asValue()
-    }
-
-    public operator fun invoke(red: Number, green: Number, blue: Number) {
-        invoke("rgb(${red.toFloat()},${green.toFloat()},${blue.toFloat()})")
-    }
-
-    public operator fun invoke(red: Number, green: Number, blue: Number, alpha: Number) {
-        invoke("rgba(${red.toFloat()},${green.toFloat()},${blue.toFloat()},${alpha.toFloat()})")
-    }
-}

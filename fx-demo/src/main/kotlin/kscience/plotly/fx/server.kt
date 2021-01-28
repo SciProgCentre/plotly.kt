@@ -45,7 +45,7 @@ fun serve(scale: ObservableIntegerValue) = Plotly.serve {
 
         val trace = Trace(x, y) { name = "sin" }
 
-        plot("dynamic", renderer = container) {
+        val plot = plot("dynamic", renderer = container) {
             traces(trace)
             layout {
                 title = "Dynamic plot"
@@ -61,7 +61,11 @@ fun serve(scale: ObservableIntegerValue) = Plotly.serve {
                 time += 10
                 val frequency = scale.get().toDouble()
                 val dynamicY = x.map { sin(2.0 * PI * frequency * (it + time.toDouble() / 1000.0)) }
-                trace.y.numbers = dynamicY
+                //trace.y.numbers = dynamicY
+                plot.data[0].y.numbers = dynamicY
+                plot.layout{
+                    xaxis.title = "x axis name (t = $time)"
+                }
             }
         }
     }

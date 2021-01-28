@@ -1,13 +1,11 @@
 package kscience.plotly.models
 
 import hep.dataforge.meta.*
-import hep.dataforge.names.asName
 import hep.dataforge.values.ListValue
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.doubleArray
-import kscience.plotly.lazySpec
-import kscience.plotly.list
+import kscience.plotly.listOfValues
 import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
 import kotlin.js.JsName
@@ -44,9 +42,9 @@ public class Axis : Scheme() {
      * Sets the title of this axis.
      */
     public var title: String?
-        get() = config["title.text"].string ?: config["title"].string
+        get() = this["title.text"].string ?: this["title"].string
         set(value) {
-            config["title"] = value
+            this["title"] = value
         }
 
     /**
@@ -81,7 +79,7 @@ public class Axis : Scheme() {
      * Sets the tick color.
      * Default: #444.
      */
-    public var tickcolor: Color = Color(this, "tickcolor".asName())
+    public val tickcolor: Color by color()
 
     /**
      * Sets the angle of the tick labels with respect to the horizontal.
@@ -92,7 +90,7 @@ public class Axis : Scheme() {
     /**
      * Sets the tick font.
      */
-    public var tickfont: Font by lazySpec(Font)
+    public var tickfont: Font by spec(Font)
 
     /**
      * Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn.
@@ -135,9 +133,9 @@ public class Axis : Scheme() {
      * a serial number from zero in the order it appears.
      */
     public var range: ClosedFloatingPointRange<Double>?
-        get() = config["range"]?.value?.doubleArray?.let { it[0]..it[1] }
+        get() = this["range"]?.value?.doubleArray?.let { it[0]..it[1] }
         set(value) {
-            config["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
+            this["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
         }
 
     /**
@@ -146,7 +144,7 @@ public class Axis : Scheme() {
      * by blending this with the plot background Individual pieces can override this.
      * Default: #444.
      */
-    public val color: Color = Color(this, "color".asName())
+    public val color: Color by color()
 
     /**
      * Determines whether or not a line bounding this axis is drawn.
@@ -156,7 +154,7 @@ public class Axis : Scheme() {
     /**
      * Sets the axis line color. Default: #444.
      */
-    public var linecolor: Color = Color(this, "linecolor".asName())
+    public val linecolor: Color by color()
 
     /**
      * Sets the width (in px) of the axis line. Default: 1.
@@ -172,7 +170,7 @@ public class Axis : Scheme() {
     /**
      * Sets the color of the grid lines. Default: #eee
      */
-    public var gridcolor: Color = Color(this, "gridcolor".asName())
+    public val gridcolor: Color by color()
 
     /**
      * Sets the width (in px) of the grid lines. Default: 1.
@@ -188,7 +186,7 @@ public class Axis : Scheme() {
     /**
      * Sets the line color of the zero line. Default: #444
      */
-    public var zerolinecolor: Color = Color(this, "zerolinecolor".asName())
+    public val zerolinecolor: Color by color()
 
     /**
      * Sets the width (in px) of the zero line. Default: 1.
@@ -208,13 +206,13 @@ public class Axis : Scheme() {
      * Sets the values at which ticks on this axis appear.
      * Only has an effect if `tickmode` is set to "array". Used with `ticktext`.
      */
-    public var tickvals: List<Value> by list()
+    public var tickvals: List<Value> by listOfValues()
 
     /**
      *Sets the text displayed at the ticks position via `tickvals`.
      * Only has an effect if `tickmode` is set to "array". Used with `tickvals`.
      */
-    public var ticktext: List<Value> by list()
+    public var ticktext: List<Value> by listOfValues()
 
     /**
      * Determines whether or not the tick labels are drawn.
@@ -237,8 +235,7 @@ public class Axis : Scheme() {
     public var position: Number by numberInRange(0.0..1.0)
 
     public fun title(block: Title.() -> Unit) {
-        val spec = config["title"].node?.let { Title.wrap(it) }
-                ?: Title.empty().also { config["title"] = it.config }
+        val spec = Title.write(getChild("title"))
         spec.apply(block)
     }
 

@@ -1,19 +1,18 @@
 package kscience.plotly.models
 
 import hep.dataforge.meta.*
-import hep.dataforge.names.asName
+import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
-import kscience.plotly.lazySpec
 import kscience.plotly.numberGreaterThan
 import kscience.plotly.numberInRange
 
-enum class HorizontalAlign {
+public enum class HorizontalAlign {
     left,
     right,
     center
 }
 
-enum class VerticalAlign {
+public enum class VerticalAlign {
     top,
     bottom,
     middle
@@ -22,12 +21,12 @@ enum class VerticalAlign {
 /**
  * Text annotation
  */
-class Text : Scheme() {
+public class Text : Scheme() {
     /**
      * Determines whether or not this annotation is visible.
      * Default: true
      */
-    var visible by boolean()
+    public var visible: Boolean? by boolean()
 
     /**
      * Sets the text associated with this annotation.
@@ -36,12 +35,12 @@ class Text : Scheme() {
      * hyperlinks (<a href='...'></a>). Tags <em>, <sup>,
      * <sub> <span> are also supported.
      */
-    var text by string()
+    public var text: String? by string()
 
     /**
      * Sets the annotation text font.
      */
-    var font by lazySpec(Font)
+    public var font: Font by spec(Font)
 
     /**
      * Sets the annotation's x position. If the axis `type` is "log",
@@ -52,7 +51,7 @@ class Text : Scheme() {
      * it should be numbers, using the scale where each category
      * is assigned a serial number from zero in the order it appears.
      */
-    var x by value()
+    public var x: Value? by value()
 
     /**
      * Sets the annotation's y position. If the axis `type` is "log",
@@ -63,52 +62,52 @@ class Text : Scheme() {
      * it should be numbers, using the scale where each category
      * is assigned a serial number from zero in the order it appears.
      */
-    var y by value()
+    public var y: Value? by value()
 
     /**
      * Sets an explicit width for the text box. null (default) lets the text set the box width.
      * Wider text will be clipped. There is no automatic wrapping; use <br> to start a new line.
      */
-    var width by numberGreaterThan(1)
+    public var width: Number by numberGreaterThan(1)
 
     /**
      * Sets an explicit height for the text box. null (default) lets the text set the box height.
      * Taller text will be clipped.
      */
-    var height by numberGreaterThan(1)
+    public var height: Number by numberGreaterThan(1)
 
     /**
      * Sets the opacity of the annotation (text + arrow).
      */
-    var opacity by numberInRange(0.0..1.0)
+    public var opacity: Number by numberInRange(0.0..1.0)
 
     /**
      * Sets the background color of the annotation.
      * Default: "rgba(0, 0, 0, 0)"
      */
-    var bgcolor = Color(this, "bgcolor".asName())
+    public val bgcolor: Color by color()
 
     /**
      * Sets the background color of the annotation.
      * Default: "rgba(0, 0, 0, 0)"
      */
-    var bordercolor = Color(this, "bordercolor".asName())
+    public val bordercolor: Color by color()
 
     /**
      * Determines whether or not the annotation is drawn with an arrow. If "true", `text`
      * is placed near the arrow's tail. If "false", `text` lines up with the `x` and `y` provided.
      */
-    var showarrow by boolean()
+    public var showarrow: Boolean? by boolean()
 
     /**
      * Sets the color of the annotation arrow.
      */
-    var arrowcolor = Color(this, "arrowcolor".asName())
+    public val arrowcolor: Color by color()
 
     /**
      * Sets the angle at which the `text` is drawn with respect to the horizontal.
      */
-    var textangle by numberInRange(-360.0..360.0)
+    public var textangle: Number by numberInRange(-360.0..360.0)
 
     /**
      * Sets a distance, in pixels, to move the end arrowhead away from the position
@@ -116,48 +115,48 @@ class Text : Scheme() {
      * Note that this shortens the arrow from the `ax` / `ay` vector, in contrast
      * to `xshift` / `yshift` which moves everything by this amount.
      */
-    var standoff by numberGreaterThan(0)
+    public var standoff: Number by numberGreaterThan(0)
 
     /**
      * Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)
      * component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis,
      * this is an absolute value on that axis, like `x`, NOT a relative value.
      */
-    var ax by value()
+    public var ax: Value? by value()
 
     /**
      * Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)
      * component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis,
      * this is an absolute value on that axis, like `y`, NOT a relative value.
      */
-    var ay by value()
+    public var ay: Value? by value()
 
     /**
      * Sets the annotation's x coordinate axis. If set to an x axis id (e.g. "x" or "x2"), the `x` position refers
      * to an x coordinate If set to "paper", the `x` position refers to the distance from the left side
      * of the plotting area in normalized coordinates where 0 (1) corresponds to the left (right) side.
      */
-    var xref by string()
+    public var xref: String? by string()
 
     /**
      * Sets the annotation's y coordinate axis. If set to an y axis id (e.g. "y" or "y2"), the `y` position refers
      * to an y coordinate If set to "paper", the `y` position refers to the distance from the bottom
      * of the plotting area in normalized coordinates where 0 (1) corresponds to the bottom (top).
      */
-    var yref by string()
+    public var yref: String? by string()
 
     /**
      * Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans two or more lines
      * (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
      * Default: center.
      */
-    var align by enum(HorizontalAlign.center)
+    public var align: HorizontalAlign by enum(HorizontalAlign.center)
 
     /**
      * Sets the vertical alignment of the `text` within the box. Has an effect only if an explicit height is set
      * to override the text height. Default: middle.
      */
-    var valign by enum(VerticalAlign.middle)
+    public var valign: VerticalAlign by enum(VerticalAlign.middle)
 
     /**
      * Sets the text box's horizontal position anchor This anchor binds the `x` position to the "left",
@@ -167,7 +166,7 @@ class Text : Scheme() {
      * whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
      * Default: auto.
      */
-    var xanchor by enum(XAnchor.auto)
+    public var xanchor: XAnchor by enum(XAnchor.auto)
 
     /**
      * Sets the text box's vertical position anchor This anchor binds the `y` position to the "top", "middle"
@@ -177,16 +176,16 @@ class Text : Scheme() {
      * for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
      * Default: auto.
      */
-    var yanchor by enum(YAnchor.auto)
+    public var yanchor: YAnchor by enum(YAnchor.auto)
 
-    fun position(x: Number, y: Number) {
+    public fun position(x: Number, y: Number) {
         this.x = x.asValue()
         this.y = y.asValue()
     }
 
-    fun font(block: Font.() -> Unit) {
+    public fun font(block: Font.() -> Unit) {
         font = Font(block)
     }
 
-    companion object : SchemeSpec<Text>(::Text)
+    public companion object : SchemeSpec<Text>(::Text)
 }

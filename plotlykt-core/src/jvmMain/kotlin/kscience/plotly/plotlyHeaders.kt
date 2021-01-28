@@ -5,13 +5,13 @@ import kotlinx.html.unsafe
 import java.nio.file.Path
 
 
-const val PLOTLY_SCRIPT_PATH = "/js/plotly.min.js"
-const val PLOTLY_PROMISE_NAME = "promiseOfPlotly"
+internal const val PLOTLY_SCRIPT_PATH = "/js/plotly.min.js"
+//const val PLOTLY_PROMISE_NAME = "promiseOfPlotly"
 
-const val PLOTLY_CDN = "https://cdn.plot.ly/plotly-${Plotly.VERSION}.min.js"
+private const val PLOTLY_CDN = "https://cdn.plot.ly/plotly-${Plotly.VERSION}.min.js"
 //"https://cdnjs.cloudflare.com/ajax/libs/plotly.js/${Plotly.VERSION}/plotly.min.js"
 
-val cdnPlotlyHeader = HtmlFragment {
+public val cdnPlotlyHeader = HtmlFragment {
     script {
         type = "text/javascript"
         src = PLOTLY_CDN
@@ -19,7 +19,7 @@ val cdnPlotlyHeader = HtmlFragment {
 }
 
 
-fun localPlotlyHeader(
+internal fun localPlotlyHeader(
     path: Path,
     relativeScriptPath: String = "$assetsDirectory$PLOTLY_SCRIPT_PATH"
 ) = HtmlFragment {
@@ -34,7 +34,7 @@ fun localPlotlyHeader(
 /**
  * A system-wide plotly store location
  */
-val systemPlotlyHeader = HtmlFragment {
+internal val systemPlotlyHeader = HtmlFragment {
     val relativePath = checkOrStoreFile(
         Path.of("."),
         Path.of(System.getProperty("user.home")).resolve(".plotly/$assetsDirectory$PLOTLY_SCRIPT_PATH"),
@@ -50,7 +50,7 @@ val systemPlotlyHeader = HtmlFragment {
 /**
  * embedded plotly script
  */
-val embededPlotlyHeader = HtmlFragment {
+internal val embededPlotlyHeader = HtmlFragment {
     script {
         unsafe {
             val bytes = HtmlFragment::class.java.getResourceAsStream(PLOTLY_SCRIPT_PATH).readAllBytes()

@@ -53,6 +53,8 @@ public final class kscience/plotly/OrcaFormat : java/lang/Enum {
 
 public final class kscience/plotly/Plot : hep/dataforge/meta/Configurable, hep/dataforge/meta/MetaRepr {
 	public fun <init> ()V
+	public fun <init> (Lhep/dataforge/meta/Config;)V
+	public synthetic fun <init> (Lhep/dataforge/meta/Config;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun getConfig ()Lhep/dataforge/meta/Config;
 	public final fun getData ()Ljava/util/List;
 	public final fun getLayout ()Lkscience/plotly/models/Layout;
@@ -149,14 +151,7 @@ public final class kscience/plotly/PlotlyFragment {
 }
 
 public final class kscience/plotly/PlotlyHeadersKt {
-	public static final field PLOTLY_CDN Ljava/lang/String;
-	public static final field PLOTLY_PROMISE_NAME Ljava/lang/String;
-	public static final field PLOTLY_SCRIPT_PATH Ljava/lang/String;
 	public static final fun getCdnPlotlyHeader ()Lkscience/plotly/HtmlFragment;
-	public static final fun getEmbededPlotlyHeader ()Lkscience/plotly/HtmlFragment;
-	public static final fun getSystemPlotlyHeader ()Lkscience/plotly/HtmlFragment;
-	public static final fun localPlotlyHeader (Ljava/nio/file/Path;Ljava/lang/String;)Lkscience/plotly/HtmlFragment;
-	public static synthetic fun localPlotlyHeader$default (Ljava/nio/file/Path;Ljava/lang/String;ILjava/lang/Object;)Lkscience/plotly/HtmlFragment;
 }
 
 public final class kscience/plotly/PlotlyKt {
@@ -264,9 +259,7 @@ public final class kscience/plotly/models/Axis : hep/dataforge/meta/Scheme {
 	public final fun setAutorange (Z)V
 	public final fun setAutotick (Ljava/lang/Boolean;)V
 	public final fun setDtick (Lhep/dataforge/values/Value;)V
-	public final fun setGridcolor (Lkscience/plotly/models/Color;)V
 	public final fun setGridwidth (Ljava/lang/Number;)V
-	public final fun setLinecolor (Lkscience/plotly/models/Color;)V
 	public final fun setLinewidth (Ljava/lang/Number;)V
 	public final fun setPosition (Ljava/lang/Number;)V
 	public final fun setRange (Lkotlin/ranges/ClosedFloatingPointRange;)V
@@ -274,7 +267,6 @@ public final class kscience/plotly/models/Axis : hep/dataforge/meta/Scheme {
 	public final fun setShowline (Ljava/lang/Boolean;)V
 	public final fun setShowticklabels (Ljava/lang/Boolean;)V
 	public final fun setTickangle (Ljava/lang/Number;)V
-	public final fun setTickcolor (Lkscience/plotly/models/Color;)V
 	public final fun setTickfont (Lkscience/plotly/models/Font;)V
 	public final fun setTicklen (Ljava/lang/Number;)V
 	public final fun setTickmode (Lkscience/plotly/models/TickMode;)V
@@ -286,7 +278,6 @@ public final class kscience/plotly/models/Axis : hep/dataforge/meta/Scheme {
 	public final fun setType (Lkscience/plotly/models/AxisType;)V
 	public final fun setVisible (Ljava/lang/Boolean;)V
 	public final fun setZeroline (Ljava/lang/Boolean;)V
-	public final fun setZerolinecolor (Lkscience/plotly/models/Color;)V
 	public final fun setZerolinewidth (Ljava/lang/Number;)V
 	public final fun tickfont (Lkotlin/jvm/functions/Function1;)V
 	public final fun ticktext (Ljava/lang/Iterable;)V
@@ -480,6 +471,33 @@ public final class kscience/plotly/models/Calendar : java/lang/Enum {
 	public static fun values ()[Lkscience/plotly/models/Calendar;
 }
 
+public final class kscience/plotly/models/Cells : hep/dataforge/meta/Scheme {
+	public static final field Companion Lkscience/plotly/models/Cells$Companion;
+	public fun <init> ()V
+	public final fun align (Ljava/util/List;)V
+	public final fun align (Lkscience/plotly/models/HorizontalAlign;)V
+	public final fun align ([Lkscience/plotly/models/HorizontalAlign;)V
+	public final fun fill (Lkotlin/jvm/functions/Function1;)V
+	public final fun font (Lkotlin/jvm/functions/Function1;)V
+	public final fun getAlign ()Lkscience/plotly/models/TraceValues;
+	public final fun getFill ()Lkscience/plotly/models/Fill;
+	public final fun getFont ()Lkscience/plotly/models/Font;
+	public final fun getHeight ()Ljava/lang/Number;
+	public final fun getLine ()Lkscience/plotly/models/LayoutLine;
+	public final fun getValues ()Lkscience/plotly/models/TraceValues;
+	public final fun line (Lkotlin/jvm/functions/Function1;)V
+	public final fun setAlign (Lkscience/plotly/models/TraceValues;)V
+	public final fun setFill (Lkscience/plotly/models/Fill;)V
+	public final fun setFont (Lkscience/plotly/models/Font;)V
+	public final fun setHeight (Ljava/lang/Number;)V
+	public final fun setLine (Lkscience/plotly/models/LayoutLine;)V
+	public final fun setValues (Lkscience/plotly/models/TraceValues;)V
+	public final fun values (Ljava/lang/Iterable;)V
+}
+
+public final class kscience/plotly/models/Cells$Companion : hep/dataforge/meta/SchemeSpec {
+}
+
 public final class kscience/plotly/models/Color {
 	public final fun getString ()Ljava/lang/String;
 	public final fun getValue ()Lhep/dataforge/values/Value;
@@ -512,13 +530,10 @@ public final class kscience/plotly/models/ColorBar : hep/dataforge/meta/Scheme {
 	public final fun getY ()Ljava/lang/Number;
 	public final fun getYanchor ()Lkscience/plotly/models/YAnchor;
 	public final fun getYpad ()I
-	public final fun setBgcolor (Lkscience/plotly/models/Color;)V
-	public final fun setBordercolor (Lkscience/plotly/models/Color;)V
 	public final fun setBorderwidth (Ljava/lang/Number;)V
 	public final fun setConstraintext (Lkscience/plotly/models/ConstrainText;)V
 	public final fun setLen (Ljava/lang/Number;)V
 	public final fun setLenmode (Lkscience/plotly/models/MeasureMode;)V
-	public final fun setOutlinecolor (Lkscience/plotly/models/Color;)V
 	public final fun setOutlinewidth (Ljava/lang/Number;)V
 	public final fun setThickness (Ljava/lang/Number;)V
 	public final fun setThicknessmode (Lkscience/plotly/models/MeasureMode;)V
@@ -535,6 +550,11 @@ public final class kscience/plotly/models/ColorBar : hep/dataforge/meta/Scheme {
 }
 
 public final class kscience/plotly/models/ColorBar$Companion : hep/dataforge/meta/SchemeSpec {
+}
+
+public final class kscience/plotly/models/ColorKt {
+	public static final fun color (Lhep/dataforge/meta/Scheme;Lhep/dataforge/names/Name;)Lkotlin/properties/ReadOnlyProperty;
+	public static synthetic fun color$default (Lhep/dataforge/meta/Scheme;Lhep/dataforge/names/Name;ILjava/lang/Object;)Lkotlin/properties/ReadOnlyProperty;
 }
 
 public final class kscience/plotly/models/ConstrainText : java/lang/Enum {
@@ -686,7 +706,6 @@ public final class kscience/plotly/models/Error : hep/dataforge/meta/Scheme {
 	public final fun getWidth ()Ljava/lang/Number;
 	public final fun setArray (Ljava/util/List;)V
 	public final fun setArrayminus (Ljava/util/List;)V
-	public final fun setColor (Lkscience/plotly/models/Color;)V
 	public final fun setSymmetric (Ljava/lang/Boolean;)V
 	public final fun setThickness (Ljava/lang/Number;)V
 	public final fun setTraceref (I)V
@@ -708,6 +727,17 @@ public final class kscience/plotly/models/ErrorType : java/lang/Enum {
 	public static final field sqrt Lkscience/plotly/models/ErrorType;
 	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ErrorType;
 	public static fun values ()[Lkscience/plotly/models/ErrorType;
+}
+
+public final class kscience/plotly/models/Fill : hep/dataforge/meta/Scheme {
+	public static final field Companion Lkscience/plotly/models/Fill$Companion;
+	public fun <init> ()V
+	public final fun colors (Ljava/lang/Iterable;)V
+	public final fun getColor ()Lkscience/plotly/models/Color;
+	public final fun setColor (Lkscience/plotly/models/Color;)V
+}
+
+public final class kscience/plotly/models/Fill$Companion : hep/dataforge/meta/SchemeSpec {
 }
 
 public final class kscience/plotly/models/FillType : java/lang/Enum {
@@ -747,7 +777,6 @@ public final class kscience/plotly/models/Gradient : hep/dataforge/meta/Scheme {
 	public final fun getColor ()Lkscience/plotly/models/Color;
 	public final fun getType ()Lkscience/plotly/models/GradientType;
 	public final fun getTypesList ()Ljava/util/List;
-	public final fun setColor (Lkscience/plotly/models/Color;)V
 	public final fun setType (Lkscience/plotly/models/GradientType;)V
 	public final fun setTypesList (Ljava/util/List;)V
 	public final fun typesList (Ljava/lang/Iterable;)V
@@ -771,6 +800,32 @@ public final class kscience/plotly/models/GroupNorm : java/lang/Enum {
 	public static final field percent Lkscience/plotly/models/GroupNorm;
 	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/GroupNorm;
 	public static fun values ()[Lkscience/plotly/models/GroupNorm;
+}
+
+public final class kscience/plotly/models/Header : hep/dataforge/meta/Scheme {
+	public static final field Companion Lkscience/plotly/models/Header$Companion;
+	public fun <init> ()V
+	public final fun align (Ljava/util/List;)V
+	public final fun align (Lkscience/plotly/models/HorizontalAlign;)V
+	public final fun align ([Lkscience/plotly/models/HorizontalAlign;)V
+	public final fun fill (Lkotlin/jvm/functions/Function1;)V
+	public final fun font (Lkotlin/jvm/functions/Function1;)V
+	public final fun getAlign ()Lkscience/plotly/models/TraceValues;
+	public final fun getFill ()Lkscience/plotly/models/Fill;
+	public final fun getFont ()Lkscience/plotly/models/Font;
+	public final fun getHeight ()Ljava/lang/Number;
+	public final fun getLine ()Lkscience/plotly/models/LayoutLine;
+	public final fun getValues ()Lkscience/plotly/models/TraceValues;
+	public final fun setAlign (Lkscience/plotly/models/TraceValues;)V
+	public final fun setFill (Lkscience/plotly/models/Fill;)V
+	public final fun setFont (Lkscience/plotly/models/Font;)V
+	public final fun setHeight (Ljava/lang/Number;)V
+	public final fun setLine (Lkscience/plotly/models/LayoutLine;)V
+	public final fun setValues (Lkscience/plotly/models/TraceValues;)V
+	public final fun values (Ljava/lang/Iterable;)V
+}
+
+public final class kscience/plotly/models/Header$Companion : hep/dataforge/meta/SchemeSpec {
 }
 
 public class kscience/plotly/models/Heatmap : kscience/plotly/models/Trace, kscience/plotly/models/HeatmapContour, kscience/plotly/models/Table2D {
@@ -914,6 +969,32 @@ public final class kscience/plotly/models/HoverMode : java/lang/Enum {
 	public static fun values ()[Lkscience/plotly/models/HoverMode;
 }
 
+public final class kscience/plotly/models/Hoverlabel : hep/dataforge/meta/Scheme {
+	public static final field Companion Lkscience/plotly/models/Hoverlabel$Companion;
+	public fun <init> ()V
+	public final fun align (Ljava/util/List;)V
+	public final fun align (Lkscience/plotly/models/HorizontalAlign;)V
+	public final fun align ([Lkscience/plotly/models/HorizontalAlign;)V
+	public final fun bgcolors (Ljava/lang/Iterable;)V
+	public final fun bordercolors (Ljava/lang/Iterable;)V
+	public final fun font (Lkotlin/jvm/functions/Function1;)V
+	public final fun getAlign ()Lkscience/plotly/models/TraceValues;
+	public final fun getBgcolor ()Lkscience/plotly/models/Color;
+	public final fun getBordercolor ()Lkscience/plotly/models/Color;
+	public final fun getFont ()Lkscience/plotly/models/Font;
+	public final fun getNamelength ()Ljava/lang/Number;
+	public final fun getNamelengths ()Ljava/util/List;
+	public final fun setAlign (Lkscience/plotly/models/TraceValues;)V
+	public final fun setBgcolor (Lkscience/plotly/models/Color;)V
+	public final fun setBordercolor (Lkscience/plotly/models/Color;)V
+	public final fun setFont (Lkscience/plotly/models/Font;)V
+	public final fun setNamelength (Ljava/lang/Number;)V
+	public final fun setNamelengths (Ljava/util/List;)V
+}
+
+public final class kscience/plotly/models/Hoverlabel$Companion : hep/dataforge/meta/SchemeSpec {
+}
+
 public final class kscience/plotly/models/Layout : hep/dataforge/meta/Scheme {
 	public static final field Companion Lkscience/plotly/models/Layout$Companion;
 	public fun <init> ()V
@@ -965,8 +1046,6 @@ public final class kscience/plotly/models/Layout : hep/dataforge/meta/Scheme {
 	public final fun setHovermode (Lkscience/plotly/models/HoverMode;)V
 	public final fun setLegend (Lkscience/plotly/models/Legend;)V
 	public final fun setMargin (Lkscience/plotly/models/Margin;)V
-	public final fun setPaper_bgcolor (Lkscience/plotly/models/Color;)V
-	public final fun setPlot_bgcolor (Lkscience/plotly/models/Color;)V
 	public final fun setSeparators (Ljava/lang/String;)V
 	public final fun setShapes (Ljava/util/List;)V
 	public final fun setShowlegend (Ljava/lang/Boolean;)V
@@ -1018,8 +1097,6 @@ public final class kscience/plotly/models/Legend : hep/dataforge/meta/Scheme {
 	public final fun getXanchor ()Lkscience/plotly/models/XAnchor;
 	public final fun getY ()Ljava/lang/Number;
 	public final fun getYanchor ()Lkscience/plotly/models/YAnchor;
-	public final fun setBgcolor (Lkscience/plotly/models/Color;)V
-	public final fun setBordercolor (Lkscience/plotly/models/Color;)V
 	public final fun setBorderwidth (Ljava/lang/Number;)V
 	public final fun setFont (Lkscience/plotly/models/Font;)V
 	public final fun setOrientation (Lkscience/plotly/models/LegendOrientation;)V
@@ -1108,7 +1185,6 @@ public final class kscience/plotly/models/Marker : hep/dataforge/meta/Scheme {
 	public final fun setMaxdisplayed (I)V
 	public final fun setOpacitiesList (Ljava/util/List;)V
 	public final fun setOpacity (Ljava/lang/Number;)V
-	public final fun setOutliercolor (Lkscience/plotly/models/Color;)V
 	public final fun setPieColors (Ljava/util/List;)V
 	public final fun setSize (Ljava/lang/Number;)V
 	public final fun setSizemin (Ljava/lang/Number;)V
@@ -1144,7 +1220,6 @@ public final class kscience/plotly/models/MarkerLine : hep/dataforge/meta/Scheme
 	public final fun setCmid (Ljava/lang/Number;)V
 	public final fun setCmin (Ljava/lang/Number;)V
 	public final fun setColorscale (Lhep/dataforge/values/Value;)V
-	public final fun setOutliercolor (Lkscience/plotly/models/Color;)V
 	public final fun setOutlierwidth (Ljava/lang/Number;)V
 	public final fun setReversescale (Ljava/lang/Boolean;)V
 	public fun setWidth (Ljava/lang/Number;)V
@@ -1160,7 +1235,6 @@ public final class kscience/plotly/models/MeanLine : hep/dataforge/meta/Scheme {
 	public final fun getColor ()Lkscience/plotly/models/Color;
 	public final fun getVisible ()Ljava/lang/Boolean;
 	public final fun getWidth ()Ljava/lang/Number;
-	public final fun setColor (Lkscience/plotly/models/Color;)V
 	public final fun setVisible (Ljava/lang/Boolean;)V
 	public final fun setWidth (Ljava/lang/Number;)V
 }
@@ -1293,7 +1367,6 @@ public final class kscience/plotly/models/SelectMarker : hep/dataforge/meta/Sche
 	public final fun getColor ()Lkscience/plotly/models/Color;
 	public final fun getOpacity ()Ljava/lang/Number;
 	public final fun getSize ()Ljava/lang/Number;
-	public final fun setColor (Lkscience/plotly/models/Color;)V
 	public final fun setOpacity (Ljava/lang/Number;)V
 	public final fun setSize (Ljava/lang/Number;)V
 }
@@ -1350,7 +1423,6 @@ public final class kscience/plotly/models/Shape : hep/dataforge/meta/Scheme {
 	public final fun getYsizemode ()Lkscience/plotly/models/ShapeSizeMode;
 	public final fun line (Lkotlin/jvm/functions/Function1;)V
 	public final fun setEditable (Ljava/lang/Boolean;)V
-	public final fun setFillcolor (Lkscience/plotly/models/Color;)V
 	public final fun setFillrule (Lkscience/plotly/models/ShapeFillRule;)V
 	public final fun setLayer (Lkscience/plotly/models/ShapeLayer;)V
 	public final fun setLine (Lkscience/plotly/models/LayoutLine;)V
@@ -1439,6 +1511,26 @@ public final class kscience/plotly/models/Symbol : java/lang/Enum {
 	public static fun values ()[Lkscience/plotly/models/Symbol;
 }
 
+public final class kscience/plotly/models/Table : kscience/plotly/models/Trace {
+	public static final field Companion Lkscience/plotly/models/Table$Companion;
+	public fun <init> ()V
+	public final fun cells (Lkotlin/jvm/functions/Function1;)V
+	public final fun getCells ()Lkscience/plotly/models/Cells;
+	public final fun getColumnorder ()Lkscience/plotly/models/TraceValues;
+	public final fun getColumnwidth ()Lkscience/plotly/models/TraceValues;
+	public final fun getHeader ()Lkscience/plotly/models/Header;
+	public final fun getIds ()Lkscience/plotly/models/TraceValues;
+	public final fun header (Lkotlin/jvm/functions/Function1;)V
+	public final fun setCells (Lkscience/plotly/models/Cells;)V
+	public final fun setColumnorder (Lkscience/plotly/models/TraceValues;)V
+	public final fun setColumnwidth (Lkscience/plotly/models/TraceValues;)V
+	public final fun setHeader (Lkscience/plotly/models/Header;)V
+	public final fun setIds (Lkscience/plotly/models/TraceValues;)V
+}
+
+public final class kscience/plotly/models/Table$Companion : hep/dataforge/meta/SchemeSpec {
+}
+
 public abstract interface class kscience/plotly/models/Table2D {
 	public abstract fun getXgap ()Ljava/lang/Number;
 	public abstract fun getYgap ()Ljava/lang/Number;
@@ -1476,11 +1568,8 @@ public final class kscience/plotly/models/Text : hep/dataforge/meta/Scheme {
 	public final fun getYref ()Ljava/lang/String;
 	public final fun position (Ljava/lang/Number;Ljava/lang/Number;)V
 	public final fun setAlign (Lkscience/plotly/models/HorizontalAlign;)V
-	public final fun setArrowcolor (Lkscience/plotly/models/Color;)V
 	public final fun setAx (Lhep/dataforge/values/Value;)V
 	public final fun setAy (Lhep/dataforge/values/Value;)V
-	public final fun setBgcolor (Lkscience/plotly/models/Color;)V
-	public final fun setBordercolor (Lkscience/plotly/models/Color;)V
 	public final fun setFont (Lkscience/plotly/models/Font;)V
 	public final fun setHeight (Ljava/lang/Number;)V
 	public final fun setOpacity (Ljava/lang/Number;)V
@@ -1608,6 +1697,7 @@ public class kscience/plotly/models/Trace : hep/dataforge/meta/Scheme {
 	public final fun getError_y ()Lkscience/plotly/models/Error;
 	public final fun getFillcolor ()Lkscience/plotly/models/Color;
 	public final fun getHoverinfo ()Ljava/lang/String;
+	public final fun getHoverlabel ()Lkscience/plotly/models/Hoverlabel;
 	public final fun getLabels ()Ljava/util/List;
 	public final fun getLegendgroup ()Ljava/lang/String;
 	public final fun getLine ()Lkscience/plotly/models/LayoutLine;
@@ -1638,6 +1728,7 @@ public class kscience/plotly/models/Trace : hep/dataforge/meta/Scheme {
 	public final fun getZmax ()Ljava/lang/Number;
 	public final fun getZmid ()Ljava/lang/Number;
 	public final fun getZmin ()Ljava/lang/Number;
+	public final fun hoverlabel (Lkotlin/jvm/functions/Function1;)V
 	public final fun labels (Ljava/lang/Iterable;)V
 	public final fun line (Lkotlin/jvm/functions/Function1;)V
 	public final fun marker (Lkotlin/jvm/functions/Function1;)V
@@ -1650,8 +1741,8 @@ public class kscience/plotly/models/Trace : hep/dataforge/meta/Scheme {
 	public final fun setDy (Ljava/lang/Number;)V
 	public final fun setError_x (Lkscience/plotly/models/Error;)V
 	public final fun setError_y (Lkscience/plotly/models/Error;)V
-	public final fun setFillcolor (Lkscience/plotly/models/Color;)V
 	public final fun setHoverinfo (Ljava/lang/String;)V
+	public final fun setHoverlabel (Lkscience/plotly/models/Hoverlabel;)V
 	public final fun setLabels (Ljava/util/List;)V
 	public final fun setLegendgroup (Ljava/lang/String;)V
 	public final fun setLine (Lkscience/plotly/models/LayoutLine;)V
@@ -1779,7 +1870,6 @@ public final class kscience/plotly/models/ViolinBox : hep/dataforge/meta/Scheme 
 	public final fun getFillcolor ()Lkscience/plotly/models/Color;
 	public final fun getVisible ()Ljava/lang/Boolean;
 	public final fun getWidth ()Ljava/lang/Number;
-	public final fun setFillcolor (Lkscience/plotly/models/Color;)V
 	public final fun setVisible (Ljava/lang/Boolean;)V
 	public final fun setWidth (Ljava/lang/Number;)V
 }

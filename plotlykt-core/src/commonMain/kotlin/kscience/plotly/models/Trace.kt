@@ -21,7 +21,6 @@ public enum class TraceType {
     heatmapgl,
     contour,
 
-    @UnsupportedPlotlyAPI
     table,
 
     @UnsupportedPlotlyAPI
@@ -102,7 +101,7 @@ public class MarkerLine : Scheme(), Line {
      * relative to the max and min values of the array or relative to
      * `cmin` and `cmax` if set.
      */
-    override val color: Color = Color(this, "color".asName())
+    override val color: Color by color()
 
     /**
      * Determines whether or not the color domain is computed with respect
@@ -179,7 +178,7 @@ public class MarkerLine : Scheme(), Line {
     /**
      * Sets the border line color of the outlier sample points. Defaults to marker.color
      */
-    public var outliercolor: Color = Color(this, "outliercolor".asName())
+    public val outliercolor: Color by color()
 
     /**
      * Sets the border line width (in px) of the outlier sample points.
@@ -255,7 +254,7 @@ public class Font : Scheme() {
 
     public var sizesList: List<Number> by numberList(key = "size".asName())
 
-    public val color: Color = Color(this, "color".asName())
+    public val color: Color by color()
 
     public fun colors(array: Iterable<Any>) {
         color.value = array.map { Value.of(it) }.asValue()
@@ -278,7 +277,7 @@ public class Title : Scheme() {
     /**
      * Sets the title font.
      */
-    public var font: Font? by spec(Font)
+    public var font: Font by spec(Font)
 
     /**
      * Sets the container `x` refers to. "container" spans the entire `width` of the plot.
@@ -324,7 +323,7 @@ public class Title : Scheme() {
      * The same rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if
      * the respective anchor value is "middle"/"center".
      */
-    public var pad: Margin? by spec(Margin)
+    public var pad: Margin by spec(Margin)
 
     public fun font(block: Font.() -> Unit) {
         font = Font(block)
@@ -403,7 +402,7 @@ public class Error : Scheme() {
     /**
      * Sets the stoke color of the error bars.
      */
-    public var color: Color = Color(this, "color".asName())
+    public val color: Color by color()
 
     /**
      * Sets the thickness (in px) of the error bars.
@@ -515,7 +514,7 @@ public class ColorBar : Scheme() {
      * Sets the axis line color.
      * Default: #444.
      */
-    public var bordercolor: Color = Color(this, "bordercolor".asName())
+    public val bordercolor: Color by color()
 
     /**
      * Sets the width (in px) or the border enclosing this color bar.
@@ -527,9 +526,9 @@ public class ColorBar : Scheme() {
      * Sets the color of padded area.
      * Default: rgba(0, 0, 0, 0).
      */
-    public var bgcolor: Color = Color(this, "bgcolor".asName())
+    public val bgcolor: Color by color()
 
-    public var title: Title? by spec(Title)
+    public var title: Title by spec(Title)
 
     /**
      * Sets the width (in px) of the axis line.
@@ -541,7 +540,7 @@ public class ColorBar : Scheme() {
      * Sets the axis line color.
      * Default: #444.
      */
-    public var outlinecolor: Color = Color(this, "outlinecolor".asName())
+    public val outlinecolor: Color by color()
 
     /**
      * Constrain the size of text inside or outside a bar to be no larger than the bar itself.
@@ -551,7 +550,7 @@ public class ColorBar : Scheme() {
     /**
      * Sets the color bar's tick label font
      */
-    public var tickfont: Font? by spec(Font)
+    public var tickfont: Font by spec(Font)
 
     public fun title(block: Title.() -> Unit) {
         title = Title(block)
@@ -624,6 +623,71 @@ public class Domain : Scheme() {
     public var column: Int by intGreaterThan(0)
 
     public companion object : SchemeSpec<Domain>(::Domain)
+}
+
+public class Hoverlabel : Scheme() {
+
+    /**
+     * Sets the background color of the hover labels for this trace.
+     * */
+    public var bgcolor: Color = Color(this, "bgcolor".asName())
+
+    /**
+     * Sets the border color of the hover labels for this trace.
+     * */
+    public var bordercolor: Color = Color(this, "bordercolor".asName())
+
+    /**
+     * Sets the font used in hover labels.
+     * */
+    public var font: Font by spec(Font)
+
+    /**
+     * Sets the horizontal alignment of the text content within hover label box. Has an effect
+     * only if the hover label text spans more two or more lines.
+     *
+     * Defaults to `'auto'`.
+     * */
+    public var align: TraceValues = TraceValues(this, "align".asName())
+
+    /**
+     * Sets the default length (in number of characters) of the trace name in the hover labels for all traces.
+     * -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will
+     * show the whole name if it is less than that many characters, but if it is longer, will truncate to
+     * `namelength - 3` characters and add an ellipsis.
+     * */
+    public var namelength: Number by numberGreaterThan(-1)
+
+    /**
+     * Complementary property to [namelength] to allow passing a list of lengths.
+     * */
+    public var namelengths: List<Number> by numberList(-1, key = "namelength".asName())
+
+    public fun bgcolors(array: Iterable<Any>) {
+        bgcolor.value = array.map { Value.of(it) }.asValue()
+    }
+
+    public fun bordercolors(array: Iterable<Any>) {
+        bordercolor.value = array.map { Value.of(it) }.asValue()
+    }
+
+    public fun font(block: Font.() -> Unit) {
+        font = Font(block)
+    }
+
+    public fun align(align: HorizontalAlign) {
+        align(listOf(align))
+    }
+
+    public fun align(alignments: List<HorizontalAlign>) {
+        this.align.set(alignments)
+    }
+
+    public fun align(vararg alignments: HorizontalAlign) {
+        this.align.set(alignments.toList())
+    }
+
+    public companion object : SchemeSpec<Hoverlabel>(::Hoverlabel)
 }
 
 /**
@@ -710,7 +774,7 @@ public open class Trace : Scheme() {
      * Data array. Sets the values of the sectors.
      * If omitted, we count occurrences of each label.
      */
-    public var values: List<Value> by list()
+    public var values: List<Value> by listOfValues()
 
     /**
      * Data array. Sets the sector labels. If `labels` entries
@@ -719,9 +783,9 @@ public open class Trace : Scheme() {
      * For other array attributes (including color) we use the first
      * non-empty entry among all occurrences of the label.
      */
-    public var labels: List<Value> by list()
+    public var labels: List<Value> by listOfValues()
 
-    public var line: LayoutLine? by spec(LayoutLine)
+    public var line: LayoutLine by spec(LayoutLine)
 
     /**
      * Sets the colorscale. The colorscale must be an array
@@ -730,13 +794,13 @@ public open class Trace : Scheme() {
      */
     public var colorscale: Value? by value()
 
-    public var colorbar: ColorBar? by spec(ColorBar)
+    public var colorbar: ColorBar by spec(ColorBar)
 
     /**
      * Sets the fill color if `contours.type` is "constraint". Defaults to
      * a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
      */
-    public var fillcolor: Color = Color(this, "fillcolor".asName())
+    public val fillcolor: Color by color()
 
     /**
      * Sets the trace name. The trace name appear as the legend item and on hover.
@@ -775,7 +839,7 @@ public open class Trace : Scheme() {
 
     //var line by spec(Line)
 
-    public var marker: Marker by lazySpec(Marker)
+    public var marker: Marker by spec(Marker)
 
     /**
      * Sets text elements associated with each (x,y) pair.
@@ -798,12 +862,12 @@ public open class Trace : Scheme() {
      * Default: "middle center".
      */
     @UnstablePlotlyAPI
-    public var textpositionsList: List<Value> by list(key = "textposition".asName())
+    public var textpositionsList: List<Value> by listOfValues(key = "textposition".asName())
 
     /**
      * Sets the text font.
      */
-    public var textfont: Font? by spec(Font)
+    public var textfont: Font by spec(Font)
 
     /**
      * Flaglist string. Any combination of "x", "y", "z", "text", "name" joined with a "+" OR "all" or "none" or "skip".
@@ -813,9 +877,9 @@ public open class Trace : Scheme() {
      */
     public var hoverinfo: String? by string()
 
-    public var error_x: Error? by spec(Error)
+    public var error_x: Error by spec(Error)
 
-    public var error_y: Error? by spec(Error)
+    public var error_y: Error by spec(Error)
 
     /**
      * Sets the orientation of the plot(s).
@@ -867,7 +931,9 @@ public open class Trace : Scheme() {
      */
     public var ycalendar: Calendar by enum(Calendar.gregorian)
 
-    public var domain: Domain? by spec(Domain)
+    public var domain: Domain by spec(Domain)
+
+    public var hoverlabel: Hoverlabel by spec(Hoverlabel)
 
     public fun values(array: Iterable<Any>) {
         values = array.map { Value.of(it) }
@@ -903,6 +969,10 @@ public open class Trace : Scheme() {
 
     public fun domain(block: Domain.() -> Unit) {
         domain = Domain(block)
+    }
+
+    public fun hoverlabel(block: Hoverlabel.() -> Unit) {
+        hoverlabel = Hoverlabel(block)
     }
 
     public companion object : SchemeSpec<Trace>(::Trace) {

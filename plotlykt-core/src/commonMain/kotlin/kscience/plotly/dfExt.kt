@@ -1,8 +1,7 @@
 package kscience.plotly
 
 import hep.dataforge.meta.*
-import hep.dataforge.names.Name
-import hep.dataforge.names.asName
+import hep.dataforge.names.*
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
 import hep.dataforge.values.long
@@ -15,75 +14,69 @@ import kotlin.time.toDuration
 
 //extensions for DataForge
 
+
+private fun MutableItemProvider.getIndexedProviders(name: Name): Map<String?, MutableItemProvider> {
+    val parent = getItem(name.cutLast()).node ?: return emptyMap()
+    return parent.items.keys.filter { it.body == name.lastOrNull()?.body }.mapNotNull { it.index }.associate { index ->
+        index to getChild(name.withIndex(index))
+    }
+}
+
+
 /**
  * A delegate for list of objects with specification
  * TODO move to DataForge core
  */
-internal fun <T : Scheme> Configurable.list(
-    spec: Specification<T>, key: Name? = null
+internal fun <T : Scheme> MutableItemProvider.list(
+    spec: Specification<T>,
+    key: Name? = null,
 ): ReadWriteProperty<Any?, List<T>> = object : ReadWriteProperty<Any?, List<T>> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): List<T> {
         val name = key ?: property.name.asName()
-        return config.getIndexed(name).values.mapNotNull { item -> item.node?.let { spec.wrap(it) } }
+        return getIndexedProviders(name).values.map { item ->
+            spec.write(item)
+        }
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: List<T>) {
         val name = key ?: property.name.asName()
-        config.setIndexed(name, value.map { it.config })
+        setIndexed(name, value.mapNotNull { it.rootNode })
     }
 }
 
 /**
  * List of values delegate
  */
-internal fun Configurable.list(
-    key: Name? = null
+internal fun MutableItemProvider.listOfValues(
+    key: Name? = null,
 ): ReadWriteProperty<Any?, List<Value>> = object : ReadWriteProperty<Any?, List<Value>> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): List<Value> {
         val name = key ?: property.name.asName()
-        return config[name].value?.list ?: emptyList()
+        return getItem(name).value?.list ?: emptyList()
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: List<Value>) {
         val name = key ?: property.name.asName()
-        config[name] = value.asValue()
-    }
-}
-
-/**
- * A variation of [spec] extension with lazy initialization of empty specified nod in case it is missing
- */
-internal fun <T : Scheme> Configurable.lazySpec(
-    spec: Specification<T>, key: Name? = null
-): ReadWriteProperty<Any?, T> = object : ReadWriteProperty<Any?, T> {
-    override fun getValue(thisRef: Any?, property: KProperty<*>): T {
-        val name = key ?: property.name.asName()
-        return config[name].node?.let { spec.wrap(it) }
-            ?: spec.empty().also { config[name] = it.config }
-    }
-
-    override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        val name = key ?: property.name.asName()
-        config[name] = value.config
+        set(name, value.asValue())
     }
 }
 
 /**
  * A safe [Double] range
  */
-internal fun Configurable.doubleInRange(
+internal fun MutableItemProvider.doubleInRange(
     range: ClosedFloatingPointRange<Double>,
-    key: Name? = null
+    key: Name? = null,
 ): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Double {
         val name = key ?: property.name.asName()
-        return config[name].double ?: Double.NaN
+        return this@doubleInRange[name].double ?: Double.NaN
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Double) {
         val name = key ?: property.name.asName()
         if (value in range) {
-            config[name] = value
+            this@doubleInRange[name] = value
         } else {
             error("$value not in range $range")
         }
@@ -93,19 +86,19 @@ internal fun Configurable.doubleInRange(
 /**
  * A safe [Double] ray
  */
-internal fun Configurable.doubleGreaterThan(
-        minValue: Double,
-        key: Name? = null
+internal fun MutableItemProvider.doubleGreaterThan(
+    minValue: Double,
+    key: Name? = null,
 ): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Double {
         val name = key ?: property.name.asName()
-        return config[name].double ?: Double.NaN
+        return this@doubleGreaterThan[name].double ?: Double.NaN
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Double) {
         val name = key ?: property.name.asName()
         if (value >= minValue) {
-            config[name] = value
+            this@doubleGreaterThan[name] = value
         } else {
             error("$value less than $minValue")
         }
@@ -116,19 +109,19 @@ internal fun Configurable.doubleGreaterThan(
 /**
  * A safe [Int] ray
  */
-internal fun Configurable.intGreaterThan(
-        minValue: Int,
-        key: Name? = null
+internal fun MutableItemProvider.intGreaterThan(
+    minValue: Int,
+    key: Name? = null,
 ): ReadWriteProperty<Any?, Int> = object : ReadWriteProperty<Any?, Int> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Int {
         val name = key ?: property.name.asName()
-        return config[name].int ?: minValue
+        return this@intGreaterThan[name].int ?: minValue
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Int) {
         val name = key ?: property.name.asName()
         if (value >= minValue) {
-            config[name] = value
+            this@intGreaterThan[name] = value
         } else {
             error("$value less than $minValue")
         }
@@ -139,8 +132,8 @@ internal fun Configurable.intGreaterThan(
  * A safe [Int] range
  */
 internal fun Configurable.intInRange(
-        range: ClosedRange<Int>,
-        key: Name? = null
+    range: ClosedRange<Int>,
+    key: Name? = null,
 ): ReadWriteProperty<Any?, Int> = object : ReadWriteProperty<Any?, Int> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Int {
         val name = key ?: property.name.asName()
@@ -160,19 +153,19 @@ internal fun Configurable.intInRange(
 /**
  * A safe [Number] ray
  */
-internal fun Configurable.numberGreaterThan(
-        minValue: Number,
-        key: Name? = null
+internal fun MutableItemProvider.numberGreaterThan(
+    minValue: Number,
+    key: Name? = null,
 ): ReadWriteProperty<Any?, Number> = object : ReadWriteProperty<Any?, Number> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Number {
         val name = key ?: property.name.asName()
-        return config[name].number ?: minValue
+        return this@numberGreaterThan[name].number ?: minValue
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Number) {
         val name = key ?: property.name.asName()
         if (value.toDouble() >= minValue.toDouble()) {
-            config[name] = value
+            this@numberGreaterThan[name] = value
         } else {
             error("$value less than $minValue")
         }
@@ -182,19 +175,19 @@ internal fun Configurable.numberGreaterThan(
 /**
  * A safe [Number] range
  */
-internal fun Configurable.numberInRange(
-        range: ClosedRange<Double>,
-        key: Name? = null
+internal fun MutableItemProvider.numberInRange(
+    range: ClosedRange<Double>,
+    key: Name? = null,
 ): ReadWriteProperty<Any?, Number> = object : ReadWriteProperty<Any?, Number> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Number {
         val name = key ?: property.name.asName()
-        return config[name].int ?: 0
+        return this@numberInRange[name].int ?: 0
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Number) {
         val name = key ?: property.name.asName()
         if (value.toDouble() in range) {
-            config[name] = value
+            this@numberInRange[name] = value
         } else {
             error("$value not in range $range")
         }
@@ -202,16 +195,16 @@ internal fun Configurable.numberInRange(
 }
 
 @OptIn(DFExperimental::class)
-internal fun Configurable.duration(
+internal fun MutableItemProvider.duration(
     default: Duration? = null,
-    key: Name? = null
+    key: Name? = null,
 ): ReadWriteProperty<Any?, Duration?> = object : ReadWriteProperty<Any?, Duration?> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Duration? {
         val name = key ?: property.name.asName()
-        return when (val item = config[name]) {
+        return when (val item = getItem(name)) {
             null -> default
-            is MetaItem.ValueItem -> item.value.long.milliseconds
-            is MetaItem.NodeItem<*> -> {
+            is MetaItemValue -> item.value.long.milliseconds
+            is MetaItemNode -> {
                 val value = item.node["value"].long ?: error("Duration value is not defined")
                 val unit = item.node["unit"].enum<DurationUnit>() ?: DurationUnit.MILLISECONDS
                 value.toDuration(unit)
@@ -222,12 +215,10 @@ internal fun Configurable.duration(
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Duration?) {
         val name = key ?: property.name.asName()
         if (value == null) {
-            config.remove(name)
+            remove(name)
         } else {
-            config.edit(name) {
-                set("value", value.inMilliseconds)
-                set("unit", DurationUnit.MILLISECONDS)
-            }
+            set(name + "value", value.inMilliseconds)
+            set(name + "unit", DurationUnit.MILLISECONDS)
         }
     }
 }

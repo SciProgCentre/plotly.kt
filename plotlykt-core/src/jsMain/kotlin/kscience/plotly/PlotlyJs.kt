@@ -1,49 +1,49 @@
 package kscience.plotly
 
-import org.w3c.dom.HTMLElement
+import org.w3c.dom.Element
 import kotlin.js.Promise
 
-external interface ToImgOpts {
-    var format: String /* 'jpeg' | 'png' | 'webp' | 'svg' */
-    var width: Number
-    var height: Number
+public external interface ToImgOpts {
+    public var format: String /* 'jpeg' | 'png' | 'webp' | 'svg' */
+    public var width: Number
+    public var height: Number
 }
 
-external interface DownloadImgOpts {
-    var format: String /* 'jpeg' | 'png' | 'webp' | 'svg' */
-    var width: Number
-    var height: Number
-    var filename: String
+public external interface DownloadImgOpts {
+    public var format: String /* 'jpeg' | 'png' | 'webp' | 'svg' */
+    public var width: Number
+    public var height: Number
+    public var filename: String
 }
 
 
 @JsName("Plotly")
 @JsModule("plotly.js/dist/plotly-basic")
 @JsNonModule
-external object PlotlyJs {
-    fun newPlot(
-        graphDiv: HTMLElement,
+public external object PlotlyJs {
+    public fun newPlot(
+        graphDiv: Element,
         data: Array<dynamic> = definedExternally,
         layout: dynamic = definedExternally,
         config: dynamic = definedExternally
     )
 
-    fun react(
-        graphDiv: HTMLElement,
+    public fun react(
+        graphDiv: Element,
         data: dynamic = definedExternally,
         layout: dynamic = definedExternally,
         config: dynamic = definedExternally
     )
 
-    fun update(
-        graphDiv: HTMLElement,
+    public fun update(
+        graphDiv: Element,
         data: dynamic = definedExternally,
         layout: dynamic = definedExternally
     )
 
-    fun restyle(graphDiv: HTMLElement, update: dynamic, traceIndices: dynamic = definedExternally)
-    fun relayout(graphDiv: HTMLElement, update: dynamic)
+    public fun restyle(graphDiv: Element, update: dynamic, traceIndices: dynamic = definedExternally)
+    public fun relayout(graphDiv: Element, update: dynamic)
 
-    fun toImage(root: HTMLElement, opts: ToImgOpts): Promise<String>
-    fun downloadImage(root: HTMLElement, opts: DownloadImgOpts): Promise<String>
+    public fun toImage(root: Element, opts: ToImgOpts): Promise<String>
+    public fun downloadImage(root: Element, opts: DownloadImgOpts): Promise<String>
 }

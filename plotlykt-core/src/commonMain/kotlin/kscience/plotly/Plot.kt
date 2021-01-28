@@ -11,24 +11,30 @@ import kscience.plotly.models.Trace
  * The main plot class. The changes to plot could be observed by attaching listener to root [config] property.
  */
 @DFBuilder
-public class Plot : Configurable, MetaRepr {
-    /**
-     *
-     */
-    override val config: Config = Config()
+public class Plot(
+    override val config: Config = Config(),
+) : Configurable, MetaRepr {
 
     /**
      * Ordered list ot traces in the plot
      */
-    public val data: List<Trace> by list(Trace)
+    public val data: List<Trace> by config.list(Trace)
 
     /**
      * Layout specification for th plot
      */
-    public val layout: Layout by lazySpec(Layout)
+    public val layout: Layout by config.spec(Layout)
 
     private fun appendTrace(trace: Trace) {
-        config.append("data", trace.config)
+        val traceRoot = trace.rootNode
+        if (traceRoot is Config) {
+            config.append("data", traceRoot)
+        } else {
+            val traceConfig = Config()
+            trace.rootNode?.let { traceConfig.update(it) }
+            trace.retarget(traceConfig)
+            config.append("data", traceConfig)
+        }
     }
 
     /**
@@ -57,10 +63,10 @@ public class Plot : Configurable, MetaRepr {
 }
 
 private fun Plot.toJson(): JsonObject = buildJsonObject {
-    put("layout", layout.config.toJson())
+    layout.rootNode?.let { put("layout", it.toJson()) }
     put("data", buildJsonArray {
-        data.forEach {
-            add(it.config.toJson())
+        data.forEach { traceData ->
+            traceData.rootNode?.let { add(it.toJson()) }
         }
     })
 }

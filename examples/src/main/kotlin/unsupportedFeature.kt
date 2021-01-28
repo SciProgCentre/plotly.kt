@@ -1,4 +1,3 @@
-import hep.dataforge.meta.configure
 import hep.dataforge.meta.invoke
 import hep.dataforge.meta.set
 import kscience.plotly.Plotly
@@ -17,9 +16,7 @@ fun main() {
          * We are applying it directly to configuration.
          * It is still observable in the same way as other properties but is not type safe.
          */
-        configure {
-            set("text", x.map { "label for  $it" })
-        }
+        set("text", x.map { "label for  $it" })
     }
 
     val plot = Plotly.plot {

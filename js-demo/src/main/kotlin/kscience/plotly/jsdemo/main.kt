@@ -32,7 +32,7 @@ fun main() {
                 y(10, 15, 13, 17)
                 mode = ScatterMode.lines
                 type = TraceType.scatter
-                marker {
+                marker.apply {
                     GlobalScope.launch {
                         while (isActive) {
                             delay(500)

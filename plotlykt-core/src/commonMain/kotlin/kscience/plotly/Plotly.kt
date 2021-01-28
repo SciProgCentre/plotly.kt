@@ -13,10 +13,10 @@ import kotlin.js.JsName
 @JsName("PlotlyKt")
 public object Plotly {
     public const val VERSION: String = "1.54.6"
-    public fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
+    public inline fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
 }
 
-private fun Scheme.toJson(): JsonObject = config.toJson()
+private fun Scheme.toJson(): JsonObject = rootNode?.toJson() ?: JsonObject(emptyMap())
 
 /**
  * Convert any type-safe configurator to json string
@@ -51,7 +51,7 @@ public class PlotlyConfig : Scheme() {
         plotlyServerURL = "https://chart-studio.plotly.com"
     }
 
-    public fun saveAsSvg(){
+    public fun saveAsSvg() {
         imageFormat = "svg"
     }
 
