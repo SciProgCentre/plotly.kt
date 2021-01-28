@@ -55,6 +55,7 @@ public final class kscience/plotly/Plot : hep/dataforge/meta/Configurable, hep/d
 	public fun <init> ()V
 	public fun <init> (Lhep/dataforge/meta/Config;)V
 	public synthetic fun <init> (Lhep/dataforge/meta/Config;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun addTrace (Lkscience/plotly/models/Trace;)V
 	public fun getConfig ()Lhep/dataforge/meta/Config;
 	public final fun getData ()Ljava/util/List;
 	public final fun getLayout ()Lkscience/plotly/models/Layout;
