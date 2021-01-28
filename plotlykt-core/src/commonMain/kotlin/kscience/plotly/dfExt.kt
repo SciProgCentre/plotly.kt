@@ -203,8 +203,8 @@ internal fun MutableItemProvider.duration(
         val name = key ?: property.name.asName()
         return when (val item = getItem(name)) {
             null -> default
-            is ValueItem -> item.value.long.milliseconds
-            is NodeItem -> {
+            is MetaItemValue -> item.value.long.milliseconds
+            is MetaItemNode -> {
                 val value = item.node["value"].long ?: error("Duration value is not defined")
                 val unit = item.node["unit"].enum<DurationUnit>() ?: DurationUnit.MILLISECONDS
                 value.toDuration(unit)

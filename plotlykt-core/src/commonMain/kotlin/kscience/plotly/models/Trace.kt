@@ -640,7 +640,7 @@ public class Hoverlabel : Scheme() {
     /**
      * Sets the font used in hover labels.
      * */
-    public var font: Font? by spec(Font)
+    public var font: Font by spec(Font)
 
     /**
      * Sets the horizontal alignment of the text content within hover label box. Has an effect
@@ -933,7 +933,7 @@ public open class Trace : Scheme() {
 
     public var domain: Domain by spec(Domain)
 
-    public var hoverlabel: Hoverlabel? by spec(Hoverlabel)
+    public var hoverlabel: Hoverlabel by spec(Hoverlabel)
 
     public fun values(array: Iterable<Any>) {
         values = array.map { Value.of(it) }

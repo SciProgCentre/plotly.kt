@@ -6,7 +6,6 @@ import hep.dataforge.meta.spec
 import hep.dataforge.names.asName
 import hep.dataforge.values.Value
 import hep.dataforge.values.asValue
-import kscience.plotly.lazySpec
 import kscience.plotly.numberGreaterThan
 
 /**
@@ -56,17 +55,17 @@ public class Header : Scheme() {
     /**
      * [LayoutLine] type object.
      * */
-    public var line: LayoutLine? by spec(LayoutLine)
+    public var line: LayoutLine by spec(LayoutLine)
 
     /**
      * [Fill] type object.
      * */
-    public var fill: Fill? by spec(Fill)
+    public var fill: Fill by spec(Fill)
 
     /**
      * [Font] type object.
      * */
-    public var font: Font? by spec(Font)
+    public var font: Font by spec(Font)
 
     public fun values(array: Iterable<Any>) {
         values.set(array)
@@ -122,17 +121,17 @@ public class Cells : Scheme() {
     /**
      * [LayoutLine] type object.
      * */
-    public var line: LayoutLine? by spec(LayoutLine)
+    public var line: LayoutLine by spec(LayoutLine)
 
     /**
      * [Fill] type object.
      * */
-    public var fill: Fill? by spec(Fill)
+    public var fill: Fill by spec(Fill)
 
     /**
      * [Font] type object.
      * */
-    public var font: Font? by spec(Font)
+    public var font: Font by spec(Font)
 
     public fun values(array: Iterable<Any>) {
         values.set(array)
@@ -201,12 +200,12 @@ public class Table : Trace() {
     /**
      * [Header] type object. Used to define the header row.
      * */
-    public var header: Header by lazySpec(Header)
+    public var header: Header by spec(Header)
 
     /**
      * [Cells] type object. Used to define rows containing data.
      * */
-    public var cells: Cells by lazySpec(Cells)
+    public var cells: Cells by spec(Cells)
 
     public fun header(block: Header.() -> Unit) {
         header = Header(block)

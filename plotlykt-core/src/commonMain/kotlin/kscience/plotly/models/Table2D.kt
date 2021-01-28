@@ -1,15 +1,15 @@
 package kscience.plotly.models
 
-enum class ZsmoothType {
+public enum class ZsmoothType {
     fast,
     best,
     `false`
 }
 
-interface Table2D {
-    var xgap: Number
+public interface Table2D {
+    public var xgap: Number
 
-    var ygap: Number
+    public var ygap: Number
 
-    var zsmooth: ZsmoothType
+    public var zsmooth: ZsmoothType
 }

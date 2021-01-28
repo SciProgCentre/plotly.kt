@@ -1,36 +1,37 @@
 package kscience.plotly.models
 
 import hep.dataforge.meta.*
+import hep.dataforge.values.Value
 import kscience.plotly.numberInRange
 
-enum class ShapeType {
+public enum class ShapeType {
     circle,
     rect,
     path,
     line
 }
 
-enum class ShapeLayer {
+public enum class ShapeLayer {
     below,
     above
 }
 
-enum class ShapeSizeMode {
+public enum class ShapeSizeMode {
     scaled,
     pixel
 }
 
-enum class ShapeFillRule {
+public enum class ShapeFillRule {
     evenodd,
     nonzero
 }
 
-class Shape : Scheme() {
+public class Shape : Scheme() {
     /**
      * Determines whether or not this shape is visible.
      * Default: True
      */
-    var visible by boolean()
+    public var visible: Boolean? by boolean()
 
     /**
      * Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`)
@@ -39,12 +40,12 @@ class Shape : Scheme() {
      * a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`) with respect to the
      * axes' sizing mode. If "path", draw a custom SVG path using `path`. with respect to the axes' sizing mode.
      */
-    var type by enum(ShapeType.line)
+    public var type: ShapeType by enum(ShapeType.line)
 
     /**
      * Specifies whether shapes are drawn below or above traces.
      */
-    var layer by enum(ShapeLayer.above)
+    public var layer: ShapeLayer by enum(ShapeLayer.above)
 
     /**
      * Sets the shape's x coordinate axis. If set to an x axis id (e.g. "x" or "x2"), the `x` position refers
@@ -53,7 +54,7 @@ class Shape : Scheme() {
      * If the axis `type` is "log", then you must take the log of your desired range. If the axis `type` is "date",
      * then you must convert the date to unix time in milliseconds.
      */
-    var xref by string()
+    public var xref: String? by string()
 
     /**
      * Sets the shapes's sizing mode along the x axis. If set to "scaled", `x0`, `x1` and x coordinates
@@ -62,31 +63,31 @@ class Shape : Scheme() {
      * and x coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have
      * a fixed width while maintaining a position relative to data or plot fraction. Default: scaled.
      */
-    var xsizemode by enum(ShapeSizeMode.scaled)
+    public var xsizemode: ShapeSizeMode by enum(ShapeSizeMode.scaled)
 
     /**
      * Only relevant in conjunction with `xsizemode` set to "pixel". Specifies the anchor point on the x axis
      * to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach
      * a pixel sized shape to a certain data value. No effect when `xsizemode` not set to "pixel".
      */
-    var xanchor by value()
+    public var xanchor: Value? by value()
 
     /**
      * Sets the shape's starting x position. See `type` and `xsizemode` for more info.
      */
-    var x0 by value()
+    public var x0: Value? by value()
 
     /**
      * Sets the shape's end x position. See `type` and `xsizemode` for more info.
      */
-    var x1 by value()
+    public var x1: Value? by value()
 
     /**
      * Sets the annotation's y coordinate axis. If set to an y axis id (e.g. "y" or "y2"), the `y` position refers
      * to an y coordinate If set to "paper", the `y` position refers to the distance from the bottom of
      * the plotting area in normalized coordinates where "0" ("1") corresponds to the bottom (top).
      */
-    var yref by string()
+    public var yref: String? by string()
 
     /**
      * Sets the shapes's sizing mode along the y axis. If set to "scaled", `y0`, `y1` and y coordinates within
@@ -95,24 +96,24 @@ class Shape : Scheme() {
      * and y coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed height
      * while maintaining a position relative to data or plot fraction. Default: scaled.
      */
-    var ysizemode by enum(ShapeSizeMode.scaled)
+    public var ysizemode: ShapeSizeMode by enum(ShapeSizeMode.scaled)
 
     /**
      * Only relevant in conjunction with `ysizemode` set to "pixel". Specifies the anchor point on the y axis
      * to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape
      * to a certain data value. No effect when `ysizemode` not set to "pixel".
      */
-    var yanchor by value()
+    public var yanchor: Value? by value()
 
     /**
      * Sets the shape's starting y position. See `type` and `ysizemode` for more info.
      */
-    var y0 by value()
+    public var y0: Value? by value()
 
     /**
      * Sets the shape's end y position. See `type` and `ysizemode` for more info.
      */
-    var y1 by value()
+    public var y1: Value? by value()
 
     /**
      * For `type` "path" - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode`
@@ -127,31 +128,31 @@ class Shape : Scheme() {
      * strings, we can't use either to separate date from time parts. Therefore we'll use underscore for this purpose:
      * 2015-02-21_13:45:56.789
      */
-    var path by string()
+    public var path: String? by string()
 
     /**
      * Sets the opacity of the shape. Default: 1.
      */
-    var opacity by numberInRange(0.0..1.0)
+    public var opacity: Number by numberInRange(0.0..1.0)
 
-    var line by spec(LayoutLine)
+    public var line: LayoutLine by spec(LayoutLine)
 
     /**
      * Sets the color filling the shape's interior. Only applies to closed shapes. Default: rgba(0, 0, 0, 0)
      */
-    val fillcolor by color()
+    public val fillcolor: Color by color()
 
     /**
      * Determines which regions of complex paths constitute the interior. Default: evenodd.
      * For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
      */
-    var fillrule by enum(ShapeFillRule.evenodd)
+    public var fillrule: ShapeFillRule by enum(ShapeFillRule.evenodd)
 
     /**
      * Determines whether the shape could be activated for edit or not. Has no effect
      * when the older editable shapes mode is enabled via `config.editable` or `config.edits.shapePosition`.
      */
-    var editable by boolean()
+    public var editable: Boolean? by boolean()
 
     /**
      * When used in a template, named items are created in the output figure in addition to any items
@@ -159,7 +160,7 @@ class Shape : Scheme() {
      * with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or
      * `enabled: false` to hide it). Has no effect outside of a template.
      */
-    var name by string()
+    public var name: String? by string()
 
     /**
      * Used to refer to a named item in this array in the template. Named items from the template will be created
@@ -168,11 +169,11 @@ class Shape : Scheme() {
      * or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden
      * unless you explicitly show it with `visible: true`.
      */
-    var templateitemname by string()
+    public var templateitemname: String? by string()
 
-    fun line(block: LayoutLine.() -> Unit) {
+    public fun line(block: LayoutLine.() -> Unit) {
         line = LayoutLine(block)
     }
 
-    companion object : SchemeSpec<Shape>(::Shape)
+    public companion object : SchemeSpec<Shape>(::Shape)
 }

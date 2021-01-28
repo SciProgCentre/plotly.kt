@@ -70,7 +70,7 @@ public fun Plot.collectUpdates(
 ): Flow<Update> = config.flowChanges(scope, updateInterval).transform { change ->
     change["layout"].node?.let { emit(Update.Layout(plotId, it)) }
     change.getIndexed("data").forEach { (index, metaItem) ->
-        if (metaItem is NodeItem) {
+        if (metaItem is MetaItemNode) {
             emit(Update.Trace(plotId, index?.toInt() ?: 0, metaItem.node))
         }
     }
