@@ -8,9 +8,12 @@ class PlotGrid {
 
     private val cells = HashMap<String, PlotCell>()
 
+    /**
+     * @return Columns in ascending order, grouped by rows in ascending order.
+     * */
     val grid
-        get() = cells.values.groupBy { it.row }.values.map {
-            it.sortedBy { plot -> plot.col }
+        get() = cells.values.groupBy { it.row }.toSortedMap().values.map {
+            it.sortedBy { cell -> cell.col }
         }.toList()
 
     operator fun get(id: String): PlotCell? = cells[id]
