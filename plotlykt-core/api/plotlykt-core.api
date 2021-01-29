@@ -75,6 +75,7 @@ public final class kscience/plotly/PlotExtensionsKt {
 	public static final fun pie (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Pie;
 	public static final fun scatter (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Scatter;
 	public static final fun shape (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)V
+	public static final fun table (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Table;
 	public static final fun text (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)V
 	public static final fun violin (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Violin;
 }
