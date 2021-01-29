@@ -63,6 +63,12 @@ public inline fun Plot.bar(block: Bar.() -> Unit): Bar {
     return trace
 }
 
+public inline fun Plot.table(block: Table.() -> Unit): Table {
+    val trace = Table(block)
+    traces(trace)
+    return trace
+}
+
 public fun Plot.text(block: Text.() -> Unit) {
     layout.annotation(block)
 }
