@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Table widget implementation by @ArtificialPB
+- Mathjax header promoted to stable
+- Tabbed plots layout (experimental)
 
 ### Changed
 - **Breaking API change!** Trace `text` replaced by `TraceValues`
@@ -22,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - https://github.com/mipt-npm/plotly.kt/issues/53
+- Add JQuery to Bootstrap headers
 
 ### Security
 
