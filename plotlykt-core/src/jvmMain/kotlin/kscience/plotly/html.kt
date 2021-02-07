@@ -22,7 +22,7 @@ public operator fun HtmlFragment.plus(other: HtmlFragment): HtmlFragment = HtmlF
  */
 public fun Plot.toHTML(
     vararg headers: HtmlFragment = arrayOf(cdnPlotlyHeader),
-    config: PlotlyConfig = PlotlyConfig()
+    config: PlotlyConfig = PlotlyConfig(),
 ): String {
     return createHTML().html {
         head {
@@ -53,7 +53,7 @@ internal fun checkOrStoreFile(basePath: Path, filePath: Path, resource: String):
     } else {
         //TODO add logging
 
-        val bytes = HtmlFragment::class.java.getResourceAsStream(resource).readAllBytes()
+        val bytes = HtmlFragment::class.java.getResourceAsStream(resource)!!.readAllBytes()
         Files.createDirectories(fullPath.parent)
         Files.write(fullPath, bytes, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)
     }
@@ -71,7 +71,7 @@ internal fun checkOrStoreFile(basePath: Path, filePath: Path, resource: String):
 public fun localScriptHeader(
     basePath: Path,
     scriptPath: Path,
-    resource: String
+    resource: String,
 ): HtmlFragment = HtmlFragment {
     val relativePath = checkOrStoreFile(basePath, scriptPath, resource)
     script {
@@ -85,7 +85,7 @@ public fun localScriptHeader(
 public fun localCssHeader(
     basePath: Path,
     cssPath: Path,
-    resource: String
+    resource: String,
 ): HtmlFragment = HtmlFragment {
     val relativePath = checkOrStoreFile(basePath, cssPath, resource)
     link {
@@ -94,7 +94,6 @@ public fun localCssHeader(
     }
 }
 
-@UnstablePlotlyAPI
 public val mathJaxHeader: HtmlFragment = HtmlFragment {
     script {
         type = "text/x-mathjax-config"
@@ -112,4 +111,3 @@ public val mathJaxHeader: HtmlFragment = HtmlFragment {
         src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_SVG"
     }
 }
-
