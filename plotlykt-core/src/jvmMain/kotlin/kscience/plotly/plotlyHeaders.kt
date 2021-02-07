@@ -11,7 +11,7 @@ internal const val PLOTLY_SCRIPT_PATH = "/js/plotly.min.js"
 private const val PLOTLY_CDN = "https://cdn.plot.ly/plotly-${Plotly.VERSION}.min.js"
 //"https://cdnjs.cloudflare.com/ajax/libs/plotly.js/${Plotly.VERSION}/plotly.min.js"
 
-public val cdnPlotlyHeader = HtmlFragment {
+public val cdnPlotlyHeader: HtmlFragment = HtmlFragment {
     script {
         type = "text/javascript"
         src = PLOTLY_CDN
@@ -53,7 +53,7 @@ internal val systemPlotlyHeader = HtmlFragment {
 internal val embededPlotlyHeader = HtmlFragment {
     script {
         unsafe {
-            val bytes = HtmlFragment::class.java.getResourceAsStream(PLOTLY_SCRIPT_PATH).readAllBytes()
+            val bytes = HtmlFragment::class.java.getResourceAsStream(PLOTLY_SCRIPT_PATH)!!.readAllBytes()
             +bytes.toString(Charsets.UTF_8)
         }
     }

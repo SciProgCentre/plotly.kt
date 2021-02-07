@@ -1,6 +1,7 @@
 package kscience.plotly
 
 import hep.dataforge.meta.*
+import hep.dataforge.misc.DFBuilder
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
