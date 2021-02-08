@@ -3,22 +3,25 @@ package  kscience.plotly
 import kotlinx.html.div
 
 @UnstablePlotlyAPI
-class PlotGrid {
-    data class PlotCell(val id: String, val plot: Plot, val row: Int, val col: Int, val width: Int = 1)
+public class PlotGrid {
+    public data class PlotCell(val id: String, val plot: Plot, val row: Int, val col: Int, val width: Int = 1)
 
     private val cells = HashMap<String, PlotCell>()
 
-    val grid
-        get() = cells.values.groupBy { it.row }.values.map {
-            it.sortedBy { plot -> plot.col }
+    /**
+     * @return Columns in ascending order, grouped by rows in ascending order.
+     * */
+    public val grid: List<List<PlotCell>>
+        get() = cells.values.groupBy { it.row }.toSortedMap().values.map {
+            it.sortedBy { cell -> cell.col }
         }.toList()
 
-    operator fun get(id: String): PlotCell? = cells[id]
+    public operator fun get(id: String): PlotCell? = cells[id]
 
     private var currentRow = 0
     private var currentCol = 0
 
-    fun plot(
+    public fun plot(
         plot: Plot,
         id: String = plot.toString(),
         width: Int = 6,
@@ -39,7 +42,7 @@ class PlotGrid {
         return plot
     }
 
-    fun plot(
+    public fun plot(
         row: Int? = null,
         col: Int? = null,
         id: String? = null,
@@ -52,7 +55,7 @@ class PlotGrid {
 }
 
 @UnstablePlotlyAPI
-fun Plotly.grid(block: PlotGrid.() -> Unit): PlotlyPage {
+public fun Plotly.grid(block: PlotGrid.() -> Unit): PlotlyPage {
     val grid = PlotGrid().apply(block)
     return page(cdnBootstrap, cdnPlotlyHeader) { container ->
         div("col") {

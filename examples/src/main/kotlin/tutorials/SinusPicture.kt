@@ -17,6 +17,7 @@ import kotlin.math.sin
  * - Change margins on the plot edges
  * - Add shapes (vertical lines)
  */
+@OptIn(UnstablePlotlyAPI::class)
 fun main() {
     val div = 200 / PI
     val sub = PI / 6

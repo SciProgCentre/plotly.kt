@@ -1,6 +1,7 @@
 package kscience.plotly
 
 import hep.dataforge.meta.*
+import hep.dataforge.misc.DFBuilder
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
@@ -25,7 +26,7 @@ public class Plot(
      */
     public val layout: Layout by config.spec(Layout)
 
-    private fun appendTrace(trace: Trace) {
+    public fun addTrace(trace: Trace) {
         val traceRoot = trace.rootNode
         if (traceRoot is Config) {
             config.append("data", traceRoot)
@@ -41,14 +42,14 @@ public class Plot(
      * Append all traces from [traces] to the plot
      */
     public fun traces(traces: Collection<Trace>) {
-        traces.forEach { appendTrace(it) }
+        traces.forEach { addTrace(it) }
     }
 
     /**
      * Append all [traces]
      */
     public fun traces(vararg traces: Trace) {
-        traces.forEach { appendTrace(it) }
+        traces.forEach { addTrace(it) }
     }
 
     /**

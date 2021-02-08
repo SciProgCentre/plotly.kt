@@ -4,9 +4,9 @@ import krangl.DataFrame
 import krangl.readCSV
 import kscience.plotly.Plotly
 
-@OptIn(ExperimentalStdlibApi::class)
 fun readResourceAsString(resource: String): String =
-        Plotly.javaClass.getResourceAsStream(resource).readAllBytes().decodeToString()
+    Plotly.javaClass.getResourceAsStream(resource)?.readAllBytes()?.decodeToString()
+        ?: error("Resource $resource not found")
 
 fun readResourceAsCsv(resource: String): DataFrame =
-        DataFrame.readCSV(Plotly.javaClass.getResource(resource).file.toString())
+    DataFrame.readCSV(Plotly.javaClass.getResource(resource)?.file?.toString() ?: error("Resource $resource not found"))

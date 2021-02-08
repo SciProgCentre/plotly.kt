@@ -6,9 +6,18 @@ import java.nio.file.Path
 
 
 private const val bootstrapJsPath = "/js/bootstrap.bundle.min.js"
+private const val jQueryPath = "/js/jquery-3.5.1.slim.min.js"
 private const val bootstrapCssPath = "/css/bootstrap.min.css"
 
-fun localBootstrap(basePath: Path) = HtmlFragment {
+public fun localBootstrap(basePath: Path) = HtmlFragment {
+    script {
+        type = "text/javascript"
+        src = checkOrStoreFile(
+            basePath,
+            Path.of(assetsDirectory + jQueryPath),
+            jQueryPath
+        ).toString()
+    }
     script {
         type = "text/javascript"
         src = checkOrStoreFile(
@@ -27,7 +36,12 @@ fun localBootstrap(basePath: Path) = HtmlFragment {
     }
 }
 
-val cdnBootstrap = HtmlFragment {
+public val cdnBootstrap: HtmlFragment = HtmlFragment {
+    script {
+        src = "https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity = "sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        attributes["crossorigin"] =  "anonymous"
+    }
     script {
         src = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
         integrity = "sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
