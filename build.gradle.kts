@@ -12,7 +12,7 @@ val githubProject by extra("plotly.kt")
 
 allprojects {
     group = "kscience.plotlykt"
-    version = "0.3.1-dev-5"
+    version = "0.3.1"
 
     repositories {
         mavenLocal()
