@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Table widget implementation by @ArtificialPB
 - Mathjax header promoted to stable
 - Tabbed plots layout (experimental)
+- Trace value builders for functions and ranges (experimental)
 
 ### Changed
 - **Breaking API change!** Trace `text` replaced by `TraceValues`
