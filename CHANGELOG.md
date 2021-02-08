@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.3.1]
+### Added
 - Table widget implementation by @ArtificialPB
 - Mathjax header promoted to stable
 - Tabbed plots layout (experimental)
@@ -15,7 +28,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **Breaking API change!** Trace `text` replaced by `TraceValues`
 - Moved to DataForge 0.3 API
-- Kotlin 1.4.21
+- Kotlin 1.4.30
+- **JVM-IR**  
 - Plot `Config` moved to constructor
 - Replaced direct color accessor by a delegate
 

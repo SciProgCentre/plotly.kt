@@ -120,6 +120,33 @@ public final class kscience/plotly/PlotKt {
 	public static final fun trace (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Trace;
 }
 
+public final class kscience/plotly/PlotTabs {
+	public fun <init> ()V
+	public final fun getTabs ()Ljava/util/List;
+	public final fun tab (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
+	public static synthetic fun tab$default (Lkscience/plotly/PlotTabs;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
+}
+
+public final class kscience/plotly/PlotTabs$Tab {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lkscience/plotly/PlotlyFragment;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lkscience/plotly/PlotlyFragment;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lkscience/plotly/PlotlyFragment;)Lkscience/plotly/PlotTabs$Tab;
+	public static synthetic fun copy$default (Lkscience/plotly/PlotTabs$Tab;Ljava/lang/String;Ljava/lang/String;Lkscience/plotly/PlotlyFragment;ILjava/lang/Object;)Lkscience/plotly/PlotTabs$Tab;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContent ()Lkscience/plotly/PlotlyFragment;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getTitle ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class kscience/plotly/PlotTabsKt {
+	public static final fun tabs (Lkscience/plotly/Plotly;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/PlotlyPage;
+	public static synthetic fun tabs$default (Lkscience/plotly/Plotly;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lkscience/plotly/PlotlyPage;
+}
+
 public final class kscience/plotly/Plotly {
 	public static final field INSTANCE Lkscience/plotly/Plotly;
 	public static final field VERSION Ljava/lang/String;
@@ -740,6 +767,16 @@ public final class kscience/plotly/models/Fill : hep/dataforge/meta/Scheme {
 }
 
 public final class kscience/plotly/models/Fill$Companion : hep/dataforge/meta/SchemeSpec {
+}
+
+public final class kscience/plotly/models/FillTraceKt {
+	public static final fun appendXY (Lkscience/plotly/models/Trace;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;)V
+	public static final fun appendXY (Lkscience/plotly/models/Trace;[Lkotlin/Pair;)V
+	public static synthetic fun appendXY$default (Lkscience/plotly/models/Trace;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;ILjava/lang/Object;)V
+	public static final fun functionXY (Lkscience/plotly/models/Trace;Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)V
+	public static final fun functionXY (Lkscience/plotly/models/Trace;Lkotlin/ranges/ClosedFloatingPointRange;DLkotlin/jvm/functions/Function1;)V
+	public static final fun functionXY (Lkscience/plotly/models/Trace;Lkotlin/ranges/IntRange;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun functionXY$default (Lkscience/plotly/models/Trace;Lkotlin/ranges/ClosedFloatingPointRange;DLkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
 public final class kscience/plotly/models/FillType : java/lang/Enum {
