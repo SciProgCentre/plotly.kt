@@ -24,3 +24,7 @@ allprojects {
 apiValidation {
     ignoredProjects.addAll(listOf("examples", "fx-demo", "js-demo"))
 }
+
+ksciencePublish{
+    spaceRepo = "https://maven.pkg.jetbrains.space/mipt-npm/p/sci/maven"
+}
