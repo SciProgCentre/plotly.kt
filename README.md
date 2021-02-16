@@ -18,6 +18,7 @@ Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/
 
 ## Compatibility note
 The current `0.3.0` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.0.0. It is not guaranteed to work with kotlin 1.3. 
+
 Plotly.kt currently targets JVM 11 and newer, so appropriate target should be used for compillation. If you need to support older JVMs, please open an [issue](https://github.com/mipt-npm/plotly.kt/issues) with your use-case.
 
 # TL;DR
