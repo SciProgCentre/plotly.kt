@@ -107,6 +107,8 @@ into the repository list.
 
 If you do not need the server, then use plotlykt-core instead and remove `ktor` repository.
 
+**NOTICE** due to problems with kolin-logging publishing, DataForge currently uses a separate fork of the library. So `maven("https://dl.bintray.com/mipt-npm/dev")` is mandatory right now. Follow #66 for solution.
+
 # Naming
 The library keeps original Plotly API naming wherever it is possible. There are some usability shortcuts, usually provided via kotlin extensions, included in order to simplify user interaction. For example, `text` and `shape` extensions in the top level API.
 
