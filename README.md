@@ -2,6 +2,8 @@
 [![DOI](https://zenodo.org/badge/186020000.svg)](https://zenodo.org/badge/latestdoi/186020000)
 ![Gradle build](https://github.com/mipt-npm/plotly.kt/workflows/Gradle%20build/badge.svg)
 
+[![Kotlin JS IR supported](https://img.shields.io/badge/Kotlin%2FJS-IR%20supported-yellow)](https://kotl.in/jsirsupported)
+
 ![Plotlykt logo](./docs/logo_text.svg)
 
 ## Release version
