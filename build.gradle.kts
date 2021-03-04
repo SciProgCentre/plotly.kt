@@ -3,7 +3,6 @@ plugins {
     id("ru.mipt.npm.project")
 }
 
-val ktorVersion by extra("1.5.0")
 val dataforgeVersion by extra("0.4.0-dev-1")
 
 val githubProject by extra("plotly.kt")
