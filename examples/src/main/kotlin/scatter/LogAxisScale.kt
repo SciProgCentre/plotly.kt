@@ -1,10 +1,10 @@
 package scatter
 
-import kscience.plotly.Plotly
-import kscience.plotly.layout
-import kscience.plotly.makeFile
-import kscience.plotly.models.AxisType
-import kscience.plotly.models.Scatter
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.layout
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.AxisType
+import space.kscience.plotly.models.Scatter
 
 
 /**

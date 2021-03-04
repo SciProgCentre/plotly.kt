@@ -1,8 +1,8 @@
 package misc
 
-import kscience.plotly.Plotly
-import kscience.plotly.bar
-import kscience.plotly.makeFile
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.bar
+import space.kscience.plotly.makeFile
 
 fun main() {
     val plot = Plotly.plot {

@@ -1,12 +1,12 @@
 package errorPlots
 
-import hep.dataforge.meta.invoke
-import kscience.plotly.Plotly
-import kscience.plotly.bar
-import kscience.plotly.makeFile
-import kscience.plotly.models.BarMode
-import kscience.plotly.models.ErrorType
-import kscience.plotly.models.XAnchor
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.bar
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.BarMode
+import space.kscience.plotly.models.ErrorType
+import space.kscience.plotly.models.XAnchor
 
 
 /**

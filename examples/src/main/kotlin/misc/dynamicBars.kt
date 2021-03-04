@@ -1,15 +1,15 @@
-import hep.dataforge.meta.invoke
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kscience.plotly.Plotly
-import kscience.plotly.models.Bar
-import kscience.plotly.plot
-import kscience.plotly.server.close
-import kscience.plotly.server.pushUpdates
-import kscience.plotly.server.serve
-import kscience.plotly.server.show
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.models.Bar
+import space.kscience.plotly.plot
+import space.kscience.plotly.server.close
+import space.kscience.plotly.server.pushUpdates
+import space.kscience.plotly.server.serve
+import space.kscience.plotly.server.show
 import kotlin.random.Random
 
 

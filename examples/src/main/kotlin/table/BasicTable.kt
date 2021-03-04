@@ -1,9 +1,9 @@
 package table
 
-import kscience.plotly.Plotly
-import kscience.plotly.makeFile
-import kscience.plotly.models.HorizontalAlign
-import kscience.plotly.models.Table
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.HorizontalAlign
+import space.kscience.plotly.models.Table
 
 /**
  * - basic table trace with customization.

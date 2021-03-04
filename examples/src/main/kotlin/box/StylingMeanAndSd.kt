@@ -1,11 +1,11 @@
 package box
 
-import hep.dataforge.meta.invoke
-import kscience.plotly.Plotly
-import kscience.plotly.makeFile
-import kscience.plotly.models.Box
-import kscience.plotly.models.BoxMean
-import kscience.plotly.palettes.Xkcd
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.Box
+import space.kscience.plotly.models.BoxMean
+import space.kscience.plotly.palettes.Xkcd
 
 fun main() {
     val y1 = listOf(2.37, 2.16, 4.82, 1.73, 1.04, 0.23, 1.32, 2.91, 0.11, 4.51, 0.51,

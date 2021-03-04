@@ -1,10 +1,10 @@
 package contour
 
-import hep.dataforge.meta.invoke
-import hep.dataforge.values.asValue
-import kscience.plotly.Plotly
-import kscience.plotly.contour
-import kscience.plotly.makeFile
+import space.kscience.dataforge.meta.invoke
+import space.kscience.dataforge.values.asValue
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.contour
+import space.kscience.plotly.makeFile
 import kotlin.math.cos
 import kotlin.math.ln
 import kotlin.math.sin

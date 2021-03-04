@@ -1,9 +1,9 @@
 import kotlinx.html.div
 import kotlinx.html.h1
 import kotlinx.html.hr
-import kscience.plotly.*
-import kscience.plotly.models.Trace
-import kscience.plotly.models.invoke
+import space.kscience.plotly.*
+import space.kscience.plotly.models.Trace
+import space.kscience.plotly.models.invoke
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin

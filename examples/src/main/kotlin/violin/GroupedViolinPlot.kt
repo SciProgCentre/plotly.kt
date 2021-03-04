@@ -1,15 +1,15 @@
 package violin
 
-import hep.dataforge.meta.invoke
 import io.readResourceAsCsv
 import krangl.DataCol
 import krangl.DataFrame
 import krangl.eq
-import kscience.plotly.Plotly
-import kscience.plotly.makeFile
-import kscience.plotly.models.TraceValues
-import kscience.plotly.models.Violin
-import kscience.plotly.models.ViolinMode
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.TraceValues
+import space.kscience.plotly.models.Violin
+import space.kscience.plotly.models.ViolinMode
 
 
 /**

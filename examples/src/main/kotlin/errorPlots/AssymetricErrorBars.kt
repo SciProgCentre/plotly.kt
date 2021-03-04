@@ -1,13 +1,13 @@
 package errorPlots
 
-import hep.dataforge.meta.invoke
-import kscience.plotly.Plotly
-import kscience.plotly.makeFile
-import kscience.plotly.models.ErrorType
-import kscience.plotly.models.TraceOrder
-import kscience.plotly.models.XAnchor
-import kscience.plotly.models.YAnchor
-import kscience.plotly.scatter
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.ErrorType
+import space.kscience.plotly.models.TraceOrder
+import space.kscience.plotly.models.XAnchor
+import space.kscience.plotly.models.YAnchor
+import space.kscience.plotly.scatter
 
 /**
  * - asymmetric error bars

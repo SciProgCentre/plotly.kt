@@ -1,89 +1,89 @@
-public final class kscience/plotly/server/JupyterPlotlyServer : kscience/plotly/PlotlyRenderer {
-	public static final field Companion Lkscience/plotly/server/JupyterPlotlyServer$Companion;
+public final class space/kscience/plotly/server/JupyterPlotlyServer : space/kscience/plotly/PlotlyRenderer {
+	public static final field Companion Lspace/kscience/plotly/server/JupyterPlotlyServer$Companion;
 	public fun <init> ()V
 	public fun <init> (IJLkotlinx/coroutines/CoroutineScope;)V
 	public synthetic fun <init> (IJLkotlinx/coroutines/CoroutineScope;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun renderPlot (Lkotlinx/html/FlowContent;Lkscience/plotly/Plot;Ljava/lang/String;Lkscience/plotly/PlotlyConfig;)Lkscience/plotly/Plot;
+	public fun renderPlot (Lkotlinx/html/FlowContent;Lspace/kscience/plotly/Plot;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;)Lspace/kscience/plotly/Plot;
 	public final fun start (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun stop ()V
 }
 
-public final class kscience/plotly/server/JupyterPlotlyServer$Companion {
-	public final fun renderFragment (Lkscience/plotly/PlotlyFragment;)Ljava/lang/String;
-	public final fun renderPage (Lkscience/plotly/PlotlyPage;)Ljava/lang/String;
-	public final fun renderPlot (Lkscience/plotly/Plot;)Ljava/lang/String;
-	public final fun start (IJ)Lkscience/plotly/HtmlFragment;
-	public static synthetic fun start$default (Lkscience/plotly/server/JupyterPlotlyServer$Companion;IJILjava/lang/Object;)Lkscience/plotly/HtmlFragment;
-	public final fun stop ()Lkscience/plotly/HtmlFragment;
+public final class space/kscience/plotly/server/JupyterPlotlyServer$Companion {
+	public final fun renderFragment (Lspace/kscience/plotly/PlotlyFragment;)Ljava/lang/String;
+	public final fun renderPage (Lspace/kscience/plotly/PlotlyPage;)Ljava/lang/String;
+	public final fun renderPlot (Lspace/kscience/plotly/Plot;)Ljava/lang/String;
+	public final fun start (IJ)Lspace/kscience/plotly/HtmlFragment;
+	public static synthetic fun start$default (Lspace/kscience/plotly/server/JupyterPlotlyServer$Companion;IJILjava/lang/Object;)Lspace/kscience/plotly/HtmlFragment;
+	public final fun stop ()Lspace/kscience/plotly/HtmlFragment;
 }
 
-public final class kscience/plotly/server/MetaChangeCollector {
+public final class space/kscience/plotly/server/MetaChangeCollector {
 	public fun <init> ()V
-	public final fun collect (Lhep/dataforge/names/Name;Lhep/dataforge/meta/TypedMetaItem;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun collect (Lspace/kscience/dataforge/names/Name;Lspace/kscience/dataforge/meta/TypedMetaItem;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun read (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class kscience/plotly/server/MetaChangeCollectorKt {
-	public static final fun collectUpdates (Lkscience/plotly/Plot;Ljava/lang/String;Lkotlinx/coroutines/CoroutineScope;J)Lkotlinx/coroutines/flow/Flow;
+public final class space/kscience/plotly/server/MetaChangeCollectorKt {
+	public static final fun collectUpdates (Lspace/kscience/plotly/Plot;Ljava/lang/String;Lkotlinx/coroutines/CoroutineScope;J)Lkotlinx/coroutines/flow/Flow;
 }
 
-public final class kscience/plotly/server/PlotlyServer : hep/dataforge/meta/Configurable {
-	public static final field Companion Lkscience/plotly/server/PlotlyServer$Companion;
+public final class space/kscience/plotly/server/PlotlyServer : space/kscience/dataforge/meta/Configurable {
+	public static final field Companion Lspace/kscience/plotly/server/PlotlyServer$Companion;
 	public static final field DEFAULT_PAGE Ljava/lang/String;
 	public final fun getApplication ()Lio/ktor/application/Application;
-	public fun getConfig ()Lhep/dataforge/meta/Config;
+	public fun getConfig ()Lspace/kscience/dataforge/meta/Config;
 	public final fun getEmbedData ()Z
 	public final fun getUpdateInterval ()J
-	public final fun getUpdateMode ()Lkscience/plotly/server/PlotlyUpdateMode;
+	public final fun getUpdateMode ()Lspace/kscience/plotly/server/PlotlyUpdateMode;
 	public final fun header (Lkotlin/jvm/functions/Function1;)V
 	public final fun page (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlin/jvm/functions/Function2;)V
-	public final fun page (Lkscience/plotly/PlotlyFragment;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
-	public static synthetic fun page$default (Lkscience/plotly/server/PlotlyServer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
-	public static synthetic fun page$default (Lkscience/plotly/server/PlotlyServer;Lkscience/plotly/PlotlyFragment;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)V
+	public final fun page (Lspace/kscience/plotly/PlotlyFragment;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+	public static synthetic fun page$default (Lspace/kscience/plotly/server/PlotlyServer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
+	public static synthetic fun page$default (Lspace/kscience/plotly/server/PlotlyServer;Lspace/kscience/plotly/PlotlyFragment;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)V
 	public final fun setEmbedData (Z)V
 	public final fun setUpdateInterval (J)V
-	public final fun setUpdateMode (Lkscience/plotly/server/PlotlyUpdateMode;)V
+	public final fun setUpdateMode (Lspace/kscience/plotly/server/PlotlyUpdateMode;)V
 }
 
-public final class kscience/plotly/server/PlotlyServer$Companion {
-	public final fun getUPDATE_INTERVAL_KEY ()Lhep/dataforge/names/Name;
-	public final fun getUPDATE_MODE_KEY ()Lhep/dataforge/names/Name;
+public final class space/kscience/plotly/server/PlotlyServer$Companion {
+	public final fun getUPDATE_INTERVAL_KEY ()Lspace/kscience/dataforge/names/Name;
+	public final fun getUPDATE_MODE_KEY ()Lspace/kscience/dataforge/names/Name;
 }
 
-public final class kscience/plotly/server/PlotlyServerKt {
+public final class space/kscience/plotly/server/PlotlyServerKt {
 	public static final fun close (Lio/ktor/server/engine/ApplicationEngine;)V
-	public static final fun plotlyModule (Lio/ktor/application/Application;Ljava/lang/String;)Lkscience/plotly/server/PlotlyServer;
-	public static synthetic fun plotlyModule$default (Lio/ktor/application/Application;Ljava/lang/String;ILjava/lang/Object;)Lkscience/plotly/server/PlotlyServer;
-	public static final fun pullUpdates (Lkscience/plotly/server/PlotlyServer;J)Lkscience/plotly/server/PlotlyServer;
-	public static synthetic fun pullUpdates$default (Lkscience/plotly/server/PlotlyServer;JILjava/lang/Object;)Lkscience/plotly/server/PlotlyServer;
-	public static final fun pushUpdates (Lkscience/plotly/server/PlotlyServer;J)Lkscience/plotly/server/PlotlyServer;
-	public static synthetic fun pushUpdates$default (Lkscience/plotly/server/PlotlyServer;JILjava/lang/Object;)Lkscience/plotly/server/PlotlyServer;
-	public static final fun serve (Lkscience/plotly/Plotly;Lkotlinx/coroutines/CoroutineScope;Ljava/lang/String;ILkotlin/jvm/functions/Function1;)Lio/ktor/server/engine/ApplicationEngine;
-	public static synthetic fun serve$default (Lkscience/plotly/Plotly;Lkotlinx/coroutines/CoroutineScope;Ljava/lang/String;ILkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/ktor/server/engine/ApplicationEngine;
+	public static final fun plotlyModule (Lio/ktor/application/Application;Ljava/lang/String;)Lspace/kscience/plotly/server/PlotlyServer;
+	public static synthetic fun plotlyModule$default (Lio/ktor/application/Application;Ljava/lang/String;ILjava/lang/Object;)Lspace/kscience/plotly/server/PlotlyServer;
+	public static final fun pullUpdates (Lspace/kscience/plotly/server/PlotlyServer;J)Lspace/kscience/plotly/server/PlotlyServer;
+	public static synthetic fun pullUpdates$default (Lspace/kscience/plotly/server/PlotlyServer;JILjava/lang/Object;)Lspace/kscience/plotly/server/PlotlyServer;
+	public static final fun pushUpdates (Lspace/kscience/plotly/server/PlotlyServer;J)Lspace/kscience/plotly/server/PlotlyServer;
+	public static synthetic fun pushUpdates$default (Lspace/kscience/plotly/server/PlotlyServer;JILjava/lang/Object;)Lspace/kscience/plotly/server/PlotlyServer;
+	public static final fun serve (Lspace/kscience/plotly/Plotly;Lkotlinx/coroutines/CoroutineScope;Ljava/lang/String;ILkotlin/jvm/functions/Function1;)Lio/ktor/server/engine/ApplicationEngine;
+	public static synthetic fun serve$default (Lspace/kscience/plotly/Plotly;Lkotlinx/coroutines/CoroutineScope;Ljava/lang/String;ILkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/ktor/server/engine/ApplicationEngine;
 	public static final fun show (Lio/ktor/server/engine/ApplicationEngine;)V
 }
 
-public final class kscience/plotly/server/PlotlyUpdateMode : java/lang/Enum {
-	public static final field NONE Lkscience/plotly/server/PlotlyUpdateMode;
-	public static final field PULL Lkscience/plotly/server/PlotlyUpdateMode;
-	public static final field PUSH Lkscience/plotly/server/PlotlyUpdateMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/server/PlotlyUpdateMode;
-	public static fun values ()[Lkscience/plotly/server/PlotlyUpdateMode;
+public final class space/kscience/plotly/server/PlotlyUpdateMode : java/lang/Enum {
+	public static final field NONE Lspace/kscience/plotly/server/PlotlyUpdateMode;
+	public static final field PULL Lspace/kscience/plotly/server/PlotlyUpdateMode;
+	public static final field PUSH Lspace/kscience/plotly/server/PlotlyUpdateMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/server/PlotlyUpdateMode;
+	public static fun values ()[Lspace/kscience/plotly/server/PlotlyUpdateMode;
 }
 
-public abstract class kscience/plotly/server/Update {
+public abstract class space/kscience/plotly/server/Update {
 	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getId ()Ljava/lang/String;
 	public abstract fun toJson ()Lkotlinx/serialization/json/JsonObject;
 }
 
-public final class kscience/plotly/server/Update$Layout : kscience/plotly/server/Update {
-	public fun <init> (Ljava/lang/String;Lhep/dataforge/meta/Meta;)V
+public final class space/kscience/plotly/server/Update$Layout : space/kscience/plotly/server/Update {
+	public fun <init> (Ljava/lang/String;Lspace/kscience/dataforge/meta/Meta;)V
 	public fun toJson ()Lkotlinx/serialization/json/JsonObject;
 }
 
-public final class kscience/plotly/server/Update$Trace : kscience/plotly/server/Update {
-	public fun <init> (Ljava/lang/String;ILhep/dataforge/meta/Meta;)V
+public final class space/kscience/plotly/server/Update$Trace : space/kscience/plotly/server/Update {
+	public fun <init> (Ljava/lang/String;ILspace/kscience/dataforge/meta/Meta;)V
 	public fun toJson ()Lkotlinx/serialization/json/JsonObject;
 }
 

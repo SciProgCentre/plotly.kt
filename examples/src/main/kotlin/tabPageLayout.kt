@@ -1,7 +1,7 @@
-import kscience.plotly.*
-import kscience.plotly.models.Trace
-import kscience.plotly.models.invoke
-import kscience.plotly.palettes.T10
+import space.kscience.plotly.*
+import space.kscience.plotly.models.Trace
+import space.kscience.plotly.models.invoke
+import space.kscience.plotly.palettes.T10
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin

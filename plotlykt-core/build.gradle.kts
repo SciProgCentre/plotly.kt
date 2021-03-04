@@ -7,14 +7,13 @@ kscience {
 }
 
 val dataforgeVersion: String by rootProject.extra
-val htmlVersion: String by rootProject.extra
 
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api("hep.dataforge:dataforge-meta:$dataforgeVersion")
-                api("org.jetbrains.kotlinx:kotlinx-html:$htmlVersion")
+                api("space.kscience:dataforge-meta:$dataforgeVersion")
+                api("org.jetbrains.kotlinx:kotlinx-html:${ru.mipt.npm.gradle.KScienceVersions.htmlVersion}")
                 api("org.jetbrains:kotlin-css:1.0.0-pre.122-kotlin-1.4.10")
             }
         }

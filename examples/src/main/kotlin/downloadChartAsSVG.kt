@@ -1,5 +1,5 @@
-import kscience.plotly.*
-import kscience.plotly.models.ScatterMode
+import space.kscience.plotly.*
+import space.kscience.plotly.models.ScatterMode
 
 
 /**

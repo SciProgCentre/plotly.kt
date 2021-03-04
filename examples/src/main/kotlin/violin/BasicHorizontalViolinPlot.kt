@@ -1,12 +1,12 @@
 package violin
 
-import hep.dataforge.meta.invoke
-import hep.dataforge.values.Value
 import io.readResourceAsCsv
-import kscience.plotly.Plotly
-import kscience.plotly.makeFile
-import kscience.plotly.models.ViolinPoints
-import kscience.plotly.violin
+import space.kscience.dataforge.meta.invoke
+import space.kscience.dataforge.values.Value
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.ViolinPoints
+import space.kscience.plotly.violin
 
 
 /**

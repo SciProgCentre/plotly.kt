@@ -1,7 +1,7 @@
 package heatmap
 
-import kscience.plotly.*
-import kscience.plotly.models.Heatmap
+import space.kscience.plotly.*
+import space.kscience.plotly.models.Heatmap
 
 
 /**

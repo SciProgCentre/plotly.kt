@@ -4,15 +4,13 @@ plugins {
 }
 
 val ktorVersion by extra("1.5.0")
-val dataforgeVersion by extra("0.3.0")
-val htmlVersion by extra("0.7.2")
+val dataforgeVersion by extra("0.4.0-dev-1")
 
-val bintrayRepo by extra("kscience")
 val githubProject by extra("plotly.kt")
 
 allprojects {
-    group = "kscience.plotlykt"
-    version = "0.3.1"
+    group = "space.kscience"
+    version = "0.4.0-dev-1"
 
     repositories {
         mavenLocal()

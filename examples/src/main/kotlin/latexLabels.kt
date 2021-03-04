@@ -1,4 +1,4 @@
-import kscience.plotly.*
+import space.kscience.plotly.*
 
 fun main() {
     Plotly.page(mathJaxHeader, cdnPlotlyHeader) {

@@ -1,10 +1,10 @@
-import hep.dataforge.meta.invoke
-import kscience.plotly.Plotly
-import kscience.plotly.UnstablePlotlyAPI
-import kscience.plotly.export
-import kscience.plotly.models.Scatter
-import kscience.plotly.models.ScatterMode
-import kscience.plotly.selectFile
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.UnstablePlotlyAPI
+import space.kscience.plotly.export
+import space.kscience.plotly.models.Scatter
+import space.kscience.plotly.models.ScatterMode
+import space.kscience.plotly.selectFile
 import javax.swing.filechooser.FileNameExtensionFilter
 
 

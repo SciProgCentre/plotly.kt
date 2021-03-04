@@ -1,9 +1,9 @@
-import hep.dataforge.meta.invoke
-import hep.dataforge.meta.set
-import kscience.plotly.Plotly
-import kscience.plotly.makeFile
-import kscience.plotly.models.Trace
-import kscience.plotly.models.invoke
+import space.kscience.dataforge.meta.invoke
+import space.kscience.dataforge.meta.set
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.Trace
+import space.kscience.plotly.models.invoke
 
 fun main() {
 

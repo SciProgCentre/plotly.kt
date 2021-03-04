@@ -1,10 +1,10 @@
 package box
 
-import hep.dataforge.meta.invoke
-import kscience.plotly.Plotly
-import kscience.plotly.makeFile
-import kscience.plotly.models.Box
-import kscience.plotly.models.BoxPoints
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.Box
+import space.kscience.plotly.models.BoxPoints
 import kotlin.random.Random
 
 

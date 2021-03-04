@@ -1,8 +1,8 @@
-import hep.dataforge.meta.invoke
-import kscience.plotly.Plotly
-import kscience.plotly.models.ScatterMode
-import kscience.plotly.scatter
-import kscience.plotly.toHTML
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.models.ScatterMode
+import space.kscience.plotly.scatter
+import space.kscience.plotly.toHTML
 
 Plotly.plot {
     scatter {

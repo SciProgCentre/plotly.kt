@@ -1,7 +1,7 @@
 package contour
 
-import kscience.plotly.*
-import kscience.plotly.models.Contour
+import space.kscience.plotly.*
+import space.kscience.plotly.models.Contour
 
 
 /**

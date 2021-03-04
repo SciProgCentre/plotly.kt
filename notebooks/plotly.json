@@ -3,7 +3,7 @@
         "kscience.plotly.*",
         "kscience.plotly.models.*",
         "kscience.plotly.JupyterPlotly",
-        "hep.dataforge.meta.*",
+        "space.kscience.dataforge.meta.*",
         "kotlinx.html.*"
     ],
     "repositories": [
