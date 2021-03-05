@@ -12,7 +12,7 @@ Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/
 
 
 ## Compatibility note
-The current `0.4.0-dev-1` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.1.0. The JVM part requires JVM 11 to run.
+The current `$version` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.1.0. The JVM part requires JVM 11 to run.
 
 # TL;DR
 See [examples](./examples/src/main/kotlin).
@@ -55,8 +55,8 @@ The examples of the notebooks are shown in [notebooks](./notebooks) directory. P
 
 ```kotlin
 @file:Repository("*mavenLocal")
-@file:DependsOn("space.kscience:plotlykt-jupyter:0.4.0-dev-1")
-//@file:DependsOn("space.kscience:plotlykt-server:0.4.0-dev-1") // Use this one for sever integration.
+@file:DependsOn("space.kscience:plotlykt-jupyter:$version")
+//@file:DependsOn("space.kscience:plotlykt-server:$version") // Use this one for sever integration.
 ```
 
 The module `plotly` allows rendering static plots in Jupyter. Jupyter lab is currently supported. Jupyter notebook (classic) is able to render only `PlotlyPage` objects, so one must convert plots to pages to be able to use notebook (see [demo notebook](./notebooks/plotlykt-demo-classic.ipynb)).
@@ -92,7 +92,7 @@ repositories {
 }
 
 dependencies {
-    implementation("kscience.plotlykt:plotlykt-server:0.4.0-dev-1")
+    implementation("kscience.plotlykt:plotlykt-server:$version")
 }
 ```
 

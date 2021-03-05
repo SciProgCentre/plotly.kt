@@ -14,7 +14,7 @@ allprojects {
 
     repositories {
         mavenLocal()
-        maven("https://dl.bintray.com/kotlin/kotlin-eap")
+        maven("https://repo.kotlin.link")
         maven("https://kotlin.bintray.com/kotlinx")
     }
 }
@@ -25,4 +25,8 @@ apiValidation {
 
 ksciencePublish{
     spaceRepo = "https://maven.pkg.jetbrains.space/mipt-npm/p/sci/maven"
+}
+
+readme {
+    readmeTemplate = file("docs/templates/README-TEMPLATE.md")
 }

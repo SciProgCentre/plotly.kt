@@ -5,9 +5,6 @@ plugins {
 repositories {
     mavenLocal()
     jcenter()
-    maven("https://dl.bintray.com/mipt-npm/dataforge")
-    maven("https://dl.bintray.com/mipt-npm/kscience")
-    maven("https://dl.bintray.com/mipt-npm/dev")
 }
 
 kotlin {
