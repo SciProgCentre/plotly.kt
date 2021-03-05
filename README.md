@@ -1,15 +1,13 @@
 [![JetBrains Research](https://jb.gg/badges/research.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 [![DOI](https://zenodo.org/badge/186020000.svg)](https://zenodo.org/badge/latestdoi/186020000)
 ![Gradle build](https://github.com/mipt-npm/plotly.kt/workflows/Gradle%20build/badge.svg)
+[![Kotlin JS IR supported](https://img.shields.io/badge/Kotlin%2FJS-IR%20supported-yellow)](https://kotl.in/jsirsupported)
 
 ![Plotlykt logo](./docs/logo_text.svg)
 
 ## Artifact details
 
-Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/kscience/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/kscience/plotlykt-core/_latestVersion)
-
-Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/kscience/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/kscience/plotlykt-server/_latestVersion)
-
+**TBD**
 
 ## Compatibility note
 The current `0.4.0-dev-1` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.1.0. The JVM part requires JVM 11 to run.
@@ -54,7 +52,7 @@ Plotly.kt comes with (for now experimental) support for integration with [Kotlin
 The examples of the notebooks are shown in [notebooks](./notebooks) directory. Plotly.kt uses Kotlin jupyter notebook API for integration (available in kernel version `0.8.3.236` and later). In order to load the library together with automatic imports one need to simply load a library in a following way:
 
 ```kotlin
-@file:Repository("*mavenLocal")
+@file:Repository("https://repo.kotlin.link")
 @file:DependsOn("space.kscience:plotlykt-jupyter:0.4.0-dev-1")
 //@file:DependsOn("space.kscience:plotlykt-server:0.4.0-dev-1") // Use this one for sever integration.
 ```
