@@ -7,13 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Jupyter integration plugin for server
 
 ### Changed
 - Package change (again) to `space.kscience`
+- Build tools `0.8.4`
 
 ### Deprecated
 
 ### Removed
+- Local bootstrap
 
 ### Fixed
 

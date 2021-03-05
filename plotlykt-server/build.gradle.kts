@@ -1,5 +1,6 @@
 plugins {
-    id("ru.mipt.npm.jvm")
+    id("ru.mipt.npm.gradle.jvm")
+    kotlin("jupyter.api")
 }
 
 kscience{

@@ -2,39 +2,34 @@ package space.kscience.plotly
 
 import kotlinx.html.link
 import kotlinx.html.script
-import java.nio.file.Path
 
 
-private const val bootstrapJsPath = "/js/bootstrap.bundle.min.js"
-private const val jQueryPath = "/js/jquery-3.5.1.slim.min.js"
-private const val bootstrapCssPath = "/css/bootstrap.min.css"
-
-public fun localBootstrap(basePath: Path) = HtmlFragment {
-    script {
-        type = "text/javascript"
-        src = checkOrStoreFile(
-            basePath,
-            Path.of(assetsDirectory + jQueryPath),
-            jQueryPath
-        ).toString()
-    }
-    script {
-        type = "text/javascript"
-        src = checkOrStoreFile(
-            basePath,
-            Path.of(assetsDirectory + bootstrapJsPath),
-            bootstrapJsPath
-        ).toString()
-    }
-    link {
-        rel = "stylesheet"
-        href = checkOrStoreFile(
-            basePath,
-            Path.of(assetsDirectory + bootstrapCssPath),
-            bootstrapCssPath
-        ).toString()
-    }
-}
+//public fun localBootstrap(basePath: Path) = HtmlFragment {
+//    script {
+//        type = "text/javascript"
+//        src = checkOrStoreFile(
+//            basePath,
+//            Path.of(assetsDirectory + jQueryPath),
+//            jQueryPath
+//        ).toString()
+//    }
+//    script {
+//        type = "text/javascript"
+//        src = checkOrStoreFile(
+//            basePath,
+//            Path.of(assetsDirectory + bootstrapJsPath),
+//            bootstrapJsPath
+//        ).toString()
+//    }
+//    link {
+//        rel = "stylesheet"
+//        href = checkOrStoreFile(
+//            basePath,
+//            Path.of(assetsDirectory + bootstrapCssPath),
+//            bootstrapCssPath
+//        ).toString()
+//    }
+//}
 
 public val cdnBootstrap: HtmlFragment = HtmlFragment {
     script {

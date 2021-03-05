@@ -1,25 +1,23 @@
 pluginManagement {
     val kotlinVersion = "1.4.30"
-    val toolsVersion = "0.7.6"
+    val toolsVersion = "0.8.4"
 
     repositories {
-        mavenLocal()
+        maven("https://repo.kotlin.link")
         jcenter()
         gradlePluginPortal()
         maven("https://dl.bintray.com/kotlin/kotlin-eap")
         maven("https://dl.bintray.com/kotlin/kotlinx")
-        maven("https://dl.bintray.com/mipt-npm/dataforge")
-        maven("https://dl.bintray.com/mipt-npm/kscience")
-        maven("https://dl.bintray.com/mipt-npm/dev")
     }
 
     plugins {
-        id("ru.mipt.npm.kscience") version toolsVersion
-        id("ru.mipt.npm.project") version toolsVersion
-        id("ru.mipt.npm.mpp") version toolsVersion
-        id("ru.mipt.npm.jvm") version toolsVersion
-        id("ru.mipt.npm.js") version toolsVersion
-        id("ru.mipt.npm.publish") version toolsVersion
+        id("ru.mipt.npm.gradle.common") version toolsVersion
+        id("ru.mipt.npm.gradle.project") version toolsVersion
+        id("ru.mipt.npm.gradle.mpp") version toolsVersion
+        id("ru.mipt.npm.gradle.jvm") version toolsVersion
+        id("ru.mipt.npm.gradle.js") version toolsVersion
+        id("ru.mipt.npm.gradle.publish") version toolsVersion
+        kotlin("jupyter.api") version "0.8.3.236"
         kotlin("jvm") version kotlinVersion
         kotlin("js") version kotlinVersion
         kotlin("multiplatform") version kotlinVersion

@@ -1,6 +1,7 @@
 plugins {
     kotlin("js") apply false
-    id("ru.mipt.npm.project")
+    kotlin("jupyter.api") apply false
+    id("ru.mipt.npm.gradle.project")
 }
 
 val dataforgeVersion by extra("0.4.0-dev-1")

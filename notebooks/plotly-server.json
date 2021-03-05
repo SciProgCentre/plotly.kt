@@ -1,19 +1,17 @@
 {
     "imports": [
-        "kscience.plotly.*",
-        "kscience.plotly.models.*",
-        "kscience.plotly.server.JupyterPlotlyServer",
+        "space.kscience.plotly.*",
+        "space.kscience.plotly.models.*",
+        "space.kscience.plotly.server.JupyterPlotlyServer",
         "space.kscience.dataforge.meta.*",
         "kotlinx.html.*"
     ],
     "repositories": [
         "*mavenLocal",
-        "https://dl.bintray.com/mipt-npm/dataforge",
-        "https://dl.bintray.com/mipt-npm/kscience",
-        "https://dl.bintray.com/mipt-npm/dev"
+        "https://repo.kotlin.link"
     ],
     "properties": {
-        "v": "0.2.0",
+        "v": "0.3.0",
         "port": 8882
     },
     "link": "https://github.com/mipt-npm/plotly.kt",
