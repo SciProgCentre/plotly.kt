@@ -6,16 +6,17 @@ plugins {
 
 val dataforgeVersion by extra("0.4.0-dev-1")
 
-val githubProject by extra("plotly.kt")
-
 allprojects {
     group = "space.kscience"
     version = "0.4.0-dev-1"
 
     repositories {
-        mavenLocal()
         maven("https://repo.kotlin.link")
         maven("https://kotlin.bintray.com/kotlinx")
+    }
+
+    if(name.startsWith("plotlykt")){
+        apply(plugin = "ru.mipt.npm.gradle.publish")
     }
 }
 
@@ -24,6 +25,7 @@ apiValidation {
 }
 
 ksciencePublish{
+    githubProject = "plotly.kt"
     spaceRepo = "https://maven.pkg.jetbrains.space/mipt-npm/p/sci/maven"
 }
 
