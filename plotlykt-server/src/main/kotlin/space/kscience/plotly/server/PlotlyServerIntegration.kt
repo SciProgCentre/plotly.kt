@@ -3,14 +3,17 @@ package space.kscience.plotly.server
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.*
+import org.slf4j.LoggerFactory
 import space.kscience.plotly.*
+import space.kscience.plotly.Plotly.PLOTLY_CDN
 
 @JupyterLibrary
 internal class PlotlyServerIntegration : JupyterIntegration() {
+    private val logger = LoggerFactory.getLogger(javaClass)
 
-    private val jsBundle = ResourceFallbacksBundle(listOf(
+    private val plotlyBundle = ResourceFallbacksBundle(listOf(
         org.jetbrains.kotlinx.jupyter.api.libraries.ResourceLocation(
-            "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.54.6/plotly.min.js",
+            PLOTLY_CDN,
             ResourcePathType.URL
         ),
         org.jetbrains.kotlinx.jupyter.api.libraries.ResourceLocation(
@@ -19,14 +22,28 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
         )
     ))
 
-    private val jsResource = LibraryResource(name = "Plotly", type = ResourceType.JS, bundles = listOf(jsBundle))
+    private val plotlyResource =
+        LibraryResource(name = "plotly", type = ResourceType.JS, bundles = listOf(plotlyBundle))
+
+    private val plotlyConnectBundle = ResourceFallbacksBundle(listOf(
+        org.jetbrains.kotlinx.jupyter.api.libraries.ResourceLocation(
+            "js/plotlyConnect.js",
+            ResourcePathType.CLASSPATH_PATH
+        )
+    ))
+
+    private val plotlyConnectResource =
+        LibraryResource(name = "plotlyConnect", type = ResourceType.JS, bundles = listOf(plotlyConnectBundle))
 
     val port = System.getProperty("kscience.plotly.port")?.toInt() ?: 8882
 
     @UnstablePlotlyAPI
     override fun Builder.onLoaded() {
 
-        resource(jsResource)
+        resource(plotlyResource)
+        resource(plotlyConnectResource)
+
+        repositories("https://repo.kotlin.link")
 
         import(
             "space.kscience.plotly.*",
@@ -36,7 +53,7 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
             "kotlinx.html.*"
         )
 
-        render<HtmlFragment> {
+        render<PlotlyHtmlFragment> {
             HTML(it.toString())
         }
 
@@ -53,10 +70,14 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
         }
 
         onLoaded {
-            display(HTML(JupyterPlotlyServer.start(port).toString()))
+            logger.info("Starting JupyterPlotlyServer at $port")
+            val serverStart = JupyterPlotlyServer.start(port)
+            logger.info("JupyterPlotlyServer started at $port")
+            display(HTML(serverStart.toString()))
         }
 
         onShutdown {
+            logger.info("Stopping JupyterPlotlyServer")
             display(HTML(JupyterPlotlyServer.stop().toString()))
         }
     }

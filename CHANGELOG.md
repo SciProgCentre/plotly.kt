@@ -8,10 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Jupyter integration plugin for server
+- Separate static plot integration module in `plotlykt-jupyter`
 
 ### Changed
 - Package change (again) to `space.kscience`
 - Build tools `0.8.4`
+- HtmlFragment renamed to PlotlyHtmlFragment
 
 ### Deprecated
 

@@ -64,7 +64,7 @@ public fun PlotlyFragment.makeFile(
     show: Boolean = true,
     title: String = "Plotly.kt",
     resourceLocation: ResourceLocation = ResourceLocation.LOCAL,
-    additionalHeaders: List<HtmlFragment> = emptyList(),
+    additionalHeaders: List<PlotlyHtmlFragment> = emptyList(),
 ) {
     toPage(
         title = title,

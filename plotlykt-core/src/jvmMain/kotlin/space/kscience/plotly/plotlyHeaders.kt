@@ -2,16 +2,14 @@ package space.kscience.plotly
 
 import kotlinx.html.script
 import kotlinx.html.unsafe
+import space.kscience.plotly.Plotly.PLOTLY_CDN
 import java.nio.file.Path
 
 
 internal const val PLOTLY_SCRIPT_PATH = "/js/plotly.min.js"
 //const val PLOTLY_PROMISE_NAME = "promiseOfPlotly"
 
-private const val PLOTLY_CDN = "https://cdn.plot.ly/plotly-${Plotly.VERSION}.min.js"
-//"https://cdnjs.cloudflare.com/ajax/libs/plotly.js/${Plotly.VERSION}/plotly.min.js"
-
-public val cdnPlotlyHeader: HtmlFragment = HtmlFragment {
+public val cdnPlotlyHeader: PlotlyHtmlFragment = PlotlyHtmlFragment {
     script {
         type = "text/javascript"
         src = PLOTLY_CDN
@@ -22,7 +20,7 @@ public val cdnPlotlyHeader: HtmlFragment = HtmlFragment {
 internal fun localPlotlyHeader(
     path: Path,
     relativeScriptPath: String = "$assetsDirectory$PLOTLY_SCRIPT_PATH"
-) = HtmlFragment {
+) = PlotlyHtmlFragment {
     val relativePath = checkOrStoreFile(path, Path.of(relativeScriptPath), PLOTLY_SCRIPT_PATH)
     script {
         type = "text/javascript"
@@ -34,7 +32,7 @@ internal fun localPlotlyHeader(
 /**
  * A system-wide plotly store location
  */
-internal val systemPlotlyHeader = HtmlFragment {
+internal val systemPlotlyHeader = PlotlyHtmlFragment {
     val relativePath = checkOrStoreFile(
         Path.of("."),
         Path.of(System.getProperty("user.home")).resolve(".plotly/$assetsDirectory$PLOTLY_SCRIPT_PATH"),
@@ -50,10 +48,10 @@ internal val systemPlotlyHeader = HtmlFragment {
 /**
  * embedded plotly script
  */
-internal val embededPlotlyHeader = HtmlFragment {
+internal val embededPlotlyHeader = PlotlyHtmlFragment {
     script {
         unsafe {
-            val bytes = HtmlFragment::class.java.getResourceAsStream(PLOTLY_SCRIPT_PATH)!!.readAllBytes()
+            val bytes = PlotlyHtmlFragment::class.java.getResourceAsStream(PLOTLY_SCRIPT_PATH)!!.readAllBytes()
             +bytes.toString(Charsets.UTF_8)
         }
     }
@@ -63,7 +61,7 @@ internal val embededPlotlyHeader = HtmlFragment {
 internal fun inferPlotlyHeader(
     target: Path?,
     resourceLocation: ResourceLocation
-): HtmlFragment = when (resourceLocation) {
+): PlotlyHtmlFragment = when (resourceLocation) {
     ResourceLocation.REMOTE -> cdnPlotlyHeader
     ResourceLocation.LOCAL -> if (target != null) {
         localPlotlyHeader(target)

@@ -16,7 +16,7 @@ import kotlin.script.experimental.jvmhost.BasicJvmScriptingHost
 fun Plotly.page(
     source: SourceCode,
     title: String = "Plotly.kt",
-    headers: Array<HtmlFragment> = arrayOf(cdnPlotlyHeader),
+    headers: Array<PlotlyHtmlFragment> = arrayOf(cdnPlotlyHeader),
     logger: KLogger = KotlinLogging.logger("scripting")
 ): PlotlyPage {
 
@@ -62,7 +62,7 @@ fun Plotly.page(
 fun Plotly.page(
     file: File,
     title: String = "Plotly.kt",
-    headers: Array<HtmlFragment> = arrayOf(cdnPlotlyHeader),
+    headers: Array<PlotlyHtmlFragment> = arrayOf(cdnPlotlyHeader),
     logger: KLogger = KotlinLogging.logger("scripting")
 ): PlotlyPage = page(file.toScriptSource(), title, headers, logger)
 
@@ -71,6 +71,6 @@ fun Plotly.page(
 fun Plotly.page(
     string: String,
     title: String = "Plotly.kt",
-    headers: Array<HtmlFragment> = arrayOf(cdnPlotlyHeader),
+    headers: Array<PlotlyHtmlFragment> = arrayOf(cdnPlotlyHeader),
     logger: KLogger = KotlinLogging.logger("scripting")
 ): PlotlyPage = page(string.toScriptSource(), title, headers, logger)

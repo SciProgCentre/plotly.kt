@@ -27,7 +27,7 @@ import space.kscience.plotly.*
 public class JupyterPlotlyServer(
     private val port: Int = 8882,
     private val updateInterval: Long = 50,
-    private val parentScope: CoroutineScope = GlobalScope
+    private val parentScope: CoroutineScope = GlobalScope,
 ) : PlotlyRenderer {
 
     private var server: ApplicationEngine? = null
@@ -36,7 +36,11 @@ public class JupyterPlotlyServer(
 
     @OptIn(KtorExperimentalAPI::class)
     public suspend fun start() {
-        server = parentScope.embeddedServer(io.ktor.server.cio.CIO, port) {
+        server = parentScope.embeddedServer(
+            io.ktor.server.cio.CIO,
+            port,
+            parentCoroutineContext = Dispatchers.Default
+        ) {
             install(CORS) {
                 anyHost()
             }
@@ -62,13 +66,7 @@ public class JupyterPlotlyServer(
                     }
                 }
             }
-        }.start().also {
-            val deferred = CompletableDeferred<Application>()
-            it.environment.monitor.subscribe(ApplicationStarted) {
-                deferred.complete(it)
-            }
-            deferred.join()
-        }
+        }.start(false)
     }
 
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
@@ -129,7 +127,8 @@ public class JupyterPlotlyServer(
     }
 
     public companion object {
-        private fun loadJs(serverUrl: String) = HtmlFragment {
+
+        private fun loadJs(serverUrl: String) = PlotlyHtmlFragment {
 
             script {
                 type = "text/javascript"
@@ -140,7 +139,6 @@ public class JupyterPlotlyServer(
                     console.log("Starting up plotly script loader");
                     //initialize LaTeX for Jupyter
                     window.PlotlyConfig = {MathJaxConfig: 'local'};
-
                     window.startupPlotly = function (){
                         if (window.MathJax){ 
                             MathJax.Hub.Config({
@@ -183,9 +181,9 @@ public class JupyterPlotlyServer(
         /**
          * Start a dynamic update server
          */
-        public fun start(port: Int = 8882, updateInterval: Long = 50): HtmlFragment {
-            return if (jupyterPlotlyServer!= null) {
-                loadJs("//localhost:$port") + HtmlFragment {
+        public fun start(port: Int = 8882, updateInterval: Long = 50): PlotlyHtmlFragment {
+            return if (jupyterPlotlyServer != null) {
+                loadJs("//localhost:$port") + PlotlyHtmlFragment {
                     div {
                         style = "color: blue;"
                         +"The server is already running on ${jupyterPlotlyServer?.port}. It must be shut down first to be restarted."
@@ -193,7 +191,9 @@ public class JupyterPlotlyServer(
                 }
             } else {
                 runBlocking {
-                    jupyterPlotlyServer = JupyterPlotlyServer(port, updateInterval).apply { start() }
+                    jupyterPlotlyServer = JupyterPlotlyServer(port, updateInterval).apply {
+                        start()
+                    }
                 }
                 loadJs("//localhost:$port")
             }
@@ -202,19 +202,19 @@ public class JupyterPlotlyServer(
         /**
          * Stop dynamic update server
          */
-        public fun stop(): HtmlFragment {
+        public fun stop(): PlotlyHtmlFragment {
             if (jupyterPlotlyServer == null) {
-                return HtmlFragment {
+                return PlotlyHtmlFragment {
                     div {
                         +"Update server is not running"
                     }
                 }
             }
-            runBlocking {
+            runBlocking(Dispatchers.Default) {
                 jupyterPlotlyServer?.stop()
                 jupyterPlotlyServer = null
             }
-            return HtmlFragment {
+            return PlotlyHtmlFragment {
                 div {
                     +"Update server is stopped"
                 }
@@ -222,7 +222,7 @@ public class JupyterPlotlyServer(
         }
 
         public fun renderPlot(plot: Plot): String = createHTML().div {
-            plot(plot, config = PlotlyConfig{
+            plot(plot, config = PlotlyConfig {
                 responsive = true
             }, renderer = jupyterPlotlyServer ?: StaticPlotlyRenderer)
         }

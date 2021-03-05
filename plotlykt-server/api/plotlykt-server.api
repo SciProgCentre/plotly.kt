@@ -12,9 +12,9 @@ public final class space/kscience/plotly/server/JupyterPlotlyServer$Companion {
 	public final fun renderFragment (Lspace/kscience/plotly/PlotlyFragment;)Ljava/lang/String;
 	public final fun renderPage (Lspace/kscience/plotly/PlotlyPage;)Ljava/lang/String;
 	public final fun renderPlot (Lspace/kscience/plotly/Plot;)Ljava/lang/String;
-	public final fun start (IJ)Lspace/kscience/plotly/HtmlFragment;
-	public static synthetic fun start$default (Lspace/kscience/plotly/server/JupyterPlotlyServer$Companion;IJILjava/lang/Object;)Lspace/kscience/plotly/HtmlFragment;
-	public final fun stop ()Lspace/kscience/plotly/HtmlFragment;
+	public final fun start (IJ)Lspace/kscience/plotly/PlotlyHtmlFragment;
+	public static synthetic fun start$default (Lspace/kscience/plotly/server/JupyterPlotlyServer$Companion;IJILjava/lang/Object;)Lspace/kscience/plotly/PlotlyHtmlFragment;
+	public final fun stop ()Lspace/kscience/plotly/PlotlyHtmlFragment;
 }
 
 public final class space/kscience/plotly/server/MetaChangeCollector {

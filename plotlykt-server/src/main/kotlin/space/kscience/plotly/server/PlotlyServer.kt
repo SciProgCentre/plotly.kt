@@ -41,7 +41,7 @@ private class ServerPlotlyRenderer(
     val updateMode: PlotlyUpdateMode,
     val updateInterval: Long,
     val embedData: Boolean,
-    val plotCallback: (plotId: String, plot: Plot) -> Unit
+    val plotCallback: (plotId: String, plot: Plot) -> Unit,
 ) : PlotlyRenderer {
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         plotCallback(plotId, plot)
@@ -52,7 +52,7 @@ private class ServerPlotlyRenderer(
                 encodedPath = baseUrl.encodedPath + "/data/$plotId"
             )
             script {
-                if(embedData) {
+                if (embedData) {
                     unsafe {
                         //language=JavaScript
                         +"""
@@ -103,7 +103,8 @@ private class ServerPlotlyRenderer(
 
 }
 
-public class PlotlyServer internal constructor(private val routing: Routing, private val rootRoute: String) : Configurable {
+public class PlotlyServer internal constructor(private val routing: Routing, private val rootRoute: String) :
+    Configurable {
     override val config: Config = Config()
     public var updateMode: PlotlyUpdateMode by config.enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
     public var updateInterval: Long by config.long(300, key = UPDATE_INTERVAL_KEY)
@@ -112,17 +113,17 @@ public class PlotlyServer internal constructor(private val routing: Routing, pri
     /**
      * a list of headers that should be applied to all pages
      */
-    private val globalHeaders: ArrayList<HtmlFragment> = ArrayList<HtmlFragment>()
+    private val globalHeaders: ArrayList<PlotlyHtmlFragment> = ArrayList<PlotlyHtmlFragment>()
 
     public fun header(block: TagConsumer<*>.() -> Unit) {
-        globalHeaders.add(HtmlFragment(block))
+        globalHeaders.add(PlotlyHtmlFragment(block))
     }
 
     public fun page(
         plotlyFragment: PlotlyFragment,
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
-        headers: List<HtmlFragment> = emptyList()
+        headers: List<PlotlyHtmlFragment> = emptyList(),
     ) {
         routing.createRouteFromPath(rootRoute).apply {
             val plots = HashMap<String, Plot>()
@@ -194,9 +195,10 @@ public class PlotlyServer internal constructor(private val routing: Routing, pri
                             title(title)
                         }
                         body {
-                            val container = ServerPlotlyRenderer(url, updateMode, updateInterval, embedData) { plotId, plot ->
-                                plots[plotId] = plot
-                            }
+                            val container =
+                                ServerPlotlyRenderer(url, updateMode, updateInterval, embedData) { plotId, plot ->
+                                    plots[plotId] = plot
+                                }
                             with(plotlyFragment) {
                                 render(container)
                             }
@@ -210,8 +212,8 @@ public class PlotlyServer internal constructor(private val routing: Routing, pri
     public fun page(
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
-        headers: List<HtmlFragment> = emptyList(),
-        content: FlowContent.(renderer: PlotlyRenderer) -> Unit
+        headers: List<PlotlyHtmlFragment> = emptyList(),
+        content: FlowContent.(renderer: PlotlyRenderer) -> Unit,
     ) {
         page(PlotlyFragment(content), route, title, headers)
     }
@@ -282,7 +284,7 @@ public fun Plotly.serve(
     scope: CoroutineScope = GlobalScope,
     host: String = "localhost",
     port: Int = 7777,
-    block: PlotlyServer.() -> Unit
+    block: PlotlyServer.() -> Unit,
 ): ApplicationEngine = scope.embeddedServer(io.ktor.server.cio.CIO, port, host) {
     plotlyModule().apply(block)
 }.start()

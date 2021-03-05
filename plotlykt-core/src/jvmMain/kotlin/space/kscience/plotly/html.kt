@@ -6,13 +6,13 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardOpenOption
 
-public class HtmlFragment(public val visit: TagConsumer<*>.() -> Unit) {
+public class PlotlyHtmlFragment(public val visit: TagConsumer<*>.() -> Unit) {
     override fun toString(): String {
         return createHTML().also(visit).finalize()
     }
 }
 
-public operator fun HtmlFragment.plus(other: HtmlFragment): HtmlFragment = HtmlFragment {
+public operator fun PlotlyHtmlFragment.plus(other: PlotlyHtmlFragment): PlotlyHtmlFragment = PlotlyHtmlFragment {
     this@plus.run { visit() }
     other.run { visit() }
 }
@@ -21,7 +21,7 @@ public operator fun HtmlFragment.plus(other: HtmlFragment): HtmlFragment = HtmlF
  * Create a html (including headers) string from plot
  */
 public fun Plot.toHTML(
-    vararg headers: HtmlFragment = arrayOf(cdnPlotlyHeader),
+    vararg headers: PlotlyHtmlFragment = arrayOf(cdnPlotlyHeader),
     config: PlotlyConfig = PlotlyConfig(),
 ): String {
     return createHTML().html {
@@ -53,7 +53,7 @@ internal fun checkOrStoreFile(basePath: Path, filePath: Path, resource: String):
     } else {
         //TODO add logging
 
-        val bytes = HtmlFragment::class.java.getResourceAsStream(resource)!!.readAllBytes()
+        val bytes = PlotlyHtmlFragment::class.java.getResourceAsStream(resource)!!.readAllBytes()
         Files.createDirectories(fullPath.parent)
         Files.write(fullPath, bytes, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)
     }
@@ -72,7 +72,7 @@ public fun localScriptHeader(
     basePath: Path,
     scriptPath: Path,
     resource: String,
-): HtmlFragment = HtmlFragment {
+): PlotlyHtmlFragment = PlotlyHtmlFragment {
     val relativePath = checkOrStoreFile(basePath, scriptPath, resource)
     script {
         type = "text/javascript"
@@ -86,7 +86,7 @@ public fun localCssHeader(
     basePath: Path,
     cssPath: Path,
     resource: String,
-): HtmlFragment = HtmlFragment {
+): PlotlyHtmlFragment = PlotlyHtmlFragment {
     val relativePath = checkOrStoreFile(basePath, cssPath, resource)
     link {
         rel = "stylesheet"
@@ -94,7 +94,7 @@ public fun localCssHeader(
     }
 }
 
-public val mathJaxHeader: HtmlFragment = HtmlFragment {
+public val mathJaxHeader: PlotlyHtmlFragment = PlotlyHtmlFragment {
     script {
         type = "text/x-mathjax-config"
         unsafe {
