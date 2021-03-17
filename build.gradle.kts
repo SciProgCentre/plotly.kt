@@ -4,7 +4,7 @@ plugins {
     id("ru.mipt.npm.gradle.project")
 }
 
-val dataforgeVersion by extra("0.4.0-dev-1")
+val dataforgeVersion by extra("0.4.0-dev-2")
 
 allprojects {
     group = "space.kscience"
@@ -25,8 +25,9 @@ apiValidation {
 }
 
 ksciencePublish{
-    githubProject = "plotly.kt"
-    spaceRepo = "https://maven.pkg.jetbrains.space/mipt-npm/p/sci/maven"
+    github("plotly.kt")
+    space()
+    sonatype()
 }
 
 readme {

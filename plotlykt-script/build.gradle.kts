@@ -25,5 +25,5 @@ dependencies {
 }
 
 application{
-    mainClassName = "kscience.plotly.script.CliKt"
+    mainClassName = "space.kscience.plotly.script.CliKt"
 }
