@@ -26,6 +26,18 @@ class PlotlyView : View("Hello PlotlyFX") {
         vbox {
             stackpane {
                 webview {
+                    engine.isJavaScriptEnabled = true
+                    engine.loadWorker.stateProperty().onChange {
+                        log.info("WebEngine worker state: $it")
+                    }
+
+                    engine.loadWorker.exceptionProperty().onChange {
+                        log.severe(it?.stackTraceToString())
+                    }
+                    engine.loadWorker.workDoneProperty().onChange {
+                        log.info("Work done: $it")
+                    }
+
                     engine.setOnError {
                         log.warning(it.message)
                     }
@@ -35,7 +47,8 @@ class PlotlyView : View("Hello PlotlyFX") {
 
                     controller.address.onChange {
                         if (it != null) {
-                            engine.load(it)
+                            log.info("Displaying $it")
+                            engine.load(it.replace("localhost", "127.0.0.1"))
                         }
                     }
                 }

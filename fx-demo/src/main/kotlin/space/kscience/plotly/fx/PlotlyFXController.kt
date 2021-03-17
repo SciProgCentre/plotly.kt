@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import tornadofx.*
+import java.net.URI
 
 class PlotlyFXController : Controller() {
 
@@ -33,12 +34,10 @@ class PlotlyFXController : Controller() {
     val address = SimpleStringProperty()
 
     fun displayPage(page: String) {
-        if (server != null) {
-            address.set(ADDRESS_BASE + page)
+        server?.let {
+            val connector = it.environment.connectors.first()
+            val uri = URI("http", null, connector.host, connector.port, null, null, null)
+            address.set("$uri/$page")
         }
-    }
-
-    companion object {
-        const val ADDRESS_BASE = "http://localhost:7777/"
     }
 }

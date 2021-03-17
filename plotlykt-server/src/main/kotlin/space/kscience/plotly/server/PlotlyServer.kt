@@ -2,11 +2,12 @@ package space.kscience.plotly.server
 
 import io.ktor.application.*
 import io.ktor.features.CORS
+import io.ktor.features.CallLogging
 import io.ktor.features.origin
 import io.ktor.html.respondHtml
 import io.ktor.http.*
 import io.ktor.http.cio.websocket.Frame
-import io.ktor.http.content.resources
+import io.ktor.http.content.resource
 import io.ktor.http.content.static
 import io.ktor.response.respond
 import io.ktor.response.respondText
@@ -195,10 +196,11 @@ public class PlotlyServer internal constructor(private val routing: Routing, pri
                             title(title)
                         }
                         body {
-                            val container =
-                                ServerPlotlyRenderer(url, updateMode, updateInterval, embedData) { plotId, plot ->
-                                    plots[plotId] = plot
-                                }
+                            val container = ServerPlotlyRenderer(
+                                url, updateMode, updateInterval, embedData
+                            ) { plotId, plot ->
+                                plots[plotId] = plot
+                            }
                             with(plotlyFragment) {
                                 render(container)
                             }
@@ -249,7 +251,9 @@ public fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer 
     routing {
         route(route) {
             static {
-                resources()
+                resource("js/plotly.min.js")
+                resource("js/plotlyConnect.js")
+                //resources()
             }
         }
     }
@@ -286,6 +290,7 @@ public fun Plotly.serve(
     port: Int = 7777,
     block: PlotlyServer.() -> Unit,
 ): ApplicationEngine = scope.embeddedServer(io.ktor.server.cio.CIO, port, host) {
+    install(CallLogging)
     plotlyModule().apply(block)
 }.start()
 

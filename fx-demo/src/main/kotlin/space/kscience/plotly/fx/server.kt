@@ -16,7 +16,7 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-fun serve(scale: ObservableIntegerValue) = Plotly.serve {
+fun serve(scale: ObservableIntegerValue) = Plotly.serve(port = 7778) {
     embedData = true //Should be set this way to avoid FX browser bug
 
     page("Static") {
