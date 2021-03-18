@@ -3,6 +3,8 @@
 ![Gradle build](https://github.com/mipt-npm/plotly.kt/workflows/Gradle%20build/badge.svg)
 [![Kotlin JS IR supported](https://img.shields.io/badge/Kotlin%2FJS-IR%20supported-yellow)](https://kotl.in/jsirsupported)
 
+[![Kotlin JS IR supported](https://img.shields.io/badge/Kotlin%2FJS-IR%20supported-yellow)](https://kotl.in/jsirsupported)
+
 ![Plotlykt logo](./docs/logo_text.svg)
 
 ## Artifact details
@@ -11,6 +13,8 @@
 
 ## Compatibility note
 The current `0.4.0-dev-1` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.1.0. The JVM part requires JVM 11 to run.
+
+Plotly.kt currently targets JVM 11 and newer, so appropriate target should be used for compillation. If you need to support older JVMs, please open an [issue](https://github.com/mipt-npm/plotly.kt/issues) with your use-case.
 
 # TL;DR
 See [examples](./examples/src/main/kotlin).
@@ -96,6 +100,8 @@ dependencies {
 
 
 If you do not need the server, then use plotlykt-core instead.
+
+**NOTICE** due to problems with kolin-logging publishing, DataForge currently uses a separate fork of the library. So `maven("https://dl.bintray.com/mipt-npm/dev")` is mandatory right now. Follow #66 for solution.
 
 # Naming
 The library keeps original Plotly API naming wherever it is possible. There are some usability shortcuts, usually provided via kotlin extensions, included in order to simplify user interaction. For example, `text` and `shape` extensions in the top level API.
