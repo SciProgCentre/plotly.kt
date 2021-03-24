@@ -18,7 +18,7 @@ public external interface DownloadImgOpts {
 
 
 @JsName("Plotly")
-@JsModule("plotly.js/dist/plotly-basic")
+@JsModule("plotly.js/dist/plotly")
 @JsNonModule
 public external object PlotlyJs {
     public fun newPlot(

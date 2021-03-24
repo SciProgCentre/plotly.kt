@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Jupyter integration plugin for server
 - Separate static plot integration module in `plotlykt-jupyter`
+- Expanded JS demo
 
 ### Changed
 - Package change (again) to `space.kscience`
@@ -21,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Local bootstrap
 
 ### Fixed
+- Incomplete coverage in JS (#70)
 
 ### Security
 

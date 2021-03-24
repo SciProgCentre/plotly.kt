@@ -27,7 +27,6 @@ private fun Scheme.toJson(): JsonObject = rootNode?.toJson() ?: JsonObject(empty
  */
 public fun Scheme.toJsonString(): String = toJson().toString()
 
-
 private fun List<Scheme>.toJson(): JsonArray = buildJsonArray {
     forEach { add(it.toJson()) }
 }
