@@ -4,11 +4,11 @@ plugins {
     id("ru.mipt.npm.gradle.project")
 }
 
-val dataforgeVersion by extra("0.4.0-dev-2")
+val dataforgeVersion by extra("0.4.0")
 
 allprojects {
     group = "space.kscience"
-    version = "0.4.0-dev-2"
+    version = "0.4.0"
 
     repositories {
         maven("https://repo.kotlin.link")
@@ -16,7 +16,7 @@ allprojects {
     }
 
     if(name.startsWith("plotlykt")){
-        apply(plugin = "ru.mipt.npm.gradle.publish")
+        apply<MavenPublishPlugin>()
     }
 }
 

@@ -210,9 +210,6 @@ public final class space/kscience/plotly/PlotlyPageKt {
 
 public abstract interface class space/kscience/plotly/PlotlyRenderer {
 	public abstract fun renderPlot (Lkotlinx/html/FlowContent;Lspace/kscience/plotly/Plot;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;)Lspace/kscience/plotly/Plot;
-}
-
-public final class space/kscience/plotly/PlotlyRenderer$DefaultImpls {
 	public static synthetic fun renderPlot$default (Lspace/kscience/plotly/PlotlyRenderer;Lkotlinx/html/FlowContent;Lspace/kscience/plotly/Plot;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;ILjava/lang/Object;)Lspace/kscience/plotly/Plot;
 }
 
