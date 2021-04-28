@@ -10,7 +10,6 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
-import kotlin.time.milliseconds
 import kotlin.time.toDuration
 
 //extensions for DataForge
@@ -204,7 +203,7 @@ internal fun MutableItemProvider.duration(
         val name = key ?: property.name.asName()
         return when (val item = getItem(name)) {
             null -> default
-            is MetaItemValue -> item.value.long.milliseconds
+            is MetaItemValue -> Duration.milliseconds(item.value.long)
             is MetaItemNode -> {
                 val value = item.node["value"].long ?: error("Duration value is not defined")
                 val unit = item.node["unit"].enum<DurationUnit>() ?: DurationUnit.MILLISECONDS
@@ -218,7 +217,7 @@ internal fun MutableItemProvider.duration(
         if (value == null) {
             remove(name)
         } else {
-            set(name + "value", value.inMilliseconds)
+            set(name + "value", value.toDouble(DurationUnit.MILLISECONDS))
             set(name + "unit", DurationUnit.MILLISECONDS)
         }
     }

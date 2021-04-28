@@ -50,11 +50,11 @@ private fun Config.collectChanges(scope: CoroutineScope): MetaChangeCollector {
     }
 }
 
-private fun Config.flowChanges(scope: CoroutineScope, updateInterval: Long): Flow<Meta> {
+private fun Config.flowChanges(scope: CoroutineScope, updateInterval: Int): Flow<Meta> {
     val collector = collectChanges(scope)
     return flow {
         while (true) {
-            delay(updateInterval)
+            delay(updateInterval.toLong())
             val meta = collector.read()
             if (!meta.isEmpty()) {
                 emit(meta)
@@ -66,7 +66,7 @@ private fun Config.flowChanges(scope: CoroutineScope, updateInterval: Long): Flo
 public fun Plot.collectUpdates(
     plotId: String,
     scope: CoroutineScope,
-    updateInterval: Long,
+    updateInterval: Int,
 ): Flow<Update> = config.flowChanges(scope, updateInterval).transform { change ->
     change["layout"].node?.let { emit(Update.Layout(plotId, it)) }
     change.getIndexed("data").forEach { (index, metaItem) ->

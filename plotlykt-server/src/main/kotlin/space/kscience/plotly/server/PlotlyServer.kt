@@ -37,10 +37,10 @@ public enum class PlotlyUpdateMode {
     PULL
 }
 
-private class ServerPlotlyRenderer(
+internal class ServerPlotlyRenderer(
     val baseUrl: Url,
     val updateMode: PlotlyUpdateMode,
-    val updateInterval: Long,
+    val updateInterval: Int,
     val embedData: Boolean,
     val plotCallback: (plotId: String, plot: Plot) -> Unit,
 ) : PlotlyRenderer {
@@ -104,11 +104,12 @@ private class ServerPlotlyRenderer(
 
 }
 
-public class PlotlyServer internal constructor(private val routing: Routing, private val rootRoute: String) :
-    Configurable {
+public class PlotlyServer internal constructor(
+    private val routing: Routing, private val rootRoute: String,
+) : Configurable {
     override val config: Config = Config()
     public var updateMode: PlotlyUpdateMode by config.enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
-    public var updateInterval: Long by config.long(300, key = UPDATE_INTERVAL_KEY)
+    public var updateInterval: Int by config.int(300, key = UPDATE_INTERVAL_KEY)
     public var embedData: Boolean by config.boolean(false)
 
     /**
@@ -266,7 +267,7 @@ public fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer 
 /**
  * Configure server to start sending updates in push mode. Does not affect loaded pages
  */
-public fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply {
+public fun PlotlyServer.pushUpdates(interval: Int = 100): PlotlyServer = apply {
     updateMode = PlotlyUpdateMode.PUSH
     updateInterval = interval
 }
@@ -275,7 +276,7 @@ public fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply 
  * Configure client to request regular updates from server. Pull updates are more expensive than push updates since
  * they contain the full plot data and server can't decide what to send.
  */
-public fun PlotlyServer.pullUpdates(interval: Long = 1000): PlotlyServer = apply {
+public fun PlotlyServer.pullUpdates(interval: Int = 1000): PlotlyServer = apply {
     updateMode = PlotlyUpdateMode.PULL
     updateInterval = interval
 }
