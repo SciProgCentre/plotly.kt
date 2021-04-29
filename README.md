@@ -53,7 +53,7 @@ Plotly.kt could be run in a JavaFX browser. An example project is presented in [
 ## Kotlin jupyter kernel (experimental)
 Plotly.kt comes with (for now experimental) support for integration with [Kotlin Jupyter kernel](https://github.com/Kotlin/kotlin-jupyter).
 
-The examples of the notebooks are shown in [notebooks](./notebooks) directory. Plotly.kt uses Kotlin jupyter notebook API for integration (available in kernel version `0.8.3.236` and later). In order to load the library together with automatic imports one need to simply load a library in a following way:
+The examples of the notebooks are shown in [notebooks](examples/notebooks) directory. Plotly.kt uses Kotlin jupyter notebook API for integration (available in kernel version `0.8.3.236` and later). In order to load the library together with automatic imports one need to simply load a library in a following way:
 
 ```kotlin
 @file:Repository("https://repo.kotlin.link")

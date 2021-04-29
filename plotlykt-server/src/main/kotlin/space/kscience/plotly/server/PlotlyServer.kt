@@ -112,6 +112,8 @@ public class PlotlyServer internal constructor(
     public var updateInterval: Int by config.int(300, key = UPDATE_INTERVAL_KEY)
     public var embedData: Boolean by config.boolean(false)
 
+    internal val root by lazy {  routing.createRouteFromPath(rootRoute)}
+
     /**
      * a list of headers that should be applied to all pages
      */
@@ -121,47 +123,51 @@ public class PlotlyServer internal constructor(
         globalHeaders.add(PlotlyHtmlFragment(block))
     }
 
+    internal fun Route.servePlotData(plots: Map<String, Plot>) {
+        //Update websocket
+        webSocket("ws/{id}") {
+            val plotId: String = call.parameters["id"] ?: error("Plot id not defined")
+
+            application.log.debug("Opened server socket for $plotId")
+
+            val plot = plots[plotId] ?: error("Plot with id='$plotId' not registered")
+
+            try {
+                plot.collectUpdates(plotId, this, updateInterval).collect { update ->
+                    val json = update.toJson()
+                    outgoing.send(Frame.Text(json.toString()))
+                }
+            } catch (ex: Exception) {
+                application.log.debug("Closed server socket for $plotId")
+            }
+        }
+        //Plots in their json representation
+        get("data/{id}") {
+            val id: String = call.parameters["id"] ?: error("Plot id not defined")
+
+            val plot: Plot? = plots[id]
+            if (plot == null) {
+                call.respond(HttpStatusCode.NotFound, "Plot with id = $id not found")
+            } else {
+                call.respondText(
+                    plot.toJsonString(),
+                    contentType = ContentType.Application.Json,
+                    status = HttpStatusCode.OK
+                )
+            }
+        }
+    }
+
     public fun page(
         plotlyFragment: PlotlyFragment,
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
         headers: List<PlotlyHtmlFragment> = emptyList(),
     ) {
-        routing.createRouteFromPath(rootRoute).apply {
+        root.apply {
             val plots = HashMap<String, Plot>()
             route(route) {
-                //Update websocket
-                webSocket("ws/{id}") {
-                    val plotId: String = call.parameters["id"] ?: error("Plot id not defined")
-
-                    application.log.debug("Opened server socket for $plotId")
-
-                    val plot = plots[plotId] ?: error("Plot with id='$plotId' not registered")
-
-                    try {
-                        plot.collectUpdates(plotId, this, updateInterval).collect { update ->
-                            val json = update.toJson()
-                            outgoing.send(Frame.Text(json.toString()))
-                        }
-                    } catch (ex: Exception) {
-                        application.log.debug("Closed server socket for $plotId")
-                    }
-                }
-                //Plots in their json representation
-                get("data/{id}") {
-                    val id: String = call.parameters["id"] ?: error("Plot id not defined")
-
-                    val plot: Plot? = plots[id]
-                    if (plot == null) {
-                        call.respond(HttpStatusCode.NotFound, "Plot with id = $id not found")
-                    } else {
-                        call.respondText(
-                            plot.toJsonString(),
-                            contentType = ContentType.Application.Json,
-                            status = HttpStatusCode.OK
-                        )
-                    }
-                }
+                servePlotData(plots)
                 //filled pages
                 get {
                     val origin = call.request.origin

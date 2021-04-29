@@ -3,7 +3,8 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
+    maven("https://repo.kotlin.link")
+    mavenCentral()
     jcenter()
 }
 
@@ -11,7 +12,7 @@ dependencies {
     implementation(project(":plotlykt-server"))
     implementation(kotlin("script-runtime"))
     implementation(project(":plotlykt-script"))
-    implementation("de.mpicbg.scicomp:krangl:0.13")
+    implementation("com.github.holgerbrandl:krangl:0.16.2")
     implementation("org.apache.commons:commons-csv:1.8")
 }
 

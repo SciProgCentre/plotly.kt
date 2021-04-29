@@ -1,20 +1,7 @@
 package space.kscience.plotly.server
 
-import io.ktor.application.install
-import io.ktor.application.log
-import io.ktor.features.CORS
-import io.ktor.http.cio.websocket.Frame
-import io.ktor.http.content.resources
-import io.ktor.http.content.static
-import io.ktor.routing.routing
+import io.ktor.http.URLBuilder
 import io.ktor.server.engine.ApplicationEngine
-import io.ktor.server.engine.embeddedServer
-import io.ktor.websocket.WebSockets
-import io.ktor.websocket.application
-import io.ktor.websocket.webSocket
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.runBlocking
 import kotlinx.html.div
 import kotlinx.html.stream.createHTML
 import kotlinx.html.style
@@ -23,170 +10,66 @@ import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
 import org.slf4j.LoggerFactory
+import space.kscience.dataforge.meta.Scheme
+import space.kscience.dataforge.meta.int
 import space.kscience.plotly.*
 import space.kscience.plotly.Plotly.PLOTLY_CDN
+
+public class PlotlyServerConfig() : Scheme() {
+    public var port: Int by int(System.getProperty("space.kscience.plotly.port")?.toInt() ?: 8882)
+    public var updateInterval: Int by int(100)
+}
 
 @JupyterLibrary
 internal class PlotlyServerIntegration : JupyterIntegration() {
     private val logger = LoggerFactory.getLogger(javaClass)
 
-    private var port = System.getProperty("space.kscience.plotly.port")?.toInt() ?: 8882
-    private var updateInterval = 50
-
     private var server: ApplicationEngine? = null
 
     private val plots = HashMap<String, Plot>()
 
-    private val renderer: PlotlyRenderer = StaticPlotlyRenderer
+    private var renderer: PlotlyRenderer = StaticPlotlyRenderer
 
-//    private fun loadJs(serverUrl: String) = PlotlyHtmlFragment {
-//
-//        script {
-//            type = "text/javascript"
-//            unsafe {
-//                //language=JavaScript
-//                +"""
-//                (function() {
-//                    console.log("Starting up plotly script loader");
-//                    //initialize LaTeX for Jupyter
-//                    window.PlotlyConfig = {MathJaxConfig: 'local'};
-//                    window.startupPlotly = function (){
-//                        if (window.MathJax){
-//                            MathJax.Hub.Config({
-//                                SVG: {
-//                                    font: "STIX-Web"
-//                                }
-//                            });
-//                        }
-//                        console.info("Calling deferred operations in Plotly queue.")
-//                        if(window.plotlyCallQueue){
-//                            window.plotlyCallQueue.forEach(function(theCall) {theCall();});
-//                            window.plotlyCallQueue = [];
-//                        }
-//                    }
-//                })();
-//                """.trimIndent()
-//            }
-//        }
-//
-//        script {
-//            type = "text/javascript"
-//            src = "$serverUrl/js/plotly.min.js"
-//        }
-//
-//        script {
-//            type = "text/javascript"
-//            val connectorScript = javaClass.getResource("/js/plotlyConnect.js")!!.readText()
-//            unsafe {
-//                +connectorScript
-//            }
-//            unsafe {
-//                //language=JavaScript
-//                +"window.startupPlotly()"
-//            }
-//        }
-//    }
-
-    private fun start(): PlotlyHtmlFragment {
-        return if (server != null) {
-            PlotlyHtmlFragment {
+    private fun start(config: PlotlyServerConfig): PlotlyHtmlFragment = if (server != null) {
+        PlotlyHtmlFragment {
+            div {
+                style = "color: blue;"
+                +"The server is already running on ${config.port}. It must be shut down first to be restarted."
+            }
+        }
+    } else {
+        fun doStart(): PlotlyHtmlFragment {
+            server = Plotly.serve(port = config.port) {
+                root.servePlotData(plots)
+            }
+            val serverUrl = URLBuilder(port = config.port).build()
+            renderer = ServerPlotlyRenderer(
+                serverUrl, PlotlyUpdateMode.PUSH,
+                config.updateInterval,
+                true
+            ) { plotId, plot ->
+                plots[plotId] = plot
+            }
+            return PlotlyHtmlFragment {
                 div {
                     style = "color: blue;"
-                    +"The server is already running on ${port}. It must be shut down first to be restarted."
-                }
-            }
-        } else {
-            runBlocking {
-                server = embeddedServer(
-                    io.ktor.server.cio.CIO,
-                    port,
-                    parentCoroutineContext = Dispatchers.Default
-                ) {
-                    install(CORS) {
-                        anyHost()
-                    }
-                    install(WebSockets)
-                    routing {
-                        static {
-                            resources()
-                        }
-                        webSocket("ws/{id}") {
-                            val plotId: String = call.parameters["id"] ?: error("Plot id not defined")
-
-                            application.log.debug("Opened server socket for $plotId")
-
-                            val plot = plots[plotId] ?: error("Plot with id='$plotId' not registered")
-
-                            try {
-                                plot.collectUpdates(plotId, this, updateInterval).collect { update ->
-                                    val json = update.toJson()
-                                    outgoing.send(Frame.Text(json.toString()))
-                                }
-                            } catch (ex: Exception) {
-                                application.log.debug("Closed server socket for $plotId")
-                            }
-                        }
-                    }
-                }.start(false)
-            }
-            PlotlyHtmlFragment {
-                div {
-                    style = "color: blue;"
-                    +"Started plotly server on ${port}"
+                    +"Started plotly server on ${config.port}"
                 }
             }
         }
-
+        config.onChange(this) { name, oldItem, newItem ->
+            if (oldItem != newItem) {
+                logger.info("Plotly server config parameter $name changed to $newItem")
+                doStart()
+            }
+        }
+        doStart()
     }
-
-//    fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
-//        plots[plotId] = plot
-//        div {
-//            id = plotId
-//            script {
-//                unsafe {
-//                    //language=JavaScript
-//                    +"""
-//                        if(typeof Plotly !== "undefined"){
-//                            makePlot(
-//                                    '$plotId',
-//                                    ${plot.data.toJsonString()},
-//                                    ${plot.layout.toJsonString()},
-//                                    ${config.toJsonString()}
-//                            );
-//                        } else {
-//                            console.error("Plotly not loaded")
-//                        }
-//                    """.trimIndent()
-//                }
-//            }
-//            if (server?.application?.isActive == true) {
-//                script {
-//                    attributes["id"] = "$plotId-push"
-//                    val wsUrl = url {
-//                        host = "localhost"
-//                        port = this@PlotlyServerIntegration.port
-//                        protocol = URLProtocol.WS
-//                        encodedPath = "/ws/$plotId"
-//                    }
-//                    unsafe {
-//                        //language=JavaScript
-//                        +"""
-//
-//                            startPush('$plotId', '$wsUrl');
-//
-//                        """
-//                    }
-//                }
-//            }
-//        }
-//        return plot
-//    }
 
     private fun stop() {
-        server?.stop(1000, 5000)
+        server?.stop(1000, 2000)
+        server = null
     }
-
 
     @UnstablePlotlyAPI
     override fun Builder.onLoaded() {
@@ -210,16 +93,16 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
             "kotlinx.html.*"
         )
 
+        import<PlotlyServerConfig>()
+
         render<PlotlyHtmlFragment> {
             HTML(it.toString())
         }
 
         render<Plot> {
             HTML(
-                renderer.run {
-                    createHTML().div {
-                        renderPlot(it)
-                    }
+                createHTML().div {
+                    renderer.run { renderPlot(it) }
                 }
             )
         }
@@ -237,9 +120,10 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
         }
 
         onLoaded {
-            logger.info("Starting JupyterPlotlyServer at $port")
-            val serverStart = start()
-            logger.info("JupyterPlotlyServer started at $port")
+            val config = execute("val plotly = PlotlyServerConfig(); plotly;").value as PlotlyServerConfig
+            logger.info("Starting JupyterPlotlyServer with $config")
+            val serverStart = start(config)
+            logger.info("JupyterPlotlyServer started with $config")
             display(HTML(serverStart.toString()))
         }
 
