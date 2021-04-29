@@ -37,10 +37,10 @@ public enum class PlotlyUpdateMode {
     PULL
 }
 
-private class ServerPlotlyRenderer(
+internal class ServerPlotlyRenderer(
     val baseUrl: Url,
     val updateMode: PlotlyUpdateMode,
-    val updateInterval: Long,
+    val updateInterval: Int,
     val embedData: Boolean,
     val plotCallback: (plotId: String, plot: Plot) -> Unit,
 ) : PlotlyRenderer {
@@ -104,12 +104,15 @@ private class ServerPlotlyRenderer(
 
 }
 
-public class PlotlyServer internal constructor(private val routing: Routing, private val rootRoute: String) :
-    Configurable {
+public class PlotlyServer internal constructor(
+    private val routing: Routing, private val rootRoute: String,
+) : Configurable {
     override val config: Config = Config()
     public var updateMode: PlotlyUpdateMode by config.enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
-    public var updateInterval: Long by config.long(300, key = UPDATE_INTERVAL_KEY)
+    public var updateInterval: Int by config.int(300, key = UPDATE_INTERVAL_KEY)
     public var embedData: Boolean by config.boolean(false)
+
+    internal val root by lazy {  routing.createRouteFromPath(rootRoute)}
 
     /**
      * a list of headers that should be applied to all pages
@@ -120,47 +123,51 @@ public class PlotlyServer internal constructor(private val routing: Routing, pri
         globalHeaders.add(PlotlyHtmlFragment(block))
     }
 
+    internal fun Route.servePlotData(plots: Map<String, Plot>) {
+        //Update websocket
+        webSocket("ws/{id}") {
+            val plotId: String = call.parameters["id"] ?: error("Plot id not defined")
+
+            application.log.debug("Opened server socket for $plotId")
+
+            val plot = plots[plotId] ?: error("Plot with id='$plotId' not registered")
+
+            try {
+                plot.collectUpdates(plotId, this, updateInterval).collect { update ->
+                    val json = update.toJson()
+                    outgoing.send(Frame.Text(json.toString()))
+                }
+            } catch (ex: Exception) {
+                application.log.debug("Closed server socket for $plotId")
+            }
+        }
+        //Plots in their json representation
+        get("data/{id}") {
+            val id: String = call.parameters["id"] ?: error("Plot id not defined")
+
+            val plot: Plot? = plots[id]
+            if (plot == null) {
+                call.respond(HttpStatusCode.NotFound, "Plot with id = $id not found")
+            } else {
+                call.respondText(
+                    plot.toJsonString(),
+                    contentType = ContentType.Application.Json,
+                    status = HttpStatusCode.OK
+                )
+            }
+        }
+    }
+
     public fun page(
         plotlyFragment: PlotlyFragment,
         route: String = DEFAULT_PAGE,
         title: String = "Plotly server page '$route'",
         headers: List<PlotlyHtmlFragment> = emptyList(),
     ) {
-        routing.createRouteFromPath(rootRoute).apply {
+        root.apply {
             val plots = HashMap<String, Plot>()
             route(route) {
-                //Update websocket
-                webSocket("ws/{id}") {
-                    val plotId: String = call.parameters["id"] ?: error("Plot id not defined")
-
-                    application.log.debug("Opened server socket for $plotId")
-
-                    val plot = plots[plotId] ?: error("Plot with id='$plotId' not registered")
-
-                    try {
-                        plot.collectUpdates(plotId, this, updateInterval).collect { update ->
-                            val json = update.toJson()
-                            outgoing.send(Frame.Text(json.toString()))
-                        }
-                    } catch (ex: Exception) {
-                        application.log.debug("Closed server socket for $plotId")
-                    }
-                }
-                //Plots in their json representation
-                get("data/{id}") {
-                    val id: String = call.parameters["id"] ?: error("Plot id not defined")
-
-                    val plot: Plot? = plots[id]
-                    if (plot == null) {
-                        call.respond(HttpStatusCode.NotFound, "Plot with id = $id not found")
-                    } else {
-                        call.respondText(
-                            plot.toJsonString(),
-                            contentType = ContentType.Application.Json,
-                            status = HttpStatusCode.OK
-                        )
-                    }
-                }
+                servePlotData(plots)
                 //filled pages
                 get {
                     val origin = call.request.origin
@@ -266,7 +273,7 @@ public fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer 
 /**
  * Configure server to start sending updates in push mode. Does not affect loaded pages
  */
-public fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply {
+public fun PlotlyServer.pushUpdates(interval: Int = 100): PlotlyServer = apply {
     updateMode = PlotlyUpdateMode.PUSH
     updateInterval = interval
 }
@@ -275,7 +282,7 @@ public fun PlotlyServer.pushUpdates(interval: Long = 100): PlotlyServer = apply 
  * Configure client to request regular updates from server. Pull updates are more expensive than push updates since
  * they contain the full plot data and server can't decide what to send.
  */
-public fun PlotlyServer.pullUpdates(interval: Long = 1000): PlotlyServer = apply {
+public fun PlotlyServer.pullUpdates(interval: Int = 1000): PlotlyServer = apply {
     updateMode = PlotlyUpdateMode.PULL
     updateInterval = interval
 }

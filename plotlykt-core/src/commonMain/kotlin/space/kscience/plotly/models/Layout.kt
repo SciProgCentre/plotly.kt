@@ -1,3 +1,5 @@
+@file:Suppress("EnumEntryName")
+
 package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
@@ -71,6 +73,7 @@ public enum class BarNorm {
     fraction,
     percent,
 
+    @Suppress("DANGEROUS_CHARACTERS")
     @JsName("empty")
     `""`
 }
