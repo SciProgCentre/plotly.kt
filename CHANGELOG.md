@@ -10,10 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Jupyter integration plugin for server
 - Separate static plot integration module in `plotlykt-jupyter`
 - Expanded JS demo
+- Jupyter support goes beta
 
 ### Changed
 - Package change (again) to `space.kscience`
-- Build tools `0.8.4`
+- Build tools `0.9.5`
+- Kotlin `1.5.0`
 - HtmlFragment renamed to PlotlyHtmlFragment
 
 ### Deprecated
