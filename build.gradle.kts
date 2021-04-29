@@ -33,3 +33,7 @@ ksciencePublish{
 readme {
     readmeTemplate = file("docs/templates/README-TEMPLATE.md")
 }
+
+changelog{
+    version = project.version.toString()
+}
