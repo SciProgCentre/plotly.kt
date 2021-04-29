@@ -1,21 +1,21 @@
-public final class kscience/plotly/script/BuilderKt {
-	public static final fun page (Lkscience/plotly/Plotly;Ljava/io/File;Ljava/lang/String;[Lkscience/plotly/HtmlFragment;Lmu/KLogger;)Lkscience/plotly/PlotlyPage;
-	public static final fun page (Lkscience/plotly/Plotly;Ljava/lang/String;Ljava/lang/String;[Lkscience/plotly/HtmlFragment;Lmu/KLogger;)Lkscience/plotly/PlotlyPage;
-	public static final fun page (Lkscience/plotly/Plotly;Lkotlin/script/experimental/api/SourceCode;Ljava/lang/String;[Lkscience/plotly/HtmlFragment;Lmu/KLogger;)Lkscience/plotly/PlotlyPage;
-	public static synthetic fun page$default (Lkscience/plotly/Plotly;Ljava/io/File;Ljava/lang/String;[Lkscience/plotly/HtmlFragment;Lmu/KLogger;ILjava/lang/Object;)Lkscience/plotly/PlotlyPage;
-	public static synthetic fun page$default (Lkscience/plotly/Plotly;Ljava/lang/String;Ljava/lang/String;[Lkscience/plotly/HtmlFragment;Lmu/KLogger;ILjava/lang/Object;)Lkscience/plotly/PlotlyPage;
-	public static synthetic fun page$default (Lkscience/plotly/Plotly;Lkotlin/script/experimental/api/SourceCode;Ljava/lang/String;[Lkscience/plotly/HtmlFragment;Lmu/KLogger;ILjava/lang/Object;)Lkscience/plotly/PlotlyPage;
+public final class space/kscience/plotly/script/BuilderKt {
+	public static final fun page (Lspace/kscience/plotly/Plotly;Ljava/io/File;Ljava/lang/String;[Lspace/kscience/plotly/PlotlyHtmlFragment;Lmu/KLogger;)Lspace/kscience/plotly/PlotlyPage;
+	public static final fun page (Lspace/kscience/plotly/Plotly;Ljava/lang/String;Ljava/lang/String;[Lspace/kscience/plotly/PlotlyHtmlFragment;Lmu/KLogger;)Lspace/kscience/plotly/PlotlyPage;
+	public static final fun page (Lspace/kscience/plotly/Plotly;Lkotlin/script/experimental/api/SourceCode;Ljava/lang/String;[Lspace/kscience/plotly/PlotlyHtmlFragment;Lmu/KLogger;)Lspace/kscience/plotly/PlotlyPage;
+	public static synthetic fun page$default (Lspace/kscience/plotly/Plotly;Ljava/io/File;Ljava/lang/String;[Lspace/kscience/plotly/PlotlyHtmlFragment;Lmu/KLogger;ILjava/lang/Object;)Lspace/kscience/plotly/PlotlyPage;
+	public static synthetic fun page$default (Lspace/kscience/plotly/Plotly;Ljava/lang/String;Ljava/lang/String;[Lspace/kscience/plotly/PlotlyHtmlFragment;Lmu/KLogger;ILjava/lang/Object;)Lspace/kscience/plotly/PlotlyPage;
+	public static synthetic fun page$default (Lspace/kscience/plotly/Plotly;Lkotlin/script/experimental/api/SourceCode;Ljava/lang/String;[Lspace/kscience/plotly/PlotlyHtmlFragment;Lmu/KLogger;ILjava/lang/Object;)Lspace/kscience/plotly/PlotlyPage;
 }
 
-public final class kscience/plotly/script/CliKt {
+public final class space/kscience/plotly/script/CliKt {
 	public static final fun main ([Ljava/lang/String;)V
 }
 
-public abstract class kscience/plotly/script/PlotlyScript {
+public abstract class space/kscience/plotly/script/PlotlyScript {
 	public fun <init> ()V
 }
 
-public final class kscience/plotly/script/PlotlyScriptCompilationConfiguration : kotlin/script/experimental/api/ScriptCompilationConfiguration {
+public final class space/kscience/plotly/script/PlotlyScriptCompilationConfiguration : kotlin/script/experimental/api/ScriptCompilationConfiguration {
 	public fun <init> ()V
 }
 

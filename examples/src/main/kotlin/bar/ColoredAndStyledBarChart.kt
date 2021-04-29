@@ -1,10 +1,10 @@
 package bar
 
-import hep.dataforge.meta.invoke
-import kscience.plotly.Plotly
-import kscience.plotly.makeFile
-import kscience.plotly.models.Bar
-import kscience.plotly.models.BarMode
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.Bar
+import space.kscience.plotly.models.BarMode
 
 
 /**

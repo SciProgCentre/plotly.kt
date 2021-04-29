@@ -1,27 +1,16 @@
 [![JetBrains Research](https://jb.gg/badges/research.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 [![DOI](https://zenodo.org/badge/186020000.svg)](https://zenodo.org/badge/latestdoi/186020000)
 ![Gradle build](https://github.com/mipt-npm/plotly.kt/workflows/Gradle%20build/badge.svg)
-
 [![Kotlin JS IR supported](https://img.shields.io/badge/Kotlin%2FJS-IR%20supported-yellow)](https://kotl.in/jsirsupported)
 
 ![Plotlykt logo](./docs/logo_text.svg)
 
-## Release version
+## Artifact details
 
-Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/kscience/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/kscience/plotlykt-core/_latestVersion)
-
-Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/kscience/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/kscience/plotlykt-server/_latestVersion)
-
-## Development version
-
-Plotly.kt core on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/dev/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/dev/plotlykt-core/_latestVersion)
-
-Plotly.kt ktor server on Bintray: [ ![Bintray](https://api.bintray.com/packages/mipt-npm/dev/plotlykt-core/images/download.svg) ](https://bintray.com/mipt-npm/dev/plotlykt-server/_latestVersion)
+**TBD**
 
 ## Compatibility note
-The current `0.3.0` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.0.0. It is not guaranteed to work with kotlin 1.3. 
-
-Plotly.kt currently targets JVM 11 and newer, so appropriate target should be used for compillation. If you need to support older JVMs, please open an [issue](https://github.com/mipt-npm/plotly.kt/issues) with your use-case.
+The current `0.4.0` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.1.0. The JVM part requires JVM 11 to run.
 
 # TL;DR
 See [examples](./examples/src/main/kotlin).
@@ -58,11 +47,17 @@ Plotly is a JavaScript library, yet it is convenient to have a type-safe API whe
 Plotly.kt could be run in a JavaFX browser. An example project is presented in [fx-demo](./fx-demo).
 
 ## Kotlin jupyter kernel (experimental)
-Plotly.kt comes with (for now experimental) support for integration with [Kotlin Jupyter kernel](https://github.com/Kotlin/kotlin-jupyter).
+Plotly.kt comes with (beta-version) support for integration with [Kotlin Jupyter kernel](https://github.com/Kotlin/kotlin-jupyter). See details [here](./docs/tutorials/jupyter.md).
 
-The examples of the notebooks are shown in [notebooks](./notebooks) directory. There are two module descriptor `plotly.json` and `plotly-server.json` in the same directory. They should be loaded according to Kotlin kernel documentation (either copied to `~/jypyter_kotlin/libraries` or loaded directly).
+The examples of the notebooks are shown in [notebooks](./examples/notebooks) directory. Plotly.kt uses Kotlin jupyter notebook API for integration (available in kernel version `0.8.3.236` and later). In order to load the library together with automatic imports one need to simply load a library in a following way:
 
-The module `plotly` allows to render static plots in Jupyter. Jupyter lab is currently supported. Jupyter notebook (classic) is able to render only `PlotlyPage` objects, so one must convert plots to pages to be able to use notebook (see [demo notebook](./notebooks/plotlykt-demo-classic.ipynb)).
+```kotlin
+@file:Repository("https://repo.kotlin.link")
+@file:DependsOn("space.kscience:plotlykt-jupyter:0.4.0")
+//@file:DependsOn("space.kscience:plotlykt-server:0.4.0") // Use this one for sever integration.
+```
+
+The module `plotly` allows rendering static plots in Jupyter. Jupyter lab is currently supported. Jupyter notebook (classic) is able to render only `PlotlyPage` objects, so one must convert plots to pages to be able to use notebook (see [demo notebook](./notebooks/plotlykt-demo-classic.ipynb)).
 
 The module `plotly-server` adds server capabilities and allows to render dynamic plots in notebooks (see [demo notebook](./notebooks/plotlykt-server-demo.ipynb)). One must note that for dynamic pages, one must pass `renderer` parameter explicitly to plot like it is done in examples.
 
@@ -91,25 +86,16 @@ plugins {
 }
 
 repositories {
-    jcenter()
-    maven("https://dl.bintray.com/mipt-npm/dataforge")
-    maven("https://dl.bintray.com/mipt-npm/kscience")
+    maven("https://repo.kotlin.link")
 }
 
 dependencies {
-    implementation("kscience.plotlykt:plotlykt-server:0.3.0")
+    implementation("kscience.plotlykt:plotlykt-server:0.4.0")
 }
 ```
 
-When using development versions (if version contains `dev`), one should also add
-```
-    maven("https://dl.bintray.com/mipt-npm/dev")
-```
-into the repository list.
 
-If you do not need the server, then use plotlykt-core instead and remove `ktor` repository.
-
-**NOTICE** due to problems with kolin-logging publishing, DataForge currently uses a separate fork of the library. So `maven("https://dl.bintray.com/mipt-npm/dev")` is mandatory right now. Follow #66 for solution.
+If you do not need the server, then use plotlykt-core instead.
 
 # Naming
 The library keeps original Plotly API naming wherever it is possible. There are some usability shortcuts, usually provided via kotlin extensions, included in order to simplify user interaction. For example, `text` and `shape` extensions in the top level API.
@@ -131,3 +117,4 @@ Keeping the original naming sometimes causes clashes with Kotlin code style. For
 * [Ekaterina Samorodova](https://github.com/ebsamorodova) (JBR-2020 summer internship) - Model refactoring, tutorials and `0.2` release.
 
 The project was partially founded by JetBrains Research grant.
+

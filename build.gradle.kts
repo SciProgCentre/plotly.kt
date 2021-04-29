@@ -1,23 +1,22 @@
 plugins {
     kotlin("js") apply false
-    id("ru.mipt.npm.project")
+    kotlin("jupyter.api") apply false
+    id("ru.mipt.npm.gradle.project")
 }
 
-val ktorVersion by extra("1.5.0")
-val dataforgeVersion by extra("0.3.0")
-val htmlVersion by extra("0.7.2")
-
-val bintrayRepo by extra("kscience")
-val githubProject by extra("plotly.kt")
+val dataforgeVersion by extra("0.4.0")
 
 allprojects {
-    group = "kscience.plotlykt"
-    version = "0.3.1"
+    group = "space.kscience"
+    version = "0.4.0"
 
     repositories {
-        mavenLocal()
-        maven("https://dl.bintray.com/kotlin/kotlin-eap")
+        maven("https://repo.kotlin.link")
         maven("https://kotlin.bintray.com/kotlinx")
+    }
+
+    if(name.startsWith("plotlykt")){
+        apply<MavenPublishPlugin>()
     }
 }
 
@@ -26,5 +25,15 @@ apiValidation {
 }
 
 ksciencePublish{
-    spaceRepo = "https://maven.pkg.jetbrains.space/mipt-npm/p/sci/maven"
+    github("plotly.kt")
+    space()
+    sonatype()
+}
+
+readme {
+    readmeTemplate = file("docs/templates/README-TEMPLATE.md")
+}
+
+changelog{
+    version = project.version.toString()
 }

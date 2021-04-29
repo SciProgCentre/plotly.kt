@@ -1,12 +1,12 @@
 package heatmap
 
-import hep.dataforge.meta.invoke
-import hep.dataforge.values.Value
-import kscience.plotly.Plotly
-import kscience.plotly.heatmap
-import kscience.plotly.makeFile
-import kscience.plotly.models.Font
-import kscience.plotly.models.Text
+import space.kscience.dataforge.meta.invoke
+import space.kscience.dataforge.values.Value
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.heatmap
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.Font
+import space.kscience.plotly.models.Text
 import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.sin

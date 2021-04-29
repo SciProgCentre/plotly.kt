@@ -1,5 +1,5 @@
 plugins {
-    id("ru.mipt.npm.jvm")
+    id("ru.mipt.npm.gradle.jvm")
     application
 }
 
@@ -25,5 +25,5 @@ dependencies {
 }
 
 application{
-    mainClassName = "kscience.plotly.script.CliKt"
+    mainClassName = "space.kscience.plotly.script.CliKt"
 }

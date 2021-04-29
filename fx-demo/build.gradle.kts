@@ -18,15 +18,16 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("no.tornado:tornadofx:1.7.19")
     implementation(project(":plotlykt-server"))
+    implementation("ch.qos.logback:logback-classic:1.2.3")
 }
 
 javafx{
     modules("javafx.web")
-    version = "14"
+    version = "11"
 }
 
 application {
-    mainClassName = "kscience.plotly.fx.PlotlyFXAppKt"
+    mainClass.set("space.kscience.plotly.fx.PlotlyFXAppKt")
 }
 
 val compileKotlin: KotlinCompile by tasks

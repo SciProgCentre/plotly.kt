@@ -1,14 +1,14 @@
 package scatter
 
-import hep.dataforge.meta.invoke
-import hep.dataforge.values.Value
-import kscience.plotly.Plotly
-import kscience.plotly.makeFile
-import kscience.plotly.models.Dash
-import kscience.plotly.models.Scatter
-import kscience.plotly.models.ScatterMode
-import kscience.plotly.models.ShapeType
-import kscience.plotly.shape
+import space.kscience.dataforge.meta.invoke
+import space.kscience.dataforge.values.Value
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.Dash
+import space.kscience.plotly.models.Scatter
+import space.kscience.plotly.models.ScatterMode
+import space.kscience.plotly.models.ShapeType
+import space.kscience.plotly.shape
 
 
 /**

@@ -1,12 +1,12 @@
 package contour
 
-import hep.dataforge.meta.invoke
-import hep.dataforge.values.Value
-import kscience.plotly.Plotly
-import kscience.plotly.contour
-import kscience.plotly.makeFile
-import kscience.plotly.models.ContoursColoring
-import kscience.plotly.models.Dash
+import space.kscience.dataforge.meta.invoke
+import space.kscience.dataforge.values.Value
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.contour
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.ContoursColoring
+import space.kscience.plotly.models.Dash
 import kotlin.math.exp
 import kotlin.math.pow
 

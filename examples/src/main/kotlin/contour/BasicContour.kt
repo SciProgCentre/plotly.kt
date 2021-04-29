@@ -1,10 +1,10 @@
 package contour
 
-import kscience.plotly.Plotly
-import kscience.plotly.layout
-import kscience.plotly.makeFile
-import kscience.plotly.models.Contour
-import kscience.plotly.models.MeasureMode
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.layout
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.Contour
+import space.kscience.plotly.models.MeasureMode
 
 
 /**

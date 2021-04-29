@@ -1,10 +1,10 @@
 package errorPlots
 
-import hep.dataforge.meta.invoke
-import kscience.plotly.Plotly
-import kscience.plotly.box
-import kscience.plotly.makeFile
-import kscience.plotly.palettes.T10
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.box
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.palettes.T10
 import java.util.*
 
 

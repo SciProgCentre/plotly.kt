@@ -1,25 +1,21 @@
 pluginManagement {
-    val kotlinVersion = "1.4.30"
-    val toolsVersion = "0.7.6"
+    val kotlinVersion = "1.5.0"
+    val toolsVersion = "0.9.5"
 
     repositories {
-        mavenLocal()
-        jcenter()
+        maven("https://repo.kotlin.link")
+        mavenCentral()
         gradlePluginPortal()
-        maven("https://dl.bintray.com/kotlin/kotlin-eap")
-        maven("https://dl.bintray.com/kotlin/kotlinx")
-        maven("https://dl.bintray.com/mipt-npm/dataforge")
-        maven("https://dl.bintray.com/mipt-npm/kscience")
-        maven("https://dl.bintray.com/mipt-npm/dev")
     }
 
     plugins {
-        id("ru.mipt.npm.kscience") version toolsVersion
-        id("ru.mipt.npm.project") version toolsVersion
-        id("ru.mipt.npm.mpp") version toolsVersion
-        id("ru.mipt.npm.jvm") version toolsVersion
-        id("ru.mipt.npm.js") version toolsVersion
-        id("ru.mipt.npm.publish") version toolsVersion
+        id("ru.mipt.npm.gradle.common") version toolsVersion
+        id("ru.mipt.npm.gradle.project") version toolsVersion
+        id("ru.mipt.npm.gradle.mpp") version toolsVersion
+        id("ru.mipt.npm.gradle.jvm") version toolsVersion
+        id("ru.mipt.npm.gradle.js") version toolsVersion
+        id("ru.mipt.npm.gradle.publish") version toolsVersion
+        kotlin("jupyter.api") version "0.9.1-20"
         kotlin("jvm") version kotlinVersion
         kotlin("js") version kotlinVersion
         kotlin("multiplatform") version kotlinVersion
@@ -30,6 +26,7 @@ rootProject.name = "plotlykt"
 
 include(
     ":plotlykt-core",
+    ":plotlykt-jupyter",
     ":plotlykt-server",
     ":plotlykt-script",
     ":examples",

@@ -1,160 +1,145 @@
-public final class kscience/plotly/BootstrapHeadersKt {
-	public static final fun getCdnBootstrap ()Lkscience/plotly/HtmlFragment;
-	public static final fun localBootstrap (Ljava/nio/file/Path;)Lkscience/plotly/HtmlFragment;
+public final class space/kscience/plotly/BootstrapHeadersKt {
+	public static final fun getCdnBootstrap ()Lspace/kscience/plotly/PlotlyHtmlFragment;
 }
 
-public final class kscience/plotly/FileExportKt {
-	public static final fun display (Lkscience/plotly/Plotly;Lkotlin/jvm/functions/Function2;)V
-	public static final fun export (Lkscience/plotly/Plot;Ljava/nio/file/Path;Lkscience/plotly/OrcaFormat;)V
-	public static synthetic fun export$default (Lkscience/plotly/Plot;Ljava/nio/file/Path;Lkscience/plotly/OrcaFormat;ILjava/lang/Object;)V
-	public static final fun makeFile (Lkscience/plotly/Plot;Ljava/nio/file/Path;ZLkscience/plotly/ResourceLocation;Lkscience/plotly/PlotlyConfig;)V
-	public static final fun makeFile (Lkscience/plotly/PlotlyFragment;Ljava/nio/file/Path;ZLjava/lang/String;Lkscience/plotly/ResourceLocation;Ljava/util/List;)V
-	public static final fun makeFile (Lkscience/plotly/PlotlyPage;Ljava/nio/file/Path;Z)V
-	public static synthetic fun makeFile$default (Lkscience/plotly/Plot;Ljava/nio/file/Path;ZLkscience/plotly/ResourceLocation;Lkscience/plotly/PlotlyConfig;ILjava/lang/Object;)V
-	public static synthetic fun makeFile$default (Lkscience/plotly/PlotlyFragment;Ljava/nio/file/Path;ZLjava/lang/String;Lkscience/plotly/ResourceLocation;Ljava/util/List;ILjava/lang/Object;)V
-	public static synthetic fun makeFile$default (Lkscience/plotly/PlotlyPage;Ljava/nio/file/Path;ZILjava/lang/Object;)V
+public final class space/kscience/plotly/FileExportKt {
+	public static final fun display (Lspace/kscience/plotly/Plotly;Lkotlin/jvm/functions/Function2;)V
+	public static final fun export (Lspace/kscience/plotly/Plot;Ljava/nio/file/Path;Lspace/kscience/plotly/OrcaFormat;)V
+	public static synthetic fun export$default (Lspace/kscience/plotly/Plot;Ljava/nio/file/Path;Lspace/kscience/plotly/OrcaFormat;ILjava/lang/Object;)V
+	public static final fun makeFile (Lspace/kscience/plotly/Plot;Ljava/nio/file/Path;ZLspace/kscience/plotly/ResourceLocation;Lspace/kscience/plotly/PlotlyConfig;)V
+	public static final fun makeFile (Lspace/kscience/plotly/PlotlyFragment;Ljava/nio/file/Path;ZLjava/lang/String;Lspace/kscience/plotly/ResourceLocation;Ljava/util/List;)V
+	public static final fun makeFile (Lspace/kscience/plotly/PlotlyPage;Ljava/nio/file/Path;Z)V
+	public static synthetic fun makeFile$default (Lspace/kscience/plotly/Plot;Ljava/nio/file/Path;ZLspace/kscience/plotly/ResourceLocation;Lspace/kscience/plotly/PlotlyConfig;ILjava/lang/Object;)V
+	public static synthetic fun makeFile$default (Lspace/kscience/plotly/PlotlyFragment;Ljava/nio/file/Path;ZLjava/lang/String;Lspace/kscience/plotly/ResourceLocation;Ljava/util/List;ILjava/lang/Object;)V
+	public static synthetic fun makeFile$default (Lspace/kscience/plotly/PlotlyPage;Ljava/nio/file/Path;ZILjava/lang/Object;)V
 	public static final fun selectFile (Ljavax/swing/filechooser/FileNameExtensionFilter;)Ljava/nio/file/Path;
 	public static synthetic fun selectFile$default (Ljavax/swing/filechooser/FileNameExtensionFilter;ILjava/lang/Object;)Ljava/nio/file/Path;
 }
 
-public final class kscience/plotly/HtmlFragment {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final fun getVisit ()Lkotlin/jvm/functions/Function1;
-	public fun toString ()Ljava/lang/String;
+public final class space/kscience/plotly/HtmlKt {
+	public static final fun getMathJaxHeader ()Lspace/kscience/plotly/PlotlyHtmlFragment;
+	public static final fun localCssHeader (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/lang/String;)Lspace/kscience/plotly/PlotlyHtmlFragment;
+	public static final fun localScriptHeader (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/lang/String;)Lspace/kscience/plotly/PlotlyHtmlFragment;
+	public static final fun plus (Lspace/kscience/plotly/PlotlyHtmlFragment;Lspace/kscience/plotly/PlotlyHtmlFragment;)Lspace/kscience/plotly/PlotlyHtmlFragment;
+	public static final fun toHTML (Lspace/kscience/plotly/Plot;[Lspace/kscience/plotly/PlotlyHtmlFragment;Lspace/kscience/plotly/PlotlyConfig;)Ljava/lang/String;
+	public static synthetic fun toHTML$default (Lspace/kscience/plotly/Plot;[Lspace/kscience/plotly/PlotlyHtmlFragment;Lspace/kscience/plotly/PlotlyConfig;ILjava/lang/Object;)Ljava/lang/String;
 }
 
-public final class kscience/plotly/HtmlKt {
-	public static final fun getMathJaxHeader ()Lkscience/plotly/HtmlFragment;
-	public static final fun localCssHeader (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/lang/String;)Lkscience/plotly/HtmlFragment;
-	public static final fun localScriptHeader (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/lang/String;)Lkscience/plotly/HtmlFragment;
-	public static final fun plus (Lkscience/plotly/HtmlFragment;Lkscience/plotly/HtmlFragment;)Lkscience/plotly/HtmlFragment;
-	public static final fun toHTML (Lkscience/plotly/Plot;[Lkscience/plotly/HtmlFragment;Lkscience/plotly/PlotlyConfig;)Ljava/lang/String;
-	public static synthetic fun toHTML$default (Lkscience/plotly/Plot;[Lkscience/plotly/HtmlFragment;Lkscience/plotly/PlotlyConfig;ILjava/lang/Object;)Ljava/lang/String;
+public final class space/kscience/plotly/OrcaFormat : java/lang/Enum {
+	public static final field jpeg Lspace/kscience/plotly/OrcaFormat;
+	public static final field pdf Lspace/kscience/plotly/OrcaFormat;
+	public static final field png Lspace/kscience/plotly/OrcaFormat;
+	public static final field svg Lspace/kscience/plotly/OrcaFormat;
+	public static final field webp Lspace/kscience/plotly/OrcaFormat;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/OrcaFormat;
+	public static fun values ()[Lspace/kscience/plotly/OrcaFormat;
 }
 
-public final class kscience/plotly/JupyterPlotly : kscience/plotly/PlotlyRenderer {
-	public static final field INSTANCE Lkscience/plotly/JupyterPlotly;
-	public final fun loadJs ()Lkscience/plotly/HtmlFragment;
-	public final fun renderFragment (Lkscience/plotly/PlotlyFragment;)Ljava/lang/String;
-	public final fun renderPage (Lkscience/plotly/PlotlyPage;)Ljava/lang/String;
-	public fun renderPlot (Lkotlinx/html/FlowContent;Lkscience/plotly/Plot;Ljava/lang/String;Lkscience/plotly/PlotlyConfig;)Lkscience/plotly/Plot;
-	public final fun renderPlot (Lkscience/plotly/Plot;)Ljava/lang/String;
-}
-
-public final class kscience/plotly/OrcaFormat : java/lang/Enum {
-	public static final field jpeg Lkscience/plotly/OrcaFormat;
-	public static final field pdf Lkscience/plotly/OrcaFormat;
-	public static final field png Lkscience/plotly/OrcaFormat;
-	public static final field svg Lkscience/plotly/OrcaFormat;
-	public static final field webp Lkscience/plotly/OrcaFormat;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/OrcaFormat;
-	public static fun values ()[Lkscience/plotly/OrcaFormat;
-}
-
-public final class kscience/plotly/Plot : hep/dataforge/meta/Configurable, hep/dataforge/meta/MetaRepr {
+public final class space/kscience/plotly/Plot : space/kscience/dataforge/meta/Configurable, space/kscience/dataforge/meta/MetaRepr {
 	public fun <init> ()V
-	public fun <init> (Lhep/dataforge/meta/Config;)V
-	public synthetic fun <init> (Lhep/dataforge/meta/Config;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun addTrace (Lkscience/plotly/models/Trace;)V
-	public fun getConfig ()Lhep/dataforge/meta/Config;
+	public fun <init> (Lspace/kscience/dataforge/meta/Config;)V
+	public synthetic fun <init> (Lspace/kscience/dataforge/meta/Config;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun addTrace (Lspace/kscience/plotly/models/Trace;)V
+	public fun getConfig ()Lspace/kscience/dataforge/meta/Config;
 	public final fun getData ()Ljava/util/List;
-	public final fun getLayout ()Lkscience/plotly/models/Layout;
-	public fun toMeta ()Lhep/dataforge/meta/Meta;
+	public final fun getLayout ()Lspace/kscience/plotly/models/Layout;
+	public fun toMeta ()Lspace/kscience/dataforge/meta/Meta;
 	public final fun traces (Ljava/util/Collection;)V
-	public final fun traces ([Lkscience/plotly/models/Trace;)V
+	public final fun traces ([Lspace/kscience/plotly/models/Trace;)V
 }
 
-public final class kscience/plotly/PlotExtensionsKt {
-	public static final fun bar (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Bar;
-	public static final fun box (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Box;
-	public static final fun contour (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Contour;
-	public static final fun heatmap (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Heatmap;
-	public static final fun histogram (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Histogram;
-	public static final fun histogram2d (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Histogram2D;
-	public static final fun histogram2dcontour (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Histogram2DContour;
-	public static final fun pie (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Pie;
-	public static final fun scatter (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Scatter;
-	public static final fun shape (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)V
-	public static final fun table (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Table;
-	public static final fun text (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)V
-	public static final fun violin (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Violin;
+public final class space/kscience/plotly/PlotExtensionsKt {
+	public static final fun bar (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Bar;
+	public static final fun box (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Box;
+	public static final fun contour (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Contour;
+	public static final fun heatmap (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Heatmap;
+	public static final fun histogram (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Histogram;
+	public static final fun histogram2d (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Histogram2D;
+	public static final fun histogram2dcontour (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Histogram2DContour;
+	public static final fun pie (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Pie;
+	public static final fun scatter (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Scatter;
+	public static final fun shape (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)V
+	public static final fun table (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Table;
+	public static final fun text (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)V
+	public static final fun violin (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Violin;
 }
 
-public final class kscience/plotly/PlotGrid {
+public final class space/kscience/plotly/PlotGrid {
 	public fun <init> ()V
-	public final fun get (Ljava/lang/String;)Lkscience/plotly/PlotGrid$PlotCell;
+	public final fun get (Ljava/lang/String;)Lspace/kscience/plotly/PlotGrid$PlotCell;
 	public final fun getGrid ()Ljava/util/List;
-	public final fun plot (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/functions/Function1;)Lkscience/plotly/Plot;
-	public final fun plot (Lkscience/plotly/Plot;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;)Lkscience/plotly/Plot;
-	public static synthetic fun plot$default (Lkscience/plotly/PlotGrid;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lkscience/plotly/Plot;
-	public static synthetic fun plot$default (Lkscience/plotly/PlotGrid;Lkscience/plotly/Plot;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lkscience/plotly/Plot;
+	public final fun plot (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/Plot;
+	public final fun plot (Lspace/kscience/plotly/Plot;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;)Lspace/kscience/plotly/Plot;
+	public static synthetic fun plot$default (Lspace/kscience/plotly/PlotGrid;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lspace/kscience/plotly/Plot;
+	public static synthetic fun plot$default (Lspace/kscience/plotly/PlotGrid;Lspace/kscience/plotly/Plot;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lspace/kscience/plotly/Plot;
 }
 
-public final class kscience/plotly/PlotGrid$PlotCell {
-	public fun <init> (Ljava/lang/String;Lkscience/plotly/Plot;III)V
-	public synthetic fun <init> (Ljava/lang/String;Lkscience/plotly/Plot;IIIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+public final class space/kscience/plotly/PlotGrid$PlotCell {
+	public fun <init> (Ljava/lang/String;Lspace/kscience/plotly/Plot;III)V
+	public synthetic fun <init> (Ljava/lang/String;Lspace/kscience/plotly/Plot;IIIILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Lkscience/plotly/Plot;
+	public final fun component2 ()Lspace/kscience/plotly/Plot;
 	public final fun component3 ()I
 	public final fun component4 ()I
 	public final fun component5 ()I
-	public final fun copy (Ljava/lang/String;Lkscience/plotly/Plot;III)Lkscience/plotly/PlotGrid$PlotCell;
-	public static synthetic fun copy$default (Lkscience/plotly/PlotGrid$PlotCell;Ljava/lang/String;Lkscience/plotly/Plot;IIIILjava/lang/Object;)Lkscience/plotly/PlotGrid$PlotCell;
+	public final fun copy (Ljava/lang/String;Lspace/kscience/plotly/Plot;III)Lspace/kscience/plotly/PlotGrid$PlotCell;
+	public static synthetic fun copy$default (Lspace/kscience/plotly/PlotGrid$PlotCell;Ljava/lang/String;Lspace/kscience/plotly/Plot;IIIILjava/lang/Object;)Lspace/kscience/plotly/PlotGrid$PlotCell;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCol ()I
 	public final fun getId ()Ljava/lang/String;
-	public final fun getPlot ()Lkscience/plotly/Plot;
+	public final fun getPlot ()Lspace/kscience/plotly/Plot;
 	public final fun getRow ()I
 	public final fun getWidth ()I
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class kscience/plotly/PlotGridKt {
-	public static final fun grid (Lkscience/plotly/Plotly;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/PlotlyPage;
+public final class space/kscience/plotly/PlotGridKt {
+	public static final fun grid (Lspace/kscience/plotly/Plotly;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/PlotlyPage;
 }
 
-public final class kscience/plotly/PlotKt {
-	public static final fun layout (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)V
-	public static final fun toJsonString (Lkscience/plotly/Plot;)Ljava/lang/String;
-	public static final fun trace (Lkscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Trace;
+public final class space/kscience/plotly/PlotKt {
+	public static final fun layout (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)V
+	public static final fun toJsonString (Lspace/kscience/plotly/Plot;)Ljava/lang/String;
+	public static final fun trace (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Trace;
 }
 
-public final class kscience/plotly/PlotTabs {
+public final class space/kscience/plotly/PlotTabs {
 	public fun <init> ()V
 	public final fun getTabs ()Ljava/util/List;
 	public final fun tab (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
-	public static synthetic fun tab$default (Lkscience/plotly/PlotTabs;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
+	public static synthetic fun tab$default (Lspace/kscience/plotly/PlotTabs;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 }
 
-public final class kscience/plotly/PlotTabs$Tab {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lkscience/plotly/PlotlyFragment;)V
+public final class space/kscience/plotly/PlotTabs$Tab {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lspace/kscience/plotly/PlotlyFragment;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Lkscience/plotly/PlotlyFragment;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lkscience/plotly/PlotlyFragment;)Lkscience/plotly/PlotTabs$Tab;
-	public static synthetic fun copy$default (Lkscience/plotly/PlotTabs$Tab;Ljava/lang/String;Ljava/lang/String;Lkscience/plotly/PlotlyFragment;ILjava/lang/Object;)Lkscience/plotly/PlotTabs$Tab;
+	public final fun component3 ()Lspace/kscience/plotly/PlotlyFragment;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lspace/kscience/plotly/PlotlyFragment;)Lspace/kscience/plotly/PlotTabs$Tab;
+	public static synthetic fun copy$default (Lspace/kscience/plotly/PlotTabs$Tab;Ljava/lang/String;Ljava/lang/String;Lspace/kscience/plotly/PlotlyFragment;ILjava/lang/Object;)Lspace/kscience/plotly/PlotTabs$Tab;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getContent ()Lkscience/plotly/PlotlyFragment;
+	public final fun getContent ()Lspace/kscience/plotly/PlotlyFragment;
 	public final fun getId ()Ljava/lang/String;
 	public final fun getTitle ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class kscience/plotly/PlotTabsKt {
-	public static final fun tabs (Lkscience/plotly/Plotly;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/PlotlyPage;
-	public static synthetic fun tabs$default (Lkscience/plotly/Plotly;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lkscience/plotly/PlotlyPage;
+public final class space/kscience/plotly/PlotTabsKt {
+	public static final fun tabs (Lspace/kscience/plotly/Plotly;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/PlotlyPage;
+	public static synthetic fun tabs$default (Lspace/kscience/plotly/Plotly;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lspace/kscience/plotly/PlotlyPage;
 }
 
-public final class kscience/plotly/Plotly {
-	public static final field INSTANCE Lkscience/plotly/Plotly;
+public final class space/kscience/plotly/Plotly {
+	public static final field INSTANCE Lspace/kscience/plotly/Plotly;
+	public static final field PLOTLY_CDN Ljava/lang/String;
 	public static final field VERSION Ljava/lang/String;
-	public final fun plot (Lkotlin/jvm/functions/Function1;)Lkscience/plotly/Plot;
+	public final fun plot (Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/Plot;
 }
 
-public final class kscience/plotly/PlotlyConfig : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/PlotlyConfig$Companion;
+public final class space/kscience/plotly/PlotlyConfig : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/PlotlyConfig$Companion;
 	public fun <init> ()V
 	public final fun getEditable ()Ljava/lang/Boolean;
 	public final fun getImageFormat ()Ljava/lang/String;
@@ -171,98 +156,101 @@ public final class kscience/plotly/PlotlyConfig : hep/dataforge/meta/Scheme {
 	public final fun withEditorButton ()V
 }
 
-public final class kscience/plotly/PlotlyConfig$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/PlotlyConfig$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/PlotlyFragment {
+public final class space/kscience/plotly/PlotlyFragment {
 	public fun <init> (Lkotlin/jvm/functions/Function2;)V
 	public final fun getRender ()Lkotlin/jvm/functions/Function2;
 }
 
-public final class kscience/plotly/PlotlyHeadersKt {
-	public static final fun getCdnPlotlyHeader ()Lkscience/plotly/HtmlFragment;
+public final class space/kscience/plotly/PlotlyHeadersKt {
+	public static final fun getCdnPlotlyHeader ()Lspace/kscience/plotly/PlotlyHtmlFragment;
 }
 
-public final class kscience/plotly/PlotlyKt {
-	public static final fun toJsonString (Lhep/dataforge/meta/Scheme;)Ljava/lang/String;
+public final class space/kscience/plotly/PlotlyHtmlFragment {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final fun getVisit ()Lkotlin/jvm/functions/Function1;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class space/kscience/plotly/PlotlyKt {
 	public static final fun toJsonString (Ljava/util/List;)Ljava/lang/String;
+	public static final fun toJsonString (Lspace/kscience/dataforge/meta/Scheme;)Ljava/lang/String;
 }
 
-public final class kscience/plotly/PlotlyPage {
-	public fun <init> (Ljava/util/Collection;Lkscience/plotly/PlotlyFragment;Ljava/lang/String;Lkscience/plotly/PlotlyRenderer;)V
-	public synthetic fun <init> (Ljava/util/Collection;Lkscience/plotly/PlotlyFragment;Ljava/lang/String;Lkscience/plotly/PlotlyRenderer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+public final class space/kscience/plotly/PlotlyPage {
+	public fun <init> (Ljava/util/Collection;Lspace/kscience/plotly/PlotlyFragment;Ljava/lang/String;Lspace/kscience/plotly/PlotlyRenderer;)V
+	public synthetic fun <init> (Ljava/util/Collection;Lspace/kscience/plotly/PlotlyFragment;Ljava/lang/String;Lspace/kscience/plotly/PlotlyRenderer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/util/Collection;
-	public final fun component2 ()Lkscience/plotly/PlotlyFragment;
+	public final fun component2 ()Lspace/kscience/plotly/PlotlyFragment;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lkscience/plotly/PlotlyRenderer;
-	public final fun copy (Ljava/util/Collection;Lkscience/plotly/PlotlyFragment;Ljava/lang/String;Lkscience/plotly/PlotlyRenderer;)Lkscience/plotly/PlotlyPage;
-	public static synthetic fun copy$default (Lkscience/plotly/PlotlyPage;Ljava/util/Collection;Lkscience/plotly/PlotlyFragment;Ljava/lang/String;Lkscience/plotly/PlotlyRenderer;ILjava/lang/Object;)Lkscience/plotly/PlotlyPage;
+	public final fun component4 ()Lspace/kscience/plotly/PlotlyRenderer;
+	public final fun copy (Ljava/util/Collection;Lspace/kscience/plotly/PlotlyFragment;Ljava/lang/String;Lspace/kscience/plotly/PlotlyRenderer;)Lspace/kscience/plotly/PlotlyPage;
+	public static synthetic fun copy$default (Lspace/kscience/plotly/PlotlyPage;Ljava/util/Collection;Lspace/kscience/plotly/PlotlyFragment;Ljava/lang/String;Lspace/kscience/plotly/PlotlyRenderer;ILjava/lang/Object;)Lspace/kscience/plotly/PlotlyPage;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getFragment ()Lkscience/plotly/PlotlyFragment;
+	public final fun getFragment ()Lspace/kscience/plotly/PlotlyFragment;
 	public final fun getHeaders ()Ljava/util/Collection;
-	public final fun getRenderer ()Lkscience/plotly/PlotlyRenderer;
+	public final fun getRenderer ()Lspace/kscience/plotly/PlotlyRenderer;
 	public final fun getTitle ()Ljava/lang/String;
 	public fun hashCode ()I
 	public final fun render ()Ljava/lang/String;
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class kscience/plotly/PlotlyPageKt {
-	public static final fun fragment (Lkscience/plotly/Plotly;Lkotlin/jvm/functions/Function2;)Lkscience/plotly/PlotlyFragment;
-	public static final fun page (Lkscience/plotly/Plotly;[Lkscience/plotly/HtmlFragment;Ljava/lang/String;Lkscience/plotly/PlotlyRenderer;Lkotlin/jvm/functions/Function2;)Lkscience/plotly/PlotlyPage;
-	public static synthetic fun page$default (Lkscience/plotly/Plotly;[Lkscience/plotly/HtmlFragment;Ljava/lang/String;Lkscience/plotly/PlotlyRenderer;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Lkscience/plotly/PlotlyPage;
-	public static final fun toPage (Lkscience/plotly/Plot;[Lkscience/plotly/HtmlFragment;Lkscience/plotly/PlotlyConfig;Ljava/lang/String;Lkscience/plotly/PlotlyRenderer;)Lkscience/plotly/PlotlyPage;
-	public static final fun toPage (Lkscience/plotly/PlotlyFragment;[Lkscience/plotly/HtmlFragment;Ljava/lang/String;Lkscience/plotly/PlotlyRenderer;)Lkscience/plotly/PlotlyPage;
-	public static synthetic fun toPage$default (Lkscience/plotly/Plot;[Lkscience/plotly/HtmlFragment;Lkscience/plotly/PlotlyConfig;Ljava/lang/String;Lkscience/plotly/PlotlyRenderer;ILjava/lang/Object;)Lkscience/plotly/PlotlyPage;
-	public static synthetic fun toPage$default (Lkscience/plotly/PlotlyFragment;[Lkscience/plotly/HtmlFragment;Ljava/lang/String;Lkscience/plotly/PlotlyRenderer;ILjava/lang/Object;)Lkscience/plotly/PlotlyPage;
+public final class space/kscience/plotly/PlotlyPageKt {
+	public static final fun fragment (Lspace/kscience/plotly/Plotly;Lkotlin/jvm/functions/Function2;)Lspace/kscience/plotly/PlotlyFragment;
+	public static final fun page (Lspace/kscience/plotly/Plotly;[Lspace/kscience/plotly/PlotlyHtmlFragment;Ljava/lang/String;Lspace/kscience/plotly/PlotlyRenderer;Lkotlin/jvm/functions/Function2;)Lspace/kscience/plotly/PlotlyPage;
+	public static synthetic fun page$default (Lspace/kscience/plotly/Plotly;[Lspace/kscience/plotly/PlotlyHtmlFragment;Ljava/lang/String;Lspace/kscience/plotly/PlotlyRenderer;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Lspace/kscience/plotly/PlotlyPage;
+	public static final fun toPage (Lspace/kscience/plotly/Plot;[Lspace/kscience/plotly/PlotlyHtmlFragment;Lspace/kscience/plotly/PlotlyConfig;Ljava/lang/String;Lspace/kscience/plotly/PlotlyRenderer;)Lspace/kscience/plotly/PlotlyPage;
+	public static final fun toPage (Lspace/kscience/plotly/PlotlyFragment;[Lspace/kscience/plotly/PlotlyHtmlFragment;Ljava/lang/String;Lspace/kscience/plotly/PlotlyRenderer;)Lspace/kscience/plotly/PlotlyPage;
+	public static synthetic fun toPage$default (Lspace/kscience/plotly/Plot;[Lspace/kscience/plotly/PlotlyHtmlFragment;Lspace/kscience/plotly/PlotlyConfig;Ljava/lang/String;Lspace/kscience/plotly/PlotlyRenderer;ILjava/lang/Object;)Lspace/kscience/plotly/PlotlyPage;
+	public static synthetic fun toPage$default (Lspace/kscience/plotly/PlotlyFragment;[Lspace/kscience/plotly/PlotlyHtmlFragment;Ljava/lang/String;Lspace/kscience/plotly/PlotlyRenderer;ILjava/lang/Object;)Lspace/kscience/plotly/PlotlyPage;
 }
 
-public abstract interface class kscience/plotly/PlotlyRenderer {
-	public abstract fun renderPlot (Lkotlinx/html/FlowContent;Lkscience/plotly/Plot;Ljava/lang/String;Lkscience/plotly/PlotlyConfig;)Lkscience/plotly/Plot;
+public abstract interface class space/kscience/plotly/PlotlyRenderer {
+	public abstract fun renderPlot (Lkotlinx/html/FlowContent;Lspace/kscience/plotly/Plot;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;)Lspace/kscience/plotly/Plot;
+	public static synthetic fun renderPlot$default (Lspace/kscience/plotly/PlotlyRenderer;Lkotlinx/html/FlowContent;Lspace/kscience/plotly/Plot;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;ILjava/lang/Object;)Lspace/kscience/plotly/Plot;
 }
 
-public final class kscience/plotly/PlotlyRenderer$DefaultImpls {
-	public static synthetic fun renderPlot$default (Lkscience/plotly/PlotlyRenderer;Lkotlinx/html/FlowContent;Lkscience/plotly/Plot;Ljava/lang/String;Lkscience/plotly/PlotlyConfig;ILjava/lang/Object;)Lkscience/plotly/Plot;
+public final class space/kscience/plotly/PlotlyRendererKt {
+	public static final fun plot (Lkotlinx/html/FlowContent;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;Lspace/kscience/plotly/PlotlyRenderer;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/Plot;
+	public static final fun plot (Lkotlinx/html/FlowContent;Lspace/kscience/plotly/Plot;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;Lspace/kscience/plotly/PlotlyRenderer;)Lspace/kscience/plotly/Plot;
+	public static synthetic fun plot$default (Lkotlinx/html/FlowContent;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;Lspace/kscience/plotly/PlotlyRenderer;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lspace/kscience/plotly/Plot;
+	public static synthetic fun plot$default (Lkotlinx/html/FlowContent;Lspace/kscience/plotly/Plot;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;Lspace/kscience/plotly/PlotlyRenderer;ILjava/lang/Object;)Lspace/kscience/plotly/Plot;
 }
 
-public final class kscience/plotly/PlotlyRendererKt {
-	public static final fun plot (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkscience/plotly/PlotlyConfig;Lkscience/plotly/PlotlyRenderer;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/Plot;
-	public static final fun plot (Lkotlinx/html/FlowContent;Lkscience/plotly/Plot;Ljava/lang/String;Lkscience/plotly/PlotlyConfig;Lkscience/plotly/PlotlyRenderer;)Lkscience/plotly/Plot;
-	public static synthetic fun plot$default (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkscience/plotly/PlotlyConfig;Lkscience/plotly/PlotlyRenderer;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lkscience/plotly/Plot;
-	public static synthetic fun plot$default (Lkotlinx/html/FlowContent;Lkscience/plotly/Plot;Ljava/lang/String;Lkscience/plotly/PlotlyConfig;Lkscience/plotly/PlotlyRenderer;ILjava/lang/Object;)Lkscience/plotly/Plot;
+public final class space/kscience/plotly/ResourceLocation : java/lang/Enum {
+	public static final field EMBED Lspace/kscience/plotly/ResourceLocation;
+	public static final field LOCAL Lspace/kscience/plotly/ResourceLocation;
+	public static final field REMOTE Lspace/kscience/plotly/ResourceLocation;
+	public static final field SYSTEM Lspace/kscience/plotly/ResourceLocation;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/ResourceLocation;
+	public static fun values ()[Lspace/kscience/plotly/ResourceLocation;
 }
 
-public final class kscience/plotly/ResourceLocation : java/lang/Enum {
-	public static final field EMBED Lkscience/plotly/ResourceLocation;
-	public static final field LOCAL Lkscience/plotly/ResourceLocation;
-	public static final field REMOTE Lkscience/plotly/ResourceLocation;
-	public static final field SYSTEM Lkscience/plotly/ResourceLocation;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/ResourceLocation;
-	public static fun values ()[Lkscience/plotly/ResourceLocation;
+public final class space/kscience/plotly/StaticPlotlyRenderer : space/kscience/plotly/PlotlyRenderer {
+	public static final field INSTANCE Lspace/kscience/plotly/StaticPlotlyRenderer;
+	public fun renderPlot (Lkotlinx/html/FlowContent;Lspace/kscience/plotly/Plot;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;)Lspace/kscience/plotly/Plot;
 }
 
-public final class kscience/plotly/StaticPlotlyRenderer : kscience/plotly/PlotlyRenderer {
-	public static final field INSTANCE Lkscience/plotly/StaticPlotlyRenderer;
-	public fun renderPlot (Lkotlinx/html/FlowContent;Lkscience/plotly/Plot;Ljava/lang/String;Lkscience/plotly/PlotlyConfig;)Lkscience/plotly/Plot;
+public abstract interface annotation class space/kscience/plotly/UnstablePlotlyAPI : java/lang/annotation/Annotation {
 }
 
-public abstract interface annotation class kscience/plotly/UnstablePlotlyAPI : java/lang/annotation/Annotation {
+public abstract interface annotation class space/kscience/plotly/UnsupportedPlotlyAPI : java/lang/annotation/Annotation {
 }
 
-public abstract interface annotation class kscience/plotly/UnsupportedPlotlyAPI : java/lang/annotation/Annotation {
-}
-
-public final class kscience/plotly/models/Axis : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Axis$Companion;
+public final class space/kscience/plotly/models/Axis : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Axis$Companion;
 	public fun <init> ()V
 	public final fun getAnchor ()Ljava/lang/String;
 	public final fun getAutorange ()Z
 	public final fun getAutotick ()Ljava/lang/Boolean;
-	public final fun getColor ()Lkscience/plotly/models/Color;
-	public final fun getDtick ()Lhep/dataforge/values/Value;
-	public final fun getGridcolor ()Lkscience/plotly/models/Color;
+	public final fun getColor ()Lspace/kscience/plotly/models/Color;
+	public final fun getDtick ()Lspace/kscience/dataforge/values/Value;
+	public final fun getGridcolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getGridwidth ()Ljava/lang/Number;
-	public final fun getLinecolor ()Lkscience/plotly/models/Color;
+	public final fun getLinecolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getLinewidth ()Ljava/lang/Number;
 	public final fun getPosition ()Ljava/lang/Number;
 	public final fun getRange ()Lkotlin/ranges/ClosedFloatingPointRange;
@@ -270,24 +258,24 @@ public final class kscience/plotly/models/Axis : hep/dataforge/meta/Scheme {
 	public final fun getShowline ()Ljava/lang/Boolean;
 	public final fun getShowticklabels ()Ljava/lang/Boolean;
 	public final fun getTickangle ()Ljava/lang/Number;
-	public final fun getTickcolor ()Lkscience/plotly/models/Color;
-	public final fun getTickfont ()Lkscience/plotly/models/Font;
+	public final fun getTickcolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getTickfont ()Lspace/kscience/plotly/models/Font;
 	public final fun getTicklen ()Ljava/lang/Number;
-	public final fun getTickmode ()Lkscience/plotly/models/TickMode;
-	public final fun getTicks ()Lkscience/plotly/models/Ticks;
+	public final fun getTickmode ()Lspace/kscience/plotly/models/TickMode;
+	public final fun getTicks ()Lspace/kscience/plotly/models/Ticks;
 	public final fun getTicktext ()Ljava/util/List;
 	public final fun getTickvals ()Ljava/util/List;
 	public final fun getTickwidth ()Ljava/lang/Number;
 	public final fun getTitle ()Ljava/lang/String;
-	public final fun getType ()Lkscience/plotly/models/AxisType;
+	public final fun getType ()Lspace/kscience/plotly/models/AxisType;
 	public final fun getVisible ()Ljava/lang/Boolean;
 	public final fun getZeroline ()Ljava/lang/Boolean;
-	public final fun getZerolinecolor ()Lkscience/plotly/models/Color;
+	public final fun getZerolinecolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getZerolinewidth ()Ljava/lang/Number;
 	public final fun setAnchor (Ljava/lang/String;)V
 	public final fun setAutorange (Z)V
 	public final fun setAutotick (Ljava/lang/Boolean;)V
-	public final fun setDtick (Lhep/dataforge/values/Value;)V
+	public final fun setDtick (Lspace/kscience/dataforge/values/Value;)V
 	public final fun setGridwidth (Ljava/lang/Number;)V
 	public final fun setLinewidth (Ljava/lang/Number;)V
 	public final fun setPosition (Ljava/lang/Number;)V
@@ -296,15 +284,15 @@ public final class kscience/plotly/models/Axis : hep/dataforge/meta/Scheme {
 	public final fun setShowline (Ljava/lang/Boolean;)V
 	public final fun setShowticklabels (Ljava/lang/Boolean;)V
 	public final fun setTickangle (Ljava/lang/Number;)V
-	public final fun setTickfont (Lkscience/plotly/models/Font;)V
+	public final fun setTickfont (Lspace/kscience/plotly/models/Font;)V
 	public final fun setTicklen (Ljava/lang/Number;)V
-	public final fun setTickmode (Lkscience/plotly/models/TickMode;)V
-	public final fun setTicks (Lkscience/plotly/models/Ticks;)V
+	public final fun setTickmode (Lspace/kscience/plotly/models/TickMode;)V
+	public final fun setTicks (Lspace/kscience/plotly/models/Ticks;)V
 	public final fun setTicktext (Ljava/util/List;)V
 	public final fun setTickvals (Ljava/util/List;)V
 	public final fun setTickwidth (Ljava/lang/Number;)V
 	public final fun setTitle (Ljava/lang/String;)V
-	public final fun setType (Lkscience/plotly/models/AxisType;)V
+	public final fun setType (Lspace/kscience/plotly/models/AxisType;)V
 	public final fun setVisible (Ljava/lang/Boolean;)V
 	public final fun setZeroline (Ljava/lang/Boolean;)V
 	public final fun setZerolinewidth (Ljava/lang/Number;)V
@@ -314,67 +302,67 @@ public final class kscience/plotly/models/Axis : hep/dataforge/meta/Scheme {
 	public final fun title (Lkotlin/jvm/functions/Function1;)V
 }
 
-public final class kscience/plotly/models/Axis$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Axis$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/AxisType : java/lang/Enum {
-	public static final field - Lkscience/plotly/models/AxisType;
-	public static final field category Lkscience/plotly/models/AxisType;
-	public static final field date Lkscience/plotly/models/AxisType;
-	public static final field linear Lkscience/plotly/models/AxisType;
-	public static final field log Lkscience/plotly/models/AxisType;
-	public static final field multicategory Lkscience/plotly/models/AxisType;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/AxisType;
-	public static fun values ()[Lkscience/plotly/models/AxisType;
+public final class space/kscience/plotly/models/AxisType : java/lang/Enum {
+	public static final field - Lspace/kscience/plotly/models/AxisType;
+	public static final field category Lspace/kscience/plotly/models/AxisType;
+	public static final field date Lspace/kscience/plotly/models/AxisType;
+	public static final field linear Lspace/kscience/plotly/models/AxisType;
+	public static final field log Lspace/kscience/plotly/models/AxisType;
+	public static final field multicategory Lspace/kscience/plotly/models/AxisType;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/AxisType;
+	public static fun values ()[Lspace/kscience/plotly/models/AxisType;
 }
 
-public final class kscience/plotly/models/Bar : kscience/plotly/models/Trace, kscience/plotly/models/SelectedPoints {
-	public static final field Companion Lkscience/plotly/models/Bar$Companion;
+public final class space/kscience/plotly/models/Bar : space/kscience/plotly/models/Trace, space/kscience/plotly/models/SelectedPoints {
+	public static final field Companion Lspace/kscience/plotly/models/Bar$Companion;
 	public fun <init> ()V
 	public final fun getBase ()Ljava/util/List;
-	public final fun getConstraintext ()Lkscience/plotly/models/ConstrainText;
+	public final fun getConstraintext ()Lspace/kscience/plotly/models/ConstrainText;
 	public final fun getOffset ()Ljava/lang/Number;
 	public final fun getOffsetsList ()Ljava/util/List;
-	public fun getSelected ()Lkscience/plotly/models/SelectPoints;
+	public fun getSelected ()Lspace/kscience/plotly/models/SelectPoints;
 	public fun getSelectedpoints ()Ljava/util/List;
-	public fun getUnselected ()Lkscience/plotly/models/SelectPoints;
+	public fun getUnselected ()Lspace/kscience/plotly/models/SelectPoints;
 	public final fun getWidth ()Ljava/lang/Number;
 	public final fun getWidthList ()Ljava/util/List;
 	public final fun selected (Lkotlin/jvm/functions/Function1;)V
 	public final fun setBase (Ljava/util/List;)V
-	public final fun setConstraintext (Lkscience/plotly/models/ConstrainText;)V
+	public final fun setConstraintext (Lspace/kscience/plotly/models/ConstrainText;)V
 	public final fun setOffset (Ljava/lang/Number;)V
 	public final fun setOffsetsList (Ljava/util/List;)V
-	public fun setSelected (Lkscience/plotly/models/SelectPoints;)V
+	public fun setSelected (Lspace/kscience/plotly/models/SelectPoints;)V
 	public fun setSelectedpoints (Ljava/util/List;)V
-	public fun setUnselected (Lkscience/plotly/models/SelectPoints;)V
+	public fun setUnselected (Lspace/kscience/plotly/models/SelectPoints;)V
 	public final fun setWidth (Ljava/lang/Number;)V
 	public final fun setWidthList (Ljava/util/List;)V
 	public final fun unselected (Lkotlin/jvm/functions/Function1;)V
 }
 
-public final class kscience/plotly/models/Bar$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Bar$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/BarMode : java/lang/Enum {
-	public static final field group Lkscience/plotly/models/BarMode;
-	public static final field overlay Lkscience/plotly/models/BarMode;
-	public static final field relative Lkscience/plotly/models/BarMode;
-	public static final field stack Lkscience/plotly/models/BarMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/BarMode;
-	public static fun values ()[Lkscience/plotly/models/BarMode;
+public final class space/kscience/plotly/models/BarMode : java/lang/Enum {
+	public static final field group Lspace/kscience/plotly/models/BarMode;
+	public static final field overlay Lspace/kscience/plotly/models/BarMode;
+	public static final field relative Lspace/kscience/plotly/models/BarMode;
+	public static final field stack Lspace/kscience/plotly/models/BarMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BarMode;
+	public static fun values ()[Lspace/kscience/plotly/models/BarMode;
 }
 
-public final class kscience/plotly/models/BarNorm : java/lang/Enum {
-	public static final field "" Lkscience/plotly/models/BarNorm;
-	public static final field fraction Lkscience/plotly/models/BarNorm;
-	public static final field percent Lkscience/plotly/models/BarNorm;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/BarNorm;
-	public static fun values ()[Lkscience/plotly/models/BarNorm;
+public final class space/kscience/plotly/models/BarNorm : java/lang/Enum {
+	public static final field "" Lspace/kscience/plotly/models/BarNorm;
+	public static final field fraction Lspace/kscience/plotly/models/BarNorm;
+	public static final field percent Lspace/kscience/plotly/models/BarNorm;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BarNorm;
+	public static fun values ()[Lspace/kscience/plotly/models/BarNorm;
 }
 
-public final class kscience/plotly/models/Bins : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Bins$Companion;
+public final class space/kscience/plotly/models/Bins : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Bins$Companion;
 	public fun <init> ()V
 	public final fun getEnd ()Ljava/lang/Number;
 	public final fun getSize ()Ljava/lang/Number;
@@ -384,15 +372,15 @@ public final class kscience/plotly/models/Bins : hep/dataforge/meta/Scheme {
 	public final fun setStart (Ljava/lang/Number;)V
 }
 
-public final class kscience/plotly/models/Bins$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Bins$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/Box : kscience/plotly/models/Trace, kscience/plotly/models/SelectedPoints {
-	public static final field Companion Lkscience/plotly/models/Box$Companion;
+public final class space/kscience/plotly/models/Box : space/kscience/plotly/models/Trace, space/kscience/plotly/models/SelectedPoints {
+	public static final field Companion Lspace/kscience/plotly/models/Box$Companion;
 	public fun <init> ()V
-	public final fun getBoxmean ()Lkscience/plotly/models/BoxMean;
-	public final fun getBoxpoints ()Lkscience/plotly/models/BoxPoints;
-	public final fun getHoveron ()Lkscience/plotly/models/BoxHoveron;
+	public final fun getBoxmean ()Lspace/kscience/plotly/models/BoxMean;
+	public final fun getBoxpoints ()Lspace/kscience/plotly/models/BoxPoints;
+	public final fun getHoveron ()Lspace/kscience/plotly/models/BoxHoveron;
 	public final fun getJitter ()D
 	public final fun getLowerfence ()Ljava/util/List;
 	public final fun getMean ()Ljava/util/List;
@@ -403,11 +391,11 @@ public final class kscience/plotly/models/Box : kscience/plotly/models/Trace, ks
 	public final fun getPointpos ()D
 	public final fun getQ1 ()Ljava/util/List;
 	public final fun getQ3 ()Ljava/util/List;
-	public final fun getQuartilemethod ()Lkscience/plotly/models/QuartileMethod;
+	public final fun getQuartilemethod ()Lspace/kscience/plotly/models/QuartileMethod;
 	public final fun getSd ()Ljava/util/List;
-	public fun getSelected ()Lkscience/plotly/models/SelectPoints;
+	public fun getSelected ()Lspace/kscience/plotly/models/SelectPoints;
 	public fun getSelectedpoints ()Ljava/util/List;
-	public fun getUnselected ()Lkscience/plotly/models/SelectPoints;
+	public fun getUnselected ()Lspace/kscience/plotly/models/SelectPoints;
 	public final fun getUpperfence ()Ljava/util/List;
 	public final fun getWhiskerwidth ()D
 	public final fun getWidth ()Ljava/lang/Number;
@@ -419,9 +407,9 @@ public final class kscience/plotly/models/Box : kscience/plotly/models/Trace, ks
 	public final fun q3 (Ljava/lang/Iterable;)V
 	public final fun sd (Ljava/lang/Iterable;)V
 	public final fun selected (Lkotlin/jvm/functions/Function1;)V
-	public final fun setBoxmean (Lkscience/plotly/models/BoxMean;)V
-	public final fun setBoxpoints (Lkscience/plotly/models/BoxPoints;)V
-	public final fun setHoveron (Lkscience/plotly/models/BoxHoveron;)V
+	public final fun setBoxmean (Lspace/kscience/plotly/models/BoxMean;)V
+	public final fun setBoxpoints (Lspace/kscience/plotly/models/BoxPoints;)V
+	public final fun setHoveron (Lspace/kscience/plotly/models/BoxHoveron;)V
 	public final fun setJitter (D)V
 	public final fun setLowerfence (Ljava/util/List;)V
 	public final fun setMean (Ljava/util/List;)V
@@ -432,11 +420,11 @@ public final class kscience/plotly/models/Box : kscience/plotly/models/Trace, ks
 	public final fun setPointpos (D)V
 	public final fun setQ1 (Ljava/util/List;)V
 	public final fun setQ3 (Ljava/util/List;)V
-	public final fun setQuartilemethod (Lkscience/plotly/models/QuartileMethod;)V
+	public final fun setQuartilemethod (Lspace/kscience/plotly/models/QuartileMethod;)V
 	public final fun setSd (Ljava/util/List;)V
-	public fun setSelected (Lkscience/plotly/models/SelectPoints;)V
+	public fun setSelected (Lspace/kscience/plotly/models/SelectPoints;)V
 	public fun setSelectedpoints (Ljava/util/List;)V
-	public fun setUnselected (Lkscience/plotly/models/SelectPoints;)V
+	public fun setUnselected (Lspace/kscience/plotly/models/SelectPoints;)V
 	public final fun setUpperfence (Ljava/util/List;)V
 	public final fun setWhiskerwidth (D)V
 	public final fun setWidth (Ljava/lang/Number;)V
@@ -444,266 +432,266 @@ public final class kscience/plotly/models/Box : kscience/plotly/models/Trace, ks
 	public final fun upperfence (Ljava/lang/Iterable;)V
 }
 
-public final class kscience/plotly/models/Box$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Box$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/BoxHoveron : java/lang/Enum {
-	public static final field boxes Lkscience/plotly/models/BoxHoveron;
-	public static final field boxes+points Lkscience/plotly/models/BoxHoveron;
-	public static final field points Lkscience/plotly/models/BoxHoveron;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/BoxHoveron;
-	public static fun values ()[Lkscience/plotly/models/BoxHoveron;
+public final class space/kscience/plotly/models/BoxHoveron : java/lang/Enum {
+	public static final field boxes Lspace/kscience/plotly/models/BoxHoveron;
+	public static final field boxes+points Lspace/kscience/plotly/models/BoxHoveron;
+	public static final field points Lspace/kscience/plotly/models/BoxHoveron;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BoxHoveron;
+	public static fun values ()[Lspace/kscience/plotly/models/BoxHoveron;
 }
 
-public final class kscience/plotly/models/BoxMean : java/lang/Enum {
-	public static final field false Lkscience/plotly/models/BoxMean;
-	public static final field sd Lkscience/plotly/models/BoxMean;
-	public static final field true Lkscience/plotly/models/BoxMean;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/BoxMean;
-	public static fun values ()[Lkscience/plotly/models/BoxMean;
+public final class space/kscience/plotly/models/BoxMean : java/lang/Enum {
+	public static final field false Lspace/kscience/plotly/models/BoxMean;
+	public static final field sd Lspace/kscience/plotly/models/BoxMean;
+	public static final field true Lspace/kscience/plotly/models/BoxMean;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BoxMean;
+	public static fun values ()[Lspace/kscience/plotly/models/BoxMean;
 }
 
-public final class kscience/plotly/models/BoxMode : java/lang/Enum {
-	public static final field group Lkscience/plotly/models/BoxMode;
-	public static final field overlay Lkscience/plotly/models/BoxMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/BoxMode;
-	public static fun values ()[Lkscience/plotly/models/BoxMode;
+public final class space/kscience/plotly/models/BoxMode : java/lang/Enum {
+	public static final field group Lspace/kscience/plotly/models/BoxMode;
+	public static final field overlay Lspace/kscience/plotly/models/BoxMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BoxMode;
+	public static fun values ()[Lspace/kscience/plotly/models/BoxMode;
 }
 
-public final class kscience/plotly/models/BoxPoints : java/lang/Enum {
-	public static final field all Lkscience/plotly/models/BoxPoints;
-	public static final field false Lkscience/plotly/models/BoxPoints;
-	public static final field outliers Lkscience/plotly/models/BoxPoints;
-	public static final field suspectedoutliers Lkscience/plotly/models/BoxPoints;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/BoxPoints;
-	public static fun values ()[Lkscience/plotly/models/BoxPoints;
+public final class space/kscience/plotly/models/BoxPoints : java/lang/Enum {
+	public static final field all Lspace/kscience/plotly/models/BoxPoints;
+	public static final field false Lspace/kscience/plotly/models/BoxPoints;
+	public static final field outliers Lspace/kscience/plotly/models/BoxPoints;
+	public static final field suspectedoutliers Lspace/kscience/plotly/models/BoxPoints;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BoxPoints;
+	public static fun values ()[Lspace/kscience/plotly/models/BoxPoints;
 }
 
-public final class kscience/plotly/models/Calendar : java/lang/Enum {
-	public static final field chinese Lkscience/plotly/models/Calendar;
-	public static final field coptic Lkscience/plotly/models/Calendar;
-	public static final field discworld Lkscience/plotly/models/Calendar;
-	public static final field ethiopian Lkscience/plotly/models/Calendar;
-	public static final field gregorian Lkscience/plotly/models/Calendar;
-	public static final field hebrew Lkscience/plotly/models/Calendar;
-	public static final field islamic Lkscience/plotly/models/Calendar;
-	public static final field jalali Lkscience/plotly/models/Calendar;
-	public static final field julian Lkscience/plotly/models/Calendar;
-	public static final field mayan Lkscience/plotly/models/Calendar;
-	public static final field nanakshahi Lkscience/plotly/models/Calendar;
-	public static final field nepali Lkscience/plotly/models/Calendar;
-	public static final field persian Lkscience/plotly/models/Calendar;
-	public static final field taiwan Lkscience/plotly/models/Calendar;
-	public static final field thai Lkscience/plotly/models/Calendar;
-	public static final field ummalqura Lkscience/plotly/models/Calendar;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/Calendar;
-	public static fun values ()[Lkscience/plotly/models/Calendar;
+public final class space/kscience/plotly/models/Calendar : java/lang/Enum {
+	public static final field chinese Lspace/kscience/plotly/models/Calendar;
+	public static final field coptic Lspace/kscience/plotly/models/Calendar;
+	public static final field discworld Lspace/kscience/plotly/models/Calendar;
+	public static final field ethiopian Lspace/kscience/plotly/models/Calendar;
+	public static final field gregorian Lspace/kscience/plotly/models/Calendar;
+	public static final field hebrew Lspace/kscience/plotly/models/Calendar;
+	public static final field islamic Lspace/kscience/plotly/models/Calendar;
+	public static final field jalali Lspace/kscience/plotly/models/Calendar;
+	public static final field julian Lspace/kscience/plotly/models/Calendar;
+	public static final field mayan Lspace/kscience/plotly/models/Calendar;
+	public static final field nanakshahi Lspace/kscience/plotly/models/Calendar;
+	public static final field nepali Lspace/kscience/plotly/models/Calendar;
+	public static final field persian Lspace/kscience/plotly/models/Calendar;
+	public static final field taiwan Lspace/kscience/plotly/models/Calendar;
+	public static final field thai Lspace/kscience/plotly/models/Calendar;
+	public static final field ummalqura Lspace/kscience/plotly/models/Calendar;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Calendar;
+	public static fun values ()[Lspace/kscience/plotly/models/Calendar;
 }
 
-public final class kscience/plotly/models/Cells : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Cells$Companion;
+public final class space/kscience/plotly/models/Cells : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Cells$Companion;
 	public fun <init> ()V
 	public final fun align (Ljava/util/List;)V
-	public final fun align (Lkscience/plotly/models/HorizontalAlign;)V
-	public final fun align ([Lkscience/plotly/models/HorizontalAlign;)V
+	public final fun align (Lspace/kscience/plotly/models/HorizontalAlign;)V
+	public final fun align ([Lspace/kscience/plotly/models/HorizontalAlign;)V
 	public final fun fill (Lkotlin/jvm/functions/Function1;)V
 	public final fun font (Lkotlin/jvm/functions/Function1;)V
-	public final fun getAlign ()Lkscience/plotly/models/TraceValues;
-	public final fun getFill ()Lkscience/plotly/models/Fill;
-	public final fun getFont ()Lkscience/plotly/models/Font;
+	public final fun getAlign ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getFill ()Lspace/kscience/plotly/models/Fill;
+	public final fun getFont ()Lspace/kscience/plotly/models/Font;
 	public final fun getHeight ()Ljava/lang/Number;
-	public final fun getLine ()Lkscience/plotly/models/LayoutLine;
-	public final fun getValues ()Lkscience/plotly/models/TraceValues;
+	public final fun getLine ()Lspace/kscience/plotly/models/LayoutLine;
+	public final fun getValues ()Lspace/kscience/plotly/models/TraceValues;
 	public final fun line (Lkotlin/jvm/functions/Function1;)V
-	public final fun setAlign (Lkscience/plotly/models/TraceValues;)V
-	public final fun setFill (Lkscience/plotly/models/Fill;)V
-	public final fun setFont (Lkscience/plotly/models/Font;)V
+	public final fun setAlign (Lspace/kscience/plotly/models/TraceValues;)V
+	public final fun setFill (Lspace/kscience/plotly/models/Fill;)V
+	public final fun setFont (Lspace/kscience/plotly/models/Font;)V
 	public final fun setHeight (Ljava/lang/Number;)V
-	public final fun setLine (Lkscience/plotly/models/LayoutLine;)V
-	public final fun setValues (Lkscience/plotly/models/TraceValues;)V
+	public final fun setLine (Lspace/kscience/plotly/models/LayoutLine;)V
+	public final fun setValues (Lspace/kscience/plotly/models/TraceValues;)V
 	public final fun values (Ljava/lang/Iterable;)V
 }
 
-public final class kscience/plotly/models/Cells$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Cells$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/Color {
+public final class space/kscience/plotly/models/Color {
 	public final fun getString ()Ljava/lang/String;
-	public final fun getValue ()Lhep/dataforge/values/Value;
+	public final fun getValue ()Lspace/kscience/dataforge/values/Value;
 	public final fun invoke (Ljava/lang/Number;)V
 	public final fun invoke (Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;)V
 	public final fun invoke (Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;)V
 	public final fun invoke (Ljava/lang/String;)V
 	public final fun setString (Ljava/lang/String;)V
-	public final fun setValue (Lhep/dataforge/values/Value;)V
+	public final fun setValue (Lspace/kscience/dataforge/values/Value;)V
 }
 
-public final class kscience/plotly/models/ColorBar : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/ColorBar$Companion;
+public final class space/kscience/plotly/models/ColorBar : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/ColorBar$Companion;
 	public fun <init> ()V
-	public final fun getBgcolor ()Lkscience/plotly/models/Color;
-	public final fun getBordercolor ()Lkscience/plotly/models/Color;
+	public final fun getBgcolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getBordercolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getBorderwidth ()Ljava/lang/Number;
-	public final fun getConstraintext ()Lkscience/plotly/models/ConstrainText;
+	public final fun getConstraintext ()Lspace/kscience/plotly/models/ConstrainText;
 	public final fun getLen ()Ljava/lang/Number;
-	public final fun getLenmode ()Lkscience/plotly/models/MeasureMode;
-	public final fun getOutlinecolor ()Lkscience/plotly/models/Color;
+	public final fun getLenmode ()Lspace/kscience/plotly/models/MeasureMode;
+	public final fun getOutlinecolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getOutlinewidth ()Ljava/lang/Number;
 	public final fun getThickness ()Ljava/lang/Number;
-	public final fun getThicknessmode ()Lkscience/plotly/models/MeasureMode;
-	public final fun getTickfont ()Lkscience/plotly/models/Font;
-	public final fun getTitle ()Lkscience/plotly/models/Title;
+	public final fun getThicknessmode ()Lspace/kscience/plotly/models/MeasureMode;
+	public final fun getTickfont ()Lspace/kscience/plotly/models/Font;
+	public final fun getTitle ()Lspace/kscience/plotly/models/Title;
 	public final fun getX ()Ljava/lang/Number;
-	public final fun getXanchor ()Lkscience/plotly/models/XAnchor;
+	public final fun getXanchor ()Lspace/kscience/plotly/models/XAnchor;
 	public final fun getXpad ()Ljava/lang/Number;
 	public final fun getY ()Ljava/lang/Number;
-	public final fun getYanchor ()Lkscience/plotly/models/YAnchor;
+	public final fun getYanchor ()Lspace/kscience/plotly/models/YAnchor;
 	public final fun getYpad ()I
 	public final fun setBorderwidth (Ljava/lang/Number;)V
-	public final fun setConstraintext (Lkscience/plotly/models/ConstrainText;)V
+	public final fun setConstraintext (Lspace/kscience/plotly/models/ConstrainText;)V
 	public final fun setLen (Ljava/lang/Number;)V
-	public final fun setLenmode (Lkscience/plotly/models/MeasureMode;)V
+	public final fun setLenmode (Lspace/kscience/plotly/models/MeasureMode;)V
 	public final fun setOutlinewidth (Ljava/lang/Number;)V
 	public final fun setThickness (Ljava/lang/Number;)V
-	public final fun setThicknessmode (Lkscience/plotly/models/MeasureMode;)V
-	public final fun setTickfont (Lkscience/plotly/models/Font;)V
-	public final fun setTitle (Lkscience/plotly/models/Title;)V
+	public final fun setThicknessmode (Lspace/kscience/plotly/models/MeasureMode;)V
+	public final fun setTickfont (Lspace/kscience/plotly/models/Font;)V
+	public final fun setTitle (Lspace/kscience/plotly/models/Title;)V
 	public final fun setX (Ljava/lang/Number;)V
-	public final fun setXanchor (Lkscience/plotly/models/XAnchor;)V
+	public final fun setXanchor (Lspace/kscience/plotly/models/XAnchor;)V
 	public final fun setXpad (Ljava/lang/Number;)V
 	public final fun setY (Ljava/lang/Number;)V
-	public final fun setYanchor (Lkscience/plotly/models/YAnchor;)V
+	public final fun setYanchor (Lspace/kscience/plotly/models/YAnchor;)V
 	public final fun setYpad (I)V
 	public final fun tickfont (Lkotlin/jvm/functions/Function1;)V
 	public final fun title (Lkotlin/jvm/functions/Function1;)V
 }
 
-public final class kscience/plotly/models/ColorBar$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/ColorBar$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/ColorKt {
-	public static final fun color (Lhep/dataforge/meta/Scheme;Lhep/dataforge/names/Name;)Lkotlin/properties/ReadOnlyProperty;
-	public static synthetic fun color$default (Lhep/dataforge/meta/Scheme;Lhep/dataforge/names/Name;ILjava/lang/Object;)Lkotlin/properties/ReadOnlyProperty;
+public final class space/kscience/plotly/models/ColorKt {
+	public static final fun color (Lspace/kscience/dataforge/meta/Scheme;Lspace/kscience/dataforge/names/Name;)Lkotlin/properties/ReadOnlyProperty;
+	public static synthetic fun color$default (Lspace/kscience/dataforge/meta/Scheme;Lspace/kscience/dataforge/names/Name;ILjava/lang/Object;)Lkotlin/properties/ReadOnlyProperty;
 }
 
-public final class kscience/plotly/models/ConstrainText : java/lang/Enum {
-	public static final field both Lkscience/plotly/models/ConstrainText;
-	public static final field inside Lkscience/plotly/models/ConstrainText;
-	public static final field none Lkscience/plotly/models/ConstrainText;
-	public static final field outside Lkscience/plotly/models/ConstrainText;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ConstrainText;
-	public static fun values ()[Lkscience/plotly/models/ConstrainText;
+public final class space/kscience/plotly/models/ConstrainText : java/lang/Enum {
+	public static final field both Lspace/kscience/plotly/models/ConstrainText;
+	public static final field inside Lspace/kscience/plotly/models/ConstrainText;
+	public static final field none Lspace/kscience/plotly/models/ConstrainText;
+	public static final field outside Lspace/kscience/plotly/models/ConstrainText;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ConstrainText;
+	public static fun values ()[Lspace/kscience/plotly/models/ConstrainText;
 }
 
-public final class kscience/plotly/models/Contour : kscience/plotly/models/Trace, kscience/plotly/models/ContourSpec, kscience/plotly/models/HeatmapContour {
-	public static final field Companion Lkscience/plotly/models/Contour$Companion;
+public final class space/kscience/plotly/models/Contour : space/kscience/plotly/models/Trace, space/kscience/plotly/models/ContourSpec, space/kscience/plotly/models/HeatmapContour {
+	public static final field Companion Lspace/kscience/plotly/models/Contour$Companion;
 	public fun <init> ()V
 	public final fun contours (Lkotlin/jvm/functions/Function1;)V
 	public fun getAutocontour ()Ljava/lang/Boolean;
-	public fun getContours ()Lkscience/plotly/models/Contours;
+	public fun getContours ()Lspace/kscience/plotly/models/Contours;
 	public fun getNcontours ()I
-	public fun getXtype ()Lkscience/plotly/models/DataType;
-	public fun getYtype ()Lkscience/plotly/models/DataType;
+	public fun getXtype ()Lspace/kscience/plotly/models/DataType;
+	public fun getYtype ()Lspace/kscience/plotly/models/DataType;
 	public fun setAutocontour (Ljava/lang/Boolean;)V
-	public fun setContours (Lkscience/plotly/models/Contours;)V
+	public fun setContours (Lspace/kscience/plotly/models/Contours;)V
 	public fun setNcontours (I)V
-	public fun setXtype (Lkscience/plotly/models/DataType;)V
-	public fun setYtype (Lkscience/plotly/models/DataType;)V
+	public fun setXtype (Lspace/kscience/plotly/models/DataType;)V
+	public fun setYtype (Lspace/kscience/plotly/models/DataType;)V
 }
 
-public final class kscience/plotly/models/Contour$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Contour$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public abstract interface class kscience/plotly/models/ContourSpec {
+public abstract interface class space/kscience/plotly/models/ContourSpec {
 	public abstract fun getAutocontour ()Ljava/lang/Boolean;
-	public abstract fun getContours ()Lkscience/plotly/models/Contours;
+	public abstract fun getContours ()Lspace/kscience/plotly/models/Contours;
 	public abstract fun getNcontours ()I
 	public abstract fun setAutocontour (Ljava/lang/Boolean;)V
-	public abstract fun setContours (Lkscience/plotly/models/Contours;)V
+	public abstract fun setContours (Lspace/kscience/plotly/models/Contours;)V
 	public abstract fun setNcontours (I)V
 }
 
-public final class kscience/plotly/models/Contours : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Contours$Companion;
+public final class space/kscience/plotly/models/Contours : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Contours$Companion;
 	public fun <init> ()V
-	public final fun getColoring ()Lkscience/plotly/models/ContoursColoring;
+	public final fun getColoring ()Lspace/kscience/plotly/models/ContoursColoring;
 	public final fun getEnd ()Ljava/lang/Number;
-	public final fun getLabelfont ()Lkscience/plotly/models/Font;
+	public final fun getLabelfont ()Lspace/kscience/plotly/models/Font;
 	public final fun getShowlabels ()Ljava/lang/Boolean;
 	public final fun getShowlines ()Ljava/lang/Boolean;
 	public final fun getSize ()Ljava/lang/Number;
 	public final fun getStart ()Ljava/lang/Number;
-	public final fun getType ()Lkscience/plotly/models/ContoursType;
+	public final fun getType ()Lspace/kscience/plotly/models/ContoursType;
 	public final fun labelfont (Lkotlin/jvm/functions/Function1;)V
-	public final fun setColoring (Lkscience/plotly/models/ContoursColoring;)V
+	public final fun setColoring (Lspace/kscience/plotly/models/ContoursColoring;)V
 	public final fun setEnd (Ljava/lang/Number;)V
-	public final fun setLabelfont (Lkscience/plotly/models/Font;)V
+	public final fun setLabelfont (Lspace/kscience/plotly/models/Font;)V
 	public final fun setShowlabels (Ljava/lang/Boolean;)V
 	public final fun setShowlines (Ljava/lang/Boolean;)V
 	public final fun setSize (Ljava/lang/Number;)V
 	public final fun setStart (Ljava/lang/Number;)V
-	public final fun setType (Lkscience/plotly/models/ContoursType;)V
+	public final fun setType (Lspace/kscience/plotly/models/ContoursType;)V
 }
 
-public final class kscience/plotly/models/Contours$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Contours$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/ContoursColoring : java/lang/Enum {
-	public static final field fill Lkscience/plotly/models/ContoursColoring;
-	public static final field heatmap Lkscience/plotly/models/ContoursColoring;
-	public static final field lines Lkscience/plotly/models/ContoursColoring;
-	public static final field none Lkscience/plotly/models/ContoursColoring;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ContoursColoring;
-	public static fun values ()[Lkscience/plotly/models/ContoursColoring;
+public final class space/kscience/plotly/models/ContoursColoring : java/lang/Enum {
+	public static final field fill Lspace/kscience/plotly/models/ContoursColoring;
+	public static final field heatmap Lspace/kscience/plotly/models/ContoursColoring;
+	public static final field lines Lspace/kscience/plotly/models/ContoursColoring;
+	public static final field none Lspace/kscience/plotly/models/ContoursColoring;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ContoursColoring;
+	public static fun values ()[Lspace/kscience/plotly/models/ContoursColoring;
 }
 
-public final class kscience/plotly/models/ContoursType : java/lang/Enum {
-	public static final field constraint Lkscience/plotly/models/ContoursType;
-	public static final field levels Lkscience/plotly/models/ContoursType;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ContoursType;
-	public static fun values ()[Lkscience/plotly/models/ContoursType;
+public final class space/kscience/plotly/models/ContoursType : java/lang/Enum {
+	public static final field constraint Lspace/kscience/plotly/models/ContoursType;
+	public static final field levels Lspace/kscience/plotly/models/ContoursType;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ContoursType;
+	public static fun values ()[Lspace/kscience/plotly/models/ContoursType;
 }
 
-public final class kscience/plotly/models/Cumulative : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Cumulative$Companion;
+public final class space/kscience/plotly/models/Cumulative : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Cumulative$Companion;
 	public fun <init> ()V
-	public final fun getCurrentbin ()Lkscience/plotly/models/CurrentBin;
+	public final fun getCurrentbin ()Lspace/kscience/plotly/models/CurrentBin;
 	public final fun getEnabled ()Ljava/lang/Boolean;
-	public final fun setCurrentbin (Lkscience/plotly/models/CurrentBin;)V
+	public final fun setCurrentbin (Lspace/kscience/plotly/models/CurrentBin;)V
 	public final fun setEnabled (Ljava/lang/Boolean;)V
 }
 
-public final class kscience/plotly/models/Cumulative$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Cumulative$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/CurrentBin : java/lang/Enum {
-	public static final field exclude Lkscience/plotly/models/CurrentBin;
-	public static final field half Lkscience/plotly/models/CurrentBin;
-	public static final field include Lkscience/plotly/models/CurrentBin;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/CurrentBin;
-	public static fun values ()[Lkscience/plotly/models/CurrentBin;
+public final class space/kscience/plotly/models/CurrentBin : java/lang/Enum {
+	public static final field exclude Lspace/kscience/plotly/models/CurrentBin;
+	public static final field half Lspace/kscience/plotly/models/CurrentBin;
+	public static final field include Lspace/kscience/plotly/models/CurrentBin;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/CurrentBin;
+	public static fun values ()[Lspace/kscience/plotly/models/CurrentBin;
 }
 
-public final class kscience/plotly/models/Dash : java/lang/Enum {
-	public static final field dash Lkscience/plotly/models/Dash;
-	public static final field dashdot Lkscience/plotly/models/Dash;
-	public static final field dot Lkscience/plotly/models/Dash;
-	public static final field longdash Lkscience/plotly/models/Dash;
-	public static final field longdashdot Lkscience/plotly/models/Dash;
-	public static final field solid Lkscience/plotly/models/Dash;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/Dash;
-	public static fun values ()[Lkscience/plotly/models/Dash;
+public final class space/kscience/plotly/models/Dash : java/lang/Enum {
+	public static final field dash Lspace/kscience/plotly/models/Dash;
+	public static final field dashdot Lspace/kscience/plotly/models/Dash;
+	public static final field dot Lspace/kscience/plotly/models/Dash;
+	public static final field longdash Lspace/kscience/plotly/models/Dash;
+	public static final field longdashdot Lspace/kscience/plotly/models/Dash;
+	public static final field solid Lspace/kscience/plotly/models/Dash;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Dash;
+	public static fun values ()[Lspace/kscience/plotly/models/Dash;
 }
 
-public final class kscience/plotly/models/DataType : java/lang/Enum {
-	public static final field array Lkscience/plotly/models/DataType;
-	public static final field scaled Lkscience/plotly/models/DataType;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/DataType;
-	public static fun values ()[Lkscience/plotly/models/DataType;
+public final class space/kscience/plotly/models/DataType : java/lang/Enum {
+	public static final field array Lspace/kscience/plotly/models/DataType;
+	public static final field scaled Lspace/kscience/plotly/models/DataType;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/DataType;
+	public static fun values ()[Lspace/kscience/plotly/models/DataType;
 }
 
-public final class kscience/plotly/models/Domain : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Domain$Companion;
+public final class space/kscience/plotly/models/Domain : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Domain$Companion;
 	public fun <init> ()V
 	public final fun getColumn ()I
 	public final fun getRow ()I
@@ -715,20 +703,20 @@ public final class kscience/plotly/models/Domain : hep/dataforge/meta/Scheme {
 	public final fun setY (Ljava/util/List;)V
 }
 
-public final class kscience/plotly/models/Domain$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Domain$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/Error : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Error$Companion;
+public final class space/kscience/plotly/models/Error : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Error$Companion;
 	public fun <init> ()V
 	public final fun getArray ()Ljava/util/List;
 	public final fun getArrayminus ()Ljava/util/List;
-	public final fun getColor ()Lkscience/plotly/models/Color;
+	public final fun getColor ()Lspace/kscience/plotly/models/Color;
 	public final fun getSymmetric ()Ljava/lang/Boolean;
 	public final fun getThickness ()Ljava/lang/Number;
 	public final fun getTraceref ()I
 	public final fun getTracerefminus ()I
-	public final fun getType ()Lkscience/plotly/models/ErrorType;
+	public final fun getType ()Lspace/kscience/plotly/models/ErrorType;
 	public final fun getValue ()Ljava/lang/Number;
 	public final fun getValueminus ()Ljava/lang/Number;
 	public final fun getVisible ()Ljava/lang/Boolean;
@@ -739,63 +727,63 @@ public final class kscience/plotly/models/Error : hep/dataforge/meta/Scheme {
 	public final fun setThickness (Ljava/lang/Number;)V
 	public final fun setTraceref (I)V
 	public final fun setTracerefminus (I)V
-	public final fun setType (Lkscience/plotly/models/ErrorType;)V
+	public final fun setType (Lspace/kscience/plotly/models/ErrorType;)V
 	public final fun setValue (Ljava/lang/Number;)V
 	public final fun setValueminus (Ljava/lang/Number;)V
 	public final fun setVisible (Ljava/lang/Boolean;)V
 	public final fun setWidth (Ljava/lang/Number;)V
 }
 
-public final class kscience/plotly/models/Error$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Error$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/ErrorType : java/lang/Enum {
-	public static final field constant Lkscience/plotly/models/ErrorType;
-	public static final field data Lkscience/plotly/models/ErrorType;
-	public static final field percent Lkscience/plotly/models/ErrorType;
-	public static final field sqrt Lkscience/plotly/models/ErrorType;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ErrorType;
-	public static fun values ()[Lkscience/plotly/models/ErrorType;
+public final class space/kscience/plotly/models/ErrorType : java/lang/Enum {
+	public static final field constant Lspace/kscience/plotly/models/ErrorType;
+	public static final field data Lspace/kscience/plotly/models/ErrorType;
+	public static final field percent Lspace/kscience/plotly/models/ErrorType;
+	public static final field sqrt Lspace/kscience/plotly/models/ErrorType;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ErrorType;
+	public static fun values ()[Lspace/kscience/plotly/models/ErrorType;
 }
 
-public final class kscience/plotly/models/Fill : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Fill$Companion;
+public final class space/kscience/plotly/models/Fill : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Fill$Companion;
 	public fun <init> ()V
 	public final fun colors (Ljava/lang/Iterable;)V
-	public final fun getColor ()Lkscience/plotly/models/Color;
-	public final fun setColor (Lkscience/plotly/models/Color;)V
+	public final fun getColor ()Lspace/kscience/plotly/models/Color;
+	public final fun setColor (Lspace/kscience/plotly/models/Color;)V
 }
 
-public final class kscience/plotly/models/Fill$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Fill$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/FillTraceKt {
-	public static final fun appendXY (Lkscience/plotly/models/Trace;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;)V
-	public static final fun appendXY (Lkscience/plotly/models/Trace;[Lkotlin/Pair;)V
-	public static synthetic fun appendXY$default (Lkscience/plotly/models/Trace;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;ILjava/lang/Object;)V
-	public static final fun functionXY (Lkscience/plotly/models/Trace;Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)V
-	public static final fun functionXY (Lkscience/plotly/models/Trace;Lkotlin/ranges/ClosedFloatingPointRange;DLkotlin/jvm/functions/Function1;)V
-	public static final fun functionXY (Lkscience/plotly/models/Trace;Lkotlin/ranges/IntRange;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun functionXY$default (Lkscience/plotly/models/Trace;Lkotlin/ranges/ClosedFloatingPointRange;DLkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+public final class space/kscience/plotly/models/FillTraceKt {
+	public static final fun appendXY (Lspace/kscience/plotly/models/Trace;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;)V
+	public static final fun appendXY (Lspace/kscience/plotly/models/Trace;[Lkotlin/Pair;)V
+	public static synthetic fun appendXY$default (Lspace/kscience/plotly/models/Trace;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/Number;ILjava/lang/Object;)V
+	public static final fun functionXY (Lspace/kscience/plotly/models/Trace;Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)V
+	public static final fun functionXY (Lspace/kscience/plotly/models/Trace;Lkotlin/ranges/ClosedFloatingPointRange;DLkotlin/jvm/functions/Function1;)V
+	public static final fun functionXY (Lspace/kscience/plotly/models/Trace;Lkotlin/ranges/IntRange;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun functionXY$default (Lspace/kscience/plotly/models/Trace;Lkotlin/ranges/ClosedFloatingPointRange;DLkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
-public final class kscience/plotly/models/FillType : java/lang/Enum {
-	public static final field none Lkscience/plotly/models/FillType;
-	public static final field tonext Lkscience/plotly/models/FillType;
-	public static final field tonextx Lkscience/plotly/models/FillType;
-	public static final field tonexty Lkscience/plotly/models/FillType;
-	public static final field toself Lkscience/plotly/models/FillType;
-	public static final field tozerox Lkscience/plotly/models/FillType;
-	public static final field tozeroy Lkscience/plotly/models/FillType;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/FillType;
-	public static fun values ()[Lkscience/plotly/models/FillType;
+public final class space/kscience/plotly/models/FillType : java/lang/Enum {
+	public static final field none Lspace/kscience/plotly/models/FillType;
+	public static final field tonext Lspace/kscience/plotly/models/FillType;
+	public static final field tonextx Lspace/kscience/plotly/models/FillType;
+	public static final field tonexty Lspace/kscience/plotly/models/FillType;
+	public static final field toself Lspace/kscience/plotly/models/FillType;
+	public static final field tozerox Lspace/kscience/plotly/models/FillType;
+	public static final field tozeroy Lspace/kscience/plotly/models/FillType;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/FillType;
+	public static fun values ()[Lspace/kscience/plotly/models/FillType;
 }
 
-public final class kscience/plotly/models/Font : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Font$Companion;
+public final class space/kscience/plotly/models/Font : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Font$Companion;
 	public fun <init> ()V
 	public final fun colors (Ljava/lang/Iterable;)V
-	public final fun getColor ()Lkscience/plotly/models/Color;
+	public final fun getColor ()Lspace/kscience/plotly/models/Color;
 	public final fun getFamiliesList ()Ljava/util/List;
 	public final fun getFamily ()Ljava/lang/String;
 	public final fun getSize ()Ljava/lang/Number;
@@ -806,377 +794,377 @@ public final class kscience/plotly/models/Font : hep/dataforge/meta/Scheme {
 	public final fun setSizesList (Ljava/util/List;)V
 }
 
-public final class kscience/plotly/models/Font$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Font$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/Gradient : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Gradient$Companion;
+public final class space/kscience/plotly/models/Gradient : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Gradient$Companion;
 	public fun <init> ()V
 	public final fun colors (Ljava/lang/Iterable;)V
-	public final fun getColor ()Lkscience/plotly/models/Color;
-	public final fun getType ()Lkscience/plotly/models/GradientType;
+	public final fun getColor ()Lspace/kscience/plotly/models/Color;
+	public final fun getType ()Lspace/kscience/plotly/models/GradientType;
 	public final fun getTypesList ()Ljava/util/List;
-	public final fun setType (Lkscience/plotly/models/GradientType;)V
+	public final fun setType (Lspace/kscience/plotly/models/GradientType;)V
 	public final fun setTypesList (Ljava/util/List;)V
 	public final fun typesList (Ljava/lang/Iterable;)V
 }
 
-public final class kscience/plotly/models/Gradient$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Gradient$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/GradientType : java/lang/Enum {
-	public static final field horizontal Lkscience/plotly/models/GradientType;
-	public static final field none Lkscience/plotly/models/GradientType;
-	public static final field radial Lkscience/plotly/models/GradientType;
-	public static final field vertical Lkscience/plotly/models/GradientType;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/GradientType;
-	public static fun values ()[Lkscience/plotly/models/GradientType;
+public final class space/kscience/plotly/models/GradientType : java/lang/Enum {
+	public static final field horizontal Lspace/kscience/plotly/models/GradientType;
+	public static final field none Lspace/kscience/plotly/models/GradientType;
+	public static final field radial Lspace/kscience/plotly/models/GradientType;
+	public static final field vertical Lspace/kscience/plotly/models/GradientType;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/GradientType;
+	public static fun values ()[Lspace/kscience/plotly/models/GradientType;
 }
 
-public final class kscience/plotly/models/GroupNorm : java/lang/Enum {
-	public static final field   Lkscience/plotly/models/GroupNorm;
-	public static final field fraction Lkscience/plotly/models/GroupNorm;
-	public static final field percent Lkscience/plotly/models/GroupNorm;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/GroupNorm;
-	public static fun values ()[Lkscience/plotly/models/GroupNorm;
+public final class space/kscience/plotly/models/GroupNorm : java/lang/Enum {
+	public static final field   Lspace/kscience/plotly/models/GroupNorm;
+	public static final field fraction Lspace/kscience/plotly/models/GroupNorm;
+	public static final field percent Lspace/kscience/plotly/models/GroupNorm;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/GroupNorm;
+	public static fun values ()[Lspace/kscience/plotly/models/GroupNorm;
 }
 
-public final class kscience/plotly/models/Header : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Header$Companion;
+public final class space/kscience/plotly/models/Header : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Header$Companion;
 	public fun <init> ()V
 	public final fun align (Ljava/util/List;)V
-	public final fun align (Lkscience/plotly/models/HorizontalAlign;)V
-	public final fun align ([Lkscience/plotly/models/HorizontalAlign;)V
+	public final fun align (Lspace/kscience/plotly/models/HorizontalAlign;)V
+	public final fun align ([Lspace/kscience/plotly/models/HorizontalAlign;)V
 	public final fun fill (Lkotlin/jvm/functions/Function1;)V
 	public final fun font (Lkotlin/jvm/functions/Function1;)V
-	public final fun getAlign ()Lkscience/plotly/models/TraceValues;
-	public final fun getFill ()Lkscience/plotly/models/Fill;
-	public final fun getFont ()Lkscience/plotly/models/Font;
+	public final fun getAlign ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getFill ()Lspace/kscience/plotly/models/Fill;
+	public final fun getFont ()Lspace/kscience/plotly/models/Font;
 	public final fun getHeight ()Ljava/lang/Number;
-	public final fun getLine ()Lkscience/plotly/models/LayoutLine;
-	public final fun getValues ()Lkscience/plotly/models/TraceValues;
-	public final fun setAlign (Lkscience/plotly/models/TraceValues;)V
-	public final fun setFill (Lkscience/plotly/models/Fill;)V
-	public final fun setFont (Lkscience/plotly/models/Font;)V
+	public final fun getLine ()Lspace/kscience/plotly/models/LayoutLine;
+	public final fun getValues ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun setAlign (Lspace/kscience/plotly/models/TraceValues;)V
+	public final fun setFill (Lspace/kscience/plotly/models/Fill;)V
+	public final fun setFont (Lspace/kscience/plotly/models/Font;)V
 	public final fun setHeight (Ljava/lang/Number;)V
-	public final fun setLine (Lkscience/plotly/models/LayoutLine;)V
-	public final fun setValues (Lkscience/plotly/models/TraceValues;)V
+	public final fun setLine (Lspace/kscience/plotly/models/LayoutLine;)V
+	public final fun setValues (Lspace/kscience/plotly/models/TraceValues;)V
 	public final fun values (Ljava/lang/Iterable;)V
 }
 
-public final class kscience/plotly/models/Header$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Header$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public class kscience/plotly/models/Heatmap : kscience/plotly/models/Trace, kscience/plotly/models/HeatmapContour, kscience/plotly/models/Table2D {
-	public static final field Companion Lkscience/plotly/models/Heatmap$Companion;
+public class space/kscience/plotly/models/Heatmap : space/kscience/plotly/models/Trace, space/kscience/plotly/models/HeatmapContour, space/kscience/plotly/models/Table2D {
+	public static final field Companion Lspace/kscience/plotly/models/Heatmap$Companion;
 	public fun <init> ()V
 	public fun getXgap ()Ljava/lang/Number;
-	public fun getXtype ()Lkscience/plotly/models/DataType;
+	public fun getXtype ()Lspace/kscience/plotly/models/DataType;
 	public fun getYgap ()Ljava/lang/Number;
-	public fun getYtype ()Lkscience/plotly/models/DataType;
-	public fun getZsmooth ()Lkscience/plotly/models/ZsmoothType;
+	public fun getYtype ()Lspace/kscience/plotly/models/DataType;
+	public fun getZsmooth ()Lspace/kscience/plotly/models/ZsmoothType;
 	public fun setXgap (Ljava/lang/Number;)V
-	public fun setXtype (Lkscience/plotly/models/DataType;)V
+	public fun setXtype (Lspace/kscience/plotly/models/DataType;)V
 	public fun setYgap (Ljava/lang/Number;)V
-	public fun setYtype (Lkscience/plotly/models/DataType;)V
-	public fun setZsmooth (Lkscience/plotly/models/ZsmoothType;)V
+	public fun setYtype (Lspace/kscience/plotly/models/DataType;)V
+	public fun setZsmooth (Lspace/kscience/plotly/models/ZsmoothType;)V
 }
 
-public final class kscience/plotly/models/Heatmap$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Heatmap$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public abstract interface class kscience/plotly/models/HeatmapContour {
-	public abstract fun getXtype ()Lkscience/plotly/models/DataType;
-	public abstract fun getYtype ()Lkscience/plotly/models/DataType;
-	public abstract fun setXtype (Lkscience/plotly/models/DataType;)V
-	public abstract fun setYtype (Lkscience/plotly/models/DataType;)V
+public abstract interface class space/kscience/plotly/models/HeatmapContour {
+	public abstract fun getXtype ()Lspace/kscience/plotly/models/DataType;
+	public abstract fun getYtype ()Lspace/kscience/plotly/models/DataType;
+	public abstract fun setXtype (Lspace/kscience/plotly/models/DataType;)V
+	public abstract fun setYtype (Lspace/kscience/plotly/models/DataType;)V
 }
 
-public final class kscience/plotly/models/HeatmapGL : kscience/plotly/models/Heatmap {
-	public static final field Companion Lkscience/plotly/models/HeatmapGL$Companion;
+public final class space/kscience/plotly/models/HeatmapGL : space/kscience/plotly/models/Heatmap {
+	public static final field Companion Lspace/kscience/plotly/models/HeatmapGL$Companion;
 	public fun <init> ()V
 }
 
-public final class kscience/plotly/models/HeatmapGL$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/HeatmapGL$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/HistFunc : java/lang/Enum {
-	public static final field average Lkscience/plotly/models/HistFunc;
-	public static final field count Lkscience/plotly/models/HistFunc;
-	public static final field max Lkscience/plotly/models/HistFunc;
-	public static final field min Lkscience/plotly/models/HistFunc;
-	public static final field sum Lkscience/plotly/models/HistFunc;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/HistFunc;
-	public static fun values ()[Lkscience/plotly/models/HistFunc;
+public final class space/kscience/plotly/models/HistFunc : java/lang/Enum {
+	public static final field average Lspace/kscience/plotly/models/HistFunc;
+	public static final field count Lspace/kscience/plotly/models/HistFunc;
+	public static final field max Lspace/kscience/plotly/models/HistFunc;
+	public static final field min Lspace/kscience/plotly/models/HistFunc;
+	public static final field sum Lspace/kscience/plotly/models/HistFunc;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/HistFunc;
+	public static fun values ()[Lspace/kscience/plotly/models/HistFunc;
 }
 
-public final class kscience/plotly/models/HistNorm : java/lang/Enum {
-	public static final field density Lkscience/plotly/models/HistNorm;
-	public static final field empty Lkscience/plotly/models/HistNorm;
-	public static final field percent Lkscience/plotly/models/HistNorm;
-	public static final field probability Lkscience/plotly/models/HistNorm;
-	public static final field probability density Lkscience/plotly/models/HistNorm;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/HistNorm;
-	public static fun values ()[Lkscience/plotly/models/HistNorm;
+public final class space/kscience/plotly/models/HistNorm : java/lang/Enum {
+	public static final field density Lspace/kscience/plotly/models/HistNorm;
+	public static final field empty Lspace/kscience/plotly/models/HistNorm;
+	public static final field percent Lspace/kscience/plotly/models/HistNorm;
+	public static final field probability Lspace/kscience/plotly/models/HistNorm;
+	public static final field probability density Lspace/kscience/plotly/models/HistNorm;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/HistNorm;
+	public static fun values ()[Lspace/kscience/plotly/models/HistNorm;
 }
 
-public class kscience/plotly/models/Histogram : kscience/plotly/models/Trace {
-	public static final field Companion Lkscience/plotly/models/Histogram$Companion;
+public class space/kscience/plotly/models/Histogram : space/kscience/plotly/models/Trace {
+	public static final field Companion Lspace/kscience/plotly/models/Histogram$Companion;
 	public fun <init> ()V
 	public final fun cumulative (Lkotlin/jvm/functions/Function1;)V
 	public final fun getBingroup ()Ljava/lang/String;
-	public final fun getCumulative ()Lkscience/plotly/models/Cumulative;
-	public final fun getDirection ()Lkscience/plotly/models/HistogramDirection;
-	public final fun getHistfunc ()Lkscience/plotly/models/HistFunc;
-	public final fun getHistnorm ()Lkscience/plotly/models/HistNorm;
+	public final fun getCumulative ()Lspace/kscience/plotly/models/Cumulative;
+	public final fun getDirection ()Lspace/kscience/plotly/models/HistogramDirection;
+	public final fun getHistfunc ()Lspace/kscience/plotly/models/HistFunc;
+	public final fun getHistnorm ()Lspace/kscience/plotly/models/HistNorm;
 	public final fun getNbinsx ()I
 	public final fun getNbinsy ()I
 	public final fun getXbingroup ()Ljava/lang/String;
-	public final fun getXbins ()Lkscience/plotly/models/Bins;
+	public final fun getXbins ()Lspace/kscience/plotly/models/Bins;
 	public final fun getYbingroup ()Ljava/lang/String;
-	public final fun getYbins ()Lkscience/plotly/models/Bins;
+	public final fun getYbins ()Lspace/kscience/plotly/models/Bins;
 	public final fun setBingroup (Ljava/lang/String;)V
-	public final fun setCumulative (Lkscience/plotly/models/Cumulative;)V
-	public final fun setDirection (Lkscience/plotly/models/HistogramDirection;)V
-	public final fun setHistfunc (Lkscience/plotly/models/HistFunc;)V
-	public final fun setHistnorm (Lkscience/plotly/models/HistNorm;)V
+	public final fun setCumulative (Lspace/kscience/plotly/models/Cumulative;)V
+	public final fun setDirection (Lspace/kscience/plotly/models/HistogramDirection;)V
+	public final fun setHistfunc (Lspace/kscience/plotly/models/HistFunc;)V
+	public final fun setHistnorm (Lspace/kscience/plotly/models/HistNorm;)V
 	public final fun setNbinsx (I)V
 	public final fun setNbinsy (I)V
 	public final fun setXbingroup (Ljava/lang/String;)V
-	public final fun setXbins (Lkscience/plotly/models/Bins;)V
+	public final fun setXbins (Lspace/kscience/plotly/models/Bins;)V
 	public final fun setYbingroup (Ljava/lang/String;)V
-	public final fun setYbins (Lkscience/plotly/models/Bins;)V
+	public final fun setYbins (Lspace/kscience/plotly/models/Bins;)V
 	public final fun xbins (Lkotlin/jvm/functions/Function1;)V
 	public final fun ybins (Lkotlin/jvm/functions/Function1;)V
 }
 
-public final class kscience/plotly/models/Histogram$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Histogram$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/Histogram2D : kscience/plotly/models/Histogram, kscience/plotly/models/Table2D {
-	public static final field Companion Lkscience/plotly/models/Histogram2D$Companion;
+public final class space/kscience/plotly/models/Histogram2D : space/kscience/plotly/models/Histogram, space/kscience/plotly/models/Table2D {
+	public static final field Companion Lspace/kscience/plotly/models/Histogram2D$Companion;
 	public fun <init> ()V
 	public fun getXgap ()Ljava/lang/Number;
 	public fun getYgap ()Ljava/lang/Number;
-	public fun getZsmooth ()Lkscience/plotly/models/ZsmoothType;
+	public fun getZsmooth ()Lspace/kscience/plotly/models/ZsmoothType;
 	public fun setXgap (Ljava/lang/Number;)V
 	public fun setYgap (Ljava/lang/Number;)V
-	public fun setZsmooth (Lkscience/plotly/models/ZsmoothType;)V
+	public fun setZsmooth (Lspace/kscience/plotly/models/ZsmoothType;)V
 }
 
-public final class kscience/plotly/models/Histogram2D$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Histogram2D$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/Histogram2DContour : kscience/plotly/models/Histogram, kscience/plotly/models/ContourSpec {
-	public static final field Companion Lkscience/plotly/models/Histogram2DContour$Companion;
+public final class space/kscience/plotly/models/Histogram2DContour : space/kscience/plotly/models/Histogram, space/kscience/plotly/models/ContourSpec {
+	public static final field Companion Lspace/kscience/plotly/models/Histogram2DContour$Companion;
 	public fun <init> ()V
 	public final fun contours (Lkotlin/jvm/functions/Function1;)V
 	public fun getAutocontour ()Ljava/lang/Boolean;
-	public fun getContours ()Lkscience/plotly/models/Contours;
+	public fun getContours ()Lspace/kscience/plotly/models/Contours;
 	public fun getNcontours ()I
 	public fun setAutocontour (Ljava/lang/Boolean;)V
-	public fun setContours (Lkscience/plotly/models/Contours;)V
+	public fun setContours (Lspace/kscience/plotly/models/Contours;)V
 	public fun setNcontours (I)V
 }
 
-public final class kscience/plotly/models/Histogram2DContour$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Histogram2DContour$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/HistogramDirection : java/lang/Enum {
-	public static final field decreasing Lkscience/plotly/models/HistogramDirection;
-	public static final field increasing Lkscience/plotly/models/HistogramDirection;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/HistogramDirection;
-	public static fun values ()[Lkscience/plotly/models/HistogramDirection;
+public final class space/kscience/plotly/models/HistogramDirection : java/lang/Enum {
+	public static final field decreasing Lspace/kscience/plotly/models/HistogramDirection;
+	public static final field increasing Lspace/kscience/plotly/models/HistogramDirection;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/HistogramDirection;
+	public static fun values ()[Lspace/kscience/plotly/models/HistogramDirection;
 }
 
-public final class kscience/plotly/models/HorizontalAlign : java/lang/Enum {
-	public static final field center Lkscience/plotly/models/HorizontalAlign;
-	public static final field left Lkscience/plotly/models/HorizontalAlign;
-	public static final field right Lkscience/plotly/models/HorizontalAlign;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/HorizontalAlign;
-	public static fun values ()[Lkscience/plotly/models/HorizontalAlign;
+public final class space/kscience/plotly/models/HorizontalAlign : java/lang/Enum {
+	public static final field center Lspace/kscience/plotly/models/HorizontalAlign;
+	public static final field left Lspace/kscience/plotly/models/HorizontalAlign;
+	public static final field right Lspace/kscience/plotly/models/HorizontalAlign;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/HorizontalAlign;
+	public static fun values ()[Lspace/kscience/plotly/models/HorizontalAlign;
 }
 
-public final class kscience/plotly/models/HoverMode : java/lang/Enum {
-	public static final field closest Lkscience/plotly/models/HoverMode;
-	public static final field false Lkscience/plotly/models/HoverMode;
-	public static final field x Lkscience/plotly/models/HoverMode;
-	public static final field x unified Lkscience/plotly/models/HoverMode;
-	public static final field y Lkscience/plotly/models/HoverMode;
-	public static final field y unified Lkscience/plotly/models/HoverMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/HoverMode;
-	public static fun values ()[Lkscience/plotly/models/HoverMode;
+public final class space/kscience/plotly/models/HoverMode : java/lang/Enum {
+	public static final field closest Lspace/kscience/plotly/models/HoverMode;
+	public static final field false Lspace/kscience/plotly/models/HoverMode;
+	public static final field x Lspace/kscience/plotly/models/HoverMode;
+	public static final field x unified Lspace/kscience/plotly/models/HoverMode;
+	public static final field y Lspace/kscience/plotly/models/HoverMode;
+	public static final field y unified Lspace/kscience/plotly/models/HoverMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/HoverMode;
+	public static fun values ()[Lspace/kscience/plotly/models/HoverMode;
 }
 
-public final class kscience/plotly/models/Hoverlabel : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Hoverlabel$Companion;
+public final class space/kscience/plotly/models/Hoverlabel : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Hoverlabel$Companion;
 	public fun <init> ()V
 	public final fun align (Ljava/util/List;)V
-	public final fun align (Lkscience/plotly/models/HorizontalAlign;)V
-	public final fun align ([Lkscience/plotly/models/HorizontalAlign;)V
+	public final fun align (Lspace/kscience/plotly/models/HorizontalAlign;)V
+	public final fun align ([Lspace/kscience/plotly/models/HorizontalAlign;)V
 	public final fun bgcolors (Ljava/lang/Iterable;)V
 	public final fun bordercolors (Ljava/lang/Iterable;)V
 	public final fun font (Lkotlin/jvm/functions/Function1;)V
-	public final fun getAlign ()Lkscience/plotly/models/TraceValues;
-	public final fun getBgcolor ()Lkscience/plotly/models/Color;
-	public final fun getBordercolor ()Lkscience/plotly/models/Color;
-	public final fun getFont ()Lkscience/plotly/models/Font;
+	public final fun getAlign ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getBgcolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getBordercolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getFont ()Lspace/kscience/plotly/models/Font;
 	public final fun getNamelength ()Ljava/lang/Number;
 	public final fun getNamelengths ()Ljava/util/List;
-	public final fun setAlign (Lkscience/plotly/models/TraceValues;)V
-	public final fun setBgcolor (Lkscience/plotly/models/Color;)V
-	public final fun setBordercolor (Lkscience/plotly/models/Color;)V
-	public final fun setFont (Lkscience/plotly/models/Font;)V
+	public final fun setAlign (Lspace/kscience/plotly/models/TraceValues;)V
+	public final fun setBgcolor (Lspace/kscience/plotly/models/Color;)V
+	public final fun setBordercolor (Lspace/kscience/plotly/models/Color;)V
+	public final fun setFont (Lspace/kscience/plotly/models/Font;)V
 	public final fun setNamelength (Ljava/lang/Number;)V
 	public final fun setNamelengths (Ljava/util/List;)V
 }
 
-public final class kscience/plotly/models/Hoverlabel$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Hoverlabel$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/Layout : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Layout$Companion;
+public final class space/kscience/plotly/models/Layout : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Layout$Companion;
 	public fun <init> ()V
 	public final fun annotation (Lkotlin/jvm/functions/Function1;)V
-	public final fun annotation (Lkscience/plotly/models/Text;)V
+	public final fun annotation (Lspace/kscience/plotly/models/Text;)V
 	public final fun figure (Lkotlin/jvm/functions/Function1;)V
-	public final fun figure (Lkscience/plotly/models/Shape;)V
+	public final fun figure (Lspace/kscience/plotly/models/Shape;)V
 	public final fun getAnnotations ()Ljava/util/List;
 	public final fun getAutosize ()Ljava/lang/Boolean;
 	public final fun getBargap ()Ljava/lang/Number;
 	public final fun getBargroupgap ()Ljava/lang/Number;
-	public final fun getBarmode ()Lkscience/plotly/models/BarMode;
-	public final fun getBarnorm ()Lkscience/plotly/models/BarNorm;
+	public final fun getBarmode ()Lspace/kscience/plotly/models/BarMode;
+	public final fun getBarnorm ()Lspace/kscience/plotly/models/BarNorm;
 	public final fun getBoxgap ()Ljava/lang/Number;
 	public final fun getBoxgroupgap ()Ljava/lang/Number;
-	public final fun getBoxmode ()Lkscience/plotly/models/BoxMode;
-	public final fun getCalendar ()Lkscience/plotly/models/Calendar;
+	public final fun getBoxmode ()Lspace/kscience/plotly/models/BoxMode;
+	public final fun getCalendar ()Lspace/kscience/plotly/models/Calendar;
 	public final fun getHeight ()Ljava/lang/Number;
 	public final fun getHoverdistance ()Ljava/lang/Number;
-	public final fun getHovermode ()Lkscience/plotly/models/HoverMode;
-	public final fun getLegend ()Lkscience/plotly/models/Legend;
-	public final fun getMargin ()Lkscience/plotly/models/Margin;
-	public final fun getPaper_bgcolor ()Lkscience/plotly/models/Color;
-	public final fun getPlot_bgcolor ()Lkscience/plotly/models/Color;
+	public final fun getHovermode ()Lspace/kscience/plotly/models/HoverMode;
+	public final fun getLegend ()Lspace/kscience/plotly/models/Legend;
+	public final fun getMargin ()Lspace/kscience/plotly/models/Margin;
+	public final fun getPaper_bgcolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getPlot_bgcolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getSeparators ()Ljava/lang/String;
 	public final fun getShapes ()Ljava/util/List;
 	public final fun getShowlegend ()Ljava/lang/Boolean;
 	public final fun getTitle ()Ljava/lang/String;
 	public final fun getViolingap ()Ljava/lang/Number;
 	public final fun getViolingroupgap ()Ljava/lang/Number;
-	public final fun getViolinmode ()Lkscience/plotly/models/ViolinMode;
+	public final fun getViolinmode ()Lspace/kscience/plotly/models/ViolinMode;
 	public final fun getWidth ()Ljava/lang/Number;
-	public final fun getXaxis ()Lkscience/plotly/models/Axis;
-	public final fun getYaxis ()Lkscience/plotly/models/Axis;
+	public final fun getXaxis ()Lspace/kscience/plotly/models/Axis;
+	public final fun getYaxis ()Lspace/kscience/plotly/models/Axis;
 	public final fun legend (Lkotlin/jvm/functions/Function1;)V
 	public final fun margin (Lkotlin/jvm/functions/Function1;)V
 	public final fun setAnnotations (Ljava/util/List;)V
 	public final fun setAutosize (Ljava/lang/Boolean;)V
 	public final fun setBargap (Ljava/lang/Number;)V
 	public final fun setBargroupgap (Ljava/lang/Number;)V
-	public final fun setBarmode (Lkscience/plotly/models/BarMode;)V
-	public final fun setBarnorm (Lkscience/plotly/models/BarNorm;)V
+	public final fun setBarmode (Lspace/kscience/plotly/models/BarMode;)V
+	public final fun setBarnorm (Lspace/kscience/plotly/models/BarNorm;)V
 	public final fun setBoxgap (Ljava/lang/Number;)V
 	public final fun setBoxgroupgap (Ljava/lang/Number;)V
-	public final fun setBoxmode (Lkscience/plotly/models/BoxMode;)V
-	public final fun setCalendar (Lkscience/plotly/models/Calendar;)V
+	public final fun setBoxmode (Lspace/kscience/plotly/models/BoxMode;)V
+	public final fun setCalendar (Lspace/kscience/plotly/models/Calendar;)V
 	public final fun setHeight (Ljava/lang/Number;)V
 	public final fun setHoverdistance (Ljava/lang/Number;)V
-	public final fun setHovermode (Lkscience/plotly/models/HoverMode;)V
-	public final fun setLegend (Lkscience/plotly/models/Legend;)V
-	public final fun setMargin (Lkscience/plotly/models/Margin;)V
+	public final fun setHovermode (Lspace/kscience/plotly/models/HoverMode;)V
+	public final fun setLegend (Lspace/kscience/plotly/models/Legend;)V
+	public final fun setMargin (Lspace/kscience/plotly/models/Margin;)V
 	public final fun setSeparators (Ljava/lang/String;)V
 	public final fun setShapes (Ljava/util/List;)V
 	public final fun setShowlegend (Ljava/lang/Boolean;)V
 	public final fun setTitle (Ljava/lang/String;)V
 	public final fun setViolingap (Ljava/lang/Number;)V
 	public final fun setViolingroupgap (Ljava/lang/Number;)V
-	public final fun setViolinmode (Lkscience/plotly/models/ViolinMode;)V
+	public final fun setViolinmode (Lspace/kscience/plotly/models/ViolinMode;)V
 	public final fun setWidth (Ljava/lang/Number;)V
-	public final fun setXaxis (Lkscience/plotly/models/Axis;)V
-	public final fun setYaxis (Lkscience/plotly/models/Axis;)V
+	public final fun setXaxis (Lspace/kscience/plotly/models/Axis;)V
+	public final fun setYaxis (Lspace/kscience/plotly/models/Axis;)V
 	public final fun title (Lkotlin/jvm/functions/Function1;)V
 	public final fun xaxis (Lkotlin/jvm/functions/Function1;)V
 	public final fun yaxis (Lkotlin/jvm/functions/Function1;)V
 }
 
-public final class kscience/plotly/models/Layout$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Layout$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/LayoutLine : hep/dataforge/meta/Scheme, kscience/plotly/models/Line {
-	public static final field Companion Lkscience/plotly/models/LayoutLine$Companion;
+public final class space/kscience/plotly/models/LayoutLine : space/kscience/dataforge/meta/Scheme, space/kscience/plotly/models/Line {
+	public static final field Companion Lspace/kscience/plotly/models/LayoutLine$Companion;
 	public fun <init> ()V
-	public fun getColor ()Lkscience/plotly/models/Color;
-	public final fun getDash ()Lkscience/plotly/models/Dash;
-	public final fun getShape ()Lkscience/plotly/models/LineShape;
+	public fun getColor ()Lspace/kscience/plotly/models/Color;
+	public final fun getDash ()Lspace/kscience/plotly/models/Dash;
+	public final fun getShape ()Lspace/kscience/plotly/models/LineShape;
 	public final fun getSmoothing ()Ljava/lang/Number;
 	public fun getWidth ()Ljava/lang/Number;
 	public fun getWidthList ()Ljava/util/List;
-	public final fun setDash (Lkscience/plotly/models/Dash;)V
-	public final fun setShape (Lkscience/plotly/models/LineShape;)V
+	public final fun setDash (Lspace/kscience/plotly/models/Dash;)V
+	public final fun setShape (Lspace/kscience/plotly/models/LineShape;)V
 	public final fun setSmoothing (Ljava/lang/Number;)V
 	public fun setWidth (Ljava/lang/Number;)V
 	public fun setWidthList (Ljava/util/List;)V
 }
 
-public final class kscience/plotly/models/LayoutLine$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/LayoutLine$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/Legend : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Legend$Companion;
+public final class space/kscience/plotly/models/Legend : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Legend$Companion;
 	public fun <init> ()V
 	public final fun font (Lkotlin/jvm/functions/Function1;)V
-	public final fun getBgcolor ()Lkscience/plotly/models/Color;
-	public final fun getBordercolor ()Lkscience/plotly/models/Color;
+	public final fun getBgcolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getBordercolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getBorderwidth ()Ljava/lang/Number;
-	public final fun getFont ()Lkscience/plotly/models/Font;
-	public final fun getOrientation ()Lkscience/plotly/models/LegendOrientation;
-	public final fun getTraceorder ()Lkscience/plotly/models/TraceOrder;
+	public final fun getFont ()Lspace/kscience/plotly/models/Font;
+	public final fun getOrientation ()Lspace/kscience/plotly/models/LegendOrientation;
+	public final fun getTraceorder ()Lspace/kscience/plotly/models/TraceOrder;
 	public final fun getX ()Ljava/lang/Number;
-	public final fun getXanchor ()Lkscience/plotly/models/XAnchor;
+	public final fun getXanchor ()Lspace/kscience/plotly/models/XAnchor;
 	public final fun getY ()Ljava/lang/Number;
-	public final fun getYanchor ()Lkscience/plotly/models/YAnchor;
+	public final fun getYanchor ()Lspace/kscience/plotly/models/YAnchor;
 	public final fun setBorderwidth (Ljava/lang/Number;)V
-	public final fun setFont (Lkscience/plotly/models/Font;)V
-	public final fun setOrientation (Lkscience/plotly/models/LegendOrientation;)V
-	public final fun setTraceorder (Lkscience/plotly/models/TraceOrder;)V
+	public final fun setFont (Lspace/kscience/plotly/models/Font;)V
+	public final fun setOrientation (Lspace/kscience/plotly/models/LegendOrientation;)V
+	public final fun setTraceorder (Lspace/kscience/plotly/models/TraceOrder;)V
 	public final fun setX (Ljava/lang/Number;)V
-	public final fun setXanchor (Lkscience/plotly/models/XAnchor;)V
+	public final fun setXanchor (Lspace/kscience/plotly/models/XAnchor;)V
 	public final fun setY (Ljava/lang/Number;)V
-	public final fun setYanchor (Lkscience/plotly/models/YAnchor;)V
+	public final fun setYanchor (Lspace/kscience/plotly/models/YAnchor;)V
 }
 
-public final class kscience/plotly/models/Legend$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Legend$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/LegendOrientation : java/lang/Enum {
-	public static final field horizontal Lkscience/plotly/models/LegendOrientation;
-	public static final field vertical Lkscience/plotly/models/LegendOrientation;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/LegendOrientation;
-	public static fun values ()[Lkscience/plotly/models/LegendOrientation;
+public final class space/kscience/plotly/models/LegendOrientation : java/lang/Enum {
+	public static final field horizontal Lspace/kscience/plotly/models/LegendOrientation;
+	public static final field vertical Lspace/kscience/plotly/models/LegendOrientation;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/LegendOrientation;
+	public static fun values ()[Lspace/kscience/plotly/models/LegendOrientation;
 }
 
-public abstract interface class kscience/plotly/models/Line {
-	public abstract fun getColor ()Lkscience/plotly/models/Color;
+public abstract interface class space/kscience/plotly/models/Line {
+	public abstract fun getColor ()Lspace/kscience/plotly/models/Color;
 	public abstract fun getWidth ()Ljava/lang/Number;
 	public abstract fun getWidthList ()Ljava/util/List;
 	public abstract fun setWidth (Ljava/lang/Number;)V
 	public abstract fun setWidthList (Ljava/util/List;)V
 }
 
-public final class kscience/plotly/models/LineShape : java/lang/Enum {
-	public static final field hv Lkscience/plotly/models/LineShape;
-	public static final field hvh Lkscience/plotly/models/LineShape;
-	public static final field linear Lkscience/plotly/models/LineShape;
-	public static final field spline Lkscience/plotly/models/LineShape;
-	public static final field vh Lkscience/plotly/models/LineShape;
-	public static final field vhv Lkscience/plotly/models/LineShape;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/LineShape;
-	public static fun values ()[Lkscience/plotly/models/LineShape;
+public final class space/kscience/plotly/models/LineShape : java/lang/Enum {
+	public static final field hv Lspace/kscience/plotly/models/LineShape;
+	public static final field hvh Lspace/kscience/plotly/models/LineShape;
+	public static final field linear Lspace/kscience/plotly/models/LineShape;
+	public static final field spline Lspace/kscience/plotly/models/LineShape;
+	public static final field vh Lspace/kscience/plotly/models/LineShape;
+	public static final field vhv Lspace/kscience/plotly/models/LineShape;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/LineShape;
+	public static fun values ()[Lspace/kscience/plotly/models/LineShape;
 }
 
-public final class kscience/plotly/models/Margin : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Margin$Companion;
+public final class space/kscience/plotly/models/Margin : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Margin$Companion;
 	public fun <init> ()V
 	public final fun getAutoexpand ()Ljava/lang/Boolean;
 	public final fun getB ()Ljava/lang/Number;
@@ -1192,53 +1180,53 @@ public final class kscience/plotly/models/Margin : hep/dataforge/meta/Scheme {
 	public final fun setT (Ljava/lang/Number;)V
 }
 
-public final class kscience/plotly/models/Margin$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Margin$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/Marker : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Marker$Companion;
+public final class space/kscience/plotly/models/Marker : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Marker$Companion;
 	public fun <init> ()V
 	public final fun colorbar (Lkotlin/jvm/functions/Function1;)V
 	public final fun colors (Ljava/lang/Iterable;)V
-	public final fun getColor ()Lkscience/plotly/models/Color;
-	public final fun getColorbar ()Lkscience/plotly/models/ColorBar;
-	public final fun getGradient ()Lkscience/plotly/models/Gradient;
-	public final fun getLine ()Lkscience/plotly/models/MarkerLine;
+	public final fun getColor ()Lspace/kscience/plotly/models/Color;
+	public final fun getColorbar ()Lspace/kscience/plotly/models/ColorBar;
+	public final fun getGradient ()Lspace/kscience/plotly/models/Gradient;
+	public final fun getLine ()Lspace/kscience/plotly/models/MarkerLine;
 	public final fun getMaxdisplayed ()I
 	public final fun getOpacitiesList ()Ljava/util/List;
 	public final fun getOpacity ()Ljava/lang/Number;
-	public final fun getOutliercolor ()Lkscience/plotly/models/Color;
+	public final fun getOutliercolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getPieColors ()Ljava/util/List;
 	public final fun getSize ()Ljava/lang/Number;
 	public final fun getSizemin ()Ljava/lang/Number;
-	public final fun getSizemode ()Lkscience/plotly/models/SizeMode;
+	public final fun getSizemode ()Lspace/kscience/plotly/models/SizeMode;
 	public final fun getSizeref ()Ljava/lang/Number;
 	public final fun getSizesList ()Ljava/util/List;
-	public final fun getSymbol ()Lkscience/plotly/models/Symbol;
+	public final fun getSymbol ()Lspace/kscience/plotly/models/Symbol;
 	public final fun getSymbolsList ()Ljava/util/List;
 	public final fun gradient (Lkotlin/jvm/functions/Function1;)V
 	public final fun line (Lkotlin/jvm/functions/Function1;)V
-	public final fun setColorbar (Lkscience/plotly/models/ColorBar;)V
-	public final fun setGradient (Lkscience/plotly/models/Gradient;)V
-	public final fun setLine (Lkscience/plotly/models/MarkerLine;)V
+	public final fun setColorbar (Lspace/kscience/plotly/models/ColorBar;)V
+	public final fun setGradient (Lspace/kscience/plotly/models/Gradient;)V
+	public final fun setLine (Lspace/kscience/plotly/models/MarkerLine;)V
 	public final fun setMaxdisplayed (I)V
 	public final fun setOpacitiesList (Ljava/util/List;)V
 	public final fun setOpacity (Ljava/lang/Number;)V
 	public final fun setPieColors (Ljava/util/List;)V
 	public final fun setSize (Ljava/lang/Number;)V
 	public final fun setSizemin (Ljava/lang/Number;)V
-	public final fun setSizemode (Lkscience/plotly/models/SizeMode;)V
+	public final fun setSizemode (Lspace/kscience/plotly/models/SizeMode;)V
 	public final fun setSizeref (Ljava/lang/Number;)V
 	public final fun setSizesList (Ljava/util/List;)V
-	public final fun setSymbol (Lkscience/plotly/models/Symbol;)V
+	public final fun setSymbol (Lspace/kscience/plotly/models/Symbol;)V
 	public final fun setSymbolsList (Ljava/util/List;)V
 }
 
-public final class kscience/plotly/models/Marker$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Marker$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/MarkerLine : hep/dataforge/meta/Scheme, kscience/plotly/models/Line {
-	public static final field Companion Lkscience/plotly/models/MarkerLine$Companion;
+public final class space/kscience/plotly/models/MarkerLine : space/kscience/dataforge/meta/Scheme, space/kscience/plotly/models/Line {
+	public static final field Companion Lspace/kscience/plotly/models/MarkerLine$Companion;
 	public fun <init> ()V
 	public final fun colors (Ljava/lang/Iterable;)V
 	public final fun getAutocolorscale ()Ljava/lang/Boolean;
@@ -1246,9 +1234,9 @@ public final class kscience/plotly/models/MarkerLine : hep/dataforge/meta/Scheme
 	public final fun getCmax ()Ljava/lang/Number;
 	public final fun getCmid ()Ljava/lang/Number;
 	public final fun getCmin ()Ljava/lang/Number;
-	public fun getColor ()Lkscience/plotly/models/Color;
-	public final fun getColorscale ()Lhep/dataforge/values/Value;
-	public final fun getOutliercolor ()Lkscience/plotly/models/Color;
+	public fun getColor ()Lspace/kscience/plotly/models/Color;
+	public final fun getColorscale ()Lspace/kscience/dataforge/values/Value;
+	public final fun getOutliercolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getOutlierwidth ()Ljava/lang/Number;
 	public final fun getReversescale ()Ljava/lang/Boolean;
 	public fun getWidth ()Ljava/lang/Number;
@@ -1258,47 +1246,47 @@ public final class kscience/plotly/models/MarkerLine : hep/dataforge/meta/Scheme
 	public final fun setCmax (Ljava/lang/Number;)V
 	public final fun setCmid (Ljava/lang/Number;)V
 	public final fun setCmin (Ljava/lang/Number;)V
-	public final fun setColorscale (Lhep/dataforge/values/Value;)V
+	public final fun setColorscale (Lspace/kscience/dataforge/values/Value;)V
 	public final fun setOutlierwidth (Ljava/lang/Number;)V
 	public final fun setReversescale (Ljava/lang/Boolean;)V
 	public fun setWidth (Ljava/lang/Number;)V
 	public fun setWidthList (Ljava/util/List;)V
 }
 
-public final class kscience/plotly/models/MarkerLine$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/MarkerLine$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/MeanLine : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/MeanLine$Companion;
+public final class space/kscience/plotly/models/MeanLine : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/MeanLine$Companion;
 	public fun <init> ()V
-	public final fun getColor ()Lkscience/plotly/models/Color;
+	public final fun getColor ()Lspace/kscience/plotly/models/Color;
 	public final fun getVisible ()Ljava/lang/Boolean;
 	public final fun getWidth ()Ljava/lang/Number;
 	public final fun setVisible (Ljava/lang/Boolean;)V
 	public final fun setWidth (Ljava/lang/Number;)V
 }
 
-public final class kscience/plotly/models/MeanLine$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/MeanLine$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/MeasureMode : java/lang/Enum {
-	public static final field fraction Lkscience/plotly/models/MeasureMode;
-	public static final field pixels Lkscience/plotly/models/MeasureMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/MeasureMode;
-	public static fun values ()[Lkscience/plotly/models/MeasureMode;
+public final class space/kscience/plotly/models/MeasureMode : java/lang/Enum {
+	public static final field fraction Lspace/kscience/plotly/models/MeasureMode;
+	public static final field pixels Lspace/kscience/plotly/models/MeasureMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/MeasureMode;
+	public static fun values ()[Lspace/kscience/plotly/models/MeasureMode;
 }
 
-public final class kscience/plotly/models/Orientation : java/lang/Enum {
-	public static final field h Lkscience/plotly/models/Orientation;
-	public static final field v Lkscience/plotly/models/Orientation;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/Orientation;
-	public static fun values ()[Lkscience/plotly/models/Orientation;
+public final class space/kscience/plotly/models/Orientation : java/lang/Enum {
+	public static final field h Lspace/kscience/plotly/models/Orientation;
+	public static final field v Lspace/kscience/plotly/models/Orientation;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Orientation;
+	public static fun values ()[Lspace/kscience/plotly/models/Orientation;
 }
 
-public final class kscience/plotly/models/Pie : kscience/plotly/models/Trace {
-	public static final field Companion Lkscience/plotly/models/Pie$Companion;
+public final class space/kscience/plotly/models/Pie : space/kscience/plotly/models/Trace {
+	public static final field Companion Lspace/kscience/plotly/models/Pie$Companion;
 	public fun <init> ()V
-	public final fun getDirection ()Lkscience/plotly/models/PieDirection;
+	public final fun getDirection ()Lspace/kscience/plotly/models/PieDirection;
 	public final fun getDlabel ()Ljava/lang/Number;
 	public final fun getHole ()Ljava/lang/Number;
 	public final fun getLabel0 ()Ljava/lang/Number;
@@ -1306,8 +1294,8 @@ public final class kscience/plotly/models/Pie : kscience/plotly/models/Trace {
 	public final fun getPullList ()Ljava/util/List;
 	public final fun getRotation ()Ljava/lang/Number;
 	public final fun getSort ()Ljava/lang/Boolean;
-	public final fun getTextinfo ()Lkscience/plotly/models/TextInfo;
-	public final fun setDirection (Lkscience/plotly/models/PieDirection;)V
+	public final fun getTextinfo ()Lspace/kscience/plotly/models/TextInfo;
+	public final fun setDirection (Lspace/kscience/plotly/models/PieDirection;)V
 	public final fun setDlabel (Ljava/lang/Number;)V
 	public final fun setHole (Ljava/lang/Number;)V
 	public final fun setLabel0 (Ljava/lang/Number;)V
@@ -1315,454 +1303,454 @@ public final class kscience/plotly/models/Pie : kscience/plotly/models/Trace {
 	public final fun setPullList (Ljava/util/List;)V
 	public final fun setRotation (Ljava/lang/Number;)V
 	public final fun setSort (Ljava/lang/Boolean;)V
-	public final fun setTextinfo (Lkscience/plotly/models/TextInfo;)V
+	public final fun setTextinfo (Lspace/kscience/plotly/models/TextInfo;)V
 }
 
-public final class kscience/plotly/models/Pie$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Pie$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/PieDirection : java/lang/Enum {
-	public static final field clockwise Lkscience/plotly/models/PieDirection;
-	public static final field counterclockwise Lkscience/plotly/models/PieDirection;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/PieDirection;
-	public static fun values ()[Lkscience/plotly/models/PieDirection;
+public final class space/kscience/plotly/models/PieDirection : java/lang/Enum {
+	public static final field clockwise Lspace/kscience/plotly/models/PieDirection;
+	public static final field counterclockwise Lspace/kscience/plotly/models/PieDirection;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/PieDirection;
+	public static fun values ()[Lspace/kscience/plotly/models/PieDirection;
 }
 
-public final class kscience/plotly/models/QuartileMethod : java/lang/Enum {
-	public static final field exclusive Lkscience/plotly/models/QuartileMethod;
-	public static final field inclusive Lkscience/plotly/models/QuartileMethod;
-	public static final field linear Lkscience/plotly/models/QuartileMethod;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/QuartileMethod;
-	public static fun values ()[Lkscience/plotly/models/QuartileMethod;
+public final class space/kscience/plotly/models/QuartileMethod : java/lang/Enum {
+	public static final field exclusive Lspace/kscience/plotly/models/QuartileMethod;
+	public static final field inclusive Lspace/kscience/plotly/models/QuartileMethod;
+	public static final field linear Lspace/kscience/plotly/models/QuartileMethod;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/QuartileMethod;
+	public static fun values ()[Lspace/kscience/plotly/models/QuartileMethod;
 }
 
-public final class kscience/plotly/models/Ref : java/lang/Enum {
-	public static final field container Lkscience/plotly/models/Ref;
-	public static final field paper Lkscience/plotly/models/Ref;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/Ref;
-	public static fun values ()[Lkscience/plotly/models/Ref;
+public final class space/kscience/plotly/models/Ref : java/lang/Enum {
+	public static final field container Lspace/kscience/plotly/models/Ref;
+	public static final field paper Lspace/kscience/plotly/models/Ref;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Ref;
+	public static fun values ()[Lspace/kscience/plotly/models/Ref;
 }
 
-public class kscience/plotly/models/Scatter : kscience/plotly/models/Trace, kscience/plotly/models/SelectedPoints {
-	public static final field Companion Lkscience/plotly/models/Scatter$Companion;
+public class space/kscience/plotly/models/Scatter : space/kscience/plotly/models/Trace, space/kscience/plotly/models/SelectedPoints {
+	public static final field Companion Lspace/kscience/plotly/models/Scatter$Companion;
 	public fun <init> ()V
-	public final fun getFill ()Lkscience/plotly/models/FillType;
-	public final fun getGroupnorm ()Lkscience/plotly/models/GroupNorm;
-	public final fun getHoveron ()Lkscience/plotly/models/ScatterHoveron;
-	public final fun getMode ()Lkscience/plotly/models/ScatterMode;
-	public fun getSelected ()Lkscience/plotly/models/SelectPoints;
+	public final fun getFill ()Lspace/kscience/plotly/models/FillType;
+	public final fun getGroupnorm ()Lspace/kscience/plotly/models/GroupNorm;
+	public final fun getHoveron ()Lspace/kscience/plotly/models/ScatterHoveron;
+	public final fun getMode ()Lspace/kscience/plotly/models/ScatterMode;
+	public fun getSelected ()Lspace/kscience/plotly/models/SelectPoints;
 	public fun getSelectedpoints ()Ljava/util/List;
-	public final fun getStackgaps ()Lkscience/plotly/models/StackGaps;
+	public final fun getStackgaps ()Lspace/kscience/plotly/models/StackGaps;
 	public final fun getStackgroup ()Ljava/lang/String;
-	public fun getUnselected ()Lkscience/plotly/models/SelectPoints;
+	public fun getUnselected ()Lspace/kscience/plotly/models/SelectPoints;
 	public final fun selected (Lkotlin/jvm/functions/Function1;)V
-	public final fun setFill (Lkscience/plotly/models/FillType;)V
-	public final fun setGroupnorm (Lkscience/plotly/models/GroupNorm;)V
-	public final fun setHoveron (Lkscience/plotly/models/ScatterHoveron;)V
-	public final fun setMode (Lkscience/plotly/models/ScatterMode;)V
-	public fun setSelected (Lkscience/plotly/models/SelectPoints;)V
+	public final fun setFill (Lspace/kscience/plotly/models/FillType;)V
+	public final fun setGroupnorm (Lspace/kscience/plotly/models/GroupNorm;)V
+	public final fun setHoveron (Lspace/kscience/plotly/models/ScatterHoveron;)V
+	public final fun setMode (Lspace/kscience/plotly/models/ScatterMode;)V
+	public fun setSelected (Lspace/kscience/plotly/models/SelectPoints;)V
 	public fun setSelectedpoints (Ljava/util/List;)V
-	public final fun setStackgaps (Lkscience/plotly/models/StackGaps;)V
+	public final fun setStackgaps (Lspace/kscience/plotly/models/StackGaps;)V
 	public final fun setStackgroup (Ljava/lang/String;)V
-	public fun setUnselected (Lkscience/plotly/models/SelectPoints;)V
+	public fun setUnselected (Lspace/kscience/plotly/models/SelectPoints;)V
 	public final fun unselected (Lkotlin/jvm/functions/Function1;)V
 }
 
-public final class kscience/plotly/models/Scatter$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Scatter$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/ScatterGL : kscience/plotly/models/Scatter {
-	public static final field Companion Lkscience/plotly/models/ScatterGL$Companion;
+public final class space/kscience/plotly/models/ScatterGL : space/kscience/plotly/models/Scatter {
+	public static final field Companion Lspace/kscience/plotly/models/ScatterGL$Companion;
 	public fun <init> ()V
 }
 
-public final class kscience/plotly/models/ScatterGL$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/ScatterGL$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/ScatterHoveron : java/lang/Enum {
-	public static final field fills Lkscience/plotly/models/ScatterHoveron;
-	public static final field points Lkscience/plotly/models/ScatterHoveron;
-	public static final field points+fills Lkscience/plotly/models/ScatterHoveron;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ScatterHoveron;
-	public static fun values ()[Lkscience/plotly/models/ScatterHoveron;
+public final class space/kscience/plotly/models/ScatterHoveron : java/lang/Enum {
+	public static final field fills Lspace/kscience/plotly/models/ScatterHoveron;
+	public static final field points Lspace/kscience/plotly/models/ScatterHoveron;
+	public static final field points+fills Lspace/kscience/plotly/models/ScatterHoveron;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ScatterHoveron;
+	public static fun values ()[Lspace/kscience/plotly/models/ScatterHoveron;
 }
 
-public final class kscience/plotly/models/ScatterMode : java/lang/Enum {
-	public static final field lines Lkscience/plotly/models/ScatterMode;
-	public static final field lines+markers Lkscience/plotly/models/ScatterMode;
-	public static final field lines+markers+text Lkscience/plotly/models/ScatterMode;
-	public static final field lines+text Lkscience/plotly/models/ScatterMode;
-	public static final field markers Lkscience/plotly/models/ScatterMode;
-	public static final field markers+text Lkscience/plotly/models/ScatterMode;
-	public static final field none Lkscience/plotly/models/ScatterMode;
-	public static final field text Lkscience/plotly/models/ScatterMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ScatterMode;
-	public static fun values ()[Lkscience/plotly/models/ScatterMode;
+public final class space/kscience/plotly/models/ScatterMode : java/lang/Enum {
+	public static final field lines Lspace/kscience/plotly/models/ScatterMode;
+	public static final field lines+markers Lspace/kscience/plotly/models/ScatterMode;
+	public static final field lines+markers+text Lspace/kscience/plotly/models/ScatterMode;
+	public static final field lines+text Lspace/kscience/plotly/models/ScatterMode;
+	public static final field markers Lspace/kscience/plotly/models/ScatterMode;
+	public static final field markers+text Lspace/kscience/plotly/models/ScatterMode;
+	public static final field none Lspace/kscience/plotly/models/ScatterMode;
+	public static final field text Lspace/kscience/plotly/models/ScatterMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ScatterMode;
+	public static fun values ()[Lspace/kscience/plotly/models/ScatterMode;
 }
 
-public final class kscience/plotly/models/SelectMarker : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/SelectMarker$Companion;
+public final class space/kscience/plotly/models/SelectMarker : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/SelectMarker$Companion;
 	public fun <init> ()V
-	public final fun getColor ()Lkscience/plotly/models/Color;
+	public final fun getColor ()Lspace/kscience/plotly/models/Color;
 	public final fun getOpacity ()Ljava/lang/Number;
 	public final fun getSize ()Ljava/lang/Number;
 	public final fun setOpacity (Ljava/lang/Number;)V
 	public final fun setSize (Ljava/lang/Number;)V
 }
 
-public final class kscience/plotly/models/SelectMarker$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/SelectMarker$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/SelectPoints : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/SelectPoints$Companion;
+public final class space/kscience/plotly/models/SelectPoints : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/SelectPoints$Companion;
 	public fun <init> ()V
-	public final fun getMarker ()Lkscience/plotly/models/SelectMarker;
-	public final fun getTextfont ()Lkscience/plotly/models/Font;
+	public final fun getMarker ()Lspace/kscience/plotly/models/SelectMarker;
+	public final fun getTextfont ()Lspace/kscience/plotly/models/Font;
 	public final fun marker (Lkotlin/jvm/functions/Function1;)V
-	public final fun setMarker (Lkscience/plotly/models/SelectMarker;)V
-	public final fun setTextfont (Lkscience/plotly/models/Font;)V
+	public final fun setMarker (Lspace/kscience/plotly/models/SelectMarker;)V
+	public final fun setTextfont (Lspace/kscience/plotly/models/Font;)V
 	public final fun textfont (Lkotlin/jvm/functions/Function1;)V
 }
 
-public final class kscience/plotly/models/SelectPoints$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/SelectPoints$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public abstract interface class kscience/plotly/models/SelectedPoints {
-	public abstract fun getSelected ()Lkscience/plotly/models/SelectPoints;
+public abstract interface class space/kscience/plotly/models/SelectedPoints {
+	public abstract fun getSelected ()Lspace/kscience/plotly/models/SelectPoints;
 	public abstract fun getSelectedpoints ()Ljava/util/List;
-	public abstract fun getUnselected ()Lkscience/plotly/models/SelectPoints;
-	public abstract fun setSelected (Lkscience/plotly/models/SelectPoints;)V
+	public abstract fun getUnselected ()Lspace/kscience/plotly/models/SelectPoints;
+	public abstract fun setSelected (Lspace/kscience/plotly/models/SelectPoints;)V
 	public abstract fun setSelectedpoints (Ljava/util/List;)V
-	public abstract fun setUnselected (Lkscience/plotly/models/SelectPoints;)V
+	public abstract fun setUnselected (Lspace/kscience/plotly/models/SelectPoints;)V
 }
 
-public final class kscience/plotly/models/Shape : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Shape$Companion;
+public final class space/kscience/plotly/models/Shape : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Shape$Companion;
 	public fun <init> ()V
 	public final fun getEditable ()Ljava/lang/Boolean;
-	public final fun getFillcolor ()Lkscience/plotly/models/Color;
-	public final fun getFillrule ()Lkscience/plotly/models/ShapeFillRule;
-	public final fun getLayer ()Lkscience/plotly/models/ShapeLayer;
-	public final fun getLine ()Lkscience/plotly/models/LayoutLine;
+	public final fun getFillcolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getFillrule ()Lspace/kscience/plotly/models/ShapeFillRule;
+	public final fun getLayer ()Lspace/kscience/plotly/models/ShapeLayer;
+	public final fun getLine ()Lspace/kscience/plotly/models/LayoutLine;
 	public final fun getName ()Ljava/lang/String;
 	public final fun getOpacity ()Ljava/lang/Number;
 	public final fun getPath ()Ljava/lang/String;
 	public final fun getTemplateitemname ()Ljava/lang/String;
-	public final fun getType ()Lkscience/plotly/models/ShapeType;
+	public final fun getType ()Lspace/kscience/plotly/models/ShapeType;
 	public final fun getVisible ()Ljava/lang/Boolean;
-	public final fun getX0 ()Lhep/dataforge/values/Value;
-	public final fun getX1 ()Lhep/dataforge/values/Value;
-	public final fun getXanchor ()Lhep/dataforge/values/Value;
+	public final fun getX0 ()Lspace/kscience/dataforge/values/Value;
+	public final fun getX1 ()Lspace/kscience/dataforge/values/Value;
+	public final fun getXanchor ()Lspace/kscience/dataforge/values/Value;
 	public final fun getXref ()Ljava/lang/String;
-	public final fun getXsizemode ()Lkscience/plotly/models/ShapeSizeMode;
-	public final fun getY0 ()Lhep/dataforge/values/Value;
-	public final fun getY1 ()Lhep/dataforge/values/Value;
-	public final fun getYanchor ()Lhep/dataforge/values/Value;
+	public final fun getXsizemode ()Lspace/kscience/plotly/models/ShapeSizeMode;
+	public final fun getY0 ()Lspace/kscience/dataforge/values/Value;
+	public final fun getY1 ()Lspace/kscience/dataforge/values/Value;
+	public final fun getYanchor ()Lspace/kscience/dataforge/values/Value;
 	public final fun getYref ()Ljava/lang/String;
-	public final fun getYsizemode ()Lkscience/plotly/models/ShapeSizeMode;
+	public final fun getYsizemode ()Lspace/kscience/plotly/models/ShapeSizeMode;
 	public final fun line (Lkotlin/jvm/functions/Function1;)V
 	public final fun setEditable (Ljava/lang/Boolean;)V
-	public final fun setFillrule (Lkscience/plotly/models/ShapeFillRule;)V
-	public final fun setLayer (Lkscience/plotly/models/ShapeLayer;)V
-	public final fun setLine (Lkscience/plotly/models/LayoutLine;)V
+	public final fun setFillrule (Lspace/kscience/plotly/models/ShapeFillRule;)V
+	public final fun setLayer (Lspace/kscience/plotly/models/ShapeLayer;)V
+	public final fun setLine (Lspace/kscience/plotly/models/LayoutLine;)V
 	public final fun setName (Ljava/lang/String;)V
 	public final fun setOpacity (Ljava/lang/Number;)V
 	public final fun setPath (Ljava/lang/String;)V
 	public final fun setTemplateitemname (Ljava/lang/String;)V
-	public final fun setType (Lkscience/plotly/models/ShapeType;)V
+	public final fun setType (Lspace/kscience/plotly/models/ShapeType;)V
 	public final fun setVisible (Ljava/lang/Boolean;)V
-	public final fun setX0 (Lhep/dataforge/values/Value;)V
-	public final fun setX1 (Lhep/dataforge/values/Value;)V
-	public final fun setXanchor (Lhep/dataforge/values/Value;)V
+	public final fun setX0 (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setX1 (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setXanchor (Lspace/kscience/dataforge/values/Value;)V
 	public final fun setXref (Ljava/lang/String;)V
-	public final fun setXsizemode (Lkscience/plotly/models/ShapeSizeMode;)V
-	public final fun setY0 (Lhep/dataforge/values/Value;)V
-	public final fun setY1 (Lhep/dataforge/values/Value;)V
-	public final fun setYanchor (Lhep/dataforge/values/Value;)V
+	public final fun setXsizemode (Lspace/kscience/plotly/models/ShapeSizeMode;)V
+	public final fun setY0 (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setY1 (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setYanchor (Lspace/kscience/dataforge/values/Value;)V
 	public final fun setYref (Ljava/lang/String;)V
-	public final fun setYsizemode (Lkscience/plotly/models/ShapeSizeMode;)V
+	public final fun setYsizemode (Lspace/kscience/plotly/models/ShapeSizeMode;)V
 }
 
-public final class kscience/plotly/models/Shape$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Shape$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/ShapeFillRule : java/lang/Enum {
-	public static final field evenodd Lkscience/plotly/models/ShapeFillRule;
-	public static final field nonzero Lkscience/plotly/models/ShapeFillRule;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ShapeFillRule;
-	public static fun values ()[Lkscience/plotly/models/ShapeFillRule;
+public final class space/kscience/plotly/models/ShapeFillRule : java/lang/Enum {
+	public static final field evenodd Lspace/kscience/plotly/models/ShapeFillRule;
+	public static final field nonzero Lspace/kscience/plotly/models/ShapeFillRule;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ShapeFillRule;
+	public static fun values ()[Lspace/kscience/plotly/models/ShapeFillRule;
 }
 
-public final class kscience/plotly/models/ShapeLayer : java/lang/Enum {
-	public static final field above Lkscience/plotly/models/ShapeLayer;
-	public static final field below Lkscience/plotly/models/ShapeLayer;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ShapeLayer;
-	public static fun values ()[Lkscience/plotly/models/ShapeLayer;
+public final class space/kscience/plotly/models/ShapeLayer : java/lang/Enum {
+	public static final field above Lspace/kscience/plotly/models/ShapeLayer;
+	public static final field below Lspace/kscience/plotly/models/ShapeLayer;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ShapeLayer;
+	public static fun values ()[Lspace/kscience/plotly/models/ShapeLayer;
 }
 
-public final class kscience/plotly/models/ShapeSizeMode : java/lang/Enum {
-	public static final field pixel Lkscience/plotly/models/ShapeSizeMode;
-	public static final field scaled Lkscience/plotly/models/ShapeSizeMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ShapeSizeMode;
-	public static fun values ()[Lkscience/plotly/models/ShapeSizeMode;
+public final class space/kscience/plotly/models/ShapeSizeMode : java/lang/Enum {
+	public static final field pixel Lspace/kscience/plotly/models/ShapeSizeMode;
+	public static final field scaled Lspace/kscience/plotly/models/ShapeSizeMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ShapeSizeMode;
+	public static fun values ()[Lspace/kscience/plotly/models/ShapeSizeMode;
 }
 
-public final class kscience/plotly/models/ShapeType : java/lang/Enum {
-	public static final field circle Lkscience/plotly/models/ShapeType;
-	public static final field line Lkscience/plotly/models/ShapeType;
-	public static final field path Lkscience/plotly/models/ShapeType;
-	public static final field rect Lkscience/plotly/models/ShapeType;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ShapeType;
-	public static fun values ()[Lkscience/plotly/models/ShapeType;
+public final class space/kscience/plotly/models/ShapeType : java/lang/Enum {
+	public static final field circle Lspace/kscience/plotly/models/ShapeType;
+	public static final field line Lspace/kscience/plotly/models/ShapeType;
+	public static final field path Lspace/kscience/plotly/models/ShapeType;
+	public static final field rect Lspace/kscience/plotly/models/ShapeType;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ShapeType;
+	public static fun values ()[Lspace/kscience/plotly/models/ShapeType;
 }
 
-public final class kscience/plotly/models/SizeMode : java/lang/Enum {
-	public static final field area Lkscience/plotly/models/SizeMode;
-	public static final field diameter Lkscience/plotly/models/SizeMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/SizeMode;
-	public static fun values ()[Lkscience/plotly/models/SizeMode;
+public final class space/kscience/plotly/models/SizeMode : java/lang/Enum {
+	public static final field area Lspace/kscience/plotly/models/SizeMode;
+	public static final field diameter Lspace/kscience/plotly/models/SizeMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/SizeMode;
+	public static fun values ()[Lspace/kscience/plotly/models/SizeMode;
 }
 
-public final class kscience/plotly/models/SpanMode : java/lang/Enum {
-	public static final field hard Lkscience/plotly/models/SpanMode;
-	public static final field manual Lkscience/plotly/models/SpanMode;
-	public static final field soft Lkscience/plotly/models/SpanMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/SpanMode;
-	public static fun values ()[Lkscience/plotly/models/SpanMode;
+public final class space/kscience/plotly/models/SpanMode : java/lang/Enum {
+	public static final field hard Lspace/kscience/plotly/models/SpanMode;
+	public static final field manual Lspace/kscience/plotly/models/SpanMode;
+	public static final field soft Lspace/kscience/plotly/models/SpanMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/SpanMode;
+	public static fun values ()[Lspace/kscience/plotly/models/SpanMode;
 }
 
-public final class kscience/plotly/models/StackGaps : java/lang/Enum {
-	public static final field infer zero Lkscience/plotly/models/StackGaps;
-	public static final field interpolate Lkscience/plotly/models/StackGaps;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/StackGaps;
-	public static fun values ()[Lkscience/plotly/models/StackGaps;
+public final class space/kscience/plotly/models/StackGaps : java/lang/Enum {
+	public static final field infer zero Lspace/kscience/plotly/models/StackGaps;
+	public static final field interpolate Lspace/kscience/plotly/models/StackGaps;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/StackGaps;
+	public static fun values ()[Lspace/kscience/plotly/models/StackGaps;
 }
 
-public final class kscience/plotly/models/Symbol : java/lang/Enum {
-	public static final field circle Lkscience/plotly/models/Symbol;
-	public static final field cross Lkscience/plotly/models/Symbol;
-	public static final field cross-thin Lkscience/plotly/models/Symbol;
-	public static final field line-ns Lkscience/plotly/models/Symbol;
-	public static final field square-cross Lkscience/plotly/models/Symbol;
-	public static final field triangle-down Lkscience/plotly/models/Symbol;
-	public static final field triangle-up Lkscience/plotly/models/Symbol;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/Symbol;
-	public static fun values ()[Lkscience/plotly/models/Symbol;
+public final class space/kscience/plotly/models/Symbol : java/lang/Enum {
+	public static final field circle Lspace/kscience/plotly/models/Symbol;
+	public static final field cross Lspace/kscience/plotly/models/Symbol;
+	public static final field cross-thin Lspace/kscience/plotly/models/Symbol;
+	public static final field line-ns Lspace/kscience/plotly/models/Symbol;
+	public static final field square-cross Lspace/kscience/plotly/models/Symbol;
+	public static final field triangle-down Lspace/kscience/plotly/models/Symbol;
+	public static final field triangle-up Lspace/kscience/plotly/models/Symbol;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Symbol;
+	public static fun values ()[Lspace/kscience/plotly/models/Symbol;
 }
 
-public final class kscience/plotly/models/Table : kscience/plotly/models/Trace {
-	public static final field Companion Lkscience/plotly/models/Table$Companion;
+public final class space/kscience/plotly/models/Table : space/kscience/plotly/models/Trace {
+	public static final field Companion Lspace/kscience/plotly/models/Table$Companion;
 	public fun <init> ()V
 	public final fun cells (Lkotlin/jvm/functions/Function1;)V
-	public final fun getCells ()Lkscience/plotly/models/Cells;
-	public final fun getColumnorder ()Lkscience/plotly/models/TraceValues;
-	public final fun getColumnwidth ()Lkscience/plotly/models/TraceValues;
-	public final fun getHeader ()Lkscience/plotly/models/Header;
-	public final fun getIds ()Lkscience/plotly/models/TraceValues;
+	public final fun getCells ()Lspace/kscience/plotly/models/Cells;
+	public final fun getColumnorder ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getColumnwidth ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getHeader ()Lspace/kscience/plotly/models/Header;
+	public final fun getIds ()Lspace/kscience/plotly/models/TraceValues;
 	public final fun header (Lkotlin/jvm/functions/Function1;)V
-	public final fun setCells (Lkscience/plotly/models/Cells;)V
-	public final fun setColumnorder (Lkscience/plotly/models/TraceValues;)V
-	public final fun setColumnwidth (Lkscience/plotly/models/TraceValues;)V
-	public final fun setHeader (Lkscience/plotly/models/Header;)V
-	public final fun setIds (Lkscience/plotly/models/TraceValues;)V
+	public final fun setCells (Lspace/kscience/plotly/models/Cells;)V
+	public final fun setColumnorder (Lspace/kscience/plotly/models/TraceValues;)V
+	public final fun setColumnwidth (Lspace/kscience/plotly/models/TraceValues;)V
+	public final fun setHeader (Lspace/kscience/plotly/models/Header;)V
+	public final fun setIds (Lspace/kscience/plotly/models/TraceValues;)V
 }
 
-public final class kscience/plotly/models/Table$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Table$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public abstract interface class kscience/plotly/models/Table2D {
+public abstract interface class space/kscience/plotly/models/Table2D {
 	public abstract fun getXgap ()Ljava/lang/Number;
 	public abstract fun getYgap ()Ljava/lang/Number;
-	public abstract fun getZsmooth ()Lkscience/plotly/models/ZsmoothType;
+	public abstract fun getZsmooth ()Lspace/kscience/plotly/models/ZsmoothType;
 	public abstract fun setXgap (Ljava/lang/Number;)V
 	public abstract fun setYgap (Ljava/lang/Number;)V
-	public abstract fun setZsmooth (Lkscience/plotly/models/ZsmoothType;)V
+	public abstract fun setZsmooth (Lspace/kscience/plotly/models/ZsmoothType;)V
 }
 
-public final class kscience/plotly/models/Text : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Text$Companion;
+public final class space/kscience/plotly/models/Text : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Text$Companion;
 	public fun <init> ()V
 	public final fun font (Lkotlin/jvm/functions/Function1;)V
-	public final fun getAlign ()Lkscience/plotly/models/HorizontalAlign;
-	public final fun getArrowcolor ()Lkscience/plotly/models/Color;
-	public final fun getAx ()Lhep/dataforge/values/Value;
-	public final fun getAy ()Lhep/dataforge/values/Value;
-	public final fun getBgcolor ()Lkscience/plotly/models/Color;
-	public final fun getBordercolor ()Lkscience/plotly/models/Color;
-	public final fun getFont ()Lkscience/plotly/models/Font;
+	public final fun getAlign ()Lspace/kscience/plotly/models/HorizontalAlign;
+	public final fun getArrowcolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getAx ()Lspace/kscience/dataforge/values/Value;
+	public final fun getAy ()Lspace/kscience/dataforge/values/Value;
+	public final fun getBgcolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getBordercolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getFont ()Lspace/kscience/plotly/models/Font;
 	public final fun getHeight ()Ljava/lang/Number;
 	public final fun getOpacity ()Ljava/lang/Number;
 	public final fun getShowarrow ()Ljava/lang/Boolean;
 	public final fun getStandoff ()Ljava/lang/Number;
 	public final fun getText ()Ljava/lang/String;
 	public final fun getTextangle ()Ljava/lang/Number;
-	public final fun getValign ()Lkscience/plotly/models/VerticalAlign;
+	public final fun getValign ()Lspace/kscience/plotly/models/VerticalAlign;
 	public final fun getVisible ()Ljava/lang/Boolean;
 	public final fun getWidth ()Ljava/lang/Number;
-	public final fun getX ()Lhep/dataforge/values/Value;
-	public final fun getXanchor ()Lkscience/plotly/models/XAnchor;
+	public final fun getX ()Lspace/kscience/dataforge/values/Value;
+	public final fun getXanchor ()Lspace/kscience/plotly/models/XAnchor;
 	public final fun getXref ()Ljava/lang/String;
-	public final fun getY ()Lhep/dataforge/values/Value;
-	public final fun getYanchor ()Lkscience/plotly/models/YAnchor;
+	public final fun getY ()Lspace/kscience/dataforge/values/Value;
+	public final fun getYanchor ()Lspace/kscience/plotly/models/YAnchor;
 	public final fun getYref ()Ljava/lang/String;
 	public final fun position (Ljava/lang/Number;Ljava/lang/Number;)V
-	public final fun setAlign (Lkscience/plotly/models/HorizontalAlign;)V
-	public final fun setAx (Lhep/dataforge/values/Value;)V
-	public final fun setAy (Lhep/dataforge/values/Value;)V
-	public final fun setFont (Lkscience/plotly/models/Font;)V
+	public final fun setAlign (Lspace/kscience/plotly/models/HorizontalAlign;)V
+	public final fun setAx (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setAy (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setFont (Lspace/kscience/plotly/models/Font;)V
 	public final fun setHeight (Ljava/lang/Number;)V
 	public final fun setOpacity (Ljava/lang/Number;)V
 	public final fun setShowarrow (Ljava/lang/Boolean;)V
 	public final fun setStandoff (Ljava/lang/Number;)V
 	public final fun setText (Ljava/lang/String;)V
 	public final fun setTextangle (Ljava/lang/Number;)V
-	public final fun setValign (Lkscience/plotly/models/VerticalAlign;)V
+	public final fun setValign (Lspace/kscience/plotly/models/VerticalAlign;)V
 	public final fun setVisible (Ljava/lang/Boolean;)V
 	public final fun setWidth (Ljava/lang/Number;)V
-	public final fun setX (Lhep/dataforge/values/Value;)V
-	public final fun setXanchor (Lkscience/plotly/models/XAnchor;)V
+	public final fun setX (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setXanchor (Lspace/kscience/plotly/models/XAnchor;)V
 	public final fun setXref (Ljava/lang/String;)V
-	public final fun setY (Lhep/dataforge/values/Value;)V
-	public final fun setYanchor (Lkscience/plotly/models/YAnchor;)V
+	public final fun setY (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setYanchor (Lspace/kscience/plotly/models/YAnchor;)V
 	public final fun setYref (Ljava/lang/String;)V
 }
 
-public final class kscience/plotly/models/Text$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Text$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/TextInfo : java/lang/Enum {
-	public static final field label Lkscience/plotly/models/TextInfo;
-	public static final field label+percent Lkscience/plotly/models/TextInfo;
-	public static final field label+text Lkscience/plotly/models/TextInfo;
-	public static final field label+text+percent Lkscience/plotly/models/TextInfo;
-	public static final field label+text+value Lkscience/plotly/models/TextInfo;
-	public static final field label+text+value+percent Lkscience/plotly/models/TextInfo;
-	public static final field label+value Lkscience/plotly/models/TextInfo;
-	public static final field label+value+percent Lkscience/plotly/models/TextInfo;
-	public static final field none Lkscience/plotly/models/TextInfo;
-	public static final field percent Lkscience/plotly/models/TextInfo;
-	public static final field text Lkscience/plotly/models/TextInfo;
-	public static final field text+percent Lkscience/plotly/models/TextInfo;
-	public static final field text+value Lkscience/plotly/models/TextInfo;
-	public static final field text+value+percent Lkscience/plotly/models/TextInfo;
-	public static final field value Lkscience/plotly/models/TextInfo;
-	public static final field value+percent Lkscience/plotly/models/TextInfo;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/TextInfo;
-	public static fun values ()[Lkscience/plotly/models/TextInfo;
+public final class space/kscience/plotly/models/TextInfo : java/lang/Enum {
+	public static final field label Lspace/kscience/plotly/models/TextInfo;
+	public static final field label+percent Lspace/kscience/plotly/models/TextInfo;
+	public static final field label+text Lspace/kscience/plotly/models/TextInfo;
+	public static final field label+text+percent Lspace/kscience/plotly/models/TextInfo;
+	public static final field label+text+value Lspace/kscience/plotly/models/TextInfo;
+	public static final field label+text+value+percent Lspace/kscience/plotly/models/TextInfo;
+	public static final field label+value Lspace/kscience/plotly/models/TextInfo;
+	public static final field label+value+percent Lspace/kscience/plotly/models/TextInfo;
+	public static final field none Lspace/kscience/plotly/models/TextInfo;
+	public static final field percent Lspace/kscience/plotly/models/TextInfo;
+	public static final field text Lspace/kscience/plotly/models/TextInfo;
+	public static final field text+percent Lspace/kscience/plotly/models/TextInfo;
+	public static final field text+value Lspace/kscience/plotly/models/TextInfo;
+	public static final field text+value+percent Lspace/kscience/plotly/models/TextInfo;
+	public static final field value Lspace/kscience/plotly/models/TextInfo;
+	public static final field value+percent Lspace/kscience/plotly/models/TextInfo;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TextInfo;
+	public static fun values ()[Lspace/kscience/plotly/models/TextInfo;
 }
 
-public final class kscience/plotly/models/TextPosition : java/lang/Enum {
-	public static final field auto Lkscience/plotly/models/TextPosition;
-	public static final field bottom center Lkscience/plotly/models/TextPosition;
-	public static final field bottom left Lkscience/plotly/models/TextPosition;
-	public static final field bottom right Lkscience/plotly/models/TextPosition;
-	public static final field inside Lkscience/plotly/models/TextPosition;
-	public static final field middle center Lkscience/plotly/models/TextPosition;
-	public static final field middle left Lkscience/plotly/models/TextPosition;
-	public static final field middle right Lkscience/plotly/models/TextPosition;
-	public static final field none Lkscience/plotly/models/TextPosition;
-	public static final field outside Lkscience/plotly/models/TextPosition;
-	public static final field top center Lkscience/plotly/models/TextPosition;
-	public static final field top left Lkscience/plotly/models/TextPosition;
-	public static final field top right Lkscience/plotly/models/TextPosition;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/TextPosition;
-	public static fun values ()[Lkscience/plotly/models/TextPosition;
+public final class space/kscience/plotly/models/TextPosition : java/lang/Enum {
+	public static final field auto Lspace/kscience/plotly/models/TextPosition;
+	public static final field bottom center Lspace/kscience/plotly/models/TextPosition;
+	public static final field bottom left Lspace/kscience/plotly/models/TextPosition;
+	public static final field bottom right Lspace/kscience/plotly/models/TextPosition;
+	public static final field inside Lspace/kscience/plotly/models/TextPosition;
+	public static final field middle center Lspace/kscience/plotly/models/TextPosition;
+	public static final field middle left Lspace/kscience/plotly/models/TextPosition;
+	public static final field middle right Lspace/kscience/plotly/models/TextPosition;
+	public static final field none Lspace/kscience/plotly/models/TextPosition;
+	public static final field outside Lspace/kscience/plotly/models/TextPosition;
+	public static final field top center Lspace/kscience/plotly/models/TextPosition;
+	public static final field top left Lspace/kscience/plotly/models/TextPosition;
+	public static final field top right Lspace/kscience/plotly/models/TextPosition;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TextPosition;
+	public static fun values ()[Lspace/kscience/plotly/models/TextPosition;
 }
 
-public final class kscience/plotly/models/TickMode : java/lang/Enum {
-	public static final field array Lkscience/plotly/models/TickMode;
-	public static final field auto Lkscience/plotly/models/TickMode;
-	public static final field linear Lkscience/plotly/models/TickMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/TickMode;
-	public static fun values ()[Lkscience/plotly/models/TickMode;
+public final class space/kscience/plotly/models/TickMode : java/lang/Enum {
+	public static final field array Lspace/kscience/plotly/models/TickMode;
+	public static final field auto Lspace/kscience/plotly/models/TickMode;
+	public static final field linear Lspace/kscience/plotly/models/TickMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TickMode;
+	public static fun values ()[Lspace/kscience/plotly/models/TickMode;
 }
 
-public final class kscience/plotly/models/Ticks : java/lang/Enum {
-	public static final field "" Lkscience/plotly/models/Ticks;
-	public static final field inside Lkscience/plotly/models/Ticks;
-	public static final field outside Lkscience/plotly/models/Ticks;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/Ticks;
-	public static fun values ()[Lkscience/plotly/models/Ticks;
+public final class space/kscience/plotly/models/Ticks : java/lang/Enum {
+	public static final field "" Lspace/kscience/plotly/models/Ticks;
+	public static final field inside Lspace/kscience/plotly/models/Ticks;
+	public static final field outside Lspace/kscience/plotly/models/Ticks;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Ticks;
+	public static fun values ()[Lspace/kscience/plotly/models/Ticks;
 }
 
-public final class kscience/plotly/models/Title : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Title$Companion;
+public final class space/kscience/plotly/models/Title : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Title$Companion;
 	public fun <init> ()V
 	public final fun font (Lkotlin/jvm/functions/Function1;)V
-	public final fun getFont ()Lkscience/plotly/models/Font;
-	public final fun getPad ()Lkscience/plotly/models/Margin;
+	public final fun getFont ()Lspace/kscience/plotly/models/Font;
+	public final fun getPad ()Lspace/kscience/plotly/models/Margin;
 	public final fun getText ()Ljava/lang/String;
 	public final fun getX ()Ljava/lang/Number;
-	public final fun getXanchor ()Lkscience/plotly/models/XAnchor;
-	public final fun getXref ()Lkscience/plotly/models/Ref;
+	public final fun getXanchor ()Lspace/kscience/plotly/models/XAnchor;
+	public final fun getXref ()Lspace/kscience/plotly/models/Ref;
 	public final fun getY ()Ljava/lang/Number;
-	public final fun getYanchor ()Lkscience/plotly/models/YAnchor;
-	public final fun getYref ()Lkscience/plotly/models/Ref;
+	public final fun getYanchor ()Lspace/kscience/plotly/models/YAnchor;
+	public final fun getYref ()Lspace/kscience/plotly/models/Ref;
 	public final fun pad (Lkotlin/jvm/functions/Function1;)V
-	public final fun setFont (Lkscience/plotly/models/Font;)V
-	public final fun setPad (Lkscience/plotly/models/Margin;)V
+	public final fun setFont (Lspace/kscience/plotly/models/Font;)V
+	public final fun setPad (Lspace/kscience/plotly/models/Margin;)V
 	public final fun setText (Ljava/lang/String;)V
 	public final fun setX (Ljava/lang/Number;)V
-	public final fun setXanchor (Lkscience/plotly/models/XAnchor;)V
-	public final fun setXref (Lkscience/plotly/models/Ref;)V
+	public final fun setXanchor (Lspace/kscience/plotly/models/XAnchor;)V
+	public final fun setXref (Lspace/kscience/plotly/models/Ref;)V
 	public final fun setY (Ljava/lang/Number;)V
-	public final fun setYanchor (Lkscience/plotly/models/YAnchor;)V
-	public final fun setYref (Lkscience/plotly/models/Ref;)V
+	public final fun setYanchor (Lspace/kscience/plotly/models/YAnchor;)V
+	public final fun setYref (Lspace/kscience/plotly/models/Ref;)V
 }
 
-public final class kscience/plotly/models/Title$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Title$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public class kscience/plotly/models/Trace : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/Trace$Companion;
+public class space/kscience/plotly/models/Trace : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Trace$Companion;
 	public static final field TEXT_AXIS Ljava/lang/String;
 	public static final field X_AXIS Ljava/lang/String;
 	public static final field Y_AXIS Ljava/lang/String;
 	public static final field Z_AXIS Ljava/lang/String;
 	public fun <init> ()V
-	public final fun axis (Ljava/lang/String;)Lkscience/plotly/models/TraceValues;
+	public final fun axis (Ljava/lang/String;)Lspace/kscience/plotly/models/TraceValues;
 	public final fun colorbar (Lkotlin/jvm/functions/Function1;)V
 	public final fun domain (Lkotlin/jvm/functions/Function1;)V
 	public final fun error_x (Lkotlin/jvm/functions/Function1;)V
 	public final fun error_y (Lkotlin/jvm/functions/Function1;)V
 	public final fun getCliponaxis ()Ljava/lang/Boolean;
-	public final fun getColorbar ()Lkscience/plotly/models/ColorBar;
-	public final fun getColorscale ()Lhep/dataforge/values/Value;
+	public final fun getColorbar ()Lspace/kscience/plotly/models/ColorBar;
+	public final fun getColorscale ()Lspace/kscience/dataforge/values/Value;
 	public final fun getConnectgaps ()Ljava/lang/Boolean;
-	public final fun getDomain ()Lkscience/plotly/models/Domain;
+	public final fun getDomain ()Lspace/kscience/plotly/models/Domain;
 	public final fun getDx ()Ljava/lang/Number;
 	public final fun getDy ()Ljava/lang/Number;
-	public final fun getError_x ()Lkscience/plotly/models/Error;
-	public final fun getError_y ()Lkscience/plotly/models/Error;
-	public final fun getFillcolor ()Lkscience/plotly/models/Color;
+	public final fun getError_x ()Lspace/kscience/plotly/models/Error;
+	public final fun getError_y ()Lspace/kscience/plotly/models/Error;
+	public final fun getFillcolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getHoverinfo ()Ljava/lang/String;
-	public final fun getHoverlabel ()Lkscience/plotly/models/Hoverlabel;
+	public final fun getHoverlabel ()Lspace/kscience/plotly/models/Hoverlabel;
 	public final fun getLabels ()Ljava/util/List;
 	public final fun getLegendgroup ()Ljava/lang/String;
-	public final fun getLine ()Lkscience/plotly/models/LayoutLine;
-	public final fun getMarker ()Lkscience/plotly/models/Marker;
+	public final fun getLine ()Lspace/kscience/plotly/models/LayoutLine;
+	public final fun getMarker ()Lspace/kscience/plotly/models/Marker;
 	public final fun getName ()Ljava/lang/String;
 	public final fun getOpacity ()Ljava/lang/Number;
-	public final fun getOrientation ()Lkscience/plotly/models/Orientation;
+	public final fun getOrientation ()Lspace/kscience/plotly/models/Orientation;
 	public final fun getReversescale ()Ljava/lang/Boolean;
 	public final fun getScalegroup ()Ljava/lang/String;
 	public final fun getShowlegend ()Ljava/lang/Boolean;
 	public final fun getShowscale ()Ljava/lang/Boolean;
-	public final fun getText ()Lkscience/plotly/models/TraceValues;
-	public final fun getTextfont ()Lkscience/plotly/models/Font;
-	public final fun getTextposition ()Lkscience/plotly/models/TextPosition;
+	public final fun getText ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getTextfont ()Lspace/kscience/plotly/models/Font;
+	public final fun getTextposition ()Lspace/kscience/plotly/models/TextPosition;
 	public final fun getTextpositionsList ()Ljava/util/List;
 	public final fun getTranspose ()Ljava/lang/Boolean;
-	public final fun getType ()Lkscience/plotly/models/TraceType;
+	public final fun getType ()Lspace/kscience/plotly/models/TraceType;
 	public final fun getValues ()Ljava/util/List;
-	public final fun getVisible ()Lkscience/plotly/models/Visible;
-	public final fun getX ()Lkscience/plotly/models/TraceValues;
-	public final fun getX0 ()Lhep/dataforge/values/Value;
-	public final fun getXcalendar ()Lkscience/plotly/models/Calendar;
-	public final fun getY ()Lkscience/plotly/models/TraceValues;
-	public final fun getY0 ()Lhep/dataforge/values/Value;
-	public final fun getYcalendar ()Lkscience/plotly/models/Calendar;
-	public final fun getZ ()Lkscience/plotly/models/TraceValues;
+	public final fun getVisible ()Lspace/kscience/plotly/models/Visible;
+	public final fun getX ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getX0 ()Lspace/kscience/dataforge/values/Value;
+	public final fun getXcalendar ()Lspace/kscience/plotly/models/Calendar;
+	public final fun getY ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getY0 ()Lspace/kscience/dataforge/values/Value;
+	public final fun getYcalendar ()Lspace/kscience/plotly/models/Calendar;
+	public final fun getZ ()Lspace/kscience/plotly/models/TraceValues;
 	public final fun getZauto ()Ljava/lang/Boolean;
 	public final fun getZmax ()Ljava/lang/Number;
 	public final fun getZmid ()Ljava/lang/Number;
@@ -1772,40 +1760,40 @@ public class kscience/plotly/models/Trace : hep/dataforge/meta/Scheme {
 	public final fun line (Lkotlin/jvm/functions/Function1;)V
 	public final fun marker (Lkotlin/jvm/functions/Function1;)V
 	public final fun setCliponaxis (Ljava/lang/Boolean;)V
-	public final fun setColorbar (Lkscience/plotly/models/ColorBar;)V
-	public final fun setColorscale (Lhep/dataforge/values/Value;)V
+	public final fun setColorbar (Lspace/kscience/plotly/models/ColorBar;)V
+	public final fun setColorscale (Lspace/kscience/dataforge/values/Value;)V
 	public final fun setConnectgaps (Ljava/lang/Boolean;)V
-	public final fun setDomain (Lkscience/plotly/models/Domain;)V
+	public final fun setDomain (Lspace/kscience/plotly/models/Domain;)V
 	public final fun setDx (Ljava/lang/Number;)V
 	public final fun setDy (Ljava/lang/Number;)V
-	public final fun setError_x (Lkscience/plotly/models/Error;)V
-	public final fun setError_y (Lkscience/plotly/models/Error;)V
+	public final fun setError_x (Lspace/kscience/plotly/models/Error;)V
+	public final fun setError_y (Lspace/kscience/plotly/models/Error;)V
 	public final fun setHoverinfo (Ljava/lang/String;)V
-	public final fun setHoverlabel (Lkscience/plotly/models/Hoverlabel;)V
+	public final fun setHoverlabel (Lspace/kscience/plotly/models/Hoverlabel;)V
 	public final fun setLabels (Ljava/util/List;)V
 	public final fun setLegendgroup (Ljava/lang/String;)V
-	public final fun setLine (Lkscience/plotly/models/LayoutLine;)V
-	public final fun setMarker (Lkscience/plotly/models/Marker;)V
+	public final fun setLine (Lspace/kscience/plotly/models/LayoutLine;)V
+	public final fun setMarker (Lspace/kscience/plotly/models/Marker;)V
 	public final fun setName (Ljava/lang/String;)V
 	public final fun setOpacity (Ljava/lang/Number;)V
-	public final fun setOrientation (Lkscience/plotly/models/Orientation;)V
+	public final fun setOrientation (Lspace/kscience/plotly/models/Orientation;)V
 	public final fun setReversescale (Ljava/lang/Boolean;)V
 	public final fun setScalegroup (Ljava/lang/String;)V
 	public final fun setShowlegend (Ljava/lang/Boolean;)V
 	public final fun setShowscale (Ljava/lang/Boolean;)V
-	public final fun setText (Lkscience/plotly/models/TraceValues;)V
-	public final fun setTextfont (Lkscience/plotly/models/Font;)V
-	public final fun setTextposition (Lkscience/plotly/models/TextPosition;)V
+	public final fun setText (Lspace/kscience/plotly/models/TraceValues;)V
+	public final fun setTextfont (Lspace/kscience/plotly/models/Font;)V
+	public final fun setTextposition (Lspace/kscience/plotly/models/TextPosition;)V
 	public final fun setTextpositionsList (Ljava/util/List;)V
 	public final fun setTranspose (Ljava/lang/Boolean;)V
-	public final fun setType (Lkscience/plotly/models/TraceType;)V
+	public final fun setType (Lspace/kscience/plotly/models/TraceType;)V
 	public final fun setValues (Ljava/util/List;)V
-	public final fun setVisible (Lkscience/plotly/models/Visible;)V
-	public final fun setX0 (Lhep/dataforge/values/Value;)V
-	public final fun setXcalendar (Lkscience/plotly/models/Calendar;)V
-	public final fun setY0 (Lhep/dataforge/values/Value;)V
-	public final fun setYcalendar (Lkscience/plotly/models/Calendar;)V
-	public final fun setZ (Lkscience/plotly/models/TraceValues;)V
+	public final fun setVisible (Lspace/kscience/plotly/models/Visible;)V
+	public final fun setX0 (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setXcalendar (Lspace/kscience/plotly/models/Calendar;)V
+	public final fun setY0 (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setYcalendar (Lspace/kscience/plotly/models/Calendar;)V
+	public final fun setZ (Lspace/kscience/plotly/models/TraceValues;)V
 	public final fun setZauto (Ljava/lang/Boolean;)V
 	public final fun setZmax (Ljava/lang/Number;)V
 	public final fun setZmid (Ljava/lang/Number;)V
@@ -1814,46 +1802,46 @@ public class kscience/plotly/models/Trace : hep/dataforge/meta/Scheme {
 	public final fun values (Ljava/lang/Iterable;)V
 }
 
-public final class kscience/plotly/models/Trace$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Trace$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/TraceKt {
-	public static final fun invoke (Lhep/dataforge/meta/SchemeSpec;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lkscience/plotly/models/Trace;
-	public static synthetic fun invoke$default (Lhep/dataforge/meta/SchemeSpec;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lkscience/plotly/models/Trace;
+public final class space/kscience/plotly/models/TraceKt {
+	public static final fun invoke (Lspace/kscience/dataforge/meta/SchemeSpec;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Trace;
+	public static synthetic fun invoke$default (Lspace/kscience/dataforge/meta/SchemeSpec;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lspace/kscience/plotly/models/Trace;
 }
 
-public final class kscience/plotly/models/TraceOrder : java/lang/Enum {
-	public static final field normal Lkscience/plotly/models/TraceOrder;
-	public static final field reversed Lkscience/plotly/models/TraceOrder;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/TraceOrder;
-	public static fun values ()[Lkscience/plotly/models/TraceOrder;
+public final class space/kscience/plotly/models/TraceOrder : java/lang/Enum {
+	public static final field normal Lspace/kscience/plotly/models/TraceOrder;
+	public static final field reversed Lspace/kscience/plotly/models/TraceOrder;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TraceOrder;
+	public static fun values ()[Lspace/kscience/plotly/models/TraceOrder;
 }
 
-public final class kscience/plotly/models/TraceType : java/lang/Enum {
-	public static final field bar Lkscience/plotly/models/TraceType;
-	public static final field box Lkscience/plotly/models/TraceType;
-	public static final field contour Lkscience/plotly/models/TraceType;
-	public static final field heatmap Lkscience/plotly/models/TraceType;
-	public static final field heatmapgl Lkscience/plotly/models/TraceType;
-	public static final field histogram Lkscience/plotly/models/TraceType;
-	public static final field histogram2d Lkscience/plotly/models/TraceType;
-	public static final field histogram2dcontour Lkscience/plotly/models/TraceType;
-	public static final field image Lkscience/plotly/models/TraceType;
-	public static final field pie Lkscience/plotly/models/TraceType;
-	public static final field scatter Lkscience/plotly/models/TraceType;
-	public static final field scattergl Lkscience/plotly/models/TraceType;
-	public static final field table Lkscience/plotly/models/TraceType;
-	public static final field violin Lkscience/plotly/models/TraceType;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/TraceType;
-	public static fun values ()[Lkscience/plotly/models/TraceType;
+public final class space/kscience/plotly/models/TraceType : java/lang/Enum {
+	public static final field bar Lspace/kscience/plotly/models/TraceType;
+	public static final field box Lspace/kscience/plotly/models/TraceType;
+	public static final field contour Lspace/kscience/plotly/models/TraceType;
+	public static final field heatmap Lspace/kscience/plotly/models/TraceType;
+	public static final field heatmapgl Lspace/kscience/plotly/models/TraceType;
+	public static final field histogram Lspace/kscience/plotly/models/TraceType;
+	public static final field histogram2d Lspace/kscience/plotly/models/TraceType;
+	public static final field histogram2dcontour Lspace/kscience/plotly/models/TraceType;
+	public static final field image Lspace/kscience/plotly/models/TraceType;
+	public static final field pie Lspace/kscience/plotly/models/TraceType;
+	public static final field scatter Lspace/kscience/plotly/models/TraceType;
+	public static final field scattergl Lspace/kscience/plotly/models/TraceType;
+	public static final field table Lspace/kscience/plotly/models/TraceType;
+	public static final field violin Lspace/kscience/plotly/models/TraceType;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TraceType;
+	public static fun values ()[Lspace/kscience/plotly/models/TraceType;
 }
 
-public final class kscience/plotly/models/TraceValues {
+public final class space/kscience/plotly/models/TraceValues {
 	public final fun getDoubles ()[D
 	public final fun getNumbers ()Ljava/lang/Iterable;
-	public final fun getOwner ()Lhep/dataforge/meta/Scheme;
+	public final fun getOwner ()Lspace/kscience/dataforge/meta/Scheme;
 	public final fun getStrings ()Ljava/lang/Iterable;
-	public final fun getValue ()Lhep/dataforge/values/Value;
+	public final fun getValue ()Lspace/kscience/dataforge/values/Value;
 	public final fun invoke (Ljava/util/List;)V
 	public final fun invoke ([Ljava/lang/Number;)V
 	public final fun invoke ([Ljava/lang/String;)V
@@ -1861,146 +1849,146 @@ public final class kscience/plotly/models/TraceValues {
 	public final fun setDoubles ([D)V
 	public final fun setNumbers (Ljava/lang/Iterable;)V
 	public final fun setStrings (Ljava/lang/Iterable;)V
-	public final fun setValue (Lhep/dataforge/values/Value;)V
+	public final fun setValue (Lspace/kscience/dataforge/values/Value;)V
 }
 
-public final class kscience/plotly/models/VerticalAlign : java/lang/Enum {
-	public static final field bottom Lkscience/plotly/models/VerticalAlign;
-	public static final field middle Lkscience/plotly/models/VerticalAlign;
-	public static final field top Lkscience/plotly/models/VerticalAlign;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/VerticalAlign;
-	public static fun values ()[Lkscience/plotly/models/VerticalAlign;
+public final class space/kscience/plotly/models/VerticalAlign : java/lang/Enum {
+	public static final field bottom Lspace/kscience/plotly/models/VerticalAlign;
+	public static final field middle Lspace/kscience/plotly/models/VerticalAlign;
+	public static final field top Lspace/kscience/plotly/models/VerticalAlign;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/VerticalAlign;
+	public static fun values ()[Lspace/kscience/plotly/models/VerticalAlign;
 }
 
-public final class kscience/plotly/models/Violin : kscience/plotly/models/Trace {
-	public static final field Companion Lkscience/plotly/models/Violin$Companion;
+public final class space/kscience/plotly/models/Violin : space/kscience/plotly/models/Trace {
+	public static final field Companion Lspace/kscience/plotly/models/Violin$Companion;
 	public fun <init> ()V
 	public final fun box (Lkotlin/jvm/functions/Function1;)V
-	public final fun getBox ()Lkscience/plotly/models/ViolinBox;
-	public final fun getHoveron ()Lkscience/plotly/models/ViolinHoveron;
+	public final fun getBox ()Lspace/kscience/plotly/models/ViolinBox;
+	public final fun getHoveron ()Lspace/kscience/plotly/models/ViolinHoveron;
 	public final fun getJitter ()Ljava/lang/Number;
-	public final fun getMeanline ()Lkscience/plotly/models/MeanLine;
+	public final fun getMeanline ()Lspace/kscience/plotly/models/MeanLine;
 	public final fun getPointpos ()Ljava/lang/Number;
-	public final fun getPoints ()Lkscience/plotly/models/ViolinPoints;
-	public final fun getScalemode ()Lkscience/plotly/models/ViolinScaleMode;
-	public final fun getSide ()Lkscience/plotly/models/ViolinSide;
+	public final fun getPoints ()Lspace/kscience/plotly/models/ViolinPoints;
+	public final fun getScalemode ()Lspace/kscience/plotly/models/ViolinScaleMode;
+	public final fun getSide ()Lspace/kscience/plotly/models/ViolinSide;
 	public final fun getSpan ()Ljava/util/List;
-	public final fun getSpanmode ()Lkscience/plotly/models/SpanMode;
+	public final fun getSpanmode ()Lspace/kscience/plotly/models/SpanMode;
 	public final fun meanline (Lkotlin/jvm/functions/Function1;)V
-	public final fun setBox (Lkscience/plotly/models/ViolinBox;)V
-	public final fun setHoveron (Lkscience/plotly/models/ViolinHoveron;)V
+	public final fun setBox (Lspace/kscience/plotly/models/ViolinBox;)V
+	public final fun setHoveron (Lspace/kscience/plotly/models/ViolinHoveron;)V
 	public final fun setJitter (Ljava/lang/Number;)V
-	public final fun setMeanline (Lkscience/plotly/models/MeanLine;)V
+	public final fun setMeanline (Lspace/kscience/plotly/models/MeanLine;)V
 	public final fun setPointpos (Ljava/lang/Number;)V
-	public final fun setPoints (Lkscience/plotly/models/ViolinPoints;)V
-	public final fun setScalemode (Lkscience/plotly/models/ViolinScaleMode;)V
-	public final fun setSide (Lkscience/plotly/models/ViolinSide;)V
+	public final fun setPoints (Lspace/kscience/plotly/models/ViolinPoints;)V
+	public final fun setScalemode (Lspace/kscience/plotly/models/ViolinScaleMode;)V
+	public final fun setSide (Lspace/kscience/plotly/models/ViolinSide;)V
 	public final fun setSpan (Ljava/util/List;)V
-	public final fun setSpanmode (Lkscience/plotly/models/SpanMode;)V
+	public final fun setSpanmode (Lspace/kscience/plotly/models/SpanMode;)V
 	public final fun span (Ljava/lang/Iterable;)V
 }
 
-public final class kscience/plotly/models/Violin$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/Violin$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/ViolinBox : hep/dataforge/meta/Scheme {
-	public static final field Companion Lkscience/plotly/models/ViolinBox$Companion;
+public final class space/kscience/plotly/models/ViolinBox : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/ViolinBox$Companion;
 	public fun <init> ()V
-	public final fun getFillcolor ()Lkscience/plotly/models/Color;
+	public final fun getFillcolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getVisible ()Ljava/lang/Boolean;
 	public final fun getWidth ()Ljava/lang/Number;
 	public final fun setVisible (Ljava/lang/Boolean;)V
 	public final fun setWidth (Ljava/lang/Number;)V
 }
 
-public final class kscience/plotly/models/ViolinBox$Companion : hep/dataforge/meta/SchemeSpec {
+public final class space/kscience/plotly/models/ViolinBox$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
-public final class kscience/plotly/models/ViolinHoveron : java/lang/Enum {
-	public static final field all Lkscience/plotly/models/ViolinHoveron;
-	public static final field kde Lkscience/plotly/models/ViolinHoveron;
-	public static final field points Lkscience/plotly/models/ViolinHoveron;
-	public static final field points+kde Lkscience/plotly/models/ViolinHoveron;
-	public static final field violins Lkscience/plotly/models/ViolinHoveron;
-	public static final field violins+kde Lkscience/plotly/models/ViolinHoveron;
-	public static final field violins+points Lkscience/plotly/models/ViolinHoveron;
-	public static final field violins+points+kde Lkscience/plotly/models/ViolinHoveron;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ViolinHoveron;
-	public static fun values ()[Lkscience/plotly/models/ViolinHoveron;
+public final class space/kscience/plotly/models/ViolinHoveron : java/lang/Enum {
+	public static final field all Lspace/kscience/plotly/models/ViolinHoveron;
+	public static final field kde Lspace/kscience/plotly/models/ViolinHoveron;
+	public static final field points Lspace/kscience/plotly/models/ViolinHoveron;
+	public static final field points+kde Lspace/kscience/plotly/models/ViolinHoveron;
+	public static final field violins Lspace/kscience/plotly/models/ViolinHoveron;
+	public static final field violins+kde Lspace/kscience/plotly/models/ViolinHoveron;
+	public static final field violins+points Lspace/kscience/plotly/models/ViolinHoveron;
+	public static final field violins+points+kde Lspace/kscience/plotly/models/ViolinHoveron;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ViolinHoveron;
+	public static fun values ()[Lspace/kscience/plotly/models/ViolinHoveron;
 }
 
-public final class kscience/plotly/models/ViolinMode : java/lang/Enum {
-	public static final field group Lkscience/plotly/models/ViolinMode;
-	public static final field overlay Lkscience/plotly/models/ViolinMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ViolinMode;
-	public static fun values ()[Lkscience/plotly/models/ViolinMode;
+public final class space/kscience/plotly/models/ViolinMode : java/lang/Enum {
+	public static final field group Lspace/kscience/plotly/models/ViolinMode;
+	public static final field overlay Lspace/kscience/plotly/models/ViolinMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ViolinMode;
+	public static fun values ()[Lspace/kscience/plotly/models/ViolinMode;
 }
 
-public final class kscience/plotly/models/ViolinPoints : java/lang/Enum {
-	public static final field all Lkscience/plotly/models/ViolinPoints;
-	public static final field false Lkscience/plotly/models/ViolinPoints;
-	public static final field outliers Lkscience/plotly/models/ViolinPoints;
-	public static final field suspectedoutliers Lkscience/plotly/models/ViolinPoints;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ViolinPoints;
-	public static fun values ()[Lkscience/plotly/models/ViolinPoints;
+public final class space/kscience/plotly/models/ViolinPoints : java/lang/Enum {
+	public static final field all Lspace/kscience/plotly/models/ViolinPoints;
+	public static final field false Lspace/kscience/plotly/models/ViolinPoints;
+	public static final field outliers Lspace/kscience/plotly/models/ViolinPoints;
+	public static final field suspectedoutliers Lspace/kscience/plotly/models/ViolinPoints;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ViolinPoints;
+	public static fun values ()[Lspace/kscience/plotly/models/ViolinPoints;
 }
 
-public final class kscience/plotly/models/ViolinScaleMode : java/lang/Enum {
-	public static final field count Lkscience/plotly/models/ViolinScaleMode;
-	public static final field width Lkscience/plotly/models/ViolinScaleMode;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ViolinScaleMode;
-	public static fun values ()[Lkscience/plotly/models/ViolinScaleMode;
+public final class space/kscience/plotly/models/ViolinScaleMode : java/lang/Enum {
+	public static final field count Lspace/kscience/plotly/models/ViolinScaleMode;
+	public static final field width Lspace/kscience/plotly/models/ViolinScaleMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ViolinScaleMode;
+	public static fun values ()[Lspace/kscience/plotly/models/ViolinScaleMode;
 }
 
-public final class kscience/plotly/models/ViolinSide : java/lang/Enum {
-	public static final field both Lkscience/plotly/models/ViolinSide;
-	public static final field negative Lkscience/plotly/models/ViolinSide;
-	public static final field positive Lkscience/plotly/models/ViolinSide;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ViolinSide;
-	public static fun values ()[Lkscience/plotly/models/ViolinSide;
+public final class space/kscience/plotly/models/ViolinSide : java/lang/Enum {
+	public static final field both Lspace/kscience/plotly/models/ViolinSide;
+	public static final field negative Lspace/kscience/plotly/models/ViolinSide;
+	public static final field positive Lspace/kscience/plotly/models/ViolinSide;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ViolinSide;
+	public static fun values ()[Lspace/kscience/plotly/models/ViolinSide;
 }
 
-public final class kscience/plotly/models/Visible : java/lang/Enum {
-	public static final field false Lkscience/plotly/models/Visible;
-	public static final field legendonly Lkscience/plotly/models/Visible;
-	public static final field true Lkscience/plotly/models/Visible;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/Visible;
-	public static fun values ()[Lkscience/plotly/models/Visible;
+public final class space/kscience/plotly/models/Visible : java/lang/Enum {
+	public static final field false Lspace/kscience/plotly/models/Visible;
+	public static final field legendonly Lspace/kscience/plotly/models/Visible;
+	public static final field true Lspace/kscience/plotly/models/Visible;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Visible;
+	public static fun values ()[Lspace/kscience/plotly/models/Visible;
 }
 
-public final class kscience/plotly/models/XAnchor : java/lang/Enum {
-	public static final field auto Lkscience/plotly/models/XAnchor;
-	public static final field center Lkscience/plotly/models/XAnchor;
-	public static final field left Lkscience/plotly/models/XAnchor;
-	public static final field right Lkscience/plotly/models/XAnchor;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/XAnchor;
-	public static fun values ()[Lkscience/plotly/models/XAnchor;
+public final class space/kscience/plotly/models/XAnchor : java/lang/Enum {
+	public static final field auto Lspace/kscience/plotly/models/XAnchor;
+	public static final field center Lspace/kscience/plotly/models/XAnchor;
+	public static final field left Lspace/kscience/plotly/models/XAnchor;
+	public static final field right Lspace/kscience/plotly/models/XAnchor;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/XAnchor;
+	public static fun values ()[Lspace/kscience/plotly/models/XAnchor;
 }
 
-public final class kscience/plotly/models/YAnchor : java/lang/Enum {
-	public static final field auto Lkscience/plotly/models/YAnchor;
-	public static final field bottom Lkscience/plotly/models/YAnchor;
-	public static final field middle Lkscience/plotly/models/YAnchor;
-	public static final field top Lkscience/plotly/models/YAnchor;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/YAnchor;
-	public static fun values ()[Lkscience/plotly/models/YAnchor;
+public final class space/kscience/plotly/models/YAnchor : java/lang/Enum {
+	public static final field auto Lspace/kscience/plotly/models/YAnchor;
+	public static final field bottom Lspace/kscience/plotly/models/YAnchor;
+	public static final field middle Lspace/kscience/plotly/models/YAnchor;
+	public static final field top Lspace/kscience/plotly/models/YAnchor;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/YAnchor;
+	public static fun values ()[Lspace/kscience/plotly/models/YAnchor;
 }
 
-public final class kscience/plotly/models/ZsmoothType : java/lang/Enum {
-	public static final field best Lkscience/plotly/models/ZsmoothType;
-	public static final field false Lkscience/plotly/models/ZsmoothType;
-	public static final field fast Lkscience/plotly/models/ZsmoothType;
-	public static fun valueOf (Ljava/lang/String;)Lkscience/plotly/models/ZsmoothType;
-	public static fun values ()[Lkscience/plotly/models/ZsmoothType;
+public final class space/kscience/plotly/models/ZsmoothType : java/lang/Enum {
+	public static final field best Lspace/kscience/plotly/models/ZsmoothType;
+	public static final field false Lspace/kscience/plotly/models/ZsmoothType;
+	public static final field fast Lspace/kscience/plotly/models/ZsmoothType;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ZsmoothType;
+	public static fun values ()[Lspace/kscience/plotly/models/ZsmoothType;
 }
 
-public final class kscience/plotly/palettes/T10 {
+public final class space/kscience/plotly/palettes/T10 {
 	public static final field BLUE Ljava/lang/String;
 	public static final field BROWN Ljava/lang/String;
 	public static final field CYAN Ljava/lang/String;
 	public static final field GRAY Ljava/lang/String;
 	public static final field GREEN Ljava/lang/String;
-	public static final field INSTANCE Lkscience/plotly/palettes/T10;
+	public static final field INSTANCE Lspace/kscience/plotly/palettes/T10;
 	public static final field OLIVE Ljava/lang/String;
 	public static final field ORANGE Ljava/lang/String;
 	public static final field PINK Ljava/lang/String;
@@ -2008,7 +1996,7 @@ public final class kscience/plotly/palettes/T10 {
 	public static final field RED Ljava/lang/String;
 }
 
-public final class kscience/plotly/palettes/Xkcd {
+public final class space/kscience/plotly/palettes/Xkcd {
 	public static final field ACID_GREEN Ljava/lang/String;
 	public static final field ADOBE Ljava/lang/String;
 	public static final field ALGAE Ljava/lang/String;
@@ -2428,7 +2416,7 @@ public final class kscience/plotly/palettes/Xkcd {
 	public static final field INDIAN_RED Ljava/lang/String;
 	public static final field INDIGO Ljava/lang/String;
 	public static final field INDIGO_BLUE Ljava/lang/String;
-	public static final field INSTANCE Lkscience/plotly/palettes/Xkcd;
+	public static final field INSTANCE Lspace/kscience/plotly/palettes/Xkcd;
 	public static final field IRIS Ljava/lang/String;
 	public static final field IRISH_GREEN Ljava/lang/String;
 	public static final field IVORY Ljava/lang/String;

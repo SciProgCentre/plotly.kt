@@ -2,7 +2,7 @@ package io
 
 import krangl.DataFrame
 import krangl.readCSV
-import kscience.plotly.Plotly
+import space.kscience.plotly.Plotly
 
 fun readResourceAsString(resource: String): String =
     Plotly.javaClass.getResourceAsStream(resource)?.readAllBytes()?.decodeToString()

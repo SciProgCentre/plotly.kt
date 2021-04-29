@@ -1,11 +1,11 @@
 package pie
 
-import hep.dataforge.meta.invoke
-import kscience.plotly.Plotly
-import kscience.plotly.fragment
-import kscience.plotly.makeFile
-import kscience.plotly.models.Pie
-import kscience.plotly.plot
+import space.kscience.dataforge.meta.invoke
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.fragment
+import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.Pie
+import space.kscience.plotly.plot
 
 
 fun main() {

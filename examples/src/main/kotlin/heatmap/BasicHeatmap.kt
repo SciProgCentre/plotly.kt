@@ -1,10 +1,10 @@
 package heatmap
 
-import hep.dataforge.meta.invoke
-import hep.dataforge.values.Value
-import kscience.plotly.Plotly
-import kscience.plotly.heatmap
-import kscience.plotly.makeFile
+import space.kscience.dataforge.meta.invoke
+import space.kscience.dataforge.values.Value
+import space.kscience.plotly.Plotly
+import space.kscience.plotly.heatmap
+import space.kscience.plotly.makeFile
 
 
 /**
