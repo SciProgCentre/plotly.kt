@@ -90,7 +90,7 @@ repositories {
 }
 
 dependencies {
-    implementation("kscience.plotlykt:plotlykt-server:0.4.0")
+    implementation("space.kscience:plotlykt-server:0.4.0")
 }
 ```
 
