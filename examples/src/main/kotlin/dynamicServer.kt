@@ -31,6 +31,7 @@ fun main() {
     val cosTrace = Trace(x, cosY) { name = "cos" }
 
     val server = Plotly.serve(port = 3872) {
+        embedData = true
 
         //root level plots go to default page
         page { plotly ->
@@ -58,7 +59,6 @@ fun main() {
                 }
             }
         }
-
         pushUpdates(50)       // start sending updates via websocket to the front-end
     }
 
