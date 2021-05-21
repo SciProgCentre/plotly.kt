@@ -1,10 +1,7 @@
 plugins {
     id("ru.mipt.npm.gradle.jvm")
     kotlin("jupyter.api")
-}
-
-kscience{
-    publish()
+    `maven-publish`
 }
 
 val dataforgeVersion: String by rootProject.extra
