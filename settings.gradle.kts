@@ -1,5 +1,5 @@
 pluginManagement {
-    val kotlinVersion = "1.5.0"
+    val kotlinVersion = "1.5.10"
     val toolsVersion = "0.9.9"
 
     repositories {

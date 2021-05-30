@@ -8,7 +8,7 @@ val dataforgeVersion by extra("0.4.0")
 
 allprojects {
     group = "space.kscience"
-    version = "0.4.0"
+    version = "0.4.1"
 
     repositories {
         maven("https://repo.kotlin.link")
