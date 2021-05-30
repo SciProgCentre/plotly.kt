@@ -15,7 +15,7 @@ pluginManagement {
         id("ru.mipt.npm.gradle.jvm") version toolsVersion
         id("ru.mipt.npm.gradle.js") version toolsVersion
         id("ru.mipt.npm.gradle.publish") version toolsVersion
-        kotlin("jupyter.api") version "0.10.0-25"
+        kotlin("jupyter.api") version "0.10.0-45"
         kotlin("jvm") version kotlinVersion
         kotlin("js") version kotlinVersion
         kotlin("multiplatform") version kotlinVersion
