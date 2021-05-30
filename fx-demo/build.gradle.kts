@@ -15,9 +15,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("no.tornado:tornadofx:1.7.19")
     implementation(project(":plotlykt-server"))
+    implementation("no.tornado:tornadofx:1.7.19")
     implementation("ch.qos.logback:logback-classic:1.2.3")
 }
 

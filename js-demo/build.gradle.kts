@@ -3,7 +3,7 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
+    mavenCentral()
     jcenter()
 }
 
@@ -16,5 +16,5 @@ kotlin {
 
 dependencies {
     implementation(project(":plotlykt-core"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.4.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.5.0")
 }

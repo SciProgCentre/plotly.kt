@@ -1,0 +1,17 @@
+public final class space/kscience/plotly/PlotlyIntegration : org/jetbrains/kotlinx/jupyter/api/libraries/JupyterIntegration, space/kscience/plotly/PlotlyRenderer {
+	public fun <init> ()V
+	public fun onLoaded (Lorg/jetbrains/kotlinx/jupyter/api/libraries/JupyterIntegration$Builder;)V
+	public fun renderPlot (Lkotlinx/html/FlowContent;Lspace/kscience/plotly/Plot;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;)Lspace/kscience/plotly/Plot;
+}
+
+public final class space/kscience/plotly/PlotlyIntegrationKt {
+	public static final fun getJupyter (Lspace/kscience/plotly/Plotly;)Lspace/kscience/plotly/PlotlyJupyterConfiguration;
+}
+
+public final class space/kscience/plotly/PlotlyJupyterConfiguration {
+	public static final field INSTANCE Lspace/kscience/plotly/PlotlyJupyterConfiguration;
+	public final fun getLegacyMode ()Z
+	public final fun notebook ()Lspace/kscience/plotly/PlotlyHtmlFragment;
+	public final fun setLegacyMode (Z)V
+}
+

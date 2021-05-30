@@ -36,7 +36,7 @@ public fun Plot.toHTML(
         }
         body {
             StaticPlotlyRenderer.run {
-                renderPlot(this@toHTML, "plot", config)
+                renderPlot(this@toHTML, this@toHTML.toString(), config)
             }
         }
     }

@@ -7,10 +7,12 @@
 
 ## Artifact details
 
-**TBD**
+[![Maven Central](https://img.shields.io/maven-central/v/space.kscience/plotlykt-core.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22space.kscience%22%20AND%20a:%22plotlykt-core%22)
+
+Dev builds and intermediate artifacts are available via `https://repo.kotlin.link` maven repository.
 
 ## Compatibility note
-The current `0.4.0` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.1.0. The JVM part requires JVM 11 to run.
+The current `0.4.2` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.1.0. The JVM part requires **JVM 11** to run.
 
 # TL;DR
 See [examples](./examples/src/main/kotlin).
@@ -53,8 +55,8 @@ The examples of the notebooks are shown in [notebooks](./examples/notebooks) dir
 
 ```kotlin
 @file:Repository("https://repo.kotlin.link")
-@file:DependsOn("space.kscience:plotlykt-jupyter:0.4.0")
-//@file:DependsOn("space.kscience:plotlykt-server:0.4.0") // Use this one for sever integration.
+@file:DependsOn("space.kscience:plotlykt-jupyter:0.4.2")
+//@file:DependsOn("space.kscience:plotlykt-server:0.4.2") // Use this one for sever integration.
 ```
 
 The module `plotly` allows rendering static plots in Jupyter. Jupyter lab is currently supported. Jupyter notebook (classic) is able to render only `PlotlyPage` objects, so one must convert plots to pages to be able to use notebook (see [demo notebook](./notebooks/plotlykt-demo-classic.ipynb)).
@@ -90,7 +92,7 @@ repositories {
 }
 
 dependencies {
-    implementation("space.kscience:plotlykt-server:0.4.0")
+    implementation("space.kscience:plotlykt-server:0.4.2")
 }
 ```
 

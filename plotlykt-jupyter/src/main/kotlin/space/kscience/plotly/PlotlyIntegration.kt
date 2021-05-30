@@ -8,10 +8,33 @@ import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
 import space.kscience.plotly.Plotly.PLOTLY_CDN
 
+public object PlotlyJupyterConfiguration {
+    public var legacyMode: Boolean = false
+
+    /**
+     * Switch plotly renderer to the legacy notebook mode (Jupyter classic)
+     */
+    public fun notebook(): PlotlyHtmlFragment {
+        legacyMode = true
+        return PlotlyHtmlFragment {
+            div {
+                style = "color: blue;"
+                +"Plotly notebook integration switch into the legacy mode."
+            }
+        }
+    }
+}
+
+/**
+ * Global plotly jupyter configuration
+ */
+@UnstablePlotlyAPI
+public val Plotly.jupyter: PlotlyJupyterConfiguration
+    get() = PlotlyJupyterConfiguration
+
 @UnstablePlotlyAPI
 @JupyterLibrary
-internal class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
-
+public class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         div {
             id = plotId
@@ -53,11 +76,11 @@ internal class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
     override fun Builder.onLoaded() {
 
         resources {
-            js("plotly"){
+            js("plotly") {
                 url(PLOTLY_CDN)
                 classPath("js/plotly.min.js")
             }
-            js("plotlyConnect"){
+            js("plotlyConnect") {
                 classPath("js/plotlyConnect.js")
             }
         }
@@ -71,16 +94,45 @@ internal class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
             "kotlinx.html.*"
         )
 
+        import("space.kscience.plotly.jupyter")
+
         render<PlotlyHtmlFragment> {
             HTML(it.toString())
         }
 
-        render<Plot> {
-            HTML(renderPlot(it))
+        val renderer = this@PlotlyIntegration
+
+        render<Plot> { plot ->
+            if (PlotlyJupyterConfiguration.legacyMode) {
+                HTML(
+                    Plotly.page(renderer = renderer) {
+                        plot(renderer = renderer, plot = plot)
+                    }.render(),
+                    true
+                )
+            } else {
+                HTML(
+                    createHTML().div {
+                        renderer.run { renderPlot(plot) }
+                    }
+                )
+            }
         }
 
-        render<PlotlyFragment> {
-            HTML(renderFragment(it))
+        render<PlotlyFragment> { fragment ->
+            if (PlotlyJupyterConfiguration.legacyMode) {
+                HTML(
+                    Plotly.page(renderer = renderer) { renderer ->
+                        fragment.render(this, renderer)
+                    }.render(), true
+                )
+            } else {
+                HTML(
+                    createHTML().div {
+                        fragment.render(this, renderer)
+                    }
+                )
+            }
         }
 
         render<PlotlyPage> {

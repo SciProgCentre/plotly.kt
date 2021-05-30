@@ -3,22 +3,56 @@ package space.kscience.plotly.server
 import io.ktor.http.URLBuilder
 import io.ktor.server.engine.ApplicationEngine
 import kotlinx.html.div
+import kotlinx.html.script
 import kotlinx.html.stream.createHTML
 import kotlinx.html.style
+import kotlinx.html.unsafe
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
 import org.slf4j.LoggerFactory
 import space.kscience.dataforge.meta.Scheme
+import space.kscience.dataforge.meta.boolean
 import space.kscience.dataforge.meta.int
 import space.kscience.plotly.*
 import space.kscience.plotly.Plotly.PLOTLY_CDN
 
-public class PlotlyServerConfig() : Scheme() {
+public object PlotlyServerConfiguration : Scheme() {
     public var port: Int by int(System.getProperty("space.kscience.plotly.port")?.toInt() ?: 8882)
     public var updateInterval: Int by int(100)
+
+    public var legacyMode: Boolean by boolean(false)
+
+    /**
+     * Switch plotly renderer to the legacy notebook mode (Jupyter classic)
+     */
+    public fun notebook(): PlotlyHtmlFragment {
+        legacyMode = true
+        return PlotlyHtmlFragment {
+            div {
+                style = "color: blue;"
+                +"Plotly notebook integration switch into the legacy mode."
+            }
+        }
+    }
 }
+
+private val plotlyConnectHeader = PlotlyHtmlFragment {
+    script {
+        unsafe {
+            val bytes = PlotlyHtmlFragment::class.java.getResourceAsStream("/js/plotlyConnect.js")!!.readAllBytes()
+            +bytes.toString(Charsets.UTF_8)
+        }
+    }
+}
+
+/**
+ * Global plotly jupyter configuration
+ */
+@UnstablePlotlyAPI
+public val Plotly.jupyter: PlotlyServerConfiguration
+    get() = PlotlyServerConfiguration
 
 @JupyterLibrary
 internal class PlotlyServerIntegration : JupyterIntegration() {
@@ -30,7 +64,7 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
 
     private var renderer: PlotlyRenderer = StaticPlotlyRenderer
 
-    private fun start(config: PlotlyServerConfig): PlotlyHtmlFragment = if (server != null) {
+    private fun start(config: PlotlyServerConfiguration): PlotlyHtmlFragment = if (server != null) {
         PlotlyHtmlFragment {
             div {
                 style = "color: blue;"
@@ -58,7 +92,7 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
             }
         }
         config.onChange(this) { name, oldItem, newItem ->
-            if (oldItem != newItem) {
+            if (name.toString() != PlotlyServerConfiguration::legacyMode.name && oldItem != newItem) {
                 logger.info("Plotly server config parameter $name changed to $newItem")
                 doStart()
             }
@@ -93,34 +127,50 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
             "kotlinx.html.*"
         )
 
-        import<PlotlyServerConfig>()
+        import("space.kscience.plotly.server.jupyter")
 
         render<PlotlyHtmlFragment> {
             HTML(it.toString())
         }
 
-        render<Plot> {
-            HTML(
-                createHTML().div {
-                    renderer.run { renderPlot(it) }
-                }
-            )
+        render<Plot> { plot ->
+            if (PlotlyServerConfiguration.legacyMode) {
+                HTML(
+                    Plotly.page(cdnPlotlyHeader, plotlyConnectHeader, renderer = renderer) {
+                        plot(renderer = renderer, plot = plot)
+                    }.render(), true
+                )
+            } else {
+                HTML(
+                    createHTML().div {
+                        renderer.run { renderPlot(plot) }
+                    }
+                )
+            }
         }
 
         render<PlotlyFragment> { fragment ->
-            HTML(
-                createHTML().div {
-                    fragment.render(this, renderer)
-                }
-            )
+            if (PlotlyServerConfiguration.legacyMode) {
+                HTML(
+                    Plotly.page(cdnPlotlyHeader, plotlyConnectHeader, renderer = renderer) { renderer ->
+                        fragment.render(this, renderer)
+                    }.render(), true
+                )
+            } else {
+                HTML(
+                    createHTML().div {
+                        fragment.render(this, renderer)
+                    }
+                )
+            }
         }
 
         render<PlotlyPage> { page ->
-            HTML(page.copy(renderer = renderer).render(), true)
+            HTML(page.copy(headers = page.headers + plotlyConnectHeader, renderer = renderer).render(), true)
         }
 
         onLoaded {
-            val config = execute("val plotly = PlotlyServerConfig(); plotly;").value as PlotlyServerConfig
+            val config = PlotlyServerConfiguration
             logger.info("Starting JupyterPlotlyServer with $config")
             val serverStart = start(config)
             logger.info("JupyterPlotlyServer started with $config")

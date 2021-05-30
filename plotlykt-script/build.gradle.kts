@@ -1,11 +1,12 @@
 plugins {
     id("ru.mipt.npm.gradle.jvm")
     application
+    `maven-publish`
 }
 
 kscience{
+    useHtml()
     application()
-    publish()
 }
 
 repositories {
@@ -25,5 +26,5 @@ dependencies {
 }
 
 application{
-    mainClassName = "space.kscience.plotly.script.CliKt"
+    mainClass.set("space.kscience.plotly.script.CliKt")
 }
