@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Remove unnecessary `kotlinx-css` dependency.
-- Added compatibility mode for legacy notebooks
+- Added compatibility mode for legacy notebooks. Use `Plotly.jupyter.notebook()` call to enable legacy mode.
 
 ### Security
 ## [0.4.0]

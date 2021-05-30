@@ -3,8 +3,10 @@ package space.kscience.plotly.server
 import io.ktor.http.URLBuilder
 import io.ktor.server.engine.ApplicationEngine
 import kotlinx.html.div
+import kotlinx.html.script
 import kotlinx.html.stream.createHTML
 import kotlinx.html.style
+import kotlinx.html.unsafe
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
@@ -20,18 +22,27 @@ public object PlotlyServerConfiguration : Scheme() {
     public var port: Int by int(System.getProperty("space.kscience.plotly.port")?.toInt() ?: 8882)
     public var updateInterval: Int by int(100)
 
-    internal var legacyMode: Boolean by boolean(false)
+    public var legacyMode: Boolean by boolean(false)
 
     /**
      * Switch plotly renderer to the legacy notebook mode (Jupyter classic)
      */
-    internal fun notebook(): PlotlyHtmlFragment {
+    public fun notebook(): PlotlyHtmlFragment {
         legacyMode = true
         return PlotlyHtmlFragment {
             div {
                 style = "color: blue;"
                 +"Plotly notebook integration switch into the legacy mode."
             }
+        }
+    }
+}
+
+private val plotlyConnectHeader = PlotlyHtmlFragment {
+    script {
+        unsafe {
+            val bytes = PlotlyHtmlFragment::class.java.getResourceAsStream("/js/plotlyConnect.js")!!.readAllBytes()
+            +bytes.toString(Charsets.UTF_8)
         }
     }
 }
@@ -125,10 +136,9 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
         render<Plot> { plot ->
             if (PlotlyServerConfiguration.legacyMode) {
                 HTML(
-                    Plotly.page(renderer = renderer) {
+                    Plotly.page(cdnPlotlyHeader, plotlyConnectHeader, renderer = renderer) {
                         plot(renderer = renderer, plot = plot)
-                    }.render(),
-                    true
+                    }.render(), true
                 )
             } else {
                 HTML(
@@ -142,7 +152,7 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
         render<PlotlyFragment> { fragment ->
             if (PlotlyServerConfiguration.legacyMode) {
                 HTML(
-                    Plotly.page(renderer = renderer) { renderer ->
+                    Plotly.page(cdnPlotlyHeader, plotlyConnectHeader, renderer = renderer) { renderer ->
                         fragment.render(this, renderer)
                     }.render(), true
                 )
@@ -156,7 +166,7 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
         }
 
         render<PlotlyPage> { page ->
-            HTML(page.copy(renderer = renderer).render(), true)
+            HTML(page.copy(headers = page.headers + plotlyConnectHeader, renderer = renderer).render(), true)
         }
 
         onLoaded {
