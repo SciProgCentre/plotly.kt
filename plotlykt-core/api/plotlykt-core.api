@@ -244,6 +244,7 @@ public final class space/kscience/plotly/models/Axis : space/kscience/dataforge/
 	public static final field Companion Lspace/kscience/plotly/models/Axis$Companion;
 	public fun <init> ()V
 	public final fun getAnchor ()Ljava/lang/String;
+	public final fun getAutomargin ()Ljava/lang/Boolean;
 	public final fun getAutorange ()Z
 	public final fun getAutotick ()Ljava/lang/Boolean;
 	public final fun getColor ()Lspace/kscience/plotly/models/Color;
@@ -273,6 +274,7 @@ public final class space/kscience/plotly/models/Axis : space/kscience/dataforge/
 	public final fun getZerolinecolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getZerolinewidth ()Ljava/lang/Number;
 	public final fun setAnchor (Ljava/lang/String;)V
+	public final fun setAutomargin (Ljava/lang/Boolean;)V
 	public final fun setAutorange (Z)V
 	public final fun setAutotick (Ljava/lang/Boolean;)V
 	public final fun setDtick (Lspace/kscience/dataforge/values/Value;)V

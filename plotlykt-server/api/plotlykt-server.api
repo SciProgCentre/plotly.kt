@@ -31,12 +31,19 @@ public final class space/kscience/plotly/server/PlotlyServer$Companion {
 	public final fun getUPDATE_MODE_KEY ()Lspace/kscience/dataforge/names/Name;
 }
 
-public final class space/kscience/plotly/server/PlotlyServerConfig : space/kscience/dataforge/meta/Scheme {
-	public fun <init> ()V
+public final class space/kscience/plotly/server/PlotlyServerConfiguration : space/kscience/dataforge/meta/Scheme {
+	public static final field INSTANCE Lspace/kscience/plotly/server/PlotlyServerConfiguration;
+	public final fun getLegacyMode ()Z
 	public final fun getPort ()I
 	public final fun getUpdateInterval ()I
+	public final fun notebook ()Lspace/kscience/plotly/PlotlyHtmlFragment;
+	public final fun setLegacyMode (Z)V
 	public final fun setPort (I)V
 	public final fun setUpdateInterval (I)V
+}
+
+public final class space/kscience/plotly/server/PlotlyServerIntegrationKt {
+	public static final fun getJupyter (Lspace/kscience/plotly/Plotly;)Lspace/kscience/plotly/server/PlotlyServerConfiguration;
 }
 
 public final class space/kscience/plotly/server/PlotlyServerKt {
