@@ -222,6 +222,11 @@ public class Axis : Scheme() {
     public var autotick: Boolean? by boolean()
 
     /**
+     * Determines whether long tick labels automatically grow the figure margins.
+     */
+    public var automargin: Boolean? by boolean()
+
+    /**
      * Enumerated, one of ( "free" | "/^x([2-9]|[1-9][0-9]+)?$/" | "/^y([2-9]|[1-9][0-9]+)?$/" )
      * If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding
      * opposite-letter axis. If set to "free", this axis' position is determined by `position`.

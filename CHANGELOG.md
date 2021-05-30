@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- `automargin` property to `Axis` according to https://plotly.com/python/reference/layout/xaxis/#layout-xaxis-automargin
 
 ### Changed
 
