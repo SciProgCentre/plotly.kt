@@ -3,6 +3,7 @@ package space.kscience.plotly
 import org.junit.jupiter.api.Test
 import space.kscience.dataforge.meta.Meta
 import space.kscience.dataforge.meta.toConfig
+import space.kscience.plotly.models.TraceType
 import kotlin.test.assertEquals
 
 
@@ -19,5 +20,7 @@ class PlotSerializationTest {
 
         val plot = Plot(meta.toConfig())
         assertEquals(1, plot.data.size)
+        assertEquals(TraceType.scatter, plot.data[0].type)
+        assertEquals(1.0, plot.data[0].x.doubles[0])
     }
 }

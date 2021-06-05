@@ -15,13 +15,19 @@ import kotlin.time.toDuration
 //extensions for DataForge
 
 
-private fun MutableItemProvider.getIndexedProviders(name: Name): Map<String, MutableItemProvider> {
+private fun MutableItemProvider.getIndexedProviders(name: Name): Map<String?, MutableItemProvider> {
     val parent = getItem(name.cutLast()).node ?: return emptyMap()
     return parent.items.keys.filter {
         it.body == name.lastOrNull()?.body
-    }.map{
-        it.index ?: ""
-    }.associateWith { index -> getChild(name.withIndex(index)) }
+    }.map {
+        it.index
+    }.associate { index ->
+        if (index == null) {
+            "" to getChild(name)
+        } else {
+            index to getChild(name.withIndex(index))
+        }
+    }
 }
 
 /**
