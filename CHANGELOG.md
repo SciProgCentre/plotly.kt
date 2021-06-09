@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Proper deserialization of single plot.
+- A bug in jupyter lab visualization
 
 ### Security
 

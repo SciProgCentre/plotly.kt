@@ -6,7 +6,7 @@ import space.kscience.plotly.histogram
 import space.kscience.plotly.makeFile
 import space.kscience.plotly.models.HistNorm
 import space.kscience.plotly.palettes.Xkcd
-import java.util.*
+import kotlin.random.Random
 
 /**
  * - normalized histogram: the counts normalized to form a probability density,
@@ -15,8 +15,7 @@ import java.util.*
  * - change font size of tick labels
  */
 fun main() {
-    val rnd = Random()
-    val x1 = List(500) { rnd.nextDouble() }
+    val x1 = List(500) { Random.nextDouble() }
 
     val plot = Plotly.plot {
         histogram {

@@ -105,6 +105,20 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
         server = null
     }
 
+    private fun renderPlot(plot: Plot): String = createHTML().div {
+        plot(plot, config = PlotlyConfig {
+            responsive = true
+        }, renderer = renderer)
+    }
+
+    private fun renderFragment(fragment: PlotlyFragment): String = createHTML().div {
+        with(fragment) {
+            render(renderer)
+        }
+    }
+
+    private fun renderPage(page: PlotlyPage): String = page.copy(renderer = renderer).render()
+
     @UnstablePlotlyAPI
     override fun Builder.onLoaded() {
 
@@ -141,11 +155,7 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
                     }.render(), true
                 )
             } else {
-                HTML(
-                    createHTML().div {
-                        renderer.run { renderPlot(plot) }
-                    }
-                )
+                HTML(renderPlot(plot))
             }
         }
 
@@ -157,11 +167,7 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
                     }.render(), true
                 )
             } else {
-                HTML(
-                    createHTML().div {
-                        fragment.render(this, renderer)
-                    }
-                )
+                HTML(renderFragment(fragment))
             }
         }
 
