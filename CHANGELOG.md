@@ -9,12 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-
+- build tools 0.10.0
+- 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+- #80
 
 ### Security
 ## [0.4.3]

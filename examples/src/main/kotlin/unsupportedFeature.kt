@@ -1,3 +1,4 @@
+import space.kscience.dataforge.meta.Meta
 import space.kscience.dataforge.meta.invoke
 import space.kscience.dataforge.meta.set
 import space.kscience.plotly.Plotly
@@ -23,7 +24,17 @@ fun main() {
         traces(trace)
         layout {
             title = "Plot with labels"
-            xaxis { title = "x axis name" }
+            xaxis {
+                title = "x axis name"
+                set(
+                    "rangebreaks",
+                    listOf(
+                        Meta {
+                            "values" put listOf(2.0, 3.0)
+                        }
+                    )
+                )
+            }
             yaxis { title = "y axis name" }
         }
     }
