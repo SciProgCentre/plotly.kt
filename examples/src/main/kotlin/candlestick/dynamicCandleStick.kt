@@ -14,7 +14,7 @@ import kotlin.random.Random
 
 fun main() {
     val server = Plotly.serve {
-        pullUpdates(50)
+        pushUpdates(50)
         page { plotly ->
             plot(renderer = plotly) {
                 traces(candleStickTrace)
