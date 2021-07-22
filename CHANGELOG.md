@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - build tools 0.10.0
-- 
+- DataForge 0.5.0
+
 ### Deprecated
 
 ### Removed

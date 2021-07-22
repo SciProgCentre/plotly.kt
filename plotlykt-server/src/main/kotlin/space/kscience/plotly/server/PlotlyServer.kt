@@ -14,7 +14,6 @@ import io.ktor.response.respondText
 import io.ktor.routing.*
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
-import io.ktor.util.KtorExperimentalAPI
 import io.ktor.websocket.WebSockets
 import io.ktor.websocket.application
 import io.ktor.websocket.webSocket
@@ -107,7 +106,7 @@ internal class ServerPlotlyRenderer(
 public class PlotlyServer internal constructor(
     private val routing: Routing, private val rootRoute: String,
 ) : Configurable {
-    override val config: Config = Config()
+    override val config: ObservableMeta = ObservableMeta()
     public var updateMode: PlotlyUpdateMode by config.enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
     public var updateInterval: Int by config.int(300, key = UPDATE_INTERVAL_KEY)
     public var embedData: Boolean by config.boolean(false)
@@ -290,7 +289,6 @@ public fun PlotlyServer.pullUpdates(interval: Int = 1000): PlotlyServer = apply 
 /**
  * Start static server (updates via reload)
  */
-@OptIn(KtorExperimentalAPI::class)
 public fun Plotly.serve(
     scope: CoroutineScope = GlobalScope,
     host: String = "localhost",

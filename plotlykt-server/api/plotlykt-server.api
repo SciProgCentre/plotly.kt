@@ -12,7 +12,7 @@ public final class space/kscience/plotly/server/PlotlyServer : space/kscience/da
 	public static final field Companion Lspace/kscience/plotly/server/PlotlyServer$Companion;
 	public static final field DEFAULT_PAGE Ljava/lang/String;
 	public final fun getApplication ()Lio/ktor/application/Application;
-	public fun getConfig ()Lspace/kscience/dataforge/meta/Config;
+	public fun getConfig ()Lspace/kscience/dataforge/meta/ObservableMeta;
 	public final fun getEmbedData ()Z
 	public final fun getUpdateInterval ()I
 	public final fun getUpdateMode ()Lspace/kscience/plotly/server/PlotlyUpdateMode;

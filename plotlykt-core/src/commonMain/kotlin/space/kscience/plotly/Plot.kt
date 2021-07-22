@@ -13,7 +13,7 @@ import space.kscience.plotly.models.Trace
  */
 @DFBuilder
 public class Plot(
-    override val config: Config = Config(),
+    override val config: ObservableMeta = ObservableMeta(),
 ) : Configurable, MetaRepr {
 
     /**
@@ -28,10 +28,10 @@ public class Plot(
 
     public fun addTrace(trace: Trace) {
         val traceRoot = trace.rootNode
-        if (traceRoot is Config) {
+        if (traceRoot is ObservableMeta) {
             config.append("data", traceRoot)
         } else {
-            val traceConfig = Config()
+            val traceConfig = ObservableMeta()
             trace.rootNode?.let { traceConfig.update(it) }
             trace.retarget(traceConfig)
             config.append("data", traceConfig)

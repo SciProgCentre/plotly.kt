@@ -19,7 +19,7 @@ import space.kscience.plotly.Plot
  */
 public class MetaChangeCollector {
     private val mutex = Mutex()
-    private var state = Config()
+    private var state = MetaBuilder()
 
     public suspend fun collect(name: Name, newItem: MetaItem?) {
         mutex.withLock {
@@ -31,7 +31,7 @@ public class MetaChangeCollector {
         return if (!state.isEmpty()) {
             mutex.withLock {
                 state.seal().also {
-                    state = Config()
+                    state = MetaBuilder()
                 }
             }
         } else {
@@ -40,17 +40,15 @@ public class MetaChangeCollector {
     }
 }
 
-private fun Config.collectChanges(scope: CoroutineScope): MetaChangeCollector {
-    return MetaChangeCollector().apply {
-        onChange(this) { name, _, newItem ->
-            scope.launch {
-                collect(name, newItem)
-            }
+private fun ObservableMeta.collectChanges(scope: CoroutineScope): MetaChangeCollector = MetaChangeCollector().apply {
+    onChange(this) { name, _, newItem ->
+        scope.launch {
+            collect(name, newItem)
         }
     }
 }
 
-private fun Config.flowChanges(scope: CoroutineScope, updateInterval: Int): Flow<Meta> {
+private fun ObservableMeta.flowChanges(scope: CoroutineScope, updateInterval: Int): Flow<Meta> {
     val collector = collectChanges(scope)
     return flow {
         while (true) {
