@@ -17,11 +17,18 @@ import kotlin.time.toDuration
 
 private fun MutableItemProvider.getIndexedProviders(name: Name): Map<String?, MutableItemProvider> {
     val parent = getItem(name.cutLast()).node ?: return emptyMap()
-    return parent.items.keys.filter { it.body == name.lastOrNull()?.body }.mapNotNull { it.index }.associate { index ->
-        index to getChild(name.withIndex(index))
+    return parent.items.keys.filter {
+        it.body == name.lastOrNull()?.body
+    }.map {
+        it.index
+    }.associate { index ->
+        if (index == null) {
+            "" to getChild(name)
+        } else {
+            index to getChild(name.withIndex(index))
+        }
     }
 }
-
 
 /**
  * A delegate for list of objects with specification

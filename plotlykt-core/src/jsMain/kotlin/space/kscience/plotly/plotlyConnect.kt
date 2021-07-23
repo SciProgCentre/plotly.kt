@@ -125,18 +125,7 @@ public fun startPush(id: String, ws: String) {
             if (json.contentType === "layout") {
                 withPlotly { relayout(element, json.content) }
             } else if (json.contentType === "trace") {
-                val content = json.content
-                //This is done to satisfy plotly requirements of arrays-in-arrays for data
-                if (content.hasOwnProperty("x")) {
-                    content.x = arrayOf(content.x)
-                }
-                if (content.hasOwnProperty("y")) {
-                    content.y = arrayOf(content.y)
-                }
-                if (content.hasOwnProperty("z")) {
-                    content.z = arrayOf(content.z)
-                }
-                withPlotly { restyle(element, content, json.trace) }
+                withPlotly { restyle(element, json.content, json.trace) }
             }
         }
     }

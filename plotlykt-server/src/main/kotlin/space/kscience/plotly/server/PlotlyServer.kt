@@ -22,6 +22,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.html.*
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonObject
 import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.names.Name
 import space.kscience.dataforge.names.toName
@@ -112,7 +114,7 @@ public class PlotlyServer internal constructor(
     public var updateInterval: Int by config.int(300, key = UPDATE_INTERVAL_KEY)
     public var embedData: Boolean by config.boolean(false)
 
-    internal val root by lazy {  routing.createRouteFromPath(rootRoute)}
+    internal val root by lazy { routing.createRouteFromPath(rootRoute) }
 
     /**
      * a list of headers that should be applied to all pages
@@ -135,7 +137,7 @@ public class PlotlyServer internal constructor(
             try {
                 plot.collectUpdates(plotId, this, updateInterval).collect { update ->
                     val json = update.toJson()
-                    outgoing.send(Frame.Text(json.toString()))
+                    outgoing.send(Frame.Text(JsonObject(json).toString()))
                 }
             } catch (ex: Exception) {
                 application.log.debug("Closed server socket for $plotId")

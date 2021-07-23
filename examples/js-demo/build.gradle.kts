@@ -4,7 +4,7 @@ plugins {
 
 repositories {
     mavenCentral()
-    jcenter()
+    maven("https://repo.kotlin.link")
 }
 
 kotlin {

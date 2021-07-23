@@ -17,6 +17,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+## [0.4.4]
+### Added
+- Candlestick support
+- Range builders for axis
+
+### Changed
+- build tools 0.10.0
+- demo projects moved to examples
+
+### Deprecated
+- Direct usage of `range` in axis
+
+### Removed
+
+### Fixed
+- #80
+- Plotly coordinate array wrap is moved to the server side
+
+### Security
+## [0.4.3]
+
+### Fixed
+- Proper deserialization of single plot.
+- A bug in jupyter lab visualization
+
+### Security
 
 ## [0.4.2]
 

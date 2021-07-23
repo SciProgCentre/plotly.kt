@@ -111,11 +111,7 @@ public class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
                     true
                 )
             } else {
-                HTML(
-                    createHTML().div {
-                        renderer.run { renderPlot(plot) }
-                    }
-                )
+                HTML(renderPlot(plot), false)
             }
         }
 
@@ -127,11 +123,7 @@ public class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
                     }.render(), true
                 )
             } else {
-                HTML(
-                    createHTML().div {
-                        fragment.render(this, renderer)
-                    }
-                )
+                HTML(renderFragment(fragment), false)
             }
         }
 

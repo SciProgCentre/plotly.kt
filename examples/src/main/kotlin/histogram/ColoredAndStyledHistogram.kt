@@ -14,14 +14,10 @@ import java.util.*
 fun main() {
     val rnd = Random()
     val k = List(500) { rnd.nextDouble() }
-    val x1 = k.map { it * 5 }.toList()
-    val x2 = k.map { it * 10 }.toList()
-    val y1 = k.map { it }.toList()
-    val y2 = k.map { it * 2 }.toList()
 
     val trace1 = Histogram {
-        x.set(x1)
-        y.set(y1)
+        x.numbers = k.map { it * 5 }
+        y.numbers = k.map { it }
         name = "control"
         histfunc = HistFunc.count
         marker {
@@ -36,8 +32,8 @@ fun main() {
     }
 
     val trace2 = Histogram {
-        x.set(x2)
-        y.set(y2)
+        x.numbers = k.map { it * 10 }
+        y.numbers = k.map { it*2 }
         name = "experimental"
         marker {
             color(0, 100, 255, 0.7)

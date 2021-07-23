@@ -44,7 +44,7 @@ fun main() {
         layout {
             title = "Data Labels Hover"
             xaxis {
-                range = 0.75..5.25
+                range(0.75..5.25)
             }
             legend {
                 y = 0.5
