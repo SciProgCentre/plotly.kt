@@ -4,12 +4,15 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import space.kscience.dataforge.meta.set
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.layout
 import space.kscience.plotly.models.AxisType
+import space.kscience.plotly.models.DragMode
 import space.kscience.plotly.plot
-import space.kscience.plotly.server.*
+import space.kscience.plotly.server.close
+import space.kscience.plotly.server.pushUpdates
+import space.kscience.plotly.server.serve
+import space.kscience.plotly.server.show
 import kotlin.random.Random
 
 fun main() {
@@ -19,7 +22,7 @@ fun main() {
             plot(renderer = plotly) {
                 traces(candleStickTrace)
                 layout {
-                    set("dragmode", "zoom")
+                    dragmode = DragMode.zoom
                     margin {
                         r = 10
                         t = 25
@@ -28,18 +31,13 @@ fun main() {
                     }
                     showlegend = false
                     xaxis {
-                        autorange = true
-                        set("domain", listOf(0, 1))
-                        set("range", listOf("2017-01-03 12:00", "2017-02-15 12:00"))
+                        type = AxisType.date
+                        range("2017-01-03 12:00".."2017-02-15 12:00")
                         //rangeslider: { range: ["2017-01-03 12:00", "2017-02-15 12:00"] },
                         title = "Date"
-                        type = AxisType.date
                     }
                     yaxis {
-                        autorange = true
-                        set("domain", listOf(0, 1))
-                        range = 114.609999778..137.410004222
-                        type = AxisType.linear
+                        range(114.609999778..137.410004222)
                     }
                 }
 

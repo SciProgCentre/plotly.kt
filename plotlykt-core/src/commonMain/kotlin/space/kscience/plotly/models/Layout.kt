@@ -83,6 +83,10 @@ public enum class ViolinMode {
     overlay
 }
 
+public enum class DragMode {
+    zoom, pan, select, lasso, drawclosedpath, drawopenpath, drawline, drawrect, drawcircle, orbit, turntable, `false`
+}
+
 public class Layout : Scheme() {
     /**
      * Sets the plot's width (in px).
@@ -256,6 +260,12 @@ public class Layout : Scheme() {
      * Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
      */
     public var calendar: Calendar by enum(Calendar.gregorian)
+
+    /**
+     * Determines the mode of drag interactions. "select" and "lasso" apply only to scatter traces with markers or text.
+     * "orbit" and "turntable" apply only to 3D scenes.
+     */
+    public var dragmode: DragMode by enum(DragMode.zoom)
 
     public fun legend(block: Legend.() -> Unit) {
         legend.apply(block)

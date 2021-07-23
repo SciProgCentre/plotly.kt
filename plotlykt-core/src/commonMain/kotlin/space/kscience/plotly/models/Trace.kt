@@ -9,6 +9,7 @@ import space.kscience.dataforge.values.Value
 import space.kscience.dataforge.values.asValue
 import space.kscience.plotly.*
 import kotlin.js.JsName
+import kotlin.properties.ReadOnlyProperty
 
 
 public enum class TraceType {
@@ -32,9 +33,10 @@ public enum class TraceType {
     histogram,
     histogram2d,
     histogram2dcontour,
-//    // Finance
+
+    //    // Finance
 //    ohlc,
-//    candlestick,
+    candlestick,
 //    waterfall,
 //    // 3D
 //    scatter3d,
@@ -695,6 +697,10 @@ public class Hoverlabel : Scheme() {
  */
 public open class Trace : Scheme() {
     public fun axis(axisName: String): TraceValues = TraceValues(this, axisName.toName())
+
+    public val axis: ReadOnlyProperty<Scheme, TraceValues> = ReadOnlyProperty { thisRef, property ->
+        TraceValues(thisRef, property.name.asName())
+    }
 
     /**
      * Sets the x coordinates.

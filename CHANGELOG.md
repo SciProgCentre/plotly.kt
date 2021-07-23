@@ -7,11 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Candlestick support
+- Range builders for axis
 
 ### Changed
 - build tools 0.10.0
 
 ### Deprecated
+- Direct usage of `range` in axis
 
 ### Removed
 

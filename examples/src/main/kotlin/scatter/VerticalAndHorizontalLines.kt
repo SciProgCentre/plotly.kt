@@ -29,10 +29,10 @@ fun main() {
         layout {
             title = "Vertical and Horizontal Lines Positioned Relative to the Axes"
             xaxis {
-                range = 0.0..7.0
+                range(0.0..7.0)
             }
             yaxis {
-                range = 0.0..2.5
+                range(0.0..2.5)
             }
 
             width = 700

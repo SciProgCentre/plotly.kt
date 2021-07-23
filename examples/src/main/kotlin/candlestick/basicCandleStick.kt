@@ -1,21 +1,14 @@
 package candlestick
 
+import space.kscience.dataforge.meta.invoke
 import space.kscience.dataforge.meta.set
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.layout
 import space.kscience.plotly.makeFile
 import space.kscience.plotly.models.AxisType
-import space.kscience.plotly.models.Trace
-import space.kscience.plotly.models.TraceValues
+import space.kscience.plotly.models.CandleStick
 
-val Trace.close: TraceValues get() = axis("close")
-val Trace.high: TraceValues get() = axis("high")
-val Trace.low: TraceValues get() = axis("low")
-val Trace.open: TraceValues get() = axis("open")
-
-
-internal val candleStickTrace = Trace {
-    set("type", "candlestick")
+internal val candleStickTrace = CandleStick {
     x.strings = listOf(
         "2017-01-04",
         "2017-01-05",
@@ -82,8 +75,6 @@ internal val candleStickTrace = Trace {
         135.509995
     )
 
-//        decreasing: { line: { color: "#7F7F7F" } },
-
     high.numbers = listOf(
         116.510002,
         116.860001,
@@ -117,7 +108,13 @@ internal val candleStickTrace = Trace {
         136.270004
     )
 
-    //increasing: { line: { color: "#17BECF" } },
+    increasing {
+        lineColor("#17BECF")
+    }
+
+    decreasing {
+        lineColor("#7F7F7F")
+    }
 
     line { color("rgba(31,119,180,1)") }
 
@@ -186,8 +183,6 @@ internal val candleStickTrace = Trace {
         133.470001,
         135.520004
     )
-    set("xaxis", "x")
-    set("yaxis", "y")
 }
 
 
@@ -205,16 +200,14 @@ fun main() {
             showlegend = false
             xaxis {
                 autorange = true
-                set("domain", listOf(0, 1))
-                set("range", listOf("2017-01-03 12:00", "2017-02-15 12:00"))
+                range("2017-01-03 12:00".."2017-02-15 12:00")
                 //rangeslider: { range: ["2017-01-03 12:00", "2017-02-15 12:00"] },
                 title = "Date"
                 type = AxisType.date
             }
             yaxis {
                 autorange = true
-                set("domain", listOf(0, 1))
-                range = 114.609999778..137.410004222
+                range(114.609999778..137.410004222)
                 type = AxisType.linear
             }
         }
