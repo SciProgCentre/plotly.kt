@@ -25,6 +25,6 @@ include(
     ":plotlykt-server",
     ":plotlykt-script",
     ":examples",
-    ":fx-demo",
-    ":js-demo"
+    ":examples:fx-demo",
+    ":examples:js-demo"
 )

@@ -273,6 +273,9 @@ public final class space/kscience/plotly/models/Axis : space/kscience/dataforge/
 	public final fun getZeroline ()Ljava/lang/Boolean;
 	public final fun getZerolinecolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getZerolinewidth ()Ljava/lang/Number;
+	public final fun range (Lkotlin/ranges/ClosedFloatingPointRange;)V
+	public final fun range (Lkotlin/ranges/ClosedRange;)V
+	public final fun range (Lspace/kscience/dataforge/values/Value;Lspace/kscience/dataforge/values/Value;)V
 	public final fun setAnchor (Ljava/lang/String;)V
 	public final fun setAutomargin (Ljava/lang/Boolean;)V
 	public final fun setAutorange (Z)V
@@ -488,6 +491,53 @@ public final class space/kscience/plotly/models/Calendar : java/lang/Enum {
 	public static final field ummalqura Lspace/kscience/plotly/models/Calendar;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Calendar;
 	public static fun values ()[Lspace/kscience/plotly/models/Calendar;
+}
+
+public final class space/kscience/plotly/models/CandleStick : space/kscience/plotly/models/Trace {
+	public static final field Companion Lspace/kscience/plotly/models/CandleStick$Companion;
+	public fun <init> ()V
+	public final fun getClose ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getDecreasing ()Lspace/kscience/plotly/models/CandleStickLine;
+	public final fun getHigh ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getHovertext ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getIds ()Ljava/util/List;
+	public final fun getIncreasing ()Lspace/kscience/plotly/models/CandleStickLine;
+	public final fun getLineWidth ()D
+	public final fun getLow ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getMeta ()Lspace/kscience/dataforge/values/Value;
+	public final fun getOpen ()Lspace/kscience/plotly/models/TraceValues;
+	public final fun getWhiskerwidth ()D
+	public final fun getXaxis ()Ljava/lang/String;
+	public final fun getXperiod ()Lspace/kscience/dataforge/values/Value;
+	public final fun getXperiod0 ()Lspace/kscience/dataforge/values/Value;
+	public final fun getXperiodalignment ()Lspace/kscience/plotly/models/XPeriodAlignment;
+	public final fun getYaxis ()Ljava/lang/String;
+	public final fun setDecreasing (Lspace/kscience/plotly/models/CandleStickLine;)V
+	public final fun setIds (Ljava/util/List;)V
+	public final fun setIncreasing (Lspace/kscience/plotly/models/CandleStickLine;)V
+	public final fun setLineWidth (D)V
+	public final fun setMeta (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setWhiskerwidth (D)V
+	public final fun setXaxis (Ljava/lang/String;)V
+	public final fun setXperiod (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setXperiod0 (Lspace/kscience/dataforge/values/Value;)V
+	public final fun setXperiodalignment (Lspace/kscience/plotly/models/XPeriodAlignment;)V
+	public final fun setYaxis (Ljava/lang/String;)V
+}
+
+public final class space/kscience/plotly/models/CandleStick$Companion : space/kscience/dataforge/meta/SchemeSpec {
+}
+
+public final class space/kscience/plotly/models/CandleStickLine : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/CandleStickLine$Companion;
+	public fun <init> ()V
+	public final fun getFillcolor ()Lspace/kscience/plotly/models/Color;
+	public final fun getLineColor ()Lspace/kscience/plotly/models/Color;
+	public final fun getLineWidth ()D
+	public final fun setLineWidth (D)V
+}
+
+public final class space/kscience/plotly/models/CandleStickLine$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
 public final class space/kscience/plotly/models/Cells : space/kscience/dataforge/meta/Scheme {
@@ -706,6 +756,23 @@ public final class space/kscience/plotly/models/Domain : space/kscience/dataforg
 }
 
 public final class space/kscience/plotly/models/Domain$Companion : space/kscience/dataforge/meta/SchemeSpec {
+}
+
+public final class space/kscience/plotly/models/DragMode : java/lang/Enum {
+	public static final field drawcircle Lspace/kscience/plotly/models/DragMode;
+	public static final field drawclosedpath Lspace/kscience/plotly/models/DragMode;
+	public static final field drawline Lspace/kscience/plotly/models/DragMode;
+	public static final field drawopenpath Lspace/kscience/plotly/models/DragMode;
+	public static final field drawrect Lspace/kscience/plotly/models/DragMode;
+	public static final field false Lspace/kscience/plotly/models/DragMode;
+	public static final field lasso Lspace/kscience/plotly/models/DragMode;
+	public static final field orbit Lspace/kscience/plotly/models/DragMode;
+	public static final field pan Lspace/kscience/plotly/models/DragMode;
+	public static final field select Lspace/kscience/plotly/models/DragMode;
+	public static final field turntable Lspace/kscience/plotly/models/DragMode;
+	public static final field zoom Lspace/kscience/plotly/models/DragMode;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/DragMode;
+	public static fun values ()[Lspace/kscience/plotly/models/DragMode;
 }
 
 public final class space/kscience/plotly/models/Error : space/kscience/dataforge/meta/Scheme {
@@ -1041,6 +1108,7 @@ public final class space/kscience/plotly/models/Layout : space/kscience/dataforg
 	public final fun getBoxgroupgap ()Ljava/lang/Number;
 	public final fun getBoxmode ()Lspace/kscience/plotly/models/BoxMode;
 	public final fun getCalendar ()Lspace/kscience/plotly/models/Calendar;
+	public final fun getDragmode ()Lspace/kscience/plotly/models/DragMode;
 	public final fun getHeight ()Ljava/lang/Number;
 	public final fun getHoverdistance ()Ljava/lang/Number;
 	public final fun getHovermode ()Lspace/kscience/plotly/models/HoverMode;
@@ -1070,6 +1138,7 @@ public final class space/kscience/plotly/models/Layout : space/kscience/dataforg
 	public final fun setBoxgroupgap (Ljava/lang/Number;)V
 	public final fun setBoxmode (Lspace/kscience/plotly/models/BoxMode;)V
 	public final fun setCalendar (Lspace/kscience/plotly/models/Calendar;)V
+	public final fun setDragmode (Lspace/kscience/plotly/models/DragMode;)V
 	public final fun setHeight (Ljava/lang/Number;)V
 	public final fun setHoverdistance (Ljava/lang/Number;)V
 	public final fun setHovermode (Lspace/kscience/plotly/models/HoverMode;)V
@@ -1715,6 +1784,7 @@ public class space/kscience/plotly/models/Trace : space/kscience/dataforge/meta/
 	public final fun domain (Lkotlin/jvm/functions/Function1;)V
 	public final fun error_x (Lkotlin/jvm/functions/Function1;)V
 	public final fun error_y (Lkotlin/jvm/functions/Function1;)V
+	public final fun getAxis ()Lkotlin/properties/ReadOnlyProperty;
 	public final fun getCliponaxis ()Ljava/lang/Boolean;
 	public final fun getColorbar ()Lspace/kscience/plotly/models/ColorBar;
 	public final fun getColorscale ()Lspace/kscience/dataforge/values/Value;
@@ -1822,6 +1892,7 @@ public final class space/kscience/plotly/models/TraceOrder : java/lang/Enum {
 public final class space/kscience/plotly/models/TraceType : java/lang/Enum {
 	public static final field bar Lspace/kscience/plotly/models/TraceType;
 	public static final field box Lspace/kscience/plotly/models/TraceType;
+	public static final field candlestick Lspace/kscience/plotly/models/TraceType;
 	public static final field contour Lspace/kscience/plotly/models/TraceType;
 	public static final field heatmap Lspace/kscience/plotly/models/TraceType;
 	public static final field heatmapgl Lspace/kscience/plotly/models/TraceType;
@@ -1965,6 +2036,14 @@ public final class space/kscience/plotly/models/XAnchor : java/lang/Enum {
 	public static final field right Lspace/kscience/plotly/models/XAnchor;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/XAnchor;
 	public static fun values ()[Lspace/kscience/plotly/models/XAnchor;
+}
+
+public final class space/kscience/plotly/models/XPeriodAlignment : java/lang/Enum {
+	public static final field end Lspace/kscience/plotly/models/XPeriodAlignment;
+	public static final field middle Lspace/kscience/plotly/models/XPeriodAlignment;
+	public static final field start Lspace/kscience/plotly/models/XPeriodAlignment;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/XPeriodAlignment;
+	public static fun values ()[Lspace/kscience/plotly/models/XPeriodAlignment;
 }
 
 public final class space/kscience/plotly/models/YAnchor : java/lang/Enum {

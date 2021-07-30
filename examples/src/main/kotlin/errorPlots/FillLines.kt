@@ -89,7 +89,7 @@ fun main() {
             plot_bgcolor("rgb(229, 229, 229)")
             xaxis {
                 gridcolor("rgb(255, 255, 255)")
-                range = 1.0..10.0
+                range(1.0..10.0)
                 showgrid = true
                 showline = false
                 showticklabels = true

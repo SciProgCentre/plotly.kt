@@ -132,11 +132,34 @@ public class Axis : Scheme() {
      * numbers, using the scale where each category is assigned
      * a serial number from zero in the order it appears.
      */
+    @Deprecated("Use range() instead")
     public var range: ClosedFloatingPointRange<Double>?
         get() = this["range"]?.value?.doubleArray?.let { it[0]..it[1] }
         set(value) {
             this["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
         }
+
+    /**
+     * Set the range using arbitrary values
+     */
+    public fun range(from: Value, to: Value) {
+        this["range"] = ListValue(listOf(from, to))
+    }
+
+    /**
+     * Set range using double kotlin range
+     */
+    public fun range(value: ClosedFloatingPointRange<Double>) {
+        range(value.start.asValue(), value.endInclusive.asValue())
+    }
+
+    /**
+     * Set range using kotlin string range
+     */
+    public fun range(value: ClosedRange<String>) {
+        range(value.start.asValue(), value.endInclusive.asValue())
+    }
+
 
     /**
      * Sets default for all colors associated with this axis all at once:

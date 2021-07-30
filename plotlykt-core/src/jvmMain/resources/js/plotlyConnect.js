@@ -137,18 +137,7 @@ function startPush(id, ws) {
             if (json.contentType === "layout") {
                 withPlotly(plotly => plotly.relayout(id, json.content));
             } else if (json.contentType === "trace") {
-                let content = json.content;
-                //This is done to satisfy plotly requirements of arrays-in-arrays for data
-                if (content.hasOwnProperty('x')) {
-                    content.x = [content.x];
-                }
-                if (content.hasOwnProperty('y')) {
-                    content.y = [content.y];
-                }
-                if (content.hasOwnProperty('z')) {
-                    content.z = [content.z];
-                }
-                withPlotly(plotly => plotly.restyle(id, content, json['trace']));
+                withPlotly(plotly => plotly.restyle(id, json.content, json['trace']));
             }
         }
     };
