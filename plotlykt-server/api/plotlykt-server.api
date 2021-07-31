@@ -1,6 +1,6 @@
 public final class space/kscience/plotly/server/MetaChangeCollector {
 	public fun <init> ()V
-	public final fun collect (Lspace/kscience/dataforge/names/Name;Lspace/kscience/dataforge/meta/TypedMetaItem;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun collect (Lspace/kscience/dataforge/names/Name;Lspace/kscience/dataforge/meta/Meta;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun read (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -12,8 +12,9 @@ public final class space/kscience/plotly/server/PlotlyServer : space/kscience/da
 	public static final field Companion Lspace/kscience/plotly/server/PlotlyServer$Companion;
 	public static final field DEFAULT_PAGE Ljava/lang/String;
 	public final fun getApplication ()Lio/ktor/application/Application;
-	public fun getConfig ()Lspace/kscience/dataforge/meta/ObservableMeta;
 	public final fun getEmbedData ()Z
+	public synthetic fun getMeta ()Lspace/kscience/dataforge/meta/MutableMeta;
+	public fun getMeta ()Lspace/kscience/dataforge/meta/ObservableMutableMeta;
 	public final fun getUpdateInterval ()I
 	public final fun getUpdateMode ()Lspace/kscience/plotly/server/PlotlyUpdateMode;
 	public final fun header (Lkotlin/jvm/functions/Function1;)V

@@ -1,4 +1,3 @@
-import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.html.a
 import kotlinx.html.div
@@ -17,7 +16,6 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-@KtorExperimentalAPI
 @ExperimentalCoroutinesApi
 fun main() {
     val server = Plotly.serve {

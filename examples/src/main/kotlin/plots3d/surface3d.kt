@@ -1,6 +1,6 @@
 package plots3d
 
-import space.kscience.dataforge.meta.set
+import space.kscience.dataforge.meta.configure
 import space.kscience.dataforge.values.asValue
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.makeFile
@@ -28,7 +28,9 @@ fun main() {
                 l(8.99, 8.99, 8.98, 9.18, 9.2, 9.19),
                 l(8.93, 8.97, 8.97, 9.18, 9.2, 9.18)
             ).asValue()
-            set("type", "surface")
+            configure {
+                "type" put "surface"
+            }
         }
     }
     plot.makeFile()

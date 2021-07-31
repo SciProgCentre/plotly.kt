@@ -9,33 +9,25 @@ import space.kscience.plotly.models.Layout
 import space.kscience.plotly.models.Trace
 
 /**
- * The main plot class. The changes to plot could be observed by attaching listener to root [config] property.
+ * The main plot class. The changes to plot could be observed by attaching listener to root [meta] property.
  */
 @DFBuilder
 public class Plot(
-    override val config: ObservableMeta = ObservableMeta(),
+    override val meta: ObservableMutableMeta = MutableMeta(),
 ) : Configurable, MetaRepr {
 
     /**
      * Ordered list ot traces in the plot
      */
-    public val data: List<Trace> by config.list(Trace)
+    public val data: List<Trace> by list(Trace)
 
     /**
      * Layout specification for th plot
      */
-    public val layout: Layout by config.spec(Layout)
+    public val layout: Layout by meta.spec(Layout)
 
     public fun addTrace(trace: Trace) {
-        val traceRoot = trace.rootNode
-        if (traceRoot is ObservableMeta) {
-            config.append("data", traceRoot)
-        } else {
-            val traceConfig = ObservableMeta()
-            trace.rootNode?.let { traceConfig.update(it) }
-            trace.retarget(traceConfig)
-            config.append("data", traceConfig)
-        }
+        meta.append("data", trace.meta)
     }
 
     /**
@@ -57,17 +49,17 @@ public class Plot(
      */
     @UnstablePlotlyAPI
     internal fun removeTrace(index: Int) {
-        config.remove("data[$index]")
+        meta.remove("data[$index]")
     }
 
-    override fun toMeta(): Meta = config
+    override fun toMeta(): Meta = meta
 }
 
 private fun Plot.toJson(): JsonObject = buildJsonObject {
-    layout.rootNode?.let { put("layout", it.toJson()) }
+    put("layout", layout.meta.toJson())
     put("data", buildJsonArray {
         data.forEach { traceData ->
-            traceData.rootNode?.let { add(it.toJson()) }
+            add(traceData.meta.toJson())
         }
     })
 }

@@ -1,7 +1,8 @@
 package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
-import space.kscience.dataforge.names.toName
+import space.kscience.dataforge.names.Name
+import space.kscience.dataforge.names.asName
 import space.kscience.dataforge.values.Value
 import space.kscience.dataforge.values.asValue
 import space.kscience.plotly.doubleInRange
@@ -15,8 +16,8 @@ public enum class XPeriodAlignment{
 
 public class CandleStickLine: Scheme(){
     public val fillcolor: Color by color()
-    public val lineColor: Color by color("line.color".toName())
-    public var lineWidth: Double by double(2.0, key = "line.width".toName())
+    public val lineColor: Color by color(Name.parse("line.color"))
+    public var lineWidth: Double by double(2.0, key = Name.parse("line.width"))
     public companion object: SchemeSpec<CandleStickLine>(::CandleStickLine)
 }
 
@@ -52,7 +53,7 @@ public class CandleStick : Trace() {
     public val hovertext: TraceValues by axis
 
 
-    public var meta: Value? by value()
+    public var candleStickMeta: Value? by value("meta".asName())
 
     /**
      * Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If "x" (the default value),
@@ -68,7 +69,7 @@ public class CandleStick : Trace() {
     public var yaxis: String by string("y")
 
 
-    public var lineWidth: Double by double(2.0, "line.width".toName())
+    public var lineWidth: Double by double(2.0, Name.parse("line.width"))
 
     public var increasing: CandleStickLine by spec(CandleStickLine)
     public var decreasing: CandleStickLine by spec(CandleStickLine)

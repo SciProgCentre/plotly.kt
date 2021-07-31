@@ -2,6 +2,11 @@ public final class space/kscience/plotly/BootstrapHeadersKt {
 	public static final fun getCdnBootstrap ()Lspace/kscience/plotly/PlotlyHtmlFragment;
 }
 
+public final class space/kscience/plotly/DfExtKt {
+	public static final fun set (Lspace/kscience/dataforge/meta/MutableMeta;Ljava/lang/String;Ljava/lang/Object;)V
+	public static final fun set (Lspace/kscience/dataforge/meta/Scheme;Ljava/lang/String;Ljava/lang/Object;)V
+}
+
 public final class space/kscience/plotly/FileExportKt {
 	public static final fun display (Lspace/kscience/plotly/Plotly;Lkotlin/jvm/functions/Function2;)V
 	public static final fun export (Lspace/kscience/plotly/Plot;Ljava/nio/file/Path;Lspace/kscience/plotly/OrcaFormat;)V
@@ -37,12 +42,13 @@ public final class space/kscience/plotly/OrcaFormat : java/lang/Enum {
 
 public final class space/kscience/plotly/Plot : space/kscience/dataforge/meta/Configurable, space/kscience/dataforge/meta/MetaRepr {
 	public fun <init> ()V
-	public fun <init> (Lspace/kscience/dataforge/meta/ObservableMeta;)V
-	public synthetic fun <init> (Lspace/kscience/dataforge/meta/ObservableMeta;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lspace/kscience/dataforge/meta/ObservableMutableMeta;)V
+	public synthetic fun <init> (Lspace/kscience/dataforge/meta/ObservableMutableMeta;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun addTrace (Lspace/kscience/plotly/models/Trace;)V
-	public fun getConfig ()Lspace/kscience/dataforge/meta/ObservableMeta;
 	public final fun getData ()Ljava/util/List;
 	public final fun getLayout ()Lspace/kscience/plotly/models/Layout;
+	public synthetic fun getMeta ()Lspace/kscience/dataforge/meta/MutableMeta;
+	public fun getMeta ()Lspace/kscience/dataforge/meta/ObservableMutableMeta;
 	public fun toMeta ()Lspace/kscience/dataforge/meta/Meta;
 	public final fun traces (Ljava/util/Collection;)V
 	public final fun traces ([Lspace/kscience/plotly/models/Trace;)V
@@ -496,6 +502,7 @@ public final class space/kscience/plotly/models/Calendar : java/lang/Enum {
 public final class space/kscience/plotly/models/CandleStick : space/kscience/plotly/models/Trace {
 	public static final field Companion Lspace/kscience/plotly/models/CandleStick$Companion;
 	public fun <init> ()V
+	public final fun getCandleStickMeta ()Lspace/kscience/dataforge/values/Value;
 	public final fun getClose ()Lspace/kscience/plotly/models/TraceValues;
 	public final fun getDecreasing ()Lspace/kscience/plotly/models/CandleStickLine;
 	public final fun getHigh ()Lspace/kscience/plotly/models/TraceValues;
@@ -504,7 +511,6 @@ public final class space/kscience/plotly/models/CandleStick : space/kscience/plo
 	public final fun getIncreasing ()Lspace/kscience/plotly/models/CandleStickLine;
 	public final fun getLineWidth ()D
 	public final fun getLow ()Lspace/kscience/plotly/models/TraceValues;
-	public final fun getMeta ()Lspace/kscience/dataforge/values/Value;
 	public final fun getOpen ()Lspace/kscience/plotly/models/TraceValues;
 	public final fun getWhiskerwidth ()D
 	public final fun getXaxis ()Ljava/lang/String;
@@ -512,11 +518,11 @@ public final class space/kscience/plotly/models/CandleStick : space/kscience/plo
 	public final fun getXperiod0 ()Lspace/kscience/dataforge/values/Value;
 	public final fun getXperiodalignment ()Lspace/kscience/plotly/models/XPeriodAlignment;
 	public final fun getYaxis ()Ljava/lang/String;
+	public final fun setCandleStickMeta (Lspace/kscience/dataforge/values/Value;)V
 	public final fun setDecreasing (Lspace/kscience/plotly/models/CandleStickLine;)V
 	public final fun setIds (Ljava/util/List;)V
 	public final fun setIncreasing (Lspace/kscience/plotly/models/CandleStickLine;)V
 	public final fun setLineWidth (D)V
-	public final fun setMeta (Lspace/kscience/dataforge/values/Value;)V
 	public final fun setWhiskerwidth (D)V
 	public final fun setXaxis (Ljava/lang/String;)V
 	public final fun setXperiod (Lspace/kscience/dataforge/values/Value;)V

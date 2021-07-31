@@ -86,7 +86,7 @@ fun main() {
                         }
                         trace {
                             val flow: Flow<Iterable<Double>> = sinFlow.windowed(100)
-                            GlobalScope.launch {
+                            launch {
                                 updateFrom(Trace.Y_AXIS, flow)
                             }
                         }
@@ -101,7 +101,7 @@ fun main() {
                         }
                         trace {
                             val flow: Flow<Iterable<Double>> = cosFlow.windowed(100)
-                            GlobalScope.launch {
+                            launch {
                                 updateFrom(Trace.Y_AXIS, flow)
                             }
                         }

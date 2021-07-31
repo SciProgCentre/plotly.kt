@@ -21,16 +21,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.html.*
-import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.names.Name
-import space.kscience.dataforge.names.toName
 import space.kscience.plotly.*
 import space.kscience.plotly.server.PlotlyServer.Companion.DEFAULT_PAGE
 import java.awt.Desktop
 import java.net.URI
 import kotlin.collections.set
+import kotlin.coroutines.CoroutineContext
 
 public enum class PlotlyUpdateMode {
     NONE,
@@ -107,11 +106,14 @@ internal class ServerPlotlyRenderer(
 
 public class PlotlyServer internal constructor(
     private val routing: Routing, private val rootRoute: String,
-) : Configurable {
-    override val config: ObservableMeta = ObservableMeta()
-    public var updateMode: PlotlyUpdateMode by config.enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
-    public var updateInterval: Int by config.int(300, key = UPDATE_INTERVAL_KEY)
-    public var embedData: Boolean by config.boolean(false)
+) : Configurable, CoroutineScope {
+
+    override val coroutineContext: CoroutineContext get() = routing.application.coroutineContext
+    
+    override val meta: ObservableMutableMeta = MutableMeta()
+    public var updateMode: PlotlyUpdateMode by meta.enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
+    public var updateInterval: Int by meta.int(300, key = UPDATE_INTERVAL_KEY)
+    public var embedData: Boolean by meta.boolean(false)
 
     internal val root by lazy { routing.createRouteFromPath(rootRoute) }
 
@@ -134,7 +136,7 @@ public class PlotlyServer internal constructor(
             val plot = plots[plotId] ?: error("Plot with id='$plotId' not registered")
 
             try {
-                plot.collectUpdates(plotId, this, updateInterval).collect { update ->
+                plot.collectUpdates(plotId, this, updateInterval).collect { update: Update ->
                     val json = update.toJson()
                     outgoing.send(Frame.Text(JsonObject(json).toString()))
                 }
@@ -235,8 +237,8 @@ public class PlotlyServer internal constructor(
 
     public companion object {
         public const val DEFAULT_PAGE: String = "/"
-        public val UPDATE_MODE_KEY: Name = "update.mode".toName()
-        public val UPDATE_INTERVAL_KEY: Name = "update.interval".toName()
+        public val UPDATE_MODE_KEY: Name = Name.parse("update.mode")
+        public val UPDATE_INTERVAL_KEY: Name = Name.parse("update.interval")
     }
 }
 

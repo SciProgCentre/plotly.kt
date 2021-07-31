@@ -1,12 +1,12 @@
 package candlestick
 
 import space.kscience.dataforge.meta.invoke
-import space.kscience.dataforge.meta.set
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.layout
 import space.kscience.plotly.makeFile
 import space.kscience.plotly.models.AxisType
 import space.kscience.plotly.models.CandleStick
+import space.kscience.plotly.models.DragMode
 
 internal val candleStickTrace = CandleStick {
     x.strings = listOf(
@@ -190,7 +190,7 @@ fun main() {
     Plotly.plot {
         traces(candleStickTrace)
         layout {
-            set("dragmode", "zoom")
+            dragmode = DragMode.zoom
             margin {
                 r = 10
                 t = 25

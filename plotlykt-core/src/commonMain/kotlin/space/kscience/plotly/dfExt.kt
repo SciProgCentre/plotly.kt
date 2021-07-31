@@ -15,17 +15,17 @@ import kotlin.time.toDuration
 //extensions for DataForge
 
 
-private fun MutableItemProvider.getIndexedProviders(name: Name): Map<String?, MutableItemProvider> {
-    val parent = getItem(name.cutLast()).node ?: return emptyMap()
+private fun MutableMeta.getIndexedProviders(name: Name): Map<String?, MutableMeta> {
+    val parent = getMeta(name.cutLast()) ?: return emptyMap()
     return parent.items.keys.filter {
         it.body == name.lastOrNull()?.body
     }.map {
         it.index
     }.associate { index ->
         if (index == null) {
-            "" to getChild(name)
+            "" to getOrCreate(name)
         } else {
-            index to getChild(name.withIndex(index))
+            index to getOrCreate(name.withIndex(index))
         }
     }
 }
@@ -34,56 +34,56 @@ private fun MutableItemProvider.getIndexedProviders(name: Name): Map<String?, Mu
  * A delegate for list of objects with specification
  * TODO move to DataForge core
  */
-internal fun <T : Scheme> MutableItemProvider.list(
+internal fun <T : Scheme> Configurable.list(
     spec: Specification<T>,
     key: Name? = null,
 ): ReadWriteProperty<Any?, List<T>> = object : ReadWriteProperty<Any?, List<T>> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): List<T> {
         val name = key ?: property.name.asName()
-        return getIndexedProviders(name).values.map { item ->
+        return meta.getIndexedProviders(name).values.map { item ->
             spec.write(item)
         }
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: List<T>) {
         val name = key ?: property.name.asName()
-        setIndexed(name, value.mapNotNull { it.rootNode })
+        meta.setIndexed(name, value.map { it.meta })
     }
 }
 
 /**
  * List of values delegate
  */
-internal fun MutableItemProvider.listOfValues(
+internal fun Scheme.listOfValues(
     key: Name? = null,
 ): ReadWriteProperty<Any?, List<Value>> = object : ReadWriteProperty<Any?, List<Value>> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): List<Value> {
         val name = key ?: property.name.asName()
-        return getItem(name).value?.list ?: emptyList()
+        return meta[name]?.value?.list ?: emptyList()
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: List<Value>) {
         val name = key ?: property.name.asName()
-        set(name, value.asValue())
+        meta[name] = value.asValue()
     }
 }
 
 /**
  * A safe [Double] range
  */
-internal fun MutableItemProvider.doubleInRange(
+internal fun Scheme.doubleInRange(
     range: ClosedFloatingPointRange<Double>,
     key: Name? = null,
 ): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Double {
         val name = key ?: property.name.asName()
-        return this@doubleInRange[name].double ?: Double.NaN
+        return meta[name].double ?: Double.NaN
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Double) {
         val name = key ?: property.name.asName()
         if (value in range) {
-            this@doubleInRange[name] = value
+            meta[name] = value
         } else {
             error("$value not in range $range")
         }
@@ -93,19 +93,19 @@ internal fun MutableItemProvider.doubleInRange(
 /**
  * A safe [Double] ray
  */
-internal fun MutableItemProvider.doubleGreaterThan(
+internal fun Scheme.doubleGreaterThan(
     minValue: Double,
     key: Name? = null,
 ): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Double {
         val name = key ?: property.name.asName()
-        return this@doubleGreaterThan[name].double ?: Double.NaN
+        return meta[name].double ?: Double.NaN
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Double) {
         val name = key ?: property.name.asName()
         if (value >= minValue) {
-            this@doubleGreaterThan[name] = value
+            meta[name] = value
         } else {
             error("$value less than $minValue")
         }
@@ -116,19 +116,19 @@ internal fun MutableItemProvider.doubleGreaterThan(
 /**
  * A safe [Int] ray
  */
-internal fun MutableItemProvider.intGreaterThan(
+internal fun Scheme.intGreaterThan(
     minValue: Int,
     key: Name? = null,
 ): ReadWriteProperty<Any?, Int> = object : ReadWriteProperty<Any?, Int> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Int {
         val name = key ?: property.name.asName()
-        return this@intGreaterThan[name].int ?: minValue
+        return meta[name].int ?: minValue
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Int) {
         val name = key ?: property.name.asName()
         if (value >= minValue) {
-            this@intGreaterThan[name] = value
+            meta[name] = value
         } else {
             error("$value less than $minValue")
         }
@@ -138,19 +138,19 @@ internal fun MutableItemProvider.intGreaterThan(
 /**
  * A safe [Int] range
  */
-internal fun Configurable.intInRange(
+internal fun Scheme.intInRange(
     range: ClosedRange<Int>,
     key: Name? = null,
 ): ReadWriteProperty<Any?, Int> = object : ReadWriteProperty<Any?, Int> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Int {
         val name = key ?: property.name.asName()
-        return config[name].int ?: 0
+        return meta[name].int ?: 0
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Int) {
         val name = key ?: property.name.asName()
         if (value in range) {
-            config[name] = value
+            meta[name] = value
         } else {
             error("$value not in range $range")
         }
@@ -160,19 +160,19 @@ internal fun Configurable.intInRange(
 /**
  * A safe [Number] ray
  */
-internal fun MutableItemProvider.numberGreaterThan(
+internal fun Scheme.numberGreaterThan(
     minValue: Number,
     key: Name? = null,
 ): ReadWriteProperty<Any?, Number> = object : ReadWriteProperty<Any?, Number> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Number {
         val name = key ?: property.name.asName()
-        return this@numberGreaterThan[name].number ?: minValue
+        return meta[name].number ?: minValue
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Number) {
         val name = key ?: property.name.asName()
         if (value.toDouble() >= minValue.toDouble()) {
-            this@numberGreaterThan[name] = value
+            meta[name] = value
         } else {
             error("$value less than $minValue")
         }
@@ -182,19 +182,19 @@ internal fun MutableItemProvider.numberGreaterThan(
 /**
  * A safe [Number] range
  */
-internal fun MutableItemProvider.numberInRange(
+internal fun Scheme.numberInRange(
     range: ClosedRange<Double>,
     key: Name? = null,
 ): ReadWriteProperty<Any?, Number> = object : ReadWriteProperty<Any?, Number> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Number {
         val name = key ?: property.name.asName()
-        return this@numberInRange[name].int ?: 0
+        return meta[name].int ?: 0
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Number) {
         val name = key ?: property.name.asName()
         if (value.toDouble() in range) {
-            this@numberInRange[name] = value
+            meta[name] = value
         } else {
             error("$value not in range $range")
         }
@@ -202,30 +202,53 @@ internal fun MutableItemProvider.numberInRange(
 }
 
 @OptIn(DFExperimental::class)
-internal fun MutableItemProvider.duration(
+internal fun Scheme.duration(
     default: Duration? = null,
     key: Name? = null,
 ): ReadWriteProperty<Any?, Duration?> = object : ReadWriteProperty<Any?, Duration?> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Duration? {
         val name = key ?: property.name.asName()
-        return when (val item = getItem(name)) {
-            null -> default
-            is MetaItemValue -> Duration.milliseconds(item.value.long)
-            is MetaItemNode -> {
-                val value = item.node["value"].long ?: error("Duration value is not defined")
-                val unit = item.node["unit"].enum<DurationUnit>() ?: DurationUnit.MILLISECONDS
-                value.toDuration(unit)
-            }
-        }
+        val value = meta[name]?.value
+        val units = meta[name + "unit"]?.enum() ?: DurationUnit.MILLISECONDS
+        return value?.long?.toDuration(units) ?: default
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Duration?) {
         val name = key ?: property.name.asName()
         if (value == null) {
-            remove(name)
+            meta.remove(name)
         } else {
-            set(name + "value", value.toDouble(DurationUnit.MILLISECONDS))
-            set(name + "unit", DurationUnit.MILLISECONDS)
+            meta.value = value.toDouble(DurationUnit.MILLISECONDS).asValue()
+            meta[name + "unit"] = DurationUnit.MILLISECONDS.name
         }
     }
+}
+
+/**
+ * Infer type of value and set
+ */
+public operator fun MutableMeta.set(name: String, value: Any?) {
+    when (value) {
+        null -> this[name] = null
+        is Meta -> this[name] = value
+        is Value -> set(Name.parse(name), value)
+        is String -> this[name] = value
+        is Number -> this[name] = value
+        is Boolean -> this[name] = value
+        is Iterable<*> -> {
+            if (value.all { it is Meta }) {
+                this.setIndexed(Name.parse(name), value.map { it as Meta })
+            } else {
+                this[name] = value.map { Value.of(it) }.asValue()
+            }
+        }
+    }
+}
+
+/**
+ * A patch to cover API no longer existing in DataForge
+ */
+@Deprecated("Use specialized meta methods instead")
+public operator fun Scheme.set(name: String, value: Any?) {
+    meta[name] = value
 }

@@ -1,10 +1,9 @@
 package space.kscience.plotly
 
 import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonArray
 import space.kscience.dataforge.meta.*
-import space.kscience.dataforge.names.toName
+import space.kscience.dataforge.names.Name
 import kotlin.js.JsName
 
 /**
@@ -20,15 +19,13 @@ public object Plotly {
     public inline fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
 }
 
-private fun Scheme.toJson(): JsonObject = rootNode?.toJson() ?: JsonObject(emptyMap())
-
 /**
  * Convert any type-safe configurator to json string
  */
-public fun Scheme.toJsonString(): String = toJson().toString()
+public fun Scheme.toJsonString(): String = meta.toJson().toString()
 
 private fun List<Scheme>.toJson(): JsonArray = buildJsonArray {
-    forEach { add(it.toJson()) }
+    forEach { add(it.meta.toJson()) }
 }
 
 /**
@@ -47,7 +44,7 @@ public class PlotlyConfig : Scheme() {
     public var showEditInChartStudio: Boolean? by boolean()
     public var plotlyServerURL: String? by string()
     public var responsive: Boolean? by boolean()
-    public var imageFormat: String? by string("toImageButtonOptions.format".toName())
+    public var imageFormat: String? by string(Name.parse("toImageButtonOptions.format"))
 
     public fun withEditorButton() {
         showEditInChartStudio = true
