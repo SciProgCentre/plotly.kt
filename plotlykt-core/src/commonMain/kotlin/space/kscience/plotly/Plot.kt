@@ -27,7 +27,7 @@ public class Plot(
     public val layout: Layout by meta.spec(Layout)
 
     public fun addTrace(trace: Trace) {
-        meta.append("data", trace.meta)
+        meta.appendAndAttach("data", trace.meta)
     }
 
     /**

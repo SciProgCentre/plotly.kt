@@ -4,6 +4,7 @@ package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.values.asValue
+import space.kscience.plotly.appendAndAttach
 import space.kscience.plotly.list
 import space.kscience.plotly.numberGreaterThan
 import space.kscience.plotly.numberInRange
@@ -286,7 +287,7 @@ public class Layout : Scheme() {
     }
 
     public fun annotation(an: Text) {
-        meta.append("annotations", an.meta)
+        meta.appendAndAttach("annotations", an.meta)
     }
 
     public fun annotation(anBuilder: Text.() -> Unit) {
@@ -294,7 +295,7 @@ public class Layout : Scheme() {
     }
 
     public fun figure(sh: Shape) {
-        meta.append("shapes", sh.meta)
+        meta.appendAndAttach("shapes", sh.meta)
     }
 
     public fun figure(shBuilder: Shape.() -> Unit) {

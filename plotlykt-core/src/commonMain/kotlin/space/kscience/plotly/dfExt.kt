@@ -252,3 +252,18 @@ public operator fun MutableMeta.set(name: String, value: Any?) {
 public operator fun Scheme.set(name: String, value: Any?) {
     meta[name] = value
 }
+
+/**
+ * Append the observable note to same-name-siblings and observe its changes.
+ */
+internal fun ObservableMutableMeta.appendAndAttach(key: String, meta: ObservableMutableMeta) {
+    val name = Name.parse(key)
+    require(!name.isEmpty()) { "Name could not be empty for append operation" }
+    val newIndex = name.lastOrNull()!!.index
+    if (newIndex != null) {
+        attach(name, meta)
+    } else {
+        val index = (getIndexed(name).keys.mapNotNull { it?.toIntOrNull() }.maxOrNull() ?: -1) + 1
+        attach(name.withIndex(index.toString()), meta)
+    }
+}

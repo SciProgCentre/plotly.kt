@@ -1,7 +1,4 @@
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlinx.html.a
 import kotlinx.html.h1
 import space.kscience.dataforge.meta.invoke
@@ -18,6 +15,7 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 
+@OptIn(DelicateCoroutinesApi::class)
 fun main() {
 
     val freq = 1.0 / 1000
