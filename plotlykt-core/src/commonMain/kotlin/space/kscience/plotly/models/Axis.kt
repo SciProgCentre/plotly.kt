@@ -42,9 +42,9 @@ public class Axis : Scheme() {
      * Sets the title of this axis.
      */
     public var title: String?
-        get() = this["title.text"].string ?: this["title"].string
+        get() = meta["title.text"].string ?: meta["title"].string
         set(value) {
-            this["title"] = value
+            meta["title"] = value?.asValue()
         }
 
     /**
@@ -134,16 +134,16 @@ public class Axis : Scheme() {
      */
     @Deprecated("Use range() instead")
     public var range: ClosedFloatingPointRange<Double>?
-        get() = this["range"]?.value?.doubleArray?.let { it[0]..it[1] }
+        get() = meta["range"]?.value?.doubleArray?.let { it[0]..it[1] }
         set(value) {
-            this["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
+            meta["range"] = value?.let { ListValue(listOf(value.start.asValue(), value.endInclusive.asValue())) }
         }
 
     /**
      * Set the range using arbitrary values
      */
     public fun range(from: Value, to: Value) {
-        this["range"] = ListValue(listOf(from, to))
+        meta["range"] = ListValue(listOf(from, to))
     }
 
     /**
@@ -263,7 +263,7 @@ public class Axis : Scheme() {
     public var position: Number by numberInRange(0.0..1.0)
 
     public fun title(block: Title.() -> Unit) {
-        val spec = Title.write(getChild("title"))
+        val spec = Title.write(meta.getOrCreate("title"))
         spec.apply(block)
     }
 

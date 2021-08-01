@@ -1,4 +1,3 @@
-import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.html.a
 import kotlinx.html.div
@@ -17,7 +16,6 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-@KtorExperimentalAPI
 @ExperimentalCoroutinesApi
 fun main() {
     val server = Plotly.serve {
@@ -28,7 +26,14 @@ fun main() {
         val trace1 = Trace(x, y1) { name = "sin" }
         val trace2 = Trace(x, y2) { name = "cos" }
 
-        lateinit var plot1: Plot
+        val plot1: Plot = Plotly.plot{
+            traces(trace1, trace2)
+            layout {
+                title = "First graph, row: 1, size: 8/12"
+                xaxis { title = "x axis name" }
+                yaxis { title = "y axis name" }
+            }
+        }
 
         //root level plots go to default page
         page {
@@ -38,14 +43,7 @@ fun main() {
                 style = "display: flex;   align-items: stretch; "
                 div {
                     style = "width: 64%;"
-                    plot1 = plot {
-                        traces(trace1, trace2)
-                        layout {
-                            title = "First graph, row: 1, size: 8/12"
-                            xaxis { title = "x axis name" }
-                            yaxis { title = "y axis name" }
-                        }
-                    }
+                    plot(plot1)
                 }
                 div {
                     style = "width: 32%;"

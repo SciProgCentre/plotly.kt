@@ -1,10 +1,12 @@
 import space.kscience.dataforge.meta.Meta
+import space.kscience.dataforge.meta.configure
 import space.kscience.dataforge.meta.invoke
-import space.kscience.dataforge.meta.set
+import space.kscience.dataforge.values.ListValue
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.makeFile
 import space.kscience.plotly.models.Trace
 import space.kscience.plotly.models.invoke
+import space.kscience.plotly.set
 
 fun main() {
 
@@ -17,7 +19,7 @@ fun main() {
          * We are applying it directly to configuration.
          * It is still observable in the same way as other properties but is not type safe.
          */
-        set("text", x.map { "label for  $it" })
+        meta["text"] = x.map { "label for  $it"}
     }
 
     val plot = Plotly.plot {
@@ -26,14 +28,13 @@ fun main() {
             title = "Plot with labels"
             xaxis {
                 title = "x axis name"
-                set(
-                    "rangebreaks",
-                    listOf(
+                configure {
+                    "rangebreaks" putIndexed listOf(
                         Meta {
-                            "values" put listOf(2.0, 3.0)
+                            "values" put ListValue(2.0, 3.0)
                         }
                     )
-                )
+                }
             }
             yaxis { title = "y axis name" }
         }

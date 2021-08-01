@@ -3,8 +3,8 @@
 package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
+import space.kscience.dataforge.names.Name
 import space.kscience.dataforge.names.asName
-import space.kscience.dataforge.names.toName
 import space.kscience.dataforge.values.Value
 import space.kscience.dataforge.values.asValue
 import space.kscience.plotly.*
@@ -696,7 +696,7 @@ public class Hoverlabel : Scheme() {
  * A base class for Plotly traces
  */
 public open class Trace : Scheme() {
-    public fun axis(axisName: String): TraceValues = TraceValues(this, axisName.toName())
+    public fun axis(axisName: String): TraceValues = TraceValues(this, Name.parse(axisName))
 
     public val axis: ReadOnlyProperty<Scheme, TraceValues> = ReadOnlyProperty { thisRef, property ->
         TraceValues(thisRef, property.name.asName())

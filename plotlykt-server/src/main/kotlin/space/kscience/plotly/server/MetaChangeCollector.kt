@@ -10,6 +10,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.names.Name
+import space.kscience.dataforge.names.asName
 import space.kscience.plotly.Plot
 
 
@@ -19,11 +20,11 @@ import space.kscience.plotly.Plot
  */
 public class MetaChangeCollector {
     private val mutex = Mutex()
-    private var state = Config()
+    private var state = MutableMeta()
 
-    public suspend fun collect(name: Name, newItem: MetaItem?) {
+    public suspend fun collect(name: Name, newItem: Meta?) {
         mutex.withLock {
-            state[name] = newItem
+            state.setMeta(name, newItem)
         }
     }
 
@@ -31,7 +32,7 @@ public class MetaChangeCollector {
         return if (!state.isEmpty()) {
             mutex.withLock {
                 state.seal().also {
-                    state = Config()
+                    state = MutableMeta()
                 }
             }
         } else {
@@ -40,17 +41,15 @@ public class MetaChangeCollector {
     }
 }
 
-private fun Config.collectChanges(scope: CoroutineScope): MetaChangeCollector {
-    return MetaChangeCollector().apply {
-        onChange(this) { name, _, newItem ->
-            scope.launch {
-                collect(name, newItem)
-            }
+private fun ObservableMeta.collectChanges(scope: CoroutineScope): MetaChangeCollector = MetaChangeCollector().apply {
+    onChange(this) { name ->
+        scope.launch {
+            collect(name, get(name))
         }
     }
 }
 
-private fun Config.flowChanges(scope: CoroutineScope, updateInterval: Int): Flow<Meta> {
+private fun ObservableMeta.flowChanges(scope: CoroutineScope, updateInterval: Int): Flow<Meta> {
     val collector = collectChanges(scope)
     return flow {
         while (true) {
@@ -67,11 +66,9 @@ public fun Plot.collectUpdates(
     plotId: String,
     scope: CoroutineScope,
     updateInterval: Int,
-): Flow<Update> = config.flowChanges(scope, updateInterval).transform { change ->
-    change["layout"].node?.let { emit(Update.Layout(plotId, it)) }
-    change.getIndexed("data").forEach { (index, metaItem) ->
-        if (metaItem is MetaItemNode) {
-            emit(Update.Trace(plotId, index?.toInt() ?: 0, metaItem.node))
-        }
+): Flow<Update> = meta.flowChanges(scope, updateInterval).transform { change ->
+    change["layout"]?.let{ emit(Update.Layout(plotId, it))}
+    change.getIndexed("data".asName()).forEach { (index, metaItem) ->
+        emit(Update.Trace(plotId, index?.toInt() ?: 0, metaItem))
     }
 }

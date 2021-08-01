@@ -1,7 +1,10 @@
+rootProject.name = "plotly-kt"
+
 pluginManagement {
-    val toolsVersion = "0.10.0"
+    val toolsVersion = "0.10.2"
 
     repositories {
+        mavenLocal()
         maven("https://repo.kotlin.link")
         mavenCentral()
         gradlePluginPortal()
@@ -16,8 +19,6 @@ pluginManagement {
         id("ru.mipt.npm.gradle.publish") version toolsVersion
     }
 }
-
-rootProject.name = "plotlykt"
 
 include(
     ":plotlykt-core",

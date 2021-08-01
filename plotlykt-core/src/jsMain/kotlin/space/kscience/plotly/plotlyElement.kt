@@ -9,15 +9,12 @@ import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import space.kscience.dataforge.meta.MetaSerializer
 import space.kscience.dataforge.meta.Scheme
-import space.kscience.dataforge.meta.rootNode
 import space.kscience.dataforge.names.asName
 import space.kscience.dataforge.names.firstOrNull
 import space.kscience.dataforge.names.startsWith
 
 @OptIn(ExperimentalSerializationApi::class)
-private fun Scheme.toDynamic(): dynamic = rootNode?.let {
-    Json.encodeToDynamic(MetaSerializer, it)
-} ?: js("{}")
+private fun Scheme.toDynamic(): dynamic = Json.encodeToDynamic(MetaSerializer, meta)
 
 private fun List<Scheme>.toDynamic(): Array<dynamic> = map { it.toDynamic() }.toTypedArray()
 
@@ -38,9 +35,9 @@ public fun Element.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig())
 
     PlotlyJs.react(this, tracesData, layout, plotlyConfig.toDynamic())
 
-    plot.config.onChange(this) { name, _, _ ->
+    plot.meta.onChange(this) { name ->
         if (name.startsWith(plot::layout.name.asName())) {
-            PlotlyJs.relayout(this, plot.layout.toDynamic())
+            PlotlyJs.relayout(this@plot, plot.layout.toDynamic())
         } else if (name.firstOrNull()?.body == "data") {
             val traceName = name.firstOrNull()!!
             val traceIndex = traceName.index?.toInt() ?: 0
@@ -61,7 +58,7 @@ public fun Element.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig())
             if (traceData.text != null) {
                 traceData.text = arrayOf(traceData.text)
             }
-            PlotlyJs.restyle(this, traceData, arrayOf(traceIndex))
+            PlotlyJs.restyle(this@plot, traceData, arrayOf(traceIndex))
         }
     }
 }
@@ -70,6 +67,9 @@ public inline fun Element.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plot
     plot(Plot().apply(plotBuilder), plotlyConfig)
 }
 
-public inline fun TagConsumer<HTMLElement>.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plotBuilder: Plot.() -> Unit) {
+public inline fun TagConsumer<HTMLElement>.plot(
+    plotlyConfig: PlotlyConfig = PlotlyConfig(),
+    plotBuilder: Plot.() -> Unit
+) {
     div { }.plot(plotlyConfig, plotBuilder)
 }

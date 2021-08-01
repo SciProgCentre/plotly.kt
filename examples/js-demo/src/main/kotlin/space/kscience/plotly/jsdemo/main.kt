@@ -2,10 +2,7 @@ package space.kscience.plotly.jsdemo
 
 
 import kotlinx.browser.document
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlinx.html.TagConsumer
 import kotlinx.html.dom.append
 import kotlinx.html.h1
@@ -33,6 +30,7 @@ private fun withCanvas(block: TagConsumer<HTMLElement>.() -> Unit) = onDomLoaded
 }
 
 
+@OptIn(DelicateCoroutinesApi::class)
 fun main(): Unit = withCanvas {
     div {
         style = "height:50%; width=100%;"
@@ -43,7 +41,7 @@ fun main(): Unit = withCanvas {
                 name = "Random data"
                 GlobalScope.launch {
                     while (isActive) {
-                        x.numbers = List(500){rnd.nextDouble()}
+                        x.numbers = List(500) { rnd.nextDouble() }
                         delay(300)
                     }
                 }
@@ -93,10 +91,11 @@ fun main(): Unit = withCanvas {
                 y(10, 15, 13, 17)
                 mode = ScatterMode.lines
                 type = TraceType.scatter
-                marker.apply {
-                    GlobalScope.launch {
-                        while (isActive) {
-                            delay(500)
+
+                GlobalScope.launch {
+                    while (isActive) {
+                        delay(500)
+                        marker {
                             if (Random.nextBoolean()) {
                                 color("magenta")
                             } else {
