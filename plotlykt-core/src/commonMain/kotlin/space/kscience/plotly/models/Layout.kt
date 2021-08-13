@@ -3,6 +3,8 @@
 package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
+import space.kscience.dataforge.values.asValue
+import space.kscience.plotly.appendAndAttach
 import space.kscience.plotly.list
 import space.kscience.plotly.numberGreaterThan
 import space.kscience.plotly.numberInRange
@@ -111,9 +113,9 @@ public class Layout : Scheme() {
      * Sets the plot's title.
      */
     public var title: String?
-        get() = this["title.text"].string ?: this["title"].string
+        get() = meta["title.text"].string ?: meta["title"].string
         set(value) {
-            this["title.text"] = value
+            meta["title.text"] = value?.asValue()
         }
 
     public var xaxis: Axis by spec(Axis)
@@ -272,7 +274,7 @@ public class Layout : Scheme() {
     }
 
     public fun title(block: Title.() -> Unit) {
-        Title.write(getChild("title")).apply(block)
+        Title.write(meta.getOrCreate("title")).apply(block)
     }
 
     //TODO moe title to parameter block
@@ -285,7 +287,7 @@ public class Layout : Scheme() {
     }
 
     public fun annotation(an: Text) {
-        append("annotations", an)
+        meta.appendAndAttach("annotations", an.meta)
     }
 
     public fun annotation(anBuilder: Text.() -> Unit) {
@@ -293,7 +295,7 @@ public class Layout : Scheme() {
     }
 
     public fun figure(sh: Shape) {
-        append("shapes", sh)
+        meta.appendAndAttach("shapes", sh.meta)
     }
 
     public fun figure(shBuilder: Shape.() -> Unit) {

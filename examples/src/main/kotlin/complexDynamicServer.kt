@@ -1,4 +1,3 @@
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -86,7 +85,7 @@ fun main() {
                         }
                         trace {
                             val flow: Flow<Iterable<Double>> = sinFlow.windowed(100)
-                            GlobalScope.launch {
+                            launch {
                                 updateFrom(Trace.Y_AXIS, flow)
                             }
                         }
@@ -101,7 +100,7 @@ fun main() {
                         }
                         trace {
                             val flow: Flow<Iterable<Double>> = cosFlow.windowed(100)
-                            GlobalScope.launch {
+                            launch {
                                 updateFrom(Trace.Y_AXIS, flow)
                             }
                         }
@@ -119,7 +118,7 @@ fun main() {
                         trace {
                             name = "non-synchronized"
                             val flow: Flow<Iterable<Pair<Double, Double>>> = sinCosFlow.windowed(30)
-                            GlobalScope.launch {
+                            launch {
                                 updateXYFrom(flow)
                             }
                         }

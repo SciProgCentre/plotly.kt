@@ -1,6 +1,5 @@
 package candlestick
 
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -41,7 +40,7 @@ fun main() {
                     }
                 }
 
-                GlobalScope.launch {
+                launch {
                     while (isActive) {
                         delay(400)
                         candleStickTrace.open.numbers = candleStickTrace.open.doubles.map { it + Random.nextDouble() - 0.5 }

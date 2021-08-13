@@ -16,5 +16,5 @@ kotlin {
 
 dependencies {
     implementation(project(":plotlykt-core"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
 }

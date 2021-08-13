@@ -8,8 +8,9 @@ import space.kscience.dataforge.meta.Meta
 import space.kscience.dataforge.meta.toJson
 
 
-private val coordinateNames  =
-    listOf("x", "y", "z", "text", "close", "high", "low", "open")
+private val coordinateNames = listOf(
+    "x", "y", "z", "text", "close", "high", "low", "open"
+)
 
 /**
  * An update message for both data and layout
@@ -23,7 +24,8 @@ public sealed class Update(public val id: String) {
             put("contentType", "trace")
             put("trace", trace)
             //patch json to adhere to plotly array in array specification
-            val contentJson = content.toJson()
+            val contentJson: JsonObject = content.toJson() as? JsonObject
+                ?: buildJsonObject { put("@value", content.toJson()) }
             val patchedJson = contentJson + coordinateNames.associateWith { contentJson[it] }
                 .filter { it.value != null }
                 .mapValues { JsonArray(listOf(it.value!!)) }

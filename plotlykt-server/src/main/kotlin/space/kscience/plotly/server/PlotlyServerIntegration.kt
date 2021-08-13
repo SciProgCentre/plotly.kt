@@ -91,9 +91,9 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
                 }
             }
         }
-        config.onChange(this) { name, oldItem, newItem ->
-            if (name.toString() != PlotlyServerConfiguration::legacyMode.name && oldItem != newItem) {
-                logger.info("Plotly server config parameter $name changed to $newItem")
+        config.meta.onChange(this) { name ->
+            if (name.toString() != PlotlyServerConfiguration::legacyMode.name ) {
+                logger.info("Plotly server config parameter $name changed")
                 doStart()
             }
         }
