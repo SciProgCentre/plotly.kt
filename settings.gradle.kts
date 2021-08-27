@@ -22,6 +22,7 @@ pluginManagement {
 
 include(
     ":plotlykt-core",
+    ":plotlykt-geo",
     ":plotlykt-jupyter",
     ":plotlykt-server",
     ":plotlykt-script",

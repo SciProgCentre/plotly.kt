@@ -23,21 +23,19 @@ public operator fun PlotlyHtmlFragment.plus(other: PlotlyHtmlFragment): PlotlyHt
 public fun Plot.toHTML(
     vararg headers: PlotlyHtmlFragment = arrayOf(cdnPlotlyHeader),
     config: PlotlyConfig = PlotlyConfig(),
-): String {
-    return createHTML().html {
-        head {
-            meta {
-                charset = "utf-8"
-            }
-            title(layout.title ?: "Plotly.kt")
-            headers.forEach {
-                it.visit(consumer)
-            }
+): String = createHTML().html {
+    head {
+        meta {
+            charset = "utf-8"
         }
-        body {
-            StaticPlotlyRenderer.run {
-                renderPlot(this@toHTML, this@toHTML.toString(), config)
-            }
+        title(layout.title ?: "Plotly.kt")
+        headers.forEach {
+            it.visit(consumer)
+        }
+    }
+    body {
+        StaticPlotlyRenderer.run {
+            renderPlot(this@toHTML, this@toHTML.toString(), config)
         }
     }
 }

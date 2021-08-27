@@ -10,9 +10,10 @@ repositories {
 
 dependencies {
     implementation(project(":plotlykt-server"))
+    implementation(project(":plotlykt-geo"))
     implementation(kotlin("script-runtime"))
     implementation(project(":plotlykt-script"))
-    implementation("com.github.holgerbrandl:krangl:0.16.2")
+    implementation("com.github.holgerbrandl:krangl:0.17")
     implementation("org.apache.commons:commons-csv:1.8")
 }
 

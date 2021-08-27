@@ -1,12 +1,14 @@
 import space.kscience.dataforge.meta.Meta
 import space.kscience.dataforge.meta.configure
 import space.kscience.dataforge.meta.invoke
+import space.kscience.dataforge.meta.set
 import space.kscience.dataforge.values.ListValue
+import space.kscience.dataforge.values.asValue
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.makeFile
 import space.kscience.plotly.models.Trace
 import space.kscience.plotly.models.invoke
-import space.kscience.plotly.set
+
 
 fun main() {
 
@@ -19,7 +21,7 @@ fun main() {
          * We are applying it directly to configuration.
          * It is still observable in the same way as other properties but is not type safe.
          */
-        meta["text"] = x.map { "label for  $it"}
+        meta["text"] = x.map { "label for  $it".asValue() }
     }
 
     val plot = Plotly.plot {

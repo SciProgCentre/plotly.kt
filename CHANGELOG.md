@@ -7,9 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-
+- `plotlykt module` with basic Geo API
 ### Changed
-- Switch to DataForge 0.5
 
 ### Deprecated
 
@@ -18,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+## [0.5.0]
+
+### Changed
+- Switch to DataForge 0.5
+- 
 ## [0.4.4]
 ### Added
 - Candlestick support

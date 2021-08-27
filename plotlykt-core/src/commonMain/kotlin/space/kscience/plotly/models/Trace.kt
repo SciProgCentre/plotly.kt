@@ -34,23 +34,41 @@ public enum class TraceType {
     histogram2d,
     histogram2dcontour,
 
-    //    // Finance
-//    ohlc,
+    // Finance
+    @UnsupportedPlotlyAPI
+    ohlc,
     candlestick,
-//    waterfall,
-//    // 3D
-//    scatter3d,
-//    surface,
-//    mesh3d,
-//    cone,
-//    streamtube,
-//    volume,
-//    isosurface,
-//    // Maps
-//    scattergeo,
-//    choropleth,
-//    scattermapbox
-//    // Specialized
+
+    @UnsupportedPlotlyAPI
+    waterfall,
+
+    // 3D
+    @UnsupportedPlotlyAPI
+    scatter3d,
+
+    @UnsupportedPlotlyAPI
+    surface,
+
+    @UnsupportedPlotlyAPI
+    mesh3d,
+
+    @UnsupportedPlotlyAPI
+    cone,
+
+    @UnsupportedPlotlyAPI
+    streamtube,
+
+    @UnsupportedPlotlyAPI
+    volume,
+
+    @UnsupportedPlotlyAPI
+    isosurface,
+
+    // Maps
+    scattergeo,
+    choropleth,
+    scattermapbox
+    // Specialized
 }
 
 public enum class Visible {

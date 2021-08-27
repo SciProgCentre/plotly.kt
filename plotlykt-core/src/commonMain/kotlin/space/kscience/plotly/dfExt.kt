@@ -160,13 +160,14 @@ internal fun Scheme.intInRange(
 /**
  * A safe [Number] ray
  */
-internal fun Scheme.numberGreaterThan(
+public fun Scheme.numberGreaterThan(
     minValue: Number,
+    default: Number = minValue,
     key: Name? = null,
 ): ReadWriteProperty<Any?, Number> = object : ReadWriteProperty<Any?, Number> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Number {
         val name = key ?: property.name.asName()
-        return meta[name].number ?: minValue
+        return meta[name].number ?: default
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Number) {
@@ -182,7 +183,7 @@ internal fun Scheme.numberGreaterThan(
 /**
  * A safe [Number] range
  */
-internal fun Scheme.numberInRange(
+public fun Scheme.numberInRange(
     range: ClosedRange<Double>,
     key: Name? = null,
 ): ReadWriteProperty<Any?, Number> = object : ReadWriteProperty<Any?, Number> {
@@ -224,34 +225,34 @@ internal fun Scheme.duration(
     }
 }
 
-/**
- * Infer type of value and set
- */
-public operator fun MutableMeta.set(name: String, value: Any?) {
-    when (value) {
-        null -> this[name] = null
-        is Meta -> this[name] = value
-        is Value -> set(Name.parse(name), value)
-        is String -> this[name] = value
-        is Number -> this[name] = value
-        is Boolean -> this[name] = value
-        is Iterable<*> -> {
-            if (value.all { it is Meta }) {
-                this.setIndexed(Name.parse(name), value.map { it as Meta })
-            } else {
-                this[name] = value.map { Value.of(it) }.asValue()
-            }
-        }
-    }
-}
+///**
+// * Infer type of value and set
+// */
+//public operator fun MutableMeta.set(name: String, value: Any?) {
+//    when (value) {
+//        null -> this[name] = null
+//        is Meta -> this[name] = value
+//        is Value -> set(Name.parse(name), value)
+//        is String -> this[name] = value.asValue()
+//        is Number -> this[name] = value.asValue()
+//        is Boolean -> this[name] = value.asValue()
+//        is Iterable<*> -> {
+//            if (value.all { it is Meta }) {
+//                this.setIndexed(Name.parse(name), value.map { it as Meta })
+//            } else {
+//                this[name] = value.map { Value.of(it) }.asValue()
+//            }
+//        }
+//    }
+//}
 
-/**
- * A patch to cover API no longer existing in DataForge
- */
-@Deprecated("Use specialized meta methods instead")
-public operator fun Scheme.set(name: String, value: Any?) {
-    meta[name] = value
-}
+///**
+// * A patch to cover API no longer existing in DataForge
+// */
+//@Deprecated("Use specialized meta methods instead")
+//public operator fun Scheme.set(name: String, value: Any?) {
+//    meta[name] = value
+//}
 
 /**
  * Append the observable note to same-name-siblings and observe its changes.

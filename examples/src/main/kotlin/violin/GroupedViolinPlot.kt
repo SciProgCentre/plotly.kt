@@ -1,27 +1,13 @@
 package violin
 
+import io.fromDataFrame
 import io.readResourceAsCsv
-import krangl.DataCol
-import krangl.DataFrame
 import krangl.eq
 import space.kscience.dataforge.meta.invoke
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.makeFile
-import space.kscience.plotly.models.TraceValues
 import space.kscience.plotly.models.Violin
 import space.kscience.plotly.models.ViolinMode
-
-
-/**
- * Extension function for using krangl data columns as axis values
- */
-fun TraceValues.column(column: DataCol) {
-    set(column.values())
-}
-
-fun TraceValues.column(frame: DataFrame, column: String) {
-    column(frame[column])
-}
 
 
 /**
@@ -34,8 +20,8 @@ fun main() {
     val violin1 = Violin {
         val males = df.filter { it["sex"] eq "Male" }
 
-        x.column(males, "day")
-        y.column(males, "total_bill")
+        x.fromDataFrame(males, "day")
+        y.fromDataFrame(males, "total_bill")
         legendgroup = "M"
         scalegroup = "M"
         name = "M"
@@ -47,8 +33,8 @@ fun main() {
     val violin2 = Violin {
         val females = df.filter { it["sex"] eq "Female" }
 
-        x.column(females, "day")
-        y.column(females, "total_bill")
+        x.fromDataFrame(females, "day")
+        y.fromDataFrame(females, "total_bill")
         legendgroup = "F"
         scalegroup = "F"
         name = "F"
