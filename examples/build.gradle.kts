@@ -13,8 +13,8 @@ dependencies {
     implementation(project(":plotlykt-geo"))
     implementation(kotlin("script-runtime"))
     implementation(project(":plotlykt-script"))
-    implementation("com.github.holgerbrandl:krangl:0.17")
-    implementation("org.apache.commons:commons-csv:1.8")
+    //implementation("com.github.holgerbrandl:krangl:0.17")
+    implementation("org.jetbrains.kotlinx:dataframe:0.8.0-dev-299-0.10.0.215")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

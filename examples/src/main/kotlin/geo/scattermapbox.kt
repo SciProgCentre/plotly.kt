@@ -1,8 +1,9 @@
 package geo
 
 import io.dfValues
-import krangl.DataFrame
-import krangl.readCSV
+import org.jetbrains.dataframe.DataFrame
+import org.jetbrains.dataframe.io.readCSV
+
 import space.kscience.dataforge.meta.configure
 import space.kscience.dataforge.meta.set
 import space.kscience.plotly.Plotly

@@ -2,7 +2,8 @@ package violin
 
 import io.fromDataFrame
 import io.readResourceAsCsv
-import krangl.eq
+import org.jetbrains.dataframe.column
+import org.jetbrains.dataframe.filter
 import space.kscience.dataforge.meta.invoke
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.makeFile
@@ -17,8 +18,10 @@ import space.kscience.plotly.models.ViolinMode
 fun main() {
     val df = readResourceAsCsv("/violin_data.csv")
 
+    val sex by column<String>()
+
     val violin1 = Violin {
-        val males = df.filter { it["sex"] eq "Male" }
+        val males = df.filter { sex() == "Male" }
 
         x.fromDataFrame(males, "day")
         y.fromDataFrame(males, "total_bill")
@@ -31,7 +34,7 @@ fun main() {
     }
 
     val violin2 = Violin {
-        val females = df.filter { it["sex"] eq "Female" }
+        val females = df.filter { sex() == "Female" }
 
         x.fromDataFrame(females, "day")
         y.fromDataFrame(females, "total_bill")

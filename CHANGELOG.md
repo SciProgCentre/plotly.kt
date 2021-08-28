@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - `plotlykt module` with basic Geo API
+
 ### Changed
+- Replaced krangl by Kotlin-DataFrame
 
 ### Deprecated
 
