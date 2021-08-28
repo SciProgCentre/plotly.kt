@@ -119,7 +119,6 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
 
     private fun renderPage(page: PlotlyPage): String = page.copy(renderer = renderer).render()
 
-    @UnstablePlotlyAPI
     override fun Builder.onLoaded() {
 
         resources {

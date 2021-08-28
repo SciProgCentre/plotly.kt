@@ -12,9 +12,8 @@ import space.kscience.plotly.models.geo.choroplethMapBox
 import space.kscience.plotly.models.geo.json.GeoJsonFeatureCollection
 import space.kscience.plotly.models.geo.json.combine
 import space.kscience.plotly.models.geo.openStreetMap
-import space.kscience.plotly.plot
 import space.kscience.plotly.server.close
-import space.kscience.plotly.server.pushUpdates
+import space.kscience.plotly.server.plot
 import space.kscience.plotly.server.serve
 import java.net.URL
 import kotlin.random.Random
@@ -32,49 +31,46 @@ fun main() {
     }.combine()
 
     val server = Plotly.serve {
-        page { plotly ->
-            plot(renderer = plotly) {
-                choroplethMapBox {
-                    geoJsonFeatures(features)
-                    //Switch to geojson-id mode
-                    locationmode = LocationMode.`geojson-id`
+        plot {
+            choroplethMapBox {
+                geoJsonFeatures(features)
+                //Switch to geojson-id mode
+                locationmode = LocationMode.`geojson-id`
 
-                    //Setup the background map
-                    openStreetMap {
-                        center {
-                            lat = 51.05
-                            lon = 13.73
-                        }
-                        zoom = 7.0
-                    }      // Set hover text to region names
-                    text.strings = features.map { it.getString("NAME_3")!! }
-                    // Set displayed locations
-                    locations.numbers = features.map { it.id!!.int }
-                    // Set random values to locations
-                    z.numbers = features.map { Random.nextDouble(1.0, 10.0) }
-                    launch {
-                        while (isActive){
-                            delay(300)
-                            z.numbers = features.map { Random.nextDouble(1.0, 10.0) }
-                        }
+                //Setup the background map
+                openStreetMap {
+                    center {
+                        lat = 51.05
+                        lon = 13.73
+                    }
+                    zoom = 7.0
+                }      // Set hover text to region names
+                text.strings = features.map { it.getString("NAME_3")!! }
+                // Set displayed locations
+                locations.numbers = features.map { it.id!!.int }
+                // Set random values to locations
+                z.numbers = features.map { Random.nextDouble(1.0, 10.0) }
+                launch {
+                    while (isActive) {
+                        delay(300)
+                        z.numbers = features.map { Random.nextDouble(1.0, 10.0) }
                     }
                 }
-
-                layout {
-                    title = "Geojson demo"
-                    height = 800
-                }
-                embedData = true
-                pushUpdates(100)
             }
+
+            layout {
+                title = "Geojson demo"
+                height = 800
+            }
+            embedData = true
         }
     }
 
+
     println("Press Enter to close server")
-    while (readLine()?.trim() != "exit"){
+    while (readLine()?.trim() != "exit") {
         //wait
     }
 
     server.close()
-
 }

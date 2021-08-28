@@ -5,11 +5,7 @@ import kotlinx.coroutines.launch
 import space.kscience.dataforge.meta.invoke
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.models.Bar
-import space.kscience.plotly.plot
-import space.kscience.plotly.server.close
-import space.kscience.plotly.server.pushUpdates
-import space.kscience.plotly.server.serve
-import space.kscience.plotly.server.show
+import space.kscience.plotly.server.*
 import kotlin.random.Random
 
 
@@ -22,26 +18,22 @@ fun main() {
         name to Bar {
             x.strings = initialValue.map { "Column: $it" }
             y.numbers = initialValue
-            text.strings = initialValue.map { "Initial value of this datapoint is: ${it}"}
+            text.strings = initialValue.map { "Initial value of this datapoint is: ${it}" }
             this.name = name
         }
     }
 
     val server = Plotly.serve(port = 3872) {
-
+        pushUpdates(200)
         //root level plots go to default page
-        page { plotly ->
-            plot(renderer = plotly) {
-                traces(traces.values)
-                layout {
-                    title = "Other dynamic plot"
-                    xaxis.title = "x axis name"
-                    yaxis.title = "y axis name"
-                }
+        plot {
+            traces(traces.values)
+            layout {
+                title = "Other dynamic plot"
+                xaxis.title = "x axis name"
+                yaxis.title = "y axis name"
             }
         }
-
-        pushUpdates(100)       // start sending updates via websocket to the front-end
     }
 
     server.show()
@@ -53,13 +45,13 @@ fun main() {
             repeat(10) { columnIndex ->
                 repeat(3) { seriesIndex ->
                     delay(200)
-                    traces["Series $seriesIndex"]?.let {bar->
+                    traces["Series $seriesIndex"]?.let { bar ->
                         println("Updating ${bar.name}, Column $columnIndex")
                         //TODO replace with dynamic data API
                         val yValues = bar.y.doubles
-                        yValues[columnIndex] = Random.nextInt(0,100).toDouble()
+                        yValues[columnIndex] = Random.nextInt(0, 100).toDouble()
                         bar.y.doubles = yValues
-                        bar.text.strings = yValues.map { "Updated value of this datapoint is: ${it}"}
+                        bar.text.strings = yValues.map { "Updated value of this datapoint is: $it" }
                     }
                 }
             }

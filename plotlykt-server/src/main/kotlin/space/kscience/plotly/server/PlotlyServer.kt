@@ -109,9 +109,9 @@ public class PlotlyServer internal constructor(
 ) : Configurable, CoroutineScope {
 
     override val coroutineContext: CoroutineContext get() = routing.application.coroutineContext
-    
+
     override val meta: ObservableMutableMeta = MutableMeta()
-    public var updateMode: PlotlyUpdateMode by meta.enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
+    public var updateMode: PlotlyUpdateMode by meta.enum(PlotlyUpdateMode.PUSH, key = UPDATE_MODE_KEY)
     public var updateInterval: Int by meta.int(300, key = UPDATE_INTERVAL_KEY)
     public var embedData: Boolean by meta.boolean(false)
 
@@ -285,7 +285,7 @@ public fun PlotlyServer.pushUpdates(interval: Int = 100): PlotlyServer = apply {
  * Configure client to request regular updates from server. Pull updates are more expensive than push updates since
  * they contain the full plot data and server can't decide what to send.
  */
-public fun PlotlyServer.pullUpdates(interval: Int = 1000): PlotlyServer = apply {
+public fun PlotlyServer.pullUpdates(interval: Int = 500): PlotlyServer = apply {
     updateMode = PlotlyUpdateMode.PULL
     updateInterval = interval
 }
@@ -303,6 +303,20 @@ public fun Plotly.serve(
     plotlyModule().apply(block)
 }.start()
 
+/**
+ * A shortcut to make a single plot at the default page
+ */
+public fun PlotlyServer.plot(
+    plotId: String? = null,
+    config: PlotlyConfig = PlotlyConfig(),
+    plotBuilder: Plot.() -> Unit
+) {
+    page { plotly ->
+        div {
+            plot(plotId = plotId, config = config, renderer = plotly, builder = plotBuilder)
+        }
+    }
+}
 
 public fun ApplicationEngine.show() {
     val connector = environment.connectors.first()
