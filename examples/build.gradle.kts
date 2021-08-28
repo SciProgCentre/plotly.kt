@@ -5,7 +5,7 @@ plugins {
 repositories {
     maven("https://repo.kotlin.link")
     mavenCentral()
-    jcenter()
+    maven("https://jitpack.io")
 }
 
 dependencies {

@@ -6,7 +6,7 @@ val dataforgeVersion by extra("0.5.0")
 
 allprojects {
     group = "space.kscience"
-    version = "0.5.1-dev-2"
+    version = "0.5.1-dev-3"
 }
 
 apiValidation {

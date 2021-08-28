@@ -115,6 +115,16 @@ public class PlotlyServer internal constructor(
     public var updateInterval: Int by meta.int(300, key = UPDATE_INTERVAL_KEY)
     public var embedData: Boolean by meta.boolean(false)
 
+    /**
+     * An override for data (pull/push) service host. By default uses request host
+     */
+    public var dataSourceHost: String? by meta.string()
+
+    /**
+     * An override for data (pull/push) service port. By default uses request port
+     */
+    public var dataSourcePort: Int? by meta.int()
+
     internal val root by lazy { routing.createRouteFromPath(rootRoute) }
 
     /**
@@ -177,8 +187,8 @@ public class PlotlyServer internal constructor(
                     val url = URLBuilder().apply {
                         protocol = URLProtocol.createOrDefault(origin.scheme)
                         //workaround for https://github.com/ktorio/ktor/issues/1663
-                        host = if (origin.host.startsWith("0:")) "[${origin.host}]" else origin.host
-                        port = origin.port
+                        host = dataSourceHost ?: if (origin.host.startsWith("0:")) "[${origin.host}]" else origin.host
+                        port = dataSourcePort ?: origin.port
                         encodedPath = origin.uri
                     }.build()
                     call.respondHtml {

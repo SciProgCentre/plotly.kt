@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - `plotlykt module` with basic Geo API
+- DataSourceHost/DataSourcePost to configure custom networks
 
 ### Changed
 - Replaced krangl by Kotlin-DataFrame
