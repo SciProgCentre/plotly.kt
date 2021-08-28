@@ -4,8 +4,9 @@ import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.names.asName
 import space.kscience.plotly.models.Trace
 import space.kscience.plotly.models.TraceValues
+import space.kscience.plotly.models.geo.json.GeoJsonFeatureCollection
 
-public abstract class GeoTrace: Trace() {
+public abstract class GeoTrace : Trace() {
 
     public val locations: TraceValues by axis
 
@@ -18,6 +19,13 @@ public abstract class GeoTrace: Trace() {
      * TODO replace by typed wrapper
      */
     public var geojson: Meta? by node()
+
+    /**
+     * Set GeoJson from in-memory Json
+     */
+    public fun geoJsonFeatures(collections: GeoJsonFeatureCollection) {
+        geojson = collections.json.toMeta()
+    }
 
     /**
      * An url to geojson
