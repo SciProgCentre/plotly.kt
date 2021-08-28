@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+- Added a protective copy on reading doubleArray from TraceValues
 
 ### Security
 ## [0.5.0]

@@ -6,11 +6,8 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import space.kscience.dataforge.meta.Meta
 import space.kscience.dataforge.meta.toJson
+import space.kscience.plotly.Plotly
 
-
-private val coordinateNames = listOf(
-    "x", "y", "z", "text", "hovertext", "close", "high", "low", "open", "locations", "lon", "lat", "ids"
-)
 
 /**
  * An update message for both data and layout
@@ -26,7 +23,7 @@ public sealed class Update(public val id: String) {
             //patch json to adhere to plotly array in array specification
             val contentJson: JsonObject = content.toJson() as? JsonObject
                 ?: buildJsonObject { put("@value", content.toJson()) }
-            val patchedJson = contentJson + coordinateNames.associateWith { contentJson[it] }
+            val patchedJson = contentJson + Plotly.coordinateNames.associateWith { contentJson[it] }
                 .filter { it.value != null }
                 .mapValues { JsonArray(listOf(it.value!!)) }
             put("content", JsonObject(patchedJson))

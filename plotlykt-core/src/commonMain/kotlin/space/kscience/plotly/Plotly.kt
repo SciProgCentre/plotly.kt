@@ -16,6 +16,10 @@ public object Plotly {
     public const val PLOTLY_CDN: String = "https://cdn.plot.ly/plotly-${VERSION}.min.js"
     //"https://cdnjs.cloudflare.com/ajax/libs/plotly.js/${VERSION}/plotly.min.js"
 
+    public val coordinateNames: List<String> = listOf(
+        "x", "y", "z", "text", "hovertext", "close", "high", "low", "open", "locations", "lon", "lat", "ids"
+    )
+
     public inline fun plot(block: Plot.() -> Unit): Plot = Plot().apply(block)
 }
 

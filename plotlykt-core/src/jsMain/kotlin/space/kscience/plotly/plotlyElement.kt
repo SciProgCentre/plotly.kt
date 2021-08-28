@@ -43,21 +43,13 @@ public fun Element.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig())
             val traceIndex = traceName.index?.toInt() ?: 0
             val traceData = plot.data[traceIndex].toDynamic()
 
-            if (traceData.x != null) {
-                traceData.x = arrayOf(traceData.x)
+            Plotly.coordinateNames.forEach {
+                val data = traceData[it]
+                if (traceData[it] != null) {
+                    traceData[it] = arrayOf(data)
+                }
             }
 
-            if (traceData.y != null) {
-                traceData.y = arrayOf(traceData.y)
-            }
-
-            if (traceData.z != null) {
-                traceData.z = arrayOf(traceData.z)
-            }
-
-            if (traceData.text != null) {
-                traceData.text = arrayOf(traceData.text)
-            }
             PlotlyJs.restyle(this@plot, traceData, arrayOf(traceIndex))
         }
     }

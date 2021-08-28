@@ -41,7 +41,7 @@ fun main(): Unit = withCanvas {
                 name = "Random data"
                 GlobalScope.launch {
                     while (isActive) {
-                        x.numbers = List(500) { rnd.nextDouble() }
+                        x.doubles = DoubleArray(500) { rnd.nextDouble() }
                         delay(300)
                     }
                 }

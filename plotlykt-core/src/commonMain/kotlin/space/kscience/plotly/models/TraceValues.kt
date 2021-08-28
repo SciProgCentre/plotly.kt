@@ -12,7 +12,7 @@ public class TraceValues internal constructor(public val owner: Scheme, name: Na
     public var value: Value? by owner.value(key = name)
 
     public var doubles: DoubleArray
-        get() = value?.doubleArray ?: doubleArrayOf()
+        get() = value?.doubleArray?.copyOf() ?: doubleArrayOf()
         set(value) {
             this.value = DoubleArrayValue(value)
         }
