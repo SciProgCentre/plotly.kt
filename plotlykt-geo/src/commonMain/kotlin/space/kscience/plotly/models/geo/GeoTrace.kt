@@ -10,7 +10,6 @@ public abstract class GeoTrace : Trace() {
 
     public val locations: TraceValues by axis
 
-
     /**
      *
      * Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used.

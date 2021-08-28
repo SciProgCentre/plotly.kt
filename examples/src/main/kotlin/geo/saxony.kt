@@ -48,7 +48,7 @@ fun main() {
             height = 800
         }
 
-        //Setup the background map
+        // Setup the background map
         openStreetMap {
             center {
                 lat = 51.05

@@ -747,7 +747,7 @@ public open class Trace : Scheme() {
     /**
      * Z coordinates
      */
-    public var z: TraceValues = axis(Z_AXIS)
+    public val z: TraceValues = axis(Z_AXIS)
 
     /**
      * Alternate to `y`. Builds a linear space of y coordinates.
