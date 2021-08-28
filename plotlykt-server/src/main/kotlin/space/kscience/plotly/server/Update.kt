@@ -9,7 +9,7 @@ import space.kscience.dataforge.meta.toJson
 
 
 private val coordinateNames = listOf(
-    "x", "y", "z", "text", "close", "high", "low", "open"
+    "x", "y", "z", "text", "hovertext", "close", "high", "low", "open", "locations", "lon", "lat", "ids"
 )
 
 /**

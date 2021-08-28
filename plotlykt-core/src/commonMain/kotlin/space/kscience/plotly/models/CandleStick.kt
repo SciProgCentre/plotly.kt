@@ -50,7 +50,6 @@ public class CandleStick : Trace() {
     public val high: TraceValues by axis
     public val close: TraceValues by axis
     public val low: TraceValues by axis
-    public val hovertext: TraceValues by axis
 
 
     public var candleStickMeta: Value? by value("meta".asName())
