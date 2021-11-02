@@ -9,3 +9,7 @@ val dataforgeVersion: String by rootProject.extra
 dependencies {
     api(project(":plotlykt-core"))
 }
+
+tasks.processJupyterApiResources{
+    libraryProducers = listOf("space.kscience.plotly.PlotlyIntegration")
+}

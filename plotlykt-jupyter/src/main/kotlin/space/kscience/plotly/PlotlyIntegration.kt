@@ -3,7 +3,6 @@ package space.kscience.plotly
 import kotlinx.html.*
 import kotlinx.html.stream.createHTML
 import org.jetbrains.kotlinx.jupyter.api.HTML
-import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
 import space.kscience.plotly.Plotly.PLOTLY_CDN
@@ -19,7 +18,17 @@ public object PlotlyJupyterConfiguration {
         return PlotlyHtmlFragment {
             div {
                 style = "color: blue;"
-                +"Plotly notebook integration switch into the legacy mode."
+                +"Plotly notebook integration switched into the legacy mode."
+            }
+        }
+    }
+
+    public fun lab(): PlotlyHtmlFragment {
+        legacyMode = false
+        return PlotlyHtmlFragment {
+            div {
+                style = "color: blue;"
+                +"Plotly notebook integration switched into the lab mode."
             }
         }
     }
@@ -28,12 +37,9 @@ public object PlotlyJupyterConfiguration {
 /**
  * Global plotly jupyter configuration
  */
-@UnstablePlotlyAPI
 public val Plotly.jupyter: PlotlyJupyterConfiguration
     get() = PlotlyJupyterConfiguration
 
-@UnstablePlotlyAPI
-@JupyterLibrary
 public class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
     override fun FlowContent.renderPlot(plot: Plot, plotId: String, config: PlotlyConfig): Plot {
         div {

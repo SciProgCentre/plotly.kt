@@ -3,7 +3,6 @@ package space.kscience.plotly.fx
 import io.ktor.server.engine.ApplicationEngine
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,7 +15,6 @@ class PlotlyFXController : Controller() {
 
     private var server: ApplicationEngine? = null
 
-    @OptIn(DelicateCoroutinesApi::class)
     fun startServer() {
         GlobalScope.launch(Dispatchers.Default) {
             log.info("Starting server")

@@ -1,7 +1,7 @@
 rootProject.name = "plotly-kt"
 
 pluginManagement {
-    val toolsVersion = "0.10.2"
+    val toolsVersion = "0.10.5"
 
     repositories {
         mavenLocal()

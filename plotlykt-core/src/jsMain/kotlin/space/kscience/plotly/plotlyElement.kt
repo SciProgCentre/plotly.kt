@@ -43,10 +43,10 @@ public fun Element.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig())
             val traceIndex = traceName.index?.toInt() ?: 0
             val traceData = plot.data[traceIndex].toDynamic()
 
-            Plotly.coordinateNames.forEach {
-                val data = traceData[it]
-                if (traceData[it] != null) {
-                    traceData[it] = arrayOf(data)
+            Plotly.coordinateNames.forEach { coordinate ->
+                val data = traceData[coordinate]
+                if (traceData[coordinate] != null) {
+                    traceData[coordinate] = arrayOf(data)
                 }
             }
 
@@ -63,5 +63,5 @@ public inline fun TagConsumer<HTMLElement>.plot(
     plotlyConfig: PlotlyConfig = PlotlyConfig(),
     plotBuilder: Plot.() -> Unit
 ) {
-    div { }.plot(plotlyConfig, plotBuilder)
+    div("plotly-kt-plot") { }.plot(plotlyConfig, plotBuilder)
 }

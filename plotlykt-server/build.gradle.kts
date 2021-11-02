@@ -13,3 +13,7 @@ dependencies {
     api("io.ktor:ktor-websockets:${ru.mipt.npm.gradle.KScienceVersions.ktorVersion}")
     api("space.kscience:dataforge-context:$dataforgeVersion")
 }
+
+tasks.processJupyterApiResources{
+    libraryProducers = listOf("space.kscience.plotly.server.PlotlyServerIntegration")
+}

@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Replaced krangl by Kotlin-DataFrame
 - Plotly server uses push strategy by default
+- Build tools to 0.10.5. Kotlin 1.6-RC
 
 ### Deprecated
 
@@ -20,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Added a protective copy on reading doubleArray from TraceValues
+- #85
 
 ### Security
 ## [0.5.0]

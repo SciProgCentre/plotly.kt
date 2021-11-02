@@ -8,7 +8,6 @@ import kotlinx.html.stream.createHTML
 import kotlinx.html.style
 import kotlinx.html.unsafe
 import org.jetbrains.kotlinx.jupyter.api.HTML
-import org.jetbrains.kotlinx.jupyter.api.annotations.JupyterLibrary
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
 import org.slf4j.LoggerFactory
@@ -50,11 +49,9 @@ private val plotlyConnectHeader = PlotlyHtmlFragment {
 /**
  * Global plotly jupyter configuration
  */
-@UnstablePlotlyAPI
 public val Plotly.jupyter: PlotlyServerConfiguration
     get() = PlotlyServerConfiguration
 
-@JupyterLibrary
 internal class PlotlyServerIntegration : JupyterIntegration() {
     private val logger = LoggerFactory.getLogger(javaClass)
 
@@ -92,7 +89,7 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
             }
         }
         config.meta.onChange(this) { name ->
-            if (name.toString() != PlotlyServerConfiguration::legacyMode.name ) {
+            if (name.toString() != PlotlyServerConfiguration::legacyMode.name) {
                 logger.info("Plotly server config parameter $name changed")
                 doStart()
             }

@@ -20,7 +20,7 @@ public class TraceValues internal constructor(public val owner: Scheme, name: Na
     public var numbers: Iterable<Number>
         get() = value?.list?.map { it.numberOrNull ?: Double.NaN } ?: emptyList()
         set(value) {
-            this.value = value.map { it.asValue() }.asValue()
+            this.value = ListValue(value.map { it.asValue() })
         }
 
     public var strings: Iterable<String>

@@ -257,6 +257,7 @@ internal fun Scheme.duration(
 /**
  * Append the observable note to same-name-siblings and observe its changes.
  */
+@OptIn(DFExperimental::class)
 internal fun ObservableMutableMeta.appendAndAttach(key: String, meta: ObservableMutableMeta) {
     val name = Name.parse(key)
     require(!name.isEmpty()) { "Name could not be empty for append operation" }
