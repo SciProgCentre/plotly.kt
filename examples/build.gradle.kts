@@ -5,7 +5,6 @@ plugins {
 repositories {
     maven("https://repo.kotlin.link")
     mavenCentral()
-    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -13,13 +12,12 @@ dependencies {
     implementation(project(":plotlykt-geo"))
     implementation(kotlin("script-runtime"))
     implementation(project(":plotlykt-script"))
-    //implementation("com.github.holgerbrandl:krangl:0.17")
-    implementation("org.jetbrains.kotlinx:dataframe:0.8.0-dev-299-0.10.0.215")
+    implementation("org.jetbrains.kotlinx:dataframe:0.8.0-dev-968-0.11.0.83")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
-    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    kotlinOptions.freeCompilerArgs = kotlinOptions.freeCompilerArgs +"-Xopt-in=kotlin.RequiresOptIn"
 }
 
 // A workaround for https://youtrack.jetbrains.com/issue/KT-44101

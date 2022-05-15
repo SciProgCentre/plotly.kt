@@ -1,8 +1,8 @@
 package geo
 
 import io.invoke
-import org.jetbrains.dataframe.DataFrame
-import org.jetbrains.dataframe.io.readCSV
+import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.io.readCSV
 import space.kscience.dataforge.meta.invoke
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.layout

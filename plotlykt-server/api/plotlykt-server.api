@@ -13,6 +13,8 @@ public final class space/kscience/plotly/server/PlotlyServer : kotlinx/coroutine
 	public static final field DEFAULT_PAGE Ljava/lang/String;
 	public final fun getApplication ()Lio/ktor/application/Application;
 	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
+	public final fun getDataSourceHost ()Ljava/lang/String;
+	public final fun getDataSourcePort ()Ljava/lang/Integer;
 	public final fun getEmbedData ()Z
 	public synthetic fun getMeta ()Lspace/kscience/dataforge/meta/MutableMeta;
 	public fun getMeta ()Lspace/kscience/dataforge/meta/ObservableMutableMeta;
@@ -23,6 +25,8 @@ public final class space/kscience/plotly/server/PlotlyServer : kotlinx/coroutine
 	public final fun page (Lspace/kscience/plotly/PlotlyFragment;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
 	public static synthetic fun page$default (Lspace/kscience/plotly/server/PlotlyServer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public static synthetic fun page$default (Lspace/kscience/plotly/server/PlotlyServer;Lspace/kscience/plotly/PlotlyFragment;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)V
+	public final fun setDataSourceHost (Ljava/lang/String;)V
+	public final fun setDataSourcePort (Ljava/lang/Integer;)V
 	public final fun setEmbedData (Z)V
 	public final fun setUpdateInterval (I)V
 	public final fun setUpdateMode (Lspace/kscience/plotly/server/PlotlyUpdateMode;)V
@@ -50,6 +54,8 @@ public final class space/kscience/plotly/server/PlotlyServerIntegrationKt {
 
 public final class space/kscience/plotly/server/PlotlyServerKt {
 	public static final fun close (Lio/ktor/server/engine/ApplicationEngine;)V
+	public static final fun plot (Lspace/kscience/plotly/server/PlotlyServer;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun plot$default (Lspace/kscience/plotly/server/PlotlyServer;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun plotlyModule (Lio/ktor/application/Application;Ljava/lang/String;)Lspace/kscience/plotly/server/PlotlyServer;
 	public static synthetic fun plotlyModule$default (Lio/ktor/application/Application;Ljava/lang/String;ILjava/lang/Object;)Lspace/kscience/plotly/server/PlotlyServer;
 	public static final fun pullUpdates (Lspace/kscience/plotly/server/PlotlyServer;I)Lspace/kscience/plotly/server/PlotlyServer;

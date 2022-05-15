@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Replaced krangl by Kotlin-DataFrame
 - Plotly server uses push strategy by default
-- Build tools to 0.10.5. Kotlin 1.6-RC
+- Renderers moved to common
 
 ### Deprecated
 

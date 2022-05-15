@@ -26,7 +26,7 @@ public class PlotGrid {
         id: String = plot.toString(),
         width: Int = 6,
         row: Int? = null,
-        col: Int? = null
+        col: Int? = null,
     ): Plot {
         val actualRow = if (row != null) {
             row
@@ -47,7 +47,7 @@ public class PlotGrid {
         col: Int? = null,
         id: String? = null,
         width: Int = 6,
-        block: Plot.() -> Unit
+        block: Plot.() -> Unit,
     ): Plot {
         val plot = Plotly.plot(block)
         return plot(plot, id ?: plot.toString(), width, row, col)

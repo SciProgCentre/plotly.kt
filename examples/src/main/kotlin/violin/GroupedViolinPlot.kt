@@ -2,8 +2,8 @@ package violin
 
 import io.fromDataFrame
 import io.readResourceAsCsv
-import org.jetbrains.dataframe.column
-import org.jetbrains.dataframe.filter
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.filter
 import space.kscience.dataforge.meta.invoke
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.makeFile

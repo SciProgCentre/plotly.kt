@@ -3,8 +3,10 @@ public final class space/kscience/plotly/BootstrapHeadersKt {
 }
 
 public final class space/kscience/plotly/DfExtKt {
-	public static final fun set (Lspace/kscience/dataforge/meta/MutableMeta;Ljava/lang/String;Ljava/lang/Object;)V
-	public static final fun set (Lspace/kscience/dataforge/meta/Scheme;Ljava/lang/String;Ljava/lang/Object;)V
+	public static final fun numberGreaterThan (Lspace/kscience/dataforge/meta/Scheme;Ljava/lang/Number;Ljava/lang/Number;Lspace/kscience/dataforge/names/Name;)Lkotlin/properties/ReadWriteProperty;
+	public static synthetic fun numberGreaterThan$default (Lspace/kscience/dataforge/meta/Scheme;Ljava/lang/Number;Ljava/lang/Number;Lspace/kscience/dataforge/names/Name;ILjava/lang/Object;)Lkotlin/properties/ReadWriteProperty;
+	public static final fun numberInRange (Lspace/kscience/dataforge/meta/Scheme;Lkotlin/ranges/ClosedRange;Lspace/kscience/dataforge/names/Name;)Lkotlin/properties/ReadWriteProperty;
+	public static synthetic fun numberInRange$default (Lspace/kscience/dataforge/meta/Scheme;Lkotlin/ranges/ClosedRange;Lspace/kscience/dataforge/names/Name;ILjava/lang/Object;)Lkotlin/properties/ReadWriteProperty;
 }
 
 public final class space/kscience/plotly/FileExportKt {
@@ -141,6 +143,7 @@ public final class space/kscience/plotly/Plotly {
 	public static final field INSTANCE Lspace/kscience/plotly/Plotly;
 	public static final field PLOTLY_CDN Ljava/lang/String;
 	public static final field VERSION Ljava/lang/String;
+	public final fun getCoordinateNames ()Ljava/util/List;
 	public final fun plot (Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/Plot;
 }
 
@@ -506,7 +509,6 @@ public final class space/kscience/plotly/models/CandleStick : space/kscience/plo
 	public final fun getClose ()Lspace/kscience/plotly/models/TraceValues;
 	public final fun getDecreasing ()Lspace/kscience/plotly/models/CandleStickLine;
 	public final fun getHigh ()Lspace/kscience/plotly/models/TraceValues;
-	public final fun getHovertext ()Lspace/kscience/plotly/models/TraceValues;
 	public final fun getIds ()Ljava/util/List;
 	public final fun getIncreasing ()Lspace/kscience/plotly/models/CandleStickLine;
 	public final fun getLineWidth ()D
@@ -1803,6 +1805,7 @@ public class space/kscience/plotly/models/Trace : space/kscience/dataforge/meta/
 	public final fun getFillcolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getHoverinfo ()Ljava/lang/String;
 	public final fun getHoverlabel ()Lspace/kscience/plotly/models/Hoverlabel;
+	public final fun getHovertext ()Lspace/kscience/plotly/models/TraceValues;
 	public final fun getLabels ()Ljava/util/List;
 	public final fun getLegendgroup ()Ljava/lang/String;
 	public final fun getLine ()Lspace/kscience/plotly/models/LayoutLine;
@@ -1859,7 +1862,6 @@ public class space/kscience/plotly/models/Trace : space/kscience/dataforge/meta/
 	public final fun setScalegroup (Ljava/lang/String;)V
 	public final fun setShowlegend (Ljava/lang/Boolean;)V
 	public final fun setShowscale (Ljava/lang/Boolean;)V
-	public final fun setText (Lspace/kscience/plotly/models/TraceValues;)V
 	public final fun setTextfont (Lspace/kscience/plotly/models/Font;)V
 	public final fun setTextposition (Lspace/kscience/plotly/models/TextPosition;)V
 	public final fun setTextpositionsList (Ljava/util/List;)V
@@ -1871,7 +1873,6 @@ public class space/kscience/plotly/models/Trace : space/kscience/dataforge/meta/
 	public final fun setXcalendar (Lspace/kscience/plotly/models/Calendar;)V
 	public final fun setY0 (Lspace/kscience/dataforge/values/Value;)V
 	public final fun setYcalendar (Lspace/kscience/plotly/models/Calendar;)V
-	public final fun setZ (Lspace/kscience/plotly/models/TraceValues;)V
 	public final fun setZauto (Ljava/lang/Boolean;)V
 	public final fun setZmax (Ljava/lang/Number;)V
 	public final fun setZmid (Ljava/lang/Number;)V
@@ -1899,6 +1900,9 @@ public final class space/kscience/plotly/models/TraceType : java/lang/Enum {
 	public static final field bar Lspace/kscience/plotly/models/TraceType;
 	public static final field box Lspace/kscience/plotly/models/TraceType;
 	public static final field candlestick Lspace/kscience/plotly/models/TraceType;
+	public static final field choropleth Lspace/kscience/plotly/models/TraceType;
+	public static final field choroplethmapbox Lspace/kscience/plotly/models/TraceType;
+	public static final field cone Lspace/kscience/plotly/models/TraceType;
 	public static final field contour Lspace/kscience/plotly/models/TraceType;
 	public static final field heatmap Lspace/kscience/plotly/models/TraceType;
 	public static final field heatmapgl Lspace/kscience/plotly/models/TraceType;
@@ -1906,11 +1910,21 @@ public final class space/kscience/plotly/models/TraceType : java/lang/Enum {
 	public static final field histogram2d Lspace/kscience/plotly/models/TraceType;
 	public static final field histogram2dcontour Lspace/kscience/plotly/models/TraceType;
 	public static final field image Lspace/kscience/plotly/models/TraceType;
+	public static final field isosurface Lspace/kscience/plotly/models/TraceType;
+	public static final field mesh3d Lspace/kscience/plotly/models/TraceType;
+	public static final field ohlc Lspace/kscience/plotly/models/TraceType;
 	public static final field pie Lspace/kscience/plotly/models/TraceType;
 	public static final field scatter Lspace/kscience/plotly/models/TraceType;
+	public static final field scatter3d Lspace/kscience/plotly/models/TraceType;
+	public static final field scattergeo Lspace/kscience/plotly/models/TraceType;
 	public static final field scattergl Lspace/kscience/plotly/models/TraceType;
+	public static final field scattermapbox Lspace/kscience/plotly/models/TraceType;
+	public static final field streamtube Lspace/kscience/plotly/models/TraceType;
+	public static final field surface Lspace/kscience/plotly/models/TraceType;
 	public static final field table Lspace/kscience/plotly/models/TraceType;
 	public static final field violin Lspace/kscience/plotly/models/TraceType;
+	public static final field volume Lspace/kscience/plotly/models/TraceType;
+	public static final field waterfall Lspace/kscience/plotly/models/TraceType;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TraceType;
 	public static fun values ()[Lspace/kscience/plotly/models/TraceType;
 }

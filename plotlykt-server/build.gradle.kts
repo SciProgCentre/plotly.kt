@@ -5,12 +5,13 @@ plugins {
 }
 
 val dataforgeVersion: String by rootProject.extra
+val ktorVersion = "1.6.6"
 
 dependencies {
     api(project(":plotlykt-core"))
-    api("io.ktor:ktor-server-cio:${ru.mipt.npm.gradle.KScienceVersions.ktorVersion}")
-    api("io.ktor:ktor-html-builder:${ru.mipt.npm.gradle.KScienceVersions.ktorVersion}")
-    api("io.ktor:ktor-websockets:${ru.mipt.npm.gradle.KScienceVersions.ktorVersion}")
+    api("io.ktor:ktor-server-cio:$ktorVersion")
+    api("io.ktor:ktor-html-builder:$ktorVersion")
+    api("io.ktor:ktor-websockets:$ktorVersion")
     api("space.kscience:dataforge-context:$dataforgeVersion")
 }
 

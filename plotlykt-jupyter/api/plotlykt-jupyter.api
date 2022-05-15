@@ -11,6 +11,7 @@ public final class space/kscience/plotly/PlotlyIntegrationKt {
 public final class space/kscience/plotly/PlotlyJupyterConfiguration {
 	public static final field INSTANCE Lspace/kscience/plotly/PlotlyJupyterConfiguration;
 	public final fun getLegacyMode ()Z
+	public final fun lab ()Lspace/kscience/plotly/PlotlyHtmlFragment;
 	public final fun notebook ()Lspace/kscience/plotly/PlotlyHtmlFragment;
 	public final fun setLegacyMode (Z)V
 }

@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm")
     application
-    id("org.openjfx.javafxplugin") version "0.0.9"
+    id("org.openjfx.javafxplugin") version "0.0.10"
 }
 
 repositories {
@@ -13,8 +13,8 @@ repositories {
 
 dependencies {
     implementation(project(":plotlykt-server"))
-    implementation("no.tornado:tornadofx:1.7.19")
-    implementation("ch.qos.logback:logback-classic:1.2.3")
+    implementation("no.tornado:tornadofx:1.7.20")
+    implementation("ch.qos.logback:logback-classic:1.2.11")
 }
 
 javafx{
@@ -26,11 +26,7 @@ application {
     mainClass.set("space.kscience.plotly.fx.PlotlyFXAppKt")
 }
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = "11"
-}
-val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
-    jvmTarget = "11"
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.freeCompilerArgs = kotlinOptions.freeCompilerArgs +"-Xopt-in=kotlin.RequiresOptIn"
 }
