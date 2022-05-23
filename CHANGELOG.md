@@ -14,10 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced krangl by Kotlin-DataFrame
 - Plotly server uses push strategy by default
 - Renderers moved to common
+- Moved to Ktor 2.0
 
 ### Deprecated
 
 ### Removed
+- Moved CORS to `Plotly.serve`
 
 ### Fixed
 - Added a protective copy on reading doubleArray from TraceValues

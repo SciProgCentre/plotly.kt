@@ -1,25 +1,23 @@
 package space.kscience.plotly.server
 
-import io.ktor.application.*
-import io.ktor.features.CORS
-import io.ktor.features.CallLogging
-import io.ktor.features.origin
-import io.ktor.html.respondHtml
 import io.ktor.http.*
-import io.ktor.http.cio.websocket.Frame
-import io.ktor.http.content.resource
-import io.ktor.http.content.static
-import io.ktor.response.respond
-import io.ktor.response.respondText
-import io.ktor.routing.*
+import io.ktor.server.application.*
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
-import io.ktor.websocket.WebSockets
-import io.ktor.websocket.application
-import io.ktor.websocket.webSocket
+import io.ktor.server.html.respondHtml
+import io.ktor.server.http.content.resource
+import io.ktor.server.http.content.static
+import io.ktor.server.plugins.cors.routing.CORS
+import io.ktor.server.plugins.origin
+import io.ktor.server.response.respond
+import io.ktor.server.response.respondText
+import io.ktor.server.routing.*
+import io.ktor.server.websocket.WebSockets
+import io.ktor.server.websocket.webSocket
+import io.ktor.websocket.Frame
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.html.*
 import kotlinx.serialization.json.JsonObject
 import space.kscience.dataforge.meta.*
@@ -49,9 +47,9 @@ internal class ServerPlotlyRenderer(
         div {
             id = plotId
 
-            val dataUrl = baseUrl.copy(
+            val dataUrl = URLBuilder(baseUrl).apply {
                 encodedPath = baseUrl.encodedPath + "/data/$plotId"
-            )
+            }.build()
             script {
                 if (embedData) {
                     unsafe {
@@ -78,10 +76,10 @@ internal class ServerPlotlyRenderer(
                 // starting plot updates if required
                 when (updateMode) {
                     PlotlyUpdateMode.PUSH -> {
-                        val wsUrl = baseUrl.copy(
-                            protocol = URLProtocol.WS,
+                        val wsUrl = URLBuilder(baseUrl).apply {
+                            protocol = URLProtocol.WS
                             encodedPath = baseUrl.encodedPath + "/ws/$plotId"
-                        )
+                        }.build()
                         unsafe {
                             //language=JavaScript
                             +"\n    startPush('$plotId', '$wsUrl');\n"
@@ -256,17 +254,10 @@ public class PlotlyServer internal constructor(
 /**
  * Attach plotly application to given server
  */
-public fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer {
-    if (featureOrNull(WebSockets) == null) {
+public fun Application.plotlyModule(route: String = DEFAULT_PAGE, block: PlotlyServer.() -> Unit = {}): PlotlyServer {
+    if (pluginOrNull(WebSockets) == null) {
         install(WebSockets)
     }
-
-    if (featureOrNull(CORS) == null) {
-        install(CORS) {
-            anyHost()
-        }
-    }
-
 
     routing {
         route(route) {
@@ -279,7 +270,7 @@ public fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer 
     }
 
 //    val root: Route = feature(Routing).createRouteFromPath(route)
-    return PlotlyServer(feature(Routing), route)
+    return PlotlyServer(plugin(Routing), route).apply(block)
 }
 
 
@@ -303,14 +294,19 @@ public fun PlotlyServer.pullUpdates(interval: Int = 500): PlotlyServer = apply {
 /**
  * Start static server (updates via reload)
  */
+@OptIn(DelicateCoroutinesApi::class)
 public fun Plotly.serve(
     scope: CoroutineScope = GlobalScope,
     host: String = "localhost",
     port: Int = 7777,
     block: PlotlyServer.() -> Unit,
 ): ApplicationEngine = scope.embeddedServer(io.ktor.server.cio.CIO, port, host) {
-    install(CallLogging)
-    plotlyModule().apply(block)
+//    install(CallLogging)
+    install(CORS) {
+        anyHost()
+    }
+
+    plotlyModule(block = block)
 }.start()
 
 /**
@@ -319,7 +315,7 @@ public fun Plotly.serve(
 public fun PlotlyServer.plot(
     plotId: String? = null,
     config: PlotlyConfig = PlotlyConfig(),
-    plotBuilder: Plot.() -> Unit
+    plotBuilder: Plot.() -> Unit,
 ) {
     page { plotly ->
         div {

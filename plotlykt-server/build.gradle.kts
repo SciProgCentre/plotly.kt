@@ -1,3 +1,5 @@
+import ru.mipt.npm.gradle.KScienceVersions
+
 plugins {
     id("ru.mipt.npm.gradle.jvm")
     kotlin("jupyter.api")
@@ -5,13 +7,14 @@ plugins {
 }
 
 val dataforgeVersion: String by rootProject.extra
-val ktorVersion = "1.6.6"
+val ktorVersion = KScienceVersions.ktorVersion
 
 dependencies {
     api(project(":plotlykt-core"))
     api("io.ktor:ktor-server-cio:$ktorVersion")
-    api("io.ktor:ktor-html-builder:$ktorVersion")
-    api("io.ktor:ktor-websockets:$ktorVersion")
+    api("io.ktor:ktor-server-html-builder:$ktorVersion")
+    api("io.ktor:ktor-server-websockets:$ktorVersion")
+    api("io.ktor:ktor-server-cors:$ktorVersion")
     api("space.kscience:dataforge-context:$dataforgeVersion")
 }
 
