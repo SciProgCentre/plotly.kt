@@ -1,9 +1,7 @@
 package space.kscience.plotly.models
 
-import space.kscience.dataforge.meta.Scheme
-import space.kscience.dataforge.meta.value
+import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.names.Name
-import space.kscience.dataforge.values.*
 
 /**
  * Type-safe accessor class for values in the trace

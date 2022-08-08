@@ -59,9 +59,10 @@ public inline fun Element.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plot
     plot(Plot().apply(plotBuilder), plotlyConfig)
 }
 
-public inline fun TagConsumer<HTMLElement>.plot(
+/**
+ * Render plot in HTML element using direct plotly API.
+ */
+public inline fun TagConsumer<HTMLElement>.plotElement(
     plotlyConfig: PlotlyConfig = PlotlyConfig(),
-    plotBuilder: Plot.() -> Unit
-) {
-    div("plotly-kt-plot") { }.plot(plotlyConfig, plotBuilder)
-}
+    plotBuilder: Plot.() -> Unit,
+): HTMLElement = div("plotly-kt-plot").apply { plot(plotlyConfig, plotBuilder) }

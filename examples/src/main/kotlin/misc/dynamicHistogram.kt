@@ -1,9 +1,6 @@
 package misc
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.histogram
 import space.kscience.plotly.layout
@@ -12,6 +9,7 @@ import space.kscience.plotly.server.plot
 import space.kscience.plotly.server.serve
 import kotlin.random.Random
 
+@OptIn(DelicateCoroutinesApi::class)
 fun main() {
     val server = Plotly.serve {
         val rnd = Random(222)

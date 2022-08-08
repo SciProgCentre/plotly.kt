@@ -1,7 +1,7 @@
-import ru.mipt.npm.gradle.KScienceVersions
+import space.kscience.gradle.KScienceVersions
 
 plugins {
-    id("ru.mipt.npm.gradle.jvm")
+    id("space.kscience.gradle.jvm")
     kotlin("jupyter.api")
     `maven-publish`
 }

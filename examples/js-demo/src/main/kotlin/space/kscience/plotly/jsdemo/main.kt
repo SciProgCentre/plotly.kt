@@ -10,12 +10,9 @@ import kotlinx.html.js.div
 import kotlinx.html.style
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
-import space.kscience.plotly.histogram
-import space.kscience.plotly.layout
+import space.kscience.plotly.*
 import space.kscience.plotly.models.ScatterMode
 import space.kscience.plotly.models.TraceType
-import space.kscience.plotly.plot
-import space.kscience.plotly.scatter
 import kotlin.random.Random
 
 private fun onDomLoaded(block: (Event) -> Unit) {
@@ -35,7 +32,7 @@ fun main(): Unit = withCanvas {
     div {
         style = "height:50%; width=100%;"
         h1 { +"Histogram demo" }
-        plot {
+        plotElement {
             val rnd = Random(222)
             histogram {
                 name = "Random data"
@@ -79,7 +76,7 @@ fun main(): Unit = withCanvas {
     div {
         style = "height:50%; width=100%;"
         h1 { +"Dynamic trace demo" }
-        plot {
+        plotElement {
             scatter {
                 x(1, 2, 3, 4)
                 y(10, 15, 13, 17)

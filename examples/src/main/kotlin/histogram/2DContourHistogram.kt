@@ -1,6 +1,6 @@
 package histogram
 
-import space.kscience.dataforge.values.Value
+import space.kscience.dataforge.meta.Value
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.layout
 import space.kscience.plotly.makeFile

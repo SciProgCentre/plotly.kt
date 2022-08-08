@@ -1,7 +1,4 @@
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import space.kscience.dataforge.meta.invoke
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.models.Bar
@@ -9,6 +6,7 @@ import space.kscience.plotly.server.*
 import kotlin.random.Random
 
 
+@OptIn(DelicateCoroutinesApi::class)
 fun main() {
     val initialValue = (1..10).toList()
 

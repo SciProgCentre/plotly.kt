@@ -2,7 +2,6 @@ package space.kscience.plotly.models.geo
 
 import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.names.asName
-import space.kscience.dataforge.values.Value
 import space.kscience.plotly.models.Color
 import space.kscience.plotly.models.Layout
 import space.kscience.plotly.models.color

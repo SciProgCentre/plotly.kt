@@ -1,8 +1,8 @@
 package violin
 
 import io.readResourceAsCsv
+import space.kscience.dataforge.meta.Value
 import space.kscience.dataforge.meta.invoke
-import space.kscience.dataforge.values.Value
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.makeFile
 import space.kscience.plotly.models.ViolinPoints

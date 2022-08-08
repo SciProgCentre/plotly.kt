@@ -1,8 +1,6 @@
 package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
-import space.kscience.dataforge.values.Value
-import space.kscience.dataforge.values.asValue
 import space.kscience.plotly.numberGreaterThan
 import space.kscience.plotly.numberInRange
 

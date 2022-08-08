@@ -1,11 +1,7 @@
 package space.kscience.plotly.models
 
-import space.kscience.dataforge.meta.Scheme
-import space.kscience.dataforge.meta.SchemeSpec
-import space.kscience.dataforge.meta.spec
+import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.names.asName
-import space.kscience.dataforge.values.Value
-import space.kscience.dataforge.values.asValue
 import space.kscience.plotly.numberGreaterThan
 
 /**

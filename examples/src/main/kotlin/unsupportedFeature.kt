@@ -1,9 +1,9 @@
+import space.kscience.dataforge.meta.ListValue
 import space.kscience.dataforge.meta.Meta
+import space.kscience.dataforge.meta.asValue
 import space.kscience.dataforge.meta.configure
 import space.kscience.dataforge.meta.invoke
 import space.kscience.dataforge.meta.set
-import space.kscience.dataforge.values.ListValue
-import space.kscience.dataforge.values.asValue
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.makeFile
 import space.kscience.plotly.models.Trace

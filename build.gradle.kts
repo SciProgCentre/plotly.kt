@@ -1,12 +1,12 @@
 plugins {
-    id("ru.mipt.npm.gradle.project")
+    id("space.kscience.gradle.project")
 }
 
-val dataforgeVersion by extra("0.5.2")
+val dataforgeVersion by extra("0.6.0-dev-13")
 
 allprojects {
     group = "space.kscience"
-    version = "0.5.2-dev-2"
+    version = "0.5.3-dev-1"
 }
 
 apiValidation {

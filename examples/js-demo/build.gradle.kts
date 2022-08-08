@@ -16,7 +16,7 @@ kotlin {
 
 dependencies {
     implementation(project(":plotlykt-core"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    implementation(npmlibs.kotlinx.coroutines.core)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

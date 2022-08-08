@@ -1,10 +1,6 @@
 package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
-import space.kscience.dataforge.values.ListValue
-import space.kscience.dataforge.values.Value
-import space.kscience.dataforge.values.asValue
-import space.kscience.dataforge.values.doubleArray
 import space.kscience.plotly.listOfValues
 import space.kscience.plotly.numberGreaterThan
 import space.kscience.plotly.numberInRange
@@ -49,7 +45,7 @@ public class Axis : Scheme() {
 
     /**
      * Enumerated, one of ( "-" | "linear" | "log" | "date" | "category" | "multicategory" ) .
-     * Sets the axis type. By default, plotly attempts to determined
+     * Sets the axis type. By default, plotly attempts to determine
      * the axis type by looking into the data of the traces
      * that referenced the axis in question.
      * Default: "-"

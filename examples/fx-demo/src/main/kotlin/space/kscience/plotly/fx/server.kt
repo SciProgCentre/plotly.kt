@@ -1,10 +1,7 @@
 package space.kscience.plotly.fx
 
 import javafx.beans.value.ObservableIntegerValue
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.layout
 import space.kscience.plotly.models.Trace
@@ -16,6 +13,7 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
+@OptIn(DelicateCoroutinesApi::class)
 fun serve(scale: ObservableIntegerValue) = Plotly.serve(port = 7778) {
     embedData = true //Should be set this way to avoid FX browser bug
 

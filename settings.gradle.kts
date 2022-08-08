@@ -15,10 +15,10 @@ pluginManagement {
     }
 
     plugins {
-        id("ru.mipt.npm.gradle.project") version toolsVersion
-        id("ru.mipt.npm.gradle.mpp") version toolsVersion
-        id("ru.mipt.npm.gradle.jvm") version toolsVersion
-        id("ru.mipt.npm.gradle.js") version toolsVersion
+        id("space.kscience.gradle.project") version toolsVersion
+        id("space.kscience.gradle.mpp") version toolsVersion
+        id("space.kscience.gradle.jvm") version toolsVersion
+        id("space.kscience.gradle.js") version toolsVersion
     }
 }
 
@@ -34,7 +34,7 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("npmlibs") {
-            from("ru.mipt.npm:version-catalog:$toolsVersion")
+            from("space.kscience:version-catalog:$toolsVersion")
         }
     }
 }

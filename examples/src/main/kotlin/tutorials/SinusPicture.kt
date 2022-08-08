@@ -1,6 +1,6 @@
 package tutorials
 
-import space.kscience.dataforge.values.Value
+import space.kscience.dataforge.meta.Value
 import space.kscience.plotly.*
 import space.kscience.plotly.models.*
 import space.kscience.plotly.palettes.Xkcd
