@@ -61,9 +61,9 @@ The examples of the notebooks are shown in [notebooks](./examples/notebooks) dir
 //@file:DependsOn("space.kscience:plotlykt-server:0.5.0") // Use this one for sever integration.
 ```
 
-The module `plotly` allows rendering static plots in Jupyter. Jupyter lab is currently supported. Jupyter notebook (classic) is able to render only `PlotlyPage` objects, so one must convert plots to pages to be able to use notebook (see [demo notebook](./examples/notebooks/plotlykt-demo-classic.ipynb)).
+The module `plotly` allows rendering static plots in Jupyter. Jupyter lab is currently supported. Jupyter notebook (classic) is able to render only `PlotlyPage` objects, so one must convert plots to pages to be able to use notebook (see [demo notebook](./examples/notebooks/plotlykt-demo.ipynb)).
 
-The module `plotly-server` adds server capabilities and allows to render dynamic plots in notebooks (see [demo notebook](./notebooks/plotlykt-server-demo.ipynb)). One must note that for dynamic pages, one must pass `renderer` parameter explicitly to plot like it is done in examples.
+The module `plotly-server` adds server capabilities and allows to render dynamic plots in notebooks (see [demo notebook](./examples/notebooks/plotlykt-server-demo.ipynb)). One must note that for dynamic pages, one must pass `renderer` parameter explicitly to plot like it is done in examples.
 
 ## Direct image render via Orca (experimental)
 [Plotly Orca](https://github.com/plotly/orca) application allows direct rendering of plots (not fragments or pages) to raster of vector images.
