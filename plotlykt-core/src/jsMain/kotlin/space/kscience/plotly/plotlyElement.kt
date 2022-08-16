@@ -21,7 +21,7 @@ private fun List<Scheme>.toDynamic(): Array<dynamic> = map { it.toDynamic() }.to
 /**
  * Attach a plot to this element or update existing plot
  */
-public fun Element.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig()) {
+public fun Element.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plot: Plot) {
     val tracesData = plot.data.toDynamic()
     val layout = plot.layout.toDynamic()
 
@@ -55,14 +55,22 @@ public fun Element.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig())
     }
 }
 
+@Deprecated("Change arguments positions", ReplaceWith("plot(plotlyConfig, plot)"))
+public fun Element.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig()): Unit = plot(plotlyConfig, plot)
+
 public inline fun Element.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plotBuilder: Plot.() -> Unit) {
-    plot(Plot().apply(plotBuilder), plotlyConfig)
+    plot(plotlyConfig, Plot().apply(plotBuilder))
 }
+
+public fun TagConsumer<HTMLElement>.plot(
+    plotlyConfig: PlotlyConfig = PlotlyConfig(),
+    plot: Plot,
+): HTMLElement = div("plotly-kt-plot").apply { plot(plotlyConfig, plot) }
 
 /**
  * Render plot in HTML element using direct plotly API.
  */
-public inline fun TagConsumer<HTMLElement>.plotElement(
+public inline fun TagConsumer<HTMLElement>.plot(
     plotlyConfig: PlotlyConfig = PlotlyConfig(),
     plotBuilder: Plot.() -> Unit,
 ): HTMLElement = div("plotly-kt-plot").apply { plot(plotlyConfig, plotBuilder) }

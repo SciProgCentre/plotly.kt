@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - DataSourceHost/DataSourcePost to configure custom networks
 
 ### Changed
+- Moved renderers to JVM to avoid confusion with JS direct element rendering.
 - DataForge 0.6
 - Replaced krangl by Kotlin-DataFrame
 - Plotly server uses push strategy by default
