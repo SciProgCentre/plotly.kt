@@ -12,7 +12,7 @@
 Dev builds and intermediate artifacts are available via `https://repo.kotlin.link` maven repository.
 
 ## Compatibility note
-The current `0.5.0` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.1.0. The JVM part requires JVM 11 to run.
+The current `$version` version of the library is compatible with kotlin 1.4 with JS-IR and kotlinx-serialization 1.1.0. The JVM part requires JVM 11 to run.
 
 # TL;DR
 See [examples](./examples/src/main/kotlin).
@@ -48,20 +48,22 @@ Plotly is a JavaScript library, yet it is convenient to have a type-safe API whe
 ## JavaFX browser
 Plotly.kt could be run in a JavaFX browser. An example project is presented in [fx-demo](./fx-demo).
 
-## Kotlin jupyter kernel (experimental)
+## Kotlin jupyter kernel
 Plotly.kt comes with (beta-version) support for integration with [Kotlin Jupyter kernel](https://github.com/Kotlin/kotlin-jupyter). See details [here](./docs/tutorials/jupyter.md).
 
 The examples of the notebooks are shown in [notebooks](./examples/notebooks) directory. Plotly.kt uses Kotlin jupyter notebook API for integration (available in kernel version `0.8.3.236` and later). In order to load the library together with automatic imports one need to simply load a library in a following way:
 
 ```kotlin
 @file:Repository("https://repo.kotlin.link")
-@file:DependsOn("space.kscience:plotlykt-jupyter:0.5.0")
-//@file:DependsOn("space.kscience:plotlykt-server:0.5.0") // Use this one for sever integration.
+@file:DependsOn("space.kscience:plotlykt-jupyter:$version")
+//@file:DependsOn("space.kscience:plotlykt-server:$version") // Use this one for sever integration.
 ```
 
 The module `plotly` allows rendering static plots in Jupyter. Jupyter lab is currently supported. Jupyter notebook (classic) is able to render only `PlotlyPage` objects, so one must convert plots to pages to be able to use notebook (see [demo notebook](./notebooks/plotlykt-demo-classic.ipynb)).
 
 The module `plotly-server` adds server capabilities and allows to render dynamic plots in notebooks (see [demo notebook](./notebooks/plotlykt-server-demo.ipynb)). One must note that for dynamic pages, one must pass `renderer` parameter explicitly to plot like it is done in examples.
+
+**IMPORTANT:** By default, Plotly-kt jupyter integration is configured to work with Jupyter Lab frontend, which renders all cells in the same page. Jupyter classic notebook and DataLore use cell isolation with iframes, so you will see blanks instead of plots. It could be fixed by switching into a notebook mode by running `Plotly.jupyter.notebook()` in a cell after plotly library is loaded. 
 
 ## Direct image render via Orca (experimental)
 [Plotly Orca](https://github.com/plotly/orca) application allows direct rendering of plots (not fragments or pages) to raster of vector images.
@@ -92,7 +94,7 @@ repositories {
 }
 
 dependencies {
-    implementation("space.kscience:plotlykt-server:0.5.0")
+    implementation("space.kscience:plotlykt-server:$version")
 }
 ```
 
