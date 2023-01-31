@@ -28,7 +28,7 @@ fun main() {
     val sinTrace = Trace(x, sinY) { name = "sin" }
     val cosTrace = Trace(x, cosY) { name = "cos" }
 
-    val server = Plotly.serve(port = 3872) {
+    val server = Plotly.serve(port = 7878) {
         embedData = true
 
         //root level plots go to default page

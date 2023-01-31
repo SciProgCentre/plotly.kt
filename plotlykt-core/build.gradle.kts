@@ -1,5 +1,5 @@
 plugins {
-    id("ru.mipt.npm.gradle.mpp")
+    id("space.kscience.gradle.mpp")
     `maven-publish`
 }
 
@@ -23,4 +23,12 @@ kotlin {
             }
         }
     }
+}
+
+readme{
+    maturity = space.kscience.gradle.Maturity.DEVELOPMENT
+}
+
+rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+    versions.webpackCli.version = "4.10.0"
 }

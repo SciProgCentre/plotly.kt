@@ -1,7 +1,7 @@
 package contour
 
+import space.kscience.dataforge.meta.Value
 import space.kscience.dataforge.meta.invoke
-import space.kscience.dataforge.values.Value
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.contour
 import space.kscience.plotly.makeFile

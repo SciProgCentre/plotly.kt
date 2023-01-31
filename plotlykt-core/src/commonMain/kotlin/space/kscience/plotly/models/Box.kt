@@ -1,7 +1,6 @@
 package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
-import space.kscience.dataforge.values.Value
 import space.kscience.plotly.doubleInRange
 import space.kscience.plotly.listOfValues
 import space.kscience.plotly.numberGreaterThan

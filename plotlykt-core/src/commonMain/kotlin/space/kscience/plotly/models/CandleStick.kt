@@ -3,8 +3,6 @@ package space.kscience.plotly.models
 import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.names.Name
 import space.kscience.dataforge.names.asName
-import space.kscience.dataforge.values.Value
-import space.kscience.dataforge.values.asValue
 import space.kscience.plotly.doubleInRange
 
 
@@ -50,7 +48,6 @@ public class CandleStick : Trace() {
     public val high: TraceValues by axis
     public val close: TraceValues by axis
     public val low: TraceValues by axis
-    public val hovertext: TraceValues by axis
 
 
     public var candleStickMeta: Value? by value("meta".asName())

@@ -3,7 +3,7 @@ package space.kscience.plotly
 import org.junit.jupiter.api.Test
 import space.kscience.dataforge.meta.MutableMeta
 import space.kscience.dataforge.meta.asObservable
-import space.kscience.dataforge.values.ListValue
+import space.kscience.dataforge.meta.ListValue
 import space.kscience.plotly.models.TraceType
 import kotlin.test.assertEquals
 

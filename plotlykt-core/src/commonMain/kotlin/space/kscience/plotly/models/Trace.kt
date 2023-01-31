@@ -5,8 +5,6 @@ package space.kscience.plotly.models
 import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.names.Name
 import space.kscience.dataforge.names.asName
-import space.kscience.dataforge.values.Value
-import space.kscience.dataforge.values.asValue
 import space.kscience.plotly.*
 import kotlin.js.JsName
 import kotlin.properties.ReadOnlyProperty
@@ -34,23 +32,42 @@ public enum class TraceType {
     histogram2d,
     histogram2dcontour,
 
-    //    // Finance
-//    ohlc,
+    // Finance
+    @UnsupportedPlotlyAPI
+    ohlc,
     candlestick,
-//    waterfall,
-//    // 3D
-//    scatter3d,
-//    surface,
-//    mesh3d,
-//    cone,
-//    streamtube,
-//    volume,
-//    isosurface,
-//    // Maps
-//    scattergeo,
-//    choropleth,
-//    scattermapbox
-//    // Specialized
+
+    @UnsupportedPlotlyAPI
+    waterfall,
+
+    // 3D
+    @UnsupportedPlotlyAPI
+    scatter3d,
+
+    @UnsupportedPlotlyAPI
+    surface,
+
+    @UnsupportedPlotlyAPI
+    mesh3d,
+
+    @UnsupportedPlotlyAPI
+    cone,
+
+    @UnsupportedPlotlyAPI
+    streamtube,
+
+    @UnsupportedPlotlyAPI
+    volume,
+
+    @UnsupportedPlotlyAPI
+    isosurface,
+
+    // Maps
+    scattergeo,
+    choropleth,
+    scattermapbox,
+    choroplethmapbox
+    // Specialized
 }
 
 public enum class Visible {
@@ -728,7 +745,7 @@ public open class Trace : Scheme() {
     /**
      * Z coordinates
      */
-    public var z: TraceValues = axis(Z_AXIS)
+    public val z: TraceValues = axis(Z_AXIS)
 
     /**
      * Alternate to `y`. Builds a linear space of y coordinates.
@@ -848,12 +865,19 @@ public open class Trace : Scheme() {
     public var marker: Marker by spec(Marker)
 
     /**
+     * Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all
+     * the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
+     * To be seen, trace `hoverinfo` must contain a "text" flag.
+     */
+    public val hovertext: TraceValues by axis
+
+    /**
      * Sets text elements associated with each (x,y) pair.
      * The same string appears over all the data points.
      * If trace `hoverinfo` contains a "text" flag and "hovertext" is not set,
      * these elements will be seen in the hover labels.
      */
-    public var text: TraceValues = axis(TEXT_AXIS)
+    public val text: TraceValues = axis(TEXT_AXIS)
 
     /**
      * Sets the position of the `text` elements

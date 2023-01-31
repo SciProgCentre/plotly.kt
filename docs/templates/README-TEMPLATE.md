@@ -48,7 +48,7 @@ Plotly is a JavaScript library, yet it is convenient to have a type-safe API whe
 ## JavaFX browser
 Plotly.kt could be run in a JavaFX browser. An example project is presented in [fx-demo](./fx-demo).
 
-## Kotlin jupyter kernel (experimental)
+## Kotlin jupyter kernel
 Plotly.kt comes with (beta-version) support for integration with [Kotlin Jupyter kernel](https://github.com/Kotlin/kotlin-jupyter). See details [here](./docs/tutorials/jupyter.md).
 
 The examples of the notebooks are shown in [notebooks](./examples/notebooks) directory. Plotly.kt uses Kotlin jupyter notebook API for integration (available in kernel version `0.8.3.236` and later). In order to load the library together with automatic imports one need to simply load a library in a following way:
@@ -62,6 +62,8 @@ The examples of the notebooks are shown in [notebooks](./examples/notebooks) dir
 The module `plotly` allows rendering static plots in Jupyter. Jupyter lab is currently supported. Jupyter notebook (classic) is able to render only `PlotlyPage` objects, so one must convert plots to pages to be able to use notebook (see [demo notebook](./notebooks/plotlykt-demo-classic.ipynb)).
 
 The module `plotly-server` adds server capabilities and allows to render dynamic plots in notebooks (see [demo notebook](./notebooks/plotlykt-server-demo.ipynb)). One must note that for dynamic pages, one must pass `renderer` parameter explicitly to plot like it is done in examples.
+
+**IMPORTANT:** By default, Plotly-kt jupyter integration is configured to work with Jupyter Lab frontend, which renders all cells in the same page. Jupyter classic notebook and DataLore use cell isolation with iframes, so you will see blanks instead of plots. It could be fixed by switching into a notebook mode by running `Plotly.jupyter.notebook()` in a cell after plotly library is loaded. 
 
 ## Direct image render via Orca (experimental)
 [Plotly Orca](https://github.com/plotly/orca) application allows direct rendering of plots (not fragments or pages) to raster of vector images.

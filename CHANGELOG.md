@@ -7,17 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- `plotlykt module` with basic Geo API
+- DataSourceHost/DataSourcePost to configure custom networks
 
 ### Changed
-- Switch to DataForge 0.5
+- Moved renderers to JVM to avoid confusion with JS direct element rendering.
+- DataForge 0.6
+- Replaced krangl by Kotlin-DataFrame
+- Plotly server uses push strategy by default
+- Renderers moved to common
+- Moved to Ktor 2.0
 
 ### Deprecated
 
 ### Removed
+- Moved CORS to `Plotly.serve`
 
 ### Fixed
+- Added a protective copy on reading doubleArray from TraceValues
+- #85
+- Rendering in JS that used backend HTML generation
 
 ### Security
+## [0.5.0]
+
+### Changed
+- Switch to DataForge 0.5
+- 
 ## [0.4.4]
 ### Added
 - Candlestick support

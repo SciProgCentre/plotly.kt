@@ -8,14 +8,14 @@ import kotlinx.html.dom.append
 import kotlinx.html.h1
 import kotlinx.html.js.div
 import kotlinx.html.style
+import kotlinx.serialization.json.Json
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
-import space.kscience.plotly.histogram
-import space.kscience.plotly.layout
+import space.kscience.dataforge.meta.MetaSerializer
+import space.kscience.dataforge.meta.toMutableMeta
+import space.kscience.plotly.*
 import space.kscience.plotly.models.ScatterMode
 import space.kscience.plotly.models.TraceType
-import space.kscience.plotly.plot
-import space.kscience.plotly.scatter
 import kotlin.random.Random
 
 private fun onDomLoaded(block: (Event) -> Unit) {
@@ -118,6 +118,22 @@ fun main(): Unit = withCanvas {
                 title = "Line and Scatter Plot"
             }
         }
+    }
+    div {
+        style = "height:50%; width=100%;"
+        h1 { +"Deserialization" }
+        val plot = Plotly.plot {
+            scatter {
+                x(1, 2, 3, 4)
+                y(10, 15, 13, 17)
+                mode = ScatterMode.markers
+                type = TraceType.scatter
+            }
+        }
+        val serialized = plot.toJsonString()
+        console.log(serialized)
+        val deserialized = Plot(Json.decodeFromString(MetaSerializer, serialized).toMutableMeta())
+        plot(plot = deserialized)
     }
 }
 

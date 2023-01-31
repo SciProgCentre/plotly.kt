@@ -4,6 +4,9 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
 import space.kscience.dataforge.meta.*
+import space.kscience.dataforge.meta.descriptors.Described
+import space.kscience.dataforge.meta.descriptors.MetaDescriptor
+import space.kscience.dataforge.meta.descriptors.node
 import space.kscience.dataforge.misc.DFBuilder
 import space.kscience.plotly.models.Layout
 import space.kscience.plotly.models.Trace
@@ -14,7 +17,7 @@ import space.kscience.plotly.models.Trace
 @DFBuilder
 public class Plot(
     override val meta: ObservableMutableMeta = MutableMeta(),
-) : Configurable, MetaRepr {
+) : Configurable, MetaRepr, Described {
 
     /**
      * Ordered list ot traces in the plot
@@ -53,6 +56,18 @@ public class Plot(
     }
 
     override fun toMeta(): Meta = meta
+
+    override val descriptor: MetaDescriptor get() = Companion.descriptor
+
+    public companion object {
+        public val descriptor: MetaDescriptor = MetaDescriptor {
+            node(Plot::data.name, Trace) {
+                multiple = true
+            }
+
+            node(Plot::layout.name, Layout)
+        }
+    }
 }
 
 private fun Plot.toJson(): JsonObject = buildJsonObject {

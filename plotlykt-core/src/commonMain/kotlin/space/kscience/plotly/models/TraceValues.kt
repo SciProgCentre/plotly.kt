@@ -1,9 +1,7 @@
 package space.kscience.plotly.models
 
-import space.kscience.dataforge.meta.Scheme
-import space.kscience.dataforge.meta.value
+import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.names.Name
-import space.kscience.dataforge.values.*
 
 /**
  * Type-safe accessor class for values in the trace
@@ -12,7 +10,7 @@ public class TraceValues internal constructor(public val owner: Scheme, name: Na
     public var value: Value? by owner.value(key = name)
 
     public var doubles: DoubleArray
-        get() = value?.doubleArray ?: doubleArrayOf()
+        get() = value?.doubleArray?.copyOf() ?: doubleArrayOf()
         set(value) {
             this.value = DoubleArrayValue(value)
         }
@@ -20,7 +18,7 @@ public class TraceValues internal constructor(public val owner: Scheme, name: Na
     public var numbers: Iterable<Number>
         get() = value?.list?.map { it.numberOrNull ?: Double.NaN } ?: emptyList()
         set(value) {
-            this.value = value.map { it.asValue() }.asValue()
+            this.value = ListValue(value.map { it.asValue() })
         }
 
     public var strings: Iterable<String>

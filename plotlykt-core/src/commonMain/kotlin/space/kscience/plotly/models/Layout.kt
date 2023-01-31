@@ -3,7 +3,7 @@
 package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
-import space.kscience.dataforge.values.asValue
+import space.kscience.dataforge.meta.set
 import space.kscience.plotly.appendAndAttach
 import space.kscience.plotly.list
 import space.kscience.plotly.numberGreaterThan

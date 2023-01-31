@@ -1,8 +1,9 @@
 package violin
 
-import krangl.DataFrame
-import krangl.eq
-import krangl.readCSV
+import org.jetbrains.kotlinx.dataframe.DataFrame
+import org.jetbrains.kotlinx.dataframe.api.column
+import org.jetbrains.kotlinx.dataframe.api.filter
+import org.jetbrains.kotlinx.dataframe.io.readCSV
 import space.kscience.dataforge.meta.invoke
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.makeFile
@@ -17,10 +18,12 @@ fun main() {
     val csvUrl = "https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv"
     val df = DataFrame.readCSV(csvUrl)
 
-    val thursdayDf = df.filter { it["day"] eq "Thur" }
-    val fridayDf = df.filter { it["day"] eq "Fri" }
-    val saturdayDf = df.filter { it["day"] eq "Sat" }
-    val sundayDf = df.filter { it["day"] eq "Sun" }
+    val day by column<String>()
+
+    val thursdayDf = df.filter { day() == "Thur" }
+    val fridayDf = df.filter { day() == "Fri" }
+    val saturdayDf = df.filter { day() == "Sat" }
+    val sundayDf = df.filter { day() == "Sun" }
 
     val plot = Plotly.plot {
         violin {

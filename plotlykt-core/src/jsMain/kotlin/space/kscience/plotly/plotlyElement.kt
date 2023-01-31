@@ -21,7 +21,7 @@ private fun List<Scheme>.toDynamic(): Array<dynamic> = map { it.toDynamic() }.to
 /**
  * Attach a plot to this element or update existing plot
  */
-public fun Element.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig()) {
+public fun Element.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plot: Plot) {
     val tracesData = plot.data.toDynamic()
     val layout = plot.layout.toDynamic()
 
@@ -43,33 +43,34 @@ public fun Element.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig())
             val traceIndex = traceName.index?.toInt() ?: 0
             val traceData = plot.data[traceIndex].toDynamic()
 
-            if (traceData.x != null) {
-                traceData.x = arrayOf(traceData.x)
+            Plotly.coordinateNames.forEach { coordinate ->
+                val data = traceData[coordinate]
+                if (traceData[coordinate] != null) {
+                    traceData[coordinate] = arrayOf(data)
+                }
             }
 
-            if (traceData.y != null) {
-                traceData.y = arrayOf(traceData.y)
-            }
-
-            if (traceData.z != null) {
-                traceData.z = arrayOf(traceData.z)
-            }
-
-            if (traceData.text != null) {
-                traceData.text = arrayOf(traceData.text)
-            }
             PlotlyJs.restyle(this@plot, traceData, arrayOf(traceIndex))
         }
     }
 }
 
+@Deprecated("Change arguments positions", ReplaceWith("plot(plotlyConfig, plot)"))
+public fun Element.plot(plot: Plot, plotlyConfig: PlotlyConfig = PlotlyConfig()): Unit = plot(plotlyConfig, plot)
+
 public inline fun Element.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plotBuilder: Plot.() -> Unit) {
-    plot(Plot().apply(plotBuilder), plotlyConfig)
+    plot(plotlyConfig, Plot().apply(plotBuilder))
 }
 
+public fun TagConsumer<HTMLElement>.plot(
+    plotlyConfig: PlotlyConfig = PlotlyConfig(),
+    plot: Plot,
+): HTMLElement = div("plotly-kt-plot").apply { plot(plotlyConfig, plot) }
+
+/**
+ * Render plot in HTML element using direct plotly API.
+ */
 public inline fun TagConsumer<HTMLElement>.plot(
     plotlyConfig: PlotlyConfig = PlotlyConfig(),
-    plotBuilder: Plot.() -> Unit
-) {
-    div { }.plot(plotlyConfig, plotBuilder)
-}
+    plotBuilder: Plot.() -> Unit,
+): HTMLElement = div("plotly-kt-plot").apply { plot(plotlyConfig, plotBuilder) }

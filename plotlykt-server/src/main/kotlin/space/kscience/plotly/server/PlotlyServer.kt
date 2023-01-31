@@ -1,25 +1,23 @@
 package space.kscience.plotly.server
 
-import io.ktor.application.*
-import io.ktor.features.CORS
-import io.ktor.features.CallLogging
-import io.ktor.features.origin
-import io.ktor.html.respondHtml
 import io.ktor.http.*
-import io.ktor.http.cio.websocket.Frame
-import io.ktor.http.content.resource
-import io.ktor.http.content.static
-import io.ktor.response.respond
-import io.ktor.response.respondText
-import io.ktor.routing.*
+import io.ktor.server.application.*
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
-import io.ktor.websocket.WebSockets
-import io.ktor.websocket.application
-import io.ktor.websocket.webSocket
+import io.ktor.server.html.respondHtml
+import io.ktor.server.http.content.resource
+import io.ktor.server.http.content.static
+import io.ktor.server.plugins.cors.routing.CORS
+import io.ktor.server.plugins.origin
+import io.ktor.server.response.respond
+import io.ktor.server.response.respondText
+import io.ktor.server.routing.*
+import io.ktor.server.websocket.WebSockets
+import io.ktor.server.websocket.webSocket
+import io.ktor.websocket.Frame
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.html.*
 import kotlinx.serialization.json.JsonObject
 import space.kscience.dataforge.meta.*
@@ -49,9 +47,9 @@ internal class ServerPlotlyRenderer(
         div {
             id = plotId
 
-            val dataUrl = baseUrl.copy(
+            val dataUrl = URLBuilder(baseUrl).apply {
                 encodedPath = baseUrl.encodedPath + "/data/$plotId"
-            )
+            }.build()
             script {
                 if (embedData) {
                     unsafe {
@@ -78,10 +76,10 @@ internal class ServerPlotlyRenderer(
                 // starting plot updates if required
                 when (updateMode) {
                     PlotlyUpdateMode.PUSH -> {
-                        val wsUrl = baseUrl.copy(
-                            protocol = URLProtocol.WS,
+                        val wsUrl = URLBuilder(baseUrl).apply {
+                            protocol = URLProtocol.WS
                             encodedPath = baseUrl.encodedPath + "/ws/$plotId"
-                        )
+                        }.build()
                         unsafe {
                             //language=JavaScript
                             +"\n    startPush('$plotId', '$wsUrl');\n"
@@ -109,11 +107,21 @@ public class PlotlyServer internal constructor(
 ) : Configurable, CoroutineScope {
 
     override val coroutineContext: CoroutineContext get() = routing.application.coroutineContext
-    
+
     override val meta: ObservableMutableMeta = MutableMeta()
-    public var updateMode: PlotlyUpdateMode by meta.enum(PlotlyUpdateMode.NONE, key = UPDATE_MODE_KEY)
+    public var updateMode: PlotlyUpdateMode by meta.enum(PlotlyUpdateMode.PUSH, key = UPDATE_MODE_KEY)
     public var updateInterval: Int by meta.int(300, key = UPDATE_INTERVAL_KEY)
     public var embedData: Boolean by meta.boolean(false)
+
+    /**
+     * An override for data (pull/push) service host. By default uses request host
+     */
+    public var dataSourceHost: String? by meta.string()
+
+    /**
+     * An override for data (pull/push) service port. By default uses request port
+     */
+    public var dataSourcePort: Int? by meta.int()
 
     internal val root by lazy { routing.createRouteFromPath(rootRoute) }
 
@@ -177,8 +185,8 @@ public class PlotlyServer internal constructor(
                     val url = URLBuilder().apply {
                         protocol = URLProtocol.createOrDefault(origin.scheme)
                         //workaround for https://github.com/ktorio/ktor/issues/1663
-                        host = if (origin.host.startsWith("0:")) "[${origin.host}]" else origin.host
-                        port = origin.port
+                        host = dataSourceHost ?: if (origin.host.startsWith("0:")) "[${origin.host}]" else origin.host
+                        port = dataSourcePort ?: origin.port
                         encodedPath = origin.uri
                     }.build()
                     call.respondHtml {
@@ -246,17 +254,10 @@ public class PlotlyServer internal constructor(
 /**
  * Attach plotly application to given server
  */
-public fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer {
-    if (featureOrNull(WebSockets) == null) {
+public fun Application.plotlyModule(route: String = DEFAULT_PAGE, block: PlotlyServer.() -> Unit = {}): PlotlyServer {
+    if (pluginOrNull(WebSockets) == null) {
         install(WebSockets)
     }
-
-    if (featureOrNull(CORS) == null) {
-        install(CORS) {
-            anyHost()
-        }
-    }
-
 
     routing {
         route(route) {
@@ -269,7 +270,7 @@ public fun Application.plotlyModule(route: String = DEFAULT_PAGE): PlotlyServer 
     }
 
 //    val root: Route = feature(Routing).createRouteFromPath(route)
-    return PlotlyServer(feature(Routing), route)
+    return PlotlyServer(plugin(Routing), route).apply(block)
 }
 
 
@@ -285,7 +286,7 @@ public fun PlotlyServer.pushUpdates(interval: Int = 100): PlotlyServer = apply {
  * Configure client to request regular updates from server. Pull updates are more expensive than push updates since
  * they contain the full plot data and server can't decide what to send.
  */
-public fun PlotlyServer.pullUpdates(interval: Int = 1000): PlotlyServer = apply {
+public fun PlotlyServer.pullUpdates(interval: Int = 500): PlotlyServer = apply {
     updateMode = PlotlyUpdateMode.PULL
     updateInterval = interval
 }
@@ -293,16 +294,35 @@ public fun PlotlyServer.pullUpdates(interval: Int = 1000): PlotlyServer = apply 
 /**
  * Start static server (updates via reload)
  */
+@OptIn(DelicateCoroutinesApi::class)
 public fun Plotly.serve(
     scope: CoroutineScope = GlobalScope,
     host: String = "localhost",
     port: Int = 7777,
     block: PlotlyServer.() -> Unit,
 ): ApplicationEngine = scope.embeddedServer(io.ktor.server.cio.CIO, port, host) {
-    install(CallLogging)
-    plotlyModule().apply(block)
+//    install(CallLogging)
+    install(CORS) {
+        anyHost()
+    }
+
+    plotlyModule(block = block)
 }.start()
 
+/**
+ * A shortcut to make a single plot at the default page
+ */
+public fun PlotlyServer.plot(
+    plotId: String? = null,
+    config: PlotlyConfig = PlotlyConfig(),
+    plotBuilder: Plot.() -> Unit,
+) {
+    page { plotly ->
+        div {
+            plot(plotId = plotId, config = config, renderer = plotly, builder = plotBuilder)
+        }
+    }
+}
 
 public fun ApplicationEngine.show() {
     val connector = environment.connectors.first()
