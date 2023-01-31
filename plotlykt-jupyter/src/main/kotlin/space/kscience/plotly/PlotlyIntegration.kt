@@ -97,7 +97,7 @@ public class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
         import("space.kscience.plotly.jupyter")
 
         render<PlotlyHtmlFragment> {
-            HTML(it.toString())
+            HTML(it.toString(),true)
         }
 
         val renderer = this@PlotlyIntegration
