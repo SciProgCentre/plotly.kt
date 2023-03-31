@@ -268,11 +268,13 @@ public final class space/kscience/plotly/models/Axis : space/kscience/dataforge/
 	public final fun getGridwidth ()Ljava/lang/Number;
 	public final fun getLinecolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getLinewidth ()Ljava/lang/Number;
+	public final fun getOverlaying ()Ljava/lang/String;
 	public final fun getPosition ()Ljava/lang/Number;
 	public final fun getRange ()Lkotlin/ranges/ClosedFloatingPointRange;
 	public final fun getShowgrid ()Ljava/lang/Boolean;
 	public final fun getShowline ()Ljava/lang/Boolean;
 	public final fun getShowticklabels ()Ljava/lang/Boolean;
+	public final fun getSide ()Lspace/kscience/plotly/models/AxisSide;
 	public final fun getTickangle ()Ljava/lang/Number;
 	public final fun getTickcolor ()Lspace/kscience/plotly/models/Color;
 	public final fun getTickfont ()Lspace/kscience/plotly/models/Font;
@@ -298,11 +300,13 @@ public final class space/kscience/plotly/models/Axis : space/kscience/dataforge/
 	public final fun setDtick (Lspace/kscience/dataforge/meta/Value;)V
 	public final fun setGridwidth (Ljava/lang/Number;)V
 	public final fun setLinewidth (Ljava/lang/Number;)V
+	public final fun setOverlaying (Ljava/lang/String;)V
 	public final fun setPosition (Ljava/lang/Number;)V
 	public final fun setRange (Lkotlin/ranges/ClosedFloatingPointRange;)V
 	public final fun setShowgrid (Ljava/lang/Boolean;)V
 	public final fun setShowline (Ljava/lang/Boolean;)V
 	public final fun setShowticklabels (Ljava/lang/Boolean;)V
+	public final fun setSide (Lspace/kscience/plotly/models/AxisSide;)V
 	public final fun setTickangle (Ljava/lang/Number;)V
 	public final fun setTickfont (Lspace/kscience/plotly/models/Font;)V
 	public final fun setTicklen (Ljava/lang/Number;)V
@@ -323,6 +327,15 @@ public final class space/kscience/plotly/models/Axis : space/kscience/dataforge/
 }
 
 public final class space/kscience/plotly/models/Axis$Companion : space/kscience/dataforge/meta/SchemeSpec {
+}
+
+public final class space/kscience/plotly/models/AxisSide : java/lang/Enum {
+	public static final field bottom Lspace/kscience/plotly/models/AxisSide;
+	public static final field left Lspace/kscience/plotly/models/AxisSide;
+	public static final field right Lspace/kscience/plotly/models/AxisSide;
+	public static final field top Lspace/kscience/plotly/models/AxisSide;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/AxisSide;
+	public static fun values ()[Lspace/kscience/plotly/models/AxisSide;
 }
 
 public final class space/kscience/plotly/models/AxisType : java/lang/Enum {
@@ -1105,6 +1118,75 @@ public final class space/kscience/plotly/models/Hoverlabel : space/kscience/data
 public final class space/kscience/plotly/models/Hoverlabel$Companion : space/kscience/dataforge/meta/SchemeSpec {
 }
 
+public final class space/kscience/plotly/models/Image : space/kscience/dataforge/meta/Scheme {
+	public static final field Companion Lspace/kscience/plotly/models/Image$Companion;
+	public fun <init> ()V
+	public final fun getLayer ()Lspace/kscience/plotly/models/ImageLayer;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOpacity ()D
+	public final fun getSizex ()D
+	public final fun getSizey ()D
+	public final fun getSizing ()Lspace/kscience/plotly/models/ImageSizing;
+	public final fun getSource ()Ljava/lang/String;
+	public final fun getTemplateitemname ()Ljava/lang/String;
+	public final fun getVisible ()Z
+	public final fun getX ()D
+	public final fun getXanchor ()Lspace/kscience/plotly/models/ImageXAnchor;
+	public final fun getXref ()Ljava/lang/String;
+	public final fun getY ()D
+	public final fun getYanchor ()Lspace/kscience/plotly/models/ImageYAnchor;
+	public final fun getYref ()Ljava/lang/String;
+	public final fun setLayer (Lspace/kscience/plotly/models/ImageLayer;)V
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setOpacity (D)V
+	public final fun setSizex (D)V
+	public final fun setSizey (D)V
+	public final fun setSizing (Lspace/kscience/plotly/models/ImageSizing;)V
+	public final fun setSource (Ljava/lang/String;)V
+	public final fun setTemplateitemname (Ljava/lang/String;)V
+	public final fun setVisible (Z)V
+	public final fun setX (D)V
+	public final fun setXanchor (Lspace/kscience/plotly/models/ImageXAnchor;)V
+	public final fun setXref (Ljava/lang/String;)V
+	public final fun setY (D)V
+	public final fun setYanchor (Lspace/kscience/plotly/models/ImageYAnchor;)V
+	public final fun setYref (Ljava/lang/String;)V
+}
+
+public final class space/kscience/plotly/models/Image$Companion : space/kscience/dataforge/meta/SchemeSpec {
+}
+
+public final class space/kscience/plotly/models/ImageLayer : java/lang/Enum {
+	public static final field above Lspace/kscience/plotly/models/ImageLayer;
+	public static final field below Lspace/kscience/plotly/models/ImageLayer;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ImageLayer;
+	public static fun values ()[Lspace/kscience/plotly/models/ImageLayer;
+}
+
+public final class space/kscience/plotly/models/ImageSizing : java/lang/Enum {
+	public static final field contain Lspace/kscience/plotly/models/ImageSizing;
+	public static final field fill Lspace/kscience/plotly/models/ImageSizing;
+	public static final field stretch Lspace/kscience/plotly/models/ImageSizing;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ImageSizing;
+	public static fun values ()[Lspace/kscience/plotly/models/ImageSizing;
+}
+
+public final class space/kscience/plotly/models/ImageXAnchor : java/lang/Enum {
+	public static final field center Lspace/kscience/plotly/models/ImageXAnchor;
+	public static final field left Lspace/kscience/plotly/models/ImageXAnchor;
+	public static final field right Lspace/kscience/plotly/models/ImageXAnchor;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ImageXAnchor;
+	public static fun values ()[Lspace/kscience/plotly/models/ImageXAnchor;
+}
+
+public final class space/kscience/plotly/models/ImageYAnchor : java/lang/Enum {
+	public static final field bottom Lspace/kscience/plotly/models/ImageYAnchor;
+	public static final field middle Lspace/kscience/plotly/models/ImageYAnchor;
+	public static final field top Lspace/kscience/plotly/models/ImageYAnchor;
+	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ImageYAnchor;
+	public static fun values ()[Lspace/kscience/plotly/models/ImageYAnchor;
+}
+
 public final class space/kscience/plotly/models/Layout : space/kscience/dataforge/meta/Scheme {
 	public static final field Companion Lspace/kscience/plotly/models/Layout$Companion;
 	public fun <init> ()V
@@ -1140,6 +1222,8 @@ public final class space/kscience/plotly/models/Layout : space/kscience/dataforg
 	public final fun getWidth ()Ljava/lang/Number;
 	public final fun getXaxis ()Lspace/kscience/plotly/models/Axis;
 	public final fun getYaxis ()Lspace/kscience/plotly/models/Axis;
+	public final fun image (Lkotlin/jvm/functions/Function1;)V
+	public final fun image (Lspace/kscience/plotly/models/Image;)V
 	public final fun legend (Lkotlin/jvm/functions/Function1;)V
 	public final fun margin (Lkotlin/jvm/functions/Function1;)V
 	public final fun setAnnotations (Ljava/util/List;)V
@@ -1170,6 +1254,7 @@ public final class space/kscience/plotly/models/Layout : space/kscience/dataforg
 	public final fun setYaxis (Lspace/kscience/plotly/models/Axis;)V
 	public final fun title (Lkotlin/jvm/functions/Function1;)V
 	public final fun xaxis (Lkotlin/jvm/functions/Function1;)V
+	public final fun yaxis (ILkotlin/jvm/functions/Function1;)V
 	public final fun yaxis (Lkotlin/jvm/functions/Function1;)V
 }
 
@@ -1428,6 +1513,7 @@ public class space/kscience/plotly/models/Scatter : space/kscience/plotly/models
 	public final fun getStackgaps ()Lspace/kscience/plotly/models/StackGaps;
 	public final fun getStackgroup ()Ljava/lang/String;
 	public fun getUnselected ()Lspace/kscience/plotly/models/SelectPoints;
+	public final fun getYaxis ()Ljava/lang/String;
 	public final fun selected (Lkotlin/jvm/functions/Function1;)V
 	public final fun setFill (Lspace/kscience/plotly/models/FillType;)V
 	public final fun setGroupnorm (Lspace/kscience/plotly/models/GroupNorm;)V
@@ -1438,6 +1524,7 @@ public class space/kscience/plotly/models/Scatter : space/kscience/plotly/models
 	public final fun setStackgaps (Lspace/kscience/plotly/models/StackGaps;)V
 	public final fun setStackgroup (Ljava/lang/String;)V
 	public fun setUnselected (Lspace/kscience/plotly/models/SelectPoints;)V
+	public final fun setYaxis (Ljava/lang/String;)V
 	public final fun unselected (Lkotlin/jvm/functions/Function1;)V
 }
 

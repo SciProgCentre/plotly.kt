@@ -296,20 +296,46 @@ public class Layout : Scheme() {
         axisSpec.apply(block)
     }
 
+    /**
+     * Add a [Text] annotation to layout
+     */
     public fun annotation(an: Text) {
         meta.appendAndAttach("annotations", an.meta)
     }
 
+    /**
+     * Add a [Text] annotation to layout
+     */
     public fun annotation(anBuilder: Text.() -> Unit) {
         annotation(Text(anBuilder))
     }
 
+    /**
+     * Add a [Shape] to layout
+     */
     public fun figure(sh: Shape) {
         meta.appendAndAttach("shapes", sh.meta)
     }
 
+    /**
+     * Add a [Shape] to layout
+     */
     public fun figure(shBuilder: Shape.() -> Unit) {
         figure(Shape(shBuilder))
+    }
+
+    /**
+     * Add an image to the layout
+     */
+    public fun image(image: Image) {
+        meta.appendAndAttach("images", image.meta)
+    }
+
+    /**
+     * Add an image to the layout
+     */
+    public fun image(block: Image.() -> Unit) {
+        image(Image(block))
     }
 
     public fun margin(block: Margin.() -> Unit) {
