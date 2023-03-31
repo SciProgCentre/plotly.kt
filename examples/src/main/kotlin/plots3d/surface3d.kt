@@ -1,9 +1,9 @@
 package plots3d
 
 import space.kscience.dataforge.meta.asValue
-import space.kscience.dataforge.meta.configure
 import space.kscience.plotly.Plotly
 import space.kscience.plotly.makeFile
+import space.kscience.plotly.models.TraceType
 import space.kscience.plotly.trace
 
 private fun l(vararg numbers: Number) = numbers.map { it.asValue() }.asValue()
@@ -28,9 +28,7 @@ fun main() {
                 l(8.99, 8.99, 8.98, 9.18, 9.2, 9.19),
                 l(8.93, 8.97, 8.97, 9.18, 9.2, 9.18)
             ).asValue()
-            configure {
-                "type" put "surface"
-            }
+            type = TraceType.surface
         }
     }
     plot.makeFile()
