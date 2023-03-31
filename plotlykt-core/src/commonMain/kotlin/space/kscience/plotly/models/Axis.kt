@@ -31,6 +31,10 @@ public enum class Ticks {
     outside
 }
 
+public enum class AxisSide {
+    top, bottom, left, right
+}
+
 /**
  * Axis scheme
  */
@@ -258,6 +262,21 @@ public class Axis : Scheme() {
      * Only has an effect if `anchor` is set to "free". Default: 0.
      */
     public var position: Number by numberInRange(0.0..1.0)
+
+    /**
+     * Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.
+     */
+    public var side: AxisSide? by value<AxisSide?>(
+        writer = { it?.name?.asValue() },
+        reader = { value -> value?.string?.let { enumValueOf<AxisSide>(it) } }
+    )
+
+    /**
+     * If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis,
+     * with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes.
+     * In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
+     */
+    public var overlaying: String? by string()
 
     public fun title(block: Title.() -> Unit) {
         val spec = Title.write(meta.getOrCreate("title"))

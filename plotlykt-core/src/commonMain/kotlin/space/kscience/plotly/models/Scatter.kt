@@ -132,6 +132,12 @@ public open class Scatter : Trace(), SelectedPoints {
      */
     public var stackgaps: StackGaps by enum(StackGaps.`infer zero`)
 
+    /**
+     * Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If "y" (the default value),
+     * the y coordinates refer to `layout.yaxis`. If "y2", the y coordinates refer to `layout.yaxis2`, and so on.
+     */
+    public var yaxis: String by string("y")
+
     public fun selected(block: SelectPoints.() -> Unit) {
         selected = SelectPoints(block)
     }
