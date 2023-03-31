@@ -6,6 +6,7 @@ plugins {
 kscience{
     jvm()
     js()
+    native()
     dependencies {
         api(project(":plotlykt-core"))
     }

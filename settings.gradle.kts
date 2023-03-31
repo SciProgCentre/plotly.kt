@@ -46,5 +46,6 @@ include(
     ":plotlykt-script",
     ":examples",
     ":examples:fx-demo",
-    ":examples:js-demo"
+    ":examples:js-demo",
+    ":examples:native-demo"
 )

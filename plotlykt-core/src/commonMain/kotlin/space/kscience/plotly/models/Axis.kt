@@ -24,7 +24,7 @@ public enum class TickMode {
 }
 
 public enum class Ticks {
-    @Suppress("EnumEntryName")
+    @Suppress("EnumEntryName", "DANGEROUS_CHARACTERS")
     @JsName("empty")
     `""`,
     inside,

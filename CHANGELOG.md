@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- API for background images (https://github.com/SciProgCentre/plotly.kt/issues/49)
+- API for multiple Y axis (https://github.com/SciProgCentre/plotly.kt/issues/92)
+- Native support
 - `plotlykt module` with basic Geo API
 - DataSourceHost/DataSourcePost to configure custom networks
 
