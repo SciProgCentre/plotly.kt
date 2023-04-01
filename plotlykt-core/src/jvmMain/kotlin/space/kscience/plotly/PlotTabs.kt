@@ -2,6 +2,8 @@ package space.kscience.plotly
 
 import kotlinx.html.*
 
+@UnstablePlotlyAPI
+@Deprecated("Discontinued in favor of VisionForge layouts")
 public class PlotTabs {
     public data class Tab(val title: String, val id: String, val content: PlotlyFragment)
 
@@ -14,6 +16,7 @@ public class PlotTabs {
 }
 
 @UnstablePlotlyAPI
+@Deprecated("Discontinued in favor of VisionForge layouts")
 public fun Plotly.tabs(tabsID: String = "tabs", block: PlotTabs.() -> Unit): PlotlyPage {
     val grid = PlotTabs().apply(block)
 

@@ -2,6 +2,7 @@ package space.kscience.plotly
 
 import okio.FileSystem
 import okio.Path
+import okio.Path.Companion.toPath
 
 /**
  * Create a standalone html with the plot
@@ -15,6 +16,31 @@ public fun Plot.makeFile(
     config: PlotlyConfig = PlotlyConfig(),
 ) {
     FileSystem.SYSTEM.write(path, true) {
-        writeUtf8( toHTML(cdnPlotlyHeader, config = config))
+        writeUtf8(toHTML(cdnPlotlyHeader, config = config))
     }
+}
+
+@UnstablePlotlyAPI
+public fun Plot.makeFile(
+    path: String,
+    config: PlotlyConfig = PlotlyConfig(),
+) {
+    makeFile(path.toPath(), config)
+}
+
+/**
+ * Export a page html to a file.
+ */
+@UnstablePlotlyAPI
+public fun PlotlyPage.makeFile(path: Path) {
+    FileSystem.SYSTEM.write(path, true) {
+        writeUtf8(render())
+    }
+}
+
+@UnstablePlotlyAPI
+public fun PlotlyPage.makeFile(
+    path: String,
+) {
+    makeFile(path.toPath())
 }

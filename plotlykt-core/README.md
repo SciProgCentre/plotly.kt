@@ -6,7 +6,7 @@
 
 ## Artifact:
 
-The Maven coordinates of this project are `space.kscience:plotlykt-core:0.5.3-dev-2`.
+The Maven coordinates of this project are `space.kscience:plotlykt-core:0.5.3`.
 
 **Gradle Groovy:**
 ```groovy
@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'space.kscience:plotlykt-core:0.5.3-dev-2'
+    implementation 'space.kscience:plotlykt-core:0.5.3'
 }
 ```
 **Gradle Kotlin DSL:**
@@ -27,6 +27,6 @@ repositories {
 }
 
 dependencies {
-    implementation("space.kscience:plotlykt-core:0.5.3-dev-2")
+    implementation("space.kscience:plotlykt-core:0.5.3")
 }
 ```

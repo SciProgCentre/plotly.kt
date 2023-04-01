@@ -17,7 +17,7 @@ fun main() {
     val trace1 = Trace(x1, y1) { name = "sin" }
     val trace2 = Trace(x1, y2) { name = "cos" }
 
-    Plotly.fragment { container ->
+    Plotly.page { container ->
         plot(renderer = container) {
             traces(trace1, trace2)
             layout {

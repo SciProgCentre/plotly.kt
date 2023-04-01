@@ -6,6 +6,7 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
+@Suppress("DEPRECATION")
 @UnstablePlotlyAPI
 fun main() {
 

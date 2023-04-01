@@ -24,14 +24,13 @@ This project is developed to allow simple access to plotly functionality from ko
 
 The library supports three drawable plot objects:
 * `Plot` itself stands for a stand-alone plot frame. It requires external infrastructure to load appropriate JavaScript libraries.
-* `PlotFragment` (JVM only) is an HTML fragment possibly including several plots. The API for html is provided by [kotlinx-html](https://github.com/Kotlin/kotlinx.html) library.
-* `PlotlyPage` (JVM only) is a complete page, including body fragment and page headers (needed to load JavaScript part of Plotly).
+* `PlotFragment` is an HTML fragment possibly including several plots. The API for html is provided by [kotlinx-html](https://github.com/Kotlin/kotlinx.html) library.
+* `PlotlyPage` is a complete page, including body fragment and page headers (needed to load JavaScript part of Plotly).
 
 The work with plotly graphs could be rendered in following modes:
 
 ## HTML page export
-(JVM only) Export plot or a plot grid in a standalone html file, which
-uses CDN based plotly distribution. This mode does not support updates.
+(JVM and native) Export plot or page in a standalone html file, using CDN distribution or local JS file (JVM only). This mode does not support updates.
 
 See [staticPlot](./examples/src/main/kotlin/staticPlot.kt) and  
 [customPage](./examples/src/main/kotlin/customPage.kt) for examples.
@@ -71,6 +70,9 @@ The module `plotly-server` adds server capabilities and allows to render dynamic
 
 ## Kotlin-scripting (experimental)
 It is possible to separate script logic into stand-alone `plotly.kts` script file and generate an html from the command line. See [plotlykt-script](./plotlykt-script) module for details.
+
+## Kotlin/Native (experimental)
+Plotly model now fully supports Kotlin/Native. It means that you can use it to create a proper Plotly-based HTML file. You will still need browser to view it. You can use [native-demo](./examples/native-demo) example.
 
 # The feature I need is not implemented!
 
