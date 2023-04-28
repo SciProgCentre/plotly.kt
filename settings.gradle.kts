@@ -1,7 +1,6 @@
 rootProject.name = "plotly-kt"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-enableFeaturePreview("VERSION_CATALOGS")
 
 pluginManagement {
 
@@ -33,7 +32,7 @@ dependencyResolutionManagement {
     }
 
     versionCatalogs {
-        create("npmlibs") {
+        create("spclibs") {
             from("space.kscience:version-catalog:$toolsVersion")
         }
     }
@@ -47,5 +46,6 @@ include(
     ":plotlykt-script",
     ":examples",
     ":examples:fx-demo",
-    ":examples:js-demo"
+    ":examples:js-demo",
+    ":examples:native-demo"
 )

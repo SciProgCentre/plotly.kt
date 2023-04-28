@@ -3,6 +3,7 @@ package  space.kscience.plotly
 import kotlinx.html.div
 
 @UnstablePlotlyAPI
+@Deprecated("Discontinued in favor of VisionForge layouts")
 public class PlotGrid {
     public data class PlotCell(val id: String, val plot: Plot, val row: Int, val col: Int, val width: Int = 1)
 
@@ -55,6 +56,7 @@ public class PlotGrid {
 }
 
 @UnstablePlotlyAPI
+@Deprecated("Discontinued in favor of VisionForge layouts")
 public fun Plotly.grid(block: PlotGrid.() -> Unit): PlotlyPage {
     val grid = PlotGrid().apply(block)
     return page(cdnBootstrap, cdnPlotlyHeader) { container ->

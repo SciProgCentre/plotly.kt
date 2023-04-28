@@ -3,32 +3,26 @@ plugins {
     `maven-publish`
 }
 
-kscience {
-    useHtml()
-}
-
 val dataforgeVersion: String by rootProject.extra
+val plotlyVersion: String by rootProject.extra
 
-kotlin {
-    sourceSets {
-        commonMain {
-            dependencies {
-                api("space.kscience:dataforge-meta:$dataforgeVersion")
-            }
-        }
+kscience {
+    jvm()
+    js()
+    native()
+    dependencies {
+        api("space.kscience:dataforge-meta:$dataforgeVersion")
+        api(spclibs.kotlinx.html)
+    }
+    dependencies(jsMain) {
+        api(npm("plotly.js", plotlyVersion))
+    }
 
-        jsMain {
-            dependencies {
-                api(npm("plotly.js", "1.54.6"))
-            }
-        }
+    dependencies(nativeMain) {
+        implementation("com.squareup.okio:okio:3.3.0")
     }
 }
 
-readme{
+readme {
     maturity = space.kscience.gradle.Maturity.DEVELOPMENT
-}
-
-rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
-    versions.webpackCli.version = "4.10.0"
 }

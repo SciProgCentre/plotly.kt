@@ -11,7 +11,7 @@ public final class space/kscience/plotly/server/MetaChangeCollectorKt {
 public final class space/kscience/plotly/server/PlotlyServer : kotlinx/coroutines/CoroutineScope, space/kscience/dataforge/meta/Configurable {
 	public static final field Companion Lspace/kscience/plotly/server/PlotlyServer$Companion;
 	public static final field DEFAULT_PAGE Ljava/lang/String;
-	public final fun getApplication ()Lio/ktor/application/Application;
+	public final fun getApplication ()Lio/ktor/server/application/Application;
 	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
 	public final fun getDataSourceHost ()Ljava/lang/String;
 	public final fun getDataSourcePort ()Ljava/lang/Integer;
@@ -56,8 +56,8 @@ public final class space/kscience/plotly/server/PlotlyServerKt {
 	public static final fun close (Lio/ktor/server/engine/ApplicationEngine;)V
 	public static final fun plot (Lspace/kscience/plotly/server/PlotlyServer;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun plot$default (Lspace/kscience/plotly/server/PlotlyServer;Ljava/lang/String;Lspace/kscience/plotly/PlotlyConfig;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun plotlyModule (Lio/ktor/application/Application;Ljava/lang/String;)Lspace/kscience/plotly/server/PlotlyServer;
-	public static synthetic fun plotlyModule$default (Lio/ktor/application/Application;Ljava/lang/String;ILjava/lang/Object;)Lspace/kscience/plotly/server/PlotlyServer;
+	public static final fun plotlyModule (Lio/ktor/server/application/Application;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/server/PlotlyServer;
+	public static synthetic fun plotlyModule$default (Lio/ktor/server/application/Application;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lspace/kscience/plotly/server/PlotlyServer;
 	public static final fun pullUpdates (Lspace/kscience/plotly/server/PlotlyServer;I)Lspace/kscience/plotly/server/PlotlyServer;
 	public static synthetic fun pullUpdates$default (Lspace/kscience/plotly/server/PlotlyServer;IILjava/lang/Object;)Lspace/kscience/plotly/server/PlotlyServer;
 	public static final fun pushUpdates (Lspace/kscience/plotly/server/PlotlyServer;I)Lspace/kscience/plotly/server/PlotlyServer;

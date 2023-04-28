@@ -8,8 +8,11 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
+/**
+ * Creates a renderable plotly html
+ */
+@OptIn(UnstablePlotlyAPI::class)
 fun main() {
-
     val x1 = (0..100).map { it.toDouble() / 100.0 }
     val y1 = x1.map { sin(2.0 * PI * it) }
     val y2 = x1.map { cos(2.0 * PI * it) }
@@ -18,6 +21,7 @@ fun main() {
     val trace2 = Trace(x1, y2) { name = "cos" }
 
     Plotly.page { container ->
+        h1 { +"This is a plotly page" }
         plot(renderer = container) {
             traces(trace1, trace2)
             layout {
@@ -39,5 +43,5 @@ fun main() {
                 }
             }
         }
-    }.makeFile()
+    }.makeFile("plotly.html")
 }

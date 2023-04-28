@@ -3,13 +3,12 @@ plugins {
     `maven-publish`
 }
 
-kotlin {
-    sourceSets {
-        commonMain {
-            dependencies {
-                api(project(":plotlykt-core"))
-            }
-        }
+kscience{
+    jvm()
+    js()
+    native()
+    dependencies {
+        api(project(":plotlykt-core"))
     }
 }
 

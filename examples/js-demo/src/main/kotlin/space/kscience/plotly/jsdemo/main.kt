@@ -35,7 +35,7 @@ fun main(): Unit = withCanvas {
     div {
         style = "height:50%; width=100%;"
         h1 { +"Histogram demo" }
-        plot {
+        plotDiv {
             val rnd = Random(222)
             histogram {
                 name = "Random data"
@@ -79,7 +79,7 @@ fun main(): Unit = withCanvas {
     div {
         style = "height:50%; width=100%;"
         h1 { +"Dynamic trace demo" }
-        plot {
+        plotDiv {
             scatter {
                 x(1, 2, 3, 4)
                 y(10, 15, 13, 17)
@@ -133,7 +133,7 @@ fun main(): Unit = withCanvas {
         val serialized = plot.toJsonString()
         console.log(serialized)
         val deserialized = Plot(Json.decodeFromString(MetaSerializer, serialized).toMutableMeta())
-        plot(plot = deserialized)
+        plotDiv(plot = deserialized)
     }
 }
 

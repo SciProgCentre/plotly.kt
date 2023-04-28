@@ -14,7 +14,7 @@ repositories {
 dependencies {
     implementation(project(":plotlykt-server"))
     implementation("no.tornado:tornadofx:1.7.20")
-    implementation("ch.qos.logback:logback-classic:1.2.11")
+    implementation(spclibs.logback.classic)
 }
 
 javafx{
@@ -26,7 +26,10 @@ application {
     mainClass.set("space.kscience.plotly.fx.PlotlyFXAppKt")
 }
 
+kotlin{
+    jvmToolchain(11)
+}
+
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
     kotlinOptions.freeCompilerArgs = kotlinOptions.freeCompilerArgs +"-Xopt-in=kotlin.RequiresOptIn"
 }

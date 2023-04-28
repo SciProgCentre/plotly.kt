@@ -176,12 +176,12 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
             logger.info("Starting JupyterPlotlyServer with $config")
             val serverStart = start(config)
             logger.info("JupyterPlotlyServer started with $config")
-            display(HTML(serverStart.toString()))
+            display(HTML(serverStart.toString()), null)
         }
 
         onShutdown {
             logger.info("Stopping JupyterPlotlyServer")
-            display(HTML(stop().toString()))
+            display(HTML(stop().toString()), null)
         }
     }
 

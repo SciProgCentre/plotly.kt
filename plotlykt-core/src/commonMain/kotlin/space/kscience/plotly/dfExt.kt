@@ -70,11 +70,12 @@ internal fun Scheme.listOfValues(
  */
 internal fun Scheme.doubleInRange(
     range: ClosedFloatingPointRange<Double>,
+    defaultValue: Double = Double.NaN,
     key: Name? = null,
 ): ReadWriteProperty<Any?, Double> = object : ReadWriteProperty<Any?, Double> {
     override fun getValue(thisRef: Any?, property: KProperty<*>): Double {
         val name = key ?: property.name.asName()
-        return meta[name].double ?: Double.NaN
+        return meta[name].double ?: defaultValue
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Double) {

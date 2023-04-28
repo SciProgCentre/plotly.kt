@@ -62,7 +62,7 @@ public inline fun Element.plot(plotlyConfig: PlotlyConfig = PlotlyConfig(), plot
     plot(plotlyConfig, Plot().apply(plotBuilder))
 }
 
-public fun TagConsumer<HTMLElement>.plot(
+public fun TagConsumer<HTMLElement>.plotDiv(
     plotlyConfig: PlotlyConfig = PlotlyConfig(),
     plot: Plot,
 ): HTMLElement = div("plotly-kt-plot").apply { plot(plotlyConfig, plot) }
@@ -70,7 +70,7 @@ public fun TagConsumer<HTMLElement>.plot(
 /**
  * Render plot in HTML element using direct plotly API.
  */
-public inline fun TagConsumer<HTMLElement>.plot(
+public inline fun TagConsumer<HTMLElement>.plotDiv(
     plotlyConfig: PlotlyConfig = PlotlyConfig(),
     plotBuilder: Plot.() -> Unit,
 ): HTMLElement = div("plotly-kt-plot").apply { plot(plotlyConfig, plotBuilder) }

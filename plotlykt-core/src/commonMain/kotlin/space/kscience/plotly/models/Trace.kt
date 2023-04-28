@@ -41,10 +41,8 @@ public enum class TraceType {
     waterfall,
 
     // 3D
-    @UnsupportedPlotlyAPI
     scatter3d,
 
-    @UnsupportedPlotlyAPI
     surface,
 
     @UnsupportedPlotlyAPI

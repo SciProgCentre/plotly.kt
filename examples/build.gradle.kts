@@ -9,14 +9,18 @@ repositories {
 
 dependencies {
     implementation(project(":plotlykt-server"))
+    implementation(projects.plotlyktJupyter)
     implementation(project(":plotlykt-geo"))
     implementation(kotlin("script-runtime"))
     implementation(project(":plotlykt-script"))
-    implementation("org.jetbrains.kotlinx:dataframe:0.8.0-dev-968-0.11.0.83")
+    implementation("org.jetbrains.kotlinx:dataframe:0.9.1")
+}
+
+kotlin{
+    jvmToolchain(11)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
     kotlinOptions.freeCompilerArgs = kotlinOptions.freeCompilerArgs +"-Xopt-in=kotlin.RequiresOptIn"
 }
 
