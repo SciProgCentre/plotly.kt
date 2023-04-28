@@ -9,6 +9,7 @@ repositories {
 
 dependencies {
     implementation(project(":plotlykt-server"))
+    implementation(projects.plotlyktJupyter)
     implementation(project(":plotlykt-geo"))
     implementation(kotlin("script-runtime"))
     implementation(project(":plotlykt-script"))
