@@ -185,8 +185,8 @@ public class PlotlyServer internal constructor(
                     val url = URLBuilder().apply {
                         protocol = URLProtocol.createOrDefault(origin.scheme)
                         //workaround for https://github.com/ktorio/ktor/issues/1663
-                        host = dataSourceHost ?: if (origin.host.startsWith("0:")) "[${origin.host}]" else origin.host
-                        port = dataSourcePort ?: origin.port
+                        host = dataSourceHost ?: if (origin.serverHost.startsWith("0:")) "[${origin.serverHost}]" else origin.serverHost
+                        port = dataSourcePort ?: origin.serverPort
                         encodedPath = origin.uri
                     }.build()
                     call.respondHtml {
@@ -294,6 +294,7 @@ public fun PlotlyServer.pullUpdates(interval: Int = 500): PlotlyServer = apply {
 /**
  * Start static server (updates via reload)
  */
+@Suppress("ExtractKtorModule")
 @OptIn(DelicateCoroutinesApi::class)
 public fun Plotly.serve(
     scope: CoroutineScope = GlobalScope,
