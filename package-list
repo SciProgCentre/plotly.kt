@@ -1,0 +1,16 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:plotlykt-core
+space.kscience.plotly
+space.kscience.plotly.models
+space.kscience.plotly.palettes
+module:plotlykt-geo
+space.kscience.plotly.models.geo
+space.kscience.plotly.models.geo.json
+module:plotlykt-jupyter
+space.kscience.plotly
+module:plotlykt-script
+space.kscience.plotly.script
+module:plotlykt-server
+space.kscience.plotly.server

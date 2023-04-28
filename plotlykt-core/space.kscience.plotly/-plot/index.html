@@ -1,0 +1,528 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Plot</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>plotly-kt</span>            </a>    </div>
+    <div>0.5.3
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":plotlykt-core:dokkaHtmlPartial/commonMain">common</button>
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":plotlykt-core:dokkaHtmlPartial/jvmMain">jvm</button>
+                <button class="platform-tag platform-selector native-like" data-active="" data-filter=":plotlykt-core:dokkaHtmlPartial/nativeMain">native</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="plotlykt-core::space.kscience.plotly/Plot///PointingToDeclaration//-2017129424">
+  <div class="breadcrumbs"><a href="../../index.html">plotlykt-core</a><span class="delimiter">/</span><a href="../index.html">space.kscience.plotly</a><span class="delimiter">/</span><span class="current">Plot</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Plot</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Plot</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>meta<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/ObservableMutableMeta///PointingToDeclaration/">ObservableMutableMeta</span><span class="token operator"> = </span>MutableMeta()</span></span><span class="token punctuation">)</span> : <span data-unresolved-link="space.kscience.dataforge.meta/Configurable///PointingToDeclaration/">Configurable</span>, <span data-unresolved-link="space.kscience.dataforge.meta/MetaRepr///PointingToDeclaration/">MetaRepr</span>, <span data-unresolved-link="space.kscience.dataforge.meta.descriptors/Described///PointingToDeclaration/">Described</span></div><p class="paragraph">The main plot class. The changes to plot could be observed by attaching listener to root <a href="meta.html">meta</a> property.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="503786147%2FConstructors%2F-2017129424" anchor-label="Plot" id="503786147%2FConstructors%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-plot.html"><span><span>Plot</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="503786147%2FConstructors%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">meta<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/ObservableMutableMeta///PointingToDeclaration/">ObservableMutableMeta</span><span class="token operator"> = </span>MutableMeta()</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="555943934%2FClasslikes%2F-2017129424" anchor-label="Companion" id="555943934%2FClasslikes%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="555943934%2FClasslikes%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1701650539%2FFunctions%2F-2017129424" anchor-label="addTrace" id="1701650539%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-trace.html"><span>add</span><wbr><span><span>Trace</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1701650539%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="add-trace.html"><span class="token function">addTrace</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">trace<span class="token operator">: </span><a href="../../space.kscience.plotly.models/-trace/index.html">Trace</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="790611090%2FFunctions%2F-2017129424" anchor-label="bar" id="790611090%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../bar.html"><span><span>bar</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="790611090%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../bar.html"><span class="token function">bar</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-bar/index.html">Bar</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-bar/index.html">Bar</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2107994222%2FFunctions%2F-2017129424" anchor-label="box" id="-2107994222%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../box.html"><span><span>box</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2107994222%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../box.html"><span class="token function">box</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-box/index.html">Box</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-box/index.html">Box</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1547048206%2FFunctions%2F-2017129424" anchor-label="contour" id="-1547048206%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../contour.html"><span><span>contour</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1547048206%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../contour.html"><span class="token function">contour</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-contour/index.html">Contour</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-contour/index.html">Contour</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1388412099%2FFunctions%2F625989830" anchor-label="export" id="1388412099%2FFunctions%2F625989830" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jvmMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jvmMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../export.html"><span><span>export</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1388412099%2FFunctions%2F625989830"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jvmMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jvmMain" data-active="" data-toggle=":plotlykt-core:dokkaHtmlPartial/jvmMain">jvm</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/jvmMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html#-5417348%2FMain%2F625989830">Plot</a><span class="token punctuation">.</span><a href="../export.html"><span class="token function">export</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html">Path</a><span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><a href="../-orca-format/index.html">OrcaFormat</a><span class="token operator"> = </span>OrcaFormat.svg</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Use external plotly-orca (https://github.com/plotly/orca) tool to export static image. The tool must be installed externally (for example via conda) and usage patterns could differ for different systems.</p></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="772608306%2FFunctions%2F-2017129424" anchor-label="heatmap" id="772608306%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../heatmap.html"><span><span>heatmap</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="772608306%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../heatmap.html"><span class="token function">heatmap</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-heatmap/index.html">Heatmap</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-heatmap/index.html">Heatmap</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-961004494%2FFunctions%2F-2017129424" anchor-label="histogram" id="-961004494%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../histogram.html"><span><span>histogram</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-961004494%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../histogram.html"><span class="token function">histogram</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-histogram/index.html">Histogram</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-histogram/index.html">Histogram</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="435245906%2FFunctions%2F-2017129424" anchor-label="histogram2d" id="435245906%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../histogram2d.html"><span><span>histogram2d</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="435245906%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../histogram2d.html"><span class="token function">histogram2d</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-histogram2-d/index.html">Histogram2D</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-histogram2-d/index.html">Histogram2D</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-970896066%2FFunctions%2F-2017129424" anchor-label="histogram2dcontour" id="-970896066%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../histogram2dcontour.html"><span><span>histogram2dcontour</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-970896066%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../histogram2dcontour.html"><span class="token function">histogram2dcontour</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-histogram2-d-contour/index.html">Histogram2DContour</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-histogram2-d-contour/index.html">Histogram2DContour</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-990785270%2FFunctions%2F-2017129424" anchor-label="layout" id="-990785270%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../layout.html"><span><span>layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-990785270%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../layout.html"><span class="token function">layout</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-layout/index.html">Layout</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Configure the layout</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-57912958%2FFunctions%2F1041264318" anchor-label="makeFile" id="-57912958%2FFunctions%2F1041264318" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/nativeMain :plotlykt-core:dokkaHtmlPartial/jvmMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/nativeMain :plotlykt-core:dokkaHtmlPartial/jvmMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/nativeMain :plotlykt-core:dokkaHtmlPartial/jvmMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../make-file.html"><span>make</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-57912958%2FFunctions%2F1041264318"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jvmMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jvmMain" data-active="" data-toggle=":plotlykt-core:dokkaHtmlPartial/jvmMain">jvm</button><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/nativeMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/nativeMain" data-toggle=":plotlykt-core:dokkaHtmlPartial/nativeMain">native</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":plotlykt-core:dokkaHtmlPartial/jvmMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html#-5417348%2FMain%2F625989830">Plot</a><span class="token punctuation">.</span><a href="../make-file.html"><span class="token function">makeFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html">Path</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">show<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">resourceLocation<span class="token operator">: </span><a href="../-resource-location/index.html">ResourceLocation</a><span class="token operator"> = </span>ResourceLocation.LOCAL<span class="token punctuation">, </span></span><span class="parameter ">config<span class="token operator">: </span><a href="../../../plotlykt-core/space.kscience.plotly/-plotly-config/index.html">PlotlyConfig</a><span class="token operator"> = </span>PlotlyConfig()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Create a standalone html with the plot</p></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/nativeMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html#-5417348%2FMain%2F310682628">Plot</a><span class="token punctuation">.</span><a href="../make-file.html"><span class="token function">makeFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">config<span class="token operator">: </span><a href="../../../plotlykt-core/space.kscience.plotly/-plotly-config/index.html">PlotlyConfig</a><span class="token operator"> = </span>PlotlyConfig()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Create a standalone html with the plot</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html#-5417348%2FMain%2F310682628">Plot</a><span class="token punctuation">.</span><a href="../make-file.html"><span class="token function">makeFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">path<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">config<span class="token operator">: </span><a href="../../../plotlykt-core/space.kscience.plotly/-plotly-config/index.html">PlotlyConfig</a><span class="token operator"> = </span>PlotlyConfig()</span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-239097550%2FFunctions%2F-2017129424" anchor-label="pie" id="-239097550%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../pie.html"><span><span>pie</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-239097550%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../pie.html"><span class="token function">pie</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-pie/index.html">Pie</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-pie/index.html">Pie</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1120956558%2FFunctions%2F-2017129424" anchor-label="scatter" id="-1120956558%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../scatter.html"><span><span>scatter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1120956558%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../scatter.html"><span class="token function">scatter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-scatter/index.html">Scatter</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-scatter/index.html">Scatter</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="301103762%2FFunctions%2F-2017129424" anchor-label="shape" id="301103762%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../shape.html"><span><span>shape</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="301103762%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../shape.html"><span class="token function">shape</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-shape/index.html">Shape</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="29438706%2FFunctions%2F-2017129424" anchor-label="table" id="29438706%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../table.html"><span><span>table</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="29438706%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../table.html"><span class="token function">table</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-table/index.html">Table</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-table/index.html">Table</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1608281776%2FFunctions%2F-2017129424" anchor-label="text" id="-1608281776%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../text.html"><span><span>text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1608281776%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../text.html"><span class="token function">text</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-text/index.html">Text</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1455456958%2FFunctions%2F-2017129424" anchor-label="toHTML" id="1455456958%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../to-h-t-m-l.html"><span>to</span><wbr><span><span>HTML</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1455456958%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../to-h-t-m-l.html"><span class="token function">toHTML</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>headers<span class="token operator">: </span><a href="../-plotly-html-fragment/index.html">PlotlyHtmlFragment</a><span class="token operator"> = </span>arrayOf(cdnPlotlyHeader)<span class="token punctuation">, </span></span><span class="parameter ">config<span class="token operator">: </span><a href="../-plotly-config/index.html">PlotlyConfig</a><span class="token operator"> = </span>PlotlyConfig()</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Create a html (including headers) string from plot</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="872612002%2FFunctions%2F-2017129424" anchor-label="toJsonString" id="872612002%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../to-json-string.html"><span>to</span><wbr><span>Json</span><wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="872612002%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../to-json-string.html"><span class="token function">toJsonString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Convert a plot to Json representation specified by Plotly <code class="lang-kotlin">newPlot</code> command.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1920295907%2FFunctions%2F-2017129424" anchor-label="toMeta" id="1920295907%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-meta.html"><span>to</span><wbr><span><span>Meta</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1920295907%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-meta.html"><span class="token function">toMeta</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Meta///PointingToDeclaration/">Meta</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1321234420%2FFunctions%2F-2017129424" anchor-label="toPage" id="1321234420%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../to-page.html"><span>to</span><wbr><span><span>Page</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1321234420%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../to-page.html"><span class="token function">toPage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>headers<span class="token operator">: </span><a href="../-plotly-html-fragment/index.html">PlotlyHtmlFragment</a><span class="token operator"> = </span>arrayOf(cdnPlotlyHeader)<span class="token punctuation">, </span></span><span class="parameter ">config<span class="token operator">: </span><a href="../-plotly-config/index.html">PlotlyConfig</a><span class="token operator"> = </span>PlotlyConfig.empty()<span class="token punctuation">, </span></span><span class="parameter ">title<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">"Plotly.kt"</span><span class="token punctuation">, </span></span><span class="parameter ">renderer<span class="token operator">: </span><a href="../-plotly-renderer/index.html">PlotlyRenderer</a><span class="token operator"> = </span>StaticPlotlyRenderer</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-plotly-page/index.html">PlotlyPage</a></div><div class="brief "><p class="paragraph">Convert a plot to the sigle-plot page</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="285597202%2FFunctions%2F-2017129424" anchor-label="trace" id="285597202%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../trace.html"><span><span>trace</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="285597202%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../trace.html"><span class="token function">trace</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-trace/index.html">Trace</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-trace/index.html">Trace</a></div><div class="brief "><p class="paragraph">Add a generic trace</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1357471340%2FFunctions%2F-2017129424" anchor-label="traces" id="1357471340%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="traces.html"><span><span>traces</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1357471340%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="traces.html"><span class="token function">traces</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>traces<span class="token operator">: </span><a href="../../space.kscience.plotly.models/-trace/index.html">Trace</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Append all <a href="traces.html">traces</a></p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="traces.html"><span class="token function">traces</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">traces<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html">Collection</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-trace/index.html">Trace</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Append all traces from <a href="traces.html">traces</a> to the plot</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1011852192%2FFunctions%2F-2017129424" anchor-label="violin" id="1011852192%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../violin.html"><span><span>violin</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1011852192%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="index.html">Plot</a><span class="token punctuation">.</span><a href="../violin.html"><span class="token function">violin</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-violin/index.html">Violin</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-violin/index.html">Violin</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1679867929%2FProperties%2F-2017129424" anchor-label="data" id="1679867929%2FProperties%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="data.html"><span><span>data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1679867929%2FProperties%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="data.html">data</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../space.kscience.plotly.models/-trace/index.html">Trace</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Ordered list ot traces in the plot</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-155908236%2FProperties%2F-2017129424" anchor-label="descriptor" id="-155908236%2FProperties%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="descriptor.html"><span><span>descriptor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-155908236%2FProperties%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="descriptor.html">descriptor</a><span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta.descriptors/MetaDescriptor///PointingToDeclaration/">MetaDescriptor</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1609200871%2FProperties%2F-2017129424" anchor-label="layout" id="-1609200871%2FProperties%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="layout.html"><span><span>layout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1609200871%2FProperties%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="layout.html">layout</a><span class="token operator">: </span><a href="../../space.kscience.plotly.models/-layout/index.html">Layout</a></div><div class="brief "><p class="paragraph">Layout specification for th plot</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1691097570%2FProperties%2F-2017129424" anchor-label="meta" id="-1691097570%2FProperties%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="meta.html"><span><span>meta</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1691097570%2FProperties%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="meta.html">meta</a><span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/ObservableMutableMeta///PointingToDeclaration/">ObservableMutableMeta</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+

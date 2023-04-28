@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PlotlyJs</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>plotly-kt</span>            </a>    </div>
+    <div>0.5.3
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":plotlykt-core:dokkaHtmlPartial/jsMain">js</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="plotlykt-core::space.kscience.plotly/PlotlyJs///PointingToDeclaration//972200914">
+  <div class="breadcrumbs"><a href="../../index.html">plotlykt-core</a><span class="delimiter">/</span><a href="../index.html">space.kscience.plotly</a><span class="delimiter">/</span><span class="current">PlotlyJs</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Plotly</span><wbr><span><span>Js</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":plotlykt-core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">object </span><a href="index.html">PlotlyJs</a></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-289975472%2FFunctions%2F972200914" anchor-label="downloadImage" id="-289975472%2FFunctions%2F972200914" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="download-image.html"><span>download</span><wbr><span><span>Image</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-289975472%2FFunctions%2F972200914"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":plotlykt-core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="download-image.html"><span class="token function">downloadImage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">root<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-element/index.html">Element</a><span class="token punctuation">, </span></span><span class="parameter ">opts<span class="token operator">: </span><a href="../-download-img-opts/index.html">DownloadImgOpts</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html">Promise</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="599585261%2FFunctions%2F972200914" anchor-label="newPlot" id="599585261%2FFunctions%2F972200914" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="new-plot.html"><span>new</span><wbr><span><span>Plot</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="599585261%2FFunctions%2F972200914"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":plotlykt-core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="new-plot.html"><span class="token function">newPlot</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">graphDiv<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-element/index.html">Element</a><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span>dynamic<span class="token operator">&gt;</span><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">layout<span class="token operator">: </span>dynamic<span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">config<span class="token operator">: </span>dynamic<span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1580940961%2FFunctions%2F972200914" anchor-label="react" id="-1580940961%2FFunctions%2F972200914" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="react.html"><span><span>react</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1580940961%2FFunctions%2F972200914"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":plotlykt-core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="react.html"><span class="token function">react</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">graphDiv<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-element/index.html">Element</a><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span>dynamic<span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">layout<span class="token operator">: </span>dynamic<span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">config<span class="token operator">: </span>dynamic<span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1274067641%2FFunctions%2F972200914" anchor-label="relayout" id="1274067641%2FFunctions%2F972200914" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="relayout.html"><span><span>relayout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1274067641%2FFunctions%2F972200914"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":plotlykt-core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="relayout.html"><span class="token function">relayout</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">graphDiv<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-element/index.html">Element</a><span class="token punctuation">, </span></span><span class="parameter ">update<span class="token operator">: </span>dynamic</span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1649084960%2FFunctions%2F972200914" anchor-label="restyle" id="-1649084960%2FFunctions%2F972200914" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="restyle.html"><span><span>restyle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1649084960%2FFunctions%2F972200914"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":plotlykt-core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="restyle.html"><span class="token function">restyle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">graphDiv<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-element/index.html">Element</a><span class="token punctuation">, </span></span><span class="parameter ">update<span class="token operator">: </span>dynamic<span class="token punctuation">, </span></span><span class="parameter ">traceIndices<span class="token operator">: </span>dynamic<span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1582740720%2FFunctions%2F972200914" anchor-label="toImage" id="1582740720%2FFunctions%2F972200914" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-image.html"><span>to</span><wbr><span><span>Image</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1582740720%2FFunctions%2F972200914"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":plotlykt-core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="to-image.html"><span class="token function">toImage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">root<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-element/index.html">Element</a><span class="token punctuation">, </span></span><span class="parameter ">opts<span class="token operator">: </span><a href="../-to-img-opts/index.html">ToImgOpts</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-promise/index.html">Promise</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1998704147%2FFunctions%2F972200914" anchor-label="update" id="1998704147%2FFunctions%2F972200914" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="update.html"><span><span>update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1998704147%2FFunctions%2F972200914"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/jsMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/jsMain" data-active="" data-toggle=":plotlykt-core:dokkaHtmlPartial/jsMain">js</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/jsMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="update.html"><span class="token function">update</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">graphDiv<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/org.w3c.dom/-element/index.html">Element</a><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span>dynamic<span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">layout<span class="token operator">: </span>dynamic<span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+
