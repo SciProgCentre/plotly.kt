@@ -7,7 +7,7 @@ plugins {
 val dataforgeVersion: String by rootProject.extra
 
 dependencies {
-    api(project(":plotlykt-core"))
+    api(projects.plotlyktCore)
 }
 
 tasks.processJupyterApiResources{

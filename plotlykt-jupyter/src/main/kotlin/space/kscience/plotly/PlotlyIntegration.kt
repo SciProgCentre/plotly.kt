@@ -5,7 +5,6 @@ import kotlinx.html.stream.createHTML
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
-import space.kscience.plotly.Plotly.PLOTLY_CDN
 
 public object PlotlyJupyterConfiguration {
     public var legacyMode: Boolean = false
@@ -82,12 +81,8 @@ public class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
     override fun Builder.onLoaded() {
 
         resources {
-            js("plotly") {
-                url(PLOTLY_CDN)
-                classPath("js/plotly.min.js")
-            }
-            js("plotlyConnect") {
-                classPath("js/plotlyConnect.js")
+            js("plotly-kt") {
+                classPath("js/plotly-kt.js")
             }
         }
 

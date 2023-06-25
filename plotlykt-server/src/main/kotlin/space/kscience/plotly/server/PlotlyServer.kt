@@ -5,8 +5,7 @@ import io.ktor.server.application.*
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.html.respondHtml
-import io.ktor.server.http.content.resource
-import io.ktor.server.http.content.static
+import io.ktor.server.http.content.staticResources
 import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.plugins.origin
 import io.ktor.server.response.respond
@@ -56,20 +55,24 @@ internal class ServerPlotlyRenderer(
                         //language=JavaScript
                         +"""
 
-                    makePlot(
-                        '$plotId',
-                        ${plot.data.toJsonString()},
-                        ${plot.layout.toJsonString()},
-                        $config
-                    );
+                            plotlyConnect.makePlot(
+                                '$plotId',
+                                ${plot.data.toJsonString()},
+                                ${plot.layout.toJsonString()},
+                                $config
+                            );
 
 
-                    """.trimIndent()
+                        """.trimIndent()
                     }
                 } else {
                     unsafe {
                         //language=JavaScript
-                        +"\n    createPlotFrom('$plotId','$dataUrl', $config);\n"
+                        +"""
+                            
+                            plotlyConnect.createPlotFrom('$plotId','$dataUrl', $config);
+                            
+                        """.trimIndent()
                     }
                 }
 
@@ -82,15 +85,25 @@ internal class ServerPlotlyRenderer(
                         }.build()
                         unsafe {
                             //language=JavaScript
-                            +"\n    startPush('$plotId', '$wsUrl');\n"
+                            +"""
+                                
+                                plotlyConnect.startPush('$plotId', '$wsUrl');
+
+                            """.trimIndent()
                         }
                     }
+
                     PlotlyUpdateMode.PULL -> {
                         unsafe {
                             //language=JavaScript
-                            +"\n    startPull('$plotId', '$dataUrl', ${updateInterval});\n"
+                            +"""
+                                
+                                plotlyConnect.startPull('$plotId', '$dataUrl', ${updateInterval});
+                                
+                            """.trimIndent()
                         }
                     }
+
                     PlotlyUpdateMode.NONE -> {
                         //do nothing
                     }
@@ -185,7 +198,8 @@ public class PlotlyServer internal constructor(
                     val url = URLBuilder().apply {
                         protocol = URLProtocol.createOrDefault(origin.scheme)
                         //workaround for https://github.com/ktorio/ktor/issues/1663
-                        host = dataSourceHost ?: if (origin.serverHost.startsWith("0:")) "[${origin.serverHost}]" else origin.serverHost
+                        host = dataSourceHost
+                            ?: if (origin.serverHost.startsWith("0:")) "[${origin.serverHost}]" else origin.serverHost
                         port = dataSourcePort ?: origin.serverPort
                         encodedPath = origin.uri
                     }.build()
@@ -202,14 +216,7 @@ public class PlotlyServer internal constructor(
                                 (globalHeaders + headers).forEach {
                                     it.visit(consumer)
                                 }
-                                script {
-                                    type = "text/javascript"
-                                    src = "${normalizedRoute}js/plotly.min.js"
-                                }
-                                script {
-                                    type = "text/javascript"
-                                    src = "${normalizedRoute}js/plotlyConnect.js"
-                                }
+                                plotlyKtHeader.visit(consumer)
                             }
                             title(title)
                         }
@@ -261,11 +268,7 @@ public fun Application.plotlyModule(route: String = DEFAULT_PAGE, block: PlotlyS
 
     routing {
         route(route) {
-            static {
-                resource("js/plotly.min.js")
-                resource("js/plotlyConnect.js")
-                //resources()
-            }
+            staticResources("js", "js")
         }
     }
 

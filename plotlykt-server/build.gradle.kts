@@ -10,7 +10,7 @@ val dataforgeVersion: String by rootProject.extra
 val ktorVersion = KScienceVersions.ktorVersion
 
 dependencies {
-    api(project(":plotlykt-core"))
+    api(projects.plotlyktCore)
     api("io.ktor:ktor-server-cio:$ktorVersion")
     api("io.ktor:ktor-server-html-builder:$ktorVersion")
     api("io.ktor:ktor-server-websockets:$ktorVersion")
