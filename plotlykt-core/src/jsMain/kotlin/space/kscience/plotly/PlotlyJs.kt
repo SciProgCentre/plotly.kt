@@ -1,6 +1,7 @@
 package space.kscience.plotly
 
 import org.w3c.dom.Element
+import org.w3c.dom.events.MouseEvent
 import kotlin.js.Promise
 
 public external interface ToImgOpts {
@@ -46,4 +47,10 @@ public external object PlotlyJs {
 
     public fun toImage(root: Element, opts: ToImgOpts): Promise<String>
     public fun downloadImage(root: Element, opts: DownloadImgOpts): Promise<String>
+}
+
+
+public external interface PlotMouseEvent {
+    public val points : Array<dynamic>
+    public val event: MouseEvent
 }

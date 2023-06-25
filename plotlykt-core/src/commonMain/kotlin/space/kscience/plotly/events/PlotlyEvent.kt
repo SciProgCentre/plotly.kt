@@ -1,10 +1,9 @@
 package space.kscience.plotly.events
 
-import space.kscience.dataforge.meta.*
-import space.kscience.plotly.list
-import space.kscience.plotly.models.Trace
+import kotlinx.serialization.json.JsonElement
+import space.kscience.dataforge.meta.Value
 
-public enum class PlotlyEventListenerType(public val typeName: String){
+public enum class PlotlyEventListenerType(public val eventType: String){
     CLICK("plotly_click"),
     HOVER("plotly_hover"),
     UNHOVER("plotly_unhover"),
@@ -12,23 +11,18 @@ public enum class PlotlyEventListenerType(public val typeName: String){
     SELECTED("plotly_selected")
 }
 
-public class PlotlyEventPoint : Scheme() {
-    public val curveNumber: Int by int(1)
-    public val pointNumber: Int? by int()
-    public val x: Value? by value()
-    public val y: Value? by value()
+public data class PlotlyEventPoint(
+    public val curveNumber: Int,
+    public val data: JsonElement,
+    public val pointNumber: Int? = null,
+    public val x: Value? = null,
+    public val y: Value? = null,
+//
+//    public var data: Trace by spec(Trace)
+//    public var fullData: Trace by spec(Trace)
+)
 
-    public val data: Trace by spec(Trace)
-    public val fullData: Trace by spec(Trace)
 
-    public companion object : SchemeSpec<PlotlyEventPoint>(::PlotlyEventPoint)
-}
-
-
-public class PlotlyEvent : Scheme() {
-    public val points: List<PlotlyEventPoint> by list(PlotlyEventPoint)
-
-    public companion object : SchemeSpec<PlotlyEvent>(::PlotlyEvent)
-}
+public data class PlotlyEvent(public val points: List<PlotlyEventPoint>)
 
 

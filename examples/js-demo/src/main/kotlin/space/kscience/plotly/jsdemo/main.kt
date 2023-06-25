@@ -14,6 +14,7 @@ import org.w3c.dom.events.Event
 import space.kscience.dataforge.meta.MetaSerializer
 import space.kscience.dataforge.meta.toMutableMeta
 import space.kscience.plotly.*
+import space.kscience.plotly.events.PlotlyEventListenerType
 import space.kscience.plotly.models.ScatterMode
 import space.kscience.plotly.models.TraceType
 import kotlin.random.Random
@@ -133,7 +134,9 @@ fun main(): Unit = withCanvas {
         val serialized = plot.toJsonString()
         console.log(serialized)
         val deserialized = Plot(Json.decodeFromString(MetaSerializer, serialized).toMutableMeta())
-        plotDiv(plot = deserialized)
+        plotDiv(plot = deserialized).on(PlotlyEventListenerType.CLICK){
+            console.info(it.toString())
+        }
     }
 }
 

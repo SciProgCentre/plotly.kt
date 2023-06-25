@@ -4,18 +4,20 @@ import kotlinx.html.TagConsumer
 import kotlinx.html.div
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromDynamic
 import kotlinx.serialization.json.encodeToDynamic
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
-import org.w3c.dom.events.Event
-import space.kscience.dataforge.meta.DynamicMeta
+import org.w3c.dom.events.MouseEvent
 import space.kscience.dataforge.meta.MetaSerializer
 import space.kscience.dataforge.meta.Scheme
+import space.kscience.dataforge.meta.Value
 import space.kscience.dataforge.names.asName
 import space.kscience.dataforge.names.firstOrNull
 import space.kscience.dataforge.names.startsWith
 import space.kscience.plotly.events.PlotlyEvent
 import space.kscience.plotly.events.PlotlyEventListenerType
+import space.kscience.plotly.events.PlotlyEventPoint
 
 @OptIn(ExperimentalSerializationApi::class)
 private fun Scheme.toDynamic(): dynamic = Json.encodeToDynamic(MetaSerializer, meta)
@@ -87,10 +89,18 @@ public inline fun TagConsumer<HTMLElement>.plotDiv(
     plotBuilder: Plot.() -> Unit,
 ): PlotlyElement = PlotlyElement(div("plotly-kt-plot").apply { plot(plotlyConfig, plotBuilder) })
 
-public fun PlotlyElement.on(eventType: PlotlyEventListenerType, block: (PlotlyEvent) -> Unit) {
-    div.addEventListener(eventType.typeName, { event: Event->
-        val meta = DynamicMeta(event.asDynamic())
-        val plotlyEvent = PlotlyEvent.read(meta)
-        block(plotlyEvent)
-    })
+@OptIn(ExperimentalSerializationApi::class)
+public fun PlotlyElement.on(eventType: PlotlyEventListenerType, block: MouseEvent.(PlotlyEvent) -> Unit) {
+    div.asDynamic().on(eventType.eventType) { event: PlotMouseEvent ->
+        val eventData = PlotlyEvent(event.points.map {
+            PlotlyEventPoint(
+                curveNumber = it.curveNumber as Int,
+                pointNumber = it.pointNumber as? Int,
+                x = Value.of(it.x),
+                y = Value.of(it.y),
+                data = Json.decodeFromDynamic(it.data)
+            )
+        })
+        event.event.block(eventData)
+    }
 }
