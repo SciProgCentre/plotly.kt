@@ -7,8 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Added
+- Add experimental support for events on JS
 
 ### Changed
+- Use a self-made Plotly-js bundle instead of one from CDN
 
 ### Deprecated
 
