@@ -11,7 +11,7 @@ import kotlin.js.JsName
  */
 @JsName("PlotlyKt")
 public object Plotly {
-    public const val VERSION: String = "1.54.6"
+    public const val VERSION: String = "2.24.1"
 
     public const val PLOTLY_CDN: String = "https://cdn.plot.ly/plotly-${VERSION}.min.js"
     //"https://cdnjs.cloudflare.com/ajax/libs/plotly.js/${VERSION}/plotly.min.js"
