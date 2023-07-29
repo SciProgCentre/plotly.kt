@@ -69,6 +69,12 @@ public inline fun Plot.table(block: Table.() -> Unit): Table {
     return trace
 }
 
+public inline fun Plot.candlestick(block: CandleStick.() -> Unit): CandleStick {
+    val trace = CandleStick(block)
+    traces(trace)
+    return trace
+}
+
 public fun Plot.text(block: Text.() -> Unit) {
     layout.annotation(block)
 }
