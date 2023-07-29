@@ -70,7 +70,7 @@ public class Plot(
     }
 }
 
-private fun Plot.toJson(): JsonObject = buildJsonObject {
+internal fun Plot.toJson(): JsonObject = buildJsonObject {
     put("layout", layout.meta.toJson())
     put("data", buildJsonArray {
         data.forEach { traceData ->

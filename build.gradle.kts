@@ -6,12 +6,12 @@ plugins {
     id("space.kscience.gradle.project")
 }
 
-val dataforgeVersion by extra("0.6.1")
-val plotlyVersion by extra("2.20.0")
+val dataforgeVersion by extra("0.6.2")
+val plotlyVersion by extra("2.24.1")
 
 allprojects {
     group = "space.kscience"
-    version = "0.5.3"
+    version = "0.6.0"
 }
 
 apiValidation {
@@ -29,10 +29,10 @@ ksciencePublish{
         if (isInDevelopment) {
             "https://maven.pkg.jetbrains.space/spc/p/sci/dev"
         } else {
-            "https://maven.pkg.jetbrains.space/spc/p/sci/release"
+            "https://maven.pkg.jetbrains.space/spc/p/sci/maven"
         }
     )
-    sonatype()
+    sonatype("https://oss.sonatype.org")
 }
 
 readme {

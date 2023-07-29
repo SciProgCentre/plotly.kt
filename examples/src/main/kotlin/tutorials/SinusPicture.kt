@@ -17,11 +17,10 @@ import kotlin.math.sin
  * - Change margins on the plot edges
  * - Add shapes (vertical lines)
  */
-@OptIn(UnstablePlotlyAPI::class)
 fun main() {
     val div = 200 / PI
     val sub = PI / 6
-    val xValues = (-410..410).map { it / div }
+    val xValues: List<Double> = (-410..410).map { it / div }
     val yValues = mutableListOf<Double>()
     val yText = mutableListOf<String>()
 
@@ -31,17 +30,15 @@ fun main() {
         yText.add("sin = $x")
     }
 
-    val shapesList = mutableListOf<Shape>()
     val xElems = listOf(-2 * PI + sub, -PI - sub, sub, PI - sub)
-    for (elem in xElems) {
-        val newShape = Shape {
-            x0 = Value.of(elem)
-            x1 = Value.of(elem)
-            y0 = Value.of(0)
-            y1 = Value.of(0.5)
+    val shapesList = xElems.map { elem ->
+        Shape {
+            xref = "x"
+            yref = "y"
+            startXY(elem, 0)
+            endXY(elem, 0.5)
             line { color("red") }
         }
-        shapesList.add(newShape)
     }
 
     Plotly.page(mathJaxHeader, cdnPlotlyHeader) {
@@ -104,27 +101,27 @@ fun main() {
                 }
 
                 shape { // y = 1
-                    x0 = Value.of(-2 * PI)
-                    x1 = Value.of(2 * PI)
-                    y0 = Value.of(1)
-                    y1 = Value.of(1)
+                    xref = "x"
+                    yref = "y"
+                    startXY(-2 * PI, 1)
+                    endXY(2 * PI, 1)
                     line { dash = Dash.dash }
                 }
                 shape { // y = 1/2
-                    x0 = Value.of(-2 * PI)
-                    x1 = Value.of(2 * PI)
-                    y0 = Value.of(0.5)
-                    y1 = Value.of(0.5)
+                    xref = "x"
+                    yref = "y"
+                    startXY(-2 * PI, 0.5)
+                    endXY(2 * PI, 0.5)
                     line {
                         color("red")
                         dash = Dash.dash
                     }
                 }
                 shape { // y = -1
-                    x0 = Value.of(-2 * PI)
-                    x1 = Value.of(2 * PI)
-                    y0 = Value.of(-1)
-                    y1 = Value.of(-1)
+                    xref = "x"
+                    yref = "y"
+                    startXY(-2 * PI, -1)
+                    endXY(2 * PI, -1)
                     line { dash = Dash.dash }
                 }
 

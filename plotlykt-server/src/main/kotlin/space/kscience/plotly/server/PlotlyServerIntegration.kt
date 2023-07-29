@@ -6,7 +6,6 @@ import kotlinx.html.div
 import kotlinx.html.script
 import kotlinx.html.stream.createHTML
 import kotlinx.html.style
-import kotlinx.html.unsafe
 import org.jetbrains.kotlinx.jupyter.api.HTML
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
@@ -15,7 +14,6 @@ import space.kscience.dataforge.meta.Scheme
 import space.kscience.dataforge.meta.boolean
 import space.kscience.dataforge.meta.int
 import space.kscience.plotly.*
-import space.kscience.plotly.Plotly.PLOTLY_CDN
 
 public object PlotlyServerConfiguration : Scheme() {
     public var port: Int by int(System.getProperty("space.kscience.plotly.port")?.toInt() ?: 8882)
@@ -37,12 +35,9 @@ public object PlotlyServerConfiguration : Scheme() {
     }
 }
 
-private val plotlyConnectHeader = PlotlyHtmlFragment {
+internal val plotlyKtHeader = PlotlyHtmlFragment {
     script {
-        unsafe {
-            val bytes = PlotlyHtmlFragment::class.java.getResourceAsStream("/js/plotlyConnect.js")!!.readAllBytes()
-            +bytes.toString(Charsets.UTF_8)
-        }
+        src = "js/plotly-kt.js"
     }
 }
 
@@ -52,7 +47,7 @@ private val plotlyConnectHeader = PlotlyHtmlFragment {
 public val Plotly.jupyter: PlotlyServerConfiguration
     get() = PlotlyServerConfiguration
 
-internal class PlotlyServerIntegration : JupyterIntegration() {
+public class PlotlyServerIntegration : JupyterIntegration() {
     private val logger = LoggerFactory.getLogger(javaClass)
 
     private var server: ApplicationEngine? = null
@@ -61,22 +56,26 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
 
     private var renderer: PlotlyRenderer = StaticPlotlyRenderer
 
-    private fun start(config: PlotlyServerConfiguration): PlotlyHtmlFragment = if (server != null) {
+    public val isServerStarted: Boolean get() = server != null
+
+
+    private fun start(): PlotlyHtmlFragment = if (server != null) {
         PlotlyHtmlFragment {
             div {
                 style = "color: blue;"
-                +"The server is already running on ${config.port}. It must be shut down first to be restarted."
+                +"The server is already running on ${Plotly.jupyter.port}. It must be shut down first to be restarted."
             }
         }
     } else {
         fun doStart(): PlotlyHtmlFragment {
-            server = Plotly.serve(port = config.port) {
+            server?.stop(1000, 1000)
+            server = Plotly.serve(host = "0.0.0.0", port = Plotly.jupyter.port) {
                 root.servePlotData(plots)
             }
-            val serverUrl = URLBuilder(port = config.port).build()
+            val serverUrl = URLBuilder(port = Plotly.jupyter.port).build()
             renderer = ServerPlotlyRenderer(
                 serverUrl, PlotlyUpdateMode.PUSH,
-                config.updateInterval,
+                Plotly.jupyter.updateInterval,
                 true
             ) { plotId, plot ->
                 plots[plotId] = plot
@@ -84,21 +83,23 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
             return PlotlyHtmlFragment {
                 div {
                     style = "color: blue;"
-                    +"Started plotly server on ${config.port}"
+                    +"Started plotly server on ${Plotly.jupyter.port}"
                 }
             }
         }
-        config.meta.onChange(this) { name ->
+        Plotly.jupyter.meta.onChange(this) { name ->
             if (name.toString() != PlotlyServerConfiguration::legacyMode.name) {
-                logger.info("Plotly server config parameter $name changed")
+                logger.info("Plotly server config parameter $name changed. Restarting server.")
                 doStart()
             }
         }
+        logger.info("Starting Plotly-kt data server with ${Plotly.jupyter}")
         doStart()
     }
 
     private fun stop() {
-        server?.stop(1000, 2000)
+        logger.info("Stopping Plotly-kt update server")
+        server?.stop(1000, 1000)
         server = null
     }
 
@@ -119,12 +120,8 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
     override fun Builder.onLoaded() {
 
         resources {
-            js("plotly") {
-                url(PLOTLY_CDN)
-                classPath("js/plotly.min.js")
-            }
-            js("plotlyConnect") {
-                classPath("js/plotlyConnect.js")
+            js("plotly-kt") {
+                classPath("js/plotly-kt.js")
             }
         }
 
@@ -144,9 +141,9 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
         }
 
         render<Plot> { plot ->
-            if (PlotlyServerConfiguration.legacyMode) {
+            if (Plotly.jupyter.legacyMode) {
                 HTML(
-                    Plotly.page(cdnPlotlyHeader, plotlyConnectHeader, renderer = renderer) {
+                    Plotly.page(plotlyKtHeader, renderer = renderer) {
                         plot(renderer = renderer, plot = plot)
                     }.render(), true
                 )
@@ -156,9 +153,9 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
         }
 
         render<PlotlyFragment> { fragment ->
-            if (PlotlyServerConfiguration.legacyMode) {
+            if (Plotly.jupyter.legacyMode) {
                 HTML(
-                    Plotly.page(cdnPlotlyHeader, plotlyConnectHeader, renderer = renderer) { renderer ->
+                    Plotly.page(plotlyKtHeader, renderer = renderer) { renderer ->
                         fragment.render(this, renderer)
                     }.render(), true
                 )
@@ -168,19 +165,18 @@ internal class PlotlyServerIntegration : JupyterIntegration() {
         }
 
         render<PlotlyPage> { page ->
-            HTML(page.copy(headers = page.headers + plotlyConnectHeader, renderer = renderer).render(), true)
+            HTML(page.copy(headers = page.headers + plotlyKtHeader, renderer = renderer).render(), true)
         }
 
         onLoaded {
-            val config = PlotlyServerConfiguration
-            logger.info("Starting JupyterPlotlyServer with $config")
-            val serverStart = start(config)
-            logger.info("JupyterPlotlyServer started with $config")
+            logger.info("Starting Plotly-kt data server with ${Plotly.jupyter}")
+            val serverStart = start()
             display(HTML(serverStart.toString()), null)
         }
 
         onShutdown {
-            logger.info("Stopping JupyterPlotlyServer")
+            logger.info("Stopping Plotly-kt data server")
+            Plotly.jupyter.meta.removeListener(this)
             display(HTML(stop().toString()), null)
         }
     }

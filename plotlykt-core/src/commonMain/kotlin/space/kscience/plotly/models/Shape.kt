@@ -1,7 +1,6 @@
 package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
-import space.kscience.dataforge.meta.Value
 import space.kscience.plotly.numberInRange
 
 public enum class ShapeType {
@@ -114,6 +113,22 @@ public class Shape : Scheme() {
      * Sets the shape's end y position. See `type` and `ysizemode` for more info.
      */
     public var y1: Value? by value()
+
+    /**
+     * XY number position of the start
+     */
+    public fun startXY(x: Number, y: Number) {
+        x0 = x.asValue()
+        y0 = y.asValue()
+    }
+
+    /**
+     * XY number position of the end
+     */
+    public fun endXY(x: Number, y: Number) {
+        x1 = x.asValue()
+        y1 = y.asValue()
+    }
 
     /**
      * For `type` "path" - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode`

@@ -200,7 +200,6 @@ public fun Scheme.numberInRange(
     }
 }
 
-@OptIn(DFExperimental::class)
 internal fun Scheme.duration(
     default: Duration? = null,
     key: Name? = null,

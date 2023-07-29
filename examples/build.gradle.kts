@@ -8,12 +8,12 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":plotlykt-server"))
+    implementation(projects.plotlyktServer)
     implementation(projects.plotlyktJupyter)
-    implementation(project(":plotlykt-geo"))
+    implementation(projects.plotlyktGeo)
     implementation(kotlin("script-runtime"))
-    implementation(project(":plotlykt-script"))
-    implementation("org.jetbrains.kotlinx:dataframe:0.9.1")
+    implementation(projects.plotlyktScript)
+    implementation("org.jetbrains.kotlinx:dataframe:0.10.1")
 }
 
 kotlin{
@@ -28,6 +28,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 val copyPlotlyResources by tasks.creating(Copy::class){
     dependsOn(":plotlykt-core:jvmProcessResources")
+    mustRunAfter(":plotlykt-core:jvmTestProcessResources")
     from(project(":plotlykt-core").buildDir.resolve("processedResources/jvm"))
     into(buildDir.resolve("resources"))
 }
