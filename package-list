@@ -3,6 +3,7 @@ $dokka.linkExtension:html
 
 module:plotlykt-core
 space.kscience.plotly
+space.kscience.plotly.events
 space.kscience.plotly.models
 space.kscience.plotly.palettes
 module:plotlykt-geo
