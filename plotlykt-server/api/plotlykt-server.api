@@ -48,6 +48,12 @@ public final class space/kscience/plotly/server/PlotlyServerConfiguration : spac
 	public final fun setUpdateInterval (I)V
 }
 
+public final class space/kscience/plotly/server/PlotlyServerIntegration : org/jetbrains/kotlinx/jupyter/api/libraries/JupyterIntegration {
+	public fun <init> ()V
+	public final fun isServerStarted ()Z
+	public fun onLoaded (Lorg/jetbrains/kotlinx/jupyter/api/libraries/JupyterIntegration$Builder;)V
+}
+
 public final class space/kscience/plotly/server/PlotlyServerIntegrationKt {
 	public static final fun getJupyter (Lspace/kscience/plotly/Plotly;)Lspace/kscience/plotly/server/PlotlyServerConfiguration;
 }

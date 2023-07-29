@@ -7,10 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Added
-- Add experimental support for events on JS
 
 ### Changed
-- Use a self-made Plotly-js bundle instead of one from CDN
 
 ### Deprecated
 
@@ -19,6 +17,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## 0.6.0 - 2023-07-29
+
+### Added
+- Add experimental support for events on JS
+
+### Changed
+- DataForge 0.6.2
+- Use a self-made Plotly-js bundle instead of one from CDN
 
 ## 0.5.3 - 2023-04-01
 

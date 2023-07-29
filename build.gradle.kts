@@ -6,12 +6,12 @@ plugins {
     id("space.kscience.gradle.project")
 }
 
-val dataforgeVersion by extra("0.6.2-dev-2")
+val dataforgeVersion by extra("0.6.2")
 val plotlyVersion by extra("2.24.1")
 
 allprojects {
     group = "space.kscience"
-    version = "0.6.0-dev-2"
+    version = "0.6.0"
 }
 
 apiValidation {
