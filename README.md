@@ -42,7 +42,7 @@ See [simpleServer](./examples/src/main/kotlin/simpleServer.kt) and
 [dynamicServer](./examples/src/main/kotlin/dynamicServer.kt) for examples.
 
 ## Kotlin-JS
-Plotly is a JavaScript library, yet it is convenient to have a type-safe API when using in with Kotlin-JS. The sample application is available in [js-demo](./js-demo) module. One should node that Plotly.kt for JS is not a zero-cost wrapper like TypeScript definitions, it maintains its own object structure, could generate stand-alone models and some internal optimizations.
+Plotly is a JavaScript library, yet it is convenient to have a type-safe API when using in with Kotlin-JS. The sample application is available in [js-demo](./examples/js-demo) module. One should node that Plotly.kt for JS is not a zero-cost wrapper like TypeScript definitions, it maintains its own object structure, could generate stand-alone models and some internal optimizations.
 
 **Plotly-kt does not support `LEGACY` JS target. Be sure to use [IR compiler](https://kotlinlang.org/docs/js-ir-compiler.html)**
 
