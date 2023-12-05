@@ -24,7 +24,7 @@ public class MetaChangeCollector {
 
     public suspend fun collect(name: Name, newItem: Meta?) {
         mutex.withLock {
-            state.setMeta(name, newItem)
+            state[name] = newItem
         }
     }
 

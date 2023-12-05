@@ -4,10 +4,6 @@ plugins {
     `maven-publish`
 }
 
-kscience{
-    application()
-}
-
 repositories {
     maven("https://dl.bintray.com/kotlin/ktor/")
 }

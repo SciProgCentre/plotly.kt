@@ -13,7 +13,7 @@ import kotlin.time.toDuration
 
 
 private fun MutableMeta.getIndexedProviders(name: Name): Map<String?, MutableMeta> {
-    val parent = getMeta(name.cutLast()) ?: return emptyMap()
+    val parent = get(name.cutLast()) ?: return emptyMap()
     return parent.items.keys.filter {
         it.body == name.lastOrNull()?.body
     }.map {

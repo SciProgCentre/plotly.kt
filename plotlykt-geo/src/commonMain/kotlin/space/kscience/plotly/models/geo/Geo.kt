@@ -1,7 +1,6 @@
 package space.kscience.plotly.models.geo
 
 import space.kscience.dataforge.meta.*
-import space.kscience.dataforge.names.asName
 import space.kscience.plotly.models.Color
 import space.kscience.plotly.models.Layout
 import space.kscience.plotly.models.color
@@ -68,5 +67,5 @@ public class Geo : Scheme() {
 public var Layout.geo: Geo
     get() = Geo.write(meta.getOrCreate("geo"))
     set(value){
-        meta.setMeta("geo".asName(), value.meta)
+        meta["geo"] = value.meta
     }

@@ -16,7 +16,7 @@ import space.kscience.plotly.models.Trace
  */
 @DFBuilder
 public class Plot(
-    override val meta: ObservableMutableMeta = MutableMeta(),
+    override val meta: ObservableMutableMeta = ObservableMutableMeta(),
 ) : Configurable, MetaRepr, Described {
 
     /**

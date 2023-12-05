@@ -6,6 +6,11 @@ plugins {
 val dataforgeVersion: String by rootProject.extra
 val plotlyVersion: String by rootProject.extra
 
+
+kotlin{
+    applyDefaultHierarchyTemplate()
+}
+
 kscience {
     fullStack(bundleName = "js/plotly-kt.js")
     native()
@@ -15,14 +20,15 @@ kscience {
         api(spclibs.kotlinx.html)
     }
 
-    dependencies(jsMain) {
+    jsMain{
         api(npm("plotly.js", plotlyVersion))
     }
 
-    dependencies(nativeMain) {
+    nativeMain {
         implementation("com.squareup.okio:okio:3.3.0")
     }
 }
+
 
 readme {
     maturity = space.kscience.gradle.Maturity.DEVELOPMENT
