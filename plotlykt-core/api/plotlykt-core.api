@@ -37,6 +37,7 @@ public final class space/kscience/plotly/OrcaFormat : java/lang/Enum {
 	public static final field png Lspace/kscience/plotly/OrcaFormat;
 	public static final field svg Lspace/kscience/plotly/OrcaFormat;
 	public static final field webp Lspace/kscience/plotly/OrcaFormat;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/OrcaFormat;
 	public static fun values ()[Lspace/kscience/plotly/OrcaFormat;
 }
@@ -64,6 +65,7 @@ public final class space/kscience/plotly/Plot$Companion {
 public final class space/kscience/plotly/PlotExtensionsKt {
 	public static final fun bar (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Bar;
 	public static final fun box (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Box;
+	public static final fun candlestick (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/CandleStick;
 	public static final fun contour (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Contour;
 	public static final fun heatmap (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Heatmap;
 	public static final fun histogram (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Histogram;
@@ -240,6 +242,7 @@ public final class space/kscience/plotly/ResourceLocation : java/lang/Enum {
 	public static final field LOCAL Lspace/kscience/plotly/ResourceLocation;
 	public static final field REMOTE Lspace/kscience/plotly/ResourceLocation;
 	public static final field SYSTEM Lspace/kscience/plotly/ResourceLocation;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/ResourceLocation;
 	public static fun values ()[Lspace/kscience/plotly/ResourceLocation;
 }
@@ -272,6 +275,7 @@ public final class space/kscience/plotly/events/PlotlyEventListenerType : java/l
 	public static final field SELECTED Lspace/kscience/plotly/events/PlotlyEventListenerType;
 	public static final field SELECTING Lspace/kscience/plotly/events/PlotlyEventListenerType;
 	public static final field UNHOVER Lspace/kscience/plotly/events/PlotlyEventListenerType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getEventType ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/events/PlotlyEventListenerType;
 	public static fun values ()[Lspace/kscience/plotly/events/PlotlyEventListenerType;
@@ -376,6 +380,7 @@ public final class space/kscience/plotly/models/AxisSide : java/lang/Enum {
 	public static final field left Lspace/kscience/plotly/models/AxisSide;
 	public static final field right Lspace/kscience/plotly/models/AxisSide;
 	public static final field top Lspace/kscience/plotly/models/AxisSide;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/AxisSide;
 	public static fun values ()[Lspace/kscience/plotly/models/AxisSide;
 }
@@ -387,6 +392,7 @@ public final class space/kscience/plotly/models/AxisType : java/lang/Enum {
 	public static final field linear Lspace/kscience/plotly/models/AxisType;
 	public static final field log Lspace/kscience/plotly/models/AxisType;
 	public static final field multicategory Lspace/kscience/plotly/models/AxisType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/AxisType;
 	public static fun values ()[Lspace/kscience/plotly/models/AxisType;
 }
@@ -424,6 +430,7 @@ public final class space/kscience/plotly/models/BarMode : java/lang/Enum {
 	public static final field overlay Lspace/kscience/plotly/models/BarMode;
 	public static final field relative Lspace/kscience/plotly/models/BarMode;
 	public static final field stack Lspace/kscience/plotly/models/BarMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BarMode;
 	public static fun values ()[Lspace/kscience/plotly/models/BarMode;
 }
@@ -432,6 +439,7 @@ public final class space/kscience/plotly/models/BarNorm : java/lang/Enum {
 	public static final field "" Lspace/kscience/plotly/models/BarNorm;
 	public static final field fraction Lspace/kscience/plotly/models/BarNorm;
 	public static final field percent Lspace/kscience/plotly/models/BarNorm;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BarNorm;
 	public static fun values ()[Lspace/kscience/plotly/models/BarNorm;
 }
@@ -514,6 +522,7 @@ public final class space/kscience/plotly/models/BoxHoveron : java/lang/Enum {
 	public static final field boxes Lspace/kscience/plotly/models/BoxHoveron;
 	public static final field boxes+points Lspace/kscience/plotly/models/BoxHoveron;
 	public static final field points Lspace/kscience/plotly/models/BoxHoveron;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BoxHoveron;
 	public static fun values ()[Lspace/kscience/plotly/models/BoxHoveron;
 }
@@ -522,6 +531,7 @@ public final class space/kscience/plotly/models/BoxMean : java/lang/Enum {
 	public static final field false Lspace/kscience/plotly/models/BoxMean;
 	public static final field sd Lspace/kscience/plotly/models/BoxMean;
 	public static final field true Lspace/kscience/plotly/models/BoxMean;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BoxMean;
 	public static fun values ()[Lspace/kscience/plotly/models/BoxMean;
 }
@@ -529,6 +539,7 @@ public final class space/kscience/plotly/models/BoxMean : java/lang/Enum {
 public final class space/kscience/plotly/models/BoxMode : java/lang/Enum {
 	public static final field group Lspace/kscience/plotly/models/BoxMode;
 	public static final field overlay Lspace/kscience/plotly/models/BoxMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BoxMode;
 	public static fun values ()[Lspace/kscience/plotly/models/BoxMode;
 }
@@ -538,6 +549,7 @@ public final class space/kscience/plotly/models/BoxPoints : java/lang/Enum {
 	public static final field false Lspace/kscience/plotly/models/BoxPoints;
 	public static final field outliers Lspace/kscience/plotly/models/BoxPoints;
 	public static final field suspectedoutliers Lspace/kscience/plotly/models/BoxPoints;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/BoxPoints;
 	public static fun values ()[Lspace/kscience/plotly/models/BoxPoints;
 }
@@ -559,6 +571,7 @@ public final class space/kscience/plotly/models/Calendar : java/lang/Enum {
 	public static final field taiwan Lspace/kscience/plotly/models/Calendar;
 	public static final field thai Lspace/kscience/plotly/models/Calendar;
 	public static final field ummalqura Lspace/kscience/plotly/models/Calendar;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Calendar;
 	public static fun values ()[Lspace/kscience/plotly/models/Calendar;
 }
@@ -700,6 +713,7 @@ public final class space/kscience/plotly/models/ConstrainText : java/lang/Enum {
 	public static final field inside Lspace/kscience/plotly/models/ConstrainText;
 	public static final field none Lspace/kscience/plotly/models/ConstrainText;
 	public static final field outside Lspace/kscience/plotly/models/ConstrainText;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ConstrainText;
 	public static fun values ()[Lspace/kscience/plotly/models/ConstrainText;
 }
@@ -762,6 +776,7 @@ public final class space/kscience/plotly/models/ContoursColoring : java/lang/Enu
 	public static final field heatmap Lspace/kscience/plotly/models/ContoursColoring;
 	public static final field lines Lspace/kscience/plotly/models/ContoursColoring;
 	public static final field none Lspace/kscience/plotly/models/ContoursColoring;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ContoursColoring;
 	public static fun values ()[Lspace/kscience/plotly/models/ContoursColoring;
 }
@@ -769,6 +784,7 @@ public final class space/kscience/plotly/models/ContoursColoring : java/lang/Enu
 public final class space/kscience/plotly/models/ContoursType : java/lang/Enum {
 	public static final field constraint Lspace/kscience/plotly/models/ContoursType;
 	public static final field levels Lspace/kscience/plotly/models/ContoursType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ContoursType;
 	public static fun values ()[Lspace/kscience/plotly/models/ContoursType;
 }
@@ -789,6 +805,7 @@ public final class space/kscience/plotly/models/CurrentBin : java/lang/Enum {
 	public static final field exclude Lspace/kscience/plotly/models/CurrentBin;
 	public static final field half Lspace/kscience/plotly/models/CurrentBin;
 	public static final field include Lspace/kscience/plotly/models/CurrentBin;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/CurrentBin;
 	public static fun values ()[Lspace/kscience/plotly/models/CurrentBin;
 }
@@ -800,6 +817,7 @@ public final class space/kscience/plotly/models/Dash : java/lang/Enum {
 	public static final field longdash Lspace/kscience/plotly/models/Dash;
 	public static final field longdashdot Lspace/kscience/plotly/models/Dash;
 	public static final field solid Lspace/kscience/plotly/models/Dash;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Dash;
 	public static fun values ()[Lspace/kscience/plotly/models/Dash;
 }
@@ -807,6 +825,7 @@ public final class space/kscience/plotly/models/Dash : java/lang/Enum {
 public final class space/kscience/plotly/models/DataType : java/lang/Enum {
 	public static final field array Lspace/kscience/plotly/models/DataType;
 	public static final field scaled Lspace/kscience/plotly/models/DataType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/DataType;
 	public static fun values ()[Lspace/kscience/plotly/models/DataType;
 }
@@ -840,6 +859,7 @@ public final class space/kscience/plotly/models/DragMode : java/lang/Enum {
 	public static final field select Lspace/kscience/plotly/models/DragMode;
 	public static final field turntable Lspace/kscience/plotly/models/DragMode;
 	public static final field zoom Lspace/kscience/plotly/models/DragMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/DragMode;
 	public static fun values ()[Lspace/kscience/plotly/models/DragMode;
 }
@@ -880,6 +900,7 @@ public final class space/kscience/plotly/models/ErrorType : java/lang/Enum {
 	public static final field data Lspace/kscience/plotly/models/ErrorType;
 	public static final field percent Lspace/kscience/plotly/models/ErrorType;
 	public static final field sqrt Lspace/kscience/plotly/models/ErrorType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ErrorType;
 	public static fun values ()[Lspace/kscience/plotly/models/ErrorType;
 }
@@ -913,6 +934,7 @@ public final class space/kscience/plotly/models/FillType : java/lang/Enum {
 	public static final field toself Lspace/kscience/plotly/models/FillType;
 	public static final field tozerox Lspace/kscience/plotly/models/FillType;
 	public static final field tozeroy Lspace/kscience/plotly/models/FillType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/FillType;
 	public static fun values ()[Lspace/kscience/plotly/models/FillType;
 }
@@ -955,6 +977,7 @@ public final class space/kscience/plotly/models/GradientType : java/lang/Enum {
 	public static final field none Lspace/kscience/plotly/models/GradientType;
 	public static final field radial Lspace/kscience/plotly/models/GradientType;
 	public static final field vertical Lspace/kscience/plotly/models/GradientType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/GradientType;
 	public static fun values ()[Lspace/kscience/plotly/models/GradientType;
 }
@@ -963,6 +986,7 @@ public final class space/kscience/plotly/models/GroupNorm : java/lang/Enum {
 	public static final field   Lspace/kscience/plotly/models/GroupNorm;
 	public static final field fraction Lspace/kscience/plotly/models/GroupNorm;
 	public static final field percent Lspace/kscience/plotly/models/GroupNorm;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/GroupNorm;
 	public static fun values ()[Lspace/kscience/plotly/models/GroupNorm;
 }
@@ -1032,6 +1056,7 @@ public final class space/kscience/plotly/models/HistFunc : java/lang/Enum {
 	public static final field max Lspace/kscience/plotly/models/HistFunc;
 	public static final field min Lspace/kscience/plotly/models/HistFunc;
 	public static final field sum Lspace/kscience/plotly/models/HistFunc;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/HistFunc;
 	public static fun values ()[Lspace/kscience/plotly/models/HistFunc;
 }
@@ -1042,6 +1067,7 @@ public final class space/kscience/plotly/models/HistNorm : java/lang/Enum {
 	public static final field percent Lspace/kscience/plotly/models/HistNorm;
 	public static final field probability Lspace/kscience/plotly/models/HistNorm;
 	public static final field probability density Lspace/kscience/plotly/models/HistNorm;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/HistNorm;
 	public static fun values ()[Lspace/kscience/plotly/models/HistNorm;
 }
@@ -1111,6 +1137,7 @@ public final class space/kscience/plotly/models/Histogram2DContour$Companion : s
 public final class space/kscience/plotly/models/HistogramDirection : java/lang/Enum {
 	public static final field decreasing Lspace/kscience/plotly/models/HistogramDirection;
 	public static final field increasing Lspace/kscience/plotly/models/HistogramDirection;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/HistogramDirection;
 	public static fun values ()[Lspace/kscience/plotly/models/HistogramDirection;
 }
@@ -1119,6 +1146,7 @@ public final class space/kscience/plotly/models/HorizontalAlign : java/lang/Enum
 	public static final field center Lspace/kscience/plotly/models/HorizontalAlign;
 	public static final field left Lspace/kscience/plotly/models/HorizontalAlign;
 	public static final field right Lspace/kscience/plotly/models/HorizontalAlign;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/HorizontalAlign;
 	public static fun values ()[Lspace/kscience/plotly/models/HorizontalAlign;
 }
@@ -1130,6 +1158,7 @@ public final class space/kscience/plotly/models/HoverMode : java/lang/Enum {
 	public static final field x unified Lspace/kscience/plotly/models/HoverMode;
 	public static final field y Lspace/kscience/plotly/models/HoverMode;
 	public static final field y unified Lspace/kscience/plotly/models/HoverMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/HoverMode;
 	public static fun values ()[Lspace/kscience/plotly/models/HoverMode;
 }
@@ -1201,6 +1230,7 @@ public final class space/kscience/plotly/models/Image$Companion : space/kscience
 public final class space/kscience/plotly/models/ImageLayer : java/lang/Enum {
 	public static final field above Lspace/kscience/plotly/models/ImageLayer;
 	public static final field below Lspace/kscience/plotly/models/ImageLayer;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ImageLayer;
 	public static fun values ()[Lspace/kscience/plotly/models/ImageLayer;
 }
@@ -1209,6 +1239,7 @@ public final class space/kscience/plotly/models/ImageSizing : java/lang/Enum {
 	public static final field contain Lspace/kscience/plotly/models/ImageSizing;
 	public static final field fill Lspace/kscience/plotly/models/ImageSizing;
 	public static final field stretch Lspace/kscience/plotly/models/ImageSizing;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ImageSizing;
 	public static fun values ()[Lspace/kscience/plotly/models/ImageSizing;
 }
@@ -1217,6 +1248,7 @@ public final class space/kscience/plotly/models/ImageXAnchor : java/lang/Enum {
 	public static final field center Lspace/kscience/plotly/models/ImageXAnchor;
 	public static final field left Lspace/kscience/plotly/models/ImageXAnchor;
 	public static final field right Lspace/kscience/plotly/models/ImageXAnchor;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ImageXAnchor;
 	public static fun values ()[Lspace/kscience/plotly/models/ImageXAnchor;
 }
@@ -1225,6 +1257,7 @@ public final class space/kscience/plotly/models/ImageYAnchor : java/lang/Enum {
 	public static final field bottom Lspace/kscience/plotly/models/ImageYAnchor;
 	public static final field middle Lspace/kscience/plotly/models/ImageYAnchor;
 	public static final field top Lspace/kscience/plotly/models/ImageYAnchor;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ImageYAnchor;
 	public static fun values ()[Lspace/kscience/plotly/models/ImageYAnchor;
 }
@@ -1352,6 +1385,7 @@ public final class space/kscience/plotly/models/Legend$Companion : space/kscienc
 public final class space/kscience/plotly/models/LegendOrientation : java/lang/Enum {
 	public static final field horizontal Lspace/kscience/plotly/models/LegendOrientation;
 	public static final field vertical Lspace/kscience/plotly/models/LegendOrientation;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/LegendOrientation;
 	public static fun values ()[Lspace/kscience/plotly/models/LegendOrientation;
 }
@@ -1371,6 +1405,7 @@ public final class space/kscience/plotly/models/LineShape : java/lang/Enum {
 	public static final field spline Lspace/kscience/plotly/models/LineShape;
 	public static final field vh Lspace/kscience/plotly/models/LineShape;
 	public static final field vhv Lspace/kscience/plotly/models/LineShape;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/LineShape;
 	public static fun values ()[Lspace/kscience/plotly/models/LineShape;
 }
@@ -1484,6 +1519,7 @@ public final class space/kscience/plotly/models/MeanLine$Companion : space/kscie
 public final class space/kscience/plotly/models/MeasureMode : java/lang/Enum {
 	public static final field fraction Lspace/kscience/plotly/models/MeasureMode;
 	public static final field pixels Lspace/kscience/plotly/models/MeasureMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/MeasureMode;
 	public static fun values ()[Lspace/kscience/plotly/models/MeasureMode;
 }
@@ -1491,6 +1527,7 @@ public final class space/kscience/plotly/models/MeasureMode : java/lang/Enum {
 public final class space/kscience/plotly/models/Orientation : java/lang/Enum {
 	public static final field h Lspace/kscience/plotly/models/Orientation;
 	public static final field v Lspace/kscience/plotly/models/Orientation;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Orientation;
 	public static fun values ()[Lspace/kscience/plotly/models/Orientation;
 }
@@ -1524,6 +1561,7 @@ public final class space/kscience/plotly/models/Pie$Companion : space/kscience/d
 public final class space/kscience/plotly/models/PieDirection : java/lang/Enum {
 	public static final field clockwise Lspace/kscience/plotly/models/PieDirection;
 	public static final field counterclockwise Lspace/kscience/plotly/models/PieDirection;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/PieDirection;
 	public static fun values ()[Lspace/kscience/plotly/models/PieDirection;
 }
@@ -1532,6 +1570,7 @@ public final class space/kscience/plotly/models/QuartileMethod : java/lang/Enum 
 	public static final field exclusive Lspace/kscience/plotly/models/QuartileMethod;
 	public static final field inclusive Lspace/kscience/plotly/models/QuartileMethod;
 	public static final field linear Lspace/kscience/plotly/models/QuartileMethod;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/QuartileMethod;
 	public static fun values ()[Lspace/kscience/plotly/models/QuartileMethod;
 }
@@ -1539,6 +1578,7 @@ public final class space/kscience/plotly/models/QuartileMethod : java/lang/Enum 
 public final class space/kscience/plotly/models/Ref : java/lang/Enum {
 	public static final field container Lspace/kscience/plotly/models/Ref;
 	public static final field paper Lspace/kscience/plotly/models/Ref;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Ref;
 	public static fun values ()[Lspace/kscience/plotly/models/Ref;
 }
@@ -1585,6 +1625,7 @@ public final class space/kscience/plotly/models/ScatterHoveron : java/lang/Enum 
 	public static final field fills Lspace/kscience/plotly/models/ScatterHoveron;
 	public static final field points Lspace/kscience/plotly/models/ScatterHoveron;
 	public static final field points+fills Lspace/kscience/plotly/models/ScatterHoveron;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ScatterHoveron;
 	public static fun values ()[Lspace/kscience/plotly/models/ScatterHoveron;
 }
@@ -1598,6 +1639,7 @@ public final class space/kscience/plotly/models/ScatterMode : java/lang/Enum {
 	public static final field markers+text Lspace/kscience/plotly/models/ScatterMode;
 	public static final field none Lspace/kscience/plotly/models/ScatterMode;
 	public static final field text Lspace/kscience/plotly/models/ScatterMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ScatterMode;
 	public static fun values ()[Lspace/kscience/plotly/models/ScatterMode;
 }
@@ -1693,6 +1735,7 @@ public final class space/kscience/plotly/models/Shape$Companion : space/kscience
 public final class space/kscience/plotly/models/ShapeFillRule : java/lang/Enum {
 	public static final field evenodd Lspace/kscience/plotly/models/ShapeFillRule;
 	public static final field nonzero Lspace/kscience/plotly/models/ShapeFillRule;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ShapeFillRule;
 	public static fun values ()[Lspace/kscience/plotly/models/ShapeFillRule;
 }
@@ -1700,6 +1743,7 @@ public final class space/kscience/plotly/models/ShapeFillRule : java/lang/Enum {
 public final class space/kscience/plotly/models/ShapeLayer : java/lang/Enum {
 	public static final field above Lspace/kscience/plotly/models/ShapeLayer;
 	public static final field below Lspace/kscience/plotly/models/ShapeLayer;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ShapeLayer;
 	public static fun values ()[Lspace/kscience/plotly/models/ShapeLayer;
 }
@@ -1707,6 +1751,7 @@ public final class space/kscience/plotly/models/ShapeLayer : java/lang/Enum {
 public final class space/kscience/plotly/models/ShapeSizeMode : java/lang/Enum {
 	public static final field pixel Lspace/kscience/plotly/models/ShapeSizeMode;
 	public static final field scaled Lspace/kscience/plotly/models/ShapeSizeMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ShapeSizeMode;
 	public static fun values ()[Lspace/kscience/plotly/models/ShapeSizeMode;
 }
@@ -1716,6 +1761,7 @@ public final class space/kscience/plotly/models/ShapeType : java/lang/Enum {
 	public static final field line Lspace/kscience/plotly/models/ShapeType;
 	public static final field path Lspace/kscience/plotly/models/ShapeType;
 	public static final field rect Lspace/kscience/plotly/models/ShapeType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ShapeType;
 	public static fun values ()[Lspace/kscience/plotly/models/ShapeType;
 }
@@ -1723,6 +1769,7 @@ public final class space/kscience/plotly/models/ShapeType : java/lang/Enum {
 public final class space/kscience/plotly/models/SizeMode : java/lang/Enum {
 	public static final field area Lspace/kscience/plotly/models/SizeMode;
 	public static final field diameter Lspace/kscience/plotly/models/SizeMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/SizeMode;
 	public static fun values ()[Lspace/kscience/plotly/models/SizeMode;
 }
@@ -1731,6 +1778,7 @@ public final class space/kscience/plotly/models/SpanMode : java/lang/Enum {
 	public static final field hard Lspace/kscience/plotly/models/SpanMode;
 	public static final field manual Lspace/kscience/plotly/models/SpanMode;
 	public static final field soft Lspace/kscience/plotly/models/SpanMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/SpanMode;
 	public static fun values ()[Lspace/kscience/plotly/models/SpanMode;
 }
@@ -1738,6 +1786,7 @@ public final class space/kscience/plotly/models/SpanMode : java/lang/Enum {
 public final class space/kscience/plotly/models/StackGaps : java/lang/Enum {
 	public static final field infer zero Lspace/kscience/plotly/models/StackGaps;
 	public static final field interpolate Lspace/kscience/plotly/models/StackGaps;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/StackGaps;
 	public static fun values ()[Lspace/kscience/plotly/models/StackGaps;
 }
@@ -1750,6 +1799,7 @@ public final class space/kscience/plotly/models/Symbol : java/lang/Enum {
 	public static final field square-cross Lspace/kscience/plotly/models/Symbol;
 	public static final field triangle-down Lspace/kscience/plotly/models/Symbol;
 	public static final field triangle-up Lspace/kscience/plotly/models/Symbol;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Symbol;
 	public static fun values ()[Lspace/kscience/plotly/models/Symbol;
 }
@@ -1851,6 +1901,7 @@ public final class space/kscience/plotly/models/TextInfo : java/lang/Enum {
 	public static final field text+value+percent Lspace/kscience/plotly/models/TextInfo;
 	public static final field value Lspace/kscience/plotly/models/TextInfo;
 	public static final field value+percent Lspace/kscience/plotly/models/TextInfo;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TextInfo;
 	public static fun values ()[Lspace/kscience/plotly/models/TextInfo;
 }
@@ -1869,6 +1920,7 @@ public final class space/kscience/plotly/models/TextPosition : java/lang/Enum {
 	public static final field top center Lspace/kscience/plotly/models/TextPosition;
 	public static final field top left Lspace/kscience/plotly/models/TextPosition;
 	public static final field top right Lspace/kscience/plotly/models/TextPosition;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TextPosition;
 	public static fun values ()[Lspace/kscience/plotly/models/TextPosition;
 }
@@ -1877,6 +1929,7 @@ public final class space/kscience/plotly/models/TickMode : java/lang/Enum {
 	public static final field array Lspace/kscience/plotly/models/TickMode;
 	public static final field auto Lspace/kscience/plotly/models/TickMode;
 	public static final field linear Lspace/kscience/plotly/models/TickMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TickMode;
 	public static fun values ()[Lspace/kscience/plotly/models/TickMode;
 }
@@ -1885,6 +1938,7 @@ public final class space/kscience/plotly/models/Ticks : java/lang/Enum {
 	public static final field "" Lspace/kscience/plotly/models/Ticks;
 	public static final field inside Lspace/kscience/plotly/models/Ticks;
 	public static final field outside Lspace/kscience/plotly/models/Ticks;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Ticks;
 	public static fun values ()[Lspace/kscience/plotly/models/Ticks;
 }
@@ -2029,6 +2083,7 @@ public final class space/kscience/plotly/models/TraceKt {
 public final class space/kscience/plotly/models/TraceOrder : java/lang/Enum {
 	public static final field normal Lspace/kscience/plotly/models/TraceOrder;
 	public static final field reversed Lspace/kscience/plotly/models/TraceOrder;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TraceOrder;
 	public static fun values ()[Lspace/kscience/plotly/models/TraceOrder;
 }
@@ -2062,6 +2117,7 @@ public final class space/kscience/plotly/models/TraceType : java/lang/Enum {
 	public static final field violin Lspace/kscience/plotly/models/TraceType;
 	public static final field volume Lspace/kscience/plotly/models/TraceType;
 	public static final field waterfall Lspace/kscience/plotly/models/TraceType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/TraceType;
 	public static fun values ()[Lspace/kscience/plotly/models/TraceType;
 }
@@ -2086,6 +2142,7 @@ public final class space/kscience/plotly/models/VerticalAlign : java/lang/Enum {
 	public static final field bottom Lspace/kscience/plotly/models/VerticalAlign;
 	public static final field middle Lspace/kscience/plotly/models/VerticalAlign;
 	public static final field top Lspace/kscience/plotly/models/VerticalAlign;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/VerticalAlign;
 	public static fun values ()[Lspace/kscience/plotly/models/VerticalAlign;
 }
@@ -2143,6 +2200,7 @@ public final class space/kscience/plotly/models/ViolinHoveron : java/lang/Enum {
 	public static final field violins+kde Lspace/kscience/plotly/models/ViolinHoveron;
 	public static final field violins+points Lspace/kscience/plotly/models/ViolinHoveron;
 	public static final field violins+points+kde Lspace/kscience/plotly/models/ViolinHoveron;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ViolinHoveron;
 	public static fun values ()[Lspace/kscience/plotly/models/ViolinHoveron;
 }
@@ -2150,6 +2208,7 @@ public final class space/kscience/plotly/models/ViolinHoveron : java/lang/Enum {
 public final class space/kscience/plotly/models/ViolinMode : java/lang/Enum {
 	public static final field group Lspace/kscience/plotly/models/ViolinMode;
 	public static final field overlay Lspace/kscience/plotly/models/ViolinMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ViolinMode;
 	public static fun values ()[Lspace/kscience/plotly/models/ViolinMode;
 }
@@ -2159,6 +2218,7 @@ public final class space/kscience/plotly/models/ViolinPoints : java/lang/Enum {
 	public static final field false Lspace/kscience/plotly/models/ViolinPoints;
 	public static final field outliers Lspace/kscience/plotly/models/ViolinPoints;
 	public static final field suspectedoutliers Lspace/kscience/plotly/models/ViolinPoints;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ViolinPoints;
 	public static fun values ()[Lspace/kscience/plotly/models/ViolinPoints;
 }
@@ -2166,6 +2226,7 @@ public final class space/kscience/plotly/models/ViolinPoints : java/lang/Enum {
 public final class space/kscience/plotly/models/ViolinScaleMode : java/lang/Enum {
 	public static final field count Lspace/kscience/plotly/models/ViolinScaleMode;
 	public static final field width Lspace/kscience/plotly/models/ViolinScaleMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ViolinScaleMode;
 	public static fun values ()[Lspace/kscience/plotly/models/ViolinScaleMode;
 }
@@ -2174,6 +2235,7 @@ public final class space/kscience/plotly/models/ViolinSide : java/lang/Enum {
 	public static final field both Lspace/kscience/plotly/models/ViolinSide;
 	public static final field negative Lspace/kscience/plotly/models/ViolinSide;
 	public static final field positive Lspace/kscience/plotly/models/ViolinSide;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ViolinSide;
 	public static fun values ()[Lspace/kscience/plotly/models/ViolinSide;
 }
@@ -2182,6 +2244,7 @@ public final class space/kscience/plotly/models/Visible : java/lang/Enum {
 	public static final field false Lspace/kscience/plotly/models/Visible;
 	public static final field legendonly Lspace/kscience/plotly/models/Visible;
 	public static final field true Lspace/kscience/plotly/models/Visible;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/Visible;
 	public static fun values ()[Lspace/kscience/plotly/models/Visible;
 }
@@ -2191,6 +2254,7 @@ public final class space/kscience/plotly/models/XAnchor : java/lang/Enum {
 	public static final field center Lspace/kscience/plotly/models/XAnchor;
 	public static final field left Lspace/kscience/plotly/models/XAnchor;
 	public static final field right Lspace/kscience/plotly/models/XAnchor;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/XAnchor;
 	public static fun values ()[Lspace/kscience/plotly/models/XAnchor;
 }
@@ -2199,6 +2263,7 @@ public final class space/kscience/plotly/models/XPeriodAlignment : java/lang/Enu
 	public static final field end Lspace/kscience/plotly/models/XPeriodAlignment;
 	public static final field middle Lspace/kscience/plotly/models/XPeriodAlignment;
 	public static final field start Lspace/kscience/plotly/models/XPeriodAlignment;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/XPeriodAlignment;
 	public static fun values ()[Lspace/kscience/plotly/models/XPeriodAlignment;
 }
@@ -2208,6 +2273,7 @@ public final class space/kscience/plotly/models/YAnchor : java/lang/Enum {
 	public static final field bottom Lspace/kscience/plotly/models/YAnchor;
 	public static final field middle Lspace/kscience/plotly/models/YAnchor;
 	public static final field top Lspace/kscience/plotly/models/YAnchor;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/YAnchor;
 	public static fun values ()[Lspace/kscience/plotly/models/YAnchor;
 }
@@ -2216,6 +2282,7 @@ public final class space/kscience/plotly/models/ZsmoothType : java/lang/Enum {
 	public static final field best Lspace/kscience/plotly/models/ZsmoothType;
 	public static final field false Lspace/kscience/plotly/models/ZsmoothType;
 	public static final field fast Lspace/kscience/plotly/models/ZsmoothType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lspace/kscience/plotly/models/ZsmoothType;
 	public static fun values ()[Lspace/kscience/plotly/models/ZsmoothType;
 }

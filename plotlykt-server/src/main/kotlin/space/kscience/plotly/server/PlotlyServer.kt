@@ -121,7 +121,7 @@ public class PlotlyServer internal constructor(
 
     override val coroutineContext: CoroutineContext get() = routing.application.coroutineContext
 
-    override val meta: ObservableMutableMeta = MutableMeta()
+    override val meta: ObservableMutableMeta = ObservableMutableMeta()
     public var updateMode: PlotlyUpdateMode by meta.enum(PlotlyUpdateMode.PUSH, key = UPDATE_MODE_KEY)
     public var updateInterval: Int by meta.int(300, key = UPDATE_INTERVAL_KEY)
     public var embedData: Boolean by meta.boolean(false)
@@ -204,11 +204,11 @@ public class PlotlyServer internal constructor(
                         encodedPath = origin.uri
                     }.build()
                     call.respondHtml {
-                        val normalizedRoute = if (rootRoute.endsWith("/")) {
-                            rootRoute
-                        } else {
-                            "$rootRoute/"
-                        }
+//                        val normalizedRoute = if (rootRoute.endsWith("/")) {
+//                            rootRoute
+//                        } else {
+//                            "$rootRoute/"
+//                        }
 
                         head {
                             meta {

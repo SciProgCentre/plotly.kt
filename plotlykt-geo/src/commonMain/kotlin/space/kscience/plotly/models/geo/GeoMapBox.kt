@@ -1,7 +1,6 @@
 package space.kscience.plotly.models.geo
 
 import space.kscience.dataforge.meta.*
-import space.kscience.dataforge.names.asName
 import space.kscience.plotly.Plot
 import space.kscience.plotly.models.Layout
 
@@ -60,7 +59,7 @@ public fun GeoMapBox.useOpenStreetMap() {
 public var Layout.mapbox: GeoMapBox
     get() = GeoMapBox.write(meta.getOrCreate("mapbox"))
     set(value) {
-        meta.setMeta("mapbox".asName(), value.meta)
+        meta["mapbox"] = value.meta
     }
 
 public fun Plot.openStreetMap(block: GeoMapBox.() -> Unit) {

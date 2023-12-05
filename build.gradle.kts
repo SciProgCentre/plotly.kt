@@ -1,4 +1,3 @@
-import space.kscience.gradle.isInDevelopment
 import space.kscience.gradle.useApache2Licence
 import space.kscience.gradle.useSPCTeam
 
@@ -6,12 +5,12 @@ plugins {
     id("space.kscience.gradle.project")
 }
 
-val dataforgeVersion by extra("0.6.2")
+val dataforgeVersion by extra("0.7.1")
 val plotlyVersion by extra("2.24.1")
 
 allprojects {
     group = "space.kscience"
-    version = "0.6.0"
+    version = "0.6.1"
 }
 
 apiValidation {
@@ -24,14 +23,7 @@ ksciencePublish{
         useApache2Licence()
         useSPCTeam()
     }
-    github("plotly.kt", "SciProgCentre")
-    space(
-        if (isInDevelopment) {
-            "https://maven.pkg.jetbrains.space/spc/p/sci/dev"
-        } else {
-            "https://maven.pkg.jetbrains.space/spc/p/sci/maven"
-        }
-    )
+    repository("spc","https://maven.sciprog.center/kscience")
     sonatype("https://oss.sonatype.org")
 }
 
