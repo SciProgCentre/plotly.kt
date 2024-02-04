@@ -294,7 +294,7 @@ public class Title : Scheme() {
     /**
      * Sets the title font.
      */
-    public var font: Font by spec(Font)
+    public var font: Font by scheme(Font)
 
     /**
      * Sets the container `x` refers to. "container" spans the entire `width` of the plot.
@@ -340,7 +340,7 @@ public class Title : Scheme() {
      * The same rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if
      * the respective anchor value is "middle"/"center".
      */
-    public var pad: Margin by spec(Margin)
+    public var pad: Margin by scheme(Margin)
 
     public fun font(block: Font.() -> Unit) {
         font = Font(block)
@@ -545,7 +545,7 @@ public class ColorBar : Scheme() {
      */
     public val bgcolor: Color by color()
 
-    public var title: Title by spec(Title)
+    public var title: Title by scheme(Title)
 
     /**
      * Sets the width (in px) of the axis line.
@@ -567,7 +567,7 @@ public class ColorBar : Scheme() {
     /**
      * Sets the color bar's tick label font
      */
-    public var tickfont: Font by spec(Font)
+    public var tickfont: Font by scheme(Font)
 
     public fun title(block: Title.() -> Unit) {
         title = Title(block)
@@ -657,7 +657,7 @@ public class Hoverlabel : Scheme() {
     /**
      * Sets the font used in hover labels.
      * */
-    public var font: Font by spec(Font)
+    public var font: Font by scheme(Font)
 
     /**
      * Sets the horizontal alignment of the text content within hover label box. Has an effect
@@ -806,7 +806,7 @@ public open class Trace : Scheme() {
      */
     public var labels: List<Value> by listOfValues()
 
-    public var line: LayoutLine by spec(LayoutLine)
+    public var line: LayoutLine by scheme(LayoutLine)
 
     /**
      * Sets the colorscale. The colorscale must be an array
@@ -815,7 +815,7 @@ public open class Trace : Scheme() {
      */
     public var colorscale: Value? by value()
 
-    public var colorbar: ColorBar by spec(ColorBar)
+    public var colorbar: ColorBar by scheme(ColorBar)
 
     /**
      * Sets the fill color if `contours.type` is "constraint". Defaults to
@@ -858,9 +858,9 @@ public open class Trace : Scheme() {
      */
     public var opacity: Number by numberInRange(0.0..1.0)
 
-    //var line by spec(Line)
+    //var line by scheme(Line)
 
-    public var marker: Marker by spec(Marker)
+    public var marker: Marker by scheme(Marker)
 
     /**
      * Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all
@@ -895,7 +895,7 @@ public open class Trace : Scheme() {
     /**
      * Sets the text font.
      */
-    public var textfont: Font by spec(Font)
+    public var textfont: Font by scheme(Font)
 
     /**
      * Flaglist string. Any combination of "x", "y", "z", "text", "name" joined with a "+" OR "all" or "none" or "skip".
@@ -905,9 +905,9 @@ public open class Trace : Scheme() {
      */
     public var hoverinfo: String? by string()
 
-    public var error_x: Error by spec(Error)
+    public var error_x: Error by scheme(Error)
 
-    public var error_y: Error by spec(Error)
+    public var error_y: Error by scheme(Error)
 
     /**
      * Sets the orientation of the plot(s).
@@ -959,9 +959,9 @@ public open class Trace : Scheme() {
      */
     public var ycalendar: Calendar by enum(Calendar.gregorian)
 
-    public var domain: Domain by spec(Domain)
+    public var domain: Domain by scheme(Domain)
 
-    public var hoverlabel: Hoverlabel by spec(Hoverlabel)
+    public var hoverlabel: Hoverlabel by scheme(Hoverlabel)
 
     public fun values(array: Iterable<Any>) {
         values = array.map { Value.of(it) }

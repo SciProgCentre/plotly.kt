@@ -38,7 +38,7 @@ public class Text : Scheme() {
     /**
      * Sets the annotation text font.
      */
-    public var font: Font by spec(Font)
+    public var font: Font by scheme(Font)
 
     /**
      * Sets the annotation's x position. If the axis `type` is "log",

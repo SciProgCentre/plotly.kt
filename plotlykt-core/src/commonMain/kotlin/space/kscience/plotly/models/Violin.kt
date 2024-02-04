@@ -119,7 +119,7 @@ public class Violin : Trace() {
      */
     public var hoveron: ViolinHoveron by enum(ViolinHoveron.`violins+points+kde`)
 
-    public var meanline: MeanLine by spec(MeanLine)
+    public var meanline: MeanLine by scheme(MeanLine)
 
     /**
      * If "outliers", only the sample points lying outside the whiskers
@@ -144,7 +144,7 @@ public class Violin : Trace() {
      */
     public var span: List<Value> by listOfValues()
 
-    public var box: ViolinBox by spec(ViolinBox)
+    public var box: ViolinBox by scheme(ViolinBox)
 
     /**
      * Sets the amount of jitter in the sample points drawn.

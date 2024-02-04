@@ -2,7 +2,7 @@ package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.Scheme
 import space.kscience.dataforge.meta.SchemeSpec
-import space.kscience.dataforge.meta.spec
+import space.kscience.dataforge.meta.scheme
 import space.kscience.plotly.numberGreaterThan
 import space.kscience.plotly.numberInRange
 
@@ -26,9 +26,9 @@ public class SelectMarker : Scheme() {
 }
 
 public class SelectPoints : Scheme() {
-    public var marker: SelectMarker by spec(SelectMarker)
+    public var marker: SelectMarker by scheme(SelectMarker)
 
-    public var textfont: Font by spec(Font)
+    public var textfont: Font by scheme(Font)
 
     public fun marker(block: SelectMarker.() -> Unit) {
         marker = SelectMarker(block)

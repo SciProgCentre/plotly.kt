@@ -50,7 +50,7 @@ public class Contours : Scheme() {
      * Sets the font used for labeling the contour levels. The default color
      * comes from the lines, if shown. The default family and size come from `layout.font`.
      */
-    public var labelfont: Font by spec(Font)
+    public var labelfont: Font by scheme(Font)
 
     public fun labelfont(block: Font.() -> Unit) {
         labelfont = Font(block)

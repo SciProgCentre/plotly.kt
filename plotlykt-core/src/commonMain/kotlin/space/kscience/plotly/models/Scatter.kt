@@ -96,9 +96,9 @@ public open class Scatter : Trace(), SelectedPoints {
      */
     override var selectedpoints: List<Number> by numberList()
 
-    override var selected: SelectPoints by spec(SelectPoints)
+    override var selected: SelectPoints by scheme(SelectPoints)
 
-    override var unselected: SelectPoints by spec(SelectPoints)
+    override var unselected: SelectPoints by scheme(SelectPoints)
 
     /**
      * Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then

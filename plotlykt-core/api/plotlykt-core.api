@@ -114,6 +114,7 @@ public final class space/kscience/plotly/PlotGridKt {
 }
 
 public final class space/kscience/plotly/PlotKt {
+	public static final fun Plot (Lspace/kscience/dataforge/meta/Meta;)Lspace/kscience/plotly/Plot;
 	public static final fun layout (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)V
 	public static final fun toJsonString (Lspace/kscience/plotly/Plot;)Ljava/lang/String;
 	public static final fun trace (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Trace;

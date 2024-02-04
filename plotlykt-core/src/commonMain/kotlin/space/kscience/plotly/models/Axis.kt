@@ -91,7 +91,7 @@ public class Axis : Scheme() {
     /**
      * Sets the tick font.
      */
-    public var tickfont: Font by spec(Font)
+    public var tickfont: Font by scheme(Font)
 
     /**
      * Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn.

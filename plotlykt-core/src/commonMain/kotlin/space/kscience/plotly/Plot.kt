@@ -1,3 +1,5 @@
+@file:OptIn(DFExperimental::class)
+
 package space.kscience.plotly
 
 import kotlinx.serialization.json.JsonObject
@@ -8,6 +10,7 @@ import space.kscience.dataforge.meta.descriptors.Described
 import space.kscience.dataforge.meta.descriptors.MetaDescriptor
 import space.kscience.dataforge.meta.descriptors.node
 import space.kscience.dataforge.misc.DFBuilder
+import space.kscience.dataforge.misc.DFExperimental
 import space.kscience.plotly.models.Layout
 import space.kscience.plotly.models.Trace
 
@@ -17,17 +20,17 @@ import space.kscience.plotly.models.Trace
 @DFBuilder
 public class Plot(
     override val meta: ObservableMutableMeta = ObservableMutableMeta(),
-) : Configurable, MetaRepr, Described {
+) : Configurable, MetaRepr, Described{
 
     /**
      * Ordered list ot traces in the plot
      */
-    public val data: List<Trace> by list(Trace)
+    public val data: List<Trace> by meta.listOfScheme(Trace)
 
     /**
      * Layout specification for th plot
      */
-    public val layout: Layout by meta.spec(Layout)
+    public val layout: Layout by meta.scheme(Layout)
 
     public fun addTrace(trace: Trace) {
         meta.appendAndAttach("data", trace.meta)
@@ -69,6 +72,8 @@ public class Plot(
         }
     }
 }
+
+public fun Plot(meta: Meta): Plot = Plot(ObservableMutableMeta { update(meta) })
 
 internal fun Plot.toJson(): JsonObject = buildJsonObject {
     put("layout", layout.meta.toJson())
