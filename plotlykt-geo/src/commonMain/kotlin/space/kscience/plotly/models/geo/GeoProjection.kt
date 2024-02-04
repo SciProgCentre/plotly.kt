@@ -9,7 +9,7 @@ public class GeoProjection : Scheme() {
      * the point of view as a proportion of the sphere’s radius.
      */
     public var distance: Number by numberGreaterThan(1.001, default = 2.0)
-    public var rotation: MapCoordinatesWithRotation by spec(MapCoordinatesWithRotation)
+    public var rotation: MapCoordinatesWithRotation by scheme(MapCoordinatesWithRotation)
 
     /**
      * Zooms in or out on the map view. A scale of "1" corresponds

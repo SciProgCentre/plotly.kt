@@ -23,7 +23,7 @@ public class GeoMapBox : Scheme() {
      */
     public var pitch: Number by number(0)
 
-    public var center: MapCoordinates by spec(MapCoordinates)
+    public var center: MapCoordinates by scheme(MapCoordinates)
 
     //TODO domain
 

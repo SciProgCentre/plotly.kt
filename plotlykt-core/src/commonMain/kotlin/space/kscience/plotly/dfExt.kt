@@ -28,27 +28,6 @@ private fun MutableMeta.getIndexedProviders(name: Name): Map<String?, MutableMet
 }
 
 /**
- * A delegate for list of objects with specification
- * TODO move to DataForge core
- */
-internal fun <T : Scheme> Configurable.list(
-    spec: Specification<T>,
-    key: Name? = null,
-): ReadWriteProperty<Any?, List<T>> = object : ReadWriteProperty<Any?, List<T>> {
-    override fun getValue(thisRef: Any?, property: KProperty<*>): List<T> {
-        val name = key ?: property.name.asName()
-        return meta.getIndexedProviders(name).values.map { item ->
-            spec.write(item)
-        }
-    }
-
-    override fun setValue(thisRef: Any?, property: KProperty<*>, value: List<T>) {
-        val name = key ?: property.name.asName()
-        meta.setIndexed(name, value.map { it.meta })
-    }
-}
-
-/**
  * List of values delegate
  */
 internal fun Scheme.listOfValues(

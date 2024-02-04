@@ -150,7 +150,7 @@ public class Shape : Scheme() {
      */
     public var opacity: Number by numberInRange(0.0..1.0)
 
-    public var line: LayoutLine by spec(LayoutLine)
+    public var line: LayoutLine by scheme(LayoutLine)
 
     /**
      * Sets the color filling the shape's interior. Only applies to closed shapes. Default: rgba(0, 0, 0, 0)

@@ -3,7 +3,7 @@ package space.kscience.plotly.models
 import space.kscience.dataforge.meta.Scheme
 import space.kscience.dataforge.meta.SchemeSpec
 import space.kscience.dataforge.meta.enum
-import space.kscience.dataforge.meta.spec
+import space.kscience.dataforge.meta.scheme
 import space.kscience.plotly.numberGreaterThan
 import space.kscience.plotly.numberInRange
 import kotlin.js.JsName
@@ -97,7 +97,7 @@ public class Legend : Scheme() {
     /**
      * Sets the font used to text the legend items.
      */
-    public var font: Font by spec(Font)
+    public var font: Font by scheme(Font)
 
     /**
      * Sets the orientation of the legend (vertical/horizontal).

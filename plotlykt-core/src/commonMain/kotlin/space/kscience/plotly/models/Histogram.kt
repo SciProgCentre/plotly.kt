@@ -150,11 +150,11 @@ public open class Histogram : Trace() {
      */
     public var direction: HistogramDirection by enum(HistogramDirection.increasing)
 
-    public var cumulative: Cumulative by spec(Cumulative)
+    public var cumulative: Cumulative by scheme(Cumulative)
 
-    public var xbins: Bins by spec(Bins)
+    public var xbins: Bins by scheme(Bins)
 
-    public var ybins: Bins by spec(Bins)
+    public var ybins: Bins by scheme(Bins)
 
     /**
      * Specifies the maximum number of desired bins. This value will be used in an algorithm
@@ -248,7 +248,7 @@ public class Histogram2DContour : Histogram(), ContourSpec {
      */
     override var ncontours: Int by intGreaterThan(1)
 
-    override var contours: Contours by spec(Contours)
+    override var contours: Contours by scheme(Contours)
 
     /**
      * Determines whether or not the contour level attributes are picked by an algorithm.

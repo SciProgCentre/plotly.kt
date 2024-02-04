@@ -3,7 +3,7 @@ package space.kscience.plotly.models
 import space.kscience.dataforge.meta.SchemeSpec
 import space.kscience.dataforge.meta.boolean
 import space.kscience.dataforge.meta.enum
-import space.kscience.dataforge.meta.spec
+import space.kscience.dataforge.meta.scheme
 import space.kscience.plotly.intGreaterThan
 
 public class Contour : Trace(), HeatmapContour, ContourSpec {
@@ -31,7 +31,7 @@ public class Contour : Trace(), HeatmapContour, ContourSpec {
      */
     override var ncontours: Int by intGreaterThan(1)
 
-    override var contours: Contours by spec(Contours)
+    override var contours: Contours by scheme(Contours)
 
     /**
      * Determines whether or not the contour level attributes are picked by an algorithm.

@@ -16,9 +16,9 @@ public class Bar : Trace(), SelectedPoints {
      */
     override var selectedpoints: List<Number> by numberList()
 
-    override var selected: SelectPoints by spec(SelectPoints)
+    override var selected: SelectPoints by scheme(SelectPoints)
 
-    override var unselected: SelectPoints by spec(SelectPoints)
+    override var unselected: SelectPoints by scheme(SelectPoints)
 
     /**
      * Sets where the bar base is drawn (in position axis units). In "stack" or "relative" barmode,

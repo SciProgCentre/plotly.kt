@@ -21,7 +21,7 @@ public enum class GeoScope{
 
 public class Geo : Scheme() {
     public val bgcolor: Color by color()
-    public var center: MapCoordinates by spec(MapCoordinates)
+    public var center: MapCoordinates by scheme(MapCoordinates)
 
     public val coastlinecolor: Color by color()
     public var coastlinewidth: Number by number(1)
@@ -54,10 +54,10 @@ public class Geo : Scheme() {
     public var showland: Boolean? by boolean()
     public var showocean: Boolean? by boolean()
 
-    public var lataxis: MapAxis by spec(MapAxis)
-    public var lonaxis: MapAxis by spec(MapAxis)
+    public var lataxis: MapAxis by scheme(MapAxis)
+    public var lonaxis: MapAxis by scheme(MapAxis)
 
-    public var projection: GeoProjection by spec(GeoProjection)
+    public var projection: GeoProjection by scheme(GeoProjection)
 
     public var scope: GeoScope by enum(GeoScope.world)
 

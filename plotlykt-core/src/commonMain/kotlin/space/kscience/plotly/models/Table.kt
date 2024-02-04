@@ -51,17 +51,17 @@ public class Header : Scheme() {
     /**
      * [LayoutLine] type object.
      * */
-    public var line: LayoutLine by spec(LayoutLine)
+    public var line: LayoutLine by scheme(LayoutLine)
 
     /**
      * [Fill] type object.
      * */
-    public var fill: Fill by spec(Fill)
+    public var fill: Fill by scheme(Fill)
 
     /**
      * [Font] type object.
      * */
-    public var font: Font by spec(Font)
+    public var font: Font by scheme(Font)
 
     public fun values(array: Iterable<Any>) {
         values.set(array)
@@ -117,17 +117,17 @@ public class Cells : Scheme() {
     /**
      * [LayoutLine] type object.
      * */
-    public var line: LayoutLine by spec(LayoutLine)
+    public var line: LayoutLine by scheme(LayoutLine)
 
     /**
      * [Fill] type object.
      * */
-    public var fill: Fill by spec(Fill)
+    public var fill: Fill by scheme(Fill)
 
     /**
      * [Font] type object.
      * */
-    public var font: Font by spec(Font)
+    public var font: Font by scheme(Font)
 
     public fun values(array: Iterable<Any>) {
         values.set(array)
@@ -196,12 +196,12 @@ public class Table : Trace() {
     /**
      * [Header] type object. Used to define the header row.
      * */
-    public var header: Header by spec(Header)
+    public var header: Header by scheme(Header)
 
     /**
      * [Cells] type object. Used to define rows containing data.
      * */
-    public var cells: Cells by spec(Cells)
+    public var cells: Cells by scheme(Cells)
 
     public fun header(block: Header.() -> Unit) {
         header = Header(block)

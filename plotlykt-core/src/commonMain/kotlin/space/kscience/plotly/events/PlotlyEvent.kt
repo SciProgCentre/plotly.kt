@@ -18,8 +18,8 @@ public data class PlotlyEventPoint(
     public val x: Value? = null,
     public val y: Value? = null,
 //
-//    public var data: Trace by spec(Trace)
-//    public var fullData: Trace by spec(Trace)
+//    public var data: Trace by scheme(Trace)
+//    public var fullData: Trace by scheme(Trace)
 )
 
 

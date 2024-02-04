@@ -68,8 +68,8 @@ public class CandleStick : Trace() {
 
     public var lineWidth: Double by double(2.0, Name.parse("line.width"))
 
-    public var increasing: CandleStickLine by spec(CandleStickLine)
-    public var decreasing: CandleStickLine by spec(CandleStickLine)
+    public var increasing: CandleStickLine by scheme(CandleStickLine)
+    public var decreasing: CandleStickLine by scheme(CandleStickLine)
 
     /**
      * Number between 0 and 1.

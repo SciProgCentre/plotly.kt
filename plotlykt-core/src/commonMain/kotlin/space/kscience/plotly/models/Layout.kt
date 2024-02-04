@@ -1,12 +1,13 @@
 @file:Suppress("EnumEntryName")
+@file:OptIn(DFExperimental::class)
 
 package space.kscience.plotly.models
 
 import space.kscience.dataforge.meta.*
 import space.kscience.dataforge.meta.set
+import space.kscience.dataforge.misc.DFExperimental
 import space.kscience.dataforge.names.asName
 import space.kscience.plotly.appendAndAttach
-import space.kscience.plotly.list
 import space.kscience.plotly.numberGreaterThan
 import space.kscience.plotly.numberInRange
 import kotlin.js.JsName
@@ -119,9 +120,9 @@ public class Layout : Scheme() {
             meta["title.text"] = value?.asValue()
         }
 
-    public var xaxis: Axis by spec(Axis)
+    public var xaxis: Axis by scheme(Axis)
 
-    public var yaxis: Axis by spec(Axis)
+    public var yaxis: Axis by scheme(Axis)
 
     /**
      * Enumerated, one of ( "stack" | "group" | "overlay" | "relative" )
@@ -176,7 +177,7 @@ public class Layout : Scheme() {
      */
     public var violingroupgap: Number by numberInRange(0.0..1.0)
 
-    public var legend: Legend by spec(Legend)
+    public var legend: Legend by scheme(Legend)
 
     /**
      * An annotation is a text element that can be placed anywhere in the plot.
@@ -184,9 +185,9 @@ public class Layout : Scheme() {
      * or with respect to the actual data coordinates of the graph.
      * Annotations can be shown with or without an arrow.
      */
-    public var annotations: List<Text> by list(Text)
+    public var annotations: List<Text> by listOfScheme(Text)
 
-    public var shapes: List<Shape> by list(Shape)
+    public var shapes: List<Shape> by listOfScheme(Shape)
 
     /**
      * Sets the background color of the paper where the graph is drawn.
@@ -200,7 +201,7 @@ public class Layout : Scheme() {
      */
     public val plot_bgcolor: Color by color()
 
-    public var margin: Margin by spec(Margin)
+    public var margin: Margin by scheme(Margin)
 
     /**
      * Determines how boxes at the same location coordinate are displayed on the graph. If "group",
@@ -292,7 +293,7 @@ public class Layout : Scheme() {
      */
     public fun yaxis(index: Int, block: Axis.() -> Unit) {
         require(index >= 2) { "Secondary axis index must be 2 or more" }
-        val axisSpec by spec(Axis, "yaxis$index".asName())
+        val axisSpec by scheme(Axis, "yaxis$index".asName())
         axisSpec.apply(block)
     }
 
