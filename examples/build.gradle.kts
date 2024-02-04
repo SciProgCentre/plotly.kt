@@ -29,8 +29,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 val copyPlotlyResources by tasks.creating(Copy::class){
     dependsOn(":plotlykt-core:jvmProcessResources")
     mustRunAfter(":plotlykt-core:jvmTestProcessResources")
-    from(project(":plotlykt-core").buildDir.resolve("processedResources/jvm"))
-    into(buildDir.resolve("resources"))
+    from(project(":plotlykt-core").layout.buildDirectory.file("processedResources/jvm"))
+    into(layout.buildDirectory.file("resources"))
 }
 
 tasks.getByName("classes").dependsOn(copyPlotlyResources)
