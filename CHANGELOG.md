@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Added
+- Compose demo
 
 ### Changed
+- Migrated to DF 0.8
 
 ### Deprecated
 
 ### Removed
+- Grid view
 
 ### Fixed
 
