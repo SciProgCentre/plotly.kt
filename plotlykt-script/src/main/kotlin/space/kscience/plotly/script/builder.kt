@@ -13,7 +13,7 @@ import kotlin.script.experimental.jvm.jvm
 import kotlin.script.experimental.jvmhost.BasicJvmScriptingHost
 
 @UnstablePlotlyAPI
-fun Plotly.page(
+public fun Plotly.page(
     source: SourceCode,
     title: String = "Plotly.kt",
     headers: Array<PlotlyHtmlFragment> = arrayOf(cdnPlotlyHeader),
@@ -59,7 +59,7 @@ fun Plotly.page(
 }
 
 @UnstablePlotlyAPI
-fun Plotly.page(
+public fun Plotly.page(
     file: File,
     title: String = "Plotly.kt",
     headers: Array<PlotlyHtmlFragment> = arrayOf(cdnPlotlyHeader),
@@ -68,7 +68,7 @@ fun Plotly.page(
 
 
 @OptIn(UnstablePlotlyAPI::class)
-fun Plotly.page(
+public fun Plotly.page(
     string: String,
     title: String = "Plotly.kt",
     headers: Array<PlotlyHtmlFragment> = arrayOf(cdnPlotlyHeader),

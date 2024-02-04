@@ -14,10 +14,12 @@ kotlin{
 kscience {
     fullStack(bundleName = "js/plotly-kt.js")
     native()
+    wasm()
 
     dependencies {
         api("space.kscience:dataforge-meta:$dataforgeVersion")
-        api(spclibs.kotlinx.html)
+        //api(spclibs.kotlinx.html)
+        api("org.jetbrains.kotlinx:kotlinx-html:0.11.0")
     }
 
     jsMain{

@@ -7,6 +7,7 @@ kscience{
     jvm()
     js()
     native()
+    wasm()
     dependencies {
         api(project(":plotlykt-core"))
     }
