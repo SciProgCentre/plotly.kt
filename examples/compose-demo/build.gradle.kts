@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "1.5.12"
+    alias(spclibs.plugins.compose)
 }
 
 repositories {

@@ -11,10 +11,10 @@ import kotlin.script.experimental.jvm.jvm
     fileExtension = "plotly.kts",
     compilationConfiguration = PlotlyScriptCompilationConfiguration::class
 )
-abstract class PlotlyScript
+public abstract class PlotlyScript
 
 
-class PlotlyScriptCompilationConfiguration: ScriptCompilationConfiguration({
+public class PlotlyScriptCompilationConfiguration: ScriptCompilationConfiguration({
     baseClass(PlotlyScript::class)
     implicitReceivers(FlowContent::class)
     defaultImports(

@@ -10,11 +10,11 @@ val plotlyVersion by extra("2.29.0")
 
 allprojects {
     group = "space.kscience"
-    version = "0.7.0-dev-2"
+    version = "0.7.0"
 }
 
 apiValidation {
-    ignoredProjects.addAll(listOf("examples", "fx-demo", "js-demo"))
+    ignoredProjects.addAll(listOf("examples", "fx-demo", "js-demo", "compose-demo"))
 }
 
 ksciencePublish{
