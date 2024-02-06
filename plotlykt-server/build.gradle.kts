@@ -11,7 +11,7 @@ val ktorVersion = KScienceVersions.ktorVersion
 
 kscience{
     jvm()
-    jvmMain{
+    commonMain{
         api(projects.plotlyktCore)
         api("io.ktor:ktor-server-cio:$ktorVersion")
         api("io.ktor:ktor-server-html-builder:$ktorVersion")
