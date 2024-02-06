@@ -1,5 +1,5 @@
 plugins {
-    kotlin("js")
+    kotlin("multiplatform")
 }
 
 repositories {
@@ -12,13 +12,16 @@ kotlin {
         browser()
         binaries.executable()
     }
-}
-
-dependencies {
-    implementation(projects.plotlyktCore)
-    implementation(spclibs.kotlinx.coroutines.core)
+    sourceSets{
+        jsMain{
+            dependencies{
+                implementation(projects.plotlyktCore)
+                implementation(spclibs.kotlinx.coroutines.core)
+            }
+        }
+    }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.freeCompilerArgs = kotlinOptions.freeCompilerArgs +"-Xopt-in=kotlin.RequiresOptIn"
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 }

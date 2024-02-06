@@ -79,72 +79,11 @@ public final class space/kscience/plotly/PlotExtensionsKt {
 	public static final fun violin (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Violin;
 }
 
-public final class space/kscience/plotly/PlotGrid {
-	public fun <init> ()V
-	public final fun get (Ljava/lang/String;)Lspace/kscience/plotly/PlotGrid$PlotCell;
-	public final fun getGrid ()Ljava/util/List;
-	public final fun plot (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/Plot;
-	public final fun plot (Lspace/kscience/plotly/Plot;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;)Lspace/kscience/plotly/Plot;
-	public static synthetic fun plot$default (Lspace/kscience/plotly/PlotGrid;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lspace/kscience/plotly/Plot;
-	public static synthetic fun plot$default (Lspace/kscience/plotly/PlotGrid;Lspace/kscience/plotly/Plot;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lspace/kscience/plotly/Plot;
-}
-
-public final class space/kscience/plotly/PlotGrid$PlotCell {
-	public fun <init> (Ljava/lang/String;Lspace/kscience/plotly/Plot;III)V
-	public synthetic fun <init> (Ljava/lang/String;Lspace/kscience/plotly/Plot;IIIILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Lspace/kscience/plotly/Plot;
-	public final fun component3 ()I
-	public final fun component4 ()I
-	public final fun component5 ()I
-	public final fun copy (Ljava/lang/String;Lspace/kscience/plotly/Plot;III)Lspace/kscience/plotly/PlotGrid$PlotCell;
-	public static synthetic fun copy$default (Lspace/kscience/plotly/PlotGrid$PlotCell;Ljava/lang/String;Lspace/kscience/plotly/Plot;IIIILjava/lang/Object;)Lspace/kscience/plotly/PlotGrid$PlotCell;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getCol ()I
-	public final fun getId ()Ljava/lang/String;
-	public final fun getPlot ()Lspace/kscience/plotly/Plot;
-	public final fun getRow ()I
-	public final fun getWidth ()I
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class space/kscience/plotly/PlotGridKt {
-	public static final fun grid (Lspace/kscience/plotly/Plotly;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/PlotlyPage;
-}
-
 public final class space/kscience/plotly/PlotKt {
 	public static final fun Plot (Lspace/kscience/dataforge/meta/Meta;)Lspace/kscience/plotly/Plot;
 	public static final fun layout (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)V
 	public static final fun toJsonString (Lspace/kscience/plotly/Plot;)Ljava/lang/String;
 	public static final fun trace (Lspace/kscience/plotly/Plot;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/models/Trace;
-}
-
-public final class space/kscience/plotly/PlotTabs {
-	public fun <init> ()V
-	public final fun getTabs ()Ljava/util/List;
-	public final fun tab (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
-	public static synthetic fun tab$default (Lspace/kscience/plotly/PlotTabs;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
-}
-
-public final class space/kscience/plotly/PlotTabs$Tab {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lspace/kscience/plotly/PlotlyFragment;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Lspace/kscience/plotly/PlotlyFragment;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lspace/kscience/plotly/PlotlyFragment;)Lspace/kscience/plotly/PlotTabs$Tab;
-	public static synthetic fun copy$default (Lspace/kscience/plotly/PlotTabs$Tab;Ljava/lang/String;Ljava/lang/String;Lspace/kscience/plotly/PlotlyFragment;ILjava/lang/Object;)Lspace/kscience/plotly/PlotTabs$Tab;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getContent ()Lspace/kscience/plotly/PlotlyFragment;
-	public final fun getId ()Ljava/lang/String;
-	public final fun getTitle ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class space/kscience/plotly/PlotTabsKt {
-	public static final fun tabs (Lspace/kscience/plotly/Plotly;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lspace/kscience/plotly/PlotlyPage;
-	public static synthetic fun tabs$default (Lspace/kscience/plotly/Plotly;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lspace/kscience/plotly/PlotlyPage;
 }
 
 public final class space/kscience/plotly/Plotly {

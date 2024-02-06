@@ -1,13 +1,16 @@
 plugins {
-    id("space.kscience.gradle.jvm")
+    id("space.kscience.gradle.mpp")
     kotlin("jupyter.api")
     `maven-publish`
 }
 
 val dataforgeVersion: String by rootProject.extra
 
-dependencies {
-    api(projects.plotlyktCore)
+kscience{
+    jvm()
+    jvmMain{
+        api(projects.plotlyktCore)
+    }
 }
 
 tasks.processJupyterApiResources{

@@ -18,8 +18,8 @@ kscience {
 
     dependencies {
         api("space.kscience:dataforge-meta:$dataforgeVersion")
-        //api(spclibs.kotlinx.html)
-        api("org.jetbrains.kotlinx:kotlinx-html:0.11.0")
+        api(spclibs.kotlinx.html)
+//        api("org.jetbrains.kotlinx:kotlinx-html:0.11.0")
     }
 
     jsMain{
