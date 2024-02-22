@@ -1,39 +1,56 @@
 # Changelog
-All notable changes to this project will be documented in this file.
 
+All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
 ### Added
-- Compose demo
 
 ### Changed
-- Migrated to DF 0.8
 
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Security
+
+## 0.7.1 - 2024-02-22
+
+### Added
+
+- Compose demo
+
+### Changed
+
+- Migrated to DF 0.8
+
+### Removed
+
 - Grid view
 
 ### Fixed
-- Fixed rendering for Jupyter lab
 
-### Security
+- Fixed rendering for Jupyter lab
 
 ## 0.6.0 - 2023-07-29
 
 ### Added
+
 - Add experimental support for events on JS
 
 ### Changed
+
 - DataForge 0.6.2
 - Use a self-made Plotly-js bundle instead of one from CDN
 
 ## 0.5.3 - 2023-04-01
 
 ### Added
+
 - API for background images (https://github.com/SciProgCentre/plotly.kt/issues/49)
 - API for multiple Y axis (https://github.com/SciProgCentre/plotly.kt/issues/92)
 - Native support
@@ -41,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - DataSourceHost/DataSourcePost to configure custom networks
 
 ### Changed
+
 - Kotlin 1.8.20
 - Moved renderers to JVM to avoid confusion with JS direct element rendering.
 - DataForge 0.6
@@ -50,12 +68,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Moved to Ktor 2.0
 
 ### Deprecated
+
 - Page layout. Use VisionForge for that.
 
 ### Removed
+
 - Moved CORS to `Plotly.serve`
 
 ### Fixed
+
 - Added a protective copy on reading doubleArray from TraceValues
 - #85
 - Rendering in JS that used backend HTML generation
@@ -63,70 +84,84 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 0.5.0
 
 ### Changed
+
 - Switch to DataForge 0.5
 -
 
 ## 0.4.4
 
 ### Added
+
 - Candlestick support
 - Range builders for axis
 
 ### Changed
+
 - build tools 0.10.0
 - demo projects moved to examples
 
 ### Deprecated
+
 - Direct usage of `range` in axis
 
 ### Fixed
+
 - #80
 - Plotly coordinate array wrap is moved to the server side
 
 ## 0.4.3
 
 ### Fixed
+
 - Proper deserialization of single plot.
 - A bug in jupyter lab visualization
 
 ## 0.4.2
 
 ### Added
+
 - `automargin` property to `Axis` according to https://plotly.com/python/reference/layout/xaxis/#layout-xaxis-automargin
 
 ### Fixed
+
 - Remove unnecessary `kotlinx-css` dependency.
 - Added compatibility mode for legacy notebooks. Use `Plotly.jupyter.notebook()` call to enable legacy mode.
 
 ## 0.4.0
 
 ### Added
+
 - Jupyter integration plugin for server
 - Separate static plot integration module in `plotlykt-jupyter`
 - Expanded JS demo
 - Jupyter support goes beta
 
 ### Changed
+
 - Package change (again) to `space.kscience`
 - Build tools `0.9.5`
 - Kotlin `1.5.0`
 - HtmlFragment renamed to PlotlyHtmlFragment
 
 ### Removed
+
 - Local bootstrap
 
 ### Fixed
+
 - Incomplete coverage in JS (#70)
 
 ## 0.3.1
 
 ### Added
+
 - Table widget implementation by @ArtificialPB
 - Mathjax header promoted to stable
 - Tabbed plots layout (experimental)
 - Trace value builders for functions and ranges (experimental)
 
 ### Changed
+
 - **Breaking API change!** Trace `text` replaced by `TraceValues`
 - Moved to DataForge 0.3 API
 - Kotlin 1.4.30
@@ -135,23 +170,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced direct color accessor by a delegate
 
 ### Fixed
+
 - https://github.com/mipt-npm/plotly.kt/issues/53
 - Add JQuery to Bootstrap headers
 
 ## 0.3.0
 
 ### Changed
+
 - Serialization API is encapsulated (not longer exposed) in order to provide compatibility with new serialization.
 - Migration to Kotlin 1.4
 - Minor breaking change in Plot to encapsulate serialization usage
 - JS supports IR. LEGACY is not supported anymore.
 
 ### Fixed
+
 - https://github.com/mipt-npm/plotly.kt/issues/51
 
 ## 0.2.0
 
 ### Added
+
 - Experimental scripting support
 - Static export via Orca
 - Experimental Jupyter support
@@ -169,6 +208,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - TraceValues extension for krangl columns
 
 ### Changed
+
 - Migrated from `scientifik` to `kscience`
 - Refactored packages to better suit star import style
 - Removed bootstrap dependency
