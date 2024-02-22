@@ -8,6 +8,6 @@ internal class BuilderTest {
     fun testBuilderFromString() {
         val string = javaClass.getResource("/customPage.plotly.kts").readText()
         val page = Plotly.page(string)
-        page.render()
+        println(page.render())
     }
 }

@@ -115,8 +115,6 @@ public class PlotlyServerIntegration : JupyterIntegration() {
         }
     }
 
-    private fun renderPage(page: PlotlyPage): String = page.copy(renderer = renderer).render()
-
     override fun Builder.onLoaded() {
 
         resources {
@@ -131,7 +129,8 @@ public class PlotlyServerIntegration : JupyterIntegration() {
             "space.kscience.plotly.*",
             "space.kscience.plotly.models.*",
             "space.kscience.dataforge.meta.*",
-            "kotlinx.html.*"
+            "kotlinx.html.*",
+            "kotlinx.coroutines.*"
         )
 
         import("space.kscience.plotly.server.jupyter")

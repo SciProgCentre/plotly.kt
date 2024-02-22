@@ -17,7 +17,7 @@ public object PlotlyJupyterConfiguration {
         return PlotlyHtmlFragment {
             div {
                 style = "color: blue;"
-                +"Plotly notebook integration switched into the legacy mode."
+                +"Plotly notebook integration switched into the notebook mode."
             }
         }
     }
