@@ -1,9 +1,11 @@
 <!doctype html>
-<html>
+<html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Axis</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
@@ -16,12 +18,13 @@
         }
     }
     </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
-<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
@@ -29,26 +32,32 @@
 <script type="text/javascript" src="../../../scripts/prism.js" async></script>
 <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
-<div class="navigation-wrapper" id="navigation-wrapper">
-    <div id="leftToggler"><span class="icon-toggler"></span></div>
-    <div class="library-name">
-<a href="../../../index.html">
-<span>plotly-kt</span>            </a>    </div>
-    <div>0.6.0
-    </div>
-    <div class="pull-right d-flex">
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            plotly-kt
+                    </a>            </div>
+            <div class="library-version">0.7.0
+            </div>
+        </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector common-like" data-active="" data-filter=":plotlykt-core:dokkaHtmlPartial/commonMain">common</button>
         </div>
-        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
     </div>
-</div>
-<div id="container">
-    <div id="leftColumn">
-        <div id="sideMenu"></div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
     </div>
-    <div id="main">
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
 <div class="main-content" data-page-type="classlike" id="content" pageids="plotlykt-core::space.kscience.plotly.models/Axis///PointingToDeclaration//-2017129424">
   <div class="breadcrumbs"><a href="../../index.html">plotlykt-core</a><span class="delimiter">/</span><a href="../index.html">space.kscience.plotly.models</a><span class="delimiter">/</span><span class="current">Axis</span></div>
   <div class="cover ">
@@ -56,7 +65,7 @@
     <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Axis</a> : <span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span></div><p class="paragraph">Axis scheme</p></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
         <h2 class="">Constructors</h2>
@@ -90,235 +99,6 @@
               <div>
                 <div class="title">
                   <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a> : <span data-unresolved-link="space.kscience.dataforge.meta/SchemeSpec///PointingToDeclaration/">SchemeSpec</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">Axis</a><span class="token operator">&gt; </span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
-        <div class="table"><a data-name="2090514839%2FFunctions%2F-2017129424" anchor-label="color" id="2090514839%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../color.html"><span><span>color</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2090514839%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span><span class="token punctuation">.</span><a href="../color.html"><span class="token function">color</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-read-only-property/index.html">ReadOnlyProperty</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-color/index.html">Color</a><span class="token operator">&gt;</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-1377527181%2FFunctions%2F-2017129424" anchor-label="getMeta" id="-1377527181%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../-violin/index.html#-1377527181%2FFunctions%2F-2017129424"><span>get</span><wbr><span><span>Meta</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1377527181%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-violin/index.html#-1377527181%2FFunctions%2F-2017129424"><span class="token function">getMeta</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/MutableMeta///PointingToDeclaration/">MutableMeta</span><span class="token operator">?</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-920356770%2FFunctions%2F-2017129424" anchor-label="getValue" id="-920356770%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../-violin/index.html#-920356770%2FFunctions%2F-2017129424"><span>get</span><wbr><span><span>Value</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-920356770%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-violin/index.html#-920356770%2FFunctions%2F-2017129424"><span class="token function">getValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Value///PointingToDeclaration/">Value</span><span class="token operator">?</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="1679065740%2FFunctions%2F-2017129424" anchor-label="numberGreaterThan" id="1679065740%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../../space.kscience.plotly/number-greater-than.html"><span>number</span><wbr><span>Greater</span><wbr><span><span>Than</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1679065740%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span><span class="token punctuation">.</span><a href="../../space.kscience.plotly/number-greater-than.html"><span class="token function">numberGreaterThan</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">minValue<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">default<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator"> = </span>minValue<span class="token punctuation">, </span></span><span class="parameter ">key<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-read-write-property/index.html">ReadWriteProperty</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">A safe <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a> ray</p></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="842426890%2FFunctions%2F-2017129424" anchor-label="numberInRange" id="842426890%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../../space.kscience.plotly/number-in-range.html"><span>number</span><wbr><span>In</span><wbr><span><span>Range</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="842426890%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span><span class="token punctuation">.</span><a href="../../space.kscience.plotly/number-in-range.html"><span class="token function">numberInRange</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">range<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-closed-range/index.html">ClosedRange</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">key<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-read-write-property/index.html">ReadWriteProperty</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">A safe <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a> range</p></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-1099042569%2FFunctions%2F-2017129424" anchor-label="range" id="-1099042569%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="range.html"><span><span>range</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1099042569%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="range.html"><span class="token function">range</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-closed-floating-point-range/index.html">ClosedFloatingPointRange</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set range using double kotlin range</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="range.html"><span class="token function">range</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-closed-range/index.html">ClosedRange</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set range using kotlin string range</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="range.html"><span class="token function">range</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">from<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Value///PointingToDeclaration/">Value</span><span class="token punctuation">, </span></span><span class="parameter ">to<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Value///PointingToDeclaration/">Value</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set the range using arbitrary values</p></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="825989011%2FFunctions%2F-2017129424" anchor-label="setMeta" id="825989011%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../-violin/index.html#825989011%2FFunctions%2F-2017129424"><span>set</span><wbr><span><span>Meta</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="825989011%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-violin/index.html#825989011%2FFunctions%2F-2017129424"><span class="token function">setMeta</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token punctuation">, </span></span><span class="parameter ">node<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Meta///PointingToDeclaration/">Meta</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="1841061539%2FFunctions%2F-2017129424" anchor-label="setValue" id="1841061539%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../-violin/index.html#1841061539%2FFunctions%2F-2017129424"><span>set</span><wbr><span><span>Value</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1841061539%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-violin/index.html#1841061539%2FFunctions%2F-2017129424"><span class="token function">setValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Value///PointingToDeclaration/">Value</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="1149364966%2FFunctions%2F-2017129424" anchor-label="tickfont" id="1149364966%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="tickfont.html"><span><span>tickfont</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1149364966%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="tickfont.html"><span class="token function">tickfont</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../-font/index.html">Font</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-2129504752%2FFunctions%2F-2017129424" anchor-label="ticktext" id="-2129504752%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="ticktext.html"><span><span>ticktext</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2129504752%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="ticktext.html"><span class="token function">ticktext</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">array<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="49186389%2FFunctions%2F-2017129424" anchor-label="tickvals" id="49186389%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="tickvals.html"><span><span>tickvals</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="49186389%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="tickvals.html"><span class="token function">tickvals</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">array<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-1288514369%2FFunctions%2F-2017129424" anchor-label="title" id="-1288514369%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="title.html"><span><span>title</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1288514369%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="title.html"><span class="token function">title</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../-title/index.html">Title</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-1408783490%2FFunctions%2F-2017129424" anchor-label="toJsonString" id="-1408783490%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../../space.kscience.plotly/to-json-string.html"><span>to</span><wbr><span>Json</span><wbr><span><span>String</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1408783490%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span><span class="token punctuation">.</span><a href="../../space.kscience.plotly/to-json-string.html"><span class="token function">toJsonString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Convert any type-safe configurator to json string</p></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="267675263%2FFunctions%2F-2017129424" anchor-label="toMeta" id="267675263%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../-violin/index.html#267675263%2FFunctions%2F-2017129424"><span>to</span><wbr><span><span>Meta</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="267675263%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-violin/index.html#267675263%2FFunctions%2F-2017129424"><span class="token function">toMeta</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Laminate///PointingToDeclaration/">Laminate</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-183381090%2FFunctions%2F-2017129424" anchor-label="validate" id="-183381090%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../-violin/index.html#-183381090%2FFunctions%2F-2017129424"><span><span>validate</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-183381090%2FFunctions%2F-2017129424"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-violin/index.html#-183381090%2FFunctions%2F-2017129424"><span class="token function">validate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token punctuation">, </span></span><span class="parameter ">meta<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Meta///PointingToDeclaration/">Meta</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -839,14 +619,259 @@
           </div>
         </div>
       </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="2090514839%2FFunctions%2F-2017129424" anchor-label="color" id="2090514839%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../color.html"><span><span>color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2090514839%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span><span class="token punctuation">.</span><a href="../color.html"><span class="token function">color</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-read-only-property/index.html">ReadOnlyProperty</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="../-color/index.html">Color</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1213220402%2FFunctions%2F-2017129424" anchor-label="get" id="-1213220402%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-violin/index.html#-1213220402%2FFunctions%2F-2017129424"><span><span>get</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1213220402%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><a href="../-violin/index.html#-1213220402%2FFunctions%2F-2017129424"><span class="token function">get</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/MutableMeta///PointingToDeclaration/">MutableMeta</span><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-920356770%2FFunctions%2F-2017129424" anchor-label="getValue" id="-920356770%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-violin/index.html#-920356770%2FFunctions%2F-2017129424"><span>get</span><wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-920356770%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-violin/index.html#-920356770%2FFunctions%2F-2017129424"><span class="token function">getValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Value///PointingToDeclaration/">Value</span><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1679065740%2FFunctions%2F-2017129424" anchor-label="numberGreaterThan" id="1679065740%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../space.kscience.plotly/number-greater-than.html"><span>number</span><wbr><span>Greater</span><wbr><span><span>Than</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1679065740%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span><span class="token punctuation">.</span><a href="../../space.kscience.plotly/number-greater-than.html"><span class="token function">numberGreaterThan</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">minValue<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">, </span></span><span class="parameter ">default<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator"> = </span>minValue<span class="token punctuation">, </span></span><span class="parameter ">key<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-read-write-property/index.html">ReadWriteProperty</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">A safe <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a> ray</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="842426890%2FFunctions%2F-2017129424" anchor-label="numberInRange" id="842426890%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../space.kscience.plotly/number-in-range.html"><span>number</span><wbr><span>In</span><wbr><span><span>Range</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="842426890%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span><span class="token punctuation">.</span><a href="../../space.kscience.plotly/number-in-range.html"><span class="token function">numberInRange</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">range<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-closed-range/index.html">ClosedRange</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">key<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-read-write-property/index.html">ReadWriteProperty</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">A safe <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-number/index.html">Number</a> range</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1099042569%2FFunctions%2F-2017129424" anchor-label="range" id="-1099042569%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="range.html"><span><span>range</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1099042569%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="range.html"><span class="token function">range</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-closed-floating-point-range/index.html">ClosedFloatingPointRange</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set range using double kotlin range</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="range.html"><span class="token function">range</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-closed-range/index.html">ClosedRange</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set range using kotlin string range</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="range.html"><span class="token function">range</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">from<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Value///PointingToDeclaration/">Value</span><span class="token punctuation">, </span></span><span class="parameter ">to<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Value///PointingToDeclaration/">Value</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set the range using arbitrary values</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="146328430%2FFunctions%2F-2017129424" anchor-label="set" id="146328430%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-violin/index.html#146328430%2FFunctions%2F-2017129424"><span><span>set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="146328430%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><a href="../-violin/index.html#146328430%2FFunctions%2F-2017129424"><span class="token function">set</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token punctuation">, </span></span><span class="parameter ">node<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Meta///PointingToDeclaration/">Meta</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1841061539%2FFunctions%2F-2017129424" anchor-label="setValue" id="1841061539%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-violin/index.html#1841061539%2FFunctions%2F-2017129424"><span>set</span><wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1841061539%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-violin/index.html#1841061539%2FFunctions%2F-2017129424"><span class="token function">setValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Value///PointingToDeclaration/">Value</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1149364966%2FFunctions%2F-2017129424" anchor-label="tickfont" id="1149364966%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tickfont.html"><span><span>tickfont</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1149364966%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="tickfont.html"><span class="token function">tickfont</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../-font/index.html">Font</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2129504752%2FFunctions%2F-2017129424" anchor-label="ticktext" id="-2129504752%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ticktext.html"><span><span>ticktext</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2129504752%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="ticktext.html"><span class="token function">ticktext</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">array<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="49186389%2FFunctions%2F-2017129424" anchor-label="tickvals" id="49186389%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tickvals.html"><span><span>tickvals</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="49186389%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="tickvals.html"><span class="token function">tickvals</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">array<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1288514369%2FFunctions%2F-2017129424" anchor-label="title" id="-1288514369%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="title.html"><span><span>title</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1288514369%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="title.html"><span class="token function">title</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../-title/index.html">Title</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1408783490%2FFunctions%2F-2017129424" anchor-label="toJsonString" id="-1408783490%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../space.kscience.plotly/to-json-string.html"><span>to</span><wbr><span>Json</span><wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1408783490%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="space.kscience.dataforge.meta/Scheme///PointingToDeclaration/">Scheme</span><span class="token punctuation">.</span><a href="../../space.kscience.plotly/to-json-string.html"><span class="token function">toJsonString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Convert any type-safe configurator to json string</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="267675263%2FFunctions%2F-2017129424" anchor-label="toMeta" id="267675263%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-violin/index.html#267675263%2FFunctions%2F-2017129424"><span>to</span><wbr><span><span>Meta</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="267675263%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-violin/index.html#267675263%2FFunctions%2F-2017129424"><span class="token function">toMeta</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Laminate///PointingToDeclaration/">Laminate</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="378508339%2FFunctions%2F-2017129424" anchor-label="toString" id="378508339%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-violin/index.html#378508339%2FFunctions%2F-2017129424"><span>to</span><wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="378508339%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../-violin/index.html#378508339%2FFunctions%2F-2017129424"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-183381090%2FFunctions%2F-2017129424" anchor-label="validate" id="-183381090%2FFunctions%2F-2017129424" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":plotlykt-core:dokkaHtmlPartial/commonMain" data-filterable-set=":plotlykt-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-violin/index.html#-183381090%2FFunctions%2F-2017129424"><span><span>validate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-183381090%2FFunctions%2F-2017129424"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plotlykt-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-violin/index.html#-183381090%2FFunctions%2F-2017129424"><span class="token function">validate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.names/Name///PointingToDeclaration/">Name</span><span class="token punctuation">, </span></span><span class="parameter ">meta<span class="token operator">: </span><span data-unresolved-link="space.kscience.dataforge.meta/Meta///PointingToDeclaration/">Meta</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
       <div class="footer">
-        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 </html>
 
