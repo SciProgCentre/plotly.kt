@@ -82,6 +82,7 @@ public class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
 
         resources {
             js("plotly-kt") {
+                url("https://cdn.plot.ly/plotly-2.29.1.min.js")
                 classPath("js/plotly-kt.js")
             }
         }

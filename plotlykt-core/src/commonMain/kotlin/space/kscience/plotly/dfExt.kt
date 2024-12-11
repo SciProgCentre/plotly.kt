@@ -12,21 +12,6 @@ import kotlin.time.toDuration
 //extensions for DataForge
 
 
-private fun MutableMeta.getIndexedProviders(name: Name): Map<String?, MutableMeta> {
-    val parent = get(name.cutLast()) ?: return emptyMap()
-    return parent.items.keys.filter {
-        it.body == name.lastOrNull()?.body
-    }.map {
-        it.index
-    }.associate { index ->
-        if (index == null) {
-            "" to getOrCreate(name)
-        } else {
-            index to getOrCreate(name.withIndex(index))
-        }
-    }
-}
-
 /**
  * List of values delegate
  */
@@ -200,35 +185,6 @@ internal fun Scheme.duration(
         }
     }
 }
-
-///**
-// * Infer type of value and set
-// */
-//public operator fun MutableMeta.set(name: String, value: Any?) {
-//    when (value) {
-//        null -> this[name] = null
-//        is Meta -> this[name] = value
-//        is Value -> set(Name.parse(name), value)
-//        is String -> this[name] = value.asValue()
-//        is Number -> this[name] = value.asValue()
-//        is Boolean -> this[name] = value.asValue()
-//        is Iterable<*> -> {
-//            if (value.all { it is Meta }) {
-//                this.setIndexed(Name.parse(name), value.map { it as Meta })
-//            } else {
-//                this[name] = value.map { Value.of(it) }.asValue()
-//            }
-//        }
-//    }
-//}
-
-///**
-// * A patch to cover API no longer existing in DataForge
-// */
-//@Deprecated("Use specialized meta methods instead")
-//public operator fun Scheme.set(name: String, value: Any?) {
-//    meta[name] = value
-//}
 
 /**
  * Append the observable note to same-name-siblings and observe its changes.
