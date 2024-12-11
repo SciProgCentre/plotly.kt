@@ -15,9 +15,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-- Wrong script reference for static file generation
 
 ### Security
+
+## 0.7.1.1 - 2024-12-11
+
+### Added
+
+- Compose demo
+
+### Changed
+
+- Migrated to DF 0.8
+
+### Removed
+
+- Grid view
+
+### Fixed
+
+- Wrong script reference for static file generation
+- Fixed rendering for Jupyter lab
 
 ## 0.7.1 - 2024-02-22
 
