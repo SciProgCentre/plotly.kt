@@ -11,11 +11,11 @@ repositories {
     maven("https://jogamp.org/deployment/maven")
 }
 
-kotlin{
+kotlin {
     jvm()
     jvmToolchain(17)
-    sourceSets{
-        jvmMain{
+    sourceSets {
+        jvmMain {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)

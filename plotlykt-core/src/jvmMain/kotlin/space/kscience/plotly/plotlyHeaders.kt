@@ -8,7 +8,7 @@ import java.nio.file.Path
 import java.nio.file.StandardOpenOption
 
 
-internal const val PLOTLY_SCRIPT_PATH = "/js/plotly.min.js"
+internal const val PLOTLY_SCRIPT_PATH = "/js/plotly-kt.js"
 //const val PLOTLY_PROMISE_NAME = "promiseOfPlotly"
 /**
  * Check if the asset exists in given local location and put it there if it does not

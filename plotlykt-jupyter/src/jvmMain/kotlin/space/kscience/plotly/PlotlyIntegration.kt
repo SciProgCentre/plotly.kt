@@ -17,7 +17,7 @@ public object PlotlyJupyterConfiguration {
         return PlotlyHtmlFragment {
             div {
                 style = "color: blue;"
-                +"Plotly notebook integration switched into the legacy mode."
+                +"Plotly notebook integration switched into the notebook mode."
             }
         }
     }
@@ -82,6 +82,7 @@ public class PlotlyIntegration : JupyterIntegration(), PlotlyRenderer {
 
         resources {
             js("plotly-kt") {
+                url("https://cdn.plot.ly/plotly-2.29.1.min.js")
                 classPath("js/plotly-kt.js")
             }
         }

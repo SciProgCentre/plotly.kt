@@ -9,7 +9,7 @@ kscience{
     native()
     wasm()
     dependencies {
-        api(project(":plotlykt-core"))
+        api(projects.plotlyktCore)
     }
 }
 

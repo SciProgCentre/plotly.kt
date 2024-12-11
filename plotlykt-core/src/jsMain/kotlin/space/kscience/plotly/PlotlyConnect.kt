@@ -25,7 +25,7 @@ public object PlotlyConnect {
                 console.warn("Plotly not defined. Loading the script from CDN")
                 window.asDynamic().promiseOfPlotly = Promise<PlotlyJs> { resolve, reject ->
                     val plotlyLoaderScript = document.createElement("script") as HTMLScriptElement
-                    plotlyLoaderScript.src = "https://cdn.plot.ly/plotly-2.24.1.min.js"
+                    plotlyLoaderScript.src = "https://cdn.plot.ly/plotly-2.29.0.min.js"
                     plotlyLoaderScript.type = "text/javascript"
                     plotlyLoaderScript.onload = {
                         resolve(PlotlyJs)
@@ -163,4 +163,5 @@ public object PlotlyConnect {
 
 public fun main() {
     window.asDynamic().plotlyConnect = PlotlyConnect
+    window.asDynamic().Plotly = PlotlyJs
 }
