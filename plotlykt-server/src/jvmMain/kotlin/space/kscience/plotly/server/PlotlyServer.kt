@@ -2,6 +2,7 @@ package space.kscience.plotly.server
 
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.cio.CIO
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.html.respondHtml
@@ -17,6 +18,7 @@ import io.ktor.websocket.Frame
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.runBlocking
 import kotlinx.html.*
 import kotlinx.serialization.json.JsonObject
 import space.kscience.dataforge.meta.*
@@ -25,7 +27,6 @@ import space.kscience.plotly.*
 import space.kscience.plotly.server.PlotlyServer.Companion.DEFAULT_PAGE
 import java.awt.Desktop
 import java.net.URI
-import kotlin.collections.set
 import kotlin.coroutines.CoroutineContext
 
 public enum class PlotlyUpdateMode {
@@ -273,7 +274,7 @@ public fun Application.plotlyModule(route: String = DEFAULT_PAGE, block: PlotlyS
     }
 
 //    val root: Route = feature(Routing).createRouteFromPath(route)
-    return PlotlyServer(plugin(Routing), route).apply(block)
+    return PlotlyServer(plugin(RoutingRoot), route).apply(block)
 }
 
 
@@ -304,14 +305,14 @@ public fun Plotly.serve(
     host: String = "localhost",
     port: Int = 7777,
     block: PlotlyServer.() -> Unit,
-): ApplicationEngine = scope.embeddedServer(io.ktor.server.cio.CIO, port, host) {
+): ApplicationEngine = scope.embeddedServer(CIO, port, host) {
 //    install(CallLogging)
     install(CORS) {
         anyHost()
     }
 
     plotlyModule(block = block)
-}.start()
+}.start().engine
 
 /**
  * A shortcut to make a single plot at the default page
@@ -328,8 +329,8 @@ public fun PlotlyServer.plot(
     }
 }
 
-public fun ApplicationEngine.show() {
-    val connector = environment.connectors.first()
+public fun ApplicationEngine.show(): Unit = runBlocking {
+    val connector = resolvedConnectors().first()
     val uri = URI("http", null, connector.host, connector.port, null, null, null)
     Desktop.getDesktop().browse(uri)
 }

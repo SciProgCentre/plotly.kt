@@ -1,5 +1,3 @@
-import space.kscience.gradle.KScienceVersions
-
 plugins {
     id("space.kscience.gradle.mpp")
     kotlin("jupyter.api")
@@ -7,7 +5,7 @@ plugins {
 }
 
 val dataforgeVersion: String by rootProject.extra
-val ktorVersion = KScienceVersions.ktorVersion
+val ktorVersion = "3.0.2"
 
 kscience{
     jvm()

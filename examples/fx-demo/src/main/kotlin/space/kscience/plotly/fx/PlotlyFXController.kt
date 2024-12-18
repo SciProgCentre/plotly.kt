@@ -3,10 +3,7 @@ package space.kscience.plotly.fx
 import io.ktor.server.engine.ApplicationEngine
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import tornadofx.*
 import java.net.URI
 
@@ -35,9 +32,9 @@ class PlotlyFXController : Controller() {
 
     val address = SimpleStringProperty()
 
-    fun displayPage(page: String) {
+    fun displayPage(page: String) = runBlocking {
         server?.let {
-            val connector = it.environment.connectors.first()
+            val connector = it.resolvedConnectors().first()
             val uri = URI("http", null, connector.host, connector.port, null, null, null)
             address.set("$uri/$page")
         }
