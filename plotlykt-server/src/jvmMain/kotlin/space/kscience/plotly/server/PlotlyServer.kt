@@ -48,7 +48,7 @@ internal class ServerPlotlyRenderer(
             id = plotId
 
             val dataUrl = URLBuilder(baseUrl).apply {
-                encodedPath = baseUrl.encodedPath + "/data/$plotId"
+                encodedPathSegments += listOf("data", plotId)
             }.build()
             script {
                 if (embedData) {
@@ -81,8 +81,8 @@ internal class ServerPlotlyRenderer(
                 when (updateMode) {
                     PlotlyUpdateMode.PUSH -> {
                         val wsUrl = URLBuilder(baseUrl).apply {
-                            protocol = URLProtocol.WS
-                            encodedPath = baseUrl.encodedPath + "/ws/$plotId"
+                            protocol = if (baseUrl.protocol == URLProtocol.HTTPS) URLProtocol.WSS else URLProtocol.WS
+                            encodedPathSegments += listOf("ws", plotId)
                         }.build()
                         unsafe {
                             //language=JavaScript
@@ -117,7 +117,8 @@ internal class ServerPlotlyRenderer(
 }
 
 public class PlotlyServer internal constructor(
-    private val routing: Routing, private val rootRoute: String,
+    private val routing: Routing,
+    private val rootRoute: String,
 ) : Configurable, CoroutineScope {
 
     override val coroutineContext: CoroutineContext get() = routing.application.coroutineContext
@@ -196,14 +197,14 @@ public class PlotlyServer internal constructor(
                 //filled pages
                 get {
                     val origin = call.request.origin
-                    val url = URLBuilder().apply {
+                    val url = buildUrl {
                         protocol = URLProtocol.createOrDefault(origin.scheme)
                         //workaround for https://github.com/ktorio/ktor/issues/1663
                         host = dataSourceHost
                             ?: if (origin.serverHost.startsWith("0:")) "[${origin.serverHost}]" else origin.serverHost
                         port = dataSourcePort ?: origin.serverPort
                         encodedPath = origin.uri
-                    }.build()
+                    }
                     call.respondHtml {
 //                        val normalizedRoute = if (rootRoute.endsWith("/")) {
 //                            rootRoute

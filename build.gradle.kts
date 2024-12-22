@@ -10,7 +10,7 @@ val plotlyVersion by extra("2.29.0")
 
 allprojects {
     group = "space.kscience"
-    version = "0.7.1.1-ktor3"
+    version = "0.7.1.2-ktor3"
 }
 
 apiValidation {
