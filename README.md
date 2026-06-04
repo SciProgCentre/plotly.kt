@@ -5,6 +5,14 @@
 
 ![Plotlykt logo](./docs/logo_text.svg)
 
+<div style="border: 2px solid #d9534f; padding: 16px; border-radius: 6px; background: #f9d6d5;">
+  <h2>⚠️ Repository Moved</h2>
+  <p>Plotly-kt is now developed as a part of VisionForge project and changed maven coordinates</p>
+  <p><strong>New github location:</strong> <a href="https://github.com/SciProgCentre/visionforge/tree/main/plotly-kt">https://github.com/SciProgCentre/visionforge/tree/main/plotly-kt</a></p>
+  <p><strong>New development location:</strong> <a href="https://git.sciprog.center/kscience/visionforge/src/branch/main/plotly-kt">https://git.sciprog.center/kscience/visionforge/src/branch/main/plotly-kt</a></p>
+  <p><strong>New maven coordinates</strong>: plotly-kt instead of plotlykt.  Verstion now follows VisionForge versioning.</p>
+</div>
+
 ## Artifact details
 
 [![Maven Central](https://img.shields.io/maven-central/v/space.kscience/plotlykt-core.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22space.kscience%22%20AND%20a:%22plotlykt-core%22)
